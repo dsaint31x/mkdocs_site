@@ -58,6 +58,10 @@ markdown_extensions:
 nav:
   - index: index.md
   - CE:
-    - kernel.md
+    - 'ch02':
+      - 'relay': 'CE/ce02_05_relay.md'
+      - 'vacuum tube': 'CE/ce02_06_vacuum_tube.md'
+    - 'os':
+      - 'kernel.md'
   - Material Test:
     - code blk: test_code_blocks.md
