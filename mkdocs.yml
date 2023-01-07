@@ -3,5 +3,6 @@ site_name: My Docs
 nav:
   - index: index.md
   - CE:
-    - ch02:
-      -relay: 'CE/ce02_05_relay.md'
+    - 'ch02':
+      - 'relay': 'CE/ce02_05_relay.md'
+      - 'vacuum tube': 'CE/ce02_06_vacuum_tube.md'
