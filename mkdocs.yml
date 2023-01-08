@@ -61,6 +61,7 @@ nav:
     - 'ch02':
       - 'relay': 'CE/ce02_05_relay.md'
       - 'vacuum tube': 'CE/ce02_06_vacuum_tube.md'
+      - 'transistor': 'CE/ce02_07_transistor.md'
     - 'os':
       - 'kernel.md'
   - Material Test:
