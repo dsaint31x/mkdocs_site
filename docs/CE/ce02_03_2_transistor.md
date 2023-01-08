@@ -10,7 +10,8 @@ FET에서도 Metal Oxide Silicon FET가 주로 많이 사용되고, N-channel MO
 
 Transistor는 물리적인 switching을 수행하는 Relay나 열을 가해야하는 Vacuum tube등에 비해서 가격, 속도, 크기, 수명 등의 모든 면에서 우수한 device임. (열전자 대신 semi-conductor를 이용한 Vacuum tube라고 보면 이해가 쉬움)
 
-## N-MOS and P-MOS FET
+## *N-MOS* and *P-MOS* FET
+
 N-MOSFET의 경우, Gate에 `1` (정확히는 $V_\text{GS} > V_\text{Th}$)인 경우 close가 되는데, output이 `0`에 해당하는 $V_\text{SS}$에서는 손실이 없지만, `1`에 해당하는 $V_\text{DD}$는 $V_\text{DD}-V_{Th}$가 되어 손실이 발생함.
 
 N-MOS와 P-MOS는 각기 상보적인(complementary) 특징을 가지기 때문에 이 둘을 잘 조합한 CMOS (Complement Metal Oxide Silicon) FET이 낮은 전력 소모 등의 장점을 보임으로서 컴퓨터에서 많이 사용된다.
