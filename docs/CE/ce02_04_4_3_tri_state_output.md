@@ -8,6 +8,7 @@
 * $\text{OE}$(or $\overline{\text{OE}}$)로 `Enable`을 표기하기도 함.
 
 ![tristate_output](imgs/tri-state-output.png)
+
 * 위 그림의 Tri-state output에선 위아래의 Transistor들의 base에 동시에 1이 들어가지 못하게 설계됨.
 * 만약 1이 동시에 들어가면 meltdown이 발생!
 
