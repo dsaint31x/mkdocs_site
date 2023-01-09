@@ -59,9 +59,15 @@ nav:
   - index: index.md
   - CE:
     - 'ch02':
-      - 'relay': 'CE/ce02_05_relay.md'
-      - 'vacuum tube': 'CE/ce02_06_vacuum_tube.md'
-      - 'transistor': 'CE/ce02_07_transistor.md'
+      - 'relay': 'CE/ce02_03_0_relay.md'
+      - 'vacuum tube': 'CE/ce02_03_1_vacuum_tube.md'
+      - 'transistor': 'CE/ce02_03_2_transistor.md'
+      - 'IC': 'CE/ce02_03_3_IC.md'
+      - 'Gate Output':
+        - 'CE/ce02_04_4_gate_outputs.md'
+        - 'Totem-pole Output': 'CE/ce02_04_4_1_totem_pole_output.md'
+        - 'Open-Collector Output': 'CE/ce02_04_4_2_open_collector.md'
+        - 'Tri-State Output': 'CE/ce02_04_4_3_tri_state_output.md'
     - 'os':
       - 'kernel.md'
   - Material Test:
