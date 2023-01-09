@@ -68,10 +68,10 @@ nav:
       - 'Gate에 대해서': 'CE/ce02_04_0_gate.md'
       - 'Noise와 싸우기': 'CE/ce02_04_1_glitch.md'
       - 'Propagation Delay': 'CE/ce02_04_3_propagation_delay.md'
-      - 'CE/ce02_04_4_gate_outputs.md'
-      - 'Totem-pole Output': 'CE/ce02_04_4_1_totem_pole_output.md'
-      - 'Open-Collector Output': 'CE/ce02_04_4_2_open_collector.md'
-      - 'Tri-State Output': 'CE/ce02_04_4_3_tri_state_output.md'
+      - 'CE/ce02_04_4_0_gate_outputs.md'
+        - 'Totem-pole Output': 'CE/ce02_04_4_1_totem_pole_output.md'
+        - 'Open-Collector Output': 'CE/ce02_04_4_2_open_collector.md'
+        - 'Tri-State Output': 'CE/ce02_04_4_3_tri_state_output.md'
   - 'os':
     - 'kernel.md'
   - Material Test:
