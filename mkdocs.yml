@@ -5,6 +5,7 @@ theme:
   name: 'material'
   custom_dir: 'custom_theme/'
   features:
+    - navigation.tabs
     - content.code.annotate
     - content.code.copy
 
@@ -15,6 +16,8 @@ plugins:
       separator: '[\s\-,:!=\[\]()"`/]+|\.(?!\d)|&[lg]t;|(?!\b)(?=[A-Z][a-z])'
   - minify:
       minify_html: true
+  - tags:
+      tag_file: tags.md
 
 markdown_extensions:
   - abbr
@@ -76,3 +79,4 @@ nav:
     - 'kernel.md'
   - Material Test:
     - code blk: test_code_blocks.md
+  -tags: tags.md
