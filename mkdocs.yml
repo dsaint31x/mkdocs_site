@@ -79,4 +79,4 @@ nav:
     - 'kernel.md'
   - Material Test:
     - code blk: test_code_blocks.md
-  -tags: tags.md
+  - tags: tags.md
