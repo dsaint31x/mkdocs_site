@@ -62,19 +62,34 @@ nav:
   - index: index.md
   - 'ch02':
     - 'Building Hardware for Bits':
-      - 'CE/ce02_03_0_HW4Bits.md'
-      - 'relay': 'CE/ce02_03_1_relay.md'
-      - 'vacuum tube': 'CE/ce02_03_2_vacuum_tube.md'
-      - 'transistor': 'CE/ce02_03_3_transistor.md'
-      - 'IC': 'CE/ce02_03_4_IC.md'
+      - 'CE/ch02_co/ce02_03_0_HW4Bits.md'
+      - 'relay': 'CE/ch02_co/ce02_03_1_relay.md'
+      - 'vacuum tube': 'CE/ch02_co/ce02_03_2_vacuum_tube.md'
+      - 'transistor': 'CE/ch02_co/ce02_03_3_transistor.md'
+      - 'IC': 'CE/ch02_co/ce02_03_4_IC.md'
     - 'Gates':
-      - 'Gate에 대해서': 'CE/ce02_04_0_gate.md'
-      - 'Noise와 싸우기': 'CE/ce02_04_1_glitch.md'
-      - 'Propagation Delay': 'CE/ce02_04_3_propagation_delay.md'
-      - 'CE/ce02_04_4_0_gate_outputs.md'
-      - 'Totem-pole Output': 'CE/ce02_04_4_1_totem_pole_output.md'
-      - 'Open-Collector Output': 'CE/ce02_04_4_2_open_collector.md'
-      - 'Tri-State Output': 'CE/ce02_04_4_3_tri_state_output.md'
+      - 'Gate에 대해서': 'CE/ch02_co/ce02_04_0_gate.md'
+      - 'Noise와 싸우기': 'CE/ch02_co/ce02_04_1_glitch.md'
+      - 'Propagation Delay': 'CE/ch02_co/ce02_04_3_propagation_delay.md'
+      - 'CE/ch02_co/ce02_04_4_0_gate_outputs.md'
+      - 'Totem-pole Output': 'CE/ch02_co/ce02_04_4_1_totem_pole_output.md'
+      - 'Open-Collector Output': 'CE/ch02_co/ce02_04_4_2_open_collector.md'
+      - 'Tri-State Output': 'CE/ch02_co/ce02_04_4_3_tri_state_output.md'
+  - 'ce03':
+    - 'time and momory':
+      - 'time and momory': 'CE/ch03_seq/ce03_01_0_0_memory0.md'
+      - 'oscillator':      'CE/ch03_seq/ce03_01_0_1_Oscillator.md'
+      - 'latch':           'CE/ch03_seq/ce03_01_0_2_latch.md'
+      - 'flip-flop':       'CE/ch03_seq/ce03_01_0_3_flip_flop.md'
+      - 'counter':         'CE/ch03_seq/ce03_01_0_4_counter.md'
+      - 'register':        'CE/ch03_seq/ce03_01_0_5_register.md'
+      - 'memory (summary)':'CE/ch03_seq/ce03_02_0_primary_secondary_memory.md'
+      - 'memory and RAM':  'CE/ch03_seq/ce03_02_1_memroy1.md'
+      - 'ROM':             'CE/ch03_seq/ce03_02_3_rom.md'
+      - 'Block Device':    'CE/ch03_seq/ce03_02_block_device.md'
+      - 'Flash Memory':    'CE/ch03_seq/ce03_flash_ssd.md'
+      - 'ECC Memory':      'CE/ch03_seq/ce03_04_ecc_memory.md'
+      - 'HW vs SW':        'CE/ch03_seq/ce03_05_hw_and_sw'
   - 'os':
     - 'kernel.md'
   - Material Test:
