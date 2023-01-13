@@ -1,0 +1,44 @@
+# Block Device
+
+> bit나 depth단위로 access가 이루어지는 RAM, ROM과 달리 특정 크기의 bytes (Block) 단위로 access가 이루어지는 Device.
+
+* RAM등에서는 block access가 아닌 random access가 이루어짐.
+
+computer에서 사용하는 고밀도 대용량의 기억장치들은 Block Device이며 보조기억장치로 활용된다.
+
+최근 SSD에 의해 점유율이 위협을 받고있으나, 아직까지 Mass storage의 대명사는 Disk Drive라고 할 수 있음.
+
+## Disk Drive
+
+사실 소재에 따라, floppy disk drive와 hard disk drive로 나뉘지만....  
+현재는 hard disk drive만을 사용하기 때문에 줄여서 hard라고도 불림.
+
+* 대표적인 non-volatile 기억장치.
+* 보조기억장치의 대명사임.
+* Direct Access Storage Device & media (DASD) 
+
+* more : [Disk Drive](https://dsaint31.tistory.com/entry/CS-Disk-Drive)
+
+## Magnetic Tape
+
+HDD보다 용량대비 단가가 더 낮은 장비이나, 속도는 컴퓨터 초창기의 천동테이프 수준이라고 생각될 정도로 느린 장비.
+(최후의 저장 장소로 보험용으로 사용된다.)
+
+* Sequential Access Storage Device & media (SASD)
+
+
+* more: [Magnetic Tape](https://dsaint31.tistory.com/manage/newpost/412?type=post&returnURL=https%3A%2F%2Fdsaint31.tistory.com%2Fentry%2FCE-Magnetic-Tape-Magnetic-Tape)
+
+## Optical Disk
+
+이전에 프로그램 설치 (특히 OS)는 CD-ROM을 사용했을 정도이나, Flash memory의 가격이 어마어마하게 떨어지면서 거의 사용이 되지 않고 있음. 
+
+* more : [Optical Disk](https://dsaint31.tistory.com/manage/posts/)
+
+---
+
+[DASD](https://dsaint31.tistory.com/entry/Direct-Access-Storage-Device-media-DASD)
+
+
+
+

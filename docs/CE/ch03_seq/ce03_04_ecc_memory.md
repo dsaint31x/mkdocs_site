@@ -1,0 +1,16 @@
+# Error Checking and Correction Memory (ECC Memory)
+
+> RAM 중에서 data의 무결성이 중요한 경우(서버용)를 위한 것으로 저장된 데이터의 오류를 체크하고 수정하는 기능이 있는 것.
+> 매우 고가이며, PC등에서는 보통 사용하지 않음.
+
+`Parity` bit와 같이 단순한 방법 부터 `Hamming code`등의 좀더 복잡한 방법등이 있음.
+일반적으로 오류를 검출하는 경우보다 수정을 하려면 보다 많은 bit를 사용해야 함.
+
+
+# Checksum and CRC
+
+특정 파일이 변조되지 않았는지라던지 제대로 다운로드되었는지 등을 검증하는 방법들.
+
+parity bit가 동적인 데이터(계속해서 값이 변화하는 RAM에 저장된 데이터)에 적합한 기술이라면, Checksum과 CRC는 정적인 데이터 (설치 파일 등)에 적합한 기술임.
+
+특정 데이터가 생성되었을 때, Checksum(데이터들을 단위별로 더하고 넘어가는 값은 무시)이나 Cyclic Redundancy Check(CRC), Hash code를 계산해 저장해두면, 이후 예기치 않게 해당 데이터가 바뀐 경우 이를 확인할 수 있음.

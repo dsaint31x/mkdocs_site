@@ -1,0 +1,1 @@
+# Hardware vs. Software (Firmware and FPGA관점에서 비교)
