@@ -3,7 +3,7 @@
 > 특정 시점의 1bit의 정보를 기억하는 memory device.
 
 
-`latch`에서는 ^^기억이 이루어지는 특정 시점이 level^^로 결정되지만, `Flip-Flop`에서는 **edge (=transition between logic level)로 결정**됨. 
+`latch`에서는 ^^기억이 이루어지는 특정 시점이 level^^ 로 결정되지만, `Flip-Flop`에서는 **edge (=transition between logic level)로 결정** 됨. 
 
 - `latch`가 특정 level인 경우 입력을 받아들이므로 해당 level 기간동안 입력이 변경될 수 있음.
 - `edge`는 훨씬 짧은 시간동안 입력을 받아들이므로, 해당 시간에 입력이 변경될 확률이 latch에 비해 매우 낮음 (flip-flop은 Edge triggered latch라고도 불림)
