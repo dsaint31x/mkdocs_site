@@ -75,7 +75,7 @@ nav:
       - 'Totem-pole Output': 'CE/ch02_co/ce02_04_4_1_totem_pole_output.md'
       - 'Open-Collector Output': 'CE/ch02_co/ce02_04_4_2_open_collector.md'
       - 'Tri-State Output': 'CE/ch02_co/ce02_04_4_3_tri_state_output.md'
-  - 'ce03':
+  - 'ch03':
     - 'time and momory':
       - 'time and momory': 'CE/ch03_seq/ce03_01_0_0_memory0.md'
       - 'oscillator':      'CE/ch03_seq/ce03_01_0_1_Oscillator.md'
@@ -83,7 +83,7 @@ nav:
       - 'flip-flop':       'CE/ch03_seq/ce03_01_0_3_flip_flop.md'
       - 'counter':         'CE/ch03_seq/ce03_01_0_4_counter.md'
       - 'register':        'CE/ch03_seq/ce03_01_0_5_register.md'
-      - 'memory (summary)':'CE/ch03_seq/ce03_02_0_primary_secondary_memory.md'
+      - 'memory summary':  'CE/ch03_seq/ce03_02_0_primary_secondary_memory.md'
       - 'memory and RAM':  'CE/ch03_seq/ce03_02_1_memroy1.md'
       - 'ROM':             'CE/ch03_seq/ce03_02_3_rom.md'
       - 'Block Device':    'CE/ch03_seq/ce03_02_block_device.md'
