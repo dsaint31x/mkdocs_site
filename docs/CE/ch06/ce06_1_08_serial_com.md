@@ -131,19 +131,36 @@ Serial communication을 위해서는 위의 그림에서 보이듯이 stop bit�
 
 ![rs232_pinout](img/RS232-Connector-Pinout.png)
 
-1. `CD` : (Data) Carrier Detect`, `DCD`로 기재되기도 함. DCE가 상대편 modem등에 전화선을 통해 접속이 완료된 경우 상대편 modem이 carrier signal을 보내주는데 이 신호를 검출했음을 DTE에 알려주는 신호선으로 통신 라인이 설정됨을 의미(전화가 걸렸을 때 High, 끊어지면 Low. 끊기 위해서 Low로 설정하면 2초후 전화 끊김.). (DCE송신, DTE수신)
-2. `RxD` : `Rx`라고도 하는데, 데이터가 들어오는 신호선임.(DCE송신, DTE수신)
-3. `TxD` : `Tx`라고도 하는데, 데이터가 나가는 신호선임.(DCE수신, DTE송신)
-4. `DTR` : Data Terminal Ready, DTE가 DCE에게 데이터 송수신이 필요함을 알리는 신호선으로 통신 포트를 초기화한 직후 이 신호가 출력됨.(DCE수신, DTE송신)
-5. `GND` : 그라운드.
-6. `DSR` : Data Set Ready, DCE가 DTE에게 데이터 송수신 준비가 되었음을 알리는 신호선으로 modem 등이 `DTR` 신호를 받고 상태 체크 후 통신할 준비가 되었음을 아리기 위해 이 신호를 출력.(DCE송신, DTE수신)
-7. `RTS`/`RTR` : 
-  - Request To Send (half-duplex), 컴퓨터 등의 DTE (Data Terminal Equipment)가 modem 등의 DCE (Data Communication Equipment)에게 데이터를 보내겠다고 알리는 신호선.(DCE수신, DTE송신)
-  - Ready To Receive (full-duplex), DTE의 버퍼가 충분하여 DCE가 보내는 데이터를 받을 수 있음을 DCE에게 알림. 만일 버퍼가 다 차면, low로 설정하며, 이 경우 DCE는 상대편에게 데이터를 보내지 말라고 연락하는 방식으로 flow control용임. (DCE수신, DTE송신)
-8. `CTS` : 
-  - Clear To Send (half-duplex), DCE가 DTE에게 데이터를 받을 준비가 되었음을 알리는 신호선으로 `RTS`를 받고 modem이 DTE로부터 데이터를 받을 수 있음을 알리는 것이며 이후 DTE는 `TxD`를 사용할 수 있음.(DCE송신, DTE수신)
-  - Clear To Send (full-duplex), modem의 버퍼가 충분하여 DTE로부터의 데이터를 받을 수 있음을 알림(high). 만약 버퍼가 가득 차거나 상대방이 데이터 전송을 하지 말라고 하는 경우에는 low가 됨. `RTS`와 함께 flow control용임. (DCE송신, DTE수신)
-9.  `RI` : Ring Indicator,  상대편 modem이 통신을 하기 위해 modem으로 보낸 신호를 수신했음을 DCE가 DTE에게 보내는 신호선.(DCE송신, DTE수신)
+1번 `CD` 
+: (Data) Carrier Detect`, `DCD`로 기재되기도 함. DCE가 상대편 modem등에 전화선을 통해 접속이 완료된 경우 상대편 modem이 carrier signal을 보내주는데 이 신호를 검출했음을 DTE에 알려주는 신호선으로 통신 라인이 설정됨을 의미(전화가 걸렸을 때 High, 끊어지면 Low. 끊기 위해서 Low로 설정하면 2초후 전화 끊김.). (DCE송신, DTE수신)
+
+2번 `RxD` 
+: `Rx`라고도 하는데, 데이터가 들어오는 신호선임.(DCE송신, DTE수신)
+
+3번 `TxD` 
+: `Tx`라고도 하는데, 데이터가 나가는 신호선임.(DCE수신, DTE송신)
+
+4번 `DTR` 
+: Data Terminal Ready, DTE가 DCE에게 데이터 송수신이 필요함을 알리는 신호선으로 통신 포트를 초기화한 직후 이 신호가 출력됨.(DCE수신, DTE송신)
+
+5번 `GND` 
+: 그라운드.
+
+6번 `DSR` 
+: Data Set Ready, DCE가 DTE에게 데이터 송수신 준비가 되었음을 알리는 신호선으로 modem 등이 `DTR` 신호를 받고 상태 체크 후 통신할 준비가 되었음을 아리기 위해 이 신호를 출력.(DCE송신, DTE수신)
+
+7번 `RTS`/`RTR` 
+
+    - Request To Send (half-duplex), 컴퓨터 등의 DTE (Data Terminal Equipment)가 modem 등의 DCE (Data Communication Equipment)에게 데이터를 보내겠다고 알리는 신호선.(DCE수신, DTE송신)
+    - Ready To Receive (full-duplex), DTE의 버퍼가 충분하여 DCE가 보내는 데이터를 받을 수 있음을 DCE에게 알림. 만일 버퍼가 다 차면, low로 설정하며, 이 경우 DCE는 상대편에게 데이터를 보내지 말라고 연락하는 방식으로 flow control용임. (DCE수신, DTE송신)
+
+8번 `CTS`  
+
+    - Clear To Send (half-duplex), DCE가 DTE에게 데이터를 받을 준비가 되었음을 알리는 신호선으로 `RTS`를 받고 modem이 DTE로부터 데이터를 받을 수 있음을 알리는 것이며 이후 DTE는 `TxD`를 사용할 수 있음.(DCE송신, DTE수신)
+    - Clear To Send (full-duplex), modem의 버퍼가 충분하여 DTE로부터의 데이터를 받을 수 있음을 알림(high). 만약 버퍼가 가득 차거나 상대방이 데이터 전송을 하지 말라고 하는 경우에는 low가 됨. `RTS`와 함께 flow control용임. (DCE송신, DTE수신)
+
+9번  `RI` 
+: Ring Indicator,  상대편 modem이 통신을 하기 위해 modem으로 보낸 신호를 수신했음을 DCE가 DTE에게 보내는 신호선.(DCE송신, DTE수신)
 
 ### RS-232 Cable
 
