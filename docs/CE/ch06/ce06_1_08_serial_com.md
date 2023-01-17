@@ -151,13 +151,23 @@ Serial communication을 위해서는 위의 그림에서 보이듯이 stop bit�
 
 7번 `RTS`/`RTR` 
 
-    - Request To Send (half-duplex), 컴퓨터 등의 DTE (Data Terminal Equipment)가 modem 등의 DCE (Data Communication Equipment)에게 데이터를 보내겠다고 알리는 신호선.(DCE수신, DTE송신)
-    - Ready To Receive (full-duplex), DTE의 버퍼가 충분하여 DCE가 보내는 데이터를 받을 수 있음을 DCE에게 알림. 만일 버퍼가 다 차면, low로 설정하며, 이 경우 DCE는 상대편에게 데이터를 보내지 말라고 연락하는 방식으로 flow control용임. (DCE수신, DTE송신)
+  `Request To Send (half-duplex)`  
+
+    컴퓨터 등의 DTE (Data Terminal Equipment)가 modem 등의 DCE (Data Communication Equipment)에게 데이터를 보내겠다고 알리는 신호선.(DCE수신, DTE송신)
+ 
+  `Ready To Receive (full-duplex)`  
+
+    DTE의 버퍼가 충분하여 DCE가 보내는 데이터를 받을 수 있음을 DCE에게 알림. 만일 버퍼가 다 차면, low로 설정하며, 이 경우 DCE는 상대편에게 데이터를 보내지 말라고 연락하는 방식으로 flow control용임. (DCE수신, DTE송신)
 
 8번 `CTS`  
 
-    - Clear To Send (half-duplex), DCE가 DTE에게 데이터를 받을 준비가 되었음을 알리는 신호선으로 `RTS`를 받고 modem이 DTE로부터 데이터를 받을 수 있음을 알리는 것이며 이후 DTE는 `TxD`를 사용할 수 있음.(DCE송신, DTE수신)
-    - Clear To Send (full-duplex), modem의 버퍼가 충분하여 DTE로부터의 데이터를 받을 수 있음을 알림(high). 만약 버퍼가 가득 차거나 상대방이 데이터 전송을 하지 말라고 하는 경우에는 low가 됨. `RTS`와 함께 flow control용임. (DCE송신, DTE수신)
+  `Clear To Send (half-duplex)`  
+
+    DCE가 DTE에게 데이터를 받을 준비가 되었음을 알리는 신호선으로 `RTS`를 받고 modem이 DTE로부터 데이터를 받을 수 있음을 알리는 것이며 이후 DTE는 `TxD`를 사용할 수 있음.(DCE송신, DTE수신)
+
+  `Clear To Send (full-duplex)`  
+
+    modem의 버퍼가 충분하여 DTE로부터의 데이터를 받을 수 있음을 알림(high). 만약 버퍼가 가득 차거나 상대방이 데이터 전송을 하지 말라고 하는 경우에는 low가 됨. `RTS`와 함께 flow control용임. (DCE송신, DTE수신)
 
 9번  `RI` 
 : Ring Indicator,  상대편 modem이 통신을 하기 위해 modem으로 보낸 신호를 수신했음을 DCE가 DTE에게 보내는 신호선.(DCE송신, DTE수신)
