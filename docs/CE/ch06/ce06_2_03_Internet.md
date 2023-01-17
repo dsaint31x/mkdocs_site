@@ -33,7 +33,7 @@ Internet 상(or Network)에서 어떤 한 컴퓨터를 찾아낼 수 있는 주�
 * 실제로는 Ethernet card에 IP address가 할당된다.
 
 
-[IP Address](https://dsaint31.tistory.com/entry/CE-Internet-Protocol-Address)
+  [IP Address 설명 URL](https://dsaint31.tistory.com/entry/CE-Internet-Protocol-Address)
 
 ---
 
