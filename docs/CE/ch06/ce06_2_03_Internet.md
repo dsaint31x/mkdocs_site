@@ -19,6 +19,8 @@
 
 > 전 세계의 모든 컴퓨터, 기기가 인터넷을 통해 상호 연결되기 위해서는 TCP/IP라는 protocol pair를 사용해야 하고, 그 일환으로 IP Address를 각각의 장비에 부여하여 통신을 함.  
 
+---
+
 ## IP Address
 
 Internet 상(or Network)에서 어떤 한 컴퓨터를 찾아낼 수 있는 주소  
@@ -31,6 +33,8 @@ Internet 상(or Network)에서 어떤 한 컴퓨터를 찾아낼 수 있는 주�
 
 [IP Address](https://dsaint31.tistory.com/entry/CE-Internet-Protocol-Address)
 
+---
+
 ## Domain Name System
 
 Domain : 인터넷에 연결된 컴퓨터를 사람이 쉽게 기억하고 입력할 수 있도록 문자(영문, 한글 등)로 만든 인터넷주소.
@@ -40,6 +44,8 @@ Domain : 인터넷에 연결된 컴퓨터를 사람이 쉽게 기억하고 입�
 * [DNS란](https://dsaint31.tistory.com/entry/CE-Domain-Name-System)
 
 * [notion메모](https://www.notion.so/mmmil/Domain-Name-System-727bf668104a4dfaade9830fa743a96d)
+
+---
 
 ## 기타용어 및 Protocol
 
@@ -70,6 +76,7 @@ email 전송 protocol
 * ftp 프로토콜은 원격의 컴퓨터에 접속하여 파일만 빠르게 업로드/다운로드할 수 있도록 한다.
 * 대표적 sw : [https://filezilla-project.org/](https://filezilla-project.org/)
 
+---
 
 ## Firewall (방화벽)
 

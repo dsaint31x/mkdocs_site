@@ -6,6 +6,7 @@
 > parallel 방식은 사실상 cpu나 microprocessor 내부에서 데이터를 주고받는 방식이고, 주변기기와의 연결은 serial 방식이 대세임.  
 > HDD도 과거 IDE의 경우 parallel방식이었으나 현재는 SATA (Serial Advanced Technology Attachment)로 다 전환된 상태임.
 
+---
 
 ## Recommended Standard 232, 422, 485
 
@@ -30,6 +31,8 @@ RS-485는 보다 많은 장비들이 연결되도록 만들어진 규격으로 �
 
 
 > 사용하는 pin의 수 증가는 전선 케이블의 가격 상승으로 이어진다. 어떤 분들은 구리가격이 정말 비싸고, 반도체는 모래에서 만든다면서 핀수를 줄이는 게 중요하다고 말 할 정도로, IC의 값이 내려가는터라... RS-232는 IoT가 대중화되어도 살아남을 거 같다.
+
+---
 
 ## UART (Universal Asynchronous Receiver Transmitter)
 
@@ -58,6 +61,8 @@ FTDI FT232, Silicon Labs CP2102 및 Prolific PL2303 등이 USB를 serial port로
 ![PL2303](img/PL2302_usb_serial_conv.png)
 
  * [참고 url](https://docs.whiteat.com/usbtottl-usbtoserial/)
+
+---
 
 ## Mark-Space Signaling
 
@@ -99,6 +104,8 @@ Serial communication을 위해서는 위의 그림에서 보이듯이 stop bit�
   - `mark`, `space` : parity bit가 `1` 또는 `0`으로 추가.
   - `none` : parity bit를 사용하지 않음. 일반적으로 단거리에서 RS-232통신 중에는 그리 오류가 발생하지 않기 때문에 `none`도 많이 사용됨.
 * `Flow control` : RS-232의 pin이 9개인 이유가 이들 flow control을 위한 것인데, 보통 단순한 예제를 수행하는 경우는 `None`을 선택함.
+
+---
 
 ##  RS-232 연결단자 설명
 
