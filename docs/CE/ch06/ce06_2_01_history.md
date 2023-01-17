@@ -1,7 +1,9 @@
-# History of Data Communication
+# Network
 
-* 1844년 : Electrical Telegraphy (전신), Morse code를 이용하여 미국 볼티모어와 워싱턴 D.C. 사이에 연락이 이루어짐.
-* 1876년 : 알렉산터 그레함 벨의 전화기 발명
+## History of Data Communication
+
+* 1844년 : Electrical Telegraphy (전신) 등장. Morse code를 이용하여 미국 볼티모어와 워싱턴 D.C. 사이에 연락이 이루어짐.
+* 1876년 : 알렉산더 그레함 벨의 전화기 발명
 * 1958년 : 냉전시대의 군사용 방어시스템의 일부. modem과 전화선 기반.
 * 1960년대 : 중앙컴퓨터를 중심으로 ring형태의 다양한 LAN 들이 등장. modem과 전화선 기반으로 LAN이 구성됨.
 * 1960년대 후반 : `packet-switched WAN`인 ARPANet (Advanced Research Project Agency Net) 등장. 이 ARPANet이 Internet으로 진화함.
@@ -15,18 +17,23 @@
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/mi3RZh5Q8Xc?start=54" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
 
+---
 
-# 네트워크의 종류 (접속방식에 따른)
+## 네트워크의 종류 (접속방식에 따른)
 
 * [Circuit Switching Network and Packet Switching Networ](https://dsaint31.tistory.com/entry/CE-Circuit-Switching-and-Packet-Switching)
 
-# LAN vs. WAN
+---
+
+## LAN vs. WAN
 
 > Local Area Network(LAN)은 작은 영역의 network를 가르키며, Wide Area Network (WAN)은 중대형 영역의 network를 가르킴. 
 
 흔히, 집안이나 사무실 내의 네트워크 연결은 ‘LAN’, 지역 간/국가 간 네트워크 연결은 ‘WAN’이라 할 수 있다. 기관이나 기업들의 내부망을 가르키는 intranet은 보통 LAN이라고 보며, 여러 intranet이 연결되어 이루어진 WAN 중에서 전세계 규모로 연결된 network를 internet이라고 부름.
 
-# Protocol
+---
+
+## Protocols
 
 > set of rules. '약속', '규약', '협약' 등을 의미하는 단어로 상호간 원활한 교류, 소통, 통신을 위해  서로 동일하게 어떠한 설정/규칙을 정한 것을 가르킴.
 
@@ -36,7 +43,9 @@
 * 사실 OSI는 컴퓨터들 사이의 네트워크 통신을 위한 일종의 가이드 라인이라고도 볼 수 있음. 
 * 인터넷 프로토콜 가운데 가장 중요한 것으로 `TCP/IP`, `HTTP`, `FTP` 등이 있음.
 
-# 통신 방식
+---
+
+## 통신 방식
 
 `Simplex` : 단방향 통신.
  
