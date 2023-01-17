@@ -1,11 +1,12 @@
 # Internet
 
-> Internet은 Network 의 Network를 가르키며, 기존의 WAN들을 전세계적으로 연결한 것이 Internet임.
-
+Internet은 Network 의 Network를 가르키며, 기존의 WAN들을 전세계적으로 연결한 것이 Internet임.
 
 > Internet is not actually a physical network; it’s **a set of layered protocols**.
 
-하위의 물리적 계층이 기술의 발전으로 바뀌더라도 상위의 계층에 영향을 주지 않도록 설계됨. (전화선에서 광케이블 등으로 물리적 계층은 바뀌었지만, 상위의 계층은 그로 인한 변경없이 동작이 가능함.
+하위의 물리적 계층이 기술의 발전으로 바뀌더라도 상위의 계층에 영향을 주지 않도록 설계됨. (전화선에서 광케이블 등으로 물리적 계층은 바뀌었지만, 상위의 계층들은 그로 인한 변경없이 동작이 가능함.
+
+---
 
 ## Transmission Control Protocol/Internet Protocol (TCP/IP)
 
@@ -13,6 +14,7 @@
 
 * Internet에 접속하기 위한 protocol. (internet은 TCP/IP를 이용하여 구성된 network임)
 * TCP라는 프로토콜(Layer 4)과 IP라는 프로토콜(Layer 3)을 합쳐서 사용. 
+
   - IP protocol 위에 TCP protocol이 정의됨.
   - `192.168.31.34`과 같은 IP Address와 `datagram`으로 불리는 packet 을 사용 (IP 프로토콜의 특징), 
   - 신뢰성 높은 데이터 송수신(TCP 프로토콜의 특징)을 제공 (`TCP`는 packet의 수신을 보장함.)
@@ -50,22 +52,22 @@ Domain : 인터넷에 연결된 컴퓨터를 사람이 쉽게 기억하고 입�
 ## 기타용어 및 Protocol
 
 `Hyper-Text`  
-인터넷 웹 페이지 구성 하는 Text를 지칭
+: 인터넷 웹 페이지 구성 하는 Text를 지칭
 
 `Hyper-Link`  
-특정 하이퍼 텍스트를 마우스로 클릭하여 다른 웹 페이지로 이동시키는 방식을 ‘하이퍼링크’라고 함.
+: 특정 하이퍼 텍스트를 마우스로 클릭하여 다른 웹 페이지로 이동시키는 방식을 ‘하이퍼링크’라고 함.
 
 `HTTP`  
-하이퍼 텍스트를 전송, 제어하는 protocol이 HTTP이다. (TCP/IP 위에 정의) 
+: 하이퍼 텍스트를 전송, 제어하는 protocol이 HTTP이다. (TCP/IP 위에 정의) 
 
 `HTML`  
-웹 페이지(Hyper-Text)를 작성하는 언어가 ‘HTML’. 
+: 웹 페이지(Hyper-Text)를 작성하는 언어가 ‘HTML’. 
 
 `HTTPS`  
-http와 동일하지만 보안(secure) 기능을 추가한 것으로 http 프로토콜에 보안 기능을 제공하는 SSL 프로토콜을 접목한 형태
+: http와 동일하지만 보안(secure) 기능을 추가한 것으로 http 프로토콜에 보안 기능을 제공하는 SSL 프로토콜을 접목한 형태
 
 `SMTP`  
-email 전송 protocol
+: email 전송 protocol
 
 `FTP`
 
