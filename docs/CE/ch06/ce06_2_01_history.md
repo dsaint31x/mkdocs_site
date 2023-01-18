@@ -19,13 +19,20 @@
 
 ---
 
-## 네트워크의 종류 (접속방식에 따른)
+## 네트워크의 종류 
+
+
+### CSN vs. PSN
+
+접속방식에 따른 분류.
 
 * [Circuit Switching Network and Packet Switching Networ](https://dsaint31.tistory.com/entry/CE-Circuit-Switching-and-Packet-Switching)
 
 ---
 
 ## LAN vs. WAN
+
+규모에 따른 분류.
 
 > Local Area Network(LAN)은 작은 영역의 network를 가르키며, Wide Area Network (WAN)은 중대형 영역의 network를 가르킴. 
 

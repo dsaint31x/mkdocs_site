@@ -1,7 +1,7 @@
 # Serial Communication (직렬통신, 시리얼 통신)
 
 ^^ideal하게는 parallel communication이 serial communication보다 빠르다^^ 고 할 수 있지만, 실제로는 여러 connecton간의 동기화가 쉽지 않고, 동작 clock이 매우 빨라지면서 사실상 **주변기기와의 연결은 serial 방식이 대세** 이다.  
-(실제로 parallel 방식보다 serial 방식들이 주변기기 나 확장기기를 연결할 때 보다 고속이다.)
+(실제로 parallel 방식보다 `serial 방식`들이 **주변기기** 를 연결할 때 보다 고속이다.)
 
 > parallel 방식은 사실상 cpu나 microprocessor 내부에서 데이터를 주고받는 방식이고, 주변기기와의 연결은 serial 방식이 대세임.  
 > HDD도 과거 IDE의 경우 parallel방식이었으나 현재는 SATA (Serial Advanced Technology Attachment)로 다 전환된 상태임.
