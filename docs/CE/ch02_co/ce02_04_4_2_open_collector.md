@@ -29,3 +29,7 @@ Open-collector output 여러 개를 연결할 경우, 일종의 `AND` gate로 �
 * 위 그림의 왼쪽의 Open-collector output 중 하나라도 `0`인 경우, 해당 transistor는 close가 되어 $V_\text{CC}$와 ground간에 circuit이 생성되고, output은 `0`이 출력됨.
 * 연결된 Open-collector output 모두가 `1`인 경우에만, 이들이 연결된 이후의 출력단이 `1`을 가지게 됨.
 * 즉, 일종의 `AND` gate에 묶인 것과 같고 이를 `Wired-AND`라고 부름.
+
+## Example
+
+[tinkercad](https://www.tinkercad.com/things/0AQ8twrT2TE)
