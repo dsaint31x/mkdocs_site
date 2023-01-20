@@ -94,8 +94,15 @@ nav:
       - 'HW vs SW':        'CE/ch03_seq/ce03_05_hw_and_sw.md'
   - 'ch06':
     - "Data Transfer":
-      - "Serial Transfer": "CE/ch06/ce06_1_08_serial_com.md"
-      - "USB": "CE/ch06/ce06_1_09_usb.md"
+      - "IO Ports":         "CE/ch06/ce06_1_01_ioport.md"
+      - "Push Btns":        "CE/ch06/ce06_1_02_push_button.md"
+      - "FND":              "CE/ch06/ce06_1_03_fnd.md"
+      - "IO Mux":           "CE/ch06/ce06_1_04_multiplexing_posts.md"
+      - "Duty Cycle":       "CE/ch06/ce06_1_05_bright_duty.md"
+      - "Gray Code":        "CE/ch06/ce06_1_06_graycode.md"
+      - "Paralle Transfer": "CE/ch06/ce06_1_07_parallel_com.md"
+      - "Serial Transfer":  "CE/ch06/ce06_1_08_serial_com.md"
+      - "USB":              "CE/ch06/ce06_1_09_usb.md"
     - "Network and Communication":
       - "The History of Data Communication Network":  "CE/ch06/ce06_2_01_history.md"
       - "Ethernet, Router, Switch and so on":         "CE/ch06/ce06_2_02_Ethernet_Router_Switch.md"
