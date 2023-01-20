@@ -4,7 +4,7 @@
 
 컴퓨터 네트워크 기술의 하나로, 전세계의 사무실이나 가정에서 일반적으로 사용되는 LAN에서 가장 많이 활용되는 기술 규격.
 
-    [Ethernet이란](https://dsaint31.tistory.com/entry/CE-Ethernet)
+* [Ethernet이란](https://dsaint31.tistory.com/entry/CE-Ethernet)
 
 > Network Adaptor 또는 LAN card라고 불리는 device가 바로 Ehternet 통신을 가능하게 해줌.  
 > `Adapter`의 사전적 의미가 두 접점을 연결하는 접합기로, 네트워크 어댑터는 네트워크에 연결되도록 해주는 접합기라는 뜻임.
@@ -13,7 +13,7 @@
 
 ## Hub, Switch, Router, Gateway
 
-    [Hub, Switch, NAT 장비, Router, Gateway](https://dsaint31.tistory.com/entry/Hub-Switch-Router-%EA%B3%B5%EC%9C%A0%EA%B8%B0NAT%EC%9E%A5%EB%B9%84)
+* [Hub, Switch, NAT 장비, Router, Gateway](https://dsaint31.tistory.com/entry/Hub-Switch-Router-%EA%B3%B5%EC%9C%A0%EA%B8%B0NAT%EC%9E%A5%EB%B9%84)
 
 ---
 
