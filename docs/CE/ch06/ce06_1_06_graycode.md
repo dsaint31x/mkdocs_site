@@ -36,12 +36,14 @@ gray code는 binary code로부터 계산된다.
 
 ![graycode](img/graycode.png)
 
-### gray code의 적용사례
+### gray code의 적용사례 : Optical Encoder
 
 ![optical encoder diagram](img/graycode_optical_encoder.png)
 
 * 위의 그림은 gray code 중 하나인 quadrature 를 적용한 광학방식의 encoder임.
-* 해당 구조에서 나오는 waveform은 아래 quadrature부분을 참고할 것.
+* 해당 구조에서 나오는 waveform은 아래 "quadrature부분" 을 참고할 것.
+
+Optical Encoder는 광센서를 활용하여 shaft의 회전방향과 속도등을 측정하는 것으로 다음과 같이 2가지 방식으로 나뉜다.
 
 ![types](img/optical_encoder_types.png)
 
@@ -49,22 +51,23 @@ gray code는 binary code로부터 계산된다.
 
 ### python library for graycode
 
+구현이 그리 어렵지 않으나 "바퀴를 다시 만들지 말라"는 격언대로 가급적 널리 사용되거나 자신이 많이 쓰는 라이브러리에 해당 기능이 있다면 그걸 사용하는게 나음.
+
 * [sympy's graycode](https://docs.sympy.org/latest/modules/combinatorics/graycode.html)
 
 
 ## Quadrature
 
-2-bit Gray code라고 불 수 있음.
+^^2-bit Gray code^^ 라고 불 수 있음.
 
-2-bit이기 때문에 sensor가 2개를 사용하는데, 이 2개의 센서만으로 shaft의 회전방향과 회전속도 등을 확인할 수 있다는 장점을 가짐.
+2-bit이기 때문에 sensor가 2개를 사용하는데, 이 ^^2개의 센서만으로 shaft의 회전방향과 회전속도 등을 확인^^ 할 수 있다는 장점을 가짐.
 
-라디오나 자동자 오디오의 음성크기를 제어하는 knob 등이 대표적인 예임.
+라디오나 자동자 오디오의 음성크기를 제어하는 ***knob*** 등이 대표적인 예임.
 
 십진수와 binary encoding과의 관계는 다음 표와 같다.
 
-| | | |
-|:---:|:---:|:---:|
 |digit|binary|gray|
+|:---:|:---:|:---:|
 |0| 00 |00|
 |1| 01 |01|
 |2| 10 |11|
@@ -78,4 +81,5 @@ gray code는 binary code로부터 계산된다.
 
 ![waveform](img/quadrature.png)
 
-> Qaudrature encoding 의 장점은 압도적인 가성비이다. 실제 매우 저가의 quadrature encoder에서도 한 회전(revolution)을 4096 등분한 resolution을 제공하고 있는데, 이를 absolute encoding을 적용할 경우, 센서가 12개 (즉, 12-bit encoding)나 필요하다. ($$4096=2^2 \times 2^10 =2^12$$)
+> Qaudrature encoding 의 장점은 압도적인 가성비이다.   
+> 실제 매우 저가의 quadrature encoder에서도 한 회전(revolution)을 4096 등분한 resolution을 제공하고 있는데, 이를 absolute encoding을 적용할 경우, 센서가 12개 (즉, 12-bit encoding)나 필요하다. $(4096=2^2 \times 2^{10} =2^{12})$
