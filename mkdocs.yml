@@ -114,6 +114,22 @@ nav:
       - "Standard I/O Library"  : "CE/ce10_2_04_stdio.md"
   - 'os':
     - 'kernel.md'
+  - "OOP":
+    - "OOP and Programming Paradigm":
+      - "oop_0_00_OOP.md"
+      - "oop_0_01_Object.md"
+      - "oop_0_02_programming_paradigm.md"
+      - "oop_0_03_oop_vs_strctured.md"
+    - "OOP Details":
+      - "oop_1_00_OOP_term.md"
+      - "oop_1_01_abstraction.md"
+      - "oop_1_001_modularity.md"
+      - "oop_1_02_encapsulation.md"
+      - "oop_1_03_inheritance.md"
+      - "oop_1_04_relationship.md"
+      - "oop_1_05_message_passing.md"
+      - "oop_1_07_polymorphism.md"
+    - "OOP Summary" : "oop_2_00_OOP_summary.md"      
   - Material Test:
     - code blk: test_code_blocks.md
   - tags: tags.md
