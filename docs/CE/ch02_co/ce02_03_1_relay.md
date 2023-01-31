@@ -15,16 +15,21 @@ Relay에 전기가 가해지면 전자석에 의해 switch가 켜지고(혹은 �
 
 > 초기 컴퓨터에서 사용되었으나 ^^물리적으로 동작^^ 하는 소자이다보니 *수명이 짧고, 크기가 크며 동작속도가 느리다* 는 단점을 가져 현대의 컴퓨터에서는 거의 쓰이지 않음. (거기다 전력 소모도 큼)
 
+응용분야.
+
 * Single Pole, 10-throw stepper relay등을 이용하면 옛날 전화기의 다이얼이 구현되기도 했음.
 * TV등의 전원을 리모컨으로 켤 때도 내부에서 사용됨. 보통 전원을 켤 때 딸깍 소리가 전자석에 의해 신호가 접점에 붙는 소리.
 
-    일반적인 switch들과 달리 relay는 `고전압, 고전류를 제어하는 switch`로 활용가능함(주 용도?)  
-      
-    Back EMF에 취약함.
+
+일반적인 switch들과 달리 relay는 `고전압, 고전류를 제어하는 switch`로 활용되는 경우가 많다.  
+  
+단점으로 Back EMF에 취약함.
 
 
 ## Relay's Schematic Diagram
+
 다음은 Schematic daigram으로 Relay의 종류를 표시함.
+
 ![relay_diagram](./imgs/relay_diagram.png)
 
 * SPDT : Single Pole Double Throw ( 입력 1개, 출력 2개)

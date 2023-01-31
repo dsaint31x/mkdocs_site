@@ -75,6 +75,7 @@ nav:
       - 'Totem-pole Output': 'CE/ch02_co/ce02_04_4_1_totem_pole_output.md'
       - 'Open-Collector Output': 'CE/ch02_co/ce02_04_4_2_open_collector.md'
       - 'Tri-State Output': 'CE/ch02_co/ce02_04_4_3_tri_state_output.md'
+    - 'Adder, Encoder, and Mux': 'CE/ch02_co/ce02_05_0_adder_encoder_demux.md'
   - 'ch03':
     - 'time and momory':
       - 'time and momory': 'CE/ch03_seq/ce03_01_0_0_memory0.md'
