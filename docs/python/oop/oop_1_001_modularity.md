@@ -9,7 +9,7 @@ Structural Programming(구조적 프로그래밍)의 divide & conquer 와 비슷
 
 ## OOP에서 Modularity와 Hierarchy.
 
-- Modularity 등으로 **나누어진 여러 object(객체)들**의 경우, **서로 비슷한 특성이나 기능을 가질 수 있음**.
+- Modularity 등으로 **나누어진 여러 object(객체)들** 의 경우, **서로 비슷한 특성이나 기능을 가질 수 있음**.
 - 이 때 보편적인 것을 상위에 두고 특수한 것을 하위에 두는 형태로 계층적 구조로 객체를 배열하는 것을 Hierarchy라고 부름.
 
 Hierarchy를 통해 OOP는 높은 재생산성을 가질 수 있다. 일반적으로 OOP에서의 Hierarchy는 inhertance에 의해 구현된다.
