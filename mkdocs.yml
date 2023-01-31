@@ -129,7 +129,11 @@ nav:
       - "python/oop/oop_1_04_relationship.md"
       - "python/oop/oop_1_05_message_passing.md"
       - "python/oop/oop_1_07_polymorphism.md"
-    - "OOP Summary" : "python/oop/oop_2_00_OOP_summary.md"      
+    - "OOP Summary" : "python/oop/oop_2_00_OOP_summary.md"
+    - "python":
+      - "Python의 Class (차이점)": "python/oop/oop_3_01_python_class.md"
+      - "Python의 Encapuslation": "python/oop/oop_3_02_python_encapsulation.md"
+
   - Material Test:
     - code blk: test_code_blocks.md
   - tags: tags.md
