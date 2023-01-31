@@ -18,6 +18,7 @@ Object Oriented Programming 의 약자로
 ## Simulation 과 OOP
 
 최초의 OOP 언어인 **"Simula67"** 은 Simulation을 위해 만들어진 언어임.
+
 * Class, Object 등의 개념 자체가, 실세계를 어떻게 묘사할지 (=simulation) 에서 출발했다는 애기임.
 
 달리 말하면, **OOP** 라는 것은 현실세계를 어떻게 프로그래밍으로 시뮬레이션 할지의 관점 으로 진행된다고 할 수 있음.
