@@ -10,7 +10,7 @@
 
 > 비슷한 것으로 `event-driven`이라는 용어도 있다. 이는 특정 event가 발생할 때, 요구되는(또는 원하는) 특정 동작이 수행되도록 method가 호출되는 형태를 의미함.
 
-OOP는 **instance 간에 message를 주고받아 프로그램이 실행**됨.
+OOP는 **instance 간에 message를 주고받아 프로그램이 실행** 됨.
 
 - 일반적으로 Object는 ***받을 수 있는 message에 대해서만 노출*** 됨.
     - Interface가 바로 받을 수 있는 message(or 공개된 method)를 가르킴.

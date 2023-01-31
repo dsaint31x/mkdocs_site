@@ -6,6 +6,7 @@
 > Abstraction(추상화) = 어떤 대상으로부터 모양(feature) 을 뽑아내는 것
 
 Abstraction의 의미는 다음과 같음.
+
 - 내부의 복잡한 사실을 숨겨서, 이해 및 사용하기 쉽도록 단순화한 것
 - **문제 해결** 하는데 있어 **중요하고 필수적인 사항** 만을 다루도록 **단순화시키는 것** 을 **abstraction(추상화)** 라 함.
 - 필수적이고 중요한 이미지나 관념 (=feature) 만을 표현
@@ -23,10 +24,10 @@ Abstraction의 관점에서 그 결과물인 `model` 이란 세상의 실제적�
 
 ## OOP에서의 Class란?
 
-- 표현 대상 에 대한 abstraction의 결과물.
-- 표현 대상 의 abstraction 표현
-- 대상 의 feature(특징) 에 대한 description.
-- 표현 대상 에 대한 필요한 특징을 서술한 것.
+- `표현 대상` 에 대한 abstraction의 결과물.
+- `표현 대상` 의 abstraction 표현
+- `표현 대상` 의 feature(특징) 에 대한 description.
+- `표현 대상` 에 대한 필요한 특징을 서술한 것.
 
 ## Class vs. Instance
 
@@ -48,7 +49,7 @@ Abstraction의 관점에서 그 결과물인 `model` 이란 세상의 실제적�
 
 일반적으로 OOP에서 Abstraction은
 
-* 대상이 되는 **Object 의 feature(특징)**을
+* 대상이 되는 **Object 의 feature(특징)** 을
     * Data와 
     * Operation 
 * 로 만들어내는 것임.
@@ -61,7 +62,8 @@ Abstraction의 관점에서 그 결과물인 `model` 이란 세상의 실제적�
 **behavior**  
 : = operation = member function = **method**
 
-일반적으로 이렇게 사용되지만, 분야에 따라 조금씩 차이가 있으므로 주의해야한다. 참고로 Python에서는 `attribute`라는 용어로 C++에서의 `member variable` 개념과 `method` 개념 을 합쳐서 표현하는 경향이 있다. `member variable`과 `member function`은 C++에서 많이 사용되며, Java에서는 `member variable`과 `method`가 많이 이용된다.
+일반적으로 이렇게 사용되지만, 분야에 따라 조금씩 차이가 있으므로 주의해야한다. 참고로 Python에서는 `attribute`라는 용어로 ^^C++에서의 `member variable` 개념과 `method` 개념^^ 을 합쳐서 표현하는 경향이 있다.  
+`member variable`과 `member function`은 C++에서 많이 사용되며, Java에서는 `member variable`과 `method`가 많이 이용된다.
 
 ## Summary
 
@@ -76,7 +78,8 @@ OOP에서 넓은 범위의 Object는 모든 것(현실 세계와 프로그래밍
 
 ---
 
-다음은 C++의 관점에서 Object(우리 문서에서는 instance)와 abstraction을 잘 보여주는 그림이라 첨부합니다. (출처가 기억이 안 납니다. ㅠㅠ)
+다음은 C++의 관점에서 Object(우리 문서에서는 instance)와 abstraction을 잘 보여주는 그림이라 첨부합니다.  
+(출처가 기억이 안 납니다. ㅠㅠ)
 
 ![](../img/oop_cpp.png)
 

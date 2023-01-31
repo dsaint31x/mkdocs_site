@@ -2,7 +2,7 @@
 
 ## 정의
 
-**Object 에 기반** 하여, **Object 를 이용**하고 **Object 를 만들고(정의 및 구현), Object 를 조합**하여 **프로그래밍**하는 Program paradigm의 하나.  
+**Object 에 기반** 하여, **Object 를 이용** 하고 **Object 를 만들고(정의 및 구현), Object 를 조합** 하여 **프로그래밍** 하는 Program paradigm의 하나.  
 
 ## 특징
 
