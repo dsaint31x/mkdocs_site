@@ -60,6 +60,20 @@ markdown_extensions:
 
 nav:
   - index: index.md
+  - 'ch01':
+    - "Bits and Boolean Algebra":
+      - "CE/ch01/bit.md"
+      - "CE/ch01/msb_and_lsb.md"
+      - "CE/ch01/otherunits.md"
+      - "CE/ch01/boolean_algebra.md"
+      - "CE/ch01/prefix.md"
+    - "Bits and Number":
+      - "CE/ch01/numeral_system.md"
+      - "CE/ch01/positive_number.md"
+      - "CE/ch01/bcd.md"
+      - "CE/ch01/negative_number.md"
+      - "CE/ch01/overflow_underflow.md"
+      - "CE/ch01/real_number.md"
   - 'ch02':
     - 'Building Hardware for Bits':
       - 'CE/ch02_co/ce02_03_0_HW4Bits.md'
