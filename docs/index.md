@@ -15,3 +15,5 @@ For full documentation visit [mkdocs.org](https://www.mkdocs.org).
     docs/
         index.md  # The documentation homepage.
         ...       # Other markdown pages, images and other files.
+
+<script src="https://gist.github.com/dsaint31x/91c62f92af9e9033edee3283ef0ea319.js"></script>
