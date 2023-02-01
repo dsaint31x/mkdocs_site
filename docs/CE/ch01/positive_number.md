@@ -2,10 +2,18 @@
 
 컴퓨터에서는 대부분 base-2 system (이진수)를 이용하여 bit로 positive integer를 표시함.
 
+> 많은 bit가 할당된 경우, 보다 큰 range의 수를 표현(구분)할 수 있음.
+
 다른 방식이 없는 건 아니며, Binary Coded Decimal (BCD)와 같이 base-10에 기반으로 bit로 표시하는 방식이 있지만, 실제 컴퓨터 내부 연산에서는 사용되지 않는다.
 (단, BCD와 같은 경우, 일종의 encoding방식으로 숫자 자체를 연산이 아닌 표시하거나 bit로 전달하는 경우 등에 많이 사용되므로 방법에 대해서는 알고 있는 것이 좋음)
 
-> 많은 bit가 할당된 경우, 보다 큰 range의 수를 표현(구분)할 수 있음.
+## 2진수 대체 표기 (for Human)
+
+컴퓨터는 2진수를 사용하지만, 인간은 2진수가 너무 길고 읽기 어렵다. 때문에 기술문서등에서는 2진수 기재보다는 2진수로 변환이 쉬우면서도 사람이 좀더 읽기 쉬운 Hexadecimal Representaion을 많이 사용한다 (10진수는 이후 보겠지만, 2진수로 바로 변환이 좀 까다롭다). 또는 Octal Representation(8진수)로 표현하는 경우도 있지만, 주로 Hex로 표기된다. 2진수 표현에서 4자리씩 잘라서 처리하면 쉽게 Hex표현이 된다 (3자리씩 자르면, Oct).
+
+Python이 익숙하다면 다음 gist(요점, 요지)의 `ipynb` file을 참고하라. [](https://gist.github.com/dsaint31x/91c62f92af9e9033edee3283ef0ea319#file-python_numeral_system-ipynb)
+
+
 
 ## 프로그래밍 언어에서 "양의 정수"표현
 
