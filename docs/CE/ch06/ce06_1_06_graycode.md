@@ -5,7 +5,7 @@
 Frank Gray (1887-1969)가 개발한 encoding. binary code(이진코드)들과 달리, 인접한 숫자들 간의 차이는 1개의 비트에 불과함.
 
 * 일반적으로 숫자를 하나 증가 또는 감소하는 카운터들에서 최소한의 비트로 빨리 처리가 가능하므로 많이 사용된다.
-* 또한, 회전축(shaft)의 위치를 encoding할때, encoder들 간의 propgagation delay가 있더라도 에러가 발생하지 않기 때문에 Quadrature등에서 많이 사용됨.
+* 또한, 회전축(shaft)의 위치를 encoding할때, encoder들 간의 propgagation delay가 있더라도 에러가 발생하지 않기 때문에 Quadrature Encoder 등에서 많이 사용됨.
 
 다음 표는 십진수 0에서 10까지에 대한 binary code와 gray code값을 보여준다.
 
@@ -31,10 +31,19 @@ Frank Gray (1887-1969)가 개발한 encoding. binary code(이진코드)들과 �
 
 gray code는 binary code로부터 계산된다.
 
+![graycode](img/graycode.png)
+
 * 맨처음 나오는 1은 그대로 사용.
 * 맨 처음 나온 1 이후 자리의 값은 ^^binary code에서 `앞서 있는 자리의 값`과 `현재 값`^^ 을 `XOR` 수행하여 구함.
+* 위 그림의 하단부는 gray code에서 binary code로 변환을 보여줌.
 
-![graycode](img/graycode.png)
+다음의 경우를 위의 그림처럼 표현해 보라.
+
+$$
+110101_{2} \Rightarrow 101111_\text{gray} 
+##
+
+
 
 ### gray code의 적용사례 : Optical Encoder
 

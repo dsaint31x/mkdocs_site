@@ -20,8 +20,9 @@ bit는 0,1의 값을 갖는 information의 최소단위이기 때문에 너무 �
 `long word (or full word)` 
 : 32bit 에 해당. 컴퓨터가 32bit machine일 때의 word. 컴퓨터가 발전하면서 long이라는 prefix가 붙어서 구분하기 시작. 일반적으로 word라고 하면 `long word`를 애기하기도 함.
 
-    * word 란 컴퓨터가 한 cycle에 처리할 수 있는 단위를 가르킴. 주소를 가르키는 pointer 변수의 크기라고 생각하면 쉽다.
-    * 위의 word정의에 따르면, word는 계속 커질 수 밖에 없기 때문에 prefix를 붙여 구분을 하는게 좋다.
+    * `word` 란 ***컴퓨터가 한 cycle에 처리할 수 있는 단위*** 를 가르킴. 주소를 가르키는 pointer 변수의 크기라고 생각하면 쉽다.
+    * 주로 **데이터의 입력, 처리, 저장 및 출력을 수행하는 기본 단위** 를 지칭한다.
+    * 위의 word 정의에 따르면, word는 계속 커질 수 밖에 없기 때문에 prefix를 붙여 구분을 하는게 좋다.
 
   
 `double word` 
