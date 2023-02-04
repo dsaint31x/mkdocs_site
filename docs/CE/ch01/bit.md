@@ -1,6 +1,6 @@
 # Bit (Binary Digit)
 
-* **Bi**nary + Digit**t** 로부터 만들어진 용어.
+* Binary + Digitt 로부터 만들어진 용어.
     * Binary란 둘 중 하나의 값을 가지는 것을 의미 : Bit is binary임.
     * Digit은 숫자 (엄밀히는 10개중에 하나의 값을 가지는 것을 가르킴)라고 생각하면 될 듯.
 
