@@ -133,7 +133,7 @@ nav:
       - "python/oop/oop_0_00_OOP.md"
       - "python/oop/oop_0_01_Object.md"
       - "python/oop/oop_0_02_programming_paradigm.md"
-      - "python/oop/oop_0_03_oop_vs_strctured.md"
+      - "python/oop/oop_0_03_oop_vs_structured.md"
     - "OOP Details":
       - "python/oop/oop_1_00_OOP_term.md"
       - "python/oop/oop_1_01_abstraction.md"
@@ -143,6 +143,8 @@ nav:
       - "python/oop/oop_1_04_relationship.md"
       - "python/oop/oop_1_05_message_passing.md"
       - "python/oop/oop_1_07_polymorphism.md"
+    - "OOP Etc":
+      - "python/oop/ds_setter_and_getter.md"
     - "OOP Summary" : "python/oop/oop_2_00_OOP_summary.md"
     - "python":
       - "Python의 Class (차이점)": "python/oop/oop_3_01_python_class.md"
