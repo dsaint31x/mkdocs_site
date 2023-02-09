@@ -2,7 +2,7 @@
 
 ## AI 란
 
-JackMcCarthy 에 따르면  Artificial Intellience (AI)의 정의는 다음과 같음.
+Jack McCarthy 에 따르면  Artificial Intellience (AI)의 정의는 다음과 같음.
 
 > ref. : [Basic Questions](http://www-formal.stanford.edu/jmc/whatisai/node1.html)
 
