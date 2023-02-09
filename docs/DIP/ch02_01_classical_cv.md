@@ -67,7 +67,7 @@ Coner는 contour(윤곽)의 junction(교차점)을 가르킴. 즉, 여러 edge�
 
 ## Blob
 
-Blob 은 Binary Large Object의 줄임말로, 같은 성질을 가지는 픽셀들이 연결되어있는 작은 region을 가르킨다.
+Blob 은 **Binary Large Object** 의 줄임말로, ^^같은 성질을 가지는 픽셀들이 연결되어있는 어느 정도 크기의 region^^ 을 가르킨다.
 
 > Image regsions that are either brighter or darker than the surrounding.
 
