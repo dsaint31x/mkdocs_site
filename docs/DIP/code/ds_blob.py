@@ -11,8 +11,6 @@ img_g = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
 
 params = cv2.SimpleBlobDetector_Params()
 
-print(params.minThreshold, params.maxThreshold)
-
 # Change thresholds
 print('minThreshold:',params.minThreshold)
 print('maxThreshold:',params.maxThreshold)

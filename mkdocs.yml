@@ -149,6 +149,10 @@ nav:
     - "python":
       - "Python의 Class (차이점)": "python/oop/oop_3_01_python_class.md"
       - "Python의 Encapuslation": "python/oop/oop_3_02_python_encapsulation.md"
+  - "DIP":
+    - "Image Feature":
+      - "DIP/ch02_01_classical_cv.md"
+      - "DIP/ch02_01_01_keypoints.md"
 
   - Material Test:
     - code blk: test_code_blocks.md
