@@ -1,32 +1,98 @@
 # Local Image Features
 
- An interesting part (region) of an image.
+> An interesting part (region) of an image.
 
- ## Use of Local Image Feature
+2000년 대부터 correspondence problem 을 푸는데 필요한 correpondence를 찾는데 이용(SIFT 2004)되면서 많은 발전이 이루어졌다. 대표적인 Local Feature는 다음과 같다. 기존의 edge segment 기반의 방식(1980년대 주류 기술)보다 우수한 성능을 보였고 무엇보다 gray-scale image에서 직접 계산이 가능하여 image matching 및 classification, image registration 등에서 널리 사용됨. 
+
+* HOG (Histogram of Oriented Gradient)
+* SIFT (Scale Invariant Feature Transform)
+     * SURF (Speed Up Robust Feature)
+* Binary Descriptors
+     * BRIEF (Binary Robust Independent Elementary Feature)
+     * ORB (Oriented and Rotated BRIEF)
+     * BRISK
+
+Local Feature는 "원본 영상"의 keypoint(특징점)들에서 계산되어 local feature descriptor들로 표현된다.
+
+* keypoint (특징점) : "원본 영상"에서 local feature에 해당하는 위치. 해당 점을 중심으로 작은 region(or patch, cell, block)이 설정되며, 이 region에 속하는 pixel들을 이용하여 feature descriptor가 계산된다.
+* (local feature) descriptor : keypoint의 local feature를 표현하고 있는 객체. 주로 vector (real number or binary)로 표현되기 때문에 feature vector라고도 불린다. Local Feature의 실제적인 값에 해당하기 때문에 feature descriptor를 계산하는 알고리즘의 이름으로 local feature를 부른다. 즉, HOG descriptor라고 하면, HOG 알고리즘으로 얻은 local feature를 가르킨다.
+
+> 초기에 개발된 local feature들은 corner 나 blob을 그냥 detection하는 알고리즘들로 keypoint만을 detect하여 원본에서의 위치와 그 크기 정도만을 구할 뿐 딱히 feature descrptor로 encoding하지 않았다. 이경우, geometric transform등에 covariant하기 때문에, 이들에 대해서도 invariant한 feature를 구하기위해 이후의 알고리즘들은 feature descriptor를 계산하는 단계가 추가된 경우가 대부분이다.  
+> 초반에 개발된 기법을 통해 keypoints를 구하고, 해당 keypoint들 각각에 대해 feature desriptor를 구하는 방식으로 local featre가 얻어지는 게 일반적인다.
+
+일반적으로 local feature를 얻는 방법들은 두 단계로 구분되며, 일부 알고리즘들은 한 단계에만 그치는 경우도 있다.
+
+1. Feature Detection : location info. 와 size (or scale) 을 얻어냄.
+    * location info.와 size는 Translation, Rotation, Zoom-in/out 등의 Geometraic Transform에 covariant함.
+    * keypoint의 위치 및 크기를 구하는 과정에 해당.
+    * corner나 blob을 찾던 초기 기법들은 이 단계만 수행하는 경우가 많음.
+2. Feature Descprtion : orientation과 feature vector 추출.
+    * Geometric Transform에 invariant한 feature descriptor를 생성.
+    * 일부 기법은 detection과정이 아닌 2번 단계에만 적용가능한 것들도 있음.
+
+## Local Feature의 구성요소.
+
+다음의 요소들로 Local feature는 구성됨.
+
+* Location information : 원본 영상에서의 위치 $(x,y)$
+* Scale (or size) : local feature가 원본영상에서 차지하고 있는 넓이, 크기에 해당. standard deviation등에 사용되는 $\sigma$로 보통 표기됨 (정규분포 등에서 분포의 폭을 결정하는 parameter가 std인 것에 기인).
+* Orientation : Local feater가 어떻게 놓여있는지를 나타냄. 방향이라고 봐도 된다.
+* Feature vector : 이는 Feature descritor의 핵심적인 요소라고도 할 수 있다. 특정 대상에서 특정 부위가 다른 두 영상에서 다른 조명, 다른 위치에 놓여있다고 해도 해당 부위의 이상적인 feature vector는 같아야 한다. 즉 같은 keypoint인지 여부를 체크하는데 사용된다(=local feature을 기술하는 vector임).
+
+> Local feature를 구하는 알고리즘에 따라 조금씩의 차이는 있으나 대부분의 경우, 위의 정보들을 가지고 있다.
+
+## Use of Local Image Feature
 
  * Image representation 을 만들기 위해서 사용됨.
  * Image-level descriptor는 local feature 들을 모아서 만듬.
  * Matching 에도 사용이 가능.
 
- ## 좋은 Local Feature의 조건
+## 좋은 Local Feature의 조건
 
- * Saliency
+* **Repeatability (vs. Repeatability) (← 반복성)**
+    - 같은 물체를 찍은 두 영상이 있다고 할 때,
+    - 한 영상 속의 해당 물체의 **특정 위치(ex: 모서리)에서 검출된 feature** 는
+    - 다른 영상의 해당 물체의 같은 위치에서 ***동일한(or 매우 유사한) 값*** 으로 얻어져야 함.
+    - 이를 만족해야만, correspondence problem에서 사용가능
+        - 또한 *object localization* or *tracking* 등에서 사용가능함.
+    - **Repeatability** 를 위해서는 **invariance** 와 **robustness**가 필요함.
+* **Distinctiveness (vs. Locality) (←분별력)**
+    - 같은 영상에서 *물체의 다른 곳과 충분히 **구분** 되는 feature값* 을 가져야 함. (←keypoint의 조건을 기억)
+    - 물체의 위치 별로 구분되는 feature를 가져야만 다른 영상에서 해당 위치에 1:1로 matching 이 가능.
 
- * Locality
-     * 고전적인 CV 기술에서 많이 언급됨.
-     * feature는 영상에서 작은 영역을 차지해야 좋음.
+* Locality (vs. Distinctiveness) (← 지역성)
+    - 고전적인 CV 기술에서 많이 언급됨.
+    - feature는 영상에서 작은 영역을 차지해야 좋음.
+    - 어떤 점을 중심으로 **작은 크기의 주변 영역 정보** 만 가지고 feature detection과 feature description 이 가능해야함.
+    - 우수한 Locality를 가져야만, occlusion(가림)과 clutter(혼재)가 존재할 때에도 해당 local feature가 제대로 기능을 수행가능함.
+* **Accuracy (←정확성)**
+    - 검출된 feature는 정확한 위치를 찾을 수 있어야 함.
+    - Scale space에서의 feature는 scale axis에서도 정확도를 가져야 함(*정확한 scale을 찾을 수 있어야 함* 을 의미).
+    - 특정 application에서는 sub-pixel accuracy가 필요함.
+* **Sufficient Quantity (←적절한 양, 갯수)**
+    - 어떤 물체의 pose(자세= 위치와 방향)을 계산하기 위해서는 **최소 3개의 대응점[(Affine Transformation)](https://www.notion.so/37e0c45380df408c86bfdafd2f82f74b)** 이 필요.
+    - 여러 환경에 따른 오류가 존재하기 때문에, 최소 대응점으로는 부족함 ⇒ **대응점이 충분히 많을 경우 정확한 pose 추정이 가능** 함.
+    - 하지만 지나치게 대응점이 많을 경우, 즉 대응되는 feature vector의 수가 너무 많으면 **처리에 시간이 많이 걸리고**, 에러를 가진 대응점 쌍들로 인해 matching에서 에러가 증가할 수 있임. ⇒ 적당히 많아야 함.
+    - 이 때문에 local feature를 추출하는 많은 기법에서 이들의 *갯수를 조절하는 hyper parameter* 가 지원됨.
+* **계산효율 (vs. Repeatability)** 
+    - Local feature를 추출하는데 **적절한 계산량** 이 요구되어야 함.
 
- * Repeatibility
+**위의 특징들은 다음과 같은 trade-off 관계임.**
 
-## Good Local Feature
+- Locality를 우선시(적은 영역에서 계산됨)할 경우, 보통 Distinctiveness가 떨어짐.
+- 높은 Repeatablity를 우선시 계산량이 많아지는 게 보통임.
+
+## Good Keypoints : Edge, Corner and Blob
 
 일반적으로 좋은 Local feature는 matching등에 사용될 때, unambiguous해야한다.
-때문에 corner > edge >>>> Textureless region (질감 없이 균일한 영역) 순으로 local feature 에 적합하다.
+때문에 local feature가 구해지는 keypoint들로 원본영상의 corner, edge, blob 등의 선택된다.
 
-`Blob`
-:  regions of interest points를 지칭하는 용어. Image region들 중에 주변(surrounding)보다 intensity가 매우 크거나 작은 것들을 가르킴.
+* local feature을 위한 keypoint 에 적합한 순서는 corner, Blob > edge >>>> Textureless region (질감 없이 균일한 영역) 순이다.
 
-Simple Image Processing Operation 등을 통해 추출됨.
+> `Blob`  
+> Binary Large Object 의 준말로서, regions of interest points를 지칭하는 용어. Image region들 중에 주변(surrounding)보다 intensity가 매우 크거나 작은 것들을 가르킴.
+
+corner, edge, blob 등은 일반적으로 Simple Image Processing Operation 등을 통해 추출됨.
 
 * 대표적인 operation으로 Convolution, Lapalcian등이 있음.
 
@@ -67,7 +133,7 @@ Coner는 contour(윤곽)의 junction(교차점)을 가르킴. 즉, 여러 edge�
 
 ## Blob
 
-Blob 은 Binary Large Object의 줄임말로, 같은 성질을 가지는 픽셀들이 연결되어있는 작은 region을 가르킨다.
+Blob 은 **Binary Large Object** 의 줄임말로, ^^같은 성질을 가지는 픽셀들이 연결되어있는 어느 정도 크기의 region^^ 을 가르킨다.
 
 > Image regsions that are either brighter or darker than the surrounding.
 
@@ -102,6 +168,7 @@ Blob 은 Binary Large Object의 줄임말로, 같은 성질을 가지는 픽셀�
 
 ## References
 
+* Computer Vision, 오일석, 한빛미디어
 * [Lecture 10: Detectors and	descriptors](https://cvgl.stanford.edu/teaching/cs231a_winter1415/lecture/lecture10_detector_descriptors_2015_notes.pdf)
 * [CS231A · Computer Vision: from 3D reconstruction to recognition](https://cvgl.stanford.edu/teaching/cs231a_winter1415/index.html)
 * [[시각지능] Detecting corners](https://velog.io/@claude_ssim/%EC%8B%9C%EA%B0%81%EC%A7%80%EB%8A%A5-Detecting-corners-1#multi-scale-blob-detection-1)
