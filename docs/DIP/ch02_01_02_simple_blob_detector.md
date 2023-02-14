@@ -22,7 +22,7 @@ keypoint 중 blob을 이용한 방식들 중 대표적인 구현물이 다음 �
 ### References
 
 * skimage's [Blob Detection](https://scikit-image.org/docs/stable/auto_examples/features_detection/plot_blob.html)
-
+* 다크프로그래머님's [Scale space](https://darkpgmr.tistory.com/137)
 
 
 ## cv2.SimpleBlobDetector
