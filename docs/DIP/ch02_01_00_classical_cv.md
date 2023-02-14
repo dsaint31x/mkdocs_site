@@ -59,7 +59,6 @@ Local Feature는 "원본 영상"의 keypoint(특징점)들에서 계산되어 lo
 * **Distinctiveness (vs. Locality) (←분별력)**
     - 같은 영상에서 *물체의 다른 곳과 충분히 **구분** 되는 feature값* 을 가져야 함. (←keypoint의 조건을 기억)
     - 물체의 위치 별로 구분되는 feature를 가져야만 다른 영상에서 해당 위치에 1:1로 matching 이 가능.
-
 * Locality (vs. Distinctiveness) (← 지역성)
     - 고전적인 CV 기술에서 많이 언급됨.
     - feature는 영상에서 작은 영역을 차지해야 좋음.

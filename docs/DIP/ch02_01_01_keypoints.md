@@ -35,7 +35,7 @@ keypoint를 추상화한 class. `cv2.Feature2D` 의 `detect` 메서드를 통해
 아래와 같은 attribute들을 가지나, 구현하고 있는 알고리즘에 따라 실제 유효한 값을 가지는 attribute 들이 다를 수 있다. 단 keypoint의 위치를 나타내는 `pt` 는 항상 유효한 값을 가진다.
 
 - `pt` : 키 포인트(x, y) 좌표, float임. (모든 keypoint가 가지는  attribute)
-- `size` : keypoint 크기, Diameter of the meaningful keypoint neighborhood. (option).
+- `size` : keypoint 크기, ***Diameter*** of the meaningful keypoint neighborhood. (option).
 - `angle` : keypoint 방향, orientation (cw 각도), -1 = 의미없음) (option)
 - `response` : keypoint response 강도 (option)
 - `octave` : keypoint가 발견된 image pyramid layer (=pyramid octave)
