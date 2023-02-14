@@ -26,7 +26,7 @@ Local Feature는 "원본 영상"의 keypoint(특징점)들에서 계산되어 lo
     * location info.와 size는 Translation, Rotation, Zoom-in/out 등의 Geometraic Transform에 covariant함.
     * keypoint의 위치 및 크기를 구하는 과정에 해당.
     * corner나 blob을 찾던 초기 기법들은 이 단계만 수행하는 경우가 많음.
-2. Feature Descprtion : orientation과 feature vector 추출.
+2. Feature Descprtion : 주로 orientation과 feature vector 추출.
     * Geometric Transform에 invariant한 feature descriptor를 생성.
     * 일부 기법은 detection과정이 아닌 2번 단계에만 적용가능한 것들도 있음.
 
@@ -152,7 +152,7 @@ Blob 은 **Binary Large Object** 의 줄임말로, ^^같은 성질을 가지는 
 > 일반적으로 radius가 $r$인 원 모양의 binary blob에 대한 최적의 $\sigma$는 $\frac{r}{\sqrt{2}}$ 로 알려져 있다.
 
 
-결국 Laplace Filter의 크기를 바꿔가면서 적용해보면 원하는 blob 에서 response가 peak를 치는 filter를 찾을 수 있고 이러한 과정을 통해 얻은 filter를 통해 특정 image에서 blob을 검출할 수 있다. 즉, 물체의 shape의 크기나 형태에 따라 이에 맞는 Laplacian filter의 parameter를 찾는 것이 3번 단계이다.
+결국 ***Laplace Filter의 크기(흔히 `scale`이라고 불림)*** 를 바꿔가면서 적용해보면 원하는 blob 에서 response가 peak를 치는 filter를 찾을 수 있고 이러한 과정을 통해 얻은 filter를 통해 특정 image에서 blob을 검출할 수 있다. 즉, 물체의 shape의 크기나 형태에 따라 이에 맞는 Laplacian filter의 parameter를 찾는 것이 3번 단계이다.
 
 > Convolve signal with Laplacians at several sizes ($\sigma$) and looking for the maximum response.
 
@@ -161,6 +161,8 @@ Blob 은 **Binary Large Object** 의 줄임말로, ^^같은 성질을 가지는 
 ![scale-normalized laplacian](img/ch02/scale_normalized_laplacian.png)
 
 일반적으로 각 scale에 해당하는 $\sigma^2$ 을 곱해주어 scale normalized laplacian을 얻는다.
+
+> 여기서 나오는 scale은 `scale space`에서 나오는 용어임. `scale space`는 대상을 여러 scale에 걸쳐 표현하는 multi-scale representation을 만드는 기법 중의 하나로 `image pyramid`와 함께 가장 널리 사용되는 방법이다. scale이 클수록 image가 bluring되어 기본 구성요소가 넓은 영역을 차지하게 된다. scale이 작아지면, image에서 detail한 정보가 보존된다. 큰 Blob을 검출하기 위해 scale이 커진다는 건 기본적으로 큰 blob이 구성요소로 간주되고, 작은 blob들은 무시됨을 의미한다. scale은 확률분포의 $\simgam^2$$ 에 해당하는 값으로 표현된다(즉, variance에 해당). 동일 영상을 $\sigma^2$이 큰 Gaussian distribution으로 bluring시키면 Scale $t=\sigma^2$에 해당하는 image를 얻게 된다.
 
 ### Example
 
