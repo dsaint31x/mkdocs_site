@@ -2,8 +2,17 @@
 
 ML에서 manifold란, 고차원 공간에 내재된 저차원 공간(subspace)로 실제 dataset의 분포를 거의 다 포함(아닌 경우도 해당 subspace근처에 data들이 존재)하고 있는 것을 가르킴. 
 
-> 수학적으로는 보다 엄격한 정의가 있으나... DL이나 ML을 하는 입장에서는 이 정도면 충분할 듯.
+> (위상)수학적으로는 보다 엄격한 정의가 있으나... DL이나 ML을 하는 입장에서는 이 정도면 충분할 듯.
 
+A manifold is a ***topological space (위상공간)*** that locally resembles Eucludian space near each point.
+
+**Topology**  
+: topology(위상수학)은 ‘물체의 모양을 바꿔도 (구부리기, 늘리기, 줄이기 등등) 변하지 않는 기하학적 성질 (연결성 또는 연속성 등. open-set에 해당하는 N-Ball로 생각해도 됨) 등을 연구하는 분야’다. 여기서 모양을 바꾼다는 것은 구부리거나 늘리거나 줄이는 행위로, 물체에 새로운 구멍을 내거나 찢어서는 안 된다. 엄밀하게 애기하면, topology는 어떤 space에서 open-set이란 어떤 것인지 규정하는 방법을 의미한다.  
+
+**Open set이란**
+: Empty set과 Open set의 전체집합은 open set임.  
+open set 을 Union시켜도 open set 임.  
+유한한 갯수의 open set을 intersection시켜도 open set임.
 
 **Manifold 의 특징.**
 
