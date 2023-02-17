@@ -155,7 +155,10 @@ nav:
       - "DIP/ch02_01_01_keypoints.md"
       - "DIP/ch02_01_02_simple_blob_detector.md"
       - "DIP/ch02_01_03_hog.md"
-
+  - "ML":
+    - "Manifold Learning":
+      - "ML/manifold.md"
+      - "ML/tSNE.md"
   - Material Test:
     - code blk: test_code_blocks.md
   - tags: tags.md
