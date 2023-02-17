@@ -157,8 +157,8 @@ nav:
       - "DIP/ch02_01_03_hog.md"
   - "ML":
     - "Manifold Learning":
-      - "ML/manifold.md"
-      - "ML/tSNE.md"
+      - "ML/ch07/manifold.md"
+      - "ML/ch07/tSNE.md"
   - Material Test:
     - code blk: test_code_blocks.md
   - tags: tags.md
