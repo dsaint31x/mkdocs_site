@@ -1,11 +1,13 @@
 # OOP : Is-a and Has-a Relationship
 
-OOP에서 설계 단계 중 가장 중요한 부분 중 하나가 object간의 관계를 정하는 것이다. 사용할 수 있는 관계들 중 가장 유명한 것은 다음과 같은 2가지 이다.
+OOP에서 설계 단계 중 가장 중요한 부분 중 하나가 object간의 관계를 정하는 것이다.  
+
+사용할 수 있는 관계들 중 가장 유명한 것은 다음과 같은 2가지 이다.
 
 * `is-a` relationship
 * `has-a` relationship
 
-## is-a relationship
+## `is-a` relationship
 
 보통 상속(inheritance)을 통해 생성되는 관계  
   
@@ -34,11 +36,12 @@ class Warrior (Human): # is-a relationship
         print("강타 능력")
 ```
 
-## has-a (= Embedded 이라고도 불림)
+## `has-a` (= Embedded 이라고도 불림)
 
 **보통 object의 member 혹은 attribute로 구성되는 관계** 를 가르킨다. 
 
 * 한 object가 다른 object의 attribute로 속하게 되어 생성되는 관계임.
+*  Composition Relation 과 Aggregation Relation 으로 나뉨.
 
 다음은 Artificial Neural Network의 abstraction 인 class `MyANN`의 instance가 attribute로 `Model` class의 instance를 가지는 단순한 Python code임.
 
@@ -70,5 +73,5 @@ class MyANN:
     - `Has-a` 관계 : `A` 가 `B` 를 가지고(포함하고) 있는 관계
         - 예) 자동차는 타이어를 가지고 있다.
 - 포함(embedded,`has-a`)과 상속(inheritance, `is-a`)을 구분해서 사용하기 위한 가이드라인
-    - `Has-a` 관계의 경우에는 포함을 사용한다.
-    - `Is-a` 관계의 경우에는 상속을 사용한다.
+    - `Has-a` 관계의 경우에는 embedding을 사용한다.
+    - `Is-a` 관계의 경우에는 inheritance을 사용한다.

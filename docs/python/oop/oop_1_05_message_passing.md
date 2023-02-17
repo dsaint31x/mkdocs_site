@@ -1,14 +1,14 @@
 # Message Passing
 
-특정 인스턴스의
+특정 instance(인스턴스)의
 
-* 멤버 함수(method)를 호출 함으로서,
+* ***멤버 함수(method)를 호출*** 함으로서,
 * 해당 instance가 abstraction(추상화)하고 있는 object(객체)에 message를 보내어 (=method calling)
 * 원하는 **특정 동작** 을 하게 하는 것.
 
-`Sending Message`라고도 불림.
+`Method Calling`  은 `Sending Message`라고도 불림.
 
-> 비슷한 것으로 `event-driven`이라는 용어도 있다. 이는 특정 event가 발생할 때, 요구되는(또는 원하는) 특정 동작이 수행되도록 method가 호출되는 형태를 의미함.
+> 비슷한 것으로 `Event-Driven`이라는 용어도 있다. 이는 특정 event가 발생할 때, 요구되는(또는 원하는) 특정 동작이 수행되도록 method가 호출되는 형태를 의미함.
 
 OOP는 **instance 간에 message를 주고받아 프로그램이 실행** 됨.
 
@@ -47,5 +47,5 @@ if __name__ == "__main__":
   print(a)
 ```
 
-실제로 method들의 구체적 구현에 상관없이, 개발자는 `Car` 클래스의 instance와 ^^어떻게 ***상호작용*** 할지^^ 를 ***message를 보내는 것(해당 인스턴스의 method호출)으로*** 이들 object를 제어할 수 있음.
+실제로 method들의 구체적 구현에 상관없이, 개발자는 `Car` 클래스의 instance와 ^^어떻게 ***상호작용*** 할지^^ 를 ***message를 보내는 것(해당 instance의 method호출)으로*** 이들 object를 제어할 수 있음.
 

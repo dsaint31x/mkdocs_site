@@ -82,15 +82,15 @@ if __name__ == "__main__":
 
 > over-riding과 over-loading은 다른 개념임. 그 차이점을 숙지하고 있어야 한다.
 
-## 다중 상속
+## Multiple Inheritance (다중 상속)
 
-두개 이상의 super class가 필요한 경우 사용된다. Java와 같이 super class는 하나만을 허용하고, interface등을 통해 다중 상속의 기능을 구현하는 경우도 있다. 실제로 다중 상속은 편리하지만, 그만큼 충돌이 발생할 위험이 크다는 부작용도 있다 (같은 이름의 method가 여러 super class에 존재시 어느 super class의 메서드를 우선시할지 등등).
+두 개 이상의 super class가 필요한 경우 사용된다. Java와 같이 super class는 하나만을 허용하고, interface등을 통해 Multiple Inheritance의 기능을 구현하는 경우도 있다. 실제로 Multiple Inheritance는 편리하지만, 그만큼 ***충돌이 발생할 위험이 크다*** 는 부작용도 있다 (같은 이름의 method가 여러 super class에 존재시 어느 super class의 메서드를 우선시할지 등등).
 
 ![](../img/multiple_inheritance.png)
 
-* multiple inheritance가 발생하면 다이아몬드 모양이 만들어진다고 해서 다이아몬드 상속이라고 부르기도 한다.
+* multiple inheritance가 발생하면 다이아몬드 모양이 만들어진다고 해서 `다이아몬드 상속`이라고 부르기도 한다.
 
-Python에서는 다중상속을 지원하고 Method Resloution Order(`mro()`로 확인 가능)에 따라, 왼쪽에 놓인 super class에서부터 우선권이 주어진다.
+Python에서는 다중상속을 지원하고 Method Resloution Order (`mro()`로 확인 가능)에 따라, 왼쪽에 놓인 super class에서부터 우선권이 주어진다.
 
 ### Example (Python)
 
