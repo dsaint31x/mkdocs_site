@@ -3,6 +3,7 @@ site_name: Computer Engineering (CE)
 theme: 
   #name: 'readthedocs'
   name: 'material'
+  logo: 'assets/MMMIL_logo.jpg'
   custom_dir: 'custom_theme/'
   features:
     - navigation.tabs
