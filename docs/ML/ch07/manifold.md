@@ -4,33 +4,52 @@ ML에서 manifold란, 고차원 공간에 내재된 저차원 공간(subspace)�
 
 > (위상)수학적으로는 보다 엄격한 정의가 있으나... DL이나 ML을 하는 입장에서는 이 정도면 충분할 듯.
 
-A manifold is a ***topological space (위상공간)*** that locally resembles Eucludian space near each point.
+A manifold is a ***topological space (위상공간)*** that ^^locally resembles Eucludian space^^ near each point.
+
+<figure markdown>
+![Manifield](../img/ch07/manifold.png)
+<figcaption>3D 공간에 데이터들이 구 표면에 있으나 실제로 2D에 해당하는 topological space 평면에 속해있는 예</figcaption>
+</figure>
+ 
+
+---
 
 **Topology**  
-: topology(위상수학)은 ‘물체의 모양을 바꿔도 (구부리기, 늘리기, 줄이기 등등) 변하지 않는 기하학적 성질 (연결성 또는 연속성 등. open-set에 해당하는 N-Ball로 생각해도 됨) 등을 연구하는 분야’다. 여기서 모양을 바꾼다는 것은 구부리거나 늘리거나 줄이는 행위로, 물체에 새로운 구멍을 내거나 찢어서는 안 된다. 엄밀하게 애기하면, topology는 어떤 space에서 open-set이란 어떤 것인지 규정하는 방법을 의미한다.  
+: topology(위상수학)은 ‘물체의 모양을 바꿔도 (구부리기, 늘리기, 줄이기 등등) 변하지 않는 기하학적 성질 (연결성 또는 연속성 등. open-set에 해당하는 N-Ball로 생각해도 됨) 등을 연구하는 분야’다.  
+
+<figure markdown>
+![isotopy의 전형적 예](../img/ch07/Mug_and_Torus_morph.gif)
+<figcaption>homeotropic이면서 연속적인 변화로 만들어지므로 isotopic임</figcaption>  
+<figure markdown>
+
+> 엄밀하게 애기하면, topology는 어떤 space에서 ***open-set이란 어떤 것인지 규정*** 하는 방법 (또는 element로 open set들을 가지고 있는 set을 topology라고 할 수 있음)을 의미하며, topolgical space란 topology가 주어져 있는 집합을 의미함. open-set은 흔히 특정 데이터 샘플의 neighbor들을 의미하며 neighbor를 정의하는 방법이 주어지고, 이들의 같은 경우 같은 manifold를 가진다고 생각할 수 있다..  
 
 **Open set이란**
 : Empty set과 Open set의 전체집합은 open set임.  
 open set 을 Union시켜도 open set 임.  
 유한한 갯수의 open set을 intersection시켜도 open set임.
 
+---
+
 **Manifold 의 특징.**
 
 - 일반적으로 nonlinear structure를 가짐.
-- 하지만, 특정 data sample 근처의 좁은 영역 만으로 볼 경우엔 linearity를 가짐 (또는 linear하다고 approixmation할 수 있음.)
+- entangled로 존재하므로 이를 lower dimensionality로 disentangle시켜야 함.
+- 하지만, 특정 data sample 근처의 좁은 영역 만으로 볼 경우엔 linearity를 가짐 (또는 linear하다고 approximation할 수 있음.)
+
 
 **ML 또는 DL 관점에서의 이해**
 
 - Manifold는 feature extraction의 결과물이라고 볼 수 있음. 
 - Manifold는 일반적으로 raw data space상에서 entangled 상태이므로 이를 disentangled로 바꾸는 transformer를 구하는 것이 바로 classifier 또는 data visualization이 하는 일임.
 
-> A $d$-dimensional manifold is a part of an n-dimensional space (where $d \le n$) that locally resembles a $d$-dimensional hyperplane. 
+> A $d$-dimensional manifold is a part of an $n$-dimensional space (where $d \le n$) that locally resembles a $d$-dimensional hyperplane. 
 
 ## Manifold Learning
 
-> Modeling the manifold on which the training instances lie; this is called Manifold Learning. 
+> ***Modeling the manifold on which the training instances lie*** ; this is called ***Manifold Learning***. 
 
-Unsupervised learning의 일부분으로 다루어지는 경우가 많으며, Dimensional Reduction등에 많이 사용됨.
+Unsupervised learning에서 매우 큰 부분을 차지하며, Dimensional Reduction, Data Visualization, Representative Learning 등에 많이 사용됨.
 
 Manifold Learning은 다음의 두 가설에 의존한다. 
 

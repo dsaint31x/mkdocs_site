@@ -158,6 +158,7 @@ nav:
   - "ML":
     - "Manifold Learning":
       - "ML/ch07/manifold.md"
+      - "ML/ch07/topological_space.md"
       - "ML/ch07/tSNE.md"
   - Material Test:
     - code blk: test_code_blocks.md
