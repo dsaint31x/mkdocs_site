@@ -7,7 +7,7 @@ ML에서 manifold란, 고차원 공간에 내재된 저차원 공간(subspace)�
 A manifold is a ***topological space (위상공간)*** that ^^locally resembles Eucludian space^^ near each point.
 
 <figure markdown>
-![Manifield](../img/ch07/manifold.png)
+![Manifield](../img/ch07/manifold.png){align=center}
 <figcaption>3D 공간에 데이터들이 구 표면에 있으나 실제로 2D에 해당하는 topological space 평면에 속해있는 예</figcaption>
 </figure>
  
@@ -18,7 +18,7 @@ A manifold is a ***topological space (위상공간)*** that ^^locally resembles 
 : topology(위상수학)은 ‘물체의 모양을 바꿔도 (구부리기, 늘리기, 줄이기 등등) 변하지 않는 기하학적 성질 (연결성 또는 연속성 등. open-set에 해당하는 N-Ball로 생각해도 됨) 등을 연구하는 분야’다.  
 
 <figure markdown>
-![isotopy의 전형적 예](../img/ch07/Mug_and_Torus_morph.gif)
+![isotopy의 전형적 예](../img/ch07/Mug_and_Torus_morph.gif){align=center}
 <figcaption>homeotropic이면서 연속적인 변화로 만들어지므로 isotopic임</figcaption>  
 </figure>
 
@@ -59,7 +59,7 @@ Manifold Learning은 다음의 두 가설에 의존한다.
 
 ## Mainfold Hypothesis
 
-Raw High Dimensional Dataset은 하나 이상의 Manifold로 구성되며, 각 data sample들은 mainfold상 또는 manifold에 가깝게 위치하고 있다.
+(Raw) High Dimensional Dataset은 하나 이상의 Manifold로 구성되며, 각 data sample들은 mainfold상 또는 manifold에 가깝게 위치하고 있다.
 
 > Real-world data presented in high-dimensional spaces are expected to concentrate in the vicinity of a manifold $M$ of much lower dimensionality $d_M$, embedded in high-dimensional input space $R^d$. 
 - Bengio et al. 2013
@@ -78,9 +78,9 @@ Manifold hypothesis 가 성립한다고 가정하면, High diemsional dataset을
 
 Dataset 에서의 data sample은 어떤 요인에 의해서 변화하는데, 해당 sample의 feature를 조금 변화가 이루어질 경우, 데이터의 feature space에서 매끄러운 곡면 (=mainfold)상에서 transition이 발생하게 된다. 
 
-> Manifold follows naturally from continuous underlying factors (~ intrinsic manifold coordinate or features). Such continuous factors are part of a meaningful representation
+> Manifold follows naturally from ***continuous underlying factors*** (~ intrinsic manifold coordinate or features). Such ***continuous factors*** are part of a meaningful representation
 
-![](../img/ch07/manifold_smoothness.png)
+![](../img/ch07/manifold_smoothness.png){align=center}
 
 ### Solution to Curse of High Dimensionality
 
@@ -88,7 +88,7 @@ Dataset 에서의 data sample은 어떤 요인에 의해서 변화하는데, 해
 
 Higher dimensional data 를 그대로 사용하면, 데이터 밀도가 낮아서 실제적인 data의 distribution을 찾는 probability distribution을 찾기 어려우나 meaning ful manifold를 잘 찾아낸다면, 같은 데이터로도 충분히 probability distribution 을 찾아낼 수 있음.
 
-대부분의 경우, lower dimensional representation이 ML등에서 task를 쉽게 풀 수 있도록 해준다 (이는 Mainfold hypothesis에 대한 implicit assumpation이라고 불림.). 하지만 아닌 경우도 있다. 
+대부분의 경우, lower dimensional representation이 ML등에서 task를 쉽게 풀 수 있도록 해준다 (이는 Mainfold hypothesis에 대한 implicit assumpation이라고 불림.). ***하지만 아닌 경우도 있다.*** 
 
 ![](../img/ch07/manifold_learning.png)
 
