@@ -20,7 +20,7 @@ A manifold is a ***topological space (위상공간)*** that ^^locally resembles 
 <figure markdown>
 ![isotopy의 전형적 예](../img/ch07/Mug_and_Torus_morph.gif)
 <figcaption>homeotropic이면서 연속적인 변화로 만들어지므로 isotopic임</figcaption>  
-<figure markdown>
+</figure>
 
 > 엄밀하게 애기하면, topology는 어떤 space에서 ***open-set이란 어떤 것인지 규정*** 하는 방법 (또는 element로 open set들을 가지고 있는 set을 topology라고 할 수 있음)을 의미하며, topolgical space란 topology가 주어져 있는 집합을 의미함. open-set은 흔히 특정 데이터 샘플의 neighbor들을 의미하며 neighbor를 정의하는 방법이 주어지고, 이들의 같은 경우 같은 manifold를 가진다고 생각할 수 있다..  
 
