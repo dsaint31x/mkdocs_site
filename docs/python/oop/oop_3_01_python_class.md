@@ -32,7 +32,7 @@ Python에서는 모든 것이 Object(=instance)이기 때문에 Class도 functio
   
 Python이 모든 것이 instance이므로 모든 것이 특정 변수명에 할당될 수 있다. 즉, Class도 Function도 할당 가능하다.
 
-> 재미있는 것은 `type`는 함수가 아닌 callable object이다. 즉 `type`의 타입을 출력해보면 `type` class로 나온다. (우리가 만든 custom class들도 타입이 `type`임)
+> 재미있는 것은 `type`는 function이 아닌 callable object이다. 즉 `type`의 타입을 출력해보면 `type` class로 나온다. (우리가 만든 custom class들도 타입이 `type`임)
 
 다음 코드를 수행해서 결과를 확인해보자.
 
@@ -57,6 +57,8 @@ print(f"c's type:{type(c)}")
 print(f"int's type:{type(int)}")
 ```
 
+> literal의 데이터 값 자체를 나타내는 표현을 가르킨다. ([details](https://dsaint31.tistory.com/entry/Basic-Literal))
+
 ## 동적으로 class attribute 추가 및 제거하기.
 
 Python에서는 모든 것이 object이므로 특정 variable name에 assignment가 가능하다. 또한 dynamic langauge로서 변수형과 이름을 정의하고 나서 값을 할당하는 것이 아닌, instance가 메모리에 할당되는 때가 바로 assignement 이루어지는 시점이라는 특징을 가진다.  
@@ -70,7 +72,7 @@ class Samp:
     def get_x(self):
         return self.x
 
-def some_method(self): # closuer기법으로 self를 기억.
+def some_method(self): # closure기법으로 self를 기억.
 
     def func():
         print(f"hi! : {self.x}")
