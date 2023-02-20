@@ -72,10 +72,9 @@ class Samp:
     def get_x(self):
         return self.x
 
-def some_method(self): # closure기법으로 self를 기억.
-
+def some_method(self_arg): # closure기법으로 self를 기억.
     def func():
-        print(f"hi! : {self.x}")
+        print(f"hi! : {self_arg.x}")
     return func
 
 class SampTwo:
@@ -85,21 +84,22 @@ class SampTwo:
 if __name__ == "__main__":
     s = Samp()
     s.x = 23 #주석처리시 에러.
-    s.dynamic_get = some_method(s)
-    s.dynamic_get()
+    s.dynamic_get = some_method(s)  # 동적 method추가.
+    s.dynamic_get() #23
 
     print("------------")
     s2 =SampTwo()
     s2.x = 77
     s2.dynamic_get = some_method(s2)
-    s2.dynamic_get()
+    s2.dynamic_get() #77
     s2.x = 33
-    s2.dynamic_get()
+    s2.dynamic_get() #33
+
     print("------------")
-    s2.dynamic_get_one = some_method(s)
-    s2.dynamic_get_one()
+    s2.dynamic_get_one = some_method(s) # s의 x를 출력하는 function을 s2메서드로 등록.
+    s2.dynamic_get_one() # 23
     s.x = 2323
-    s2.dynamic_get_one() # 이런 유연성은 안쓰는게 낫지 않을까?
+    s2.dynamic_get_one() # 2323, 이런 유연성은 안쓰는게 낫지 않을까?
     print("------------")
     print(s.get_x())
     print("------------")

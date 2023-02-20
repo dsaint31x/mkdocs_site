@@ -67,14 +67,14 @@ Abstraction의 관점에서 그 결과물인 `model` 이란 세상의 실제적�
 
 ## Summary
 
-OOP에서 Abstraction은 대상이 되는 **Object 의 feature(특징)**을 Data와 Operation 로 만들어내는 것을 가르킨다.
+OOP에서 Abstraction은 대상이 되는 **Object 의 feature(특징)** 을 Data와 Operation 로 만들어내는 것을 가르킨다.
 
 “머리카락”이 대상이 되는 Object
 
 * Data : Attribute = 머리카락 색
 * Operation : Behavior, Method = 자르기
 
-OOP에서 넓은 범위의 Object는 모든 것(현실 세계와 프로그래밍 세계 포함)을 가르키며, **Object의 특징**은 abstracton을 통해 Class로 기술되며,Class는 Attribute와 Method로 구성되게 된다.
+OOP에서 넓은 범위의 Object는 모든 것(현실 세계와 프로그래밍 세계 포함)을 가르키며, **Object의 특징** 은 abstracton을 통해 Class로 기술되며,Class는 Attribute와 Method로 구성되게 된다.
 
 ---
 
