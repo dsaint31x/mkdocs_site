@@ -31,7 +31,7 @@ Manifold Learning은 다음의 두 가설에 의존한다.
 
 ## Mainfold Hypothesis
 
-Raw High Dimensional Dataset은 하나 이상의 Manifold로 구성되며, 각 data sample들은 mainfold상 또는 manifold에 가깝게 위치하고 있다.
+High Dimensional (Raw) Dataset은 ***하나 이상의 Manifold로 구성*** 되며, *모든 data sample들은 mainfold상 또는 manifold에 가깝게 위치* 하고 있다.
 
 > Real-world data presented in high-dimensional spaces are expected to concentrate in the vicinity of a manifold $M$ of much lower dimensionality $d_M$, embedded in high-dimensional input space $R^d$. 
 - Bengio et al. 2013
@@ -54,11 +54,11 @@ Dataset 에서의 data sample은 어떤 요인에 의해서 변화하는데, 해
 
 ![](../img/ch07/manifold_smoothness.png)
 
-### Solution to Curse of High Dimensionality
+### Curse of High Dimensionality를 풀기위한 방법 : Manifold 찾기.
 
 데이터의 space의 dimension 이 증가할 경우, 해당 space의 데이터 밀도를 유지하려면 훨씬 많은 datasample을 요구하는 것을 의미함.
 
-Higher dimensional data 를 그대로 사용하면, 데이터 밀도가 낮아서 실제적인 data의 distribution을 찾는 probability distribution을 찾기 어려우나 meaning ful manifold를 잘 찾아낸다면, 같은 데이터로도 충분히 probability distribution 을 찾아낼 수 있음.
+Higher dimensional data 를 그대로 사용하면, 데이터 밀도가 낮아서 실제적인 data의 distribution을 찾는 probability distribution을 찾기 어려우나 meaningful manifold를 잘 찾아낸다면, 같은 데이터로도 충분히 probability distribution 을 찾아낼 수 있음.
 
 대부분의 경우, lower dimensional representation이 ML등에서 task를 쉽게 풀 수 있도록 해준다 (이는 Mainfold hypothesis에 대한 implicit assumpation이라고 불림.). 하지만 아닌 경우도 있다. 
 
