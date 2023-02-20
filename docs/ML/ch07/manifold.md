@@ -10,7 +10,6 @@ A manifold is a ***topological space (위상공간)*** that ^^locally resembles 
 ![Manifield](../img/ch07/manifold.png){align=center}
 <figcaption>3D 공간에 데이터들이 구 표면에 있으나 실제로 2D에 해당하는 topological space 평면에 속해있는 예</figcaption>
 </figure>
- 
 
 ---
 
@@ -31,6 +30,7 @@ open set 을 Union시켜도 open set 임.
 
 보다 자세한 건 다음 ULR을 참고: 
 [Topological Space](topological_space.md)
+
 ---
 
 **Manifold 의 특징.**
@@ -59,7 +59,7 @@ Manifold Learning은 다음의 두 가설에 의존한다.
 
 ## Manifold Hypothesis
 
-High Dimensional (Raw)  Dataset은 하나 이상의 Manifold로 구성되며, 각 data sample들은 manifold상 또는 manifold에 가깝게 위치하고 있다.
+High Dimensional (Raw) Dataset은 하나 이상의 Manifold로 구성되며, 각 data sample들은 manifold상 또는 manifold에 가깝게 위치하고 있다.
 
 > Real-world data presented in high-dimensional spaces are expected to concentrate in the vicinity of a manifold $M$ of much lower dimensionality $d_M$, embedded in high-dimensional input space $R^d$. 
 - Bengio et al. 2013
@@ -95,4 +95,4 @@ Higher dimensional data 를 그대로 사용하면, 데이터 밀도가 낮아�
 * 왼쪽의 swiss roll의 경우, lower dimensional representation이 classification을 보다 쉽게 만든다.
 * 하지만 오른쪽의 경우는 오히려 더 어렵게 만들 수도 있음을 보여준다 (이 경우 projection base method가 더 잘 동작). 
 
-> Dimensional Reduction 방법은 크게 projection기반의 linear algorithm과 manifold learning기반의 non linear algorithm으로 나뉨.
+> Dimensional Reduction 방법은 크게 projection기반의 algorithm들과 manifold learning기반의 algorithm들로 나뉨.
