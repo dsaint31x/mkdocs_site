@@ -15,7 +15,7 @@
 
 이 경우의, $\mathcal{T}$의 element들을 open-set이라고 부른다. 이는 topology $\mathcal{T}$는 open-set들로 구성된 set이고, 어떤 space (~set)에서 open-set이 무엇인지를 규정함을 의미한다.
 
-> `open-set`이란 정성적으로 애기하면, "neighbor"라는 개념을 추상화 한 것이다. 어떤 data point $p\in X$가 있다고 할 때, $p$를 포함하는 open-set을 $p$의 neighbor (=open-set)이라고 할 수 있다.
+> `open-set`이란 정성적으로 애기하면, "neighbors"라는 개념을 추상화 한 것이다. 어떤 data point $p\in X$가 있다고 할 때, $p$를 포함하는 open-set을 $p$의 neighbors (=open-set)이라고 할 수 있다.
 
 * topology가 같은 topolotical space들을 homeomorphic(위상동형) 이라 말함.  
 ![](../img/ch07/homeomorphic.png){align=center}
