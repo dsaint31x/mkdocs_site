@@ -199,6 +199,7 @@ $$\text{WSSE}=\sum_{i}\sum_{\textbf{x} \in C_i} (\textbf{x}-\textbf{c}^\text{cen
 : 한 cluster 가 다른 cluster 들과 얼마나 잘 구별되는지를 between sum of square error (BSSE, BSS)로 측정.  
   
 $$\text{BSSE}=\sum_{i}\sum_{j\ne i} \text{Size}(C_i) (\textbf{c}^\text{center}_i-\textbf{c}^\text{center}_j)^2$$  
+
 where $\text{Size}(C_i)$는 cluster $C_i$의 크기로 보통 속한 샘플의 수를 사용함.
 
 ![](../img/ch07/graph_based_view_of_cluster_cohension_separation.png)
@@ -225,10 +226,8 @@ $$\text{SC}=\frac{1}{M}\sum^M_{i=1}s(\textbf{x}_i)$$
   
 $$
 DBI = \frac{1}{k}\sum^k_{i=1} D_i
-$$
-
-    where  
-      
+$$  
+    
 * $D_i =\displaystyle \max_{j\ne i}\left\{D_{ij}\right\}$
     * $D_{ij}$ : $i$th cluster와 $j$th cluster에 대한 "cluster내 거리(within distance)"와 "cluster간 중심거리(between distance)"의 ratio(비율)
     * $D_i$ : $i$th cluster와 관련된 $D_{ij}$중 최대값.
