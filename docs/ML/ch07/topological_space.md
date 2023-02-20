@@ -2,13 +2,13 @@
 
 ## Topological Space 의 정의
 
-Topology $\mathcal{T}$가 주어진 Set $X$가 바로 Topological Space임.
+> Topology $\mathcal{T}$가 주어진 Set $X$가 바로 Topological Space임.
 
 수학적인 정의로 보면, Set $X$에서 Topology $\mathcal{T}$가 주어져 있다는 것은 $\mathcal{T} \in P(X)$이며, $\mathcal{T}$ 가 다음을 만족한다.
 
 1. $\emptyset, X \in \mathcal{T}$  
     empty set 과 전체 공간 X는 open-set (즉, $\mathcal{T}$에 포함됨) 임.
-2. $U_\alpha \in \mathcal{T} \text{ for all }\alpha \in I \Rightarrow \cup_{\alpha \in I}U_\alpha \in \mathcal{T} $  
+2. $U_\alpha \in \mathcal{T} \text{ for all }\alpha \in I \Rightarrow \cup_{\alpha \in I}U_\alpha \in \mathcal{T}$  
     ^^임의의 갯수^^ 의 open-set들의 union은 마찬가지로 open-set임.
 3. $U_1, U_2 \in \mathcal{T} \Rightarrow U_1 \cap U_2 \in \mathcal{T}$  
     ^^유한한 갯수^^ 의 open-set 들의 interception은 마찬가지로 open-set 임.
