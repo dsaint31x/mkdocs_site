@@ -111,8 +111,8 @@ $$a_{kk}=\sum_{i^\prime = i,k}\max(0,r_{i^\prime k})$$
 : 반복되는 Responsiblity Matrix와 Availability Matrix를 업데이트에서 Damping factor는 Exponential weighted average를 적용할 때 필요한 hyper parameter임. Exponential weighted average를 적용하여 noise에 좀 더 robust하게 해주며, 동시에 값들이 numerical oscillations (진자현상)을 보이지 않도록 막아줄 수 있다. 적절한 damping factor를 지정할 경우 보다 빨리 그리고 안정적으로 수렴하게 됨.
 
 $$
-r_{t+1}(i, k) = \lambda\cdot r_{t}(i, k) + (1-\lambda)\cdot r_{t+1}(i, k) \\
-a_{t+1}(i, k) = \lambda\cdot a_{t}(i, k) + (1-\lambda)\cdot a_{t+1}(i, k)
+\begin{aligned}r_{t+1}(i, k) = \lambda\cdot r_{t}(i, k) + (1-\lambda)\cdot r_{t+1}(i, k) \\
+a_{t+1}(i, k) = \lambda\cdot a_{t}(i, k) + (1-\lambda)\cdot a_{t+1}(i, k)\end{aligned}
 $$
 
 ### Summary of Affinity Propagation Clustering
@@ -219,19 +219,23 @@ $$\text{SC}=\frac{1}{M}\sum^M_{i=1}s(\textbf{x}_i)$$
 
 `Davis-Bouldin Index`(DBI)  
 : 같은 cluseter내에서 평균거리(cohension)와 다른 cluster간의 중심거리(separation)에 대한 일종의 ratio로 계산이 빠르면서도 일관성이 있는 지표로 알려져 있음.  
-$$DBI = \frac{1}{k}\sum^k_{i=1} D_i$$
 
-* $D_i =\displaystyle \max_{j\ne i}\left\{D_{ij}\right\}$
-    * $D_{ij}$ : $i$th cluster와 $j$th cluster에 대한 "cluster내 거리(within distance)"와 "cluster간 중심거리(between distance)"의 ratio(비율)
-    * $D_i$ : $i$th cluster와 관련된 $D_{ij}$중 최대값.
-* $D_{ij} = \frac{\bar{d}_i+\bar{d}_j}{d_{ij}}$
-    * $\bar{d}_i$ : $i$th cluster에 대한 중심과 해당 cluster 에 속한 데이터 포인트 간의 평균 거리 = cohension
-    * $d_{ij}$ : $i$th cluster와 $j$th cluster의 중심거리 = separation
+$$
+DBI = \frac{1}{k}\sum^k_{i=1} D_i
+$$
 
-* 예 : 3개의 cluster 인 경우,
-    * $D_{ij}$ 는 $D_{12},D_{13},D_{23}$ 과 같이 3개가 구해짐.
-    * $D_i$는 $D_1=\max\left\{D_{12},D_{13}\right\}$, $D_2=\max\left\{D_{23}\right\}$ 과 같이 2개가 구해짐.
-    * $k=2$ 이며, $DBI=\text{mean}[D_1, D_2]$임.
+
+    * $D_i =\displaystyle \max_{j\ne i}\left\{D_{ij}\right\}$
+        * $D_{ij}$ : $i$th cluster와 $j$th cluster에 대한 "cluster내 거리(within distance)"와 "cluster간 중심거리(between distance)"의 ratio(비율)
+        * $D_i$ : $i$th cluster와 관련된 $D_{ij}$중 최대값.
+    * $D_{ij} = \frac{\bar{d}_i+\bar{d}_j}{d_{ij}}$
+        * $\bar{d}_i$ : $i$th cluster에 대한 중심과 해당 cluster 에 속한 데이터 포인트 간의 평균 거리 = cohension
+        * $d_{ij}$ : $i$th cluster와 $j$th cluster의 중심거리 = separation
+
+    * 예 : 3개의 cluster 인 경우,
+        * $D_{ij}$ 는 $D_{12},D_{13},D_{23}$ 과 같이 3개가 구해짐.
+        * $D_i$는 $D_1=\max\left\{D_{12},D_{13}\right\}$, $D_2=\max\left\{D_{23}\right\}$ 과 같이 2개가 구해짐.
+        * $k=2$ 이며, $DBI=\text{mean}[D_1, D_2]$임.
 
 
 
