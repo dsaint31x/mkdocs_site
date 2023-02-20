@@ -93,15 +93,21 @@ ML을 위해 제안된 다양한 기법들이 있으며 대략적으로 나누�
 
 `Artrificial Neural Network (ANN)`이 현재 가장 높은 성능을 보이는 ML기법의 하나인 Deep Learning을 가르킨다. 
 
+##  Representation Learning
+
+입력에 대해 요구되는 출력(~expectation)을 가능한한 정확하게 산출할 수 있는 approximation model을 만드는데 유용한 resentation을 학습데이터를 기반으로 학습하는 것을 가르킴.
+
+> Generally speaking, a good representation is one that makes a subsequentlearning task easier.
+
 ## Deep Learning 이란.
 
-엄격하게 애기하면 Deep Learning은 ML의 한종류이다. 즉, 우수하고 효율적인 Machine Learning을 실현할 수 있는 기법이 Deep Learning이라고 할 수 있다.
+엄격하게 애기하면 Deep Learning은 ML의 한 종류이며, Representation Learning 에 속한다. 우수하고 효율적인 Machine Learning을 실현할 수 있는 기법이 Deep Learning이며, 이는 학습데이터로부터 최적의 hierarchy representation을 알아서 추출할 수 있다는 장점에 기인한다.
 
 다음의 Deep Learning의 정의를 살펴보라.
 
 > Deep learning is a ^^particular kind of machine learning^^ that achieves great power and flexibility by ***learning to represent the world*** as **a nested hierarchy of concepts,** with each concept defined in relation to simpler concepts, and more abstract representations computed in terms of less abstract ones.
 
-![http://www.cs.utoronto.ca/~rgrosse/cacm2011-cdbn.pdf](img/ch00/dl_hiearchy_rep.png)
+![http://www.cs.utoronto.ca/~rgrosse/cacm2011-cdbn.pdf](../img/ch00/dl_hiearchy_rep.png)
 
 * DL은 데이터로부터, 스스로 계층적인 representatoin을 추출해내는 능력을 가짐.
 
