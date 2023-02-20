@@ -3,6 +3,7 @@ site_name: Computer Engineering (CE)
 theme: 
   #name: 'readthedocs'
   name: 'material'
+  logo: 'assets/MMMIL_logo.jpg'
   custom_dir: 'custom_theme/'
   features:
     - navigation.tabs
@@ -158,6 +159,7 @@ nav:
   - "ML":
     - "Manifold Learning":
       - "ML/ch07/manifold.md"
+      - "ML/ch07/topological_space.md"
       - "ML/ch07/tSNE.md"
   - Material Test:
     - code blk: test_code_blocks.md
