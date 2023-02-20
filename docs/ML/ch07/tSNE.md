@@ -12,9 +12,7 @@ Dimensionality reduction을 통해 high dimensional data를 2~3 dimensional data
 
 Gaussian distribution 기반의 conditional probability $p(i|j)$를 다음과 같이 정의한다.
 
-$$
-p(i|j) = \frac{\exp \left(\frac{-\|\textbf{x}_i-\textbf{x}_j\|^2_2}{2\sigma_i^2}\right)}{\sum^m_{k\ne i} \exp \left( \frac{-\|\textbf{x}_i-\textbf{x}_k\|^2_2}{2\sigma_i^2}\right)} \tag{1}
-$$
+$$p(i|j) = \frac{\exp \left(\frac{-\|\textbf{x}_i-\textbf{x}_j\|^2_2}{2\sigma_i^2}\right)}{\sum^m_{k\ne i} \exp \left( \frac{-\|\textbf{x}_i-\textbf{x}_k\|^2_2}{2\sigma_i^2}\right)} \tag{1}$$
 
 * $m$은 Dataset의 샘플 갯수임.
 * 실제 논문에 따르면 당초 $\sigma_i$는 각 sample마다 데이터 밀도가 달라서 neighbors로 뽑힐 확률이 왜곡되지 않도록 넣어준 값이나 고정을 시켜도 큰 성능차이가 없었서 고정을 시켰다고 함. 입력받은 `perplexity`에 따라 적절한 $\sigma$를 찾는 binary search 가 수행됨.
@@ -32,9 +30,7 @@ $$
 위 그림에서 보이듯이 Gaussian probability distribution에 기반한 "확률밀도값"은 가까운 sample의 경우엔 높은 값이 할당되고 멀수록 낮은 값이 할당되므로 일종의 similarity로 충분히 활용가능하다.
 하지만, 식 1의 conditional probability $p(i|j)$는 symmetric하지 않다. 즉, $p(i|j) \ne p(j|i)$이다. 이를 보완하기 위해 sample간의 similarity $p(i,j)$를 다음과 같이 정의한다.
 
-$$
-p(i,j) = p(j,i) = \frac{p(i|j)+p(j|i)}{2} \tag{2}
-$$
+$$p(i,j) = p(j,i) = \frac{p(i|j)+p(j|i)}{2} \tag{2}$$
 
 이는 단순히 평균을 구한 것이지만 pair를 구성하는 샘플의 순서와 상관없이 같은 값이 되며, symmetric 임.
 
@@ -67,9 +63,7 @@ training dataset 의 모든 sample $\textbf{x}$ 들에 대응하면서 보다 �
 
 변환된 $Y$에서의 각 sampel pair에 대한 similiarity는 normal distribution이 아닌 Student's t distribution을 이용한다. 이 similarity의 식은 다음과 같다.
 
-$$
-q(i,j)=\frac{\left(1+\|\textbf{y}_i-\textbf{y}_j\|^2_2\right)^{-1}}{\sum^m_{k\ne l}\left(1+\|\textbf{y}_k-\textbf{y}_l\|^2_2\right)^{-1}}
-$$
+$$q(i,j)=\frac{\left(1+\|\textbf{y}_i-\textbf{y}_j\|^2_2\right)^{-1}}{\sum^m_{k\ne l}\left(1+\|\textbf{y}_k-\textbf{y}_l\|^2_2\right)^{-1}}$$
 
 이 similarity를 기반으로 $Y$의 similarity matrix $Q$를 구하면 된다. 이는 위 그림의 2번의 아래쪽에 해당한다. 현재 $\textbf{x},\textbf{y}$의 mapping이 무작위인 상태이므로 similarity matrix $Q$는 원래 데이터의 $P$와 차이가 많이 난다.
 
@@ -79,17 +73,13 @@ Step 1에서 구한 $X$의 similarity matrix $P$는 일종의 $p(i,j)$의 분포
 
 두 분포간의 다른 정도를 측정하는 가장 유용한 metric이 바로 KL Divergence이며 다음과 같다.
 
-$$
-L(Y)=\text{KL}(P\|Q)=\sum^m_{i=1}\sum^m_{j=1} p(i,j) \log \left(\frac{p(i,j)}{q(i,j)}\right) \tag{3}
-$$
+$$L(Y)=\text{KL}(P\|Q)=\sum^m_{i=1}\sum^m_{j=1} p(i,j) \log \left(\frac{p(i,j)}{q(i,j)}\right) \tag{3}$$
 
 
 
 이를 loss function으로 삼아 이를 최소화시키는 $Y$를 찾는 optimization을 수행한다. 다음의 식 4와 같이 식 3의 gradient를 구하고 이를 이용한 Gradient Descent가 주로 사용된다.
 
-$$
-\frac{\partial L}{\partial \textbf{y}_i}=4\sum^m_{j=1}(p(i,j)-q(i,j))(\textbf{y}_i-\textbf{y}_j)\left(1+\|\textbf{y}_i-\textbf{y}_j\|^2_2\right)^{-1} \tag{4}
-$$
+$$\frac{\partial L}{\partial \textbf{y}_i}=4\sum^m_{j=1}(p(i,j)-q(i,j))(\textbf{y}_i-\textbf{y}_j)\left(1+\|\textbf{y}_i-\textbf{y}_j\|^2_2\right)^{-1} \tag{4}$$
 
 아래 그림의 3번이 이 최적화 과정의 중간결과이고 4번이 최종 결과이다.
 
