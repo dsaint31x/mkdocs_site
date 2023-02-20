@@ -75,6 +75,9 @@ nav:
       - "CE/ch01/negative_number.md"
       - "CE/ch01/overflow_underflow.md"
       - "CE/ch01/real_number.md"
+    - "Bits and Character":
+      - "CE/ch01/code_for_character.md"
+      - "CE/ch01/Encoding_for_external_rep.md"
   - 'ch02':
     - 'Building Hardware for Bits':
       - 'CE/ch02_co/ce02_03_0_HW4Bits.md'
