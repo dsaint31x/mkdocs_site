@@ -161,7 +161,7 @@ nav:
       - "ML/ch07/manifold.md"
       - "ML/ch07/topological_space.md"
       - "ML/ch07/tSNE.md"
-    - "Deep Learning (simple)"
+    - "Deep Learning (simple)":
       - "ML/ch08/datastructure_graph.md"
   - Material Test:
     - code blk: test_code_blocks.md
