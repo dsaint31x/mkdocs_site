@@ -157,7 +157,8 @@ nav:
       - "DIP/ch02_01_02_simple_blob_detector.md"
       - "DIP/ch02_01_03_hog.md"
   - "ML":
-    - "Manifold Learning":
+    - "Unsupervised Learning":
+      - "ML/ch07/clustering.md"
       - "ML/ch07/manifold.md"
       - "ML/ch07/topological_space.md"
       - "ML/ch07/tSNE.md"
