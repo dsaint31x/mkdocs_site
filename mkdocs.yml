@@ -128,8 +128,8 @@ nav:
       - "Internet and Related Protocols":             "CE/ch06/ce06_2_03_Internet.md"
   - 'ch10':
     - "Concepts for Programming":
-      - "Command Line Interface": "CE/ce10_2_01_cli_terminal.md"
-      - "Standard I/O Library"  : "CE/ce10_2_04_stdio.md"
+      - "Command Line Interface": "CE/ch10/ce10_2_01_cli_terminal.md"
+      - "Standard I/O Library"  : "CE/ch10/ce10_2_04_stdio.md"
   - 'os':
     - 'kernel.md'
   - "OOP":
