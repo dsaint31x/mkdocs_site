@@ -1,49 +1,78 @@
-# Local Image Features
+# Local Image Features (or patch feature, local feature, feacture)
 
 > An interesting part (region) of an image.
 
-2000년 대부터 correspondence problem 을 푸는데 필요한 correpondence를 찾는데 이용(SIFT 2004)되면서 많은 발전이 이루어졌다. 대표적인 Local Feature는 다음과 같다. 기존의 edge segment 기반의 방식(1980년대 주류 기술)보다 우수한 성능을 보였고 무엇보다 gray-scale image에서 직접 계산이 가능하여 image matching 및 classification, image registration 등에서 널리 사용됨. 
+Local Feature (or Feature Descriptor)는 2000년대부터 correspondence problem 을 푸는데 필요한 correpondence를 검출하는데 이용(SIFT 2004)되면서 많은 발전이 이루어졌다. 기존의 ^^edge segment 기반의 방식(1970년대 등장하여 1980년대 많이 사용됨)^^ 보다 우수한 성능을 보였고 무엇보다 ^^gray-scale image에서 직접 계산이 가능^^ 하여 image matching 및 classification, image registration 등에서 널리 사용됨.  
 
-* HOG (Histogram of Oriented Gradient)
-* SIFT (Scale Invariant Feature Transform)
-     * SURF (Speed Up Robust Feature)
-* Binary Descriptors
-     * BRIEF (Binary Robust Independent Elementary Feature)
-     * ORB (Oriented and Rotated BRIEF)
-     * BRISK
+> CNN의 등장으로 이전만큼의 활발한 연구는 이루어지지 않음. Dataset으로부터 hiearchy feature extraion 이 자동으로 이루어진다는 점이 Deep Learning의 가장 큰 장점 중 하나라고 할 수 있음.
+  
+대표적인 Local Feature는 다음과 같다.
 
-Local Feature는 "원본 영상"의 keypoint(특징점)들에서 계산되어 local feature descriptor들로 표현된다.
+* Histogram of Oriented Gradient 계열 알고리즘 (output: float로 구성된 vector)
+    * Histogram of Oriented Gradient (HOG) : 2005. Dalal and Triggs
+    * SIFT (Scale Invariant Feature Transform) : 1999. Lowe et al.
+    * SURF (Speed Up Robust Feature) : 2006. Bay et al.
+* Binary Descriptors 계열 (output: binary vector)
+    * Binary Robust Independent Elementary Feature (BRIEF) : 2010. Calonder et al.
+    * Oriented and Rotated BRIEF (ORB) : 2011. Rublee et al.
+    * Binary robust invariant scalable keypoints (BRISK) : 2011. Leutenegger et al.
+    * Fast retina keypoint (FREAK) : 2012. Alahi et al.
 
-* keypoint (특징점) : "원본 영상"에서 local feature에 해당하는 위치. 해당 점을 중심으로 작은 region(or patch, cell, block)이 설정되며, 이 region에 속하는 pixel들을 이용하여 feature descriptor가 계산된다.
-* (local feature) descriptor : keypoint의 local feature를 표현하고 있는 객체. 주로 vector (real number or binary)로 표현되기 때문에 feature vector라고도 불린다. Local Feature의 실제적인 값에 해당하기 때문에 feature descriptor를 계산하는 알고리즘의 이름으로 local feature를 부른다. 즉, HOG descriptor라고 하면, HOG 알고리즘으로 얻은 local feature를 가르킨다.
+Local Feature는 "원본 영상"의 keypoint(특징점)들에서 계산되어 local feature descriptor (or feature vector)들 로 표현된다.
 
-> 초기에 개발된 local feature들은 corner 나 blob을 그냥 detection하는 알고리즘들로 keypoint만을 detect하여 원본에서의 위치와 그 크기 정도만을 구할 뿐 딱히 feature descrptor로 encoding하지 않았다. 이경우, geometric transform등에 covariant하기 때문에, 이들에 대해서도 invariant한 feature를 구하기위해 이후의 알고리즘들은 feature descriptor를 계산하는 단계가 추가된 경우가 대부분이다.  
-> 초반에 개발된 기법을 통해 keypoints를 구하고, 해당 keypoint들 각각에 대해 feature desriptor를 구하는 방식으로 local featre가 얻어지는 게 일반적인다.
+* keypoint (특징점) : "원본 영상"에서 local feature에 해당하는 위치. 해당 점을 중심으로 작은 ***region*** (or ***patch***, cell, block)이 설정되며, 이 region에 속하는 pixel들을 이용하여 feature descriptor가 계산된다.
+* (local feature) descriptor : keypoint가 속한 patch의 local feature를 표현하고 있는 객체. 주로 vector (real number or binary)로 표현되기 때문에 feature vector라고도 불린다. Local Feature의 실제적인 값에 해당하기 때문에 feature descriptor를 계산하는 알고리즘의 이름으로 local feature를 부른다.  
+즉, HOG descriptor라고 하면, HOG 알고리즘으로 얻은 local feature를 가르킨다.
 
-일반적으로 local feature를 얻는 방법들은 두 단계로 구분되며, 일부 알고리즘들은 한 단계에만 그치는 경우도 있다.
+> 초기에 개발된 알고리즘들은 corner 나 blob을 그냥 detection하는 경우가 많았다.  
+> 이 경우 ***keypoint만을 detect*** 하여 원본에서의 locational information과 size 를 계산할 뿐 이를 바탕으로 ***feature descrptor로 encoding하지 않았다***.  
+> locational information과 size는 *geometric transform 등에 covariant* 하기 때문에, 이들에 대해서도 invariant한 feature를 구하기 위해서는 추가적인 처리가 필요하다.  
+> 이후의 알고리즘들은 이를 위해, ***feature descriptor를 계산하는 단계*** 가 추가되었다.
+
+일반적으로 local feature를 얻는 algorithm들은 다음의 두 단계로 구성된다. (일부 알고리즘들은 하나의 단계에 대한 해법에 그치는 경우도 많다.)
 
 1. Feature Detection : location info. 와 size (or scale) 을 얻어냄.
     * location info.와 size는 Translation, Rotation, Zoom-in/out 등의 Geometraic Transform에 covariant함.
     * keypoint의 위치 및 크기를 구하는 과정에 해당.
-    * corner나 blob을 찾던 초기 기법들은 이 단계만 수행하는 경우가 많음.
+    * corner나 blob을 찾던 초기 기법들은 이 단계만 수행함.
 2. Feature Descprtion : 주로 orientation과 feature vector 추출.
     * Geometric Transform에 invariant한 feature descriptor를 생성.
     * 일부 기법은 detection과정이 아닌 2번 단계에만 적용가능한 것들도 있음.
+
 
 ## Local Feature의 구성요소.
 
 다음의 요소들로 Local feature는 구성됨.
 
-* Location information : 원본 영상에서의 위치 $(x,y)$
-* Scale (or size) : local feature가 원본영상에서 차지하고 있는 넓이, 크기에 해당. standard deviation등에 사용되는 $\sigma$로 보통 표기됨 (정규분포 등에서 분포의 폭을 결정하는 parameter가 std인 것에 기인).
-* Orientation : Local feater가 어떻게 놓여있는지를 나타냄. 방향이라고 봐도 된다.
-* Feature vector : 이는 Feature descritor의 핵심적인 요소라고도 할 수 있다. 특정 대상에서 특정 부위가 다른 두 영상에서 다른 조명, 다른 위치에 놓여있다고 해도 해당 부위의 이상적인 feature vector는 같아야 한다. 즉 같은 keypoint인지 여부를 체크하는데 사용된다(=local feature을 기술하는 vector임).
+> Local feature를 구하는 알고리즘에 따라 이들 중 일부 만을 제공할 수 있음. (모든 경우에 이들이 다 제공되는 건 아님.)
 
-> Local feature를 구하는 알고리즘에 따라 조금씩의 차이는 있으나 대부분의 경우, 위의 정보들을 가지고 있다.
+`Location information` 
+: 원본 영상에서의 위치 $(x,y)$로 사실상 keypoint의 위치이다. 주로 vector로 주어짐.
+
+`Scale (or size)` 
+: local feature가 원본영상에서 차지하고 있는 넓이, 크기에 해당. standard deviation등에 사용되는 $\sigma$로 보통 표기됨 (정규분포 등에서 분포의 폭을 결정하는 parameter가 std인 것에 기인).
+
+`Orientation` 
+: Local feature가 어떻게 놓여있는지를 나타냄. "방향"이라고 볼 수 있고, rotation에 invariant한 feature를 구하기 위한 핵심 정보임.
+
+`Feature vector` 
+: 이는 Feature descritor의 핵심적인 요소라고도 할 수 있다. 특정 대상에서 특정 부위가 다른 두 영상에서 다른 조명, 다른 위치에 놓여있다고 해도 해당 부위의 이상적인 feature vector는 같아야 한다. 즉 같은 keypoint인지 여부를 체크하는데 사용된다(=local feature을 기술하는 vector임).
+
+> 참고로 image patch를 그냥 flatten시킨 vector를 feature descriptor로 사용할 경우, noise 나 rotation등에 매우 취약하다.
+
+
+추가적으로 feature vector간의 simiality를 측정하는 함수가 제공된다.
+
+`Similarity (or distance) function`
+
+* Correspondance (matching되는 feature descriptor, keypone pair)를 구하기 위해 제공됨.
+* matching 등의 task에서 요구되며, homograpy (=projective transformation)를 구하기 위해 필수적임.
+* HOG family algorithm에서는 Euclidean distance가 자주 애용되고, binary descriptor family에서는 Hamming distance들이 주로 사용됨.
+
 
 ## Use of Local Image Feature
 
- * Image representation 을 만들기 위해서 사용됨.
+ * ***Image representation*** 을 만들기 위해서 사용됨.
  * Image-level descriptor는 local feature 들을 모아서 만듬.
  * Matching 에도 사용이 가능.
 
