@@ -110,6 +110,9 @@ Local Feature는 "원본 영상"의 keypoint(특징점)들에서 계산되어 lo
 - Locality를 우선시(적은 영역에서 계산됨)할 경우, 보통 Distinctiveness가 떨어짐.
 - 높은 Repeatablity를 우선시 계산량이 많아지는 게 보통임.
 
+---
+---
+
 ## Good Keypoints : Edge, Corner and Blob
 
 일반적으로 좋은 Local feature는 matching등에 사용될 때, unambiguous해야한다.
