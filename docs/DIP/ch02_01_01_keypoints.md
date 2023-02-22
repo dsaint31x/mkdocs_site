@@ -1,6 +1,6 @@
 # Keypoint (특징점)
 
-Local Feature가 계산되는 위치를 가르키며, 영상에서 corner, edge, blob등이 keypoint로 많이 사용된다.
+Local Feature가 계산되는 위치를 가르키며, 영상에서 corner, edge, blob 등이 keypoint로 많이 사용된다.
 
 일반적으로 주위 배경과 쉽게 구분이 가능하여 식별이 용이한 지점 (image의 특징을 잘 나타내줄 수 있는 부분을 의미)을 keypoint라고 한다.
 

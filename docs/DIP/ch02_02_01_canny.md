@@ -45,15 +45,17 @@ Canny Edge Detection은 다음과 같이 4단계로 구성된 algorithm임.
 Sobel 함수나 Laplacian 과 같은 **simple edge detection** 을 통해 얻은 ***simple binary edge map*** 의 일반적으로 다음과 같은 단점이 있다.
 
 - 첫째, **검출된 edge가 필요 이상으로 두꺼워** 객체를 훨씬 더 식별 하기 어렵게 만든다. (← non maximum supression 가 해법)
-- 둘째, 영상의 모든 중요한 edge를 검출하기 위한 **명확한 threshold을 찾기가 어렵거나 불가능**할 때가 있다. (←hysteresis thresholding 가 해법)
+- 둘째, 영상의 모든 중요한 edge를 검출하기 위한 **명확한 threshold을 찾기가 어렵거나 불가능** 할 때가 있다. (←hysteresis thresholding 가 해법)
 
 이를 해결한 알고리즘이 바로 **Canny Edge Algorithm** 임.
 
-> 위의 각 문제점에 대해 Canny algorithm 이 어떻게 해결했는지에 대한 설명을 가로 안에 기재되어 있으니 이를 참고할 것.
+> 위의 각 문제점에 대해 Canny algorithm 의 해법이 가로 안에 기재되어 있으니 이를 참고할 것.
 
 ## cv2.Canny
 
 OpenCV 에서는 `cv2.Canny`를 통해 제공함. 다음과 같은 parameter로 구성됨.
+
+* Gradient mangitude를 기본으로는 l1-norm으로 구함.
 
 ```Python
 edge_map = cv2.Canny(
@@ -62,7 +64,7 @@ edge_map = cv2.Canny(
     max_threshold, 
     edge_map=None,  # result가 저장될 변수. return value로 처리해도 되어 None이 기본.
     apertureSize=3, # Soble Filter의 kenrnel size. 
-    L2gradient=None # grad. magnitude를 l2-norm로 구할지, l1-norm으로 구할지결정.
+    L2gradient=False # grad. magnitude를 l2-norm로 구할지, l1-norm으로 구할지결정.
     )
 ```
 
@@ -93,4 +95,8 @@ cv2_imshow(edge)
 
 관련 ipynb 파일은 다음 URL을 참고 : [DIP_Canny_Edge_Detection](https://gist.github.com/dsaint31x/2afa8252d9134452db87ee5046ba1d3a)
 
+## References
 
+* [opencv's tutorial: Canny](https://docs.opencv.org/3.4/da/d22/tutorial_py_canny.html)
+* [Moeslund, T. (2009, March 23)](https://web.archive.org/web/20150421090938/http://www.cse.iitd.ernet.in/~pkalra/csl783/canny.pdf)
+* original paper : [A Computational Approach To Edge Detection](https://www.researchgate.net/publication/224377985_A_Computational_Approach_To_Edge_Detection)
