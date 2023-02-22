@@ -158,6 +158,8 @@ nav:
       - "DIP/ch02_01_00_classical_cv.md"
       - "DIP/ch02_01_01_keypoints.md"
       - "DIP/ch02_01_02_simple_blob_detector.md"
+      - "Old Style Features":
+        - "DIP/ch02_02_01_canny.md"
       - "DIP/ch02_01_03_hog.md"
   - "ML":
     - "Unsupervised Learning":
