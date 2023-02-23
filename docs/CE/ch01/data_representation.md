@@ -20,14 +20,15 @@ data를 처리하여 information으로 만들고, 해당 information으로 decis
 
 하지만 많은 경우, data와 information은 구분하지않고 사용된다. 
 
->보통 input으로 사용되는 측정 등으로 획득된 data를 raw data라고 부르며, 이후엔 거의 data라고 부름.
+>보통 input으로 사용되는 ^^측정 등으로 획득된 data를 raw data^^ 라고 부르며, 이후엔 거의 data라고 부름.
 
 ## Computer and Data
 
-Computer의 또다른 정의는 다음과 같다.
+Computer의 또다른 정의는 다음과 같다.  
+
     외부로부터 입력된 값을 받아들여 처리한 결과를 출력시키거나 장래에 사용하기 위해 보관하는 장치
 
-이를 줄여서 말하면 Data를 처리하여 information를 얻는 장치라고 할 수 있다.
+이를 줄여서 말하면 ***Data를 처리하여 information를 얻는 장치*** 라고 할 수 있다.
 
 > Computer의 다른 이름인 Electronic Data Processing System(EDPS), Automatic Data Processing System(ADPS) 들이 data processing에 초점을 둔 경우이다.
 
@@ -36,7 +37,7 @@ Computer가 다루는 information들은 다음과 같다.
 * Data
     * Numerical data : number (real number, natural number, integer, ...)
     * Non-numerical data : Character, Symbol
-* Data structure : 데이터 성분 사이의 구조
+* Data structure (자료구조)
     * Linear Lists, 
     * Trees, 
     * Rings, 
@@ -49,6 +50,21 @@ Computer 가 다루는 data들은 computer의 내부 및 외부에서 다양한 
 
 ![](../ch01/img/data_representation.png)
 
-주로 내부에서 사용되는 표현은 이진수를 기반으로 하는 numerical data 중심이며, 외부와의 정보교환을 위해 사용되는 표현은 code 등을 기반으로하는 non-numerical data 중심이라고 볼 수 있다.
+> 주로 내부에서 사용되는 표현은 주로 계산을 위한 경우로  이진수를 기반으로 하는 numerical data 중심이며, ^^외부와의 Information exchange (정보교환) 을 위해 사용되는 표현은 code^^ 등을 기반으로하는 non-numerical data 중심이라고 볼 수 있다.
 
-> 우리가 컴퓨터에게 숫자를 입력해도, 
+다음과 같이 data 종류 및 용도에 따라 Interal Represetation과 External Represenataion으로 바뀌어 컴퓨터에서 사용된다. 
+
+`Numbers` (for computing)
+: Most of numbers stored in the computer are eventually changed by some kinds of calculations
+
+* Internal Representation ***for calculation*** efficiency.
+* Final results need to be converted to as External Representation for presentability.
+
+`Alphabets`, `Symbols`, and `some Numbers` 
+: Elements of these information do not change in the course of processing
+
+* No needs for Internal Representation since they are not used for calculations
+* External Representation ***for processing and presentability***
+
+
+
