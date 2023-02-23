@@ -1,6 +1,6 @@
 # Boolean Algebra
 
-George Boole(1815-1864, 영국)이 고안한 logic을 다루는 algebra로 "True, False를 수학적인 영역으로 포함"시켜 참과 거짓을 1,0에 대입하고, `AND`, `OR`, `NOT` 등의 logic operation을 사용하여 논리적 동작(논리회로의 동작)을 대수적으로 처리한다. 다르게 애기하면 `bit`들을 이용한 연산들에 대한 규칙들을 정의하고 있다.
+George Boole(1815-1864, 영국)이 고안한 logic을 다루는 algebra로 "True, False를 수학적인 영역으로 포함"시켜 참과 거짓을 1,0에 대입하고, `AND`, `OR`, `NOT` 등의 logic operation을 사용하여 논리적 동작(논리회로의 동작)을 대수적으로 처리한다. 즉, `bit`들을 이용한 연산들에 대한 규칙들을 정의하고 있다.
 
 ## Pre-requirements
 
@@ -18,9 +18,9 @@ $x$ 등의 변수)를 사용하여 간단하게 나타내는 것(변수에 대�
 
 ## Rules
 
-* Associative Rule (결합)
-* Commutative Rule (교환)
-* Distributive Rule (분배)
+* Associative Rule (결합) : $(a \text{ AND } b) \text{ AND } c = a \text{ AND } (b \text{ AND } c)$
+* Commutative Rule (교환) : $a \text{ AND } b = b \text{ AND } a$
+* Distributive Rule (분배) : $a \text{ AND } (b \text{ AND } c) = (a \text{ AND } b) \text{ AND }(a \text{ AND } c)$
 
 ## Basis Operations
 
@@ -55,15 +55,15 @@ composite operation은 이름 그대로 basic operation들의 조합으로 만�
 
 명제(논리학)를 이용한 표현은 다음과 같음.
 
-$$ \neg(p \vee q) =\neg p \wedge \neg q \\ \neg(p \wedge q) =\neg p \vee \neg q \\ $$
+$$ \begin{aligned}\neg(p \vee q) =\neg p \wedge \neg q \\ \neg(p \wedge q) =\neg p \vee \neg q \end{aligned} $$
 
 Set(집합)을 이용한 표현은 다음과 같음.
 
-$$ (A \cup B)^C =A^C \cap B^C \\ (A \cap B)^C =A^C \cup B^C \\ $$
+$$ \begin{aligned}(A \cup B)^C =A^C \cap B^C \\ (A \cap B)^C =A^C \cup B^C \end{aligned} $$
 
 디지털 회로등에서의 표현은 다음과 같음.
 
-$$ \overline{(A + B)} =\overline{A}\cdot \overline{B} \\ \overline{(A \cdot B)} =\overline{A} + \overline{B} \\ $$
+$$ \begin{aligned}\overline{(A + B)} =\overline{A}\cdot \overline{B} \\ \overline{(A \cdot B)} =\overline{A} + \overline{B} \end{aligned} $$
 
 De Morgan's Law를 통해, negative logic을 사용할 수 있다. 
 

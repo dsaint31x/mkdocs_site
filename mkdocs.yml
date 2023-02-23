@@ -1,4 +1,4 @@
-site_name: Computer Engineering (CE) 
+site_name: BME228 
 
 theme: 
   #name: 'readthedocs'
@@ -64,13 +64,14 @@ nav:
   - 'CE':
     - 'CE/ch00/computer.md'
     - 'ch01: Representation of Data':
-      - "CE/ch01/data_representation.md"
+      - "CE/ch01/ch01_00_data_representation.md"
+      - "CE/ch01/ch01_01_information.md"
       - "Bits and Boolean Algebra":
-        - "CE/ch01/bit.md"
-        - "CE/ch01/msb_and_lsb.md"
-        - "CE/ch01/otherunits.md"
-        - "CE/ch01/boolean_algebra.md"
-        - "CE/ch01/prefix.md"
+        - "CE/ch01/ch01_10_bit.md"
+        - "CE/ch01/ch01_11_msb_and_lsb.md"
+        - "CE/ch01/ch01_12_otherunits.md"
+        - "CE/ch01/ch01_13_boolean_algebra.md"
+        - "CE/ch01/ch01_14_prefix.md"
       - "Bits and Number":
         - "CE/ch01/numeral_system.md"
         - "CE/ch01/positive_number.md"

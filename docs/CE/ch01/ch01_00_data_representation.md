@@ -66,5 +66,23 @@ Computer 가 다루는 data들은 computer의 내부 및 외부에서 다양한 
 * No needs for Internal Representation since they are not used for calculations
 * External Representation ***for processing and presentability***
 
+## Operations
+
+Computer가 data를 처리하는 연산을 가르킴. computer가 수행하는 작업을 가르키는 instruction과 비슷하게 사용되는데 operation은 주로 숫자 또는 논리 연산을 의미하고 instruction은 자료의 로딩, 복사 등의 컴퓨터가 수행하는 작업들이 기본 단위를 의미하는 경우로 많이 사용됨.
+
+Operation의 구분은 operand (피연산자)에 따라 다음과 같이 구분됨.
+
+* Unary
+    * 1개의 operand(or input), 1개의 output.
+    * `shift`, `move`, `not`
+* Binary
+    * 2개의 operand(or input), 1개의 output.
+    * `and`, `or`, 사칙연산
+
+operand 의 type에 따라 다음으로도 나뉨.
+
+* Numearical Operator
+* Logic Operator
+
 
 
