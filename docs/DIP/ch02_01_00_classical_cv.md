@@ -148,9 +148,12 @@ Edge를 만드는 요인은 다음과 같음.
 
 ### Common Edge Detection Process
 
+가장 널리 사용되는 algorithm은 ***Canny Edge Detection*** (1986) 이며 다음의 순서를 구성됨.
+
 1. Smoothing (=Denoising)
 2. Gradient magnitude를 구함.
-3. Non-max suppression & Thresholding
+3. Non-max suppression 
+4. Hysteresis Thresholding
 
 Edge는 높은 gradient magnitude를 가지므로 gradient magnitude를 구하여 해당 pixel을 구하는데, noise들도 높은 gradient magnitude를 가지므로 (Gaussian) Smoothing등을 통해 edge외의 noise 를 제거하고 gradient를 구한다.
 

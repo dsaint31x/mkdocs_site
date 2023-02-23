@@ -61,75 +61,78 @@ markdown_extensions:
 
 nav:
   - index: index.md
-  - 'ch01':
-    - "Bits and Boolean Algebra":
-      - "CE/ch01/bit.md"
-      - "CE/ch01/msb_and_lsb.md"
-      - "CE/ch01/otherunits.md"
-      - "CE/ch01/boolean_algebra.md"
-      - "CE/ch01/prefix.md"
-    - "Bits and Number":
-      - "CE/ch01/numeral_system.md"
-      - "CE/ch01/positive_number.md"
-      - "CE/ch01/code_for_number.md"
-      - "CE/ch01/negative_number.md"
-      - "CE/ch01/overflow_underflow.md"
-      - "CE/ch01/real_number.md"
-    - "Bits and Character":
-      - "CE/ch01/code_for_character.md"
-      - "CE/ch01/Encoding_for_external_rep.md"
-  - 'ch02':
-    - 'Building Hardware for Bits':
-      - 'CE/ch02_co/ce02_03_0_HW4Bits.md'
-      - 'relay': 'CE/ch02_co/ce02_03_1_relay.md'
-      - 'vacuum tube': 'CE/ch02_co/ce02_03_2_vacuum_tube.md'
-      - 'transistor': 'CE/ch02_co/ce02_03_3_transistor.md'
-      - 'IC': 'CE/ch02_co/ce02_03_4_IC.md'
-    - 'Gates':
-      - 'Gate에 대해서': 'CE/ch02_co/ce02_04_0_gate.md'
-      - 'Noise와 싸우기': 'CE/ch02_co/ce02_04_1_glitch.md'
-      - 'Propagation Delay': 'CE/ch02_co/ce02_04_3_propagation_delay.md'
-      - 'CE/ch02_co/ce02_04_4_0_gate_outputs.md'
-      - 'Totem-pole Output': 'CE/ch02_co/ce02_04_4_1_totem_pole_output.md'
-      - 'Open-Collector Output': 'CE/ch02_co/ce02_04_4_2_open_collector.md'
-      - 'Tri-State Output': 'CE/ch02_co/ce02_04_4_3_tri_state_output.md'
-    - 'Adder, Encoder, and Mux': 'CE/ch02_co/ce02_05_0_adder_encoder_demux.md'
-  - 'ch03':
-    - 'time and momory':
-      - 'time and momory': 'CE/ch03_seq/ce03_01_0_0_memory0.md'
-      - 'oscillator':      'CE/ch03_seq/ce03_01_0_1_Oscillator.md'
-      - 'latch':           'CE/ch03_seq/ce03_01_0_2_latch.md'
-      - 'flip-flop':       'CE/ch03_seq/ce03_01_0_3_flip_flop.md'
-      - 'counter':         'CE/ch03_seq/ce03_01_0_4_counter.md'
-      - 'register':        'CE/ch03_seq/ce03_01_0_5_register.md'
-    - "Memory":
-      - 'memory summary':  'CE/ch03_seq/ce03_02_0_primary_secondary_memory.md'
-      - 'memory and RAM':  'CE/ch03_seq/ce03_02_1_memory1.md'
-      - 'ROM':             'CE/ch03_seq/ce03_02_3_rom.md'
-      - 'Block Device':    'CE/ch03_seq/ce03_02_block_device.md'
-      - 'Flash Memory':    'CE/ch03_seq/ce03_flash_ssd.md'
-      - 'ECC Memory':      'CE/ch03_seq/ce03_04_ecc_memory.md'
-    - "Etc":
-      - 'HW vs SW':        'CE/ch03_seq/ce03_05_hw_and_sw.md'
-  - 'ch06':
-    - "Data Transfer":
-      - "IO Ports":         "CE/ch06/ce06_1_01_ioport.md"
-      - "Push Btns":        "CE/ch06/ce06_1_02_push_button.md"
-      - "FND":              "CE/ch06/ce06_1_03_fnd.md"
-      - "IO Mux":           "CE/ch06/ce06_1_04_multiplexing_posts.md"
-      - "Duty Cycle":       "CE/ch06/ce06_1_05_bright_duty.md"
-      - "Gray Code":        "CE/ch06/ce06_1_06_graycode.md"
-      - "Paralle Transfer": "CE/ch06/ce06_1_07_parallel_com.md"
-      - "Serial Transfer":  "CE/ch06/ce06_1_08_serial_com.md"
-      - "USB":              "CE/ch06/ce06_1_09_usb.md"
-    - "Network and Communication":
-      - "The History of Data Communication Network":  "CE/ch06/ce06_2_01_history.md"
-      - "Ethernet, Router, Switch and so on":         "CE/ch06/ce06_2_02_Ethernet_Router_Switch.md"
-      - "Internet and Related Protocols":             "CE/ch06/ce06_2_03_Internet.md"
-  - 'ch10':
-    - "Concepts for Programming":
-      - "Command Line Interface": "CE/ch10/ce10_2_01_cli_terminal.md"
-      - "Standard I/O Library"  : "CE/ch10/ce10_2_04_stdio.md"
+  - 'CE':
+    - 'CE/ch00/computer.md'
+    - 'ch01: Representation of Data':
+      - "CE/ch01/data_representation.md"
+      - "Bits and Boolean Algebra":
+        - "CE/ch01/bit.md"
+        - "CE/ch01/msb_and_lsb.md"
+        - "CE/ch01/otherunits.md"
+        - "CE/ch01/boolean_algebra.md"
+        - "CE/ch01/prefix.md"
+      - "Bits and Number":
+        - "CE/ch01/numeral_system.md"
+        - "CE/ch01/positive_number.md"
+        - "CE/ch01/code_for_number.md"
+        - "CE/ch01/negative_number.md"
+        - "CE/ch01/overflow_underflow.md"
+        - "CE/ch01/real_number.md"
+      - "Bits and Character":
+        - "CE/ch01/code_for_character.md"
+        - "CE/ch01/Encoding_for_external_rep.md"
+    - 'ch02: Bits and Combinatorial Logic':
+      - 'Building Hardware for Bits':
+        - 'CE/ch02_co/ce02_03_0_HW4Bits.md'
+        - 'relay': 'CE/ch02_co/ce02_03_1_relay.md'
+        - 'vacuum tube': 'CE/ch02_co/ce02_03_2_vacuum_tube.md'
+        - 'transistor': 'CE/ch02_co/ce02_03_3_transistor.md'
+        - 'IC': 'CE/ch02_co/ce02_03_4_IC.md'
+      - 'Gates':
+        - 'Gate에 대해서': 'CE/ch02_co/ce02_04_0_gate.md'
+        - 'Noise와 싸우기': 'CE/ch02_co/ce02_04_1_glitch.md'
+        - 'Propagation Delay': 'CE/ch02_co/ce02_04_3_propagation_delay.md'
+        - 'CE/ch02_co/ce02_04_4_0_gate_outputs.md'
+        - 'Totem-pole Output': 'CE/ch02_co/ce02_04_4_1_totem_pole_output.md'
+        - 'Open-Collector Output': 'CE/ch02_co/ce02_04_4_2_open_collector.md'
+        - 'Tri-State Output': 'CE/ch02_co/ce02_04_4_3_tri_state_output.md'
+      - 'Adder, Encoder, and Mux': 'CE/ch02_co/ce02_05_0_adder_encoder_demux.md'
+    - 'ch03':
+      - 'time and momory':
+        - 'time and momory': 'CE/ch03_seq/ce03_01_0_0_memory0.md'
+        - 'oscillator':      'CE/ch03_seq/ce03_01_0_1_Oscillator.md'
+        - 'latch':           'CE/ch03_seq/ce03_01_0_2_latch.md'
+        - 'flip-flop':       'CE/ch03_seq/ce03_01_0_3_flip_flop.md'
+        - 'counter':         'CE/ch03_seq/ce03_01_0_4_counter.md'
+        - 'register':        'CE/ch03_seq/ce03_01_0_5_register.md'
+      - "Memory":
+        - 'memory summary':  'CE/ch03_seq/ce03_02_0_primary_secondary_memory.md'
+        - 'memory and RAM':  'CE/ch03_seq/ce03_02_1_memory1.md'
+        - 'ROM':             'CE/ch03_seq/ce03_02_3_rom.md'
+        - 'Block Device':    'CE/ch03_seq/ce03_02_block_device.md'
+        - 'Flash Memory':    'CE/ch03_seq/ce03_flash_ssd.md'
+        - 'ECC Memory':      'CE/ch03_seq/ce03_04_ecc_memory.md'
+      - "Etc":
+        - 'HW vs SW':        'CE/ch03_seq/ce03_05_hw_and_sw.md'
+    - 'ch06':
+      - "Data Transfer":
+        - "IO Ports":         "CE/ch06/ce06_1_01_ioport.md"
+        - "Push Btns":        "CE/ch06/ce06_1_02_push_button.md"
+        - "FND":              "CE/ch06/ce06_1_03_fnd.md"
+        - "IO Mux":           "CE/ch06/ce06_1_04_multiplexing_posts.md"
+        - "Duty Cycle":       "CE/ch06/ce06_1_05_bright_duty.md"
+        - "Gray Code":        "CE/ch06/ce06_1_06_graycode.md"
+        - "Paralle Transfer": "CE/ch06/ce06_1_07_parallel_com.md"
+        - "Serial Transfer":  "CE/ch06/ce06_1_08_serial_com.md"
+        - "USB":              "CE/ch06/ce06_1_09_usb.md"
+      - "Network and Communication":
+        - "The History of Data Communication Network":  "CE/ch06/ce06_2_01_history.md"
+        - "Ethernet, Router, Switch and so on":         "CE/ch06/ce06_2_02_Ethernet_Router_Switch.md"
+        - "Internet and Related Protocols":             "CE/ch06/ce06_2_03_Internet.md"
+    - 'ch10':
+      - "Concepts for Programming":
+        - "Command Line Interface": "CE/ch10/ce10_2_01_cli_terminal.md"
+        - "Standard I/O Library"  : "CE/ch10/ce10_2_04_stdio.md"
   - 'os':
     - 'kernel.md'
   - "OOP":
