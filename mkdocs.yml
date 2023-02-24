@@ -172,7 +172,7 @@ nav:
         - "DIP/ch02_02_01_canny.md"
       - "DIP/ch02_03_03_hog.md"
   - "ML":
-    - "Introduction"
+    - "Introduction":
       - "ML/ch00/ch00_intro.md"
       - "ML/ch00/ch00_dartmouth_ai.md"
     - "Unsupervised Learning":
