@@ -111,7 +111,7 @@ nav:
         - 'memory and RAM':  'CE/ch03_seq/ce03_02_1_memory1.md'
         - 'ROM':             'CE/ch03_seq/ce03_02_3_rom.md'
         - 'Block Device':    'CE/ch03_seq/ce03_02_block_device.md'
-        - 'Flash Memory':    'CE/ch03_seq/ce03_flash_ssd.md'
+        - 'Flash Memory':    'CE/ch03_seq/ce03_03_flash_ssd.md'
         - 'ECC Memory':      'CE/ch03_seq/ce03_04_ecc_memory.md'
       - "Etc":
         - 'HW vs SW':        'CE/ch03_seq/ce03_05_hw_and_sw.md'
