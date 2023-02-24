@@ -173,8 +173,9 @@ nav:
       - "DIP/ch02_03_03_hog.md"
   - "ML":
     - "Introduction":
-      - "ML/ch00/ch00_intro.md"
-      - "ML/ch00/ch00_dartmouth_ai.md"
+      - "ML/ch00/ch00_00_intro.md"
+      - "ML/ch00/ch00_01_dartmouth_ai.md"
+      - "ML/ch00/ch00_10_what_is_ml.md"
     - "Unsupervised Learning":
       - "ML/ch07/clustering.md"
       - "ML/ch07/manifold.md"
