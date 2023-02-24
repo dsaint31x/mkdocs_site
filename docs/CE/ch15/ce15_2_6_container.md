@@ -14,17 +14,21 @@
 
 > Virtual Machine의 경우, container와 달리 자체 kernel을 포함한 완전한 OS를 실행시키기 때문에 해당 OS가 인식할 가상 Hardware까지 제공해야하며, 이는 보안적인 측면에서 보다 강력한 격리를 제공하나 Container보다 훨씬 무거운 환경임 (`Container`에 비해 더 많은 시스템 리소스가 필요).
 
+![](./img/container_vs_vm.png)
+
 > Cloud Computing의 경우, 물리적 시스템 위에 Virtual Machine들이 존재하고, 해당 VM들 위에서 Container들이 동작하는 방식이 일반적임. EC2등의 서비스는 사용자가 VM을 임대하는 것으로 생각할 수 있음.
 
 # Virtual Machine
 
-> Virtual Machine이 동작하는 Host System을 Hypervisor라고 칭하기도 하는데, VM은 Host System의 OS와 완전히 격리되어 동작함. VM내에서는 완전한 OS가 수행되므로 VM내에서 동작하는 OS가 기대하는 가상의 하드웨어들을 제공해야하며 이는 container보다 많은 리소스를 필요로 하게 함.
+> Virtual Machine이 동작하는 Host System을 Hypervisor (엄밀하게는 virtual machine을 생성하는 SW로, host system에서 동작함)라고 칭하기도 하는데, VM은 Host System의 OS와 완전히 격리되어 동작함. VM내에서는 완전한 OS가 수행되므로 VM내에서 동작하는 OS가 기대하는 가상의 하드웨어들을 제공해야하며 이는 container보다 많은 리소스를 필요로 하게 함.
 
 HW의 발전으로 가능해진 것으로 마치 여러 application처럼 시분할 기술을 통해 단일 OS에서 실행하는 것처럼, 여러 OS를 단일 물리적 시스템에서 시분할로 실행하는 방법이 Virtual machine임.
 
+> A hypervisor is a piece of software used to create virtual machines. A virtual machine is an emulation of a computer. Virtual machines are used to create multiple computing environments on a single piece of hardware.
+
 하지만 application과 달리 OS는 HW에서 수행되는 instruction set이 있고 HW와 상호작용을 하기 때문에, "실제 물리적 시스템의 HW에서 해당 작업을 담당하는 Host OS"와 "VM 내의 OS"사이에서 ***VM내 OS의 요청을 Host OS가 수행할 수 있는 요청으로 변환해주는 중간자*** 가 필요하다. 이는 일종의 interpreter라고 볼 수 있는데, OS는 machine에 설치된다는 종래의 개념에서 virtual machine이라는 이름이 붙었다고 생각하면 쉽게 이해가 될 것이다.
 
-VM으로 유명한 SW들은 MS사의 Hiper-V와 Oracel의 Virtual Box등이 있다.
+VM으로 유명한 SW들은 MS사의 `Hiper-V`와 Oracel의 `Virtual Box`등이 있다.
 
 복잡한 연산 등을 VM으로 수행하기에는 High-end PC에서도 다소 무리가 있다. 하지만 간단한 워드 수준의 작업은 VM으로 충분하기 때문에 일반 사용자도 관공서나 특정 기관에서 사용해야하는 웹 어플리케이션 또는 SW가 이전 버전의 OS 나 웹브라우저 등을 요구하는 경우 (내 장비에 설치하기엔 너무 구식인 경우도 있을 수 있다)에 VM은 좋은 대안이 된다.
 

@@ -25,4 +25,4 @@ computer나 circuit을 구성하고 있는 여러 device들은 propagteion delay
 * 여러 종류가 있으나 일반적으로 rectangular pulse를 주로 가르키며 구형파라고도 불림.
 
 
-[Pulse](https://en.wikipedia.org/wiki/Pulse_(signal_processing))
+* 참고자료 : wikipedia's [Pulse](https://en.wikipedia.org/wiki/Pulse_(signal_processing))

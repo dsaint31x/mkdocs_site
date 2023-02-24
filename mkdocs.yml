@@ -98,23 +98,25 @@ nav:
         - 'Open-Collector Output': 'CE/ch02_co/ce02_04_4_2_open_collector.md'
         - 'Tri-State Output': 'CE/ch02_co/ce02_04_4_3_tri_state_output.md'
       - 'Adder, Encoder, and Mux': 'CE/ch02_co/ce02_05_0_adder_encoder_demux.md'
-    - 'ch03':
-      - 'time and momory':
-        - 'time and momory': 'CE/ch03_seq/ce03_01_0_0_memory0.md'
+    - 'ch03: Memory and Sequential Logic':
+      - 'time and memory':
+        - 'time and memory': 'CE/ch03_seq/ce03_01_0_0_memory0.md'
         - 'oscillator':      'CE/ch03_seq/ce03_01_0_1_Oscillator.md'
         - 'latch':           'CE/ch03_seq/ce03_01_0_2_latch.md'
         - 'flip-flop':       'CE/ch03_seq/ce03_01_0_3_flip_flop.md'
         - 'counter':         'CE/ch03_seq/ce03_01_0_4_counter.md'
         - 'register':        'CE/ch03_seq/ce03_01_0_5_register.md'
-      - "Memory":
+      - "Memory (and Storage)":
         - 'memory summary':  'CE/ch03_seq/ce03_02_0_primary_secondary_memory.md'
-        - 'memory and RAM':  'CE/ch03_seq/ce03_02_1_memory1.md'
-        - 'ROM':             'CE/ch03_seq/ce03_02_3_rom.md'
-        - 'Block Device':    'CE/ch03_seq/ce03_02_block_device.md'
-        - 'Flash Memory':    'CE/ch03_seq/ce03_03_flash_ssd.md'
-        - 'ECC Memory':      'CE/ch03_seq/ce03_04_ecc_memory.md'
+        - 'RAM and ROM':
+          - 'memory 기초':  'CE/ch03_seq/ce03_02_1_memory1.md'
+          - 'RAM':          'CE/ch03_seq/ce03_02_2_RAM.md'
+          - 'ECC Memory':   'CE/ch03_seq/ce03_04_ecc_memory.md'
+          - 'ROM':          'CE/ch03_seq/ce03_02_3_rom.md'
+        - 'Block Device':   'CE/ch03_seq/ce03_02_block_device.md'
+        - 'Flash Memory':   'CE/ch03_seq/ce03_03_flash_ssd.md'
       - "Etc":
-        - 'HW vs SW':        'CE/ch03_seq/ce03_05_hw_and_sw.md'
+        - 'HW vs SW':  'CE/ch03_seq/ce03_05_hw_and_sw.md'
     - 'ch06':
       - "Data Transfer":
         - "IO Ports":         "CE/ch06/ce06_1_01_ioport.md"
@@ -134,6 +136,10 @@ nav:
       - "Concepts for Programming":
         - "Command Line Interface": "CE/ch10/ce10_2_01_cli_terminal.md"
         - "Standard I/O Library"  : "CE/ch10/ce10_2_04_stdio.md"
+    - '작성중':
+      - "CE/ch15/ce15_2_4_potability.md"
+      - "CE/ch15/ce15_2_6-package_management.md"
+      - "CE/ch15/ce15_2_6_container.md"
   - 'os':
     - 'kernel.md'
   - "OOP":

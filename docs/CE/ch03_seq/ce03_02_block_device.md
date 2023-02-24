@@ -37,7 +37,9 @@ HDD보다 용량대비 단가가 더 낮은 장비이나, 속도는 컴퓨터 �
 
 ---
 
-[DASD](https://dsaint31.tistory.com/entry/Direct-Access-Storage-Device-media-DASD)
+## 읽어보면 좋은 자료.
+
+* [DASD 이란?](https://dsaint31.tistory.com/entry/Direct-Access-Storage-Device-media-DASD)
 
 
 
