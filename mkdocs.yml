@@ -137,8 +137,8 @@ nav:
         - "Command Line Interface": "CE/ch10/ce10_2_01_cli_terminal.md"
         - "Standard I/O Library"  : "CE/ch10/ce10_2_04_stdio.md"
     - '작성중':
-      - "CE/ch15/ce15_2_4_potability.md"
-      - "CE/ch15/ce15_2_6-package_management.md"
+      - "CE/ch15/ce15_2_4_portability.md"
+      - "CE/ch15/ce15_2_6_package_management.md"
       - "CE/ch15/ce15_2_6_container.md"
   - 'os':
     - 'kernel.md'
@@ -172,6 +172,9 @@ nav:
         - "DIP/ch02_02_01_canny.md"
       - "DIP/ch02_03_03_hog.md"
   - "ML":
+    - "Introduction"
+      - "ML/ch00/ch00_intro.md"
+      - "ML/ch00/ch00_dartmouth_ai.md"
     - "Unsupervised Learning":
       - "ML/ch07/clustering.md"
       - "ML/ch07/manifold.md"
