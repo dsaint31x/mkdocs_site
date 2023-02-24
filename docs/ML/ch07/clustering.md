@@ -128,7 +128,7 @@ $$
 
 ## Density-Based Spatial Clustering of Applications with Noise (DBSCAN)
 
-density base clustering의 대표적 알고리즘.  
+density based clustering의 대표적 알고리즘.  
 Noise에 강하고 (noise point로 지정되면 아예 cluster에서 빼버림) 다양한 모양과 크기의 cluster들을 처리할 수 있는 장점을 가짐.
 
 * Density : 지정된 반경(Eps) 내의 데이터 포인트의 갯수

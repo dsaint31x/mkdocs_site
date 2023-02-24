@@ -56,5 +56,7 @@ Unsupervised learning처럼 agent가 얻는 experience의 내부적인 특성 �
 
 ## 결론
 
-요약하면, Reinforcement Learning은 기존의 supervised learning이나 unsupervised learning과 구별되는 종류의 ML이다.
+요약하면, Reinforcement Learning은 기존의 supervised learning이나 unsupervised learning과 구별되는 종류의 ML이다. interaction이 일어나는 경우에서 사용되므로, 로보틱스등에서 많이 이용된다. 
+
+> ML에서의 hyper-parameter tunning에서도 적용되는 경우도 많다.
 
