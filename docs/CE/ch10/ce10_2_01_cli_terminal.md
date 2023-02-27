@@ -1,4 +1,4 @@
-# Command Line Interface (CLR)
+# Command Line Interface (CLI)
 
 이 문서에서는 `CLI`에 대한 소개와 이를 수행해주는 `Terminal`을 살펴보고, 이들을 통한 `I/O가 이루어지는 과정`을 간략히 설명한다.  
 Terminal을 통한 CLI방식으로 I/O가 이루어지는 과정을 살펴보면서, I/O `Interrupt`와 `Context switching`에 대한 개념을 소개하며, OS가 제공하는 I/O를 위한 `system call`의 개념과 이를 이용하는 `표준 입출력 라이브러리`에 대한 개념도 간략히 살펴본다. 
