@@ -19,7 +19,7 @@ plugins:
       minify_html: true
   - tags:
       tag_file: tags.md
-  - glightbox
+  #- glightbox
 
 markdown_extensions:
   - abbr
