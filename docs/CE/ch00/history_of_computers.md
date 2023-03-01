@@ -92,7 +92,7 @@ Neumann은 memory(기억장치)에 컴퓨터의 instruction들과 data들을 함
 
 1951년 개발된 최초의 `상업용 컴퓨터`.
 
-![](./img/Univac_I_Census_dedication.jpg) {width="300"}
+![](./img/Univac_I_Census_dedication.jpg){width="300"}
 
 * By U.S. Census Bureau employees - https://www.census.gov/history/, Public Domain, https://commons.wikimedia.org/w/index.php?curid=61118833
 
