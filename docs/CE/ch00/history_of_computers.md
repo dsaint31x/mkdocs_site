@@ -51,7 +51,9 @@
 * 100여명의 수학자들이 모여 한 달동안 계산 을 대체하기 위해.
 * decimal (십진수 체계) 를 사용. 
 
-![](./img/Classic_shot_of_the_ENIAC.jpg)
+![](./img/Classic_shot_of_the_ENIAC.jpg){width="300" align="center"}
+
+* By Unidentified U.S. Army photographer - Image from [2], Public Domain, https://commons.wikimedia.org/w/index.php?curid=978770
 
 18,000 여개의 진공관과 1,500 개의 relay로 구성되었고, 150kW의 전력소모 및 $24 \times 6.974 \times 0.945 m^3, 30t$의 정말 큰 컴퓨터.
 
@@ -76,13 +78,13 @@
 Stored program computer의 구조로서 현대 컴퓨터들이 대부분 채택하고 있음.
 다음과 같은 세 부분으로 구성됨.
 
-![von Neumann Architecture](./img/von_Neumaan_arch.png){ width="300" }
+![von Neumann Architecture](./img/von_Neumann_arch.png){ width="300" }
 
 * data를 외부로부터 입력받고, 처리 결과를 외부에 표시하는 I/O Device (키보드, 모니터, 프린터 등등)
 * data의 저장을 담당하는 memory (storage를 포함)
 * data의 처리를 담당하는 CPU (Control Unit과 ALU등으로 구성됨.)
 
-Neumaan은 memory(기억장치)에 컴퓨터의 instruction들과 data들을 함께 저장하는 stored programm 방식을 1946년에 제안했고, EDVAC이 이를 구현했음. EDVAC 이후, 이를 기점으로 `Software`라는 개념이 등장함!
+Neumann은 memory(기억장치)에 컴퓨터의 instruction들과 data들을 함께 저장하는 stored programm 방식을 1946년에 제안했고, EDVAC이 이를 구현했음. EDVAC 이후, 이를 기점으로 `Software`라는 개념이 등장함!
 
 > 1949년의 `EDSAC`(윌킨스)이 최초의 stored program computer이긴 하지만, 대부분의 최초에 대한 부분은 논쟁이 많다. 가장 유명한 것이 `EDVAC`인지라...
 
@@ -90,7 +92,9 @@ Neumaan은 memory(기억장치)에 컴퓨터의 instruction들과 data들을 함
 
 1951년 개발된 최초의 `상업용 컴퓨터`.
 
-![](https://en.wikipedia.org/wiki/UNIVAC#/media/File:Univac_I_Census_dedication.jpg)
+![](./img/Univac_I_Census_dedication.jpg) {width="300"}
+
+* By U.S. Census Bureau employees - https://www.census.gov/history/, Public Domain, https://commons.wikimedia.org/w/index.php?curid=61118833
 
 약 95만 달러의 고가였고, 관공서 및 대형 연구소 등에서 사용됨. 참고로 당시 대학민국 1인당 GDP는 50불 수준)
 
@@ -109,8 +113,8 @@ Neumaan은 memory(기억장치)에 컴퓨터의 instruction들과 data들을 함
 * micro-second 단위의 연산속도.
 * Operating System (OS)가 IBM204 등에서 등장하기 시작.
 * bacth processing(1950년대)이 주로 사용되었으나 multiprogramming(1960년대)의 개념도 등장.
-    * `Multiprogram`이란 I/O 처리로 인해 CPU연산이 필요하지 않은 경우, 다른 프로그램에게 CPU를 사용할 수 있도록 해줌. (여러 프로그램이 동시에 동작 가능.)
-        * 이전의 방식(한 프로그램이 끝날 때까지 점유)은 Uni-program (단일 프로그램)이라고 불림.
+    * `Multiprogramming`이란 I/O 처리로 인해 CPU연산이 필요하지 않은 경우, 다른 프로그램에게 CPU를 사용할 수 있도록 해줌. (이를 위해 여러 프로그램이 main memory에서 동시에 상주함.)
+        * 이전의 방식(한 프로그램이 끝날 때까지 점유)은 Uni-programming (단일 프로그램)이라고 불림.
         * 고가의 컴퓨터를 효율적으로 사용하기 위한 기술이었고 이는 time-sharing system으로 이어짐.
     * `Batch processing`이란
         * 특정 시간에 대량의 데이터를 일괄적으로 처리하는 것을 의미.
@@ -118,7 +122,13 @@ Neumaan은 memory(기억장치)에 컴퓨터의 instruction들과 data들을 함
         * 한 프로그램의 수행이 끝나면, 사람이 이를 확인하고 다음 수행할 프로그램을 전달해주는 형태임.
 * `machine language`와 `assembler`가 이용됨.
 
-TRADIC, TX-0 등등.
+> mutliprogramming과 비슷한 개념이 multitasking임. 
+> 하나의 장비에서 여러 프로그램이 동시에 수행을 목표로 하기보다는 CPU의 idle time을 줄이기 위해 도입된 multiprogrmming과 달리, multitasking은 하나의 resource를 여러 process들이 공유하는 개념으로 동시에 수행되는 것을 목표로 하고 있어서 multiprogramming의 논리적인 확장이라고 볼 수 있다.  
+사실 resource에서 가장 중요한 것이 CPU이고, 어찌 보면 유사한 개념이지만, multitasking은 round-robin sheduling algorithm과 같은 스케쥴링 알고리즘이 multiprogramming에 보다 추가된 것이며 여러 task를 동시에 수행시키기 위한 기술(사실은 그렇게 느껴지게 하기 위한 기술)이다. 반면, multiprogramming이 오직 단일 CPU의 idle time을 줄이기 위한 context changing에만 초점을 둔 것으로 여러 작업이 동시에 실행되는 것을 보장하지 않는다.  
+결국, multitasking은 multi-programming에 multi-processing과 time-sharing 등의 개념 등이 보다 추가된 것이다.  
+> 보다 자세한 건 다음 url을 참고하라. [Difference Between Multiprogramming and Multitasking](https://www.tutorialspoint.com/difference-between-multiprogramming-and-multitasking)
+
+TRADIC, TX-0 등등이 유명한 2세대 컴퓨터임.
 
 > `ENIAC`이 17,000개의 vacuum tube를 사용한 것에 비교하여 `TRADIC`은 800개의 transistor를 사용하면서 1/15,000 수준의 전력을 소비했음.
 
@@ -129,7 +139,9 @@ TRADIC, TX-0 등등.
 1955년 AT&T Bell 연구소의 J. H. Felker가 만든 ^^transistor기반 컴퓨터^^ .  
 800여개의 transistor와 10,000여개의 게르마늄 수정정류기를 사용한 것으로 알려짐.
 
-![](./img/TRADIC_computer.jpg){width="300"}
+![](./img/TRADIC_computer.jpg){width="300" align="center"}
+
+* By Unknown author - Retrieved January 24, 2015 from Radio-Electronic Engineering magazine, Ziff-Davis Publishing Co., New York, Vol. 24, No. 5, May 1955 , cover on http://www.americanradiohistory.com, Public Domain, https://commons.wikimedia.org/w/index.php?curid=38024210
 
 #### TX-0 (Transistorized eXperimental computer 0)
 
@@ -147,7 +159,7 @@ TRADIC, TX-0 등등.
     * IC 사용은 보다 높은 신뢰성과 처리속도와 용량을 보유한 컴퓨터를 보다 작게 만들 수 있도록 해줌.
 * `UNIX` 의 등장(1960년대 후반)으로 오늘날 OS의 개념이 명확해짐.
     * Time sharing system (시분할 시스템)을 채택하여 여러 terminal을 지원하게 됨.
-    * 최초로 다중작업 및 다중사용자가 가능한 OS.
+    * 최초로 다중작업(Multi-tasking) 및 다중사용자가 가능한 OS.
     * UNIX는 현대 OS의 기본 개념을 수립한 OS로 가치가 있음.
 * nano-second의 연산속도
 * 컴퓨터에 family (계열) 개념이 일반화되면서 기종간 호환성이 커짐.
