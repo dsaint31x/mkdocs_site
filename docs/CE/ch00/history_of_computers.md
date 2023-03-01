@@ -79,7 +79,10 @@
 Stored program computer의 구조로서 현대 컴퓨터들이 대부분 채택하고 있음.
 다음과 같은 세 부분으로 구성됨.
 
+<figure markdown>
 ![von Neumann Architecture](./img/von_Neumann_arch.png){ width="300" }
+<figcaption>Stored program Architecture</figcaption>
+</figure>
 
 * data를 외부로부터 입력받고, 처리 결과를 외부에 표시하는 I/O Device (키보드, 모니터, 프린터 등등)
 * data의 저장을 담당하는 memory (storage를 포함)
