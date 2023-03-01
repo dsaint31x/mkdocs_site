@@ -62,7 +62,11 @@ markdown_extensions:
 nav:
   - index: index.md
   - 'CE':
-    - 'CE/ch00/computer.md'
+    - 'ch00' : Introduction
+      - 'CE/ch00/computer.md'
+      - 'CE/ch00/history_of_computers.md'
+      - 'CE/ch00/category_of_computers.md'
+      - 'CE/ch00/component_of_computers.md'
     - 'ch01: Representation of Data':
       - "CE/ch01/ch01_00_data_representation.md"
       - "CE/ch01/ch01_01_information.md"
