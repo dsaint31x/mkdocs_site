@@ -39,3 +39,7 @@ Overall, computers have had a significant impact on the medical field,
 This course teaches you ***how to use computers*** to carry out tasks you describe, as well as ***the necessary prerequisites***. 
 
 > In this lecture, keep in mind that many of the explanations are simplified and not entirely accurate in every detail. Including every detail would create distracting complexity, so perfect accuracy has been sacrificed in favor of clarity.
+
+## 읽어보면 좋은 자료.
+
+* [Computer and Program](https://dsaint31.tistory.com/entry/CE-Computer-and-Program)
