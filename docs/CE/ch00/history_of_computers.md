@@ -85,13 +85,13 @@ Stored program computer의 구조로서 현대 컴퓨터들이 대부분 채택�
 * data의 저장을 담당하는 memory (storage를 포함)
 * data의 처리를 담당하는 CPU (Control Unit과 ALU등으로 구성됨.)
 
-Neumaan은 memory(기억장치)에 컴퓨터의 instruction들과 data들을 함께 저장하는 stored programm 방식을 1946년에 제안했고, EDVAC이 이를 구현했음. EDVAC 이후, 이를 기점으로 Software라는 개념이 등장함!
+Neumaan은 memory(기억장치)에 컴퓨터의 instruction들과 data들을 함께 저장하는 stored programm 방식을 1946년에 제안했고, EDVAC이 이를 구현했음. EDVAC 이후, 이를 기점으로 `Software`라는 개념이 등장함!
 
-> 1949년의 EDSAC(윌킨스)이 최초의 stored program computer이긴 하지만, 대부분의 최초에 대한 부분은 논쟁이 많다. 가장 유명한 것이 EDVAC인지라...
+> 1949년의 `EDSAC`(윌킨스)이 최초의 stored program computer이긴 하지만, 대부분의 최초에 대한 부분은 논쟁이 많다. 가장 유명한 것이 `EDVAC`인지라...
 
 ### UNIVAC (Universal Automatic Computer)
 
-1951년 개발된 최초의 상업용 컴퓨터.
+1951년 개발된 최초의 `상업용 컴퓨터`.
 
 ![](https://en.wikipedia.org/wiki/UNIVAC#/media/File:Univac_I_Census_dedication.jpg)
 
@@ -103,34 +103,36 @@ Neumaan은 memory(기억장치)에 컴퓨터의 instruction들과 data들을 함
 
 1950년대 후반 ~ 1960년대 중반 정도
 
-* Transistor (1948년 개발됨) 가 주 구성요소임.
+* `Transistor` (1948년 개발됨) 가 주 구성요소임.
     * Vacuum tube를 사용했던 컴퓨터들 보다 1/100 수준의 크기로 소형화.
     * 동시에 생산단가가 낮아지면서 상업용 컴퓨터 보급이 보다 원활해짐.
 * 기억장치
-    * magnetic core(자기코어, primary memory), magnetic tape(자기테이프), magnetic disc(자기디스크) 등.
+    * magnetic core(자기코어, primary memory)
+    * secondary memory : magnetic tape(자기테이프), magnetic disc(자기디스크) 등.
 * micro-second 단위의 연산속도.
 * Operating System (OS)가 IBM204 등에서 등장하기 시작.
 * bacth processing(1950년대)이 주로 사용되었으나 multiprogramming(1960년대)의 개념도 등장.
-    * Multiprogramming이란 I/O 처리로 인해 CPU연산이 필요하지 않은 경우, 다른 프로그램에게 CPU를 사용할 수 있도록 해줌. (여러 프로그램이 동시에 동작 가능.)
-        * 이전의 방식(한 프로그램이 끝날 때까지 점유)은 Uni-programming (단일 프로그래밍)이라고 불림.
+    * `Multiprogram`이란 I/O 처리로 인해 CPU연산이 필요하지 않은 경우, 다른 프로그램에게 CPU를 사용할 수 있도록 해줌. (여러 프로그램이 동시에 동작 가능.)
+        * 이전의 방식(한 프로그램이 끝날 때까지 점유)은 Uni-program (단일 프로그램)이라고 불림.
         * 고가의 컴퓨터를 효율적으로 사용하기 위한 기술이었고 이는 time-sharing system으로 이어짐.
-    * Batch processing이란
+    * `Batch processing`이란
         * 특정 시간에 대량의 데이터를 일괄적으로 처리하는 것을 의미.
         * 컴퓨터가 어떤 작업이 주어지면, 끝날 때가지 해당 작업만 수행하게 되며, processor scheduling이라는 개념이 도입되기 전에는 거의 모든 작업이 batch processing이었음.
         * 한 프로그램의 수행이 끝나면, 사람이 이를 확인하고 다음 수행할 프로그램을 전달해주는 형태임.
-* machine language와 assembler가 이용됨.
+* `machine language`와 `assembler`가 이용됨.
 
-UNIVAC 1108, CDC3600, IBM7094 등등.
+TRADIC, UNIVAC1108, CDC3600, IBM7094 등등.
 
-> ENIAC이 17,000개의 vacuum tube를 사용한 것에 비교하여 트래딕이란는 컴퓨터는 800개의 transistor를 사용하면서 1/15,000 수준의 전력을 소비했음.
+> `ENIAC`이 17,000개의 vacuum tube를 사용한 것에 비교하여 `TRADIC`은 800개의 transistor를 사용하면서 1/15,000 수준의 전력을 소비했음.
 
-1960년 초반에 등장한 키보드와 모니터의 등장으로 기존의 batch processing에서 interative system(1960년대)으로의 변화가 가능해짐. 키보드와 모니터 등을 통해 사용자에게 작업이 진행되는 중간에 입력과 출력이 가능해졌다. 
+1960년 초반에 등장한 `키보드`와 `모니터`의 등장으로 기존의 batch processing에서 `interative system`(1960년대)으로의 변화가 가능해짐.   키보드와 모니터 등을 통해 사용자에게 작업이 진행되는 중간에 입력과 출력이 가능해졌다. 
 
 #### TRADIC (TRAnsistorized Airborne DIgital Computer)
 
-1955년 AT&T Bell 연구소의 J. H. Felker가 만든 transistor기반 컴퓨터. 800여개의 transistor와 10,000여개의 게르마늄 수정정류기를 사용한 것으로 알려짐.
+1955년 AT&T Bell 연구소의 J. H. Felker가 만든 ^^transistor기반 컴퓨터^^ .  
+800여개의 transistor와 10,000여개의 게르마늄 수정정류기를 사용한 것으로 알려짐.
 
-![](https://en.wikipedia.org/wiki/TRADIC#/media/File:TRADIC_computer.jpg)
+![](./img/TRADIC_computer.jpg){width="300"}
 
 #### TX-0 (Transistorized eXperimental computer 0)
 
