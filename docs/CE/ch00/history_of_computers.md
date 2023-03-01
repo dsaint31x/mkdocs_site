@@ -51,7 +51,7 @@
 * 100여명의 수학자들이 모여 한 달동안 계산 을 대체하기 위해.
 * decimal (십진수 체계) 를 사용. 
 
-![](https://en.wikipedia.org/wiki/ENIAC#/media/File:Classic_shot_of_the_ENIAC.jpg)
+![](./img/Classic_shot_of_the_ENIAC.jpg)
 
 18,000 여개의 진공관과 1,500 개의 relay로 구성되었고, 150kW의 전력소모 및 $24 \times 6.974 \times 0.945 m^3, 30t$의 정말 큰 컴퓨터.
 
@@ -76,10 +76,7 @@
 Stored program computer의 구조로서 현대 컴퓨터들이 대부분 채택하고 있음.
 다음과 같은 세 부분으로 구성됨.
 
-<figure markdown>
-    ![von Neumann Architecture](./img/von_Neumaan_arch.png){ width="300" }
-    <figcaption>Stored Program Computer</figcaption>
-</figure>
+![von Neumann Architecture](./img/von_Neumaan_arch.png){ width="300" }
 
 * data를 외부로부터 입력받고, 처리 결과를 외부에 표시하는 I/O Device (키보드, 모니터, 프린터 등등)
 * data의 저장을 담당하는 memory (storage를 포함)
@@ -121,7 +118,7 @@ Neumaan은 memory(기억장치)에 컴퓨터의 instruction들과 data들을 함
         * 한 프로그램의 수행이 끝나면, 사람이 이를 확인하고 다음 수행할 프로그램을 전달해주는 형태임.
 * `machine language`와 `assembler`가 이용됨.
 
-TRADIC, UNIVAC1108, CDC3600, IBM7094 등등.
+TRADIC, TX-0 등등.
 
 > `ENIAC`이 17,000개의 vacuum tube를 사용한 것에 비교하여 `TRADIC`은 800개의 transistor를 사용하면서 1/15,000 수준의 전력을 소비했음.
 
@@ -140,7 +137,7 @@ TRADIC, UNIVAC1108, CDC3600, IBM7094 등등.
 
 #### LARC (Livermore Atomic Research Computer)
 
-2차 세계대전 이후 핵무기 개발 경쟁 으로 인해 탄생한 초기 슈퍼컴퓨터. 버클리 대학 부설 로렌스 연구소와 스페릴랜드사가 미 해군 연구개발센터에 1960년 개발 설치한 슈퍼컴퓨터 (들인 비용에 비해 만족스러운 성능은 아니었다고 함.) 
+2차 세계대전 이후 ^^핵무기 개발 경쟁^^ 으로 인해 탄생한 초기 `슈퍼컴퓨터`. 버클리 대학 부설 로렌스 연구소와 스페릴랜드사가 미 해군 연구개발센터에 1960년 개발 설치한 슈퍼컴퓨터 (들인 비용에 비해 만족스러운 성능은 아니었다고 함.) 
 
 ## 3rd Generation
 
@@ -148,7 +145,7 @@ TRADIC, UNIVAC1108, CDC3600, IBM7094 등등.
 
 * Integrated Circuit (IC)가 주요 구성요소.
     * IC 사용은 보다 높은 신뢰성과 처리속도와 용량을 보유한 컴퓨터를 보다 작게 만들 수 있도록 해줌.
-* UNIX 의 등장(1960년대 후반)으로 오늘날 OS의 개념이 명확해짐.
+* `UNIX` 의 등장(1960년대 후반)으로 오늘날 OS의 개념이 명확해짐.
     * Time sharing system (시분할 시스템)을 채택하여 여러 terminal을 지원하게 됨.
     * 최초로 다중작업 및 다중사용자가 가능한 OS.
     * UNIX는 현대 OS의 기본 개념을 수립한 OS로 가치가 있음.
@@ -169,12 +166,12 @@ IBM 360 (1964), CDC 7600, UNIVAC1108(이 컴퓨터는 일부 문헌에서 2세�
 
 ### IBM 360
 
-1964년 IBM이 내놓은 범용대형컴퓨터.
+1964년 IBM이 내놓은 ^^범용대형컴퓨터^^ (Mainframe).
 
 360은 360도를 의미하여, 해당 컴퓨터가 어느 특정한 분야가 아닌 모든 연구 및 산업 분야에서 사용가능한 범용을 강조하기 위해 붙여진 이름을 가짐.
 
 * 8bit에 해당하는 byte라는 개념과 byte단위의 memory adress, word의 개념과 같이 오늘날 컴퓨터 기술에서 표준적으로 사용되는 여러 기술이 적용된 컴퓨터임.
-* 다중 사용자 접속을 제공했으며 많은 대학교와 연구소등에서 사용된 기념비적인 컴퓨터임.
+* ^^다중 사용자 접속^^ 을 제공했으며 많은 대학교와 연구소등에서 사용된 기념비적인 컴퓨터임.
 
 ### CDC (Control Data Corporation) 7600
 
@@ -183,7 +180,7 @@ IBM 360 (1964), CDC 7600, UNIVAC1108(이 컴퓨터는 일부 문헌에서 2세�
 
 #### 정보처리 속도 단위
 
-FLOPS (Floating-point Operation Per Second)는 정보처리 속도 단위로 초당 부동소수점 연산 횟수를 의미함. Mega-, Giga 등의 prefix가 사용된다. 다른 단위로는 IPS (Instruction Per Second)로 초당 명령어 횟수도 있음.
+`FLOPS (Floating-point Operation Per Second)`는 정보처리 속도 단위로 초당 부동소수점 연산 횟수를 의미함. Mega-, Giga 등의 prefix가 사용된다. 다른 단위로는 IPS (Instruction Per Second)로 초당 명령어 횟수도 있음.
 
 > 인간의 경우 LIPS (Logical Inference Per Second)로 초당 논리적추론 횟수 를 적용할 수 있는데, 보통 인간이 2 LIPS 정도가 가능하다. 참고로 1LIPS는 대략 100~1,000 개의 instruction으로 구성된다고 알려짐.
 
@@ -191,15 +188,16 @@ FLOPS (Floating-point Operation Per Second)는 정보처리 속도 단위로 초
 
 1970년대 ~ 현대
 
-* LSI (Large Scaled Integrated circuit)과 VLSI (Very Large Scaled Integrated circuit)이 사용된 컴퓨터
-* 오늘날의 컴퓨터가 4세대에 속한다. (혹자들은 5세대를 애기하기도 하지만...)
-* 오늘날 CPU로 불리는 Micro-processor가 드디어 등장한 세대이며, 이를 통해 Personal Computer (PC)가 보급되기 시작한 세대이기도 함.
-    * Intel4004 (1981년. 최초의 Mirco-processor, 4bit CPU)는 2,300개의 transistor로 구성되었고 초당 60,000개의 연산이 가능.
+* `LSI` (Large Scaled Integrated circuit)과 `VLSI` (Very Large Scaled Integrated circuit)이 사용된 컴퓨터
+* ^^오늘날의 컴퓨터가 4세대^^ 에 속한다. (혹자들은 5세대를 애기하기도 하지만...)
+* 오늘날 CPU로 불리는 `Micro-processor`가 드디어 등장한 세대이며, 이를 통해 Personal Computer (PC)가 보급되기 시작한 세대이기도 함.
+    * `Intel4004` (1981년. 최초의 Mirco-processor, 4bit CPU)는 2,300개의 transistor로 구성되었고 초당 60,000개의 연산이 가능.
 * Internet의 등장으로 Network가 일반화된 세대이기도 하며, 휴대용 컴퓨터가 등장한 세대이기도 함.
 
 > 일부 문헌에서는 VLSI를 이용하는 컴퓨터를 5세대라고 부르기도 하지만, VLSI의 개념 자체가 1980년대 개발된 이후로 급격한 성능향상이 이루어져 VLSI와 ULSI (Ultra LSI)구분 자체가 무의미해지고 있다. 오늘날 개발되고 있는 IC들도 그냥 VLSI로 부르고 있다 (과거 개념에보면 Ultra Super ... 등의 수식어가 붙어야할 수준 임에도... PC에 사용되는 i7 cpu가 100억 수준의 소자가 집적되어 있다).  
-> [IC 관련 자세한 것은 이 링크를 참고](../ch02_co/ce02_03_4_IC.md) 때문에 지적 능력을 가진 컴퓨터의 등장을 가르켜 5세대라고 불러야 한다는 의견이 대두되고 있다. 즉, 컴퓨터 자신이 학습을 하고 학습한 내용을 토대로 자신의 성능을 향상시키는 것이 가능해지는 컴퓨터가 대중화되는 시대를 5세대라고 해야한다는 의견인데... 기계학습 (특히, 딥러닝)의 발전으로 일부 분야에서는 사람 이상의 성능을 스스로 학습하여 달성하는 컴퓨팅이 가능해지고 있는터라...  
-앞서 애기한대로, 지나치게 엄격하고 세대를 나누는 건 의미가 없다. 발전사를 기억하기 쉽게 하기위해 도입한 개념으로만 생각하자.
+> [IC 관련 자세한 것은 이 링크를 참고](../ch02_co/ce02_03_4_IC.md)  
+> 때문에 지적 능력을 가진 컴퓨터의 등장을 가르켜 5세대라고 불러야 한다는 의견이 대두되고 있다. 즉, 컴퓨터 자신이 학습을 하고 학습한 내용을 토대로 자신의 성능을 향상시키는 것이 가능해지는 컴퓨터가 대중화되는 시대를 5세대라고 해야한다는 의견인데... 기계학습 (특히, 딥러닝)의 발전으로 일부 분야에서는 사람 이상의 성능을 스스로 학습하여 달성하는 컴퓨팅이 가능해지고 있는터라...  
+앞서 애기한대로, 지나치게 엄격하고 세대를 나누는 건 의미가 없다. ^^발전사를 기억하기 쉽게 하기위해 도입한 개념^^ 으로만 생각하자.
 
 ### Personal Computer
 
