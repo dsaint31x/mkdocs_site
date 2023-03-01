@@ -51,9 +51,10 @@
 * 100여명의 수학자들이 모여 한 달동안 계산 을 대체하기 위해.
 * decimal (십진수 체계) 를 사용. 
 
-![](./img/Classic_shot_of_the_ENIAC.jpg){width="300" align="center"}
-
-* By Unidentified U.S. Army photographer - Image from [2], Public Domain, https://commons.wikimedia.org/w/index.php?curid=978770
+<figure class="inline end" markdown>
+  ![](./img/Classic_shot_of_the_ENIAC.jpg){width="300" align="center"}
+  <figcaption>By Unidentified U.S. Army photographer - Image from [2], Public Domain, https://commons.wikimedia.org/w/index.php?curid=978770</figcaption>
+</figure>
 
 18,000 여개의 진공관과 1,500 개의 relay로 구성되었고, 150kW의 전력소모 및 $24 \times 6.974 \times 0.945 m^3, 30t$의 정말 큰 컴퓨터.
 
