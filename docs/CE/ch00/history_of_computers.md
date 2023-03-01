@@ -12,15 +12,22 @@
 : 세계최초의 `전자식 컴퓨터`로 알려짐 (`ENIAC`은 최초의 전자디지털 컴퓨터). 1937~1942년에 아이오와 주립대의 존 빈센트 아타나소프와 클리포드 베리가 개발한 컴퓨터로 복잡한 수학계산등에 사용된 것으로 알려짐.
 
 `Colossus`
-: Alan Turing이 만든 bombe (에니그마를 해독하기 위한 전기기계식 컴퓨터?)와 그의 확률론적 방식에 영향을 받아, 1943~1945년 개발한 컴퓨터로 이미테이션 게임이라는 영화를 통해 대중에게 알려짐. 2차세계대전(1939~1945) 중 독일군의 암호전신기인 Lorenz Chiper를 해독하기 위해 개발된 세계최초의 프로그래밍(외장형)이 가능한 전자디지털 컴퓨터였으나 군사기밀이었기 때문에 한참 후에 존재가 공개(1970년대)된 컴퓨터(Vacuum tube를 사용했고, 스위치 및 플러그를 이용한 프로그래밍을 지원) 
+: Alan Turing이 만든 bombe (에니그마를 해독하기 위한 전기기계식 컴퓨터?)와 그의 확률론적 방식에 영향을 받아, 1943~1945년 개발된 컴퓨터.
+이미테이션 게임이라는 영화를 보면 관련 이야기들이 나옴. 
+2차세계대전(1939~1945) 중 독일군의 암호전신기인 Lorenz Chiper를 해독하기 위해 개발된 세계최초의 `프로그래밍(외장형)이 가능한 전자디지털 computer`였음.  
+^^군사기밀이었기 때문에 한참 후에 존재가 공개(1970년대)^^ 된 컴퓨터(Vacuum tube를 사용했고, 스위치 및 플러그를 이용한 프로그래밍을 지원) 
 
 `(Havard) Mark I`
-: 세계최초의 전기기계식 computer로 알려짐. 1944년 IBM사에 개발한 것으로 Automatic Sequence Control Scalulator (ASCC)라고 불린 일종의 자동계산기 (Havard에 납품되어서 Havard가 붙는데, 그냥 Mark I이 이름). 3,000개의 relay(전기기계식 switch)와 4마력의 motor 72개로 구성됨. 15.3m의 길이에 2.4m의 높이로 31.5톤의 무게의 어마어마한 크기였음(기계식의 위엄.). 톱니바퀴로 가감산이 가능한 계산기를 치차식 계산기라고 부르는데, 이 것의 극한으로 간 것이 Mark I임 (motor가 필요한 이유.). 원폭 개발 등에 사용됨. 
+: 세계최초의 `전기기계식 computer`로 알려짐. 1944년 IBM사에 개발한 것으로 Automatic Sequence Control Calculator (ASCC)라고 불린 일종의 자동계산기 (Havard에 납품되어서 Havard가 붙는데, 그냥 Mark I이 이름). 
+3,000개의 `Relay(전기기계식 switch)`와 4마력의 motor 72개로 구성됨. 
+15.3m의 길이에 2.4m의 높이에 걸맞는 31.5톤의 무게로 알려짐(기계식의 위엄?).  
+`톱니바퀴로 가감산이 가능한 계산기를 치차식 계산기`라고 부르는데, 이 것의 극한으로 간 것이 Mark I임 (motor가 필요한 이유.).  
+원폭 개발 등에 사용됨. 
 
 ## 1st Generation
 
 1951 ~ 1959 : Vacuum tube의 시대.
-이이
+
 * 1951년 1세대의 대표적인 computer인 `UNIVAC I`이 상용화됨.
     * 1945년 (ENIAC의 등장) 부터라고 보는 이들도 많음.
 * Vacuum tube 가 주 구성요소임.
@@ -42,7 +49,7 @@
 
 * 미사일 탄도 계산을 위한 미분방정식을 풀기 위해서...
 * 100여명의 수학자들이 모여 한 달동안 계산 을 대체하기 위해.
-* decimal 을 사용. 
+* decimal (십진수 체계) 를 사용. 
 
 ![](https://en.wikipedia.org/wiki/ENIAC#/media/File:Classic_shot_of_the_ENIAC.jpg)
 
@@ -54,22 +61,25 @@
 펜실베니아 대학 (Mauchly and Eckert)에서 가동할 경우, 펜실베니아의 가로등이 희미해질 정도였다고함.
 
 * 배선과 스위칭으로 컴퓨터를 제어. (~프로그래밍?)
-* punched card가 입력수단.
+* paper tape, punched card가 입력수단.
 
 ### EDVAC (Electronic Discrete Variable Automatic Computer)
 
 1952년 von Neumann이 제안한 stored program computer (프로그램 내장형 컴퓨터) architecture를 채택하여 개발된 컴퓨터.
 
 * ENIAC은 programm이 내장되어 있지 않음. (수동 전화 교환기 와 같은 외양. 배선 변경으로 컴퓨터 동작을 지시.)
-* EDVAC은 현재 디지털 컴퓨터들이 채택하고 있는 stored program computer 개념과 이진법 (binary) 을 실제 구현한 컴퓨터임.
-* John von Neumann이 컨설팅을 담당.
+* EDVAC은 현재 디지털 컴퓨터들이 채택하고 있는 `stored program computer` 개념과 이진법 (binary) 을 실제 구현한 컴퓨터임.
+* 그 유명한 `John von Neumann`이 컨설팅을 담당.
 
 ### The von Neumann Architecture
 
 Stored program computer의 구조로서 현대 컴퓨터들이 대부분 채택하고 있음.
 다음과 같은 세 부분으로 구성됨.
 
-![](./img/von_Neumaan_arch.png)
+<figure markdown>
+    ![von Neumann Architecture](./img/von_Neumaan_arch.png){ width="300" }
+    <figcaption>Stored Program Computer</figcaption>
+</figure>
 
 * data를 외부로부터 입력받고, 처리 결과를 외부에 표시하는 I/O Device (키보드, 모니터, 프린터 등등)
 * data의 저장을 담당하는 memory (storage를 포함)
