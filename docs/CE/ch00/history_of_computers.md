@@ -4,7 +4,7 @@
 
 모든 역사가 그렇듯이 칼로 딱 잘라지지도 않고, 사람마다 견해가 다르기 때문에 흐름을 따라가기 위한 일종의 도구로서 generation을 이해하자. 기억과 이해를 돕기 위해 도입한 것으로 만고불변의 진리가 아니다. 특히 현대에 가까워질수록 사람마다 의견이 다르다.
 
-> 특히, 최초 논쟁은 의미가 없다. ==;; 많이 알려진 최초의 ~~ 은 깊게 파보면 다른 관점이 수도 없이 나온다. (하늘 아래 새 것이 없다. 모든 것이 과거의 기술과 개념들이 조합되고 개선되면서 나오는 것인지라...)
+> 더불어 최초 논쟁에 큰 의미를 부여하지 말고, 어떤 기술이 왜 등장했는지에 더 관심을 기울여야 한다. 많이 알려진 최초의 ~~ 은 깊게 파보면 다른 경우가 곧잘 나온다. (하늘 아래 새 것이 없다는 애기가 나올 정도로 모든 것이 과거의 기술과 개념들이 조합되고 개선되면서 나오는 것이 대부분이다.)
 
 ## 조상님들...
 
@@ -21,7 +21,7 @@
 : 세계최초의 `전기기계식 computer`로 알려짐. 1944년 IBM사에 개발한 것으로 Automatic Sequence Control Calculator (ASCC)라고 불린 일종의 자동계산기 (Havard에 납품되어서 Havard가 붙는데, 그냥 Mark I이 이름). 
 3,000개의 `Relay(전기기계식 switch)`와 4마력의 motor 72개로 구성됨. 
 15.3m의 길이에 2.4m의 높이에 걸맞는 31.5톤의 무게로 알려짐(기계식의 위엄?).  
-`톱니바퀴로 가감산이 가능한 계산기를 치차식 계산기`라고 부르는데, 이 것의 극한으로 간 것이 Mark I임 (motor가 필요한 이유.).  
+`톱니바퀴로 가감산이 가능한 계산기를 gear(치차)식 계산기`라고 부르는데, 이것의 극한으로 간 것이 Mark I임 (motor가 필요한 이유가 gear등을 회전시켜야 하기 때문).  
 원폭 개발 등에 사용됨. 
 
 ## 1st Generation
@@ -29,13 +29,13 @@
 1951 ~ 1959 : Vacuum tube의 시대.
 
 * 1951년 1세대의 대표적인 computer인 `UNIVAC I`이 상용화됨.
-    * 1945년 (ENIAC의 등장) 부터라고 보는 이들도 많음.
-* Vacuum tube 가 주 구성요소임.
+    * 1945년 (`ENIAC` 의 등장) 부터라고 보는 이들도 많음.
+* [`Vacuum tube`](../ch02_co/ce02_03_2_vacuum_tube.md) 가 주 구성요소임.
     * 많은 전력소모와 발열 과 함께 잦은 고장의 원인.
-* 주기억장치
+* Memory (기억장치)
     * 수은지연회로 (mercury acoustic delay lines), William 관 및 Magnetic drum 등..
-* 입력이 종이테이프(paper tabpe) 및 천공카드(punched cards)
-    * Vacuum tube의 열로 인해 종이테이프가 탈 정도 였다고 함.    
+* 입력이 paper tape (종이테이프) 및 punched cards (천공카드)
+    * ^^`Vacuum tube`의 열로 인해 종이테이프가 탈 정도^^ 였다고 함.    
 * millisecond 단위의 연산속도.
 
 과학 계산, 통계처리, 미사일 탄도 계산 등에 이용되었음. SW라는 개념이 없다고 봐도 되는 세대이다. 컴퓨터가 수행할 동작을 배선을 통해 만든 회로를 교체해야하는 형태이다.
@@ -56,7 +56,7 @@
   <figcaption>By Unidentified U.S. Army photographer - Image from [2], Public Domain, https://commons.wikimedia.org/w/index.php?curid=978770</figcaption>
 </figure>
 
-18,000 여개의 진공관과 1,500 개의 relay로 구성되었고, 150kW의 전력소모 및 $24 \times 6.974 \times 0.945 m^3, 30t$의 정말 큰 컴퓨터.
+18,000 여개의 vacuum tube 들과 1,500 개의 relay로 구성되었고, 150kW의 전력소모 및 $24 \times 6.974 \times 0.945 \text{m}^3, 30\text{t}$의 정말 큰 컴퓨터.
 
 * 존 모클리 : 물리학자.
 * 프레스퍼 에커트 : 전기공학자.
@@ -76,7 +76,7 @@
 
 ### The von Neumann Architecture
 
-Stored program computer의 구조로서 현대 컴퓨터들이 대부분 채택하고 있음.
+`Stored program computer`의 구조로서 현대 컴퓨터들이 대부분 채택하고 있음.
 다음과 같은 세 부분으로 구성됨.
 
 <figure markdown>
@@ -85,39 +85,41 @@ Stored program computer의 구조로서 현대 컴퓨터들이 대부분 채택�
 </figure>
 
 * data를 외부로부터 입력받고, 처리 결과를 외부에 표시하는 I/O Device (키보드, 모니터, 프린터 등등)
-* data의 저장을 담당하는 memory (storage를 포함)
-* data의 처리를 담당하는 CPU (Control Unit과 ALU등으로 구성됨.)
+* data와 program의 저장을 담당하는 memory (storage를 포함)
+* data를 program에 따라 처리를 담당하는 CPU (`Control Unit`과 `ALU`등으로 구성됨.)
 
-Neumann은 memory(기억장치)에 컴퓨터의 instruction들과 data들을 함께 저장하는 stored programm 방식을 1946년에 제안했고, EDVAC이 이를 구현했음. EDVAC 이후, 이를 기점으로 `Software`라는 개념이 등장함!
+Neumann은 memory(기억장치)에 컴퓨터의 instruction들과 data들을 함께 저장하는 `stored programm` 방식을 1946년에 제안했고, `EDVAC`이 이를 구현했음. 
 
-> 1949년의 `EDSAC`(윌킨스)이 최초의 stored program computer이긴 하지만, 대부분의 최초에 대한 부분은 논쟁이 많다. 가장 유명한 것이 `EDVAC`인지라...
+^^EDVAC 이후, 이를 기점으로 `Software`라는 개념이 등장함!^^
+
+> 1949년의 `EDSAC`(윌킨스)이 최초의 stored program computer이긴 하지만, 대부분의 최초에 대한 부분은 논쟁이 많다.  가장 유명한 것이 `EDVAC`인지라...
 
 ### UNIVAC (Universal Automatic Computer)
 
-1951년 개발된 최초의 `상업용 컴퓨터`.
+1951년 개발된 ^^최초의 `상업용 컴퓨터`^^.
 
 <figure markdown>
 ![](./img/Univac_I_Census_dedication.jpg){ width="300" }
 <figcaption>By U.S. Census Bureau employees - https://www.census.gov/history/, Public Domain, https://commons.wikimedia.org/w/index.php?curid=61118833</figcaption>
 </figure>
 
-약 95만 달러의 고가였고, 관공서 및 대형 연구소 등에서 사용됨. 참고로 당시 대학민국 1인당 GDP는 50불 수준)
+125만 달러 수준의 고가였고, 관공서 및 대형 연구소 등에서 사용됨. 참고로 당시 대한민국 1인당 GDP는 50~60 달러 수준)
 
-> `UNIVAC`이 유명해진 이유는, 1952년 대통령선거에서 개표가 5% 정도 진행된 시점에서 ^^매우 적은 sample만으로 정확히 당선자로 아이젠하워를 예측^^ (CBS TV)하는데 사용되었기 때문임. 컴퓨터의 효용성을 대중에 크게 알린 사건임.
+> `UNIVAC`이 유명해진 이유는, 1952년 대통령선거에서 개표가 5% 정도 진행된 시점에서 ^^매우 적은 sample만으로 정확히 당선자로 아이젠하워를 예측^^ (CBS TV)하는데 사용되었기 때문임. 군사적 목적 이외의 컴퓨터의 효용성을 대중에 크게 알린 사건임.
 
 ## 2nd Generation
 
 1950년대 후반 ~ 1960년대 중반 정도
 
-* `Transistor` (1948년 개발됨) 가 주 구성요소임.
-    * Vacuum tube를 사용했던 컴퓨터들 보다 1/100 수준의 크기로 소형화.
+* [`Transistor`](../ch02_co/ce02_03_3_transistor.md) (1948년 개발됨) 가 주 구성요소임.
+    * `Vacuum tube`를 사용했던 컴퓨터들 보다 1/100 수준의 크기로 소형화.
     * 동시에 생산단가가 낮아지면서 상업용 컴퓨터 보급이 보다 원활해짐.
-* 기억장치
+* memory (기억장치)
     * magnetic core(자기코어, primary memory)
     * secondary memory : magnetic tape(자기테이프), magnetic disc(자기디스크) 등.
 * micro-second 단위의 연산속도.
-* Operating System (OS)가 IBM204 등에서 등장하기 시작.
-* bacth processing(1950년대)이 주로 사용되었으나 multiprogramming(1960년대)의 개념도 등장.
+* `Operating System (OS)`  등장.
+* ^^bacth processing(1950년대)^^ 이 주로 사용되었으나 ^^multiprogramming(1960년대)의 개념^^ 도 등장.
     * `Multiprogramming`이란 I/O 처리로 인해 CPU연산이 필요하지 않은 경우, 다른 프로그램에게 CPU를 사용할 수 있도록 해줌. (이를 위해 여러 프로그램이 main memory에서 동시에 상주함.)
         * 이전의 방식(한 프로그램이 끝날 때까지 점유)은 Uni-programming (단일 프로그램)이라고 불림.
         * 고가의 컴퓨터를 효율적으로 사용하기 위한 기술이었고 이는 time-sharing system으로 이어짐.
@@ -142,7 +144,7 @@ Neumann은 memory(기억장치)에 컴퓨터의 instruction들과 data들을 함
 
 #### TRADIC (TRAnsistorized Airborne DIgital Computer)
 
-1955년 AT&T Bell 연구소의 J. H. Felker가 만든 ^^transistor기반 컴퓨터^^ .  
+1955년 AT&T Bell 연구소의 J. H. Felker가 만든 ^^transistor기반 컴퓨터^^.  
 800여개의 transistor와 10,000여개의 게르마늄 수정정류기를 사용한 것으로 알려짐.
 
 <figure markdown>
@@ -164,15 +166,15 @@ Neumann은 memory(기억장치)에 컴퓨터의 instruction들과 data들을 함
 
 * Integrated Circuit (IC)가 주요 구성요소.
     * IC 사용은 보다 높은 신뢰성과 처리속도와 용량을 보유한 컴퓨터를 보다 작게 만들 수 있도록 해줌.
-* `UNIX` 의 등장(1960년대 후반)으로 오늘날 OS의 개념이 명확해짐.
-    * Time sharing system (시분할 시스템)을 채택하여 여러 terminal을 지원하게 됨.
-    * 최초로 다중작업(Multi-tasking) 및 다중사용자가 가능한 OS.
-    * UNIX는 현대 OS의 기본 개념을 수립한 OS로 가치가 있음.
+* `UNIX` 의 등장(1960년대 후반) : 현대적인 OS 등장.
+    * `Time sharing system` (시분할 시스템)을 채택하여 여러 terminal을 지원하게 됨.
+    * 최초로 `Multi-tasking` (다중작업) 및 다중사용자가 가능한 OS.
+    * ^^UNIX는 현대 OS의 기본 개념을 수립한 OS로 가치가 있음.^^
 * nano-second의 연산속도
 * 컴퓨터에 family (계열) 개념이 일반화되면서 기종간 호환성이 커짐.
 
 IBM 360 (1964), CDC 7600, UNIVAC1108(이 컴퓨터는 일부 문헌에서 2세대로도 기재되지만 IC의 개념으로 보면 3세대라 보는게 맞다고 생각됨) 등이 유명한 3세대 컴퓨터임.
-또한 1964년의 BASIC을 기점으로 컴퓨터와 함께 bundle로 제공되던 SW가 아닌 SW만으로 공급되기 시작했음.
+또한 1964년의 BASIC을 기점으로 SW 자체가 상용으로 팔리는 제품으로 인정을 받기 시작.
 
 ### BASIC (Beginner's All-purpose Symbolic Instruction Code)
 
@@ -188,7 +190,7 @@ SW 만으로 돈을 주고 사야하는 제품이 등장하기 시작한 초창�
 
 1964년 IBM이 내놓은 ^^범용대형컴퓨터^^ (Mainframe).
 
-360은 360도를 의미하여, 해당 컴퓨터가 어느 특정한 분야가 아닌 모든 연구 및 산업 분야에서 사용가능한 범용을 강조하기 위해 붙여진 이름을 가짐.
+^^360은 360도를 의미^^ 하여, 해당 컴퓨터가 어느 특정한 분야가 아닌 모든 연구 및 산업 분야에서 사용가능한 범용을 강조하기 위해 붙여진 이름을 가짐.
 
 * 8bit에 해당하는 byte라는 개념과 byte단위의 memory adress, word의 개념과 같이 오늘날 컴퓨터 기술에서 표준적으로 사용되는 여러 기술이 적용된 컴퓨터임.
 * ^^다중 사용자 접속^^ 을 제공했으며 많은 대학교와 연구소등에서 사용된 기념비적인 컴퓨터임.
@@ -198,13 +200,13 @@ SW 만으로 돈을 주고 사야하는 제품이 등장하기 시작한 초창�
 1968년 CDC가 개발한 슈퍼컴퓨터. 
 진정한 슈퍼컴퓨터로 인정받은 컴퓨터로서 기존의 시스템보다 10배 이상 빠른 속도 (1MFLOPS)와 6배 이상의 메모리 등을 가진 컴퓨터로 알려짐. 이를 개발한 Seymour Cray는 오늘날 슈퍼컴퓨터의 아버지로 불림. 
 
-> 오늘날에는 PC의 CPU도 몇백 GFLOPS임. 
+> 오늘날에는 PC의 CPU도 몇 백 GFLOPS임. 
 
 #### 정보처리 속도 단위
 
 `FLOPS (Floating-point Operation Per Second)`는 정보처리 속도 단위로 초당 부동소수점 연산 횟수를 의미함. Mega-, Giga 등의 prefix가 사용된다. 다른 단위로는 IPS (Instruction Per Second)로 초당 명령어 횟수도 있음.
 
-> 인간의 경우 LIPS (Logical Inference Per Second)로 초당 논리적추론 횟수 를 적용할 수 있는데, 보통 인간이 2 LIPS 정도가 가능하다. 참고로 1LIPS는 대략 100~1,000 개의 instruction으로 구성된다고 알려짐.
+> 인간의 경우 LIPS (Logical Inference Per Second)로 초당 논리적추론 횟수 를 적용할 수 있는데, 보통 ^^인간이 2 LIPS 정도^^ 가 가능하다. 참고로 1LIPS는 대략 100~1,000 개의 instruction으로 구성된다고 알려짐.
 
 ## 4th Generation
 
@@ -227,9 +229,9 @@ SW 만으로 돈을 주고 사야하는 제품이 등장하기 시작한 초창�
 
 1976년 PC Apple의 등장으로 개인이 computer를 가지는 시대가 열림.
 
-![](./img/PC_apple1.png)
+![](./img/PC_apple1.png){width="400"}
 
-Apple2가 1977년 나오면서 PC가 본격적으로 보급되기 시작함. 상당수 문헌에서는 Apple2를 3세대 컴퓨터로 분류하기도 하며 이후 등장한 IBM 5150과 Macintosh를 4세대로 분류한다.
+Apple2가 1977년 나오면서 PC가 본격적으로 보급되기 시작함. 상당수 문헌에서는 Apple2를 3세대 컴퓨터로 분류하기도 하며, 이후 등장한 IBM 5150과 Macintosh를 4세대로 분류한다.
 
 
 ## References

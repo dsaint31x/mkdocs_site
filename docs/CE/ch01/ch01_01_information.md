@@ -1,4 +1,4 @@
-# Information 
+# Information (정보)
 
 어떠한 목적이나 의도에 맞게 `data`를 ^^가공 처리한 것^^ 을 가르킨다. 간단하게는 `의미있는 Data`라고 생각할 수 있다.  
   
@@ -58,12 +58,12 @@ Noiseless coding theorem (Shannon, 1948)에서 Entropy가 평균정보량으로 
 ## Entropy가 극대화 되는 경우는 언제인가?
 
 Discrete random variable이 가질 수 있는 값들의 발생확률이 모두 같은 경우, 
-즉, 해당 확률변수가 **uniform probability distribution** 인 경우 **Entropy가 최대**임.
+즉, 해당 확률변수가 **uniform probability distribution** 인 경우 **Entropy가 최대** 임.
 
-Gaussian probability distribution을 따르는 **Continuous random variable**의 경우, **해당 분포의 Variance, $\sigma^2$ 가 클 수록** **entropy가 증가**함.
+Gaussian probability distribution을 따르는 **Continuous random variable** 의 경우, **해당 분포의 Variance, $\sigma^2$ 가 클 수록** **entropy가 증가** 함.
 
 - **Gaussian probability distribution** 에서 variance가 무한대일 경우 entropy는 최대.
-- Variance가 무한대인 경우가 바로 **uniform probability distribution**임.
+- Variance가 무한대인 경우가 바로 **uniform probability distribution** 임.
 
 ***Gaussian Distribution (Normal Distribution)***
 

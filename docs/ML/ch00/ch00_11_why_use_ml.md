@@ -12,7 +12,7 @@ ML이 기존의 explicit programming보다 유용한 경우는 다음과 같다.
 
 1,2번의 경우의 대표적인 예는 spam filter라고 할 수 있다.  
 spam mail을 잘 표현할 수 있는 `representation`을 키워드 중심으로 만들 경우, 정말 많은 키워드가 필요하다.  
-또한 spam mail을 발송하는 이들이 ^^해당 filter의 rule을 피하는 방식^^ 으로 메일을 만들기 때문에 점점 더 많은 키워드가 필요해지고 최근 spam 메일에 맞춰 ^^rule의 갱신이 지속적으로 필요^^하다. 
+또한 spam mail을 발송하는 이들이 ^^해당 filter의 rule을 피하는 방식^^ 으로 메일을 만들기 때문에 점점 더 많은 키워드가 필요해지고 최근 spam 메일에 맞춰 ^^rule의 갱신이 지속적으로 필요^^ 하다. 
 
 ML의 경우, data로부터 computer가 직접 rule을 만들어내기 때문에 구현물에서 개발자가 수정을 해줄 필요가 없다.  
 ^^즉, 한번 개발된 model로 충분^^ 하다.  
