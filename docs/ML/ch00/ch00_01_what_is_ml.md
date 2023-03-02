@@ -74,7 +74,7 @@ ML은 다음으로 구성된다고도 생각할 수 있다.
 **classificatoin, regression, clustering 등을 위한 기술, 모델, 알고리즘** 을 ***이용*** 하여 
 ***어떤 task를 수행*** 하거나 ***problem을 해결*** 하는 것을 
 
-- **컴퓨터 과학 관점** 에서 **Machine Learning**이라고 부름. *← 추론적*
+- **컴퓨터 과학 관점** 에서 **Machine Learning** 이라고 부름. *← 추론적*
 - **통계학적 관점** 에서는 **Data Mining** 이라 부름. *← 기술적*
 
 ---

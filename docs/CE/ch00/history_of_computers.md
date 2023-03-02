@@ -96,13 +96,14 @@ Neumann은 memory(기억장치)에 컴퓨터의 instruction들과 data들을 함
 
 1951년 개발된 최초의 `상업용 컴퓨터`.
 
+<figure markdown>
 ![](./img/Univac_I_Census_dedication.jpg){ width="300" }
-
-* By U.S. Census Bureau employees - https://www.census.gov/history/, Public Domain, https://commons.wikimedia.org/w/index.php?curid=61118833
+<figcaption>By U.S. Census Bureau employees - https://www.census.gov/history/, Public Domain, https://commons.wikimedia.org/w/index.php?curid=61118833</figcaption>
+</figure>
 
 약 95만 달러의 고가였고, 관공서 및 대형 연구소 등에서 사용됨. 참고로 당시 대학민국 1인당 GDP는 50불 수준)
 
-> UNIVAC이 유명해진 이유는, 1952년 대통령선거에서 개표가 5% 정도 진행된 시점에서 매우 적은 sample만으로 정확히 당선자로 아이젠하워를 예측 (CBS TV)하는데 사용되었기 때문임. 컴퓨터의 효용성을 대중에 크게 알린 사건임.
+> `UNIVAC`이 유명해진 이유는, 1952년 대통령선거에서 개표가 5% 정도 진행된 시점에서 ^^매우 적은 sample만으로 정확히 당선자로 아이젠하워를 예측^^ (CBS TV)하는데 사용되었기 때문임. 컴퓨터의 효용성을 대중에 크게 알린 사건임.
 
 ## 2nd Generation
 
@@ -126,15 +127,16 @@ Neumann은 memory(기억장치)에 컴퓨터의 instruction들과 data들을 함
         * 한 프로그램의 수행이 끝나면, 사람이 이를 확인하고 다음 수행할 프로그램을 전달해주는 형태임.
 * `machine language`와 `assembler`가 이용됨.
 
-> mutliprogramming과 비슷한 개념이 multitasking임. 
+> `mutliprogramming`과 비슷한 개념이 `multitasking`임. 
 > 하나의 장비에서 여러 프로그램이 동시에 수행을 목표로 하기보다는 CPU의 idle time을 줄이기 위해 도입된 multiprogrmming과 달리, multitasking은 하나의 resource를 여러 process들이 공유하는 개념으로 동시에 수행되는 것을 목표로 하고 있어서 multiprogramming의 논리적인 확장이라고 볼 수 있다.  
 사실 resource에서 가장 중요한 것이 CPU이고, 어찌 보면 유사한 개념이지만, multitasking은 round-robin sheduling algorithm과 같은 스케쥴링 알고리즘이 multiprogramming에 보다 추가된 것이며 여러 task를 동시에 수행시키기 위한 기술(사실은 그렇게 느껴지게 하기 위한 기술)이다. 반면, multiprogramming이 오직 단일 CPU의 idle time을 줄이기 위한 context changing에만 초점을 둔 것으로 여러 작업이 동시에 실행되는 것을 보장하지 않는다.  
-결국, multitasking은 multi-programming에 multi-processing과 time-sharing 등의 개념 등이 보다 추가된 것이다.  
+>  
+> 결국, `multitasking`은 ^^multi-programming에 multi-processing과 time-sharing 등의 개념 등이 보다 추가^^ 된 것이다.  
 > 보다 자세한 건 다음 url을 참고하라. [Difference Between Multiprogramming and Multitasking](https://www.tutorialspoint.com/difference-between-multiprogramming-and-multitasking)
 
-TRADIC, TX-0 등등이 유명한 2세대 컴퓨터임.
+`TRADIC`, `TX-0` 등등이 유명한 2세대 컴퓨터임.
 
-> `ENIAC`이 17,000개의 vacuum tube를 사용한 것에 비교하여 `TRADIC`은 800개의 transistor를 사용하면서 1/15,000 수준의 전력을 소비했음.
+> `ENIAC`이 17,000개의 vacuum tube를 사용한 것에 비교하여 `TRADIC`은 ^^800개의 transistor를 사용하면서 1/15,000 수준의 전력을 소비^^ 했음.
 
 1960년 초반에 등장한 `키보드`와 `모니터`의 등장으로 기존의 batch processing에서 `interative system`(1960년대)으로의 변화가 가능해짐.   키보드와 모니터 등을 통해 사용자에게 작업이 진행되는 중간에 입력과 출력이 가능해졌다. 
 
@@ -143,9 +145,10 @@ TRADIC, TX-0 등등이 유명한 2세대 컴퓨터임.
 1955년 AT&T Bell 연구소의 J. H. Felker가 만든 ^^transistor기반 컴퓨터^^ .  
 800여개의 transistor와 10,000여개의 게르마늄 수정정류기를 사용한 것으로 알려짐.
 
+<figure markdown>
 ![](./img/TRADIC_computer.jpg){width="300" align="center"}
-
-* By Unknown author - Retrieved January 24, 2015 from Radio-Electronic Engineering magazine, Ziff-Davis Publishing Co., New York, Vol. 24, No. 5, May 1955 , cover on http://www.americanradiohistory.com, Public Domain, https://commons.wikimedia.org/w/index.php?curid=38024210
+<figcaption>By Unknown author - Retrieved January 24, 2015 from Radio-Electronic Engineering magazine, Ziff-Davis Publishing Co., New York, Vol. 24, No. 5, May 1955 , cover on http://www.americanradiohistory.com, Public Domain, https://commons.wikimedia.org/w/index.php?curid=38024210</figcaption>
+</figure>
 
 #### TX-0 (Transistorized eXperimental computer 0)
 
@@ -234,9 +237,3 @@ Apple2가 1977년 나오면서 PC가 본격적으로 보급되기 시작함. 상
 * My Computer Notes's [What are the Generations of Computer](https://mycomputernotes.com/generations-of-computer/)
 * [History of Computer Development](https://prezi.com/868wjfuzufee/presentation/?token=8d632e494ae6ccbd5097afc5eca19b7cee1de821c024dce1e4fa45af0d473d95&utm_campaign=share&utm_medium=copy)
 * smart.science.go.kr's [컴퓨터](https://smart.science.go.kr/scienceSubject/computer/timeView.action) : 강추함. 재미도 있음.
-
-
-
-
-
-

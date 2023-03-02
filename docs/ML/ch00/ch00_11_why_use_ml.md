@@ -2,7 +2,7 @@
 
 ML이 기존의 explicit programming보다 유용한 경우는 다음과 같다.
 
-1. Taks가 매우 복잡하여 매우 복잡하고 많은 조건들을 고려해야 하는 경우
+1. Task가 매우 복잡하여 매우 복잡하고 많은 조건들을 고려해야 하는 경우
     * 기존 알고리즘으로 많은 수동 조정(hand-tuning)이나 규칙(long lists of rules)이 필요한 task를 가르킴.
 2. Task를 수행하기 위한 조건이나 환경이 빈번하게 변경되는 경우 (Fluctuating Environment)
 3. Task를 효과적으로 수행할 수 있는 기존의 방법이 없는 경우
