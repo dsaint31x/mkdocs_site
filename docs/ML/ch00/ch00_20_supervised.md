@@ -2,7 +2,7 @@
 
 가장 전형적인 ML을 가르킨다. 
 
-^^inpute data^^ 와 ^^`label` (or target)이라고 불리는 원하는 output^^에 해당하는 데이터로 구성된 pair들로 training set과 test set을 가지고 있고 이를 통해 학습이 이루어진다. 
+^^inpute data^^ 와 ^^`label` (or target)이라고 불리는 원하는 output^^ 에 해당하는 데이터로 구성된 pair들로 training set과 test set을 가지고 있고 이를 통해 학습이 이루어진다. 
 
 input-output의 pair들을 가지고 있기 때문에 input과 output의 relation을 ML이 파악하여 이를 mapping해주는 function을 approximation하는 것이라고 생각하면 된다.
 

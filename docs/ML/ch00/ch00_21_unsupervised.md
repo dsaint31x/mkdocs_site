@@ -3,7 +3,7 @@
 Labeling이 필요없는 ML로서 최근들어 중요성이 더욱 커지고 있는 분야임.
 
 사람이 추가해주는 ^^`label` 데이터가 없으며, 
-ML이 데이터에서 알아서 내재된 특징(feature vector, representation)들을 추출하여 Task를 수행한다.
+ML이 데이터에서 알아서 내재된 특징(feature vector, representation)들을 추출^^ 하여 Task를 수행한다.
 
 ![](../img/ch00/tSNE_MNIST.png)
 
