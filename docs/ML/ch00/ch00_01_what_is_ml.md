@@ -32,7 +32,10 @@ A computer program is said
 - if its performance on **T**, as measured by **P**,
 - improves with experience **E**.
 
-ML이 실제로 유용하게 사용된 첫번째 사례는 1990년대의 spam filter라고 할 수 있다 (터미네이터에서 나오는 Skynet과 같은 인공지능과는 차이가 멀지 않은가?). spam filter의 경우를 위의 정의에 비추어 `E`, `T`, `P`를 잘 나누어보면 ML에 대한 정확한 개념이 자리잡을 것이다.
+ML이 실제로 유용하게 사용된 첫번째 사례는 1990년대의 spam filter라고 할 수 있다.  
+spam filter의 경우를 위의 정의에 비추어 `E`, `T`, `P`를 잘 나누어보면 ML에 대한 정확한 개념이 자리잡을 것이다.
+
+---
 
 ## ML의 구성요소
 
@@ -45,7 +48,7 @@ ML은 다음으로 구성된다고도 생각할 수 있다.
 **`Representation`**
 
 - 수행하고자 하는 task(혹은 해결하고자 하는 문제)에 맞추어 
-**입력값**을 어떤 **결괏값**으로 만들지를 결정하는 방법(=model)
+**입력값** 을 어떤 **결괏값** 으로 만들지를 결정하는 방법(=model or algorithm)
     - SVM, Decision Tree, k-means model
 
 **Evaluation**
@@ -57,22 +60,24 @@ ML은 다음으로 구성된다고도 생각할 수 있다.
 **Optimization**
 
 - evaluation 에서 원하는(또는 요구되는) 기준(성능)을 
-***최적으로 만족시키기 위한 조건*(~ model의 *parameter, weight*)**을 **찾는 방법**.
+***최적으로 만족시키기 위한 조건(~ model의 *parameter, weight*)*** 을 **찾는 방법**.
 - 좀 더 기술적으로 애기하면, model의 parameter(or weight)를 evaluation에서 원하는 수준의 좋은 metric 수치를 얻도록 update하는 방법.
     - Gradient Decent, Adam 등.
 
 **Generalization**
 
-- 학습된 model을 이용하여 ***새로운 데이터에 대한 예측***을 수행.
+- 학습된 model을 이용하여 ***새로운 데이터에 대한 예측*** 을 수행.
     - 학습에 사용되지 않은 데이터에 대해 학습된 model로 inference수행.
 
 ## ML vs. Data Mining
 
-**classificatoin, regression, clustering 등을 위한 기술, 모델, 알고리즘**을 ***이용***하여 
-***어떤 task를 수행***하거나 ***problem을 해결***하는 것을 
+**classificatoin, regression, clustering 등을 위한 기술, 모델, 알고리즘** 을 ***이용*** 하여 
+***어떤 task를 수행*** 하거나 ***problem을 해결*** 하는 것을 
 
-- **컴퓨터 과학 관점**에서 **Machine Learning**이라고 부름. *← 추론적*
+- **컴퓨터 과학 관점** 에서 **Machine Learning** 이라고 부름. *← 추론적*
 - **통계학적 관점** 에서는 **Data Mining** 이라 부름. *← 기술적*
+
+---
 
 ### Data Mining
 
@@ -84,5 +89,5 @@ Data Mining은
 
 요약하면 다음과 같음.
 
-- ML : 학습한 모델을 통해 **새로운 데이터에 정확한 예측치**를 얻어내는 것이 목표.
-- Data Mining : 가지고 있는 데이터에서 **현상 및 특성 등을 발견**하는 것(***~보다 데이터를 잘 이해하고 묘사하는 방법을 찾는 것***)이 목표.
+- ML : 학습한 모델을 통해 **새로운 데이터에 정확한 예측치** 를 얻어내는 것이 목표.
+- Data Mining : 가지고 있는 데이터에서 **현상 및 특성 등을 발견** 하는 것( ***~보다 데이터를 잘 이해하고 묘사하는 방법을 찾는 것*** )이 목표.

@@ -196,7 +196,10 @@ Blob 은 **Binary Large Object** 의 줄임말로, ^^같은 성질을 가지는 
 
 일반적으로 각 scale에 해당하는 $\sigma^2$ 을 곱해주어 scale normalized laplacian을 얻는다.
 
-> 여기서 나오는 scale은 `scale space`에서 나오는 용어임. `scale space`는 대상을 여러 scale에 걸쳐 표현하는 multi-scale representation을 만드는 기법 중의 하나로 `image pyramid`와 함께 가장 널리 사용되는 방법이다. scale이 클수록 image가 bluring되어 기본 구성요소가 넓은 영역을 차지하게 된다. scale이 작아지면, image에서 detail한 정보가 보존된다. 큰 Blob을 검출하기 위해 scale이 커진다는 건 기본적으로 큰 blob이 구성요소로 간주되고, 작은 blob들은 무시됨을 의미한다. scale은 확률분포의 $\simgam^2$$ 에 해당하는 값으로 표현된다(즉, variance에 해당). 동일 영상을 $\sigma^2$이 큰 Gaussian distribution으로 bluring시키면 Scale $t=\sigma^2$에 해당하는 image를 얻게 된다.
+> 여기서 나오는 scale은 `scale space`에서 나오는 용어임.  
+> `scale space`는 대상을 여러 scale에 걸쳐 표현하는 multi-scale representation을 만드는 기법 중의 하나로 `image pyramid`와 함께 가장 널리 사용되는 방법이다. scale이 클수록 image가 bluring되어 기본 구성요소가 넓은 영역을 차지하게 된다.  
+> scale이 작아지면, image에서 detail한 정보가 보존된다. 큰 Blob을 검출하기 위해 scale이 커진다는 건 기본적으로 큰 blob이 구성요소로 간주되고, 작은 blob들은 무시됨을 의미한다.  
+> 보통 ^^scale은 확률분포의 $\sigam^2$$ 에 해당하는 값으로 표현^^ 된다(즉, variance에 해당). 동일 영상을 $\sigma^2$이 큰 Gaussian distribution으로 bluring시키면 Scale $t=\sigma^2$에 해당하는 image를 얻게 된다.
 
 ### Example
 

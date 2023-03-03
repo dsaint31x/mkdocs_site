@@ -1,6 +1,10 @@
 # Boolean Algebra
 
-George Boole(1815-1864, 영국)이 고안한 logic을 다루는 algebra로 "True, False를 수학적인 영역으로 포함"시켜 참과 거짓을 1,0에 대입하고, `AND`, `OR`, `NOT` 등의 logic operation을 사용하여 논리적 동작(논리회로의 동작)을 대수적으로 처리한다. 즉, `bit`들을 이용한 연산들에 대한 규칙들을 정의하고 있다.
+George Boole(1815-1864, 영국)이 고안한 logic을 다루는 algebra로  
+"True, False를 수학적인 영역으로 포함"시켜  
+참과 거짓을 `1`,`0`에 대입하고, `AND`, `OR`, `NOT` 등의 logic operation을 사용하여 논리적 동작(논리회로의 동작)을 대수적으로 처리한다.  
+
+> 즉, `bit`들을 이용한 연산들에 대한 규칙들을 정의하고 있다.
 
 ## Pre-requirements
 
@@ -67,7 +71,7 @@ $$ \begin{aligned}\overline{(A + B)} =\overline{A}\cdot \overline{B} \\ \overlin
 
 De Morgan's Law를 통해, negative logic을 사용할 수 있다. 
 
-다음의 Truth table은 같은 logic을 positive logic(좌)과 negative logic(dn)으로 표현한 예를 보여준다.
+다음의 Truth table은 같은 logic을 positive logic(좌)과 negative logic(우)으로 표현한 예를 보여준다.
 
 | 좋은 심성 | 좋은 능력 | 배우자감 | | 좋지않은 심성 | 좋지않은 능력 | 배우자감 아님|
 |:----:   |:----:    |:----: |---|:----:     |  :----:     |:----:     |

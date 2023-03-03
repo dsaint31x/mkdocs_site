@@ -11,16 +11,16 @@ encoding방식은 다음과 같음.
 3. 해당 2개의 symbol앞에 `=`를 붙인다.
 4. 이를 모든 byte에 적용한다.
 
-단 다음의 추가 규칙이 있음.
+단, 다음의 추가 규칙이 있음.
 
-* ASCII에 있는 printable character들은 사실상 7bit이므로 그대로 전송된다.
-* 단, 공백문자에 해당하는 `TAB`, `SPACE`와 QP Encoding에서 특별히 사용하는 `=`는 예외로 각 ASCII코드값에 `=`를 붙여 전송한다. 
+* `ASCII`에 있는 printable character들은 사실상 7bit이므로 그대로 전송된다.
+* 단, ^^공백문자에 해당하는 `TAB`, `SPACE`^^ 와 `QP Encoding`에서 특별히 사용하는 `=`는 예외로 각 ASCII코드값에 `=`를 붙여 전송한다. 
     * `TAB` : `=09`
     * `SPACE` : `=20`
     * `=` : `=3D`
-* 1 line이 76 chracter로 구성된다.
-* 각 line은 soft linebrak인 `=`로 끝난다.
-    * 1byte가 3개의 글자로 표시되므로 전부 non-ascii인 한글 글자의 UTF-8 encoding된 바이트의 경우, 25문자가 한라인에 표시됨.
+* 1 line이 ^^76 chracter로 구성^^ 된다.
+* 각 line은 soft linebreak인 `=`로 끝난다.
+    * 1byte가 3개의 글자로 표시되므로 전부 non-ascii인 한글 글자의 UTF-8 encoding된 바이트의 경우, 25문자가 한 line (한 줄)에 표시됨.
     * $3 \times 25 =75$ 이며 여기에 soft line break를 더해서 76글자임.  
 
 ### Examples for QP encoding
@@ -118,9 +118,15 @@ I love 현무
 
 URL 주소에서 `/`나 `=`등의 문자들은 특별한 의미를 가지기 때문에 이들 문자들을 URL 주소에서 문자 자체로 쓰려면 변환이 필요하다.
 
-이 경우, 사용되는 게 URL Encoding이다. URL에서 특별한 의미를 가진 문자를 그냥 문자 그대로 사용하기 위해서는 해당 문자의 ASCII 값을 16진수로 표현하고 `%` 뒤에 붙여서 기재한다.
+이 경우, 사용되는 게 `URL Encoding`이다. URL에서 특별한 의미를 가진 문자를 그냥 문자 그대로 사용하기 위해서는 ^^해당 문자의 ASCII 값을 16진수로 표현^^하고 `%` 뒤에 붙여서 기재한다.
 
 URL에 한글 등이 있는 경우에도 자주 이용된다. 한글 한글자는 3byte이므로 각 바이트에 해당하는 16진수를 각각 `%`가 붙여져 변환된다.
 
-URL에서는 한글은 일단 UTF-8로 변환되고 해당 bytes를 1byte씩 자른후 이를 `%`와 16진수 숫자 2개로 바꾸어 처리하는 것이다.
+URL에서는 
+
+1. 한글은 일단 UTF-8로 변환되고 
+2. 해당 bytes를 1byte씩 자른 후 
+3. 이를 `%`와 16진수 숫자 2개로 바꾸어 처리
+
+하는 것이다.
 

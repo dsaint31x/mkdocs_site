@@ -18,7 +18,7 @@
     * 금융권에서는 최근까지도 Mainframe기반인 경우가 많았음.
 * Minicomputer (midrange computer, 미니컴퓨터, 소형컴퓨터)
     * Mainframe과 비슷한 역할을 하되, 크기와 성능이 감소한 형태.
-    * 1964년 DEC가 개발한 PDP-8이 최초.
+    * 1964년 DEC가 개발한 PDP-8이 상업적으로 성공한 최초의 Minicomputer (12bit).
     * 기업체, 학교, 연구소
 * Workstation 
     * PC규모에 minicomputer수준의 성능을 집약시키려는 시도.
@@ -36,13 +36,10 @@
 
 ## 취급 데이터에 따른 분류
 
-오늘날 컴퓨터는 대부분 digital computer로 digital data를 다루지만, 일부 analog data를 다루는 analog computer도 존재함.
+오늘날 컴퓨터는 대부분 digital computer로 digital data를 다루지만, 일부 analog data를 다루는 `analog computer`도 존재 (현재는 거의 보기 어렵다. 일부 분야에서 embeded computer들이 대체).
 
-Analog computer는 continuous data (실제적으로 analog data)를 다루며, 증폭회로로 구성되어 주로 미적분 연산을 수행한다.
+Analog computer는 ^^continuous data (실제적으로 analog data)^^ 를 다루며, ^^증폭회로^^ 로 구성되어 ^^주로 미적분 연산을 수행^^ 한다.
 
 > Digital computer는 주로 사칙연산 과 논리회로를 사용하는 것과 차이를 가짐. 
 
-이 둘을 혼합한 Hybrid computer도 있으나, analog computer나 hybrid computer는 주류는 아님.
-
-
-
+위의 둘을 혼합한 Hybrid computer도 있으나, analog computer나 hybrid computer는 주류는 아님.
