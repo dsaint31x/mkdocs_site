@@ -127,7 +127,7 @@ nav:
     - 'ch04: Computer Structure':
       - "Memory and Bus":
         - "CE/ch04/ce04_01_memory.md"
-        - "CE/ch04/ce02_byte_ordering.md"
+        - "CE/ch04/ce04_02_byte_ordering.md"
         - "CE/ch04/ce04_03_io_bus.md"
       - "CPU":
         - "CE/ch04/ce04_04_cpu.md"
