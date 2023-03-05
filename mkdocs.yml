@@ -124,6 +124,13 @@ nav:
         - 'Flash Memory':   'CE/ch03_seq/ce03_03_flash_ssd.md'
       - "Etc":
         - 'HW vs SW':  'CE/ch03_seq/ce03_05_hw_and_sw.md'
+    - 'ch04: Computer Structure':
+      - "Memory and Bus":
+        - "CE/ch04/ce04_01_memory.md"
+        - "CE/ch04/ce02_byte_ordering.md"
+        - "CE/ch04/ce04_03_io_bus.md"
+      - "CPU":
+        - "CE/ch04/ce04_04_cpu.md"
     - 'ch06':
       - "Data Transfer":
         - "IO Ports":         "CE/ch06/ce06_1_01_ioport.md"
@@ -180,6 +187,8 @@ nav:
         - "DIP/cv2/ch00/dip_0_02.md"
         - "DIP/cv2/ch00/dip_0_03.md"
         - "DIP/cv2/ch00/dip_0_04.md"
+      - "Image Processing":
+        - "DIP/cv2/ch01/dip_pyramid.md"
     - "Image Feature":
       - "DIP/ch02_01_00_classical_cv.md"
       - "DIP/ch02_01_01_keypoints.md"
