@@ -6,6 +6,8 @@
 
 > 더불어 최초 논쟁에 큰 의미를 부여하지 말고, 어떤 기술이 왜 등장했는지에 더 관심을 기울여야 한다. 많이 알려진 최초의 ~~ 은 깊게 파보면 다른 경우가 곧잘 나온다. (하늘 아래 새 것이 없다는 애기가 나올 정도로 모든 것이 과거의 기술과 개념들이 조합되고 개선되면서 나오는 것이 대부분이다.)
 
+---
+
 ## 조상님들...
 
 `Atanasoff Berry Computer (ABC)`
@@ -23,6 +25,10 @@
 15.3m의 길이에 2.4m의 높이에 걸맞는 31.5톤의 무게로 알려짐(기계식의 위엄?).  
 `톱니바퀴로 가감산이 가능한 계산기를 gear(치차)식 계산기`라고 부르는데, 이것의 극한으로 간 것이 Mark I임 (motor가 필요한 이유가 gear등을 회전시켜야 하기 때문).  
 원폭 개발 등에 사용됨. 
+
+> 전기 기계식 : Relay가 사용됨을 의미함.
+
+---
 
 ## 1st Generation
 
@@ -43,7 +49,9 @@
 > H/W : 컴퓨터를 구성하는 물리적 기계장치.  
 > S/W : H/W를 운영하고 이용하기 위한 프로그램.
 
-### ENIAC (Electronic Numerical Integrator and Cacluator)
+---
+
+#### ENIAC (Electronic Numerical Integrator and Cacluator)
 
 1946년 개발된 일반적으로 알려진 최초의 전자 디지털 컴퓨터 로 알려진 컴퓨터.
 
@@ -66,13 +74,19 @@
 * 배선과 스위칭으로 컴퓨터를 제어. (~프로그래밍?)
 * paper tape, punched card가 입력수단.
 
-### EDVAC (Electronic Discrete Variable Automatic Computer)
+> 최초의 ***디지털 전자식*** : vacuum tube가 사용되기 시작함을 의미함. 
+
+---
+
+#### EDVAC (Electronic Discrete Variable Automatic Computer)
 
 1952년 von Neumann이 제안한 stored program computer (프로그램 내장형 컴퓨터) architecture를 채택하여 개발된 컴퓨터.
 
 * ENIAC은 programm이 내장되어 있지 않음. (수동 전화 교환기 와 같은 외양. 배선 변경으로 컴퓨터 동작을 지시.)
 * EDVAC은 현재 디지털 컴퓨터들이 채택하고 있는 `stored program computer` 개념과 이진법 (binary) 을 실제 구현한 컴퓨터임.
 * 그 유명한 `John von Neumann`이 컨설팅을 담당.
+
+---
 
 ### The von Neumann Architecture
 
@@ -88,7 +102,7 @@
 * data와 program의 저장을 담당하는 memory (storage를 포함)
 * data를 program에 따라 처리를 담당하는 CPU (`Control Unit`과 `ALU`등으로 구성됨.)
 
-Neumann은 memory(기억장치)에 컴퓨터의 instruction들과 data들을 함께 저장하는 `stored programm` 방식을 1946년에 제안했고, `EDVAC`이 이를 구현했음. 
+Neumann은 memory(기억장치)에 컴퓨터의 instruction들과 data들을 함께 저장하는 `stored program` 방식을 1946년에 제안했고, `EDVAC`이 이를 구현했음. 
 
 * data와 program을 동일한 방식으로 memory에 저장하고, 동일한 방식으로 처리.
 * 실행되는 program은 우선 main memory에 적재되어야 함.
@@ -101,7 +115,9 @@ Neumann은 memory(기억장치)에 컴퓨터의 instruction들과 data들을 함
 
 stored program architecture 이전에는 hard wired 방식으로 computer가 수행하는 task를 변경하려면, 물리적으로 전선을 연결하여 회로를 새로 구성해야함 (해당 컴퓨터의 HW지식 없이는 task변경 자체가 불가능.)
 
-### UNIVAC (Universal Automatic Computer)
+---
+
+#### UNIVAC (Universal Automatic Computer)
 
 1951년 개발된 ^^최초의 `상업용 컴퓨터`^^.
 
@@ -113,6 +129,8 @@ stored program architecture 이전에는 hard wired 방식으로 computer가 수
 125만 달러 수준의 고가였고, 관공서 및 대형 연구소 등에서 사용됨. 참고로 당시 대한민국 1인당 GDP는 50~60 달러 수준)
 
 > `UNIVAC`이 유명해진 이유는, 1952년 대통령선거에서 개표가 5% 정도 진행된 시점에서 ^^매우 적은 sample만으로 정확히 당선자로 아이젠하워를 예측^^ (CBS TV)하는데 사용되었기 때문임. 군사적 목적 이외의 컴퓨터의 효용성을 대중에 크게 알린 사건임.
+
+---
 
 ## 2nd Generation
 
@@ -147,7 +165,9 @@ stored program architecture 이전에는 hard wired 방식으로 computer가 수
 
 > `ENIAC`이 17,000개의 vacuum tube를 사용한 것에 비교하여 `TRADIC`은 ^^800개의 transistor를 사용하면서 1/15,000 수준의 전력을 소비^^ 했음.
 
-1960년 초반에 등장한 `키보드`와 `모니터`의 등장으로 기존의 batch processing에서 `interative system`(1960년대)으로의 변화가 가능해짐.   키보드와 모니터 등을 통해 사용자에게 작업이 진행되는 중간에 입력과 출력이 가능해졌다. 
+1960년 초반에 등장한 `키보드`와 `모니터`의 등장으로 기존의 batch processing에서 `interative system`(1960년대)으로의 변화가 가능해짐.   키보드와 모니터 등을 통해 사용자에게 작업이 진행되는 중간에 입력과 출력이 가능해졌다 (iteraction). 
+
+---
 
 #### TRADIC (TRAnsistorized Airborne DIgital Computer)
 
@@ -159,9 +179,13 @@ stored program architecture 이전에는 hard wired 방식으로 computer가 수
 <figcaption>By Unknown author - Retrieved January 24, 2015 from Radio-Electronic Engineering magazine, Ziff-Davis Publishing Co., New York, Vol. 24, No. 5, May 1955 , cover on http://www.americanradiohistory.com, Public Domain, https://commons.wikimedia.org/w/index.php?curid=38024210</figcaption>
 </figure>
 
+---
+
 #### TX-0 (Transistorized eXperimental computer 0)
 
-1956년 MIT Lincoln 연구소의 Ken Olson과 Stan Olson (형제임), Harlan Anderson이 미 해군의 후원으로 개발한 범용 transistor 기반 컴퓨터.
+1956년 MIT Lincoln 연구소의 Ken Olson과 Stan Olson (형제임), Harlan Anderson이 미 해군의 후원으로 개발한 ***범용 transistor 기반 컴퓨터*** .
+
+---
 
 #### LARC (Livermore Atomic Research Computer)
 
@@ -183,6 +207,8 @@ stored program architecture 이전에는 hard wired 방식으로 computer가 수
 IBM 360 (1964), CDC 7600, UNIVAC1108(이 컴퓨터는 일부 문헌에서 2세대로도 기재되지만 IC의 개념으로 보면 3세대라 보는게 맞다고 생각됨) 등이 유명한 3세대 컴퓨터임.
 또한 1964년의 BASIC을 기점으로 SW 자체가 상용으로 팔리는 제품으로 인정을 받기 시작.
 
+---
+
 ### BASIC (Beginner's All-purpose Symbolic Instruction Code)
 
 1964년 다트머스 대학의 John Kemeny(존 케메니)와 Thomas Kurtz(토마스 커츠)가 개발.
@@ -202,18 +228,24 @@ SW 만으로 돈을 주고 사야하는 제품이 등장하기 시작한 초창�
 * 8bit에 해당하는 byte라는 개념과 byte단위의 memory adress, word의 개념과 같이 오늘날 컴퓨터 기술에서 표준적으로 사용되는 여러 기술이 적용된 컴퓨터임.
 * ^^다중 사용자 접속^^ 을 제공했으며 많은 대학교와 연구소등에서 사용된 기념비적인 컴퓨터임.
 
-### CDC (Control Data Corporation) 7600
+---
+
+#### CDC (Control Data Corporation) 7600
 
 1968년 CDC가 개발한 슈퍼컴퓨터. 
 진정한 슈퍼컴퓨터로 인정받은 컴퓨터로서 기존의 시스템보다 10배 이상 빠른 속도 (1MFLOPS)와 6배 이상의 메모리 등을 가진 컴퓨터로 알려짐. 이를 개발한 Seymour Cray는 오늘날 슈퍼컴퓨터의 아버지로 불림. 
 
+---
+
 > 오늘날에는 PC의 CPU도 몇 백 GFLOPS임. 
 
-#### 정보처리 속도 단위
+### 정보처리 속도 단위
 
 `FLOPS (Floating-point Operation Per Second)`는 정보처리 속도 단위로 초당 부동소수점 연산 횟수를 의미함. Mega-, Giga 등의 prefix가 사용된다. 다른 단위로는 IPS (Instruction Per Second)로 초당 명령어 횟수도 있음.
 
 > 인간의 경우 LIPS (Logical Inference Per Second)로 초당 논리적추론 횟수 를 적용할 수 있는데, 보통 ^^인간이 2 LIPS 정도^^ 가 가능하다. 참고로 1LIPS는 대략 100~1,000 개의 instruction으로 구성된다고 알려짐.
+
+---
 
 ## 4th Generation
 
@@ -232,6 +264,8 @@ SW 만으로 돈을 주고 사야하는 제품이 등장하기 시작한 초창�
 > 오늘날 기계학습 (특히, 딥러닝)의 발전으로 일부 분야에서는 사람 이상의 성능을 스스로 학습하여 달성하는 컴퓨팅이 가능해지고 있는터라 이것도 그리 와닿지 않는다.   
 앞서 애기한대로, 지나치게 엄격하고 세대를 나누는 건 의미가 없다. ^^발전사를 기억하기 쉽게 하기위해 도입한 개념^^ 으로만 생각하자.
 
+---
+
 ### Personal Computer
 
 1976년 PC Apple의 등장으로 개인이 computer를 가지는 시대가 열림.
@@ -240,6 +274,7 @@ SW 만으로 돈을 주고 사야하는 제품이 등장하기 시작한 초창�
 
 Apple2가 1977년 나오면서 PC가 본격적으로 보급되기 시작함. 상당수 문헌에서는 Apple2를 3세대 컴퓨터로 분류하기도 하며, 이후 등장한 IBM 5150과 Macintosh를 4세대로 분류한다.
 
+---
 
 ## References
 
