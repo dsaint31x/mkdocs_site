@@ -131,6 +131,7 @@ nav:
         - "CE/ch04/ce04_03_io_bus.md"
       - "CPU":
         - "CE/ch04/ce04_04_cpu.md"
+        - "CE/ch04/ce04_04_01_alu.md"
     - 'ch06':
       - "Data Transfer":
         - "IO Ports":         "CE/ch06/ce06_1_01_ioport.md"
