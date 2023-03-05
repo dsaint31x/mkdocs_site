@@ -93,7 +93,7 @@ Neumann은 memory(기억장치)에 컴퓨터의 instruction들과 data들을 함
 * data와 program을 동일한 방식으로 memory에 저장하고, 동일한 방식으로 처리.
 * 실행되는 program은 우선 main memory에 적재되어야 함.
 
-> data와 program이 저장되는 memory를 von Neumann architecture에선 동일하여 bottleneck 현상이라는 단점을 가짐. 이를 분리시킨 구조인 Havard architecture도 존재함. 이 경우, program과 data에 동시에 접근이 가능하다는 장점을 가지지만, 분리된 bus와 memory가 필요하여 보다 복잡한 cpu 구성이 요구됨 (현대 컴퓨터에선 CPU내부에선 Harvard architecture를 적용하고, 외부는 von Neumannd architeture를 적용한 구조를 채택한 경우가 많음).
+> data와 program이 저장되는 memory가 von Neumann architecture에선 동일하여 bottleneck 현상이라는 단점을 가짐. 이를 분리시킨 구조인 Havard architecture도 존재함. 이 경우, program과 data에 동시에 접근이 가능하다는 장점을 가지지만, 분리된 bus와 memory가 필요하여 보다 복잡한 구성이 요구됨 (현대 컴퓨터에선 CPU 내부에선 Havard architecture를 적용하고, 외부는 von Neumannd architeture를 적용한 구조를 채택한 경우가 많음).
 
 ^^EDVAC 이후, 이를 기점으로 `Software`라는 개념이 등장함!^^
 
