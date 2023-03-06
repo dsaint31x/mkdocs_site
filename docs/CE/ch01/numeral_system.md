@@ -10,7 +10,7 @@ Numeral system에서는 같은 digit(숫자기호)이라도 어느 자리에 놓
 
 $R$은 Base를 의미하며 다음과 같이 표기된다.
 
-$$A_\text{base} = A_R=a_{n-1} a_{n-2} \cdots a_1 a_0 \color{red}.\color{black} a_{-1} a_{-2} \cdot a_{-m}$$
+$$A_\text{base} = A_R=a_{n-1} a_{n-2} \cdots a_1 a_0 \color{red}.\color{black} a_{-1} a_{-2} \cdots a_{-m}$$
 
 위의 값(value)는 다음과 같다.
 
