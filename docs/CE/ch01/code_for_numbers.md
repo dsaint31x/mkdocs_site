@@ -43,9 +43,11 @@
 * bit의 낭비가 크다. 10진수의 1자리를 표현하는데,  ^^16개를 구분가능한 4bit를 할당^^ 하고 있어서 ***나머지 6종류를 구분할 수 있는 능력*** 이 허비되는 방식.
 * complement를 구하기 어려움.
 
-# Extended Binary Coded Decimal Interchange (EBCDI) Code.
+---
 
-10진수(decimal)을 4bit로 표현하는 BCD code를 확장하여 8비트로 표현한다. 문자 기호에 대한 코드를 추가 등을 위해 8bit로 확장을 시킨 것으로 상위 4비트가 Zone을 나타내고, 하위 4비트는 앞서 본 BCD이다. 일반적으로 Zone은 `1111`로 표현되며, sign (부호)는 가장 하위 자리의 Zone으로 표현되고 + sign은 `1100`으로 - sign은 `1101`로 표현된다. 다음 $+897_{10}$ 의 EBCDI Code를 살펴보라.
+## Extended Binary Coded Decimal Interchange (EBCDI) Code.
+
+10진수(decimal)을 4bit로 표현하는 BCD code를 확장하여 8비트로 표현한다. 문자 기호에 대한 코드를 추가 등을 위해 8bit로 확장을 시킨 것으로 상위 4비트가 Zone을 나타내고, 하위 4비트는 앞서 본 BCD 이다. 일반적으로 Zone은 `1111`로 표현되며, sign (부호)는 가장 하위 자리의 Zone으로 표현되고 + sign은 `1100`으로 - sign은 `1101`로 표현된다. 다음 $+897_{10}$ 의 EBCDI Code를 살펴보라.
 
 | Zone | 8 | Zone | 9 | Sign | 7 |
 |:----:|:----:|:----:|:----:|:----:|:----:|
@@ -65,6 +67,8 @@ $+897_{10}$을 Packed BCD Code로 나타내면 `1000 1001 0111 1100`가 됨.
 * 이를 보완하기 위해 BCD 코드에 +3을 한 것이 Excess-3코드임. 
 * 이는 9의 보수를 매우 쉽게 얻을 수 있음.(Self-complementing code) : 1's complement를 취하면 자동으로 9의 보수를 얻게 됨.
 
+---
+
 ## Gray Code
 
 * Gray코드는 0에서 9까지 순환적으로 변할 때, 각 과정마다 오직 한 비트만 변화됨. 
@@ -75,6 +79,8 @@ $+897_{10}$을 Packed BCD Code로 나타내면 `1000 1001 0111 1100`가 됨.
     * 2개의 센서로 구성된 Quadrature encoder의 경우, 1/4096 회전을 감지할 수 있음 (1/4096 회전 resolution을 absolute position encoder로 만들려면 12개의 sensor가 필요: $2^{12}=2^2\times 1024=4096$)
 
 보다 자세한 건 다음 URL을 참고할 것 : [Gray Code and Quadrature](https://dsaint31.me/mkdocs_site/CE/ch06/ce06_1_06_graycode/)
+
+---
 
 ## BCD, Express-3, and Gray code
 
