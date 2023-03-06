@@ -32,7 +32,7 @@
 과거에 BCD를 사용하던 컴퓨터(2세대 컴퓨터들)도 있었지만, 현재 내부적으로 BCD를 쓰는 컴퓨터는 없음.
 단, encoding등에서 해당 개념을 많이 차용한 경우가 많다보니 어떻게 변환하는지 정도는 알고 있는게 도움이 됨.
 
-## 장단점
+### 장단점
 
 `장점`
 
@@ -57,13 +57,15 @@ $+897_{10}$을 Packed BCD Code로 나타내면 `1000 1001 0111 1100`가 됨.
 
 > EBCDIC는 IBM이 제안한 방식이나 ASCII에 밀려서 현재는 컴퓨터 내부적으로는 이용되지 않는다. 단, 숫자를 표현하는 code로서 BCD는 숫자를 display 또는 입력받을 때, 또는 통신으로 주고받는 등의 경우 등에 차용되어 사용되는 경우가 아직도 존재한다.
 
-# Excess-3 Code
+---
+
+## Excess-3 Code
 
 * BCD 코드는 2진수 표현에 가깝고, encoding에 용이하나, 보수를 계산 및 처리가 까다로움.
 * 이를 보완하기 위해 BCD 코드에 +3을 한 것이 Excess-3코드임. 
 * 이는 9의 보수를 매우 쉽게 얻을 수 있음.(Self-complementing code) : 1's complement를 취하면 자동으로 9의 보수를 얻게 됨.
 
-# Gray Code
+## Gray Code
 
 * Gray코드는 0에서 9까지 순환적으로 변할 때, 각 과정마다 오직 한 비트만 변화됨. 
 * 때문에, Gray 코드를 사용하여 순환적으로 값이 입력되는 경우, 입력 도중의 에러나 오차를 쉽게 검출할 수 있으며, 변경할 bit가 적다는 장점을 가짐.
@@ -74,7 +76,7 @@ $+897_{10}$을 Packed BCD Code로 나타내면 `1000 1001 0111 1100`가 됨.
 
 보다 자세한 건 다음 URL을 참고할 것 : [Gray Code and Quadrature](https://dsaint31.me/mkdocs_site/CE/ch06/ce06_1_06_graycode/)
 
-# BCD, Express-3, and Gray code
+## BCD, Express-3, and Gray code
 
 다음 table은 숫자를 표현하는 3가지 code를 보여준다.
 
