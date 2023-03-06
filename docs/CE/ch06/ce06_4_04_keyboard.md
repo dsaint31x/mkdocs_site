@@ -7,7 +7,7 @@ Teleprinter (전신타자기) 스타일의 키보드가 input device로 1960년�
 
 <p><a href="https://commons.wikimedia.org/wiki/File:WACsOperateTeletype.jpg#/media/File:WACsOperateTeletype.jpg"><img src="https://upload.wikimedia.org/wikipedia/commons/8/89/WACsOperateTeletype.jpg" alt="WACsOperateTeletype.jpg"></a><br>Public Domain, <a href="https://commons.wikimedia.org/w/index.php?curid=225986">Link</a></p>
 
-이를 통해 기존의 batch job형태가 아닌 컴퓨터와의 interaction 이 가능해지기 시작함. 이는 1970년대 초반으로 당시 time-sharing compter의 등장과도 연관됨.
+이를 통해 기존의 batch job형태가 아닌 컴퓨터와의 interaction 이 가능해지기 시작함. 이는 1970년대 초반 time-sharing compter의 등장 과도 연관됨 (모니터는 대중화가 좀 더 늦음).
 
 > 1960년 후반에 RV 자동차(Recreational Vehicle) 크기의 컴퓨터가 등장하면서 회사나 큰 부서에서 컴퓨터를 사용하게 되면서 컴퓨터에 대한 사용빈도가 증가했고, 점점 interactive한 사용이 가능한 input/output device의 개발로 이어짐.
 
@@ -16,7 +16,7 @@ Teleprinter (전신타자기) 스타일의 키보드가 input device로 1960년�
 <figure markdown>
 ![](./img/ASR33_hardcopy_terminal.png)
 <figcaption>ASR33의 사진</figcaption>
-</fiigure>
+</figure>
 
 > teletype의 약어인 `tty`가 터미널을 의미함.
 
@@ -27,10 +27,10 @@ Teleprinter (전신타자기) 스타일의 키보드가 input device로 1960년�
 
 tty에서 hardcopy tty에서 screen (or video display unit)이 적용되기 시작한 것은 1960년 후반으로 당시 time-sharing compter의 등장과 밀접한 관련 있음. 초기의 screen을 이용한 tty들은 초기 LSI에 의존하는 방식으로 cpu없이 매우 저렴한 가격으로 만들어졌고 이는 보다 비싸고 느리며 시끄러운 hard-copy terminal들을 대체하기 시작함.
 
-1976년 PC가 등장하면서 키보드와 함께 대표적인 input/output device의 대표가 됨.
+1976년 PC가 등장하면서 키보드와 함께 대표적인 input/output device로 자리잡게됨. 1980년대 초반 IBM이 컴퓨터 장비를 위한 CRT 모니터를 내놓고, 1984년에는 16칼라 모니터를 개발함.
 
 ## Mouse 
 
-mouse 는 1980년대 등장한 입력장치.
+mouse 는 1980년대 널리 퍼지게 된 입력장치 (당시에는 볼마우스). 80년대 이후 사실상 입력장치는 키보드와 마우스 콤비로 이루어짐.
 
-Quadrature encoder 2개를 이용한 것으로 Standford Research Institute의 Douglas engebart가 발명.
+Quadrature encoder 2개를 이용한 것으로 Standford Research Institute의 Douglas engebart가 1968년 발명.
