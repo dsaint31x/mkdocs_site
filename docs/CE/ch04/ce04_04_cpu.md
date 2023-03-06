@@ -8,7 +8,12 @@ ALU, Register, Control Unit(or Execution Unit)으로 구성됨
 ### 참고 : Core
 
 각종 연산을 하는 CPU의 핵심요소.  
-ALU, Register, Control Unit을 가르킴.
+
+* ALU, 
+* Register, 
+* Control Unit
+
+을 가르킴.
 
 ### 참고 : Microprocessor
 
