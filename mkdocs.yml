@@ -191,7 +191,7 @@ nav:
       - "Image Processing":
         - "DIP/cv2/ch00/dip_0_00_color_space.md"
         - "DIP/cv2/ch01/dip_thresholding.md"
-        - "DIP/ch02_02_01_canny.md"
+        - "Canny Edge Detection" : "DIP/ch02_02_01_canny.md"
         - "DIP/cv2/ch01/dip_pyramid.md"
     - "Image Feature":
       - "DIP/ch02_01_00_classical_cv.md"

@@ -131,7 +131,7 @@ cv2.adaptiveThreshold(
 
 * `adaptive_method` : 어떤 방식을 사용할지를 고름.
     * `cv2.ADAPTIVE_THRESH_MEAN_C` : block(=neighborhood area라고도 불림)의 mean을 threshold로 사용. $T(x,y) = \mu_\text{block}(x,y) - C$
-    * `cv2.ADAPTIVE_THRESH_GAUSSIAN_C` : neighborhood 들에 대해 Gaussian window 사용한 weighted sum을 구하고 이를 threshold로 사용. $T(x,y) = G*\text{N}(x,y) -C $
+    * `cv2.ADAPTIVE_THRESH_GAUSSIAN_C` : neighborhood 들에 대해 Gaussian window 사용한 weighted sum을 구하고 이를 threshold로 사용. $T(x,y) = G* \text{N} (x,y)-C$
 * `block_size` : neighborhood area 크기. 3이상의 홀수여야 함.
 * `C` - threshold 구할 때 빼주는 일종의 constant. 
 
@@ -177,7 +177,7 @@ plt.show()
 
 ## Histogram based Thresholding
 
-image의 ^^(intensity) histogram^^에서 Threshold을 결정하고 이를 이용하여 Thresholding하는 방법.
+image의 ^^(intensity) histogram^^ 에서 Threshold을 결정하고 이를 이용하여 Thresholding하는 방법.
 
 * 실제로는 Threshold를 구하기가 쉽진 않음.( 명확하지 않은 히스토그램의 골과 마루, 잡음 등)
 * 크게 다음으로 나뉨.
@@ -198,7 +198,7 @@ image의 ^^(intensity) histogram^^에서 Threshold을 결정하고 이를 이용
 
 1. Histogram $H$에서 일정 거리 이상 떨어진 local maxima $i$,$j$를 찾는다.
 2. $i$와 $j$ 사이에서의 minimum value를 갖는 $k$를 찾는다.
-3. $p=\frac{\text{min}H(i,j)}{H(k)}$를 계산한다.
+3. $p=\frac{\text{min} [H(i),H(j)]}{H(k)}$를 계산한다.
 4. 최대 $p$를 갖는 $k$를 threshold로 한다.
 
 1번의 일정거리를 정하기가 좀 난감한 경우가 많다. 
@@ -226,9 +226,11 @@ $$
 where
 
 $$
+\begin{aligned}
 q_1(t) = \sum_{i=1}^{t} P(i) \quad \& \quad q_1(t) = \sum_{i=t+1}^{I} P(i) \\
 \mu_1(t) = \sum_{i=1}^{t} \frac{iP(i)}{q_1(t)} \quad \& \quad \mu_2(t) = \sum_{i=t+1}^{I} \frac{iP(i)}{q_2(t)} \\
 \sigma_1^2(t) = \sum_{i=1}^{t} [i-\mu_1(t)]^2 \frac{P(i)}{q_1(t)} \quad \& \quad \sigma_2^2(t) = \sum_{i=t+1}^{I} [i-\mu_1(t)]^2 \frac{P(i)}{q_2(t)}
+\end{aligned}
 $$
 
 * $i$ : intensity (`uint8`인 경우, 0~255)
