@@ -222,14 +222,23 @@ yellow:[[[ 30 255 255]]]
 * `Cb` (or `U`) : Chroma Blue (밝기와 파란색과의 색상차) : 둔감한 색상정보이므로 적은 비트수 할당. 2bit
 * `V` (or `Cr`): Chroma Red (밝기와 붉은 색의 색상차) : 둔감한 색상정보이므로 적은 비트수 할당. 2bit
 
-***RGB to YCbCr 변환공식***
-$$\begin{aligned}
-\text{Y} &= 0.29900\text{R} + 0.58700\text{G} + 0.11400\text{B} \\ 
+
+***RGB to YCbCr 변환공식***  
+
+아래의 공식과 같으나 `cv2.cvtColor`등을 사용하길 권한다. (대략적인 값의 의미에 대해 이해하는 용도로 읽어봐도 충분하다.)
+
+$$
+\begin{aligned}
+\text{Y} &= 0.29900\text{R} + 0.58700\text{G} + 0.11400\text{B} \\
 \text{Cb} &= -0.16874\text{R} - 0.33126\text{G} + 0.50000\text{B} \\
 \text{Cr} &= 0.50000\text{R} - 0.41869\text{G} - 0.08131\text{B} \\
-\end{aligned}$$
+\end{aligned}
+$$
+
 
 ***YCbCr to RGB변환공식:***
+
+아래의 공식과 같으나 `cv2.cvtColor`등을 사용하길 권한다. (대략적인 값의 의미에 대해 이해하는 용도로 읽어봐도 충분하다.)
 
 $$\begin{aligned}
 \text{R} = 1.00000\text{Y}  + 1.40200 \text{Cr} 
