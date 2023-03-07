@@ -67,7 +67,7 @@ $$ x-m = x + (A-m) - A = x + m’ - A$$
 
 MSB에서의 carry in과 carry out이 같을 경우는 overflow가 아니지만, 이 둘이 다를 경우는 overflow임. 
 
-* carry in : 이 전 자리의 연산의 결과로 carry가 넘어온 것. 
+* carry in : 이전 자리의 연산의 결과로 carry가 넘어온 것. 
 * carry out : 현재 자리의 연산의 결과로 carry가 발생한 것.
 
 ![](img/overflow_2_comp.png)

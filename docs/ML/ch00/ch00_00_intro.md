@@ -9,7 +9,7 @@ Jack McCarthy 에 따르면  Artificial Intellience (AI)의 정의는 다음과 
 **Q. What is `artificial intelligence`?**
 : A. It is the science and engineering of making intelligent machines, especially intelligent computer programs. It is related to the similar task of using computers to understand human intelligence, but AI does not have to confine itself to methods that are biologically observable.
 
-AI라는 용어는 1956년 [다트머스대학 컨퍼런스](./ch00_dartmouth_ai.md)에서 최초로 등장했으며, `기계 혹은 시스템으로부터 만들어진 지능` 또는 
+AI라는 용어는 1956년 [다트머스대학 컨퍼런스](./ch00_01_dartmouth_ai.md)에서 최초로 등장했으며, `기계 혹은 시스템으로부터 만들어진 지능` 또는 
 `이와 같은 지능을 만들 수 있는 방법론 등을 연구하는 분야` 를 가르킨다. 
 
 > Machine Learning 이라는 용어를 1959년 만들어낸 Aurther Samuel도 여기 참석함.
@@ -97,7 +97,7 @@ ML을 위해 제안된 다양한 기법들이 있으며 대략적으로 나누�
 
 입력에 대해 요구되는 출력(~expectation)을 가능한 범위 내에서 정확하게 산출할 수 있는 approximation model을 만드는데 ***유용한 resentation을 학습데이터를 기반으로 학습*** 하는 것을 가르킴.
 
-> Generally speaking, a good representation is one that makes a subsequentlearning task easier.
+> Generally speaking, a good representation is one that makes a subsequent learning task easier.
 
 * Manifold Learning
 * Autoencoder
@@ -121,9 +121,9 @@ AI와, ML, 그리고 DL은 다음과 같은 관계를 보인다.
 ![](../img/ch00/ai_ml_dl.png)
 
 **(Narrow) AI** 
-: 특정 분야에서 인간처럼, 혹은 그 이상의 성능을 보이는 기술(or system) 또는 그런 기술
+: 특정 분야에서 인간처럼, 혹은 그 이상의 성능을 보이는 기술(or system) 
 
-* Expert System (전문가 시스템) 템템
+* Expert System (전문가 시스템)
 
 **ML**
 : AI를 구현하기 위한 기술. 명시적 프로그래밍이 아닌 데이터로부터 동작을 학습하는 기술

@@ -82,7 +82,7 @@ Unicode 기반의 encoding은 `UTF-8` (가변길이), `UTF-16` (가변길이), `
 
 ---
 
-# Encodings for Unicode.
+### Encodings for Unicode.
 
 어떤 데이터 (음성, 영상, 문자 등)을 code로 만드는 것을 encoding이라고 할 수 있는데, Unicode의 경우는 좀 독특하다.
 
@@ -96,7 +96,7 @@ Unicode 기반의 encoding은 `UTF-8` (가변길이), `UTF-16` (가변길이), `
   
 이 문서에서는 `UTF-8` 만을 다룬다.
 
-## UTF-8
+#### UTF-8 (Universal Coded Character Set + Transformation Format – 8-bit)
 
 Go언어 개발자로 더 유명한 `롭 파이크`가 `켄 톰슨`과 함께 개발한 Unicode encoding이다.  
 
@@ -115,7 +115,7 @@ Go언어 개발자로 더 유명한 `롭 파이크`가 `켄 톰슨`과 함께 �
 
 ![ref. https://namu.wiki/w/UTF-8](img/utf-8_example_namu.png)
 
-## Example
+#### Example
 
 ```python
 test = 'a가b나c다'

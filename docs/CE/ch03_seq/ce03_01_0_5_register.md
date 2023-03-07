@@ -1,7 +1,7 @@
 # Registers (레지스터)
 
-> 1bit를 기억할 수 있는 Filp-flop들을 여러 개를 묶어서, 여러 bit를 기억하는 device.  
-> CPU 내부에서 ALU등이 이용하는 기억장치가 바로 Register임.  
+> 1bit를 기억할 수 있는 Filp-flop들을 여러 개를 묶어서, 여러 bit를 기억하도록 만들어진 device.  
+> ^^CPU 내부에 위치하며, ALU 등이 직접 접근하여 사용되는 memory가 바로 Register임.^^    
 > 가장 빠르고, 비싼 memory라고 할 수 있음.
 
 * Register를 여러 개 사용하면 보다 많은 bit를 저장할 수 있음. 
