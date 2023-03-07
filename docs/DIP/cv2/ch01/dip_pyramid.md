@@ -64,7 +64,10 @@ OpenCV에서 이를 구현한 function이 `cv2.pyrDown`이다. (`cv2.pyrUp`은 u
 
 Laplacian Pyramid는 Gaussian Pyramid로부터 아래 그림과 같이 얻어진다.
 
-<img width="400" src="http://graphics.cs.cmu.edu/courses/15-463/2012_fall/hw/proj2g-eulerian/GP-LP.jpg" />
+<figure markdown>
+![](../../img/ch01/GP-LP.jpg)
+<figcap>original : http://graphics.cs.cmu.edu/courses/15-463/2012_fall/hw/proj2g-eulerian/GP-LP.jpg" </figcap>
+</figure>
 
 * $\downarrow 2$ 는 down sampling을 의미하고, $*G$는 Gaussian filtering을 의미한다.
 * OpenCV에서는 `pyrDown`과 `pyrUp`을 통해 $*G \downarrow 2$와 $\uparrow 2$를 제공한다.
