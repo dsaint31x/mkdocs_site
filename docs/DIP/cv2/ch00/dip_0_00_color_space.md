@@ -269,7 +269,9 @@ bright: [[[255 128 128]]]
 
 ## OpenCV가 지원하는 Color space확인하기.
 
-정확히는 지원하는 변환 pair를 보여준다.
+OpenCV의 경우, 150개 이상의 color-space conversion을 지원한다.
+
+다음 코드는 ^^지원하는 변환 pair^^ 를 보여준다.
 
 ```Python
 cs = [i for i in dir(cv2) if i.startswith('COLOR_')]

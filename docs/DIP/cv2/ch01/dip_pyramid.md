@@ -74,6 +74,13 @@ Laplacian Pyramid는 Gaussian Pyramid로부터 아래 그림과 같이 얻어진
 
 위의 단계를 거꾸로 하면 reconstructino이라고 할 수 있다. 즉, 적은 size의 이미지에서 출발하여 원래 size의 fine scale영상을 만드는 것임. (중간의 difference정보인 Laplacian들을 이용).
 
+Laplacian Pyramid를 같은 widht, height로 살펴보면 다음과 같다. (상단은 histogram equalization 처리를 해줬고, 아래는 그냥 gray scale로 바꾸어 보여줬다)
+
+![](../../img/ch01/laplacian_pyramids_equalizeHist_gray.png)
+
+* difference image라 잘 보이지 않아어서 histogram equalization의 처리를 하여 상단에 보여줌.
+* color difference image를 빼서 gray-scale로 바꾸어 보여준게 하단임.
+
 #### 좀더 전문용어(?)로 풀어본 Laplacian Pyramid
 
 * laplacian은 high-pass filter에 해당하고, gaussian filter는 low-pass filter이다. 즉, 이 둘이 조합되어 이루어진 laplacian pyramid의 각각의 layer들은 일종의 band-pass filter를 거친 결과물로 볼 수 있다. (마치 Fourier transform의 경우처럼, 어떤 주파수 대역의 representation에 대응한다고 볼 수도 있다는 애기임.)
@@ -143,7 +150,7 @@ Gaussian Pyramid 관점에서 애기한다면, scale space에서 scale이 2배 (
 
 ### Applications
 
-pyramids 와 비슷하다. feature detection, compression, image synthesis 등에서 활용된다.
+pyramids 와 비슷하다. feature detection, compression, image synthesis 등에서 활용된다. 가장 쉬운 예는 image fusion이지만, Eucliean Magnification과 같은 경우에도 활용된다.
 
 
 ## References
