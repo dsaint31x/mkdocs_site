@@ -184,7 +184,7 @@ nav:
     - "OpenCV":
       - "Gui Features in OpenCV":
         - "DIP/cv2/ch00/dip_0_00.md"
-        - "DIP/cv2/ch00/dip_0_00_color_space.md"
+        - "Note: color space": "DIP/cv2/ch00/dip_0_00_color_space.md"
         - "DIP/cv2/ch00/dip_0_02.md"
         - "DIP/cv2/ch00/dip_0_03.md"
         - "DIP/cv2/ch00/dip_0_04.md"

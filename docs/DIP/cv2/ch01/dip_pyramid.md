@@ -4,7 +4,7 @@ Image를 처리할 때, 다양한 scale에서 image를 분석해야하는 경우
 
 특히 feature extraction등의 경우 image scale에 따라 결과가 달라지는 경우가 많다. 가장 많이 드는 사례가 곡선인지 직선인지를 판별하는 경우로, 
 
-*영상 전체를 보는 큰 scale에서는 곡선이라도, 
+* 영상 전체를 보는 큰 scale에서는 곡선이라도, 
 * scale을 줄여서 작은 영역을 자세히 보는 작은 scale에서는 직선처럼 보일 수 있다. 
 
 > scale은 한 pixel이 담고 있는 region의 크기라고도 생각할 수 있다. 
