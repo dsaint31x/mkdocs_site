@@ -264,14 +264,17 @@ dark:   [[[  0 128 128]]]
 middle: [[[127 128 128]]]
 bright: [[[255 128 128]]]
 ```
+
 * numpy는 homogeneous data type으로 구성된 ndarray를 기본데이터로 하므로 bit절약이 로딩이후엔 의미가 없다. (각 채널당 8bit씩 할당됨.)
 * 밝기에 해당하는 `Y`만 바뀌는 것을 확인 가능함.
+
+> HSV에서는 3번째 채널에 해당하는 intensity가 YUV에서는 맨 앞에 있다보니 YUV를 종종 이용하는 코드들도 자주 보인다.
 
 ## OpenCV가 지원하는 Color space확인하기.
 
 OpenCV의 경우, 150개 이상의 color-space conversion을 지원한다.
 
-다음 코드는 ^^지원하는 변환 pair^^ 를 보여준다.
+다음 코드는 ^^지원하는 color-space conversion^^ 를 보여준다.
 
 ```Python
 cs = [i for i in dir(cv2) if i.startswith('COLOR_')]
