@@ -51,7 +51,9 @@
 
 ---
 
-#### ENIAC (Electronic Numerical Integrator and Cacluator)
+#### ENIAC (Electronic `Numerical` Integrator and Cacluator)
+
+> 10진수 체계, Vacuum tube(~전자식)
 
 1946년 개발된 일반적으로 알려진 최초의 전자 디지털 컴퓨터 로 알려진 컴퓨터.
 
@@ -78,12 +80,18 @@
 
 ---
 
+#### EDSAC (Electronic Delay Storage Automatic Calculator)
+
+1949년 개발된 ^^최초의 stored program computer.^^
+영국의 윌킨스 그룹에서 von Neumann의 von Neumann Architecutre를 채택하여 개발하였다.
+
+
 #### EDVAC (Electronic Discrete Variable Automatic Computer)
 
-1952년 von Neumann이 제안한 stored program computer (프로그램 내장형 컴퓨터) architecture를 채택하여 개발된 컴퓨터.
+1952년 von Neumann이 제안한 stored program computer (프로그램 내장형 컴퓨터) architecture를 채택하여 개발된 ***최초의 이진수(binary) 기반 컴퓨터***.
 
 * ENIAC은 programm이 내장되어 있지 않음. (수동 전화 교환기 와 같은 외양. 배선 변경으로 컴퓨터 동작을 지시.)
-* EDVAC은 현재 디지털 컴퓨터들이 채택하고 있는 `stored program computer` 개념과 이진법 (binary) 을 실제 구현한 컴퓨터임.
+* EDVAC은 현재 디지털 컴퓨터들이 채택하고 있는 `stored program computer` 개념과 ^^이진법 (binary) 을 실제 구현^^ 한 컴퓨터임.
 * 그 유명한 `John von Neumann`이 컨설팅을 담당.
 
 ---
@@ -109,9 +117,7 @@ Neumann은 memory(기억장치)에 컴퓨터의 instruction들과 data들을 함
 
 > data와 program이 저장되는 memory가 von Neumann architecture에선 동일하여 bottleneck 현상이라는 단점을 가짐. 이를 분리시킨 구조인 Havard architecture도 존재함. 이 경우, program과 data에 동시에 접근이 가능하다는 장점을 가지지만, 분리된 bus와 memory가 필요하여 보다 복잡한 구성이 요구됨 (현대 컴퓨터에선 CPU 내부에선 Havard architecture를 적용하고, 외부는 von Neumannd architeture를 적용한 구조를 채택한 경우가 많음).
 
-^^EDVAC 이후, 이를 기점으로 `Software`라는 개념이 등장함!^^
-
-> 1949년의 `EDSAC`(윌킨스)이 최초의 stored program computer이긴 하지만, 대부분의 최초에 대한 부분은 논쟁이 많다.  가장 유명한 것이 `EDVAC`인지라...
+^^EDVAC (or EDSAC) 이후, 이를 기점으로 `Software`라는 개념이 등장함!^^
 
 stored program architecture 이전에는 hard wired 방식으로 computer가 수행하는 task를 변경하려면, 물리적으로 전선을 연결하여 회로를 새로 구성해야함 (해당 컴퓨터의 HW지식 없이는 task변경 자체가 불가능.)
 
@@ -156,7 +162,7 @@ stored program architecture 이전에는 hard wired 방식으로 computer가 수
 
 > `mutliprogramming`과 비슷한 개념이 `multitasking`임. 
 > 하나의 장비에서 여러 프로그램이 동시에 수행을 목표로 하기보다는 CPU의 idle time을 줄이기 위해 도입된 multiprogrmming과 달리, multitasking은 하나의 resource를 여러 process들이 공유하는 개념으로 동시에 수행되는 것을 목표로 하고 있어서 multiprogramming의 논리적인 확장이라고 볼 수 있다.  
-사실 resource에서 가장 중요한 것이 CPU이고, 어찌 보면 유사한 개념이지만, multitasking은 round-robin sheduling algorithm과 같은 스케쥴링 알고리즘이 multiprogramming에 보다 추가된 것이며 여러 task를 동시에 수행시키기 위한 기술(사실은 그렇게 느껴지게 하기 위한 기술)이다. 반면, multiprogramming이 오직 단일 CPU의 idle time을 줄이기 위한 context changing에만 초점을 둔 것으로 여러 작업이 동시에 실행되는 것을 보장하지 않는다.  
+사실 resource에서 가장 중요한 것이 CPU이고, 어찌 보면 유사한 개념이지만, multitasking은 round-robin sheduling algorithm과 같은 ^^스케쥴링 알고리즘이 multiprogramming에 보다 추가^^ 된 것이며 여러 task를 동시에 수행시키기 위한 기술(사실은 그렇게 느껴지게 하기 위한 기술)이다. 반면, multiprogramming이 오직 단일 CPU의 idle time을 줄이기 위한 context changing에만 초점을 둔 것으로 여러 작업이 동시에 실행되는 것을 보장하지 않는다.  
 >  
 > 결국, `multitasking`은 ^^multi-programming에 multi-processing과 time-sharing 등의 개념 등이 보다 추가^^ 된 것이다.  
 > 보다 자세한 건 다음 url을 참고하라. [Difference Between Multiprogramming and Multitasking](https://www.tutorialspoint.com/difference-between-multiprogramming-and-multitasking)
@@ -255,7 +261,7 @@ SW 만으로 돈을 주고 사야하는 제품이 등장하기 시작한 초창�
 
 * `LSI` (Large Scaled Integrated circuit)과 `VLSI` (Very Large Scaled Integrated circuit)이 사용된 컴퓨터
 * ^^오늘날의 컴퓨터가 4세대^^ 에 속한다. (혹자들은 5세대를 애기하기도 하지만...)
-* 오늘날 CPU로 불리는 `Micro-processor`가 드디어 등장한 세대이며, 이를 통해 Personal Computer (PC)가 보급되기 시작한 세대이기도 함.
+* 오늘날 ^^CPU로 불리는 `Micro-processor`가 드디어 등장^^ 한 세대이며, 이를 통해 Personal Computer (PC)가 보급되기 시작한 세대이기도 함.
     * `Intel4004` (1981년. 최초의 Mirco-processor, 4bit CPU)는 2,300개의 transistor로 구성되었고 초당 60,000개의 연산이 가능.
 * Internet의 등장으로 Network가 일반화된 세대이기도 하며, 휴대용 컴퓨터가 등장한 세대이기도 함.
 
@@ -274,7 +280,7 @@ SW 만으로 돈을 주고 사야하는 제품이 등장하기 시작한 초창�
 
 ![](./img/PC_apple1.png){width="400"}
 
-Apple2가 1977년 나오면서 PC가 본격적으로 보급되기 시작함. 상당수 문헌에서는 Apple2를 3세대 컴퓨터로 분류하기도 하며, 이후 등장한 IBM 5150과 Macintosh를 4세대로 분류한다.
+Apple2가 1977년 나오면서 PC가 본격적으로 보급되기 시작함. 상당수 문헌에서는 Apple2를 3세대 컴퓨터로 분류하기도 하며, 이후 등장한 IBM 5150과 Macintosh (최초의 GUI도입한 PC)를 4세대로 분류한다.
 
 ---
 
