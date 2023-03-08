@@ -217,6 +217,7 @@ nav:
       - "ML/ch00/ch00_33_what_is_model.md"
       - "ML/ch00/ch00_41_online_learning.md"
       - "ML/ch00/ch00_42_batch_learning.md"
+      - "ML/ch00/ch00_50.md"
     - "Unsupervised Learning":
       - "ML/ch07/clustering.md"
       - "ML/ch07/manifold.md"
