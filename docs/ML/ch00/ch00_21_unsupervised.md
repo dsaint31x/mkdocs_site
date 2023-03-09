@@ -29,7 +29,7 @@ ML 또는 Data Mining으로 찾아낸 데이터들의 특성 또는 분포를 2�
 : Training data에 있는 sample과 다른 특성을 가지는 sample (outliar, odd)들을 탐지하는 task.  
 일반적으로 ^^training data에는 outliar가 없다고 생각하고 학습^^ 하고, 새로 주어진 data sample이 기존의 training data와 같은지 아니면 outlier인지를 구분한다.
 
-![](../img/ch00/anomaly_detection.png)
+![](../img/ch00/anomaly_detection.png){width="400"}
 
 `Manifold Learning`
 : 학습 데이터들에 내재된 ^^manifold를 모델링(or extraction)^^ 하는 task를 가르킴.  

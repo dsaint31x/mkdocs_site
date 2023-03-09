@@ -17,12 +17,12 @@ Supervised Learning 으로 해결하고자 하는 ^^주요 task^^ 는 다음과 
 `Classfication`
 : Discerete한 category를 label로 가지면서, 특정 data sample에 대해 해당 category를 할당하는 task. exclusive하게 category가 할당될 수도 있지만, 여러 label이 하나의 data sample에 할당될 수도 있음.
 
-![](../img/ch00/classification.png)
+![](../img/ch00/classification.png){width="400"}
 
 `Regression`
 : Continuous한 숫자값을 label로 가지는 경우로, 특정 data sample에 대해 해당 숫자값을 할당하는 task임. Statistics에서 regression model 등에서 유래된 이름으로, input을 dependent variable (or predictor)로, 그리고 output을 independent variable (or target)으로 생각하면 된다.
 
-![](../img/ch00/regression.png)
+![](../img/ch00/regression.png){width="400"}
 
 | | Classification | Regression |
 |:---:|:---|:---|

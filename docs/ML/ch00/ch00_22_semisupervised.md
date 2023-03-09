@@ -2,7 +2,7 @@
 
 전체 학습에 사용되는 dataset에서 ^^Label을 가진 data sample들이 일부인 경우^^ 를 가르킴.
 
-![](../img/ch00/semisupervised_learning.png)
+![](../img/ch00/semisupervised_learning.png){width="400"}
 
 ^^Google의 Photo 서비스가 예^^ 로 들 수 있는데, 해당 서비스의 모델은 자신의 사진이라고 일부 알려준 것을 바탕으로 학습을 하여 classification등을 수행한다. 
 

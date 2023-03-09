@@ -33,7 +33,7 @@ Reinforcemetn Learning Process는 다음의 요소들을 반드시 가지고 있
     - 해당 ^^goal은 Environment의 상태와 연관^^ 되어 있음.
     - ^^goal의 달성 여부에 관련된 reward가 정의^^ 되며, Agent의 현재 state에 대한 action에 의해 변경된 environment의 state와 goal과의 연관성 등에 의해 계산된 ^^`Reward`가 agent에 주어진다.^^
 
-![](../img/ch00/reinforcement_learning.png)
+![](../img/ch00/reinforcement_learning.png){width="400"}
 
 > 일반적으로 agent가 효과적으로 reinforcement learning을 하려면, `exploration` (탐험) 과 `exploitation` (이용) 사이의 균형을 잘 잡아야 한다.  
 > $^{(1)}$exploration : 다양한 situation에 대해 적절한 action을 찾기 위해서 새로운 시도를 하는 것을 의미함.  

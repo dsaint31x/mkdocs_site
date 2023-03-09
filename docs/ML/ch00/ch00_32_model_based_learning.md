@@ -2,7 +2,7 @@
 
 Training data sample들로부터 일반화된 Model을 만들어 prediction에 이용한다.
 
-![](../img/ch00/model_based_learning.png)
+![](../img/ch00/model_based_learning.png){width="400"}
 
 * 위 그림에서 학습의 결과로 만들어진 model은 바로 검은색 dash line이 된다.
 * 새로 주어진 data point x는 dash line에 의해 삼각형으로 prediction된다.
