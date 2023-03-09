@@ -8,7 +8,7 @@
 
 어떤 `Policy` 라는 ^^최상의 전략^^ 을 학습하는 것 을 가르킴.
 
-`Reinfrocement Learning` 에서 learning system을 `agent`라고 부르며, 이 agent 가 `environment` 와 상호 작용을 하면서 취한 ^^`action`에 따라 reward signal (or penalty signal)를 얻는데^^, ***최종적인 accumulated reward 를 maximize*** 하도록 ^^어떤 일련의 action들을 수행할지를 결정하는 `policy`^^를 학습하는 것을 가르킨다.
+`Reinfrocement Learning` 에서 learning system을 `agent`라고 부르며, 이 agent 가 `environment` 와 상호 작용을 하면서 취한 ^^`action`에 따라 reward signal (or penalty signal)를 얻는데^^, ***최종적인 accumulated reward 를 maximize*** 하도록 ^^어떤 일련의 action들을 수행할지를 결정하는 `policy`를 학습^^ 하는 것을 가르킨다.
 
 > ^^A `policy` determines the action^^ an agent should take in a particular situation ^^to maximize `final accumulated reward`^^.
 
@@ -35,6 +35,9 @@ Reinforcemetn Learning Process는 다음의 요소들을 반드시 가지고 있
 
 ![](../img/ch00/reinforcement_learning.png)
 
+> 일반적으로 agent가 효과적으로 reinforcement learning을 하려면, `exploration` (탐험) 과 `exploitation` (이용) 사이의 균형을 잘 잡아야 한다.  
+> $^{(1)}$exploration : 다양한 situation에 대해 적절한 action을 찾기 위해서 새로운 시도를 하는 것을 의미함.  
+> $^{(2)}$explotiation : 현재까지의 경험을 토대로 가장 높은 reward를 보이는 action을 수행하는 것을 의미함.
 
 
 ## Supervised Learning과 Unsupervised Learning과의 차이점.
