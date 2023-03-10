@@ -64,6 +64,7 @@ OpenCV에서 이를 구현한 function이 `cv2.pyrDown`이다. (`cv2.pyrUp`은 u
 
 Laplacian Pyramid는 Gaussian Pyramid로부터 아래 그림과 같이 얻어진다.
 
+
 <figure markdown>
 ![](../../img/ch01/GP-LP.jpg)
 <figcap>original : http://graphics.cs.cmu.edu/courses/15-463/2012_fall/hw/proj2g-eulerian/GP-LP.jpg" </figcap>
@@ -72,19 +73,24 @@ Laplacian Pyramid는 Gaussian Pyramid로부터 아래 그림과 같이 얻어진
 * $\downarrow 2$ 는 down sampling을 의미하고, $*G$는 Gaussian filtering을 의미한다.
 * OpenCV에서는 `pyrDown`과 `pyrUp`을 통해 $*G \downarrow 2$와 $\uparrow 2$를 제공한다.
 
-위의 단계를 거꾸로 하면 reconstructino이라고 할 수 있다. 즉, 적은 size의 이미지에서 출발하여 원래 size의 fine scale영상을 만드는 것임. (중간의 difference정보인 Laplacian들을 이용).
+위의 단계를 거꾸로 하면 reconstruction이라고 할 수 있다. 즉, 적은 size의 이미지에서 출발하여 원래 size의 fine scale영상을 만드는 것임. (중간의 difference정보인 Laplacian들을 이용).
+
+![](../../img/ch01/LP-GP.png){width="300"}
 
 Laplacian Pyramid를 같은 widht, height로 살펴보면 다음과 같다. (상단은 histogram equalization 처리를 해줬고, 아래는 그냥 gray scale로 바꾸어 보여줬다)
 
 ![](../../img/ch01/laplacian_pyramids_equalizeHist_gray.png)
 
-* difference image라 잘 보이지 않아어서 histogram equalization의 처리를 하여 상단에 보여줌.
+* difference image라 잘 보이지 않아 histogram equalization의 처리를 하여 상단에 보여줌.
 * color difference image를 빼서 gray-scale로 바꾸어 보여준게 하단임.
 
 #### 좀더 전문용어(?)로 풀어본 Laplacian Pyramid
 
-* laplacian은 high-pass filter에 해당하고, gaussian filter는 low-pass filter이다. 즉, 이 둘이 조합되어 이루어진 laplacian pyramid의 각각의 layer들은 일종의 band-pass filter를 거친 결과물로 볼 수 있다. (마치 Fourier transform의 경우처럼, 어떤 주파수 대역의 representation에 대응한다고 볼 수도 있다는 애기임.)
-* Gaussina pyramid를 통해 다양한 scale의 공간의 표현을 가지며, Laplacian pyramid를 통해 다양한 spatial frequency에 대한 표현을 얻는다고 생각할 수도 있다.
+* laplacian은 high-pass filter에 해당하고, gaussian filter는 low-pass filter이다.  
+* 즉, 이 둘이 조합되어 이루어진 laplacian pyramid의 각각의 layer들은 일종의 band-pass filter를 거친 결과물로 볼 수 있다. 
+* 이는 달리 말해서 Laplacian of Gaussian이 일종의 band-pass filter임을 의미한다.
+* 즉, Laplacian pyramid의 각 층은, 마치 Fourier transform의 경우처럼, 어떤 주파수 대역의 representation에 대응한다고 볼 수 있다.
+* Gaussina pyramid를 통해 ^^다양한 scale의 공간의 표현^^ 을 가지며, Laplacian pyramid를 통해 ^^다양한 spatial frequency에 대한 표현^^ 을 얻는다고 생각할 수도 있다.
 
 #### 수식으로 본 Laplacian approximation
 
@@ -103,7 +109,7 @@ $$
 \frac{d g(x;\sigma)}{d \sigma} = \left(\frac{x^2}{\sigma^2}-1\right)\left(\frac{1}{\sigma}\right)g(x;\sigma)
 $$
 
-즉, lapalacian의 approximation을 아래와 같이 scale $\sigma$의 image들의 difference와 $\sigma$에 대한 함수 로 표현할 수 있음.
+즉, Lapalacian of Gaussian (LoG)의 approximation을 아래와 같이 scale $\sigma$의 image들의 difference와 $\sigma$에 대한 함수 로 표현할 수 있음.
 
 $$\begin{aligned}
 \frac{d^2 g(x;\sigma)}{dx^2}&=C_0({\sigma})\frac{d g(x;\sigma)}{d \sigma}\\
@@ -122,7 +128,9 @@ OpenCV tutorial에서 제공해주는 응용사례로, 2개의 이미지를(사�
 
 다양한 image fusion에 기본적으로 사용되는 방법 중의 하나이다.
 
-> The aim of image fusion is to combine relevant information from two or more source images into one single image such that the single image contains most of the information from all the source images. The successful fusion of images acquired from different modalities or instruments is of great importance in many applications, such as medical imaging, microscopic imaging, remote sensing, computer vision and robotics. - Sudheer T.S Kumar et al. (2014)
+> The aim of image fusion is ^^to combine relevant information from two or more source images into one single image^^ such that the single image contains most of the information from all the source images.  
+> The successful fusion of images acquired from different modalities or instruments is of great importance in many applications, 
+> such as ^^medical imaging^^, microscopic imaging, remote sensing, computer vision and robotics. - Sudheer T.S Kumar et al. (2014)
 
 ---
 
