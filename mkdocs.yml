@@ -188,6 +188,9 @@ nav:
         - "DIP/cv2/ch00/dip_0_02.md"
         - "DIP/cv2/ch00/dip_0_03.md"
         - "DIP/cv2/ch00/dip_0_04.md"
+      - "Core Operations":
+        - "DIP/cv2/ch01/dip_1_01.md"
+        - "DIP/cv2/ch01/dip_1_02.md"
       - "Image Processing":
         - "DIP/cv2/ch00/dip_0_00_color_space.md"
         - "DIP/cv2/ch02/dip_thresholding.md"
