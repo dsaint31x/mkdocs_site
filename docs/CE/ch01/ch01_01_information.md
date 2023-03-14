@@ -24,11 +24,11 @@ $$
 
 다양한 경우의 수를 가지는 경우보다, 확률변수가 0 또는 1을 가지는 경우로 한정하는 것이 가장 기본적이라고 볼 수 있다 (예: 특정 event의 발생 유무).
 
-이는 information을 다루는 컴퓨터가 기본적으로 이진수를 사용하는 이유라고도 볼 수 있다.
+이는 information을 다루는 컴퓨터가 기본적으로 이진수를 사용하는 것과도 연관된다.
 
 위의 정보량의 수식에서 흔히 $\log$의 base(밑수)는 2를 사용하며 이 경우 정보량의 단위가 바로 `bit` (binary digit의 약자)가 된다.
 
-> 참고로 밑수가 2인 $\log$ 가 아닌 자연로그를 사용하는 경우도 많은데 이 경우 단위는 `Nat` ($\approx 1.443\text{bit}$) )이 된다.
+> 참고로 밑수가 2인 $\log$ 가 아닌 자연로그 $\ln$를 사용하는 경우도 많은데 이 경우 단위는 `Nat` ($\approx 1.443\text{bit}$) )이 된다.
 
 ## Entropy : 평균 정보량
 
@@ -38,7 +38,7 @@ $x$가 $0,1,\cdots,n$ 의 값을 가지는 random-variable일 때,
 이는 결국 해당 확률변수에서 기대되는 정보량(평균정보량) 이라고 할 수 있다.
 
 $$
-H[x]=-\sum_{x=0}^n p(x)\ln{p(x)}
+H[x]=-\sum_{x=0}^n p(x)\log_2{p(x)}
 $$
 
 - 확률변수가 절대 될 수 없는 값이 있을 경우, 해당 값의 발생확률이 $p(x)=0$이 되므로 이는 entropy 에 기여 없음.
@@ -47,7 +47,7 @@ $$
 위의 경우는 discrete한 경우이며, continuous random variable의 경우는 다음과 같음.
 
 $$
-H(x)=-\int_{-\infty}^{\infty}p(x)\ln{p(x)}dx
+H(x)=-\int_{-\infty}^{\infty}p(x)\log_2{p(x)}dx
 $$
 
 Noiseless coding theorem (Shannon, 1948)에서 Entropy가 평균정보량으로 제안되었고 특정 데이터를 처리하는데 필요한 bit수의 lower bound를 계산하는데 많이 이용된다.

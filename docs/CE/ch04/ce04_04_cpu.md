@@ -56,3 +56,10 @@ microcode로 구현된 traffic control은 다음과 같은 memory로 만들어�
 
 주로 CPU내에서 data를 저장하고 있는 memory를 가르킴. 가장 빠른 memory이며, CPU의 구성요소.
 
+* condition code register : overflow, underflow
+* program counter (pc) : 다음 수행할 instruction이 저장된 메모리 위치를 가르킴.
+* accumulator : ALU의 operation의 result가 저장되는 register.
+* address extension register : 주소확장레지스터, MSB를 포함하는 상위주소 부분을 지정하는 데에 사용됨.
+* index register : relative addressing에서 사용되는 레지스터. 현재 address에 더해질 값을 가지고 있음.
+* indirect address register : memory에서 읽어들인(fetched) indirect address를 저장하고 있는 register.
+* instruction register : memory로부터 fetch된 instruction을 저장하고 있는 register

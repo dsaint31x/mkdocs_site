@@ -132,6 +132,11 @@ nav:
       - "CPU":
         - "CE/ch04/ce04_04_cpu.md"
         - "CE/ch04/ce04_04_01_alu.md"
+        - "CE/ch04/ce04_11.md"
+        - "CE/ch04/ce04_22.md"
+        - "CE/ch04/ce04_31.md"
+        - "CE/ch04/ce04_41.md"
+        - "CE/ch04/ce04_51.md"
     - 'ch06':
       - "Data Transfer":
         - "IO Ports":         "CE/ch06/ce06_1_01_ioport.md"
@@ -221,6 +226,9 @@ nav:
       - "ML/ch00/ch00_41_online_learning.md"
       - "ML/ch00/ch00_42_batch_learning.md"
       - "ML/ch00/ch00_50.md"
+    - "Ex : End_to_End Learning":
+      - "ML/ch01/ch01_51.md"
+      - "ML/ch01/ch01_52.md"
     - "Unsupervised Learning":
       - "ML/ch07/clustering.md"
       - "ML/ch07/manifold.md"
