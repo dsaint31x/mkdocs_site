@@ -135,8 +135,8 @@ nav:
         - "CE/ch04/ce04_11.md"
         - "CE/ch04/ce04_22.md"
         - "CE/ch04/ce04_31.md"
-        - "CE/ch04/ce04_41.md"
-        - "CE/ch04/ce04_51.md"
+      - "CE/ch04/ce04_41.md"
+      - "CE/ch04/ce04_51.md"
     - 'ch06':
       - "Data Transfer":
         - "IO Ports":         "CE/ch06/ce06_1_01_ioport.md"
