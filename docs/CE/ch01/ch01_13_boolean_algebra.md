@@ -70,7 +70,9 @@ $$ \begin{aligned}(A \cup B)^C =A^C \cap B^C \\ (A \cap B)^C =A^C \cup B^C \end{
 
 $$ \begin{aligned}\overline{(A + B)} =\overline{A}\cdot \overline{B} \\ \overline{(A \cdot B)} =\overline{A} + \overline{B} \end{aligned} $$
 
-De Morgan's Law를 통해, negative logic을 사용할 수 있다. 
+De Morgan's Law를 통해, negative logic을 사용할 수 있다.
+
+> Digital system등에서 나오는 개념으로 high voltage와 low voltage에 논리값을 할당하는 종류 중 하나임. high voltage에 1을 low voltage에 0을 할당하는 경우가 positive logic이라고 불리며, 반대로 high voltage에 0을 low voltage에 1을 할당하는 경우는 negative logic이다. 
 
 다음의 Truth table은 같은 logic을 positive logic(좌)과 negative logic(우)으로 표현한 예를 보여준다.
 
@@ -82,3 +84,18 @@ De Morgan's Law를 통해, negative logic을 사용할 수 있다.
 | T       | T         | T    | | F           | F           |F          |
 
 왼쪽의 positive logic은 `OR` 연산의 결과이며, netative logic에서는 `AND`에 해당된다 (위의 DeMorgan's Law가 들어맞음.)
+
+
+> positive logic에서의 `OR`는 negative logic에서는 `AND`로 설명되어진다.
+
+postive logic(정논리)가 negative logic(부논리)간의 gate들의 관계를 보여준다.
+
+![](./img/negative_positive_logic.png){width="400"}
+
+* original : https://electronics.stackexchange.com/questions/53019/negative-logic-and-positive-logic-gates
+
+![](./img/negative_positive_logic1.png){width="400"}
+
+* original : '디지털 논리회로 이해', 오창환 저, 한국학술정보(주)
+
+> 쉽게 생각해서, `AND` gate의 등가는 모든 입출력에 `NOT`을 붙이고, `AND`를 `OR`로 바꿔주면 된다. 이를 나타내고 있는 것이 바로 De Morgan's Law임.
