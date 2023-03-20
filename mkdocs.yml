@@ -159,7 +159,7 @@ nav:
       - "CE/ch08/ce08_high_low_level_language.md"
       - "CE/ch08/ce08_compiler_interpreter.md"
     - 'ch09':
-      - "CE/ch09_webbrowser.md"
+      - "CE/ch09/ce09_webbrowser.md"
     - 'ch10':
       - "Concepts for Programming":
         - "Command Line Interface": "CE/ch10/ce10_2_01_cli_terminal.md"
