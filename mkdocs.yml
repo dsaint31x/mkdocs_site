@@ -237,6 +237,11 @@ nav:
       - "ML/ch07/tSNE.md"
     - "Deep Learning (simple)":
       - "ML/ch08/datastructure_graph.md"
+    - "Colab":
+      - "CE/colab/hw_spec.md"
+      - "CE/colab/cells.md"
+      - "CE/colab/hotkeys.md"
+      - "CE/colab/gpu.md"
   - Material Test:
     - code blk: test_code_blocks.md
   - tags: tags.md
