@@ -3,14 +3,14 @@
 `Code`
 : 일상 생활에서 사용되는 **문자나 숫자** 를 컴퓨터가 인식하기 위해 **기호** 화한 것.
 
-컴퓨터에서 내부적으로 계산을 위해 사용하는 것 (number의 의미)은 이진수와 2's complement이다. 하지만, 컴퓨터가 인간이 사용하는 number를 표현하고 인식하기 위한 경우 사용되는 code들은 다음과 같음. 
+컴퓨터에서 내부적으로 계산을 위해 사용하는 것 (number의 의미)은 ***이진수*** 와 ***2's complement*** 이다. 하지만, 컴퓨터가 인간이 사용하는 number를 표현하고 인식하기 위한 경우 사용되는 code들은 다음과 같음. 
 
 > 이들 `Code`들은 Number들의 symbol에 초점을 맞춘 것이라고 볼 수 있다. 마치 컴퓨터에서 영문자를 ASCII로 표현하는 것과 유사하다. 컴퓨터가 각 문자의 의미를 통한 이해는 natural language prcoessing으로 AI 등의 매우 중요한 분야이며 아직도 활발히 연구되고 있는 분야이다. 컴퓨터에서 영문자를 ASCII로 표현한 것은 1963년이지만, 컴퓨터가 문자의 의미를 이해하고 사람과 대화하는 기술은 2023년에도 ChatGPT 등의 매우 최신 기술에 해당한다. 
 
 * Internal Representation : 계산이 효과적으로 이루어지는데 집중.
 * External Representation : 인간등에게 숫자를 보여지거나, 입력장치로부터 숫자(엄밀하게 숫자 기호)를 입력받을 때 사용됨.
 
-즉, 여기서 다르는 code들은 external representation이라고 보면 된다.
+즉, 여기서 다르는 code들은 `external representation`이라고 보면 된다.
 
 
 ## Binary Coded Decimal System
@@ -73,13 +73,13 @@ $+897_{10}$을 Packed BCD Code로 나타내면 `1000 1001 0111 1100`가 됨.
 
 ## Excess-3 Code
 
-* BCD 코드는 2진수 표현에 가깝고, encoding에 용이하나, 보수를 계산 및 처리가 까다로움.
-* 이를 보완하기 위해 BCD 코드에 +3을 한 것이 Excess-3코드임. 
+* BCD 코드는 2진수 표현에 가깝고 encoding에 용이하나, complement(보수)에 대한 계산 및 처리가 까다롭다는 단점을 가짐.
+* 이를 보완하기 위해 BCD 코드에 +3을 한 것이 `Excess-3 Code` 임. 
 * 이는 9의 보수를 매우 쉽게 얻을 수 있음.(Self-complementing code) : 1's complement를 취하면 자동으로 9의 보수를 얻게 됨.
 
 ---
 
-## Gray Code
+## Gray Code ***
 
 * Gray코드는 0에서 9까지 순환적으로 변할 때, 각 과정마다 오직 한 비트만 변화됨. 
 * 때문에, Gray 코드를 사용하여 순환적으로 값이 입력되는 경우, 입력 도중의 에러나 오차를 쉽게 검출할 수 있으며, 변경할 bit가 적다는 장점을 가짐.

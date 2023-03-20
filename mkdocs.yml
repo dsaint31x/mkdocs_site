@@ -82,10 +82,10 @@ nav:
       - "Bits and Number":
         - "CE/ch01/numeral_system.md"
         - "CE/ch01/positive_number.md"
-        - "CE/ch01/code_for_numbers.md"
         - "CE/ch01/negative_number.md"
         - "CE/ch01/overflow_underflow.md"
         - "CE/ch01/real_number.md"
+        - "CE/ch01/code_for_numbers.md"
       - "Bits and Character":
         - "CE/ch01/code_for_character.md"
         - "CE/ch01/Encoding_for_external_rep.md"

@@ -61,7 +61,7 @@ $$ x-m = x + (A-m) - A = x + m’ - A$$
 
 * 상단의 경우, MSB에서 carry out이 없는 경우로 complement를 사용할 때 그냥 더해주면 됨.
 * 하단의 경우, MSB에서 carry out이 발생한 경우로 위에서 설명한대로 각각 처리하여 올바른 답이 나옴을 보여줌.
-* `Sign and Magnitude` 방식은 그냥 더해서는 안되므로 뺄셈을 위한 별도의 처리기가 필요함.
+* `Sign and Magnitude` 방식은 그냥 더해서는 안되므로 뺄셈을 위한 `별도의 처리기`가 필요함.
 
 ## Overflow Detection for 2's Complement.
 
