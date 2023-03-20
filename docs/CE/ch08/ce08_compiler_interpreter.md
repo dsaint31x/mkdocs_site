@@ -15,7 +15,7 @@ Java도 compiler language라고 볼 수 있음 (단 compile의 결과물인 byte
 
 ## Interpreter Language
 
-* Interpreter(행, line 단위로 기계어로 번역)에 의해, line 단위로 컴파일 없이 실행되는 언어.
+* `Interpreter(행, line 단위로 기계어로 번역)`에 의해, line 단위로 컴파일 없이 실행되는 언어.
 * 고급 언어의 한 종류.
 * Script Language로도 불림.
     * 컴파일 없이 라인 단위 실행이 가능하므로 개발단계에서 적은 양의 수정에 대한 결과를 쉽게 확인 가능.

@@ -10,3 +10,7 @@ Web browser you use every day is
 
 * a ***virtual machine*** -- an abstract computer with an incredibly complicated instruciton set implemented entirely in software.
 * one of interpreters.
+
+## 참고
+
+* [virtual machine](CE/ch15/ce15_2_6_container.md#virtual-machine)
