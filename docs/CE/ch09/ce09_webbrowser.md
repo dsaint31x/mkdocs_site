@@ -14,3 +14,4 @@ Web browser you use every day is
 ## 참고
 
 * [virtual machine](CE/ch15/ce15_2_6_container.md#virtual-machine)
+* [Interpreter](CE/ch08/ce08_compiler_interpreter.md#interpreter-language)
