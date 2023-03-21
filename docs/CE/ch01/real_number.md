@@ -2,7 +2,7 @@
 
 실수를 bit로 표현하는 방법을 알기 이전에 2진수로 소수를 표현할 수 있어야 한다.
 
-* 다음 URL을 참고 : [소수의 2진수 표현](https://www.notion.so/mmmil/1-The-Internal-Language-of-Computers-07104725d17643feafb37c615f327d01#cdf5f63a0ff043d1a888441fb61e3976)
+* 다음 URL을 참고 : [소수의 2진수 표현](https://dsaint31.tistory.com/entry/CE-10%EC%A7%84%EC%88%98-%EC%86%8C%EC%88%98%EB%A5%BC-2%EC%A7%84%EC%88%98%EB%A1%9C-%EB%B3%80%ED%99%98)
 * 소수까지 2진수로 표현하게 되면, 실수에 대한 2진수 표현이 가능해진다. 
 
 일단 실수의 2진수 표현을 bit로 표현하는 방법은 크게 다음 두가지로 나뉜다.
