@@ -50,7 +50,9 @@ Google Colaboratory = Google Drive + Jupyter Notebook
 ```
 !head -n 3 /proc/meminfo
 ```
+
 - 메모리 13G
+
 
 ```
 !df -h
