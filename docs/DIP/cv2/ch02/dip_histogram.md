@@ -165,7 +165,7 @@ hist,bin_edges = np.histogram(
 * `weights` : `a`와 같은 크기로 각 bin의 가중치임.
 * `density` : `True`이면 probability로 출력.
 
-반환값
+**반환값**
 
 * `hist` : histogram
 * `bin_edges` : bin을 나누는 edge들이라 `bins+1`에 대응.
