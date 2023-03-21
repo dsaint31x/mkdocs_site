@@ -166,7 +166,7 @@ nav:
         - "Standard I/O Library"  : "CE/ch10/ce10_2_04_stdio.md"
     - '작성중':
       - "CE/ch15/ce15_2_4_portability.md"
-      - "CE/ch15/ce15_2_6_package_management.md"
+      - "CE/ch15/ce15_2_5_package_management.md"
       - "CE/ch15/ce15_2_6_container.md"
   - 'os':
     - 'kernel.md'
