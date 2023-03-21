@@ -14,7 +14,7 @@ OS차원에서 특정 SW를 다운로드 받아 설치할 때, 해당 SW의 의�
 
 `apt`, `yum`, `rpm` 등이 유명한 pacakge management sw 이며, 이들  중 하나 정도는 익숙하게 사용할 수 있는 게 좋다.
 
-programming 에서도 이같은 ***의존성 library 충돌***은 항상 귀찮은 문제이며 때문에 library들을 관리하며, 서로 다른 library로 구성된 개발환경을 독립적으로 분리해서 운영할 수 있게 해주는 tool들이 제공된다. Python의 경우, 이같은 의존성 라이브러리 들을 해결하기 위해서 `pip`, `conda`, `venv` 등의 툴이 제공되며, javascript의 경우 `npm` 등이 있다.
+programming 에서도 이같은 ***의존성 library 충돌*** 은 항상 귀찮은 문제이며 때문에 library들을 관리하며, 서로 다른 library로 구성된 개발환경을 독립적으로 분리해서 운영할 수 있게 해주는 tool들이 제공된다. Python의 경우, 이같은 의존성 라이브러리 들을 해결하기 위해서 `pip`, `conda`, `venv` 등의 툴이 제공되며, javascript의 경우 `npm` 등이 있다.
 
 최근에는 docker와 같은 container를 이용하는 방법도 선호되고 있다. 이 방식은 Host OS에서 해당 SW를 직접 수행하기 보다는, container라는 분리된 공간에서 해당 SW가 필요한 모든 라이러리들을 설치하고 해당 공간에서 SW를 수행시킨다. 가상머신과 비슷하지만, applicatoin수준에서의 가상화(Host OS에서는 process로 간주되며 kernel을 공유함.)이기 때문에 훨씬 가볍고 큰 성능 손실 없으면서도 라이브러리 충돌없이 SW를 실행시킬 수 있다. 
 
