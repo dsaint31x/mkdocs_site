@@ -33,7 +33,7 @@ OS는 HW에서 수행되는 instruction set이 있고 HW와 상호작용을 하�
 이는 ***일종의 `interpreter`*** 라고 볼 수 있으며,  
 OS는 machine에 설치된다는 종래의 개념에서 virtual machine이라는 이름이 붙었다고 생각하면 쉽게 이해가 될 것이다.
 
-VM으로 유명한 SW들은 MS사의 `Hiper-V`와 Oracel의 `Virtual Box`, VMWare사의 `VMware` 등이 있다.
+VM으로 유명한 SW들은 MS사의 `Hiper-V`와 Oracle의 `Virtual Box`, VMWare사의 `VMware` 등이 있다.
 
 복잡한 연산 등을 VM으로 수행하기에는 High-end PC에서도 다소 무리가 있다.  
 하지만 간단한 워드 수준의 작업은 VM으로 충분하기 때문에  

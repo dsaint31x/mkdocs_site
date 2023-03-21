@@ -21,7 +21,7 @@ Java도 compiler language라고 볼 수 있음 (단 compile의 결과물인 byte
     * 컴파일 없이 라인 단위 실행이 가능하므로 개발단계에서 적은 양의 수정에 대한 결과를 쉽게 확인 가능.
     * 대화식 프로그래밍이 가능하여 교육용으로 적합.
 
-대표적인 예로 Python, PHP, ASP, Java Script, Perl 등을 들 수 있다.
+대표적인 예로 `Python`, PHP, ASP, Java Script, Perl 등을 들 수 있다.
 
 ## 비교
 
@@ -32,4 +32,8 @@ Java도 compiler language라고 볼 수 있음 (단 compile의 결과물인 byte
 | translation에 많은 시간이 필요. | translation 속도가 빠름 |
 | execution 속도가 빠름 | execution 속도가 느린 편 |
 | executable code로 변환된 이후에는 compiler 필요없음 | 원칙대로는 interpreter가 수행을 위해 필요함|
-| OS종속적인 경우 많음(VM에서 동작하는 Java는 예외)| OS독립적인 경우가 많음(interpreter만 제공된다면)|
+| 결과물이 OS 종속적인 경우 많음(VM에서 동작하는 Java는 예외)| 결과물(?)이 OS 독립적인 경우가 많음(interpreter만 제공된다면)|
+
+
+`Object code (목적코드)`
+: object module(목적파일)이라고도 불리며, compiler가 source code로부터 컴파일을 수행하여 생성한 code 혹은 파일을 의미함. `machine language`나 intermediate language (register transfer language,RTL)과 같은 binary code이며, linker등을 통해 여러 다른 object code와 연결되어 executable code가 된다.
