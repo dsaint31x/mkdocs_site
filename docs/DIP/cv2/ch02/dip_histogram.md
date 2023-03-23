@@ -92,7 +92,7 @@ plt.show()
 
 <figure markdown>
 ![](../../img/ch02/histogram_example0.png){width="400"}
-</firgure>
+</figure>
 
 <figure markdown>
 ![](../../img/ch02/histogram_example1.png){width="300"}
@@ -185,5 +185,53 @@ Color space에서 HSV model을 생각해보면, V는 앞서 다룬 intensity이�
 
 > Histogram backprojection에서 H와 S를 이용하는 경우가 많기 때문에 2D histogram의 경우, Hue와 Saturation을 다루는 경우가 많다.
 
+```Python
+import numpy as np
+import cv2 
 
+img = cv2.imread('../images/2d_histogram.jpg')
+assert img is not None, "file could not be read, check with os.path.exists()"
 
+hsv = cv2.cvtColor(img,cv2.COLOR_BGR2HSV)
+hist = cv2.calcHist([hsv], [0, 1], None, [180, 256], [0, 180, 0, 256])
+
+import matplotlib.pyplot as plt
+
+plt.subplot(1,2,1)
+plt.imshow(img[...,::-1])
+plt.xticks([]); plt.yticks([])
+plt.subplot(1,2,2)
+plt.imshow(hist, 
+           interpolation='nearest', 
+           cmap='jet')
+plt.yticks([0,30,60,90,120,150,180])
+plt.xticks([0,32,64,96,128,160,192,224,256])
+# plt.colorbar()
+plt.show()
+```
+
+<figure markdown>
+![](../../img/ch02/2d_histogram.png)
+</figure>
+
+* 푸른 하늘에 해당하는 pixel이 많기 때문에 Hue=120 근처에서 많은 값을 보임.
+* 건물에 해당하는 노란색도 많아서 20~30 사이에 보임.
+
+histogram에서 잘 안보이기 때문에 V=255일 때의 HS map을 기반으로 처리한 2d histogram은 다음과 같음.
+
+<figure markdown>
+![](../../img/ch02/scaled_2d_histogram.png)
+</figure>
+
+* scaling의 값이 커질수록 2d histogram에서 강조가 되어 보이도록 처리함.
+* 푸른색과 노란색 부분이 강조되어 쉽게 확인이 가능함.
+
+Hue, Saturaiton은 color image의 특성을 나타내는 feature로 사용할 수 있다. (주의할 것은 다른 image라도 거의 비슷한 2d histogram을 가질 수 있다는 점임.)
+
+* pixel들의 color의 분포를 나타내는 것임.
+* 위치적 정보가 사라지기 때문에 color들의 분포는 비슷하면 비슷한 2d histogram이 나올 수 있음.
+* histogram간의 유사도가 image가 같은지를 나타내는 것은 아님.
+
+## References
+
+* [openCV's Tutorial](https://docs.opencv.org/4.x/dd/d0d/tutorial_py_2d_histogram.html)

@@ -41,7 +41,7 @@ I = cv2.calcHist([hsvt],[0, 1], None, [180, 256], [0, 180, 0, 256] )
 * `I`가 전체 image의 2d histogram임.
 
 <figure markdown>
-![](../../img/ch02/hist_back_target.png)
+![](../../img/ch02/hist_back_target.png){width="500"}
 <figcaption>target image</figcaption>
 </figure>
 
@@ -68,7 +68,8 @@ plt.imshow(B, cmap='gray')
 * blurring을 수행하여 object의 영역을 smoothing시킴.
 
 <figure markdown>
-![](../../img/ch02/hist_back_mask.png)
+![](../../img/ch02/hist_back_mask.png){width="500"}
+<figcaption>2D ratio image.</figcaption>
 </figure>
 
 ```Python
@@ -90,15 +91,17 @@ plt.imshow(seg[...,::-1])
 * 이후 구해진 mask를 이용하여 segmentation을 수행.
 
 <figure markdown>
-![](../../img/ch02/hist_back_result.png)
+![](../../img/ch02/hist_back_result.png){width="500"}
+<figcaption>The result of histogram backproj.</figcaption>
 </figure markdown>
+
 
 ## Backprojection in OpenCV
 
 OpenCV에서는 `cv2.calcBackProject` 함수를 제공하고 있음.
 
 * `cv2.calcHist()`와 거의 비슷한 parameter.
-* 단, backproj에 사용할 2d histogram을 입력받는다는 차이ㅏㄱ 있음.
+* 단, backproj에 사용할 2d histogram을 입력받는다는 차이가 있음.
 
 ```Python
 import numpy as np
