@@ -7,7 +7,9 @@ chart로 표현하기도 하지만 내부적 데이터로 사용하기도함.
 image에서 histogram으로 변환은 비가역적 변환임 
 (다른 image들도 같은 histogram을 가질 수 있음).
 
+<figure markdown>
 ![](../../img/ch02/histogram.jpg){width="400"}
+</figure>
 
 ## Terms
 
@@ -88,10 +90,13 @@ plt.plot(hist3,color='r')
 plt.show()
 ```
 
+<figure markdown>
 ![](../../img/ch02/histogram_example0.png){width="400"}
+</firgure>
 
+<figure markdown>
 ![](../../img/ch02/histogram_example1.png){width="300"}
-
+</figure>
 
 #### MASK사용하기.
 
@@ -169,6 +174,16 @@ hist,bin_edges = np.histogram(
 
 * `hist` : histogram
 * `bin_edges` : bin을 나누는 edge들이라 `bins+1`에 대응.
+
+## 2D Histograms
+
+feature가 1개인 경우엔 앞서 다룬 1 dimensional histogram을 구성하지만, feature가 2개인 경우엔 2D histogram으로 처리할 수 있다.
+
+Color space에서 HSV model을 생각해보면, V는 앞서 다룬 intensity이고, color에 해당하는 Hue와 saturation을 2D histogram으로 처리 가능하다.
+
+(RGB를 이용하여 3D histogram도 가능은 하지만 많이 사용되지는 않는다.)
+
+> Histogram backprojection에서 H와 S를 이용하는 경우가 많기 때문에 2D histogram의 경우, Hue와 Saturation을 다루는 경우가 많다.
 
 
 
