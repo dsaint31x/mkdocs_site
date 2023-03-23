@@ -18,7 +18,7 @@
 
 다음은 대표적인 code 들을 등장 시대 순으로 소개하고 있다.
 
-## The American Standard Code for Information INterchange (ASCII)
+## The American Standard Code for Information Interchange (ASCII)
 
 컴퓨터 초창기에 다양한 code들이 제안되었으나, 1963년 개발된 `ASCII`가 사실상 표준으로 살아남았다. ASCII는 영문자를 처리하는데 아직까지도 널리 사용된다.  
   
@@ -106,7 +106,7 @@ Go언어 개발자로 더 유명한 `롭 파이크`가 `켄 톰슨`과 함께 �
 경쟁방식인 `UTF-16` 경우, 다국적 기업들의 초기 전폭적인 지원이 있었음에도 `UTF-8`의 사용하기 쉽다는 장점을 넘지 못했다.  
 한글의 경우, 한 글자를 나타내는데 대부분 3byte가 사용되어 효율성이 떨어지는 편이지만, 동일한 방식으로 다국어 문자를 활용할 수 있다는 편의성으로 인해 실제적인 표준 encoding이 되었다.
 
-가변길이(multi-bytes)를 사용하며, 각 경우의 규칙은 다음과 같음.
+`가변길이(multi-bytes)`를 사용하며, 각 경우의 규칙은 다음과 같음.
 
 * 1byte만을 사용하는 경우, `MSB`가 `0`으로 시작한다.
 * 2bytes를 사용하는 경우, 상위 byte는 `110`으로 시작하고, 하위 byte는 `10`으로 시작한다.
