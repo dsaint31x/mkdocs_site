@@ -215,9 +215,14 @@ p-tile, mode thresholding과 달리 statistical property를 이용하여 가장 
 
 Otsu thresholding은 bimodal image (histogram의 2개의 peak를 가지는 경우를 가르킴)에 가장 적절한 threshold를 찾아준다.
 
-Otsu algorithm은 2개의 class로 나눌 때, 각 class의 `weighted within-class variance`를 최소화하면서 두 class의 `inter-calss variance`는 최대로 만드는 threshold를 찾는다.
+Otsu algorithm은 2개의 class로 나눌 때, 
 
-수식으로 표현하면 다음의 `within-class variance`를 최대화하는 $t$를 찾는다.
+* 각 class의 ^^`within-class variance`를 최소화하면서 
+* 두 class의 `inter-calss variance`는 최대로 
+
+만드는 threshold를 찾는다.
+
+수식으로 표현하면 다음의 `weighted within-class variance`를 최소화하는 $t$를 찾는다.
 
 $$
 \sigma_w^2(t) = q_1(t)\sigma_1^2(t)+q_2(t)\sigma_2^2(t)
