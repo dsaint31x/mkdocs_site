@@ -209,6 +209,7 @@ nav:
         - "DIP/cv2/ch02/dip_histogram_backprojection.md"
         - "Canny Edge Detection" : "DIP/ch02_02_01_canny.md"
         - "DIP/cv2/ch02/dip_pyramid.md"
+        - "DIP/cv2/ch02/dip_contour_basic.md"
         - "DIP/cv2/ch02/dip_contour_features.md"
     - "Image Feature":
       - "DIP/ch02_01_00_classical_cv.md"

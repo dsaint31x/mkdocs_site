@@ -4,7 +4,7 @@
 
 Image moments은 물체의 중심, 물체의 면적 등과 같은 일부 기능을 계산하는데 사용되는 양임.
 
-> pixel intensity(←물리에서 force, mass등)의 ***정량적 크기***와 함께 ***분포 (어떤 기준에 대한)***를 고려한 정량적 지표.  
+> pixel intensity(←물리에서 force, mass등)의 ***정량적 크기*** 와 함께 ***분포 (어떤 기준에 대한)*** 를 고려한 ^^정량적 지표^^.  
 > 주로 `grayscale` or `binary image`에서 사용됨.
 
 ### Spatial Moment (or raw Moment)
@@ -12,10 +12,11 @@ Image moments은 물체의 중심, 물체의 면적 등과 같은 일부 기능�
 $$m_{pq} = \sum_y\sum_x x^p y^q I(x, y) $$
 
 - $p,q$ : degree(차수)에 해당함. 0 이상의 정수가 많이 사용됨.
-- $x,y$ : pixel의 x,y 좌표값
+- $x,y$ : pixel의 x, y 좌표값
 - $I(x,y)$ : x,y 위치의 pixel intensity.
 
-> (raw) moment의 값은 pixel intensity 뿐 아니라 pixel의 (절대)위치에 매우 큰 영향을 받는다. 보통 원점을 기준으로 계산된다.
+> (raw) moment의 값은 pixel intensity 뿐 아니라 pixel의 (절대)위치에 매우 큰 영향을 받는다.  
+> 보통 원점을 기준으로 계산된다.
 
 ### Central Moment
 
@@ -27,7 +28,7 @@ $$m_{pq} = \sum_y\sum_x x^p y^q I(x, y) $$
 
 $$\mu_{pq} = \sum_y\sum_x (x-\bar{x})^p (y-\bar{y})^q I(x, y) $$
 
-$\bar{x},\bar{y}$ : x,y의 mean으로 중심(image의 중심)에 해당한다.
+$\bar{x},\bar{y}$ : x, y의 mean으로 중심(image의 중심)에 해당한다.
 
 ### Normalized Central Moment
 
@@ -36,7 +37,7 @@ $\bar{x},\bar{y}$ : x,y의 mean으로 중심(image의 중심)에 해당한다.
 $$\nu_{pq}= \frac{\mu_{pq}}{\mu_{00}^{\left(1+\frac{p+q}{2}\right)}}$$
 
 
-### OpenCV
+### OpenCV 에서 moment구하기.
 
 OpenCV에서는 `cv2.moment()`에 object의 contour를 넘겨줌으로서 3차까지의 moment 및 관련 수치들을 구할 수 있음.
 
@@ -225,7 +226,80 @@ hull = cv2.convexHull(
 * `clockwise` : orientation으로 반환되는 convexHull을 구성하는 vertex들의 순서를 시계방향으로 할지 반시계방향으로 할지를 결정.
 * `returnPoints` : `True`인 경우, convexHull을 구성하는 vertex들의 좌표들로 구성된 list를 반환하고, `False`인 경우, 입력 argument로 들어온 `points`에서 convexHull에 대응하는 vertex들의 index들을 반환함.
 
-> 파손이 된 부품에서 파손된 위치등을 찾는 경우에는 `convexicty defeat`의 위치를 찾아야 하는 경우가 많다. 이 경우에는 `returnPoints`를 False로 넘겨주어서 contour 중에서 어떤 index의 vertex가 convexHull에 속하는지를 찾고, 이로부터 `convexity defeat등을 찾을 수 있다.
+> 파손이 된 부품에서 파손된 위치등을 찾는 경우에는 `convexicty defeat`의 위치를 찾아야 하는 경우가 많다. 이 경우에는 `returnPoints`를 False로 넘겨주어서 contour 중에서 어떤 index의 vertex가 convexHull에 속하는지를 찾은 후, 이를 `cv2.convexityDefects()`에 contour와 함께 넘겨주어 찾을 수 있음.
+
+## Convexity Defects
+
+`cv2.convexityDefects()`를 통해 찾을 수 있음.
+
+* 반드시 convexHull을 구할 때, `retrunPoints=False`로 주고 구해야함.
+
+```Python
+hull = cv.convexHull(cnt,returnPoints = False)
+defects = cv.convexityDefects(cnt,hull)
+```
+
+반환된 `defects`는 4개의 element를 가지는 vector들의 list임.
+
+각 row에 해당하는 vector들은 다음의 정보로 구성됨.
+
+* start point : contour에서의 index에 해당함. convex hull에서의 시작점.
+* end point : contour에서의 index에 해당함. convex hull에서의 끝점.
+* frathest point : start와 end사이에 있는 convexity defect의 index (contour에서의 index)
+* approximate distance to farthest point.
+
+### example
+
+다음 예제는 convex hull을 이루는 점들은 초록색 선으로 이어서 다각형을 만들고, convexity defeat에는 붉은색의 원으로 표시를 했음.
+
+```Python
+import requests
+import cv2
+import numpy as np
+import matplotlib.pyplot as plt
+
+#os.makedirs('./tmp',exist_ok=True)
+
+url = 'https://raw.githubusercontent.com/dsaint31x/OpenCV_Python_Tutorial/master/images/star.png'
+image_ndarray = np.asarray(bytearray(requests.get(url).content), dtype=np.uint8)
+img = cv2.imdecode(image_ndarray, cv2.IMREAD_UNCHANGED)
+img = cv2.cvtColor(img, cv2.COLOR_BGRA2BGR)
+tmp = img.copy()
+print(img.shape)
+img = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
+
+plt.imshow(img, cmap='gray')
+plt.show()
+
+ret,thresh = cv2.threshold(img,127,255,0)
+contours,hierarchy = cv2.findContours(thresh, 
+                                     cv2.RETR_LIST, 
+                                     cv2.CHAIN_APPROX_SIMPLE)
+
+hull = cv2.convexHull(contours[0],returnPoints = False)
+defects = cv2.convexityDefects(contours[0],hull)
+
+# contours[0] : (244, 1, 2)
+# hull : (12, 1)
+# defects : (4, 1, 4)
+
+for i in range(defects.shape[0]):
+    s,e,f,d = defects[i,0]
+    start = tuple(contours[0][s][0])
+    end   = tuple(contours[0][e][0])
+    far   = tuple(contours[0][f][0]) # 
+    cv2.line(tmp,start,end,[0,255,0],2)
+    cv2.circle(tmp,far,5,[0,0,255],-1)
+
+plt.imshow(tmp[...,::-1])
+plt.xticks([]),plt.yticks([])
+plt.show()    
+```
+
+결과는 다음과 같음.
+
+![](../../img/ch02/star_convexity_defeat.png)
+
 
 ## Checking Convexity
 
@@ -235,6 +309,101 @@ OpenCV는 특정 contour나 curve등이 convex인지 여부를 확인하는 func
 k = cv2.isContourConvex(contours[0])
 print(k)
 ```
+
+## Point Polygon Test
+
+```Python
+cv2.pointPolygonTest(
+    conours, # 대상이되는 object의 contour
+    (50,50), # 확인하고자 하는 point 좌표
+    True # measureDist 옵션. True인 경우 signed distance를 반환. False시 [+1,-1,0]중 하나를 반환.
+    )
+```
+
+특정 point가 object의 contour 내에 존재하는 경우에는 contour와의 거리를 양으로 반환하고, contour 밖에 있는 경우 음의 거리를 반환하여, 특정 point가 특정 object에 속하는지를 확인할 수 있음.
+
+## Match Shapes
+
+object의 contour를 기반으로 object간의 shape가 유사한지 여부를 판정할 수 있음.
+
+OpenCV는 hu-moment를 기반으로 shape의 유사도를 측정하는 `cv2.matchShapes`를 제공함.
+
+```Python
+ret = cv2.matchShapes(
+    cnt1,
+    cnt2,
+    1,  # methods
+    0.0 # 0.0으로 항상 입력.
+    )
+```
+
+해당 방법에 대한 공식은 다음을 참고 : [ShapeMatchMode](https://docs.opencv.org/3.4/d3/dc0/group__imgproc__shape.html#gaf2b97a230b51856d09a2d934b78c015f)
+
+세번째 parameter `method`는 유사도 측정에 사용할 norm을 지정한다.
+
+* `0` : L1-norm을 이용.
+* `1` : L2-norm을 이용.
+* `2` : L3-norm을 이용.
+
+> 즉, `ret`이 작을수록 비슷한 shape임을 의미함.
+
+마지막 parameter는 세번째 parameter에 지정한 method에서 필요한 값을 넣어주기 위해 할당되었지만, 아직 제대로 지원되지 않으므로 `0.0`을 넣어준다.
+
+다음 example은 아래 3개의 그림에서 A와 B의 shape의 차이, A와 C의 차이를 구함.
+
+![](../../img/ch02/match_shape.png)
+
+* A와 B의 차이는 `0.002025592564504297`
+
+* A와 C의 차이는 `0.3269117851861144`
+
+```Python
+import cv2
+import numpy as np
+
+url = 'https://raw.githubusercontent.com/dsaint31x/OpenCV_Python_Tutorial/master/images/star.png'
+image_ndarray = np.asarray(bytearray(requests.get(url).content), dtype=np.uint8)
+img = cv2.imdecode(image_ndarray, cv2.IMREAD_UNCHANGED)
+img = cv2.cvtColor(img, cv2.COLOR_BGRA2GRAY)
+img1 = img.copy()
+
+url = 'https://raw.githubusercontent.com/dsaint31x/OpenCV_Python_Tutorial/master/images/star2.png'
+image_ndarray = np.asarray(bytearray(requests.get(url).content), dtype=np.uint8)
+img = cv2.imdecode(image_ndarray, cv2.IMREAD_UNCHANGED)
+img = cv2.cvtColor(img, cv2.COLOR_BGRA2GRAY)
+img2 = img.copy()
+
+url = 'https://raw.githubusercontent.com/dsaint31x/OpenCV_Python_Tutorial/master/images/rect.png'
+image_ndarray = np.asarray(bytearray(requests.get(url).content), dtype=np.uint8)
+img = cv2.imdecode(image_ndarray, cv2.IMREAD_UNCHANGED)
+img = cv2.cvtColor(img, cv2.COLOR_BGRA2GRAY)
+img3 = img.copy()
+
+assert img1 is not None, "file could not be read, check with os.path.exists()"
+assert img2 is not None, "file could not be read, check with os.path.exists()"
+assert img3 is not None, "file could not be read, check with os.path.exists()"
+
+
+ret, thresh  = cv2.threshold(img1, 127, 255,0)
+ret, thresh2 = cv2.threshold(img2, 127, 255,0)
+ret, thresh3 = cv2.threshold(img3, 127, 255,0)
+
+contours, hierarchy = cv2.findContours(thresh,cv2.RETR_LIST,cv2.CHAIN_APPROX_SIMPLE)
+cnt1 = contours[0]
+
+contours,hierarchy = cv2.findContours(thresh2,2,1)
+cnt2 = contours[0]
+ret = cv2.matchShapes(cnt1,cnt2,1, 0.0)
+print( ret )
+
+contours,hierarchy = cv2.findContours(thresh3,2,1)
+cnt3 = contours[0]
+ret = cv2.matchShapes(cnt1,cnt3,1, 1.0)
+print( ret )
+```
+
+> hu-moment는 translation, rotation and scale에 대해 영향을 크게 받지 않는다. 자세한 건 다음을 참고할 것 : [cv2.HuMoments](https://docs.opencv.org/3.4/d3/dc0/group__imgproc__shape.html#gab001db45c1f1af6cbdbe64df04c4e944)
+
 
 ## Bounding Rectangle
 
@@ -322,7 +491,10 @@ plt.xticks([]),plt.yticks([])
 plt.show()
 ```
 
+![](../../img/ch02/fitting_a_line.png)
+
 ## References
 
-* [opencv's tutorial](https://docs.opencv.org/4.x/dd/d49/tutorial_py_contour_features.html)
+* [OpenCv's tutorial : contour features](https://docs.opencv.org/4.x/dd/d49/tutorial_py_contour_features.html)
+* [OpenCv's tutorial : contour's more functions](https://docs.opencv.org/3.4/d5/d45/tutorial_py_contours_more_functions.html)
 * [image moments](https://en.wikipedia.org/wiki/Image_moment)
