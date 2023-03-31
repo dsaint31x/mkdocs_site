@@ -1,7 +1,7 @@
 # Contour
 
 
-영상에서 **같은 color** 이나 **같은 intensity** 의 **연속된 점으로 구성된 곡선.**
+영상에서 **같은 color** 또는 **같은 intensity** 의 **연속된 점으로 구성된 곡선.**
 
 다음의 분야에서 매우 중요하게 사용되는 tool임.
 
@@ -37,7 +37,7 @@ Binary image에 한정할 경우, contours는
 OpenCV에서 contour를 찾기 위해 제공하는 함수는 cv2.findContour로 사용법은 다음과 같음.
 
 ```Python
-dst, contours, hierarchy = cv2.findContours(
+contours, hierarchy = cv2.findContours(
                             src, 
                             mode, 
                             method, 
@@ -113,13 +113,15 @@ OpenCV에서 contours는 같은 intensity를 가지는 한 object의 shape에 �
 
 전형적으로 contour를 계산하는 방식을 나타내는 예제 코드임.
 
-```
+```Python
 import numpy as np
 import cv2 as cv
 im = cv.imread('test.jpg')
 assert im is not None, "file could not be read, check with os.path.exists()"
+
 imgray = cv.cvtColor(im, cv.COLOR_BGR2GRAY)
 ret, thresh = cv.threshold(imgray, 127, 255, 0)
+
 contours, hierarchy = cv.findContours(thresh, cv.RETR_TREE, cv.CHAIN_APPROX_SIMPLE)
 ```
 
@@ -154,6 +156,7 @@ contours, hierarchy = cv.findContours(thresh, cv.RETR_TREE, cv.CHAIN_APPROX_SIMP
 ![](../../img/ch02/contours_hierarchy_00.png)
 
 ```
+>>> hierarchy
 array([[[ 1, -1, -1, -1],
         [ 2,  0, -1, -1],
         [ 3,  1, -1, -1],
@@ -175,6 +178,7 @@ array([[[ 1, -1, -1, -1],
 ![](../../img/ch02/contours_hierarchy_00.png)
 
 ```
+>>> hierarchy
 array([[[ 1, -1, -1, -1],
         [ 2,  0, -1, -1],
         [-1,  1, -1, -1]]])
@@ -197,6 +201,7 @@ array([[[ 1, -1, -1, -1],
 ![](../../img/ch02/contours_hierarchy_01.png)
 
 ```
+>>> hierarchy
 array([[[ 3, -1,  1, -1],
         [ 2, -1, -1,  0],
         [-1,  1, -1,  0],
@@ -225,9 +230,12 @@ array([[[ 3, -1,  1, -1],
 
 `cv2.RETR_CCOMP`와 같은 예제로 확인해보자. 마찬가지로 주황색의 번호는 OpenCV가 검출한 object(or contour)의 번호로 hierarchy list에서의 index이고, 초록색의 parenthesis로 감싸진 번호는 hierarchy level을 의미한다.
 
-![](../../img/ch02/contours_hierarchy_01.png)
+**Example**
+
+![](../../img/ch02/contours_hierarchy_02.png)
 
 ```
+>>> hierarchy
 array([[[ 7, -1,  1, -1],
         [-1, -1,  2,  0],
         [-1, -1,  3,  1],
