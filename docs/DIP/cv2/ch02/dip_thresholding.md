@@ -62,7 +62,7 @@ Global method 라고 생각하면 된다 (전체 이미지에 대해 하나의 t
 
 ### Example
 
-다음 코드는 gradient image를 생성함.
+다음 코드는 gradient image (위의 그림에서 Original Image)를 생성함.
 
 ```Python
 import numpy as np
@@ -113,9 +113,17 @@ plt.show()
 
 ## Adaptive Thresholding
 
-Global Thresholding은 illumination등이 균일하지 않은 경우에는 좋은 방법이 아니다. 
+> Global Thresholding은 illumination등이 균일하지 않은 경우에는 좋은 방법이 아니다. 
 
-Adaptive thresholding은 image 각 pixel에 대해 이웃하는 작은 구역을 구하고, 이를 이용해 각 pixel 별로 다른 threshold를 적용하는 방식으로 동작하며, images with varying illumination 의 경우 보다 나은 Thresholding을 제공한다.
+Adaptive thresholding은 
+
+* image 각 pixel에 대해 이웃하는 작은 구역을 구하고, 
+* 이를 이용해 각 pixel 별로 다른 threshold를 적용하는 방식
+
+으로 동작하며, 
+
+* images with varying illumination 의 경우 
+* 보다 나은 Thresholding을 제공한다.
 
 OpenCV 에서는 `cv2.adaptiveThreshold` 함수를 통해 제공된다.
 
@@ -130,8 +138,10 @@ cv2.adaptiveThreshold(
 ```
 
 * `adaptive_method` : 어떤 방식을 사용할지를 고름.
-    * `cv2.ADAPTIVE_THRESH_MEAN_C` : block(=neighborhood area라고도 불림)의 mean을 threshold로 사용. $T(x,y) = \mu_\text{block}(x,y) - C$
-    * `cv2.ADAPTIVE_THRESH_GAUSSIAN_C` : neighborhood 들에 대해 Gaussian window 사용한 weighted sum을 구하고 이를 threshold로 사용. $T(x,y) = G* \text{N} (x,y)-C$
+    * `cv2.ADAPTIVE_THRESH_MEAN_C` : block(=neighborhood area라고도 불림)의 mean을 threshold로 사용.  
+    $T(x,y) = \mu_\text{block}(x,y) - C$
+    * `cv2.ADAPTIVE_THRESH_GAUSSIAN_C` : neighborhood 들에 대해 Gaussian window 사용한 weighted sum을 구하고 이를 threshold로 사용.  
+    $T(x,y) = G* \text{N} (x,y)-C$
 * `block_size` : neighborhood area 크기. 3이상의 홀수여야 함.
 * `C` - threshold 구할 때 빼주는 일종의 constant. 
 
@@ -177,7 +187,7 @@ plt.show()
 
 ## Histogram based Thresholding
 
-image의 ^^(intensity) histogram^^ 에서 Threshold을 결정하고 이를 이용하여 Thresholding하는 방법.
+image의 ***(intensity) histogram*** 에서 Threshold을 결정하고 이를 이용하여 Thresholding하는 방법.
 
 * 실제로는 Threshold를 구하기가 쉽진 않음.( 명확하지 않은 히스토그램의 골과 마루, 잡음 등)
 * 크게 다음으로 나뉨.
@@ -207,20 +217,22 @@ image의 ^^(intensity) histogram^^ 에서 Threshold을 결정하고 이를 이�
 
 ### Otsu's thresholding (최대분산비 Thresholing) **
 
-Global method에서 가장 많이 사용하는 방법임.
+Global thresholding 에서 가장 많이 사용하는 방법임.
 
-p-tile, mode thresholding과 달리 statistical property를 이용하여 가장 우수한 global threshold를 알아서 찾아줌.
+* p-tile, mode thresholding과 달리
+* statistical property를 이용하여 
+* 가장 적절한 global threshold를 ^^알아서 찾아줌^^.
 
-> Global threshold를 찾는 것으로 adaptive thresholding에선 사용하기 어렵다.
+> 아쉽지만, Global threshold를 찾는 것으로 adaptive thresholding에선 사용하기 어렵다.
 
 Otsu thresholding은 bimodal image (histogram의 2개의 peak를 가지는 경우를 가르킴)에 가장 적절한 threshold를 찾아준다.
 
 Otsu algorithm은 2개의 class로 나눌 때, 
 
-* 각 class의 ^^`within-class variance`를 최소화하면서 
+* 각 class의 ^^`within-class variance`를 최소화^^ 하면서 
 * 두 class의 `inter-calss variance`는 최대로 
 
-만드는 threshold를 찾는다.
+만드는 ^^threshold를 찾는다^^.
 
 수식으로 표현하면 다음의 `weighted within-class variance`를 최소화하는 $t$를 찾는다.
 
