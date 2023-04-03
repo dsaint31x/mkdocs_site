@@ -1,7 +1,7 @@
 # Propagation Delay (전파지연)
 
-gate 등에서 input이 output에 영향을 주기까지 걸리는 시간을 가르킴.  
-(이상적인 회로 설계와 실제 구현간의 가장 큰 간극.)
+**gate 등에서 input이 output에 영향을 주기까지 걸리는 시간** 을 가르킴.  
+(이상적인 회로 설계와 실제 구현 간의 가장 큰 간극에 해당함.)
 
 > Propagation dealy에 대한 간단한 설명이 있는 URL.
 >   

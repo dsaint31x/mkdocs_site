@@ -67,7 +67,7 @@ cv2_imshow(results)
 
 ![](../../img/ch02/dip_gradient00.png)
 
-## Lawrence Roberts Filter (Cross Filter)
+### Lawrence Roberts Filter (Cross Filter)
 
 1963년 로렌스 로버츠 제안.
 
@@ -93,7 +93,7 @@ results = np.hstack((img,np.abs(x_edge),np.abs(y_edge),np.abs(x_edge)+np.abs(y_e
 cv2_imshow(results)
 ```
 
-## Prewitt Filter
+### Prewitt Filter
 
 주디스 프리윗이 제안
 
@@ -129,7 +129,7 @@ cv2_imshow(results)
 
 ![](../../img/ch02/dip_prewitt_centered_diff.png)
 
-## Sobel Filter
+### Sobel Filter
 
 1968년 Irwin Sobel이 제안
 
@@ -184,7 +184,7 @@ cv2_imshow(results)
 
 ![](../../img/ch02/dip_sobel.png)
 
-## Scharr Filter
+### Scharr Filter
 
 Soble의 단점을 개선함.
 

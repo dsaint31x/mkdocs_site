@@ -26,8 +26,6 @@ Digital Circuit에서의 **Glitch** 는 아주 짧은 시간 동안
 
 앞서 애기한 Noise glitch의 경우, Schmitt trigger 등을 사용하면 해결됨. 
 
-* [Schmitt Trigger](https://dsaint31.tistory.com/entry/CI-Schmitt-trigger) : Hysteresis 를 이용!
-음음
-또는 Differential signaling을 통한 noise를 줄일 수 있음. 
+* [Schmitt Trigger](https://dsaint31.tistory.com/entry/CI-Schmitt-trigger) : Hysteresis 를 이용하거나 Differential signaling을 통해 noise를 줄일 수 있음. 
 
 * [Differential signaling](https://dsaint31.tistory.com/entry/CI-Differential-Signaling-%EC%B0%A8%EB%8F%99%EC%8B%A0%ED%98%B8)

@@ -2,13 +2,20 @@
 
 Tomtem-Pole Output과 달리, Open-collector (or open-drain) output은 여러 개를 같이 연결할 수 있다는 장점을 가짐.
 
-* 또한 `1`에 대한 출력을 5V 이상으로 변경 가능함.
+* 또한 `1`에 대한 출력을 5V 이상으로 변경 가능함 (pull-up resistor를 쓴 경우).
 * Totem-Pole Output보다 높은 current를 처리 가능. (LED 제어 등에 많이 사용됨)
 
+
+## 다음 그림은 Open-collector Output을 보여줌.
 ![open-collector_output](imgs/open_collector_output_pullup_resistor.png)
 
-* `floating` 상태에서 output을 오실로스코프의 probe로 찍을 경우, 아무런 voltage가 나오지를 않는데, 이는 0v를 의미하는게 아닌 probe를 허공에 대고 있는 것을 의미한다. 
-* 도체가 공중에 떠있는 상태인 `floating`은 voltage를 정의할 수 없다.
+* 왼쪽에 보이는 2개의 경우가 pull-up resistor가 없는 경우로 `1`을 출력하지 못함을 보여줌.
+    * `floating` (or `Hi-Z`) 상태에서 output을 오실로스코프의 probe로 찍을 경우, 아무런     voltage가 나오지를 않는데, 이는 0v를 의미하는게 아닌 probe를 허공에 대고 있는 것을 의미한다. 
+    * 도체가 공중에 떠있는 상태인 `floating`은 voltage를 정의할 수 없다.
+* 오른쪽의 박스로 보이는 경우가 pull-up resistor가 있는 경우이며, Open-collector라고 할 경우 대부분 이 경우를 말함.
+    * base에 `0`이 가해질 경우, transistor는 끊긴 상태로 저항이 무한대이므로 대부분의 전압이 transistor에 걸리므로 output은 `1`에 해당하는 출력이 이루어짐.
+    * base에 `1`이 가해질 경우, output은 gnd와 연결되어 `0`에 해당하는 출력이 이루어짐.
+
 
 ## 단점
 * Totem-Pole Output보다 속도가 느림 (pull-up resistor가 낮을 수록 속도가 빠르나, 이 경우 높은 전력소모가 발생.).
