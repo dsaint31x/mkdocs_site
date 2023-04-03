@@ -1,4 +1,4 @@
-# Transistor (Transfer + Register)
+# Transistor (Transe + Register)
 
 오늘날 전자기기에서 주로 사용되는 소자이며, ^^전기회로와 전자회로를 구분짓는 active device^^ 의 대표격인 소자. 
 
