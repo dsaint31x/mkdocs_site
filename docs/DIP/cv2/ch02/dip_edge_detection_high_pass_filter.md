@@ -280,3 +280,6 @@ cv2_imshow(results)
 
 ![](../../img/ch02/dip_laplacian.png)
 
+## References
+
+* [OpenCV's Tutorial: Image Gradients](https://docs.opencv.org/5.x/d5/d0f/tutorial_py_gradients.html)
