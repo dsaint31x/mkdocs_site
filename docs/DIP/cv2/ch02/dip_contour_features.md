@@ -472,6 +472,23 @@ plt.xticks([]),plt.yticks([])
 plt.show()
 ```
 
+위의 코드에서 반환되는 `ellipse`는 다음의 정보를 가지는 tuple임.
+
+```Python
+(
+    (center_x, center_y),
+    (major_axis_length, minor_axis_length),
+    angle_between_x_and_major
+)
+```
+
+* `(center_x, center_y)` : 중점의 x,y coordinate
+* `(major_axis_length, minor_axis_length)` : ellipse의 major axis와 minor aixs의 length
+* `angle` : x-axis와 major axis의 사이각 (CW, degrees)
+
+위의 ellipse 정보로 타원을 그리는 `cv2.ellipse`에 대해 자세한 건 다음 URL을 참조 : [cv2.ellipse](../ch00/dip_0_02.md#drawing-ellipse)
+
+
 ![](../../img/ch02/fitting_ellipse.png)
 
 ## Fitting a Line
