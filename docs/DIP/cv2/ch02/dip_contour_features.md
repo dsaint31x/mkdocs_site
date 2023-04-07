@@ -314,7 +314,7 @@ print(k)
 
 ```Python
 cv2.pointPolygonTest(
-    conours, # 대상이되는 object의 contour
+    conours[0], # 대상이되는 object의 contour
     (50,50), # 확인하고자 하는 point 좌표
     True # measureDist 옵션. True인 경우 signed distance를 반환. False시 [+1,-1,0]중 하나를 반환.
     )
@@ -341,9 +341,9 @@ ret = cv2.matchShapes(
 
 세번째 parameter `method`는 유사도 측정에 사용할 norm을 지정한다.
 
-* `0` : L1-norm을 이용.
-* `1` : L2-norm을 이용.
-* `2` : L3-norm을 이용.
+* `0` : L1을 이용.
+* `1` : L2을 이용.
+* `2` : L3을 이용.
 
 > 즉, `ret`이 작을수록 비슷한 shape임을 의미함.
 
