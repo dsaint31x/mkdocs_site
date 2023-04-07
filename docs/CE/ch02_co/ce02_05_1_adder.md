@@ -30,7 +30,7 @@ full adder들을 순차적으로 연결하여 구현.
 
 ## Carry Look-ahead Adder
 
-$i+1$th bit의 입력 carry (or carry-in)는 다음과 같이 $i$th bit의 입력 bit $A_i,B_i$와 carry0in $C_i$에 의해 결정됨.
+$i+1$ th bit의 입력 carry (or carry-in)는 다음과 같이 $i$ th bit의 입력 bit $A_i,B_i$와 carry-in $C_i$에 의해 결정됨.
 
 $$
 C_{i+1}
@@ -42,9 +42,9 @@ C_{i+1}
 \text{ AND } C_i
 )$$
 
-ripple carry adder의 문제점이 carry들이 순차적으로 입력되는 구조라는 점인데, 다음자리의 carry_in을 계산하려면 현재 자리의 carry_in이 있으면되므로 이를 미리 계산해낼 수 있고,이 경우 맨 첫자리의 carry-in과 모든 자리의 $A,B$를 안다면 모든 자리의 carry_in을 구할 수 있다.
+ripple carry adder의 문제점이 carry들이 순차적으로 입력되는 구조라는 점인데, 다음자리의 carry_in을 계산하려면 현재 자리의 carry-in이 있으면 되므로 이를 미리 계산해낼 수 있고,이 경우 맨 첫자리의 carry-in과 모든 자리의 $A,B$를 안다면 모든 자리의 carry-out을 구할 수 있다.
 
-이를 위해,우선 $i+1$th bit의 입력 carry를 살펴보면 다음과 같은 식이 된다.
+이를 위해,우선 $i+1$ th bit의 입력 carry를 살펴보면 다음과 같은 식이 된다.
 
 $$
 C_{i+2}
@@ -57,10 +57,9 @@ C_{i+2}
 )
 $$
 
-앞서 구한 $C_{i+1}$을 위 식에 대입하면, $i+2$th의 carry-in (=$i+1$th carry-out)을 계산하는데, $i$th의 입력정보만으로 충분함을 확인할 수 있다.
+앞서 구한 $C_{i+1}$을 위 식에 대입하면, $i+2$ th 의 carry-in (=$i+1$ th carry-out)을 계산하는데, $i$ th 의 입력정보만으로 충분함을 확인할 수 있다.
 
 $$
-
 \begin{aligned}C_{i+2}
  =& (A_{i+1}
  \text{ AND } B_{i+1}
@@ -71,7 +70,7 @@ $$
  \text{ AND } C_i
 ) \text{ OR }(B_i
 \text{ AND } C_i
-)])\\
+)]) \\\\
  &\text{ OR }(B_{i+1}
 \text{ AND } [(A_i
  \text{ AND } B_i
