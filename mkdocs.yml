@@ -174,6 +174,8 @@ nav:
     - "OS/operating_system.md"
     - "OS/kernel.md"
     - "OS/console_terminal_shell_kernel.md"
+    - "OS/UNIX.md"
+    - "OS/LINUX.md"
   - "OOP":
     - "OOP and Programming Paradigm":
       - "python/oop/oop_0_00_OOP.md"
