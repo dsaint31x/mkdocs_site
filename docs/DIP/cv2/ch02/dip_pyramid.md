@@ -75,11 +75,15 @@ Laplacian Pyramid는 Gaussian Pyramid로부터 아래 그림과 같이 얻어진
 
 위의 단계를 거꾸로 하면 reconstruction이라고 할 수 있다. 즉, 적은 size의 이미지에서 출발하여 원래 size의 fine scale영상을 만드는 것임. (중간의 difference정보인 Laplacian들을 이용).
 
-![](../../img/ch01/LP-GP.png){width="300"}
+<figure markdown>
+![](../../img/ch01/LP-GP.png){width="600"}
+</figure>
 
 Laplacian Pyramid를 같은 widht, height로 살펴보면 다음과 같다. (상단은 histogram equalization 처리를 해줬고, 아래는 그냥 gray scale로 바꾸어 보여줬다)
 
-![](../../img/ch01/laplacian_pyramids_equalizeHist_gray.png)
+<figure markdown>
+![](../../img/ch01/laplacian_pyramids_equalizeHist_gray.png){width="600"}
+</figure>
 
 * difference image라 잘 보이지 않아 histogram equalization의 처리를 하여 상단에 보여줌.
 * color difference image를 빼서 gray-scale로 바꾸어 보여준게 하단임.
