@@ -70,7 +70,7 @@ $9\times 9$ LoG kernel을 다음 그림에서 보여준다.
 ![](./img/ch10/LoG2.png)
 </figure markdown>
 
-1980년 Marr와 Hildreth에 의해 제안된 LoG의 경우, 계산량 측면에서 분리한 점들이 있어서 직접 사용되기 보다는
+1980년 Marr와 Hildreth에 의해 제안된 LoG의 경우, 계산량 측면에서 불리한 점들이 있어서 직접 사용되기 보다는
 LoG의 approximation들이 보다 많이 사용된다.
 
 가장 대표적인 LoG의 approximation이 바로 Difference of Gaussian (DoG)이며 다음 그림이 DoG를 잘 설명해준다.
