@@ -10,7 +10,7 @@ Linux-like OS이면서 교육용 OS인 Minix에서 Linux의 소스코드가 개�
 
 Linux는 GNU의 General Public License (GPL)을 따르며, GNU의 다양한 S/W의 지원을 받기 때문에 GNU/Linux로 많이 불린다. 실제로 Linux는 Linus Tovals의 Linux kernel과 GNU의 다양한 SW들로 구성된 OS라고 볼 수 있다.
 
-Linux는 다양한 배포판을 가지고 있으며 이들 배포판들 각각이 장단점을 가진다.
+Linux는 다양한 배포판을 가지고 있으며 이들 배포판들은 각각의 장단점을 가짐.
 
 ## 특징
 
@@ -24,6 +24,8 @@ Linux는 다양한 배포판을 가지고 있으며 이들 배포판들 각각�
 
 다양한 배포판을 가진다.
 
-Debian 계열(Mint, Ubuntu 등)과 Redhat 계열로 나누어짐.
+Debian 계열(Debian, Mint, Ubuntu 등)과 Redhat (Redhat, Fedora, CentOS)계열로 나누어짐.
 
-> 개인적으로 Debian계열을 선호하지만, 상업용으로는 보다 Redhat 계열이 많이 보이는 듯 함.
+> 개인적으로 Debian계열을 선호하지만, 상업용으로는 보다 Redhat 계열 (특히 CentOS)이 많이 보이는 듯 함.
+
+사실 server(super computer포함) 와 embeded system, mobile에서 Linux 기반의 OS가 모두 1위를 차지하고 있다. 유일하게 1위가 아닌 곳은 desktop임.
