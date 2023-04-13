@@ -14,7 +14,7 @@
 
 라고 할 수 있음.
 
-`latch`는 주로 **high 레벨에서 기억**이 이루어지며, `flip-flop`의 경우 주로 **rising edge에서 기억**이 이루어지는 버전이 많이 사용됨. 
+`latch`는 주로 **high 레벨에서 기억* 이 이루어지며, `flip-flop`의 경우 주로 **rising edge에서 기억** 이 이루어지는 버전이 많이 사용됨. 
 
 ## `OR` Latch
 
@@ -36,7 +36,7 @@
 
 ***reset 기능을 추가한 latch***. 
 
-![](./img/and_or_latch.png){width="400"}
+![](./img/and_or_latch.png){width="600"}
 
 `OR` Latch에서 reset이 되지 않는 단점을 보완한 것으로 **정보의 기억 및, 기억된 정보의 출력, 기억될 정보의 수정이 가능한 가장 간단한 memory**임.
 
@@ -53,8 +53,9 @@
 |:---:|:---:|:---:|:---:|:---:|
 | 0 | 1 | 1 | 0 | | 
 | 1 | 0 | 0 | 1 | | 
+| 1 | 1 | $\text{memory}$ | $\overline{\text{memory}}$ ||
 | 0 | 0 | 1 | 1 |not intended for use | 
-| 1 | 1 | $\text{memory}$ | $\overline{\text{memory}}$ |not intended for use |
+
 
 * 위 그림은 NAND로 구현한 예만 보여줌.
 *  “디지털회로” 등의 과목에서 NOR등으로 만드는 버전도 다루게 될 것임.
@@ -62,7 +63,7 @@
 흔히 latch라고 하면 `S-R Latch`를 가르킴.
 
 > 초기값 관련한 문제가 디지털 회로등에서 자주 제기된다.  
-> $\overline{set}$과 $\overline{rest}$이 동시에 activation되는 경우는 사용하지 않는다 (not intended for use).
+> $\overline{\text{set}}$과 $\overline{\text{reset}}$이 동시에 activation되는 경우는 사용하지 않는다 (not intended for use).
 
 ## Gated `S-R Latch`
 
@@ -77,7 +78,7 @@ S-R Latch의 $\overline{\text{reset}}$과 $\overline{\text{set}}$의 입력단 �
 
 때문에 다음과 같이 하나의 신호로 받아, 하나는 이를 그대로 입력하고 다른 쪽에는 inverter를 거쳐 입력하는 구조로 만드는게 보다 낫다.  
 
-아래 그림과 같은 latch를 ***D latch***라고 부름.
+아래 그림과 같은 latch를 ***D latch*** 라고 부름.
 
 ![D Latch](img/D-Latch.png)
 
@@ -92,4 +93,4 @@ Memory는 일정기간동안 입력을 받기보다 ^^한 순간의 값을 기�
 
 * 일정기간 동안 입력값이 변할 경우, 어느 값이 기억될지가 알기 어려운 경우가 많기 때문임.
     * $\overline{\text{gate}}$가 active인 기간동안 $D$의 값이 0과 1사이를 왔다갔다 하는 경우를 생각해볼 것.
-* 이 때문에 Latch보다는 ***flip-flop이 보다 많이 이용***된다.
+* 이 때문에 Latch보다는 ***flip-flop이 보다 많이 이용*** 된다.

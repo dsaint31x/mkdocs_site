@@ -8,6 +8,8 @@
 
 ![](./img/kernel_shell.png)
 
+> The kernel is the core of an operating system that manages system resources and provides services to applications and user processes. It is responsible for managing the computer's memory, input/output operations, and scheduling of processes. The kernel also serves as a bridge between the hardware and software components of the computer system. Without the kernel, the computer system would not be able to function properly.
+
 ## 컴퓨터 H/W resource에 대한 interface 제공.
 
 Kernel은 ***User program과 H/W resource 사이에서 이들을 연결*** 해주는 역할을 수행함.
