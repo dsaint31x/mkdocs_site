@@ -32,6 +32,7 @@ num_pixels, ret_img, ret_mask,ret_rect = cv2.floodFill(
 다음은 `flags`를 설정하는 방법에 대한 예제 코드임.
 
 ```Python
+flags = 4 | cv2.FLOODFILL_MASK_ONLY | cv2.FLOODFILL_FIXED_RANGE | (255 << 8)
 ```
 
 ## Example
