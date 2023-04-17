@@ -139,6 +139,7 @@ cv2.GaussianBlur(
     borderType
 )
 ```
+
 - `ksize` : odd number
 - `sigmaX` : 0 일 경우 자동 생성됨.
     
