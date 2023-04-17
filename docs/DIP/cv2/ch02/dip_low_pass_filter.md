@@ -15,8 +15,7 @@ filter란 입력이미지에서
 
 `Spatial domain filter`
 : 결과 영상의 pixel값을 계산하는데, 입력 영상 해당 위치의 픽셀 하나만을 이용하기보다는 ***주변의 pixel들*** 을 값을 이용하는 Filter.  
-(mask혹은 kernel과의 convolution연산을 통해 수행됨)
-
+(mask혹은 kernel과의 convolution연산을 통해 수행됨)  
 > convolution은 다음 url참고 : [Convolution](../etc/dip_convolution.md)
 
 `Frequency domain filter`
@@ -36,7 +35,9 @@ K=n \begin{bmatrix}
 1 & 1 & 1 & ... & 1
 \end{bmatrix}
 $$
+
 where
+
 $$
 n = \begin{cases} \frac{1}{k_\text{w} \times k_\text{h}}  & \text{if normalize =True} \\
 1 & \text{else} \end{cases}
@@ -68,7 +69,9 @@ cv2.boxFilter(
 
 다음 그림은 anchor의 위치를 나타냄.
 
+<figure markdown>
 ![](../../img/ch02/anchor.png){width=600}
+</figure>
 
 OpenCV에서는 `cv2.blur`라는 함수도 제공하는데 이는 normalized box filter라고 할 수 있음.
 
@@ -93,7 +96,9 @@ cv2.blur(
 
 다음 그림은 salt and pepper noise에서 얼마나 median filter가 효과적인지를 보임.
 
+<figure markdown>
 ![](../../img/ch02/salt_n_pepper_median_filter.png)
+</figure>
 
 #### Example
 
