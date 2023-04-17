@@ -28,6 +28,7 @@ where
 convoluton은 cross-correlation과 달리 ^^교환법칙이 성립^^ 하며, impulse response(영상에선 point spread function)와 입력 신호를 이용하여 ***시스템의 response를 구하는 연산*** 임.
 
 * cross-correlation과 달리 입력 함수 중 하나가 reflection이 이루어진다는 차이가 있음.
+* cross-correlation에 대한 보다 자세한 내용은 다음 url을 참고 : [Cross correlation](https://dsaint31.tistory.com/entry/SS-Cross-Correlation)
 
 > 하지만, 이미지 처리에서는 대부분 kernel을 대칭적인 것을 사용하다 보니 cross-correlation과 차이가 없는 경우가 많고, 특히 ML(기계학습)이나 DL(딥러닝)에서 kernel이 이미 상하좌우로 flip하여 입력하면 된다는 가정 하에 convolution의 구현이 실제로는 cross-correlation인 경우가 대다수임.
 
