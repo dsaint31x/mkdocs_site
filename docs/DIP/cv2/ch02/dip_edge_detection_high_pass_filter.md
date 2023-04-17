@@ -157,6 +157,7 @@ cv2.Sobel(src,
           dx, dy
           [, dst[, ksize[, scale[, delta[, borderType]]]]]
           )`
+```
 
 - `src`: input
 - `dx`: x에 대한 미분 차수
