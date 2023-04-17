@@ -25,7 +25,7 @@ image의 spatial frequency domain에서 high frequency 영역을 통과시키는
 
 High pass filter 또는 gradient filter등을 이용함.
 
-- **Filter** 등을 통해 *image의 주요 feature 중 하나인 **edge 검출** * 하는 것을 가르킴.
+- **Filter** 등을 통해 image의 주요 feature 중 하나인 **edge 검출** 하는 것을 가르킴.
 - edge detection은 background와 foreground 를 분리(segmentation)하기 위해 필요한 가장 기본적 작업.
 - object recognization 에서도 기본이 되는 작업.
 - 즉, image recongnization, image segmentation 의 기본이 됨.
@@ -65,7 +65,9 @@ cv2_imshow(results)
 
 위의 코드의 결과는 다음과 같음.
 
+<figure markdown>
 ![](../../img/ch02/dip_gradient00.png)
+</figure>
 
 ### Lawrence Roberts Filter (Cross Filter)
 
@@ -127,7 +129,9 @@ cv2_imshow(results)
 
 위의 코드의 결과는 다음과 같음.
 
+<figure markdown>
 ![](../../img/ch02/dip_prewitt_centered_diff.png)
+</figure>
 
 ### Sobel Filter
 
@@ -142,7 +146,7 @@ Sobel filter의 $3 \times 3$ mask는 다음과 같음.
 
 <figure markdown>
 ![](../../img/ch02/dip_sobel_mask.png)
-<figcaption>출처 : [bsky's blog](https://bskyvision.com/43)</figcaption>
+<figcap>출처 : [bsky's blog](https://bskyvision.com/43)</figcap>
 </figure markdown>
 
 OpenCV에서 제공하는 Sobel filter의 경우, joint Gaussian smoothing과 differentiation operation을 결합하여 구현되어있으며, 다음의 function을 사용함.
@@ -161,7 +165,7 @@ cv2.Sobel(src,
 
 x축과 y축에 가해지는 미분 차수(degree)를 다르게 설정할 수 있으며, kernel size (`ksize`)도 조절가능함.
 
-* [degree 란?](
+* [degree 란?](https://dsaint31.tistory.com/entry/Math-Differential-Equation#Degree)
 
 > $3 \times 3$ kernel에서는 Sobel보다 뒤에 나오는 Scharr filter가 좀 더 나은 성능을 보이는 것으로 알려짐.
 
