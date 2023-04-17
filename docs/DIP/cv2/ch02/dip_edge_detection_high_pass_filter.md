@@ -145,7 +145,7 @@ Sobel filter의 $3 \times 3$ mask는 다음과 같음.
 <figcaption>출처 : [bsky's blog](https://bskyvision.com/43)</figcaption>
 </figure markdown>
 
-OpenCV에서 제공하는 Soble filter의 경우, joint Gaussian smoothing과 differentiation operation을 결합하여 구현되어있으며, 다음의 function을 사용함.
+OpenCV에서 제공하는 Sobel filter의 경우, joint Gaussian smoothing과 differentiation operation을 결합하여 구현되어있으며, 다음의 function을 사용함.
 
 ```Python
 cv2.Sobel(src, 
@@ -159,7 +159,9 @@ cv2.Sobel(src,
 - `dy`: y에 대한 미분 차수
 - `ksize`: Sobel kernel 크기 (1,3,5,7 만 가능)
 
-x축과 y축에 가해지는 미분 차수를 다르게 설정할 수 있으며, kernel size (`ksize`)도 조절가능함.
+x축과 y축에 가해지는 미분 차수(degree)를 다르게 설정할 수 있으며, kernel size (`ksize`)도 조절가능함.
+
+* [degree 란?](
 
 > $3 \times 3$ kernel에서는 Sobel보다 뒤에 나오는 Scharr filter가 좀 더 나은 성능을 보이는 것으로 알려짐.
 
@@ -186,10 +188,10 @@ cv2_imshow(results)
 
 ### Scharr Filter
 
-Soble의 단점을 개선함.
+Sobel의 단점을 개선함.
 
 - opencv에서 전용함수를 제공.
-- Soble과 거의 비슷하나, `ksize` 설정 파라메터가 없음.
+- Sobel과 거의 비슷하나, `ksize` 설정 파라메터가 없음.
 
 ```Python
 import cv2
@@ -246,7 +248,7 @@ $$
 
 OpenCV에서는 `cv2.Laplacian`으로 제공.
 
-* 실제로 각각의 derivate는 Soble deraivatives로 구해짐.
+* 실제로 각각의 derivate는 Sobel deraivatives로 구해짐.
 
 ```Python
 cv2.Laplacian(src, 
