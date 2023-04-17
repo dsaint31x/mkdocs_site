@@ -1,9 +1,10 @@
 # Convolution
 
 > 이 문서에서의 conovlution은 digital image processing등에서의 convolution을 다루고 있음. 
-> signal processing의 discrete convolution에 대한 건 다음 문서를 참고할 것: [Discrete Convolution](https://dsaint31.tistory.com/entry/SS-Discrete-Convolution-Linear-Discrete-Convolution), [Circular Convolution](https://dsaint31.tistory.com/entry/SS-Circular-Convolution)
+> signal processing의 discrete convolution에 대한 건 다음 문서를 참고할 것:  
+> [Discrete Convolution](https://dsaint31.tistory.com/entry/SS-Discrete-Convolution-Linear-Discrete-Convolution), [Circular Convolution](https://dsaint31.tistory.com/entry/SS-Circular-Convolution)
 
-image filtering에서 spatial domain filtering은 주로 **filter** 또는 **kernel** 또는 **window**라고 하는 행렬과 입력 영상의 Convolution으로 이루어짐.
+image filtering에서 spatial domain filtering은 주로 **filter** 또는 **kernel** 또는 **window** 라고 하는 행렬과 입력 영상의 Convolution으로 이루어짐.
 
 > Convolution은 기호 ⊗ or ∗ 등으로 표기되지만 통일된 기호는 없음.
 
