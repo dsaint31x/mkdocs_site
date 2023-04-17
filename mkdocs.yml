@@ -218,10 +218,12 @@ nav:
         - "DIP/cv2/ch02/dip_contour_basic.md"
         - "DIP/cv2/ch02/dip_contour_features.md"
         - "DIP/cv2/ch02/dip_contour_properties.md"
+        - "DIP/cv2/ch02/dip_low_pass_filter.md"
         - "DIP/cv2/ch02/dip_edge_detection_high_pass_filter.md"
         - "DIP/ch10_LoG.md"
       - "etc":
         - "DIP/cv2/etc/floodfill.md"
+        - "DIP/cv2/etc/dip_convolution.md"
     - "Image Feature":
       - "DIP/ch02_01_00_classical_cv.md"
       - "DIP/ch02_01_01_keypoints.md"
