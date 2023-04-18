@@ -1,4 +1,4 @@
-# Compiler Language and Interpreter Lanuage
+# Compiler Language and Interpreter Language
 
 ## Compiler Language
 

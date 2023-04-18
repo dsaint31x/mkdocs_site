@@ -80,7 +80,7 @@ b'a=EA=B0=80b=EB=82=98c=EB=8B=A4'
 
 ## Base64 Encoding
 
-> Quoted Praintable Encoding보다 효율이 좋은 encoding방식으로 역시 email의 첨부파일을 encoding하는데 사용된다.
+> Quoted Printable Encoding보다 효율이 좋은 encoding방식으로 역시 email의 첨부파일을 encoding하는데 사용된다.
 
 Base64는 
 

@@ -14,7 +14,7 @@
 
 라고 할 수 있음.
 
-`latch`는 주로 **high 레벨에서 기억* 이 이루어지며, `flip-flop`의 경우 주로 **rising edge에서 기억** 이 이루어지는 버전이 많이 사용됨. 
+`latch`는 주로 **high 레벨에서 기억** 이 이루어지며, `flip-flop`의 경우 주로 **rising edge에서 기억** 이 이루어지는 버전이 많이 사용됨. 
 
 ## `OR` Latch
 
