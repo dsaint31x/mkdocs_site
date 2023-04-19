@@ -26,7 +26,7 @@ where
 - $f(x,y)$ : original image
 - $g(x,y)$ : output imagewhere
 
-convoluton은 cross-correlation과 달리 ^^교환법칙이 성립^^ 하며, impulse response(영상에선 point spread function)와 입력 신호를 이용하여 ***시스템의 response를 구하는 연산*** 임.
+convolution은 cross-correlation과 달리 ^^교환법칙이 성립^^ 하며, impulse response(영상에선 point spread function)와 입력 신호를 이용하여 ***시스템의 response를 구하는 연산*** 임.
 
 * cross-correlation과 달리 입력 함수 중 하나가 reflection이 이루어진다는 차이가 있음.
 * cross-correlation에 대한 보다 자세한 내용은 다음 url을 참고 : [Cross correlation](https://dsaint31.tistory.com/entry/SS-Cross-Correlation)

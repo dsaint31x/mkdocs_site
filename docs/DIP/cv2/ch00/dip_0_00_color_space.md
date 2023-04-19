@@ -241,8 +241,8 @@ $$
 아래의 공식과 같으나 `cv2.cvtColor`등을 사용하길 권한다. (대략적인 값의 의미에 대해 이해하는 용도로 읽어봐도 충분하다.)
 
 $$\begin{aligned}
-\text{R} = 1.00000\text{Y}  + 1.40200 \text{Cr} 
-\text{G} = 1.00000\text{Y}  - 0.34414 \text{Cb} - 0.71414 \text{Cr} 
+\text{R} = 1.00000\text{Y}  + 1.40200 \text{Cr} \\
+\text{G} = 1.00000\text{Y}  - 0.34414 \text{Cb} - 0.71414 \text{Cr} \\
 \text{B} = 1.00000\text{Y}  + 1.77200 \text{Cb}
 \end{aligned}$$
 
@@ -268,7 +268,7 @@ print(f'bright: {bright_yuv}')
 
 결과는 다음과 같음.
 
-```
+```Json
 dark:   [[[  0 128 128]]]
 middle: [[[127 128 128]]]
 bright: [[[255 128 128]]]
