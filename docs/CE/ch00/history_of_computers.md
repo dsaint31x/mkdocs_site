@@ -110,12 +110,14 @@
 * data와 program의 저장을 담당하는 memory (storage를 포함)
 * data를 program에 따라 처리를 담당하는 CPU (`Control Unit`과 `ALU`등으로 구성됨.)
 
-Neumann은 memory(기억장치)에 컴퓨터의 instruction들과 data들을 함께 저장하는 `stored program` 방식을 1946년에 제안했고, `EDVAC`이 이를 구현했음. 
+Neumann은 memory(기억장치)에 컴퓨터의 instruction들과 data들을 함께 저장하는 `stored program` 방식을 1946년에 제안했고, `EDVAC`이 이를 구현했음 (`EDSAC`이 먼저 이를 구현했으나 `EDVAC`관련 보고서에서 stored program computer architecture에 대한 언급이 등장함). 
 
 * data와 program을 동일한 방식으로 memory에 저장하고, 동일한 방식으로 처리.
 * 실행되는 program은 우선 main memory에 적재되어야 함.
 
-> data와 program이 저장되는 memory가 von Neumann architecture에선 동일하여 bottleneck 현상이라는 단점을 가짐. 이를 분리시킨 구조인 Havard architecture도 존재함. 이 경우, program과 data에 동시에 접근이 가능하다는 장점을 가지지만, 분리된 bus와 memory가 필요하여 보다 복잡한 구성이 요구됨 (현대 컴퓨터에선 CPU 내부에선 Havard architecture를 적용하고, 외부는 von Neumannd architeture를 적용한 구조를 채택한 경우가 많음).
+> data와 program이 저장되는 memory가 von Neumann architecture에선 동일하여 bottleneck 현상이라는 단점을 가짐.  
+> 이를 분리시킨 구조인 Havard architecture도 존재함. 이 경우, program과 data에 동시에 접근이 가능하다는 장점을 가지지만, 분리된 bus와 memory가 필요하여 보다 복잡한 구성이 요구됨.  
+> 현대 컴퓨터에선 CPU 내부에선 Havard architecture를 적용하고, 외부는 von Neumann architeture를 적용한 구조를 채택한 경우가 많음.
 
 ^^EDVAC (or EDSAC) 이후, 이를 기점으로 `Software`라는 개념이 등장함!^^
 
@@ -160,9 +162,9 @@ stored program architecture 이전에는 hard wired 방식으로 computer가 수
         * 한 프로그램의 수행이 끝나면, 사람이 이를 확인하고 다음 수행할 프로그램을 전달해주는 형태임.
 * `machine language`와 `assembler`가 이용됨.
 
-> `mutliprogramming`과 비슷한 개념이 `multitasking`임. 
-> 하나의 장비에서 여러 프로그램이 동시에 수행을 목표로 하기보다는 CPU의 idle time을 줄이기 위해 도입된 multiprogrmming과 달리, multitasking은 하나의 resource를 여러 process들이 공유하는 개념으로 동시에 수행되는 것을 목표로 하고 있어서 multiprogramming의 논리적인 확장이라고 볼 수 있다.  
-사실 resource에서 가장 중요한 것이 CPU이고, 어찌 보면 유사한 개념이지만, multitasking은 round-robin sheduling algorithm과 같은 ^^스케쥴링 알고리즘이 multiprogramming에 보다 추가^^ 된 것이며 여러 task를 동시에 수행시키기 위한 기술(사실은 그렇게 느껴지게 하기 위한 기술)이다. 반면, multiprogramming이 오직 단일 CPU의 idle time을 줄이기 위한 context changing에만 초점을 둔 것으로 여러 작업이 동시에 실행되는 것을 보장하지 않는다.  
+> `multi-programming`과 비슷한 개념이 `multi-tasking`임. 
+> 하나의 장비에서 여러 프로그램이 동시에 수행을 목표로 하기보다는 ^^CPU의 idle time을 줄이기 위해 도입된 multi-progromming^^ 과 달리, ^^`multi-tasking`은 하나의 resource를 여러 process들이 공유하는 개념으로 동시에 수행되는 것을 목표^^ 로 하고 있어서 ^^multi-programming의 논리적인 확장^^ 이라고 볼 수 있다.  
+사실 resource에서 가장 중요한 것이 CPU이고, 어찌 보면 유사한 개념이지만, multitasking은 round-robin sheduling algorithm과 같은 ^^스케쥴링 알고리즘이 multi-programming에 보다 추가^^ 된 것이며 여러 task를 동시에 수행시키기 위한 기술(사실은 그렇게 느껴지게 하기 위한 기술)이다. 반면, multi-programming이 오직 단일 CPU의 idle time을 줄이기 위한 context changing에만 초점을 둔 것으로 여러 작업이 동시에 실행되는 것을 보장하지 않는다.  
 >  
 > 결국, `multitasking`은 ^^multi-programming에 multi-processing과 time-sharing 등의 개념 등이 보다 추가^^ 된 것이다.  
 > 보다 자세한 건 다음 url을 참고하라. [Difference Between Multiprogramming and Multitasking](https://www.tutorialspoint.com/difference-between-multiprogramming-and-multitasking)
