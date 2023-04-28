@@ -200,7 +200,7 @@ See below example for a shift of `(150,50)`:
     
 - Result
     
-    ![Untitled](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/fc055368-7910-4a17-a4ea-8ec312dd0a52/Untitled.png)
+    ![Untitled](../../img/ch02/translation.png)
     
 
 ## Rotation
@@ -292,7 +292,7 @@ Check below example which rotates the image by 30 degree with respect
     [[  0.8660254    0.5        -44.78872855]
      [ -0.5          0.8660254  132.84618943]]
     
-    ![Untitled](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/1cc0d5d0-7009-4988-86c2-5cfa21c327aa/Untitled.png)
+    ![Untitled](../../img/ch02/rotation.png)
     
 
 ---
@@ -416,14 +416,7 @@ Slicing an array is just taking the array values within particular index range.
     
 - result
     
-    ![Untitled](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/f9d7a10b-55ee-4a19-81b3-ae4613bf3ef9/Untitled.png)
-    
-    ![Untitled](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/f9550207-db9e-4092-b7c5-81e8cfb1159d/Untitled.png)
-    
-    ![Untitled](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/c68a7de2-f257-446e-9fbc-18f06695cc79/Untitled.png)
-    
-    ![Untitled](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/52d08d87-0683-43fb-9976-d8a780aacbc7/Untitled.png)
-    
+    ![Untitled](../../img/ch02/crop.png)    
 
 ---
 
@@ -475,7 +468,7 @@ Check below example, and also look at the points I selected (which are marked in
     
 - result
     
-    ![Untitled](affine_result.png)
+    ![Untitled](../../img/ch02/affine_result.png)
     
 
 ### The example for the Affine Transformation
@@ -529,8 +522,7 @@ for the details : [Affine Transform](https://www.notion.so/Affine-Transform-ed7b
 For perspective transformation, you need a $3\times3$ transformation matrix.
 
 $$
-\begin{bmatrix} w\hat{x} \\ w\hat{y} \\ w \end{bmatrix}
-=
+\begin{bmatrix} w\hat{x} \\ w\hat{y} \\ w \end{bmatrix}=
 \begin{bmatrix}
 a & b & c \\
 d & e & f \\
