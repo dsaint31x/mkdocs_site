@@ -68,7 +68,8 @@
         - **Rotation about the origin.**
     
     > Translation(이동)은 Homogeniety(동차성)을 만족하지 못함 → linear transformation이 아님. ← Homogeneous coordinate사용시 linearity를 가지게 되어 matrix곱만으로 처리 가능해짐.
-    > 
+
+
 - **Affine** transformation :
     - Linear transformation + **Translation**.
         - DoF : 6
