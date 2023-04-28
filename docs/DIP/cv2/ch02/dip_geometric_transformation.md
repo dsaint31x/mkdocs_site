@@ -1,6 +1,6 @@
-# **Geometric Transformations of Images**
+# Geometric Transformations of Images
 
-## **Goals**
+## Goals
 
 - Learn to apply different ***geometric transformation*** to images like
     - translation,
@@ -8,7 +8,7 @@
     - affine transformation etc.
 - You will see these functions: `cv2.getPerspectiveTransform`
 
-# **Transformations**
+## Transformations
 
 > [***Transformation***](https://www.notion.so/1-8-Introduction-to-Linear-Transformations-61b0a5ff0bc747b6ba1ef9aca6168fac) 이란?
 > 
@@ -32,82 +32,86 @@
 
 [Computer Vision - Algorithms and Applications](https://www.semanticscholar.org/paper/Computer-Vision-Algorithms-and-Applications-Szeliski/4282a344671189e17c9c9e00e329fe2d0fa71769/figure/263)
 
-- **Rigid-body(강체)** transformation :
-    - ***shape(형태),*** ***size(크기)*** and ***angle(각)*** are preserved.
-        - DoF : 3 → 2쌍 이상의 match되는 점(=4개의 값으로 갯수가 3보다 크니 충분함)이 필요.
-    - i.e.,
-        - **Translation**,
-        - **Rotation**, and
-        - **Identity**
-    - It is called **Euclidean** transformation.
-        
-        $$
-        \begin{bmatrix} x^\prime \\ y^\prime \end{bmatrix}=\begin{bmatrix} \cos \theta & -\sin\theta  \\ \sin\theta & \cos\theta  \end{bmatrix}\begin{bmatrix} x \\ y \end{bmatrix}+ \begin{bmatrix} c \\ d \end{bmatrix}
-        $$
-        
-        $$\begin{bmatrix} x^\prime \\ y^\prime \\1\end{bmatrix}=\begin{bmatrix} \cos \theta & -\sin\theta &c \\ \sin\theta & \cos\theta &d \\0 & 0 & 1\end{bmatrix}\begin{bmatrix} x \\ y \\1\end{bmatrix}
-        $$
-        
-    - `cv2.estimateRigidTransform()` 을 통해 2쌍 이상의 match되는 점들로부터 변환 matrix를 구함. (실제론 affine transform matrix를 구해줌) ← [detail](https://docs.opencv.org/2.4.13.2/modules/video/doc/motion_analysis_and_object_tracking.html#estimaterigidtransform)
+### **Rigid-body(강체)** transformation :
+
+- ***shape(형태),*** ***size(크기)*** and ***angle(각)*** are preserved.
+    - DoF : 3 → 2쌍 이상의 match되는 점(=4개의 값으로 갯수가 3보다 크니 충분함)이 필요.
+- i.e.,
+    - **Translation**,
+    - **Rotation**, and
+    - **Identity**
+- It is called **Euclidean** transformation.
     
-- **Similarity** transformation (or similitudes, 유사변환, 닮은변환) :
-    - **Rigid-body** transformation + (Isotropic) **Scaling**
-        - DoF : 4 (회전각, x,y축의 translation, scaling factor)
-        - 2쌍 이상의 match되는 점이 있어야 파라메터 구할 수 있음.
-    - ***angle*** is preserved but
-    - ***size** can be changed*. (확대/축소 때문에)
-    - i.e.,
-        - **(Isotropic) Scaling**
-    - `cv2.estimateRigidTransform()` 을 통해 2쌍 이상의 match되는 점들로부터 변환 matrix를 구함. (실제론 affine transform matrix를 구해줌) ← [detail](https://docs.opencv.org/2.4.13.2/modules/video/doc/motion_analysis_and_object_tracking.html#estimaterigidtransform)
-- [**Linear** transformation](https://www.notion.so/1-8-Introduction-to-Linear-Transformations-61b0a5ff0bc747b6ba1ef9aca6168fac) :
-    - *Function* to mapping on the vector space.
-    - It specifies
-        - **homogeniety** and
-        - **additivity**.
-    - i.e.,
-        - **Scaling (isotropic scaling 포함)**,
-        - **Shear**,
-        - **Reflection**, and
-        - **Rotation about the origin.**
+    $$
+    \begin{bmatrix} x^\prime \\ y^\prime \end{bmatrix}=\begin{bmatrix} \cos \theta & -\sin\theta  \\ \sin\theta & \cos\theta  \end{bmatrix}\begin{bmatrix} x \\ y \end{bmatrix}+ \begin{bmatrix} c \\ d \end{bmatrix}
+    $$
     
-    > Translation(이동)은 Homogeniety(동차성)을 만족하지 못함 → linear transformation이 아님. ← Homogeneous coordinate사용시 linearity를 가지게 되어 matrix곱만으로 처리 가능해짐.
+    $$\begin{bmatrix} x^\prime \\ y^\prime \\1\end{bmatrix}=\begin{bmatrix} \cos \theta & -\sin\theta &c \\ \sin\theta & \cos\theta &d \\0 & 0 & 1\end{bmatrix}\begin{bmatrix} x \\ y \\1\end{bmatrix}
+    $$
+    
+- `cv2.estimateRigidTransform()` 을 통해 2쌍 이상의 match되는 점들로부터 변환 matrix를 구함. (실제론 affine transform matrix를 구해줌) ← [detail](https://docs.opencv.org/2.4.13.2/modules/video/doc/motion_analysis_and_object_tracking.html#estimaterigidtransform)
+    
+### **Similarity** transformation (or similitudes, 유사변환, 닮은변환) :
+
+- **Rigid-body** transformation + (Isotropic) **Scaling**
+    - DoF : 4 (회전각, x,y축의 translation, scaling factor)
+    - 2쌍 이상의 match되는 점이 있어야 파라메터 구할 수 있음.
+- ***angle*** is preserved but
+- ***size** can be changed*. (확대/축소 때문에)
+- i.e.,
+    - **(Isotropic) Scaling**
+- `cv2.estimateRigidTransform()` 을 통해 2쌍 이상의 match되는 점들로부터 변환 matrix를 구함. (실제론 affine transform matrix를 구해줌) ← [detail](https://docs.opencv.org/2.4.13.2/modules/video/doc/motion_analysis_and_object_tracking.html#estimaterigidtransform)
+
+### 참고 : [**Linear** transformation](https://www.notion.so/1-8-Introduction-to-Linear-Transformations-61b0a5ff0bc747b6ba1ef9aca6168fac) :
+
+- *Function* to mapping on the vector space.
+- It specifies
+    - **homogeniety** and
+    - **additivity**.
+- i.e.,
+    - **Scaling (isotropic scaling 포함)**,
+    - **Shear**,
+    - **Reflection**, and
+    - **Rotation about the origin.**
+
+> Translation(이동)은 Homogeniety(동차성)을 만족하지 못함 → linear transformation이 아님. ← Homogeneous coordinate사용시 linearity를 가지게 되어 matrix곱만으로 처리 가능해짐.
 
 
-- **Affine** transformation :
-    - Linear transformation + **Translation**.
-        - DoF : 6
-        - 3쌍의 match되는 점들이 있어야 standard matrix를 결정할 수 있음.← OpenCv에서는 $2 \times 3$ matrix로 처리됨.      
-        - $\begin{bmatrix} x^\prime \\ y^\prime \\1\end{bmatrix}=\begin{bmatrix} a & b &e \\ c & d &f\\0 & 0 & 1\end{bmatrix}\begin{bmatrix} x \\ y \\1\end{bmatrix}$        
-    - Function between affine spaces which preserves **points**, **straight lines** and **planes**.
-    - 선들의 평행성이 보장된다. → ***임의의 평면이 임의의 평면***으로 ***평행성을 보존***하면서 매핑됨.
+### **Affine** transformation :
 
-참고
+- Linear transformation + **Translation**.
+    - DoF : 6
+    - 3쌍의 match되는 점들이 있어야 standard matrix를 결정할 수 있음.← OpenCv에서는 $2 \times 3$ matrix로 처리됨.      
+    - $\begin{bmatrix} x^\prime \\ y^\prime \\1\end{bmatrix}=\begin{bmatrix} a & b &e \\ c & d &f\\0 & 0 & 1\end{bmatrix}\begin{bmatrix} x \\ y \\1\end{bmatrix}$        
+- Function between affine spaces which preserves **points**, **straight lines** and **planes**.
+- 선들의 평행성이 보장된다. → ***임의의 평면이 임의의 평면***으로 ***평행성을 보존***하면서 매핑됨.
+
+**참고**
 
 * ![Untitled](../../img/ch02/affine_transform.png)
-*   `cv2.getAffineTransform()` 을 통해 3쌍의 match되는 점을 통해 변환matrix를 구할 수 있음.
+*  `cv2.getAffineTransform()` 을 통해 3쌍의 match되는 점을 통해 변환matrix를 구할 수 있음.
     * `cv2.invertAffineTransform()` 를 통해 inverse matrix도 구할 수 있음.
 
 
-- **Perspective** transformation (원근변환) :
-    - Affine transformation w/o the property to keep parallel lines.
-        - 선은 변환 후에도 선으로 유지됨.
-        - 단, 선의 평행성은 유지가 보장되지 않음.
-        - 임의의 평면이 임의의 평면으로 평행성을 보존하지 않고 매핑됨.
-    - 3D 공간의 입체적인 물체를 평면에 투영하는데 사용되며 원근감이 표현됨.
-        - DoF : 8 ($3\times 3$ matrix이나 homogeneous coordinate에서 마지막 component가 1로 고정이나 다름이 없기 때문에, matrix의 3행 3열의 entry가 1이라는 constant value을 가지게 되어 9-1로 8 DoF를 가짐.)
-    - Perspective projection, Projective transformation, Homograpy 라고도 불림.
-        
-        <aside>
-        💡 Homography를 직관적으로 이해하기 위한 한 좋은 방법
-        
-        - 2D 평면에서 임의의 사각형을 임의의 사각형으로 매핑시킬 수 있는 변환이 homography 라고 생각할 서.
-        - 어떤 planer surface 촬영대상이 서로 다른 위치의 카메라로 촬영되어 image A, image B로 투영된 경우, 이 A와 B사이의 점들의 위치 관계를 homography로 표현가능함.
-        - 평면물체의 2D 이미지 변환관계를 설명함.
-        - Projective transformation과 homography는 같은 말임.
-        </aside>
-        
-    - `cv2.getPerspectiveTransform()` 를 통해 *4쌍의 match되는 점* 으로부터 변환행렬 구해줌.
-    `cv2.findHomography()`는 *4쌍 이상의 match되는 점들* 부터 변환행렬을 구해줌(approximate method로 , fitting, RANSAC, LMedS중 선택가능)
+### **Perspective** transformation (원근변환) :
+
+- Affine transformation w/o the property to keep parallel lines.
+    - 선은 변환 후에도 선으로 유지됨.
+    - 단, 선의 평행성은 유지가 보장되지 않음.
+    - 임의의 평면이 임의의 평면으로 평행성을 보존하지 않고 매핑됨.
+- 3D 공간의 입체적인 물체를 평면에 투영하는데 사용되며 원근감이 표현됨.
+    - DoF : 8 ($3\times 3$ matrix이나 homogeneous coordinate에서 마지막 component가 1로 고정이나 다름이 없기 때문에, matrix의 3행 3열의 entry가 1이라는 constant value을 가지게 되어 9-1로 8 DoF를 가짐.)
+- Perspective projection, Projective transformation, Homograpy 라고도 불림.
+    
+> 💡 Homography를 직관적으로 이해하기 위한 한 좋은 방법
+>
+    - 2D 평면에서 임의의 사각형을 임의의 사각형으로 매핑시킬 수 있는 변환이 homography 라고 생각할 서.
+    - 어떤 planer surface 촬영대상이 서로 다른 위치의 카메라로 촬영되어 image A, image B로 투영된 경우, 이 A와 B사이의 점들의 위치 관계를 homography로 표현가능함.
+    - 평면물체의 2D 이미지 변환관계를 설명함.
+    - Projective transformation과 homography는 같은 말임.
+    
+- `cv2.getPerspectiveTransform()` 를 통해 *4쌍의 match되는 점* 으로부터 변환행렬 구해줌.
+`cv2.findHomography()`는 *4쌍 이상의 match되는 점들* 부터 변환행렬을 구해줌(approximate method로 , fitting, RANSAC, LMedS중 선택가능)
 
 ---
 
@@ -310,7 +314,7 @@ OpenCV comes with a function `cv2.resize()` for this purpose.
 
 The **size** of the image can be specified manually, or you can specify **the scaling factor**.
 
-Different ***interpolation method**s* are used.
+Different _interpolation methods_ are used.
 
 - Preferable interpolation methods are `cv2.INTER_AREA` for **shrinking** and
 - `cv2.INTER_CUBIC` (slow) & `cv2.INTER_LINEAR` for **zooming**.
@@ -365,10 +369,10 @@ You can resize an input image either of above methods:
     
 - result
 
-```    
+    ```    
     original dimension : (300, 451, 3)
     modified dimension : (600, 902)
-```    
+    ```    
 
 ## Review : Cropping
 
@@ -533,7 +537,7 @@ $$
 
 **Straight lines will remain straight** even after the transformation.
 
-- Perspective(원근법) 변환은 선의 성질만 유지(***직선***은 변환 후에도 ***직선***)
+- Perspective(원근법) 변환은 선의 성질만 유지( ***직선*** 은 변환 후에도 ***직선*** )
 - 단, 선의 평행성은 유지가 되지 않음
 
 To find **Perspective Transformation Matrix**, we need **4 points** on the input image and corresponding points on the output image.
@@ -602,12 +606,12 @@ See the code below:
     
 - result
 
-```
+    ```
     <class 'numpy.ndarray'>
     [[-2.02153837e+00 -1.02691611e+00  2.04001743e+03]
      [-2.24880859e-02 -3.30149532e+00  3.31389904e+03]
      [-2.62496544e-04 -1.74594051e-03  1.00000000e+00]]
-```
+    ```
 
     ![Untitled](../../img/ch02/perspective_result.png)
     
