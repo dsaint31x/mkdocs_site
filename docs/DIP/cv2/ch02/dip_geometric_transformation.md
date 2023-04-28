@@ -42,7 +42,10 @@
     - It is called **Euclidean** transformation.
         
         $$
-        \begin{bmatrix} x^\prime \\ y^\prime \end{bmatrix}=\begin{bmatrix} \cos \theta & -\sin\theta  \\ \sin\theta & \cos\theta  \end{bmatrix}\begin{bmatrix} x \\ y \end{bmatrix}+ \begin{bmatrix} c \\ d \end{bmatrix}\\ \\ \begin{bmatrix} x^\prime \\ y^\prime \\1\end{bmatrix}=\begin{bmatrix} \cos \theta & -\sin\theta &c \\ \sin\theta & \cos\theta &d \\0 & 0 & 1\end{bmatrix}\begin{bmatrix} x \\ y \\1\end{bmatrix}
+        \begin{bmatrix} x^\prime \\ y^\prime \end{bmatrix}=\begin{bmatrix} \cos \theta & -\sin\theta  \\ \sin\theta & \cos\theta  \end{bmatrix}\begin{bmatrix} x \\ y \end{bmatrix}+ \begin{bmatrix} c \\ d \end{bmatrix}
+        $$
+        
+        $$\begin{bmatrix} x^\prime \\ y^\prime \\1\end{bmatrix}=\begin{bmatrix} \cos \theta & -\sin\theta &c \\ \sin\theta & \cos\theta &d \\0 & 0 & 1\end{bmatrix}\begin{bmatrix} x \\ y \\1\end{bmatrix}
         $$
         
     - `cv2.estimateRigidTransform()` 을 통해 2쌍 이상의 match되는 점들로부터 변환 matrix를 구함. (실제론 affine transform matrix를 구해줌) ← [detail](https://docs.opencv.org/2.4.13.2/modules/video/doc/motion_analysis_and_object_tracking.html#estimaterigidtransform)
