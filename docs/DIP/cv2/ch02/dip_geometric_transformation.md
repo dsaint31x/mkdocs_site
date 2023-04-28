@@ -42,7 +42,7 @@
     - It is called **Euclidean** transformation.
         
         $$
-        \begin{bmatrix} x^\prime \\ y^\prime \end{bmatrix}=\begin{bmatrix} \cos \theta & -\sin\theta  \\ \sin\theta & \cos\theta  \end{bmatrix}\begin{bmatrix} x \\ y \end{bmatrix}+ \begin{bmatrix} c \\ d \end{bmatrix}\\\begin{bmatrix} x^\prime \\ y^\prime \\1\end{bmatrix}=\begin{bmatrix} \cos \theta & -\sin\theta &c \\ \sin\theta & \cos\theta &d \\0 & 0 & 1\end{bmatrix}\begin{bmatrix} x \\ y \\1\end{bmatrix}
+        \begin{bmatrix} x^\prime \\ y^\prime \end{bmatrix}=\begin{bmatrix} \cos \theta & -\sin\theta  \\ \sin\theta & \cos\theta  \end{bmatrix}\begin{bmatrix} x \\ y \end{bmatrix}+ \begin{bmatrix} c \\ d \end{bmatrix}\\ \\ \begin{bmatrix} x^\prime \\ y^\prime \\1\end{bmatrix}=\begin{bmatrix} \cos \theta & -\sin\theta &c \\ \sin\theta & \cos\theta &d \\0 & 0 & 1\end{bmatrix}\begin{bmatrix} x \\ y \\1\end{bmatrix}
         $$
         
     - `cv2.estimateRigidTransform()` 을 통해 2쌍 이상의 match되는 점들로부터 변환 matrix를 구함. (실제론 affine transform matrix를 구해줌) ← [detail](https://docs.opencv.org/2.4.13.2/modules/video/doc/motion_analysis_and_object_tracking.html#estimaterigidtransform)
@@ -212,20 +212,15 @@ M = \begin{bmatrix}
 \end{bmatrix}
 $$
 
-- **꼬마**가 **신 신고**
+- **꼬마** 가 **신 신고**
 
 But OpenCV provides **scaled rotation** with **adjustable center of rotation** so that you can rotate at any location you prefer.
 
 Modified transformation matrix is given by
 
-$$
-\begin{bmatrix}
-\alpha &  \beta & (1- \alpha )  \cdot \text{center.x} - \beta \cdot \text{center.y} \\
-
--\beta & \alpha & \beta \cdot \text{center.x} + (1- \alpha ) \cdot \text{center.y}
-
-\end{bmatrix}
-$$
+$$\begin{bmatrix}
+\alpha &  \beta & (1- \alpha )  \cdot \text{center.x} - \beta \cdot \text{center.y} \\ -\beta & \alpha & \beta \cdot \text{center.x} + (1- \alpha ) \cdot \text{center.y}
+\end{bmatrix}$$
 
 where:
 
@@ -284,10 +279,12 @@ Check below example which rotates the image by 30 degree with respect
     ```
     
 - result
-    
+
+    ```
     [[  0.8660254    0.5        -44.78872855]
      [ -0.5          0.8660254  132.84618943]]
-    
+    ```
+
     ![Untitled](../../img/ch02/rotation.png)
     
 
