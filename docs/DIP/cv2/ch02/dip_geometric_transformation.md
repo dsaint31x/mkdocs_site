@@ -10,7 +10,7 @@
 
 # **Transformations**
 
-> ***[Transformation](https://www.notion.so/1-8-Introduction-to-Linear-Transformations-61b0a5ff0bc747b6ba1ef9aca6168fac)***이란?
+> [***Transformation***](https://www.notion.so/1-8-Introduction-to-Linear-Transformations-61b0a5ff0bc747b6ba1ef9aca6168fac) 이란?
 > 
 > 
 > The **function** to convert(map) an specific coordinate $\textbf{x}$ into other coordinate system $\textbf{x}^\prime$.
@@ -56,7 +56,7 @@
     - i.e.,
         - **(Isotropic) Scaling**
     - `cv2.estimateRigidTransform()` 을 통해 2쌍 이상의 match되는 점들로부터 변환 matrix를 구함. (실제론 affine transform matrix를 구해줌) ← [detail](https://docs.opencv.org/2.4.13.2/modules/video/doc/motion_analysis_and_object_tracking.html#estimaterigidtransform)
-- **[Linear** transformation](https://www.notion.so/1-8-Introduction-to-Linear-Transformations-61b0a5ff0bc747b6ba1ef9aca6168fac) :
+- [**Linear** transformation](https://www.notion.so/1-8-Introduction-to-Linear-Transformations-61b0a5ff0bc747b6ba1ef9aca6168fac) :
     - *Function* to mapping on the vector space.
     - It specifies
         - **homogeniety** and
@@ -74,9 +74,9 @@
         - DoF : 6
         - 3쌍의 match되는 점들이 있어야 standard matrix를 결정할 수 있음.
         
-        $$
-        \begin{bmatrix} x^\prime \\ y^\prime \\1\end{bmatrix}=\begin{bmatrix} a & b &e \\ c & d &f\\0 & 0 & 1\end{bmatrix}\begin{bmatrix} x \\ y \\1\end{bmatrix}
-        $$
+$$
+\begin{bmatrix} x^\prime \\ y^\prime \\1\end{bmatrix}=\begin{bmatrix} a & b &e \\ c & d &f\\0 & 0 & 1\end{bmatrix}\begin{bmatrix} x \\ y \\1\end{bmatrix}
+$$
         
         ← OpenCv에서는 $2 \times 3$ matrix로 처리됨.
         
@@ -106,8 +106,8 @@
         - Projective transformation과 homography는 같은 말임.
         </aside>
         
-    - `cv2.getPerspectiveTransform()` 를 통해 *4쌍의 match되는 점*으로부터 변환행렬 구해줌.
-    `cv2.findHomography()`는 *4쌍 이상의 match되는 점*들부터 변환행렬을 구해줌(approximate method로 , fitting, RANSAC, LMedS중 선택가능)
+    - `cv2.getPerspectiveTransform()` 를 통해 *4쌍의 match되는 점* 으로부터 변환행렬 구해줌.
+    `cv2.findHomography()`는 *4쌍 이상의 match되는 점들* 부터 변환행렬을 구해줌(approximate method로 , fitting, RANSAC, LMedS중 선택가능)
 
 ---
 
@@ -367,10 +367,11 @@ You can resize an input image either of above methods:
     ```
     
 - result
-    
+
+```    
     original dimension : (300, 451, 3)
     modified dimension : (600, 902)
-    
+```    
 
 ## Review : Cropping
 
@@ -603,12 +604,14 @@ See the code below:
     ```
     
 - result
-    
+
+```
     <class 'numpy.ndarray'>
     [[-2.02153837e+00 -1.02691611e+00  2.04001743e+03]
      [-2.24880859e-02 -3.30149532e+00  3.31389904e+03]
      [-2.62496544e-04 -1.74594051e-03  1.00000000e+00]]
-    
+```
+
     ![Untitled](../../img/ch02/perspective_result.png)
     
 - python code 2
