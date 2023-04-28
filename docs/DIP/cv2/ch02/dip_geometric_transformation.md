@@ -101,17 +101,17 @@
     - 임의의 평면이 임의의 평면으로 평행성을 보존하지 않고 매핑됨.
 - 3D 공간의 입체적인 물체를 평면에 투영하는데 사용되며 원근감이 표현됨.
     - DoF : 8 ($3\times 3$ matrix이나 homogeneous coordinate에서 마지막 component가 1로 고정이나 다름이 없기 때문에, matrix의 3행 3열의 entry가 1이라는 constant value을 가지게 되어 9-1로 8 DoF를 가짐.)
-- Perspective projection, Projective transformation, Homograpy 라고도 불림.
-    
-> 💡 Homography를 직관적으로 이해하기 위한 한 좋은 방법
->
-    - 2D 평면에서 임의의 사각형을 임의의 사각형으로 매핑시킬 수 있는 변환이 homography 라고 생각할 서.
-    - 어떤 planer surface 촬영대상이 서로 다른 위치의 카메라로 촬영되어 image A, image B로 투영된 경우, 이 A와 B사이의 점들의 위치 관계를 homography로 표현가능함.
-    - 평면물체의 2D 이미지 변환관계를 설명함.
-    - Projective transformation과 homography는 같은 말임.
-    
+- Perspective projection, Projective transformation, Homograpy 라고도 불림.    
 - `cv2.getPerspectiveTransform()` 를 통해 *4쌍의 match되는 점* 으로부터 변환행렬 구해줌.
-`cv2.findHomography()`는 *4쌍 이상의 match되는 점들* 부터 변환행렬을 구해줌(approximate method로 , fitting, RANSAC, LMedS중 선택가능)
+* `cv2.findHomography()`는 *4쌍 이상의 match되는 점들* 부터 변환행렬을 구해줌(approximate method로 , fitting, RANSAC, LMedS중 선택가능)
+
+#### Homography를 직관적으로 이해하기 위한 한 좋은 방법
+
+- 2D 평면에서 임의의 사각형을 임의의 사각형으로 매핑시킬 수 있는 변환이 homography 라고 생각할 서.
+- 어떤 planer surface 촬영대상이 서로 다른 위치의 카메라로 촬영되어 image A, image B로 투영된 경우, 이 A와 B사이의 점들의 위치 관계를 homography로 표현가능함.
+- 평면물체의 2D 이미지 변환관계를 설명함.
+- Projective transformation과 homography는 같은 말임.
+
 
 ---
 
