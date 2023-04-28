@@ -72,22 +72,18 @@
 - **Affine** transformation :
     - Linear transformation + **Translation**.
         - DoF : 6
-        - 3쌍의 match되는 점들이 있어야 standard matrix를 결정할 수 있음.
-        
-$$
-\begin{bmatrix} x^\prime \\ y^\prime \\1\end{bmatrix}=\begin{bmatrix} a & b &e \\ c & d &f\\0 & 0 & 1\end{bmatrix}\begin{bmatrix} x \\ y \\1\end{bmatrix}
-$$
-        
-        ← OpenCv에서는 $2 \times 3$ matrix로 처리됨.
-        
+        - 3쌍의 match되는 점들이 있어야 standard matrix를 결정할 수 있음.← OpenCv에서는 $2 \times 3$ matrix로 처리됨.      
+        - $\begin{bmatrix} x^\prime \\ y^\prime \\1\end{bmatrix}=\begin{bmatrix} a & b &e \\ c & d &f\\0 & 0 & 1\end{bmatrix}\begin{bmatrix} x \\ y \\1\end{bmatrix}$        
     - Function between affine spaces which preserves **points**, **straight lines** and **planes**.
     - 선들의 평행성이 보장된다. → ***임의의 평면이 임의의 평면***으로 ***평행성을 보존***하면서 매핑됨.
-        - 참고
-            
-            ![Untitled](../../img/ch02/affine_transform.png)
-            
-    - `cv2.getAffineTransform()` 을 통해 3쌍의 match되는 점을 통해 변환matrix를 구할 수 있음.
-    `cv2.invertAffineTransform()` 를 통해 inverse matrix도 구할 수 있음.
+
+참고
+
+* ![Untitled](../../img/ch02/affine_transform.png)
+*   `cv2.getAffineTransform()` 을 통해 3쌍의 match되는 점을 통해 변환matrix를 구할 수 있음.
+    * `cv2.invertAffineTransform()` 를 통해 inverse matrix도 구할 수 있음.
+
+
 - **Perspective** transformation (원근변환) :
     - Affine transformation w/o the property to keep parallel lines.
         - 선은 변환 후에도 선으로 유지됨.
