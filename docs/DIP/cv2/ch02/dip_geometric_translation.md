@@ -18,7 +18,7 @@
 >  [Basis](https://www.notion.so/4-3-Linearly-Independent-Sets-Bases-13c20d906e314ed5b920b7095c038075) 를 바꾸는 것이라고 볼 수 있음.
 > 
 
-# Pre-requirements
+## Pre-requirements
 
  다음 문서는 영상처리의 기하학적 변환의 기본이 되는 선형대수 내용이 간략히 설명됨.
 
@@ -26,9 +26,9 @@
 
 [1.8 Introduction to Linear Transformations](https://www.notion.so/1-8-Introduction-to-Linear-Transformations-61b0a5ff0bc747b6ba1ef9aca6168fac)
 
-# 2D Geometric Image Transformations
+## 2D Geometric Image Transformations
 
-![[Computer Vision - Algorithms and Applications](https://www.semanticscholar.org/paper/Computer-Vision-Algorithms-and-Applications-Szeliski/4282a344671189e17c9c9e00e329fe2d0fa71769/figure/263)](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/e6d66e69-ef26-4ef3-9618-f47c4e4508dd/Untitled.png)
+![[Computer Vision - Algorithms and Applications](https://www.semanticscholar.org/paper/Computer-Vision-Algorithms-and-Applications-Szeliski/4282a344671189e17c9c9e00e329fe2d0fa71769/figure/263)](../../img/ch02/2d_geometric_image_transformations.png)
 
 [Computer Vision - Algorithms and Applications](https://www.semanticscholar.org/paper/Computer-Vision-Algorithms-and-Applications-Szeliski/4282a344671189e17c9c9e00e329fe2d0fa71769/figure/263)
 
@@ -84,7 +84,7 @@
     - 선들의 평행성이 보장된다. → ***임의의 평면이 임의의 평면***으로 ***평행성을 보존***하면서 매핑됨.
         - 참고
             
-            ![Untitled](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/708c2e7e-68c1-441c-bd78-9227fe81005a/Untitled.png)
+            ![Untitled](../../img/ch02/affine_transform.png)
             
     - `cv2.getAffineTransform()` 을 통해 3쌍의 match되는 점을 통해 변환matrix를 구할 수 있음.
     `cv2.invertAffineTransform()` 를 통해 inverse matrix도 구할 수 있음.
@@ -111,7 +111,7 @@
 
 ---
 
-# Geometric Transformation in the OpenCV
+## Geometric Transformation in the OpenCV
 
 `OpenCV` provides two geometric transformation functions,
 
@@ -126,7 +126,7 @@ with which you can have all kinds of geometric transformations.
 
 ## Affine Transformation vs. Perspective Transformation
 
-![Untitled](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/43155a34-6592-48e4-b022-8dcfb3a7f65c/Untitled.png)
+![Untitled](../../img/ch02/affine_vs_perspective.png)
 
 `cv2.warpAffine` takes 
 
@@ -136,7 +136,7 @@ while `cv2.warpPerspective` takes
 
 - a $3\times3$ transformation matrix (8DOFs) as input.
 
-![Untitled](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/4f5ad718-3376-44a5-9a62-7718dbad3f1c/Untitled.png)
+![Untitled](../../img/ch02/affine_vs_perspective2.png)
 
 - Affine Transformation에서 6개의 파라미터를 알기 위해서는 6개의 연립 방정식이 필요.
     - 1개의 (x, y)에 대한 homogeneous 행렬에서 DOF에 관한 2개의 식을 구할 수 있기 때문에 3개 점의 6개 식을 이용하면 6개의 DOF를 구할 수 있음.
@@ -147,7 +147,7 @@ while `cv2.warpPerspective` takes
 
 ---
 
-# Translation
+## Translation
 
 > Translation is the shifting of object’s location.
 > 
@@ -203,7 +203,7 @@ See below example for a shift of `(150,50)`:
     ![Untitled](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/fc055368-7910-4a17-a4ea-8ec312dd0a52/Untitled.png)
     
 
-# Rotation
+## Rotation
 
 Rotation of an image for an angle $\theta$ can also be done using `wrapAffine()` —only the transformation matrix changes.
 
@@ -297,7 +297,7 @@ Check below example which rotates the image by 30 degree with respect
 
 ---
 
-# Scaling
+## Scaling
 
 ***Scaling*** is just **resizing** of the image.
 
@@ -372,7 +372,7 @@ You can resize an input image either of above methods:
     modified dimension : (600, 902)
     
 
-# Review : Cropping
+## Review : Cropping
 
 In `OpenCv`, cropping is provided by using the `slicing` of python. 
 
@@ -427,9 +427,9 @@ Slicing an array is just taking the array values within particular index range.
 
 ---
 
-# Reflection (Flip) Transformation (대칭변환)
+## Reflection (Flip) Transformation (대칭변환)
 
-![Untitled](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/fa0cf512-f989-4191-80c7-0c5d29d9eeca/Untitled.png)
+![Untitled](../../img/ch02/flip.png)
 
 - Reflection + Translation = flip
 - Linear Transformation : [Reflections](https://www.notion.so/6dd79c1d2b27428a804825845377529d)
@@ -442,7 +442,7 @@ Slicing an array is just taking the array values within particular index range.
 
 ---
 
-# Affine Transformation
+## Affine Transformation
 
 In affine transformation, **all parallel lines** in the original image will still be **parallel** in the output image.
 
@@ -475,7 +475,7 @@ Check below example, and also look at the points I selected (which are marked in
     
 - result
     
-    ![Untitled](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/0f7af6bd-709c-4bde-889a-0317112b5880/Untitled.png)
+    ![Untitled](affine_result.png)
     
 
 ### The example for the Affine Transformation
@@ -524,7 +524,7 @@ Check below example, and also look at the points I selected (which are marked in
 
 for the details : [Affine Transform](https://www.notion.so/Affine-Transform-ed7b3cb2080d47d3bdd0be0569b6b78b) 
 
-# Perspective Transformation
+## Perspective Transformation
 
 For perspective transformation, you need a $3\times3$ transformation matrix.
 
@@ -617,7 +617,7 @@ See the code below:
      [-2.24880859e-02 -3.30149532e+00  3.31389904e+03]
      [-2.62496544e-04 -1.74594051e-03  1.00000000e+00]]
     
-    ![Untitled](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/fa452dbf-f3ce-4052-b676-783f73a999c6/Untitled.png)
+    ![Untitled](../../img/ch02/perspective_result.png)
     
 - python code 2
     
@@ -641,10 +641,10 @@ See the code below:
     
 - result 2
     
-    ![Untitled](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/3f0130f5-fe32-46dc-b6cd-9973fd1ce2fc/Untitled.png)
+    ![Untitled](../../img/ch02/warpPerspective_result.png)
     
 
-### The example for the Perspective Transformation
+#### The example for the Perspective Transformation
 
 OpenCv의 mouse callback function을 이용한 예제임.
 
@@ -684,9 +684,9 @@ while(1):
 cv2.destroyAllWindows()
 ```
 
-# Rotation in 3D using OpenCV's `warpPerspective`
+---
 
-![Untitled](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/9e83dc06-d156-4362-a7c1-0ec5c766df9b/Untitled.png)
+## 참고 : Rotation in 3D using OpenCV's `warpPerspective`
 
 - python code
     
@@ -797,16 +797,12 @@ cv2.destroyAllWindows()
     ```
     
 
-# References
+## References
 
-[[영상 Geometry #3] 2D 변환 (Transformations)](https://darkpgmr.tistory.com/79?category=460965)
-
-[[영상처리] 일지 16: Transformations -- 기본적이며 전반적 이해를 위해](https://blog.daum.net/shksjy/228)
-
-[Homography - Wikipedia](https://en.wikipedia.org/wiki/Homography)
-
-[이미지 Geometric Transformation 알아보기](https://gaussian37.github.io/vision-concept-geometric_transformation/)
-
-[opencv-python 코드 snippets](https://gaussian37.github.io/vision-opencv_python_snippets/#warpaffine%EC%9D%84-%EC%9D%B4%EC%9A%A9%ED%95%9C-%EA%B8%B0%ED%95%98%ED%95%99%EC%A0%81-%EB%B3%80%ED%99%98-1)
-
-[Image Geometric Transformation In Numpy and OpenCV](https://towardsdatascience.com/image-geometric-transformation-in-numpy-and-opencv-936f5cd1d315)
+* [OpenCV's tutorial](https://docs.opencv.org/4.x/da/d6e/tutorial_py_geometric_transformations.html)
+* [[영상 Geometry #3] 2D 변환 (Transformations)](https://darkpgmr.tistory.com/79?category=460965)
+* [[영상처리] 일지 16: Transformations -- 기본적이며 전반적 이해를 위해](https://blog.daum.net/shksjy/228)
+* [Homography - Wikipedia](https://en.wikipedia.org/wiki/Homography)
+* [이미지 Geometric Transformation 알아보기](https://gaussian37.github.io/vision-concept-geometric_transformation/)
+* [opencv-python 코드 snippets](https://gaussian37.github.io/vision-opencv_python_snippets/#warpaffine%EC%9D%84-%EC%9D%B4%EC%9A%A9%ED%95%9C-%EA%B8%B0%ED%95%98%ED%95%99%EC%A0%81-%EB%B3%80%ED%99%98-1)
+* [Image Geometric Transformation In Numpy and OpenCV](https://towardsdatascience.com/image-geometric-transformation-in-numpy-and-opencv-936f5cd1d315)
