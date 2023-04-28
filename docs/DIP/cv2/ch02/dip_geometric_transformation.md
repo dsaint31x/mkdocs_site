@@ -107,7 +107,7 @@
 
 #### Homography를 직관적으로 이해하기 위한 한 좋은 방법
 
-- 2D 평면에서 임의의 사각형을 임의의 사각형으로 매핑시킬 수 있는 변환이 homography 라고 생각할 서.
+- 2D 평면에서 임의의 사각형을 임의의 사각형으로 매핑시킬 수 있는 변환이 homography 라고 생각할 수 있음.
 - 어떤 planer surface 촬영대상이 서로 다른 위치의 카메라로 촬영되어 image A, image B로 투영된 경우, 이 A와 B사이의 점들의 위치 관계를 homography로 표현가능함.
 - 평면물체의 2D 이미지 변환관계를 설명함.
 - Projective transformation과 homography는 같은 말임.
