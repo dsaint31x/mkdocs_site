@@ -84,7 +84,7 @@
     - 3쌍의 match되는 점들이 있어야 standard matrix를 결정할 수 있음.← OpenCv에서는 $2 \times 3$ matrix로 처리됨.      
     - $\begin{bmatrix} x^\prime \\ y^\prime \\1\end{bmatrix}=\begin{bmatrix} a & b &e \\ c & d &f\\0 & 0 & 1\end{bmatrix}\begin{bmatrix} x \\ y \\1\end{bmatrix}$        
 - Function between affine spaces which preserves **points**, **straight lines** and **planes**.
-- 선들의 평행성이 보장된다. → ***임의의 평면이 임의의 평면***으로 ***평행성을 보존***하면서 매핑됨.
+- 선들의 평행성이 보장된다. → ***임의의 평면이 임의의 평면*** 으로 ***평행성을 보존*** 하면서 매핑됨.
 
 **참고**
 
