@@ -14,7 +14,7 @@
 - 도스나 리눅스 등에서 여러가지 종류의 파일을 저장하고 있는 곳.
 
 <figure markdown>    
-    ![](./img/directory.jpeg)
+![](./img/directory.jpeg){width="500"}
 </figure>
     
 
