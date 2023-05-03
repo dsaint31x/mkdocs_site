@@ -45,6 +45,6 @@ Some ^^popular terminal applications^^ include
  
  Some popular shells include 
  
- * `Bash`, 
+ * `Bash` (Bourne Again Shell), 
  * `Zsh`, and 
  * `PowerShell`.

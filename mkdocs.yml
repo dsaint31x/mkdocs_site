@@ -176,6 +176,13 @@ nav:
     - "OS/console_terminal_shell_kernel.md"
     - "OS/UNIX.md"
     - "OS/LINUX.md"
+    - "OS/file_folder_dir_cmd.md"
+    - "OS/file.md"
+    - "OS/folderNdirectory.md"
+    - "OS/path.md"
+    - "OS/disk_partition_volume.md"
+    - "OS/linux_cmds.md"
+    - "OS/windows_cmds.md"
   - "OOP":
     - "OOP and Programming Paradigm":
       - "python/oop/oop_0_00_OOP.md"
