@@ -15,7 +15,9 @@
 
 > Windows 10 1607 버전부터는 NTFS 들어오면서 길이 제한을 늘릴 수 있으나 그룹정책 편집등이 필요함.
 
-## 관련 Commands (Windows)
+---
+
+## 관련 Commands (WINDOWS)
 
 ### File 목록 표시
 
