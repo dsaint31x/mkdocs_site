@@ -141,13 +141,13 @@ $$
 
 [Structural similarity](https://en.wikipedia.org/wiki/Structural_similarity)
 
-# **Formula components**
+### **Formula components**
 
 The `SSIM` formula is based on three comparison measurements between the samples of $x$ and $y$: 
 
 - luminance ($l$),  ← $l(x,y)$는 휘도의 차이를 비교! `[0,1]`의 값을 가지면 동일시 1.
 - contrast ($c$) and ← $c(x,y)$는 대비의 차이를 비교! `[0,1]`의 값을 가지면 동일시 1.
-- structure ($s$).  ← $s(x,y)$는 구조의 차이를 비교! `[0,1]`의 값을 가지면 동일시 1.
+- structure ($s$).  ← $s(x,y)$는 구조의 차이를 비교! `[-1,1]`의 값을 가지면 동일시 1.
 
 The individual comparison functions are:
 
@@ -182,7 +182,7 @@ Setting the weights $\alpha ,\beta ,\gamma$ to 1, the formula can be reduced to 
     그리고 이들 strucutre간의 유사도를 각 image의 strucutre간의 correlation coefficient로 정의하고, 이를 각 image간의 correlation coefficient와 equivalent로 놓고 structure간의 비교 함수는 $s(x,y)$를 정의함.
     
 
-## Example
+### Example
 
 아래 그림은 왼쪽 부터 original, blurred image,  SSIM 순으로 구성됨. 이 중 SSIM은 전체 이미지에서 구하지 않고 전체 이미지를 같은 크기의 작은 윈도우로 나누어 계산하여 이미지로 표현된 것임. → 이후 해당 SSIM index map의 각 pixel의 값을 평균하여 SSIM value를 구함. 
 
