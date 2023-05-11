@@ -243,7 +243,7 @@ $$
 \begin{bmatrix}0 & 1 & 0  \\1 & -4 & 1 \\0 & 1 & 0 \end{bmatrix}
 $$
 
-Tayler series로 부터 유도한 2차 미분 근사식 $f^{\prime \prime}(x) = f(x+1) - 2f(x) + f(x-1)$ 을 2개의 독립변수로 확장시 다음과 같음.
+Taylor series로 부터 유도한 2차 미분 근사식 $f^{\prime \prime}(x) = f(x+1) - 2f(x) + f(x-1)$ 을 2개의 독립변수로 확장시 다음과 같음.
 
 $$
 f^{\prime \prime}(x,y) = f(x-1,y) + f(x,y-1) + f(x+1,y) + f(x,y+1) - 4f(x,y)
