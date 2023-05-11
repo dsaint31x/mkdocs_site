@@ -2,10 +2,10 @@
 
 ## Introduction
 
-Morphology 는 **형태학**이라는 뜻. 
+Morphology 는 **형태학** 을 의미. 
 
-> `Morphology` means *the study of the shape and structure* of living things from a biological perspective. 
-Morphology is a discipline of biology related to the study of the shape and structure of the organism and its unique structural characteristics.
+> `Morphology` means ^^*the study of the shape and structure*^^ of living things from a biological perspective.  
+> Morphology is a discipline of biology related to the study of ^^the shape and structure^^ of the organism and its unique structural characteristics.
 > 
 - 생물학자들이 동식물이 보여주는 모양 및 구조을 지칭하고 분류하는 것에서 유래.
 
@@ -70,6 +70,73 @@ DIP에서는 noise(작은 크기의) 제거, 구멍 메우기, 연결이 안 되
 - 종류
     - `cv2.MORPH_RECT`
     - `cv2.MORPH_ELLIPSE`
+    - `cv2.MORPH_CROSS`
+
+`cv2.MORPH_RECT` 는 네모 모양의 kernel임.  
+다음 코드는 해당 kernel을 $5\times5$ 로 생성.
+
+```Python
+# Rectangular Kernel
+kernel = cv2.getStructuringElement(cv2.MORPH_RECT,(5,5))
+print(kernel)
+```
+
+결과는 다음과 같음.
+
+```Python
+[[1 1 1 1 1]
+ [1 1 1 1 1]
+ [1 1 1 1 1]
+ [1 1 1 1 1]
+ [1 1 1 1 1]]
+```
+
+`cv2.MORPH_ELLIPSE` 는 타원(원도 포함) 모양의 kernel임.  
+다음 코드는 해당 kernel을 $10\times 15$ 로 생성.
+
+```Python
+# Elliptical Kernel
+kernel = cv2.getStructuringElement(cv2.MORPH_ELLIPSE,(15,10))
+print(kernel)
+plt.imshow(kernel, cmap='gray')
+```
+
+결과는 다음과 같음.
+
+```Python
+[[0 0 0 0 0 0 0 1 0 0 0 0 0 0 0]
+ [0 0 0 1 1 1 1 1 1 1 1 1 0 0 0]
+ [0 1 1 1 1 1 1 1 1 1 1 1 1 1 0]
+ [0 1 1 1 1 1 1 1 1 1 1 1 1 1 0]
+ [1 1 1 1 1 1 1 1 1 1 1 1 1 1 1]
+ [1 1 1 1 1 1 1 1 1 1 1 1 1 1 1]
+ [1 1 1 1 1 1 1 1 1 1 1 1 1 1 1]
+ [0 1 1 1 1 1 1 1 1 1 1 1 1 1 0]
+ [0 1 1 1 1 1 1 1 1 1 1 1 1 1 0]
+ [0 0 0 1 1 1 1 1 1 1 1 1 0 0 0]]
+```
+
+`cv2.MORPH_CROSS` 는 십자 모양의 kernel임.  
+다음 코드는 해당 kernel을 $5\times 5$ 로 생성.
+
+```Python
+# Cross-shaped Kernel
+kernel = cv2.getStructuringElement(cv2.MORPH_CROSS,(5,5))
+print(kernel)
+plt.imshow(kernel)
+```
+
+결과는 다음과 같음.
+
+```Python
+[[0 0 1 0 0]
+ [0 0 1 0 0]
+ [1 1 1 1 1]
+ [0 0 1 0 0]
+ [0 0 1 0 0]]
+```
+
+OpenCV에서 제공하는 위의 kernel외에도 Numpy를 이용하여 고유한 kernel을 만들어 사용하는 것도 가능함.
 
 ---
 
@@ -109,7 +176,7 @@ Erosion : ref. [KOCW](http://www.kocw.net/home/search/kemView.do?kemId=1127905&a
     
     ![Untitled](../../img/ch02/erosion_ex01.png)
     
-- Example 2
+- **Example 2**
     
     ![Untitled](../../img/ch02/erosion_ex02.png)
     
@@ -117,6 +184,32 @@ Erosion : ref. [KOCW](http://www.kocw.net/home/search/kemView.do?kemId=1127905&a
     - 가로 방향의 *가는 선분들* 제거
     - 글자의 경우, `SE`(구조요소)에 따른 erosion(침식)의 강도가 다소 낮기 때문에, 전체적인 객체의 구조가 상대적으로 잘 보존됨
     - ^^`SE`(구조요소) 보다 더 작은 부분을 잡음으로 처리^^ 하여 제거하고, 그렇지 않은 부분은 형태의 주요 요소로 보고, 가급적 그 형태를 유지.
+
+다음 코드는 OpenCV Tutorial에서 제공한 예로, Numpy의 `ndarray`로 만든 rect kernel로 erosion 을 수행한 결과임.
+
+```Python
+import cv2
+import numpy as np
+import matplotlib.pyplot as plt
+
+img = cv2.imread('./images/j.png',0)
+
+kernel = np.ones((5,5),np.uint8)
+print(kernel)
+
+erosion = cv2.erode(img,kernel,iterations = 1)
+plt.figure(figsize=(10,5))
+plt.subplot('121')
+plt.imshow(img,cmap='gray'), plt.axis('off')
+plt.subplot('122')
+plt.imshow(erosion,cmap='gray'), plt.axis('off')
+```
+
+* 사용한 `j.png`는 다음 url에서 다운로드 가능 : [j.png](https://raw.githubusercontent.com/dsaint31x/OpenCV_Python_Tutorial/8b66425411aa60ad4d3e60e4ae41c1dba922a54d/images/j.png)
+
+결과 이미지는 다음과 같음.
+
+![](../../img/ch02/erosion_python_ex.png)
 
 ## Dilation (팽창)
 
@@ -156,6 +249,24 @@ Dilation의 효과는 다음과 같음.
     - Object 영역의 확장
     - 가로 방향으로의 가는 선분들이 두꺼워짐 ← 연결성 강화.
 
+OpenCV에서 dilation은 `cv2.dilate` 함수로 제공된다. 다음 코드는 이를 간단히 사용한 예를 보여준다.
+
+```Python
+dilation = cv2.dilate(img,kernel,iterations = 1)
+plt.figure(figsize=(10,5))
+plt.subplot('121')
+plt.imshow(img,cmap='gray'), plt.axis('off')
+plt.subplot('122')
+plt.imshow(dilation,cmap='gray'), plt.axis('off')
+```
+
+* erosion에서 사용한 SE `kernel`를 다시 사용함.
+
+결과는 다음과 같음.
+
+![](../../img/ch02/dilation_python_ex.png)
+
+
 ## Erosion vs. Dilation on the Binary Image
 
 <figure markdown>
@@ -187,6 +298,44 @@ $$
     
     ![Untitled](../../img/ch02/opening_ex02.png)
     
+`opening`은 기본연산인 `erosion`과 `dilation`의 조합에 의한 확장 연산으로 OpenCV에서는 `cv2.morphologyEx`함수를 통해 제공됨.
+
+아래의 예제는 OpenCV Tutorial에서 제공된 예제코드로 salt and pepper noise에서 salt만을 가하고 이를 `opening`을 통해 제거하는 예제임.
+
+```Python
+row,col = img.shape
+s_vs_p = 1 #0.5
+amount = 0.01
+out = np.copy(img)
+
+# Salt mode
+num_salt = np.ceil(amount * img.size * s_vs_p)
+coords = [np.random.randint(0, i, int(num_salt))
+          for i in img.shape]
+out[tuple(coords)] = np.max(img)
+        
+# Pepper mode
+num_pepper = np.ceil(amount* img.size * (1. - s_vs_p))
+coords = [np.random.randint(0, i, int(num_pepper))
+          for i in img.shape]
+out[tuple(coords)] = np.min(img)
+
+print(img.dtype)
+# kernel = np.ones((3,3),np.uint8)        
+opening = cv2.morphologyEx(out, cv2.MORPH_OPEN, kernel)
+
+plt.figure(figsize=(10,5))
+plt.subplot('121')
+plt.imshow(out,cmap='gray'), plt.axis('off')
+plt.subplot('122')
+plt.imshow(opening,cmap='gray'), plt.axis('off')
+```
+
+* 앞서 사용한 SE `kernel`을 재사용한 경우와 $3\times 3$ shape의 kernel로 변경해서 동작시켜 볼 것.
+
+결과는 다음과 같음.
+
+![](../../img/ch02/opening_python_ex.png)
 
 ## Closing
 
@@ -211,6 +360,42 @@ $$
     ![Untitled](../../img/ch02/closing_ex02.png)
     
 
+`closing`도 기본연산인 `erosion`과 `dilation`의 조합에 의한 확장 연산으로 OpenCV에서는 `cv2.morphologyEx`함수를 통해 제공됨.
+
+아래의 예제는 OpenCV Tutorial에서 제공된 예제코드로 salt and pepper noise에서 pepper noise만을 가하고 이를 `closing`을 통해 제거하는 예제임.
+
+```Python
+row,col = img.shape
+s_vs_p = 0.0 #1.0
+amount = 0.01
+out = np.copy(img)
+# Salt mode
+num_salt = np.ceil(amount * img.size * s_vs_p)
+coords = [np.random.randint(0, i, int(num_salt))
+          for i in img.shape]
+out[tuple(coords)] = np.max(img)
+        
+# Pepper mode
+num_pepper = np.ceil(amount* img.size * (1. - s_vs_p))
+coords = [np.random.randint(0, i, int(num_pepper))
+          for i in img.shape]
+out[tuple(coords)] = np.min(img)
+
+print(img.dtype)
+#kernel = np.ones((3,3),np.uint8)        
+closing = cv2.morphologyEx(img, cv2.MORPH_CLOSE, kernel)
+
+plt.figure(figsize=(10,5))
+plt.subplot('121')
+plt.imshow(out,cmap='gray'), plt.axis('off')
+plt.subplot('122')
+plt.imshow(closing,cmap='gray'), plt.axis('off')
+```
+
+결과는 다음과 같음.
+
+![](../../img/ch02/closing_python_ex.png)
+
 ## Opening vs. Closing on the Binary Image
 
 <figure markdown>
@@ -228,7 +413,7 @@ $$
 1. 임의의 위치의 pixel value를 기준으로
 2. Structure element와 겹쳐지는 영역 내 pixel에 대해
 3. “pixel의 각 값”과 대응하는 “SE의 값”을 **빼고**,
-4. 그 결과 중 가장 **작은 것**을 선택함.
+4. 그 결과 중 가장 **작은 것** 을 선택함.
 
 수식은 다음과 같음.
 
@@ -246,7 +431,7 @@ where
 1. 임의의 위치의 pixel value를 기준으로
 2. SE와 겹쳐지는 영역 내 pixel에 대해
 3. “pixel의 각 값”과 대응하는 “SE의 값”을 **더하고**,
-4. 그 결과 중 가장 **큰 것**을 선택함.
+4. 그 결과 중 가장 **큰 것** 을 선택함.
 
 수식은 다음과 같음.
 
@@ -286,9 +471,9 @@ where
 
 #### Example
     
-    ![Untitled](../../img/ch02/opening_closing_grayscale_ex.png)
+![Untitled](../../img/ch02/opening_closing_grayscale_ex.png)
     
-    전체적으로 영상의 intensity가 다르게 되는 문제점을 opening과 closing은 개선하고 있음.
+전체적으로 영상의 intensity가 다르게 되는 문제점을 opening과 closing은 개선하고 있음.
     
 ---
 
@@ -301,9 +486,26 @@ Boundary Detection 이 가능함.
 
 ![https://s3-us-west-2.amazonaws.com/secure.notion-static.com/f359d1c5-7b46-4e86-bdf6-7ee5e51cba08/Untitled.png](../../img/ch02/gradient_morphological_op.png)
 
+`gradient`도 확장 morphological operation이며 사용법은 `opening`과 `closing`과 유사함.
+
+```Python
+gradient = cv2.morphologyEx(img, cv2.MORPH_GRADIENT, kernel)
+
+plt.figure(figsize=(10,5))
+plt.subplot('121')
+plt.imshow(img,cmap='gray'), plt.axis('off')
+plt.subplot('122')
+plt.imshow(gradient,cmap='gray'), plt.axis('off')
+```
+
+위 코드의 결과는 다음과 같음.
+
+![](../../img/ch02/gradient_python_ex.png)
+
+
 사실 dilation에서 erosino을 빼는 조합 외에도 Boundary Detection은 가능함.
 
-**Object 영상**과 **그 Object 영상의 Erosion(침식) 영상** 간의 **Difference 연산** 결과
+**Object 영상** 과 **그 Object 영상의 Erosion(침식) 영상** 간의 **Difference 연산** 결과
 
 - Erosion(침식)의 결과는 객체의 경계선이 깎인 형태
 - 입력 객체와 Erosion의 결과 간의 차이는 boundary(경계선)만 남김
@@ -312,7 +514,7 @@ Boundary Detection 이 가능함.
     
 ### ex: Erosion 기반 경계 검출
     
-    ![Untitled](../../img/ch02/erosion_based_boundary_detection_ex.png)
+![Untitled](../../img/ch02/erosion_based_boundary_detection_ex.png)
     
 
 ### Morphological OP.기반 Boundary Detection의 장점.
@@ -349,11 +551,51 @@ Boundary Detection 이 가능함.
 
 - 주변에 비해 밝은(높은) intensity를 가지는 부분들이 강조됨.
 
+다음 코드는 `tophat`의 사용법을 보여준다.
+
+```Python
+kernel = np.ones((9,9),np.uint8)
+
+opening = cv2.morphologyEx(out, cv2.MORPH_OPEN, kernel)
+tophat = cv2.morphologyEx(img, cv2.MORPH_TOPHAT, kernel)
+
+plt.figure(figsize=(10,5))
+plt.subplot('131')
+plt.imshow(img,cmap='gray'), plt.axis('off')
+plt.subplot('132')
+plt.imshow(opening,cmap='gray'), plt.axis('off')
+plt.subplot('133')
+plt.imshow(tophat,cmap='gray'), plt.axis('off')
+```
+
+결과는 다음과 같음.
+
+![](../../img/ch02/tophat_python_ex.png)
+
 ### Blackhat
 
 >💡 Original - Closing
 
 - 주변에 비해 어두운(낮은) intensity를 가지는 부분들이 강조됨.
+
+```Python
+kernel = np.ones((9,9),np.uint8)
+
+closing = cv2.morphologyEx(out, cv2.MORPH_CLOSE, kernel)
+blackhat = cv2.morphologyEx(img, cv2.MORPH_BLACKHAT, kernel)
+
+plt.figure(figsize=(10,5))
+plt.subplot('131')
+plt.imshow(img,cmap='gray'), plt.axis('off')
+plt.subplot('132')
+plt.imshow(closing,cmap='gray'), plt.axis('off')
+plt.subplot('133')
+plt.imshow(blackhat,cmap='gray'), plt.axis('off')
+```
+
+결과는 다음과 같음.
+
+![](../../img/ch02/blackhat_python.png)
 
 ### Tophat vs. Blackhat
 
