@@ -176,10 +176,14 @@ Erosion : ref. [KOCW](http://www.kocw.net/home/search/kemView.do?kemId=1127905&a
     
     ![Untitled](../../img/ch02/erosion_ex01.png)
     
+    - 이 예제에서는 어두운 부분이 255(or 1)에 해당하고, 흰색이 0에 해당함.
+
+
 - **Example 2**
     
     ![Untitled](../../img/ch02/erosion_ex02.png)
     
+    - 이 예제에서는 어두운 부분이 255(or 1)에 해당하고, 흰색이 0에 해당함.
     - Object(글자)들의 경계가 침식되어 세선화 됨.
     - 가로 방향의 *가는 선분들* 제거
     - 글자의 경우, `SE`(구조요소)에 따른 erosion(침식)의 강도가 다소 낮기 때문에, 전체적인 객체의 구조가 상대적으로 잘 보존됨
@@ -238,14 +242,17 @@ Dilation의 효과는 다음과 같음.
 
 ![https://s3-us-west-2.amazonaws.com/secure.notion-static.com/4a408fee-f52d-4371-a2b7-403f5d1fef1d/Untitled.png](../../img/ch02/dilation.png)
 
-- Example 1
+- **Example 1**
     
     ![Untitled](../../img/ch02/dilation_ex01.png)
     
-- Example 2
+    - 이 예제에서는 어두운 부분이 255(or 1)에 해당하고, 흰색이 0에 해당함.
+    
+- **Example 2**
     
     ![Untitled](../../img/ch02/dilation_ex02.png)
     
+    - 이 예제에서는 어두운 부분이 255(or 1)에 해당하고, 흰색이 0에 해당함.
     - Object 영역의 확장
     - 가로 방향으로의 가는 선분들이 두꺼워짐 ← 연결성 강화.
 
@@ -288,15 +295,18 @@ $$
 
 - 주변보다 밝은 noise 제거 및 맞닿아있는 객체 분리, 돌출된 작은 영역 제거에 사용됨.
 - ^^주된 효과는 Erosion^^ 이며, object가 작아지는 문제를 개선! (개선된 erosion)
-- Example 1
+- **Example 1**
     
     ![Untitled](../../img/ch02/opening_ex01.png)
     
-    모서리들이 부드러워졌으나, 원래 영상의 모양에서 큰 변화가 없음. 주의할 건 SE의 크기가 지나치게 커지면 상대적으로 작은 크기의 구조가 제거됨.(example2참고)
+    - 이 예제에서는 어두운 부분이 255(or 1)에 해당하고, 흰색이 0에 해당함.
+    - 모서리들이 부드러워졌으나, 원래 영상의 모양에서 큰 변화가 없음. 주의할 건 SE의 크기가 지나치게 커지면 상대적으로 작은 크기의 구조가 제거됨.(example2참고)
     
-- Example 2
+- **Example 2**
     
     ![Untitled](../../img/ch02/opening_ex02.png)
+    
+    - 이 예제에서는 어두운 부분이 255(or 1)에 해당하고, 흰색이 0에 해당함.
     
 `opening`은 기본연산인 `erosion`과 `dilation`의 조합에 의한 확장 연산으로 OpenCV에서는 `cv2.morphologyEx`함수를 통해 제공됨.
 
@@ -351,13 +361,17 @@ $$
 - 전체적인 윤곽 파악에 이용됨.
     - 조명 등으로 인한 조도차로 object의 구멍이 난 것처럼 보이는 문제점을 해결
 - 주된 효과는 Dilation이며, object가 커지는 문제를 해결.
-- Example 1
+- **Example 1**
     
     ![Untitled](../../img/ch02/closing_ex01.png)
     
-- Example 2
+    - 이 예제에서는 어두운 부분이 255(or 1)에 해당하고, 흰색이 0에 해당함.
+
+- **Example 2**
     
     ![Untitled](../../img/ch02/closing_ex02.png)
+    
+    - 이 예제에서는 어두운 부분이 255(or 1)에 해당하고, 흰색이 0에 해당함.
     
 
 `closing`도 기본연산인 `erosion`과 `dilation`의 조합에 의한 확장 연산으로 OpenCV에서는 `cv2.morphologyEx`함수를 통해 제공됨.
@@ -502,19 +516,25 @@ plt.imshow(gradient,cmap='gray'), plt.axis('off')
 
 ![](../../img/ch02/gradient_python_ex.png)
 
+## Erosion 기반의 Boundary Detection
 
 사실 dilation에서 erosino을 빼는 조합 외에도 Boundary Detection은 가능함.
 
-**Object 영상** 과 **그 Object 영상의 Erosion(침식) 영상** 간의 **Difference 연산** 결과
+**Object 영상** 과 **그 Object 영상의 Erosion(침식) 영상** 간의 **Difference 연산** 으로도 boundary를 구할 수 있음.
 
 - Erosion(침식)의 결과는 객체의 경계선이 깎인 형태
 - 입력 객체와 Erosion의 결과 간의 차이는 boundary(경계선)만 남김
-    
+- **Example 1**
+
     ![Untitled](../../img/ch02/erosion_based_boundary_detection.png)
+    
+    - 이 예제에서는 어두운 부분이 255(or 1)에 해당하고, 흰색이 0에 해당함.    
     
 ### ex: Erosion 기반 경계 검출
     
 ![Untitled](../../img/ch02/erosion_based_boundary_detection_ex.png)
+    
+- 위 image에서는 어두운 부분이 255(or 1)에 해당하고, 흰색이 0에 해당함.    
     
 
 ### Morphological OP.기반 Boundary Detection의 장점.
