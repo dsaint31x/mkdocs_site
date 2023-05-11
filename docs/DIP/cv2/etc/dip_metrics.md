@@ -252,5 +252,6 @@ plt.show()
 
 ## Ref.
 
+- [scikit-image's Structural similarity index](https://scikit-image.org/docs/dev/auto_examples/transform/plot_ssim.html#sphx-glr-auto-examples-transform-plot-ssim-py)
 - [MATLAB SSIM Document](https://kr.mathworks.com/help/images/ref/ssim.html)
 - [Jinsol Kim's blog](https://gaussian37.github.io/vision-concept-ssim/)
