@@ -233,6 +233,7 @@ nav:
       - "etc":
         - "DIP/cv2/etc/floodfill.md"
         - "DIP/cv2/etc/dip_convolution.md"
+        - "DIP/cv2/etc/dip_metrics.md"
     - "Image Feature":
       - "DIP/ch02_01_00_classical_cv.md"
       - "DIP/ch02_01_01_keypoints.md"
