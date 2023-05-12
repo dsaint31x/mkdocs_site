@@ -8,6 +8,23 @@ ideal image가 존재할 경우, 해당 ideal image와 현재 측정된 image (o
 
 이 페이지에서는 ideal imgae가 존재할 경우, 현재 image와 해당 ideal image간의 차이를 측정하는 metric들을 소개한다.
 
+## Distance function (or Metric)
+
+metric (or distance function)의 정의는 다음과 같음 (수학적 정의).
+
+> A function that measures the distance or "closeness" between two objects or points in a space.
+
+The requirements for a metric include being 
+
+1. non-negative : $d(x,y) \ge 0$, 
+2. identity of indiscernibles : $d(x,x)=0$,
+3. symmetric : $d(x,y)=d(y,x)$, and 
+4. satisfying the triangle inequality : $d(x,y) \le d(x,z)+d(z,y)$. 
+
+Additionally, a distance function should give a small distance for similar objects and a large distance for dissimilar objects.
+
+> distance function은 SSIM과 같이 similarity measures를 포함하는 경우도 있어서 metric보다 좀더 넓은 개념으로 취급되기도 하지만, **일반적** 으로는 metric과 같은 의미로 사용된다. Overall, the distinction between the terms "distance function" and "metric" is not always strictly observed, and the two terms are often used interchangeably in practice.
+
 ## difference 계열
 
 ### Mean Absolute Difference (MAD, or Mean Absolute Error, MAE)
@@ -155,9 +172,13 @@ def psnr(src,dst):
 
 ---
 
-## SSIM (Structrual Similarity Index Measure)
+## SSIM (Structural Similarity Index Measure)
 
-> 인간의 ***시각적 화질 (휘도, 대비, 구조적 특징) 유사도*** 를 평가하기 위해 고안된 지표. ← 인간의 시각은 이미지의 ***구조적 특징을 추출*** 하는데 특화되어 있고, 때문에 구조적 특징에서의 degradation이 두 image에서의 차이를 인식하는데 매우 큰 영향을 준다는 가설을 기반으로 구조적 특징(structure)의 차이를 정량화하고 있음.
+> SSIM은 image quality metric으로 널리 사용되지만, 엄밀한 의미에선 metric이 아님: SSIM 은 triangle inequality를 만족하지 않음. 일종의 simialrity index임.
+
+인간의 ***시각적 화질 (휘도, 대비, 구조적 특징) 유사도*** 를 평가하기 위해 고안된 지표(index). 
+
+>인간의 시각은 이미지의 ***구조적 특징을 추출*** 하는데 특화되어 있고, 때문에 구조적 특징에서의 degradation이 두 image에서의 차이를 인식하는데 매우 큰 영향을 준다는 가설을 기반으로 구조적 특징(structure)의 차이를 정량화하고 있음.
 > 
 
 - 기존의 MSE 방법과 달리 이미지의
@@ -235,7 +256,7 @@ Setting the weights $\alpha ,\beta ,\gamma$ to 1, the formula can be reduced to 
 <figcapture>MATLAB API document for SSIM</figcapture>
 </figure markdown>
 
-다음 예제는 scikit-image에서 제공하는 `skimage.metrics.strucstructural_similarity`를 이용하여 ssim과 mse의 차이를 보여주는 예제임.
+다음 예제는 scikit-image에서 제공하는 `skimage.metrics.structural_similarity`를 이용하여 ssim과 mse의 차이를 보여주는 예제임.
 
 ```Python
 import numpy as np
