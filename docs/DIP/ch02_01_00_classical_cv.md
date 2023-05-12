@@ -28,7 +28,7 @@ Local Feature는 "원본 영상"의 keypoint(특징점)들에서 계산되어 **
 
 > 초기에 개발된 알고리즘들은 corner 나 blob을 그냥 detection하는 경우가 많았다.  
 > 이 경우 ***keypoint만을 detect*** 하여 원본에서의 locational information과 size 를 계산할 뿐 이를 바탕으로 ***feature descrptor로 encoding하지 않았다***.  
-> locational information과 size는 *geometric transform 등에 covariant* 하기 때문에, 이들에 대해서도 invariant한 feature를 구하기 위해서는 추가적인 처리가 필요하다.  
+> locational information과 size는 *geometric transform 등에 covariant* 하기 때문에, 이들에 대해서도 invariant한 feature vector(or feature descriptor)를 구하기 위해서는 추가적인 처리가 필요하다.  
 > 이후의 알고리즘들은 이를 위해, ***feature descriptor를 계산하는 단계*** 가 추가되었다.
 
 일반적으로 local feature를 얻는 algorithm들은 다음의 두 단계로 구성된다. (일부 알고리즘들은 하나의 단계에 대한 해법에 그치는 경우도 많다.)
@@ -150,14 +150,14 @@ Edge를 만드는 요인은 다음과 같음.
 
 ### Common Edge Detection Process
 
-가장 널리 사용되는 algorithm은 ***Canny Edge Detection*** (1986) 이며 다음의 순서를 구성됨.
+가장 널리 사용되는 algorithm은 [***Canny Edge Detection*** (1986)](./ch02_02_01_canny.md) 이며 다음의 순서를 구성됨.
 
 1. Smoothing (=Denoising)
 2. Gradient magnitude를 구함.
 3. Non-max suppression 
 4. Hysteresis Thresholding
 
-Edge는 높은 gradient magnitude를 가지므로 gradient magnitude를 구하여 해당 pixel을 구하는데, noise들도 높은 gradient magnitude를 가지므로 (Gaussian) Smoothing등을 통해 edge외의 noise 를 제거하고 gradient를 구한다.
+`Edge`는 **높은 gradient magnitude**를 가지므로 gradient magnitude를 구하여 해당 pixel을 구하는데, noise들도 높은 gradient magnitude를 가지므로 (Gaussian) Smoothing등을 통해 edge 외의 noise 를 제거하고나서 gradient를 구하는 경우가 일반적임.
 
 ## Corner
 
@@ -169,14 +169,14 @@ Coner는 contour(윤곽)의 junction(교차점)을 가르킴. 즉, 여러 edge�
 
 ## Blob
 
-Blob 은 **Binary Large Object** 의 줄임말로, ^^같은 성질을 가지는 픽셀들이 연결되어있는 어느 정도 크기의 region^^ 을 가르킨다.
+Blob 은 **Binary Large Object** 의 줄임말로, ^^같은 성질을 가지는 픽셀들이 연결되어 어느 정도 이상의 size(크기)를 가지는 region^^ 을 가르킨다.
 
 > Image regsions that are either brighter or darker than the surrounding.
 
 ### Common Blob Detection Process
 
 1. Smoothing
-2. LoG (Laplacian of Gaussian) : Difference of Gaussian 이 선호됨(효율측면에선)
+2. LoG (Laplacian of Gaussian) : Difference of Gaussian (DoG) 이 선호됨(효율측면에선)
 3. Find theh optimal scale and orientation parameters
 
 3번의 과정에서 optimal scale이란 lapalace filter의 폭($\sigma$)에 의해 결정된다. 아래 그림은 간단하게 각기 다른 크기의 blob 들에 대해 고정된 폭의 Laplacian filter를 가할 경우의 response를 보여주고 있다.
@@ -196,7 +196,7 @@ Blob 은 **Binary Large Object** 의 줄임말로, ^^같은 성질을 가지는 
 
 ![scale-normalized laplacian](img/ch02/scale_normalized_laplacian.png)
 
-일반적으로 각 scale에 해당하는 $\sigma^2$ 을 곱해주어 scale normalized laplacian을 얻는다.
+일반적으로 각 scale에 해당하는 $\sigma^2$ 을 곱해주어 scale normalized Laplacian을 얻는다.
 
 > 여기서 나오는 scale은 `scale space`에서 나오는 용어임.  
 > `scale space`는 대상을 여러 scale에 걸쳐 표현하는 multi-scale representation을 만드는 기법 중의 하나로 `image pyramid`와 함께 가장 널리 사용되는 방법이다. scale이 클수록 image가 bluring되어 기본 구성요소가 넓은 영역을 차지하게 된다.  

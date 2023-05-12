@@ -133,15 +133,17 @@ ideal과의 차이 정도를 나타내는 지표로 많이 사용되며 단위�
 
 $$
 \begin{aligned}
-\text{PSNR}&=10 \log \left( \frac{\text{MAX}^2}{\text{MSE}}\right)\\&= 20 \log \left( \frac{\text{MAX}}{\text{RMSE}}\right)
+\text{PSNR}&=10 \log_{10} \left( \frac{\text{MAX}^2}{\text{MSE}}\right)\\&= 20 \log_{10} \left( \frac{\text{MAX}}{\text{RMSE}}\right)
 \end{aligned}
 $$
 
 where
 
 * $\text{MAX}$ : image pixel이 가질 수 있는 최대값으로, 8bit depth image의 경우 255임. `[0,1]` range로 normalized 된 경우에는 1이 사용됨.
+* dB은 power ratio에 $10\log$를 취한 것이기 때문에 magnitude로 계산시 $20 \log$를 취해야한다.
+* PSNR을 계산할 때, common logarithm (= logarithmic base-10 function)을 사용한다. 
 
-가질 수 있는 최대신호 (peak signal)에 대한 noise의 ratio로 영상처리 결과 image나 압축 혹은 image restoration을 거친 image에서 얼마나 image degradation이 발생했는지를 평가하는데 사용됨. 
+noise의 power에 대해, 가질 수 있는 최대 신호 (peak signal)의 power의 ratio로 영상처리 결과 image나 압축 혹은 image restoration을 거친 image에서 얼마나 image degradation이 발생했는지를 평가하는데 사용됨. 
 
 
 ## implementations
