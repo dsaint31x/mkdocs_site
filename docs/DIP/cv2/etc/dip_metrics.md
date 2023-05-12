@@ -105,7 +105,7 @@ covariance matrix가 invertible하지 않으면 Mahalanobis distance는 구해�
 
 [Whitening Transformation 관련자료](https://dsaint31.tistory.com/entry/Math-Whitening-Transformation)
 
-#### ex: Sample $\textbf{s}$와 정규분포 $N(\bold{\mu},\Sigma)$사이의 Mahalanobis distance
+#### ex: Sample $\textbf{s}$와 정규분포 $N(\mu,\Sigma)$사이의 Mahalanobis distance
 
 $$
 d_\text{mahalanobis}[\textbf{s},N(\mu,\Sigma)]=d_\text{m}[\textbf{s}]=\sqrt{(\textbf{s}-\mu)^T\Sigma^{-1}(\textbf{s}-\mu)}
