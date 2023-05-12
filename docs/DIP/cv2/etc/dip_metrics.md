@@ -44,6 +44,8 @@ where
 
 `np.mean( (img-ideal)**2 )`로 쉽게 구할 수 있음.
 
+---
+
 ### Root Mean Squared Error (RMSE)
 
 $$
@@ -54,6 +56,10 @@ MSE가 squared로 인해 값이 커지는 문제를 square root를 이용하여 
 
 `np.sqrt( np.mean( (img-ideal)**2 ))`으로 구하거나 MSE를 구하고 sqrt만 추가해서 구함.
 
+> Euclidean distance라고도 불림.
+
+---
+
 ### Sum of Squared Error (SSE)
 
 $$
@@ -63,6 +69,44 @@ $$
 MSE에서 전체 샘플 갯수로 나누는 연산이 빠진 형태. 일반적으로 pixel의 수가 고정된 경우에 사용됨. (연산량은 줄어드나 값이 커지기 때문에 MSE, RMSE보다 많이 사용되진 않는 편)
 
 `np.sum( (img-ideal)**2 )`로 구할 수 있음.
+
+---
+
+### 참고 : Mahalanobis Distance
+
+image에 직접 사용되기 보다는 image의 feature vector를 계산하고, 이들 간의 distance (or difference)를 계산하는데 사용된다.
+
+- data의 Probability distribution(확률분포)을 고려한 distance.
+- 다음 그림에서 $\mu$와 보다 가까운 것을 고를 때, 단순히 L2-norm을 고려할 경우 $\textbf{b}$가 보다 가깝지만,  각 점들의 분포를 고려하면 $\textbf{c}$라고 말할 수 있다.
+    ![](../../img/etc/Mahalanobis_Dist.jpeg)
+
+> 이처럼 데이터의 확률분포를 고려한 distance로서 Mahalanobis distance가 사용되며,  
+> 이는 mean vector, $\mu$와 [covariance matrix, $\Sigma$](https://dsaint31.tistory.com/entry/Statistics-Covariance-vs-Correlation#Example%--%-A%--Covariance%--Matrix) 를 사용하여 계산됨.  
+> 참고로, covariance matrrix $\Sigma$가 identity matrix인 경우 Mahalanobis distance는 Euclidean distance와 같음.
+
+covariance matrrix가 invertible하지 않으면 Mahalanobis distance는 구해지지 않기 때문에실제로는 PCA Whitening transformation으로 데이터를 처리 (dimensionality reduction도 같이 수행됨)한 이후에 계산함. (Whitening transformation이 이루어지면 covariance를 identity matrix로 취한 Euclidean distance를 구하는 방식으로 Mahalanobis distance를 구할 수 있음.)
+
+[Whitening Transformation 관련자료](https://dsaint31.tistory.com/entry/Math-Whitening-Transformation)
+
+#### ex: Sample $\textbf{s}$와 정규분포 $N(\bold{\mu},\Sigma)$사이의 Mahalanobis distance
+
+$$
+d_\text{mahalanobis}[\textbf{s},N(\mu,\Sigma)]=d_\text{m}[\textbf{s}]=\sqrt{(\textbf{s}-\mu)^T\Sigma^{-1}(\textbf{s}-\mu)}
+$$
+
+* $\textbf{s}$는 column vector임.
+* row vector인 경우 transpose가 inverse of covariance 뒤로 바뀜.
+
+#### ex: Sample $\textbf{s}_1$와 sample $\textbf{s}_2$ 사이의 Mahalanobis distance
+
+$$
+d_m(\textbf{s}_1,\textbf{s}_2)=\sqrt{(\textbf{s}_1-\textbf{s}_2)^T\Sigma^{-1}(\textbf{s}_1-\textbf{s}_2)}
+$$
+
+* $\textbf{s}_1, \textbf{s}_2$는 column vector임.
+* row vector인 경우 transpose가 inverse of covariance 뒤로 바뀜. 
+
+---
 
 ## ratio계열
 

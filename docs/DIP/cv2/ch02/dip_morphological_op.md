@@ -540,6 +540,7 @@ plt.imshow(gradient,cmap='gray'), plt.axis('off')
 ### Morphological OP.기반 Boundary Detection의 장점.
 
 > 참고 : `Gradient`
+>
 >    - 영상에서 pixel value의 변화율.
 >    - 영상의 특성 중에서 edge를 판단하기 위한 중요한 요소.
 >    - Edge의 경우, gradient가 매우 큼 : pixel value가 갑자기 커지거나 작아짐.
