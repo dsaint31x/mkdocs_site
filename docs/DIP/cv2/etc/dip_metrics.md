@@ -13,7 +13,7 @@ ideal image가 존재할 경우, 해당 ideal image와 현재 측정된 image (o
 ### Mean Absolute Difference (MAD, or Mean Absolute Error, MAE)
 
 $$
-\text{MAE}(\textbf{y},\hat{\textbf{y}})}=\frac{1}{m}\sum^m_{i=1}|\hat{\textbf{y}}_i-\textbf{y}_i|
+\text{MAE}(\textbf{y},\hat{\textbf{y}})=\frac{1}{m}\sum^m_{i=1}|\hat{\textbf{y}}_i-\textbf{y}_i|
 $$
 
 where
@@ -29,7 +29,7 @@ where
 ### Mean Squared Error (MSE) 
 
 $$
-\text{MSE}(\textbf{y},\hat{\textbf{y}})}=\frac{1}{m}\sum^m_{i=1}\left(\hat{\textbf{y}}_i-\textbf{y}_i\right)^2
+\text{MSE}(\textbf{y},\hat{\textbf{y}})=\frac{1}{m}\sum^m_{i=1}\left(\hat{\textbf{y}}_i-\textbf{y}_i\right)^2
 $$
 
 where
@@ -47,7 +47,7 @@ where
 ### Root Mean Squared Error (RMSE)
 
 $$
-\text{RMSE}(\textbf{y},\hat{\textbf{y}})}=\frac{1}{m}\sum^m_{i=1}\|\hat{\textbf{y}}_i-\textbf{y}_i\|_2
+\text{RMSE}(\textbf{y},\hat{\textbf{y}})=\frac{1}{m}\sum^m_{i=1}\|\hat{\textbf{y}}_i-\textbf{y}_i\|_2
 $$
 
 MSE가 squared로 인해 값이 커지는 문제를 square root를 이용하여 해결함. L-2 norm기반이기 때문에 미분 가능하다는 장점을 가지지만 L-1 norm에 기반한 MAE보다 outlier의 영향이 크다는 단점을 가지고 있음.
@@ -57,7 +57,7 @@ MSE가 squared로 인해 값이 커지는 문제를 square root를 이용하여 
 ### Sum of Squared Error (SSE)
 
 $$
-\text{SSE}(\textbf{y},\hat{\textbf{y}})}=\sum^m_{i=1}\left(\hat{\textbf{y}}_i-\textbf{y}_i\right)^2
+\text{SSE}(\textbf{y},\hat{\textbf{y}})=\sum^m_{i=1}\left(\hat{\textbf{y}}_i-\textbf{y}_i\right)^2
 $$
 
 MSE에서 전체 샘플 갯수로 나누는 연산이 빠진 형태. 일반적으로 pixel의 수가 고정된 경우에 사용됨. (연산량은 줄어드나 값이 커지기 때문에 MSE, RMSE보다 많이 사용되진 않는 편)
