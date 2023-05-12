@@ -4,7 +4,8 @@
 
 Local Feature (or Feature Descriptor)는 2000년대부터 correspondence problem 을 푸는데 필요한 correpondence를 검출하는데 이용(SIFT 2004)되면서 많은 발전이 이루어졌다. 기존의 ^^edge segment 기반의 방식(1970년대 등장하여 1980년대 많이 사용됨)^^ 보다 우수한 성능을 보였고 무엇보다 ^^gray-scale image에서 직접 계산이 가능^^ 하여 image matching 및 classification, image registration 등에서 널리 사용됨.  
 
-> CNN의 등장으로 이전만큼의 활발한 연구는 이루어지지 않음. Dataset으로부터 hiearchy feature extraion 이 자동으로 이루어진다는 점이 Deep Learning의 가장 큰 장점 중 하나라고 할 수 있음.
+> CNN, transformer등의 DL기술이 보다 높은 성능을 보이면서 과거에 비해 그 중요도가 줄어드는 추세임.  
+> Dataset으로부터 hiearchy feature extraction 이 자동으로 이루어진다는 점이 Deep Learning의 가장 큰 장점 중 하나라고 할 수 있음.
   
 대표적인 Local Feature는 다음과 같다.
 
@@ -18,10 +19,11 @@ Local Feature (or Feature Descriptor)는 2000년대부터 correspondence problem
     * Binary robust invariant scalable keypoints (BRISK) : 2011. Leutenegger et al.
     * Fast retina keypoint (FREAK) : 2012. Alahi et al.
 
-Local Feature는 "원본 영상"의 keypoint(특징점)들에서 계산되어 local feature descriptor (or feature vector)들 로 표현된다.
+Local Feature는 "원본 영상"의 keypoint(특징점)들에서 계산되어 ***local feature descriptor (or feature vector)*** 들로 표현된다.
 
-* keypoint (특징점) : "원본 영상"에서 local feature에 해당하는 위치. 해당 점을 중심으로 작은 ***region*** (or ***patch***, cell, block)이 설정되며, 이 region에 속하는 pixel들을 이용하여 feature descriptor가 계산된다.
+* `keypoint` (특징점) : "원본 영상"에서 local feature에 해당하는 위치. 해당 점을 중심으로 작은 ***region*** (or ***patch***, cell, block)이 설정되며, 이 region에 속하는 pixel들을 이용하여 feature descriptor가 계산된다.
 * (local feature) descriptor : keypoint가 속한 patch의 local feature를 표현하고 있는 객체. 주로 vector (real number or binary)로 표현되기 때문에 feature vector라고도 불린다. Local Feature의 실제적인 값에 해당하기 때문에 feature descriptor를 계산하는 알고리즘의 이름으로 local feature를 부른다.  
+
 즉, HOG descriptor라고 하면, HOG 알고리즘으로 얻은 local feature를 가르킨다.
 
 > 초기에 개발된 알고리즘들은 corner 나 blob을 그냥 detection하는 경우가 많았다.  
