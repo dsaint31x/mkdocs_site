@@ -2,10 +2,12 @@
 
 ## Moment
 
-Image moments은 물체의 중심, 물체의 면적 등과 같은 일부 기능을 계산하는데 사용되는 양임.
+Image moments은 물체의 중심, 물체의 면적 등을 계산하는데 이용되는 qunatity(양)임.
 
 > pixel intensity(←물리에서 force, mass등)의 ***정량적 크기*** 와 함께 ***분포 (어떤 기준에 대한)*** 를 고려한 ^^정량적 지표^^.  
 > 주로 `grayscale` or `binary image`에서 사용됨.
+
+moment 가 가지는 뜻을 좀 더 살펴보려면 다음 URL을 참고할 것 : [물리량의 관점에서 moment란?](https://dsaint31.tistory.com/entry/Physics-Moment-%EB%AA%A8%EB%A9%98%ED%8A%B8)
 
 ### Spatial Moment (or raw Moment)
 
