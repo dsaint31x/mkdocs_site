@@ -6,7 +6,7 @@ Image restoration의 경우, image degradation의 원인을 modeling하고 해�
 
 ideal image가 존재할 경우, 해당 ideal image와 현재 측정된 image (or image degradation이 발생한 image)간의 차이의 크기가 바로 image degradation 정도의 크기라고 할 수 있고, image restoration은 이를 감소시키는 기술이라고 볼 수 있다.
 
-이 페이지에서는 ideal imgae가 존재할 경우, 현재 image와 해당 ideal image간의 차이를 측정하는 metric들을 소개한다.
+이 페이지에서는 ideal image가 존재할 경우, 현재 image와 해당 ideal image간의 차이를 측정하는 metric들을 소개한다.
 
 ## Distance function (or Metric)
 
@@ -99,9 +99,9 @@ image에 직접 사용되기 보다는 image의 feature vector를 계산하고, 
 
 > 이처럼 데이터의 확률분포를 고려한 distance로서 Mahalanobis distance가 사용되며,  
 > 이는 mean vector, $\mu$와 [covariance matrix, $\Sigma$](https://dsaint31.tistory.com/entry/Statistics-Covariance-vs-Correlation#Example%--%-A%--Covariance%--Matrix) 를 사용하여 계산됨.  
-> 참고로, covariance matrrix $\Sigma$가 identity matrix인 경우 Mahalanobis distance는 Euclidean distance와 같음.
+> 참고로, covariance matrix $\Sigma$가 identity matrix인 경우 Mahalanobis distance는 Euclidean distance와 같음.
 
-covariance matrrix가 invertible하지 않으면 Mahalanobis distance는 구해지지 않기 때문에실제로는 PCA Whitening transformation으로 데이터를 처리 (dimensionality reduction도 같이 수행됨)한 이후에 계산함. (Whitening transformation이 이루어지면 covariance를 identity matrix로 취한 Euclidean distance를 구하는 방식으로 Mahalanobis distance를 구할 수 있음.)
+covariance matrix가 invertible하지 않으면 Mahalanobis distance는 구해지지 않기 때문에 실제로는 PCA Whitening transformation 등으로 데이터를 처리 (dimensionality reduction도 같이 수행됨)한 이후에 계산함. (Whitening transformation이 이루어지면 covariance를 identity matrix로 취한 Euclidean distance를 구하는 방식으로 Mahalanobis distance를 구할 수 있음.)
 
 [Whitening Transformation 관련자료](https://dsaint31.tistory.com/entry/Math-Whitening-Transformation)
 
@@ -176,7 +176,7 @@ def psnr(src,dst):
 
 ## SSIM (Structural Similarity Index Measure)
 
-> SSIM은 image quality metric으로 널리 사용되지만, 엄밀한 의미에선 metric이 아님: SSIM 은 triangle inequality를 만족하지 않음. 일종의 simialrity index임.
+> SSIM은 image quality metric으로 널리 사용되지만, 엄밀한 의미에선 metric이 아님: SSIM 은 triangle inequality를 만족하지 않음. 일종의 similarity index임.
 
 인간의 ***시각적 화질 (휘도, 대비, 구조적 특징) 유사도*** 를 평가하기 위해 고안된 지표(index). 
 
@@ -246,7 +246,7 @@ Setting the weights $\alpha ,\beta ,\gamma$ to 1, the formula can be reduced to 
     s(x)=\frac{x-\mu_x}{\sigma_x}, s(y)=\frac{y-\mu_y}{\sigma_y}
     $$
     
-    그리고 이들 strucutre간의 유사도를 각 image의 strucutre간의 correlation coefficient로 정의하고, 이를 각 image간의 correlation coefficient와 equivalent로 놓고 structure간의 비교 함수는 $s(x,y)$를 정의함.
+    그리고 이들 structure간의 유사도를 각 image의 structure간의 correlation coefficient로 정의하고, 이를 각 image간의 correlation coefficient와 equivalent로 놓고 structure간의 비교 함수는 $s(x,y)$를 정의함.
     
 
 ### Example
