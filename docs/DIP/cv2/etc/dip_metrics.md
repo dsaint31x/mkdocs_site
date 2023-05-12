@@ -8,12 +8,29 @@ ideal image가 존재할 경우, 해당 ideal image와 현재 측정된 image (o
 
 이 페이지에서는 ideal imgae가 존재할 경우, 현재 image와 해당 ideal image간의 차이를 측정하는 metric들을 소개한다.
 
+## Distance function (or Metric)
+
+metric (or distance function)의 정의는 다음과 같음 (수학적 정의).
+
+> A function that measures the distance or "closeness" between two objects or points in a space.
+
+The requirements for a metric include being 
+
+1. non-negative : $d(x,y) \ge 0$, 
+2. identity of indiscernibles : $d(x,x)=0$,
+3. symmetric : $d(x,y)=d(y,x)$, and 
+4. satisfying the triangle inequality : $d(x,y) \le d(x,z)+d(z,y)$. 
+
+Additionally, a distance function should give a small distance for similar objects and a large distance for dissimilar objects.
+
+> distance function은 SSIM과 같이 similarity measures를 포함하는 경우도 있어서 metric보다 좀더 넓은 개념으로 취급되기도 하지만, **일반적** 으로는 metric과 같은 의미로 사용된다. Overall, the distinction between the terms "distance function" and "metric" is not always strictly observed, and the two terms are often used interchangeably in practice.
+
 ## difference 계열
 
 ### Mean Absolute Difference (MAD, or Mean Absolute Error, MAE)
 
 $$
-\text{MAE(\textbf{y},\hat{\textbf{y}})}=\frac{1}{m}\sum^m_{i=1}|\hat{\textbf{y}}_i-\textbf{y}_i|
+\text{MAE}(\textbf{y},\hat{\textbf{y}})=\frac{1}{m}\sum^m_{i=1}|\hat{\textbf{y}}_i-\textbf{y}_i|
 $$
 
 where
@@ -29,7 +46,7 @@ where
 ### Mean Squared Error (MSE) 
 
 $$
-\text{MSE(\textbf{y},\hat{\textbf{y}})}=\frac{1}{m}\sum^m_{i=1}\left(\hat{\textbf{y}}_i-\textbf{y}_i\right)^2
+\text{MSE}(\textbf{y},\hat{\textbf{y}})=\frac{1}{m}\sum^m_{i=1}\left(\hat{\textbf{y}}_i-\textbf{y}_i\right)^2
 $$
 
 where
@@ -44,25 +61,69 @@ where
 
 `np.mean( (img-ideal)**2 )`로 쉽게 구할 수 있음.
 
+---
+
 ### Root Mean Squared Error (RMSE)
 
 $$
-\text{RMSE(\textbf{y},\hat{\textbf{y}})}=\frac{1}{m}\sum^m_{i=1}\|\hat{\textbf{y}}_i-\textbf{y}_i\|_2
+\text{RMSE}(\textbf{y},\hat{\textbf{y}})=\frac{1}{m}\sum^m_{i=1}\|\hat{\textbf{y}}_i-\textbf{y}_i\|_2
 $$
 
 MSE가 squared로 인해 값이 커지는 문제를 square root를 이용하여 해결함. L-2 norm기반이기 때문에 미분 가능하다는 장점을 가지지만 L-1 norm에 기반한 MAE보다 outlier의 영향이 크다는 단점을 가지고 있음.
 
 `np.sqrt( np.mean( (img-ideal)**2 ))`으로 구하거나 MSE를 구하고 sqrt만 추가해서 구함.
 
+> Euclidean distance라고도 불림.
+
+---
+
 ### Sum of Squared Error (SSE)
 
 $$
-\text{SSE(\textbf{y},\hat{\textbf{y}})}=\sum^m_{i=1}\left(\hat{\textbf{y}}_i-\textbf{y}_i\right)^2
+\text{SSE}(\textbf{y},\hat{\textbf{y}})=\sum^m_{i=1}\left(\hat{\textbf{y}}_i-\textbf{y}_i\right)^2
 $$
 
 MSE에서 전체 샘플 갯수로 나누는 연산이 빠진 형태. 일반적으로 pixel의 수가 고정된 경우에 사용됨. (연산량은 줄어드나 값이 커지기 때문에 MSE, RMSE보다 많이 사용되진 않는 편)
 
 `np.sum( (img-ideal)**2 )`로 구할 수 있음.
+
+---
+
+### 참고 : Mahalanobis Distance
+
+image에 직접 사용되기 보다는 image의 feature vector를 계산하고, 이들 간의 distance (or difference)를 계산하는데 사용된다.
+
+- data의 Probability distribution(확률분포)을 고려한 distance.
+- 다음 그림에서 $\mu$와 보다 가까운 것을 고를 때, 단순히 L2-norm을 고려할 경우 $\textbf{b}$가 보다 가깝지만,  각 점들의 분포를 고려하면 $\textbf{c}$라고 말할 수 있다.
+    ![](../../img/etc/Mahalanobis_Dist.jpeg)
+
+> 이처럼 데이터의 확률분포를 고려한 distance로서 Mahalanobis distance가 사용되며,  
+> 이는 mean vector, $\mu$와 [covariance matrix, $\Sigma$](https://dsaint31.tistory.com/entry/Statistics-Covariance-vs-Correlation#Example%--%-A%--Covariance%--Matrix) 를 사용하여 계산됨.  
+> 참고로, covariance matrrix $\Sigma$가 identity matrix인 경우 Mahalanobis distance는 Euclidean distance와 같음.
+
+covariance matrrix가 invertible하지 않으면 Mahalanobis distance는 구해지지 않기 때문에실제로는 PCA Whitening transformation으로 데이터를 처리 (dimensionality reduction도 같이 수행됨)한 이후에 계산함. (Whitening transformation이 이루어지면 covariance를 identity matrix로 취한 Euclidean distance를 구하는 방식으로 Mahalanobis distance를 구할 수 있음.)
+
+[Whitening Transformation 관련자료](https://dsaint31.tistory.com/entry/Math-Whitening-Transformation)
+
+#### ex: Sample $\textbf{s}$와 정규분포 $N(\bold{\mu},\Sigma)$사이의 Mahalanobis distance
+
+$$
+d_\text{mahalanobis}[\textbf{s},N(\mu,\Sigma)]=d_\text{m}[\textbf{s}]=\sqrt{(\textbf{s}-\mu)^T\Sigma^{-1}(\textbf{s}-\mu)}
+$$
+
+* $\textbf{s}$는 column vector임.
+* row vector인 경우 transpose가 inverse of covariance 뒤로 바뀜.
+
+#### ex: Sample $\textbf{s}_1$와 sample $\textbf{s}_2$ 사이의 Mahalanobis distance
+
+$$
+d_m(\textbf{s}_1,\textbf{s}_2)=\sqrt{(\textbf{s}_1-\textbf{s}_2)^T\Sigma^{-1}(\textbf{s}_1-\textbf{s}_2)}
+$$
+
+* $\textbf{s}_1, \textbf{s}_2$는 column vector임.
+* row vector인 경우 transpose가 inverse of covariance 뒤로 바뀜. 
+
+---
 
 ## ratio계열
 
@@ -72,15 +133,17 @@ ideal과의 차이 정도를 나타내는 지표로 많이 사용되며 단위�
 
 $$
 \begin{aligned}
-\text{PSNR}&=10 \log \left( \frac{\textbf{\text{MAX}}^2}{\textbf{MSE}}\right)\\&= 20 \log \left( \frac{\textbf{MAX}}{\textbf{RMSE}}\right)
+\text{PSNR}&=10 \log_{10} \left( \frac{\text{MAX}^2}{\text{MSE}}\right)\\&= 20 \log_{10} \left( \frac{\text{MAX}}{\text{RMSE}}\right)
 \end{aligned}
 $$
 
 where
 
 * $\text{MAX}$ : image pixel이 가질 수 있는 최대값으로, 8bit depth image의 경우 255임. `[0,1]` range로 normalized 된 경우에는 1이 사용됨.
+* dB은 power ratio에 $10\log$를 취한 것이기 때문에 magnitude로 계산시 $20 \log$를 취해야한다.
+* PSNR을 계산할 때, common logarithm (= logarithmic base-10 function)을 사용한다. 
 
-가질 수 있는 최대신호 (peak signal)에 대한 noise의 ratio로 영상처리 결과 image나 압축 혹은 image restoration을 거친 image에서 얼마나 image degradation이 발생했는지를 평가하는데 사용됨. 
+noise의 power에 대해, 가질 수 있는 최대 신호 (peak signal)의 power의 ratio로 영상처리 결과 image나 압축 혹은 image restoration을 거친 image에서 얼마나 image degradation이 발생했는지를 평가하는데 사용됨. 
 
 
 ## implementations
@@ -111,9 +174,13 @@ def psnr(src,dst):
 
 ---
 
-## SSIM (Structrual Similarity Index Measure)
+## SSIM (Structural Similarity Index Measure)
 
-> 인간의 ***시각적 화질 (휘도, 대비, 구조적 특징) 유사도*** 를 평가하기 위해 고안된 지표. ← 인간의 시각은 이미지의 ***구조적 특징을 추출*** 하는데 특화되어 있고, 때문에 구조적 특징에서의 degradation이 두 image에서의 차이를 인식하는데 매우 큰 영향을 준다는 가설을 기반으로 구조적 특징(structure)의 차이를 정량화하고 있음.
+> SSIM은 image quality metric으로 널리 사용되지만, 엄밀한 의미에선 metric이 아님: SSIM 은 triangle inequality를 만족하지 않음. 일종의 simialrity index임.
+
+인간의 ***시각적 화질 (휘도, 대비, 구조적 특징) 유사도*** 를 평가하기 위해 고안된 지표(index). 
+
+>인간의 시각은 이미지의 ***구조적 특징을 추출*** 하는데 특화되어 있고, 때문에 구조적 특징에서의 degradation이 두 image에서의 차이를 인식하는데 매우 큰 영향을 준다는 가설을 기반으로 구조적 특징(structure)의 차이를 정량화하고 있음.
 > 
 
 - 기존의 MSE 방법과 달리 이미지의
@@ -152,7 +219,7 @@ The `SSIM` formula is based on three comparison measurements between the samples
 The individual comparison functions are:
 
 $$
-l(x,y)={\frac {2\mu _{x}\mu _{y}+c_{1}}{\mu _{x}^{2}+\mu _{y}^{2}+c_{1}}} \\ c(x,y)={\frac {2\sigma _{x}\sigma _{y}+c_{2}}{\sigma _{x}^{2}+\sigma _{y}^{2}+c_{2}}}\\s(x,y)={\frac {\sigma _{xy}+c_{3}}{\sigma _{x}\sigma _{y}+c_{3}}}
+l(x,y)={\frac {2\mu _{x}\mu _{y}+c_{1}}{\mu _{x}^{2}+\mu _{y}^{2}+c_{1}}} \\\\ c(x,y)={\frac {2\sigma _{x}\sigma _{y}+c_{2}}{\sigma _{x}^{2}+\sigma _{y}^{2}+c_{2}}}\\\\s(x,y)={\frac {\sigma _{xy}+c_{3}}{\sigma _{x}\sigma _{y}+c_{3}}}
 $$
 
 with, in addition to above definitions:
@@ -168,7 +235,7 @@ $$
 Setting the weights $\alpha ,\beta ,\gamma$ to 1, the formula can be reduced to the form shown above.
 
 >💡 `SSIM`에서는 sample(or image patch) $x$, $y$ 의 **구조적 특징유사도** $s(x,y)$를 
-사실상 **sample간의 correlation coefficient로 정의**하고 있음을 유의할 것!!
+사실상 **sample간의 correlation coefficient로 정의** 하고 있음을 유의할 것!!
 
 
 - **detail of structure comparison function**
@@ -191,7 +258,7 @@ Setting the weights $\alpha ,\beta ,\gamma$ to 1, the formula can be reduced to 
 <figcapture>MATLAB API document for SSIM</figcapture>
 </figure markdown>
 
-다음 예제는 scikit-image에서 제공하는 `skimage.metrics.strucstructural_similarity`를 이용하여 ssim과 mse의 차이를 보여주는 예제임.
+다음 예제는 scikit-image에서 제공하는 `skimage.metrics.structural_similarity`를 이용하여 ssim과 mse의 차이를 보여주는 예제임.
 
 ```Python
 import numpy as np

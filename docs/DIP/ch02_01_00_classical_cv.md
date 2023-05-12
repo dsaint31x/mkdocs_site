@@ -4,7 +4,8 @@
 
 Local Feature (or Feature Descriptor)는 2000년대부터 correspondence problem 을 푸는데 필요한 correspondence를 검출하는데 이용(SIFT 2004)되면서 많은 발전이 이루어졌다. 기존의 ^^edge segment 기반의 방식(1970년대 등장하여 1980년대 많이 사용됨)^^ 보다 우수한 성능을 보였고 무엇보다 ^^gray-scale image에서 직접 계산이 가능^^ 하여 image matching 및 classification, image registration 등에서 널리 사용됨.  
 
-> CNN의 등장으로 이전만큼의 활발한 연구는 이루어지지 않음. Dataset으로부터 hierarchy feature extraction 이 자동으로 이루어진다는 점이 Deep Learning의 가장 큰 장점 중 하나라고 할 수 있음.
+> CNN, transformer등의 DL기술이 보다 높은 성능을 보이면서 과거에 비해 그 중요도가 줄어드는 추세임.  
+> Dataset으로부터 hiearchy feature extraction 이 자동으로 이루어진다는 점이 Deep Learning의 가장 큰 장점 중 하나라고 할 수 있음.
   
 대표적인 Local Feature는 다음과 같다.
 
@@ -148,14 +149,14 @@ Edge를 만드는 요인은 다음과 같음.
 
 ### Common Edge Detection Process
 
-가장 널리 사용되는 algorithm은 ***Canny Edge Detection*** (1986) 이며 다음의 순서를 구성됨.
+가장 널리 사용되는 algorithm은 [***Canny Edge Detection*** (1986)](./ch02_02_01_canny.md) 이며 다음의 순서를 구성됨.
 
 1. Smoothing (= Denoising)
 2. Gradient magnitude를 구함.
 3. Non-max suppression 
 4. Hysteresis Thresholding
 
-Edge는 높은 gradient magnitude를 가지므로 gradient magnitude를 구하여 해당 pixel을 구하는데, noise들도 높은 gradient magnitude를 가지므로 (Gaussian) Smoothing등을 통해 edge외의 noise 를 제거하고 gradient를 구한다.
+`Edge`는 **높은 gradient magnitude**를 가지므로 gradient magnitude를 구하여 해당 pixel을 구하는데, noise들도 높은 gradient magnitude를 가지므로 (Gaussian) Smoothing등을 통해 edge 외의 noise 를 제거하고나서 gradient를 구하는 경우가 일반적임.
 
 ## Corner
 
@@ -167,14 +168,14 @@ Corner는 contour(윤곽)의 junction(교차점)을 가르킴. 즉, 여러 edge�
 
 ## Blob
 
-Blob 은 **Binary Large Object** 의 줄임말로, ^^같은 성질을 가지는 픽셀들이 연결되어있는 어느 정도 크기의 region^^ 을 가르킨다.
+Blob 은 **Binary Large Object** 의 줄임말로, ^^같은 성질을 가지는 픽셀들이 연결되어 어느 정도 이상의 size(크기)를 가지는 region^^ 을 가르킨다.
 
 > Image regions that are either brighter or darker than the surrounding.
 
 ### Common Blob Detection Process
 
 1. Smoothing
-2. LoG (Laplacian of Gaussian) : Difference of Gaussian 이 선호됨(효율측면에선)
+2. LoG (Laplacian of Gaussian) : Difference of Gaussian (DoG) 이 선호됨(효율측면에선)
 3. Find the optimal scale and orientation parameters
 
 3번의 과정에서 optimal scale이란 laplace filter의 폭($\sigma$)에 의해 결정된다. 아래 그림은 간단하게 각기 다른 크기의 blob 들에 대해 고정된 폭의 Laplacian filter를 가할 경우의 response를 보여주고 있다.
@@ -188,13 +189,13 @@ Blob 은 **Binary Large Object** 의 줄임말로, ^^같은 성질을 가지는 
 
 결국 ***Laplace Filter의 크기(흔히 `scale`이라고 불림)*** 를 바꿔가면서 적용해보면 원하는 blob 에서 response가 peak를 치는 filter를 찾을 수 있고 이러한 과정을 통해 얻은 filter를 통해 특정 image에서 blob을 검출할 수 있다. 즉, 물체의 shape의 크기나 형태에 따라 이에 맞는 Laplacian filter의 parameter를 찾는 것이 3번 단계이다.
 
-> Convolve signal with Laplacians at several sizes ($\sigma$) and looking for the maximum response.
+> Convolve signal with Laplacian at several sizes ($\sigma$) and looking for the maximum response.
 
 3번에서 각각의 다른 scale 들에서 response를 비교하기 위해서는 여기에 scale normalization이 필요하다. 
 
 ![scale-normalized laplacian](img/ch02/scale_normalized_laplacian.png)
 
-일반적으로 각 scale에 해당하는 $\sigma^2$ 을 곱해주어 scale normalized laplacian을 얻는다.
+일반적으로 각 scale에 해당하는 $\sigma^2$ 을 곱해주어 scale normalized Laplacian을 얻는다.
 
 > 여기서 나오는 scale은 `scale space`에서 나오는 용어임.  
 > `scale space`는 대상을 여러 scale에 걸쳐 표현하는 multi-scale representation을 만드는 기법 중의 하나로 `image pyramid`와 함께 가장 널리 사용되는 방법이다. scale이 클수록 image가 blurring되어 기본 구성요소가 넓은 영역을 차지하게 된다.  
