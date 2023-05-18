@@ -14,17 +14,19 @@ Flash memory를 Disk Drive 형태로 패키징하면서, Wear Leveling Processor
 
 ## 특징.
 * 전기적으로 내용 변경 및 일괄 소거도 가능.
-    * EEPROM의 일종.
+    * `EEPROM`의 일종.
 * RAM 같은 ROM.
     * 1bit를 담고 있는 cell별로
     * read의 경우 random access가능!
     * cell이 저장할 수 있는 bit의 크기에 따라 다음으로 구분.
-        * Single Level Cell(SLC) : 1bit/cell 저장 (=1BPC)
-        * Multi Level Cell(MLC) : 2bit/cell 저장 (=2BPC)
-        * Triple Level Cell(TLC) : 3bit/cell 저장 (=3BPC)
-        * Quadratic Level Cell(QLC) : 4bit/cell 저장 (=4BPC)
-    * 실제로는 32 or 64개의 cell이 연결된 String(or Column)이 read의 최소단위(RAM과 유사)가 되며, 16 or 23개의 String이 모여 program(=write)의 최소단위인 Page(or Row)를 이루고, 64 or 128개의 String이 모여 erase의 최소단위인 Block을 이룸(NAND Flash 기준).
-    * BPC가 커질수록 read time이 커짐(=느려짐)
+        * Single Level Cell(`SLC`) : 1bit/cell 저장 (=1BPC)
+        * Multi Level Cell(`MLC`) : 2bit/cell 저장 (=2BPC)
+        * Triple Level Cell(`TLC`) : 3bit/cell 저장 (=3BPC)
+        * Quadratic Level Cell(`QLC`) : 4bit/cell 저장 (=4BPC)
+    * 실제로는 ^^32 or 64개의 cell이 연결된 String(or Column)이 read의 최소단위(RAM과 유사)^^ 가 되며, ^^16 or 23개의 String이 모여 program(=write)의 최소단위인 Page(or Row)^^ 를 이루고, ^^64 or 128개의 String이 모여 erase의 최소단위인 Block^^ 을 이룸(NAND Flash 기준).
+        * [Memory : Page and Column 참고 내용](./ce03_02_1_memory1.md#address-register-row-and-column)
+        * Page와 비슷한 개념으로 segment가 있는데, page는 물리적으로 주소를 나누는 방식(같은 bit size로 나뉨)이고 segment는 논리적으로 나누는 방식(bit size가 다름)임.
+    * ***BPC가 커질수록 read time이 커짐(=느려짐)*** . 동시에 수명도 짧아짐.
     * cell을 직렬로 연결할지 병렬로 연결할지에 따라 NAND FLASH와 NOR FLASH로 구성됨.
 * 전원이 나가도 기억 유지.
     * ***DRAM 처럼 bucket(=MOSFET+Floating Gate Transistor) 에 전자를 담아 기억하는 방식*** 
@@ -32,7 +34,7 @@ Flash memory를 Disk Drive 형태로 패키징하면서, Wear Leveling Processor
 * 쉽게 쓰기 지우기 가능
     * 단, 0에서 1로 변경을 하려면 ^^우선 해당 데이터가 기록된 block 전체를 지우고 다시 기재^^ 해야함.
     * 특정 cell의 정보 만 수정하는 처리가 안됨. 
-    * "block 단위"별로 지우고 다시 쓰기 수행
+    * "block (or string) 단위"별로 지우고 다시 쓰기 수행
     * 때문에 flash memory는 여러 block으로 나누어져 있음.
 * 읽기/쓰기 수만번 가능.
     * 데이터를 저장하는 cell 하나당 쓰고 지우는 횟수의 한계가 존재함.

@@ -21,11 +21,21 @@ firmware 보다 더 강력한(?) 융합은 Filed Programmable Gate Array (FPGA) 
 
 IC가 gate들을 조합하여 구성되는 것을 이용하여, FPGA는 사용가능한 기본 component들을 block으로 지정하고 이를 array로 묶은 chip이다. 이를 어떻게 연결하느냐에 따라 logic이 구현되는데 이를 연결하는 것을 전용 programming language로 작성된 code가 결정한다. 즉, FPGA를 만드는 업체는 어떤 logic의 chip이 될 수 있는 일종의 만능칩을 제공하고, 이후 시스템이나 어플리케이션을 만드는 개발자가 여기에 logic을 구현하는 셈이다. 초기 FPGA는 PROM처럼 한번 다운로드하고 나면 수정이 안되었으나, 현재는 전기적으로 자유롭게 수정이 가능하다. 
 
-FPGA는 firmware보다 한 발 더 나아간 ***수정이 가능한 Hardware*** 라고 할 수 있다. HW 관점에서는 CPU와 ASIC의 hybrid라고도 볼 수 있다.
+FPGA는 firmware보다 한 발 더 나아간 ***수정이 가능한 Hardware*** 라고 할 수 있다. 
 
 ### ASIC vs. FPGA
 
-반도체로 구현되는 다양한 IC들이 사용으로 사용되는 경우에는 대부분이 Application-Specific Integrated Circuit (ASIC)이라고 불리는 형태로 만들어진다. 마치 ROM처럼 제조할 때, 사용되는 분야에 맞게 전용 logic을 탑재한 IC이다. 해당 task를 수행하는데 가장 빠르고 효율적인 IC를 만들 수 있으며 high-volume production application의 경우 가장 낮은 개별단가가 가능한 방법이다. 하지만, low-volume production application이 주가 되는 산업분야 (항공우주, 군수 및 방위, 의료 등등)에서는 개별단가를 낮추기가 어렵다. 일단 ASIC은 design 에 들어가는 비용과 manufature를 위한 초기 비용이 매우 높다. 한번 setup이 되고나서 생산을 하는데에는 비용이 낮지만 초기비용이 높고 이를 낮추기가 굉장히 어렵기 때문에 prototype application을 만들거나 low-volume production application에서 사용하기 쉽지 않다는 단점을 가진다.
+반도체로 구현되는 다양한 IC들이 경우에는 대부분이 Application-Specific Integrated Circuit (ASIC)이라고 불리는 형태로 만들어진다.  
+마치 ROM처럼 제조할 때, 사용되는 분야에 맞게 전용 logic을 탑재한 IC이다. 해당 task를 수행하는데 가장 빠르고 효율적인 IC를 만들 수 있으며 high-volume production application의 경우 가장 낮은 개별단가가 가능한 방법이다. 하지만, low-volume production application이 주가 되는 산업분야 (항공우주, 군수 및 방위, 의료 등등)에서는 개별단가를 낮추기가 어렵다. 일단 ASIC은 design 에 들어가는 비용과 manufature를 위한 초기 비용이 매우 높다. 한번 setup이 되고나서 생산을 하는데에는 비용이 낮지만 초기비용이 높고 이를 낮추기가 굉장히 어렵기 때문에 prototype application을 만들거나 low-volume production application에서 사용하기 쉽지 않다는 단점을 가진다.
+
+* AP (Application Processor) : 대표적인 ASIC으로 휴대기기의 핵심 Processor임. 컴퓨터에서의 CPU와 같은 역할을 수행하면서 동시에 그래픽처리, 통신 등을 위한 기능도 수행함. 일종의 System on Chip 으로 작은 휴대기기의 공간에 많은 기능을 높은 집적도로 구현하기 위해 만들어진 ASIC임. 때문에 특정 용도(application)에 최적화된 Processor로 볼 수 있음.
+* CPU (Cenral Processing Unit) : PC등에서는 주로 MPU (Micro Processor Unit)가 CPU로 사용됨. 연산과 제어만을 담당하고 그래픽처리, 통신등은 처리하지 않음 (Accelated Processing Unit의 경우, CPU+GPU로 최근 많은 CPU들이 그래픽처리도 포함하는 추세임). 대신 매우 높은 성능으로 연산 및 제어를 수행할 수 있게 만들어진다. 
+* MCU (Micro Controller Unit) : MPU와 매우 흡사하지만, 연산 능력이 상대적으로 낮고 대신 저렴한 경우가 일반적이다. MPU가 컴퓨터 PC에서 사용된다면, MCU는 자판기나 전기밥솥, 오디오기기 등에서 제어등을 위해 사용된다. MPU에 memory나 i/o 등이 좀더 추가되어 하나의 ic로 패키징된 경우임.
+* Micro-computer : IC 하나에 computer system을 집적시킨 SoC. AP (=보통 mobile AP를 가르킴)의 조상격으로 MCU에 시스템으로 필요한 기능 등을 추가하여 하나의 IC로 만든 것. 마이컴($\mu$-com or u-com)으로 표기되기도 함.
+
+[MPU, micro controller 요약](https://dsaint31.tistory.com/entry/CE-Micro-Controller-Unit-MCU-and-Micro-computer)
+
+> ASIC이 여러 사용처에서 공통적으로 사용되는 경우에는, 일종의 표준화된 제품으로 공급될 수 있으며 이를 Appliction-Sepecific Standard Product (ASSP) 라고도 부름. ASSP는 일종의 기성복(=유니폼처럼 특정 분야에서 입는)이고 ASIC은 완전맞춤복이라고 할 수 있음. 단 General purpose IC와 ASSP는 구별되는데 ASSP는 특정 용도나 분야에 한정되며, GPIC는 보다 다양한 용도, 기기, 분야에서 기성품(일반적인 기성복)으로 제공된다. 사실 ASSP와 ASIC은 기능적인 면과 기술적인 면에서 큰 차이가 없어서 ASIC으로 같이 불리며 비지니스 측면에서만 차이가 있다고 볼 수 있음.
 
 FPGA는 ASIC과 반대되는 특성을 가진다. design과 manufature를 위한 초기 비용은 매우 낮지만, setup 이후의 생산 개별 단가는 ASIC보다 훨씬 높다. 하지만, 개별 제품이 고가이고 소량다품종이 요구되는 산업분야에선 ASIC보다 나은 선택이 된다. 실제 의료기기 및 항공우주 산업, 그리고 일부 방위산업 등에서는 FPGA가 빠르게 확산되고 있으며, 일부 ASIC의 분야마저 FPGA가 사용되고 있다.
 
