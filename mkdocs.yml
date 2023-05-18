@@ -230,6 +230,7 @@ nav:
         - "DIP/ch10_LoG.md"
         - "DIP/cv2/ch02/dip_geometric_transformation.md"
         - "DIP/cv2/ch02/dip_morphological_op.md"
+        - "DIP/cv2/ch02/dip_circle_hough_transform.md"
       - "etc":
         - "DIP/cv2/etc/floodfill.md"
         - "DIP/cv2/etc/dip_convolution.md"
