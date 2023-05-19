@@ -27,7 +27,7 @@ $$ f(x,y) \rightarrow h(a,b)$$
 
 다음 그림은 image space(좌)와 `ab` space(우)를 보여주며, 녹색의 점을 지나는 모든 직선들은 `ab` space에서 녹색 line에 해당한다. 즉 녹색의 점이 edge라면 `ab` space의 녹색 line에 해당하는 accumulator들의 값이 1씩 증가하게 된다. 청색의 점에 해당하는 `ab` space의 accumulator는 청색의 직선으로 청색의 점이 edge라면 역시 청색의 직선을 구성하는 accumulator들의 값이 1씩 증가한다.
 
-![](../../img/ch02/hough_line_`ab`space.png)
+![](../../img/ch02/hough_line_abspace.png)
 
 단, `ab` space의 경우, 기울기($a$)가 무한대가 될 수 있다는 단점을 가짐 (수직선의 경우). 때문에 기울기와 bias를 parameter로 사용하지 않고, polar coordinate의 직선의 방정식을 사용한다. 즉, 직선이 x축과 이루는 각도와 원점과의 거리를 통해 line을 나타내는 방법을 주로 사용함.
 
