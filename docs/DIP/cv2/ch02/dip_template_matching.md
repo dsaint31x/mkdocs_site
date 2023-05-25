@@ -91,6 +91,85 @@ $$R(x,y)= \frac{ \sum_{x',y'} (T'(x',y') \cdot I'(x+x',y+y')) }{ \sqrt{\sum_{x',
 
 ### Example
 
+OpenCV Tutorial에 있던 예제를 colab등에서 동작가능하도록 조금 수정한 예제임.
+
+> Template Matching의 경우 가급적 원본 영상에서 template를 선택하여 사용하는게 가장 정확함. 그 외의 경우 그리 만족할만한 결과가 안나오는 경우가 많음.
+
+예제로 사용할 수 있는 image 는 다음 URL에서 받을 것.
+
+* [src image: Template_Matching_Original_Image.jpg](../../img/ch02/Template_Matching_Original_Image.jpg)
+* [template image: Template_Matching_Template_Image.jpg](../../img/ch02/Template_Matching_Template_Image.jpg)
+
+> 주석처리된 부분들을 해제하여 template를 원본영상의 일부가 아닌 비슷한 이미지(사이즈 다름)로 한 경우등의 성능을 확인해 볼 것.
+
+```Python
+import cv2
+import matplotlib.pyplot as plt
+import numpy as np
+
+#match_method = cv2.TM_SQDIFF
+# match_method = cv2.TM_SQDIFF_NORMED
+# match_method = cv2.TM_CCORR
+# match_method = cv2.TM_CCORR_NORMED
+# match_method = cv2.TM_CCOEFF
+match_method = cv2.TM_CCOEFF_NORMED
+use_mask = False
+
+mask  = None
+
+# -------------------------------------------------------
+# load src image
+img_fstr  = 'Template_Matching_Original_Image.jpg'
+img   = cv2.imread(img_fstr , cv2.IMREAD_COLOR)
+
+# -------------------------------------------------------
+# template matching은 scale 및 이미지 값에 영향을 크게 받음.
+# 가급적 image에서 선택하여 잘라야 함.
+templ = img[70:115,150:190,...].copy()
+# templ_fstr  = 'Template_Matching_Template_Image.jpg'
+# templ   = cv2.imread(templ_fstr , cv2.IMREAD_COLOR)
+
+
+# plt.imshow(templ[...,::-1])
+
+# -------------------------------------------------------
+# generate mask
+if use_mask:
+  mask = np.ones(img.shape)
+
+# -------------------------------------------------------
+# matching!!
+method_accepts_mask = (cv2.TM_SQDIFF == match_method or cv2.TM_CCORR_NORMED == match_method )
+if (use_mask and method_accepts_mask):
+  result = cv2.matchTemplate(img, templ, match_method, None, mask)
+else:
+  result = cv2.matchTemplate(img, templ, match_method)
+
+# -------------------------------------------------------
+# get the coordinate of matching point
+cv2.normalize( result, result, 0, 1, cv2.NORM_MINMAX, -1 )
+plt.imshow(result,cmap='gray')
+_minVal, _maxVal, minLoc, maxLoc = cv2.minMaxLoc(result, None)
+if (match_method == cv2.TM_SQDIFF or match_method == cv2.TM_SQDIFF_NORMED):
+  print(match_method)
+  matchLoc = minLoc
+else:
+  print(match_method)
+  matchLoc = maxLoc
+
+# -------------------------------------------------------
+# display
+print(matchLoc)
+img_display = img.copy()
+color_line = (255,0,0)
+thickness = 2
+line_type = 8
+
+cv2.rectangle(img_display, matchLoc, (matchLoc[0] + templ.shape[1], matchLoc[1] + templ.shape[0]), color_line,thickness, line_type)
+
+plt.imshow(img_display[...,::-1])
+```
+
 
 ### References
 

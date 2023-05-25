@@ -237,6 +237,7 @@ nav:
         - "DIP/cv2/ch02/dip_morphological_op.md"
         - "DIP/cv2/ch02/dip_hough_transform.md"
         - "DIP/cv2/ch02/dip_circle_hough_transform.md"
+        - "DIP/cv2/ch02/dip_template_matching.md"
       - "etc":
         - "DIP/cv2/etc/floodfill.md"
         - "DIP/cv2/etc/dip_convolution.md"
