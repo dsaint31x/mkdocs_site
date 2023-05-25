@@ -139,6 +139,11 @@ nav:
         - "CE/ch04/ce04_31.md"
       - "CE/ch04/ce04_41.md"
       - "CE/ch04/ce04_51.md"
+    - 'ch05: Computer Architecture':
+      - "CE/ch05/ce05_01_01.md"
+      - "CE/ch05/ce05_02_01_function.md"
+      - "CE/ch05/ce05_04_01_interrupt.md"
+      - "CE/ch05/ce05_05_01_idx_reg_rel_add.md"
     - 'ch06':
       - "Data Transfer":
         - "IO Ports":         "CE/ch06/ce06_1_01_ioport.md"
