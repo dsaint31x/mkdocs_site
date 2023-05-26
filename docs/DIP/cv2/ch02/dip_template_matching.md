@@ -40,7 +40,7 @@ cv2.matchTemplate(
 * `image` : template 에 해당하는 patch image 위치를 찾기 위한 target image. `uint8` or `float32`를 `dtype`로 가지는 image..
 * `templ` : template. `image`보다 작거나 같은 크기를 가지면서 동시에 `dtype`이 같아야 함. 
 * `method` : 넓은 의미에서 distance measure 또는 similarity measure function에 해당함. 보다 자세한 건 아래 참고.
-* `result` : 결과 image로 `dtype`가 `np.float32`이며 $(W_\text{image}-W_\text{templ}+1) \times (H_\text{image}-H_\text{templ}+1)의 넓이와 높이를 가짐. 
+* `result` : 결과 image로 `dtype`가 `np.float32`이며 $(W_\text{image}-W_\text{templ}+1) \times (H_\text{image}-H_\text{templ}+1)$의 넓이와 높이를 가짐. 
     * 호출 시 argument는 `None`으로 해주고 return value로 설정하는 방식이 Python에선 일반적.
 * `mask` : `image`에서 일부 영역에서만 template matching을 수행할 경우 입력됨. `image`와 같은 channel 수를 가지던지, 단일 channel이어야함. `CV_8U`인 경우 binary mask로 동작(0이면 선택되지 않고, 0이 아닌 부분은 matching에 사용)하고 `CV_32F`인 경우 weight로 동작함.
 
