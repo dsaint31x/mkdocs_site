@@ -1,20 +1,29 @@
 # Template Matching : cv2.matchTemplate
 
-template (대상 영상에서 찾고자 하는 object에 해당하는 patch image)을 input image(=target image, 대상영상)에서 찾아내는 기법.
+> template (대상 영상에서 찾고자 하는 object에 해당하는 patch image)을 input image(=target image, 대상영상)에서 찾아내는 기법.
 
-convolution 기반의 spatial filtering의 동작 방식과 유사하게 template를 kernel로 삼아 target image에 sliding시키면서 matching을 정도를 평가하는 measure를 계산함.
+**convolution 기반의 spatial filtering의 동작 방식과 유사** 하게 template를 kernel로 삼아 target image에 sliding시키면서 matching을 정도를 평가하는 measure를 계산함.
 
 > OpenCV 에서는 위 설명의 measure들을 `method` parameter로 6가지 정도를 지원함.
 
-모든 pixel에 대해 measure를 계산하고 이들을 비교하여 matching이 잘 된 영역들의 위치와 measure score를 반환해준다.
+* 모든 pixel에 대해 measure (similarity등에 해당)를 계산하고 
+* 이들을 비교하여 
+* matching이 잘 된 영역들의 location(위치)와 해당 measure score를 반환해준다.
 
 > Signal processing의 관점에서 볼 때, Cross correlation을 2-Dimension으로 확장한 경우가 Template Matching에서 method를 `cross correlation`으로 사용한 경우와 동일함.
 
-Matching에서 Template Matching은 가장 단순한 형태로, input image(=target image)와 template가 모두 image 형태 그대로가 사용된다.
+Matching에서 Template Matching은 가장 단순한 형태로, input image(=target image)와 template가 모두 image 형태 그대로가 사용되며 feature vector등으로 변환등이 이루어지지 않는다.
 
-단점은 template에 해당하는 image가 회전된 경우, pixel의 값이 전체적으로 밝아지거나 어두어진 경우, template과 matching 된 영역의 조명이 불균일한 경우, template 또는 matching 된 영역의 일부 패턴이 변형된 경우 등에서 성능이 떨어짐.
+때문에 구현은 단순하나 다음의 경우들에서 낮은 성능을 보임 (=이들 단점은 local feature들이 개선한 특징들에 해당함) 
 
-때문에 keypoint에서의 local feature 를 추출하고 이를 기반으로 하는 matching이 보다 더 선호됨. 하지만 template이 target image에서 추출되는 경우와 같이 단순한 경우엔 성능이 좋기 때문에 1차적으로 수행되는 경우가 많음.
+* template에 해당하는 image가 회전된 경우 (=둘의 orientation이 일지하지 않는 경우),
+* pixel의 값이 전체적으로 밝아지거나 어두어진 경우 (=둘의 contrast의 범위가 다른 경우),
+* template과 matching 된 영역의 조명이 불균일한 경우, 
+* template 또는 matching 된 영역의 일부 패턴이 변형된 경우 
+
+때문에 keypoint에서의 ^^local feature 를 추출하고 이를 기반으로 하는 matching^^ 이 보다 더 선호됨. 
+
+> template이 target image에서 추출되는 경우처럼 아주 단순한 경우엔 성능이 나쁘지 않음.
 
 ## cv2.matchTemplate
 
@@ -28,12 +37,12 @@ cv2.matchTemplate(
 ) -> result
 ```
 
-* `image` : template 에 해당하는 patch image 위치를 찾기 위한 target image. `uint8` or `unit32`의 gray-scale image.
+* `image` : template 에 해당하는 patch image 위치를 찾기 위한 target image. `uint8` or `float32`를 `dtype`로 가지는 image..
 * `templ` : template. `image`보다 작거나 같은 크기를 가지면서 동시에 `dtype`이 같아야 함. 
 * `method` : 넓은 의미에서 distance measure 또는 similarity measure function에 해당함. 보다 자세한 건 아래 참고.
 * `result` : 결과 image로 `dtype`가 `np.float32`이며 $(W_\text{image}-W_\text{templ}+1) \times (H_\text{image}-H_\text{templ}+1)의 넓이와 높이를 가짐. 
     * 호출 시 argument는 `None`으로 해주고 return value로 설정하는 방식이 Python에선 일반적.
-* `mask` : `image`에서 일부 영역에서만 template matching을 수행할 경우 입력됨.
+* `mask` : `image`에서 일부 영역에서만 template matching을 수행할 경우 입력됨. `image`와 같은 channel 수를 가지던지, 단일 channel이어야함. `CV_8U`인 경우 binary mask로 동작(0이면 선택되지 않고, 0이 아닌 부분은 matching에 사용)하고 `CV_32F`인 경우 weight로 동작함.
 
 ## The matching methods available in OpenCV
 
