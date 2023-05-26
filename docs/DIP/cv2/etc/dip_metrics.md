@@ -100,7 +100,7 @@ MSE에서 전체 샘플 갯수로 나누는 연산이 빠진 형태. 일반적�
 
 > Hamming distance는 길이가 같은 binary vector에서만 가능함. 길이가 다른 경우로는 string(문자열)간의 비교가 대표적이고 이 경우에는 Levenshtein distance가 사용됨.
 >
-> Levenshtein distance는 다음 URL을 참고: 
+> Levenshtein distance는 다음 URL을 참고: [Levenshtein Distance](https://dsaint31.tistory.com/entry/ML-Levenshtein-distance)
 
 ---
 
