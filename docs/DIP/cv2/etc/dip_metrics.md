@@ -102,6 +102,17 @@ MSE에서 전체 샘플 갯수로 나누는 연산이 빠진 형태. 일반적�
 >
 > Levenshtein distance는 다음 URL을 참고: [Levenshtein Distance](https://dsaint31.tistory.com/entry/ML-Levenshtein-distance)
 
+```Python
+import numpy as np
+
+def hamming_dist( i, j ):
+  i_f = np.ravel(i)
+  j_f = np.ravel(j)
+
+  ret = (i_f!=j_f).sum()
+  return ret
+```
+
 ---
 
 ### 참고 : Mahalanobis Distance
