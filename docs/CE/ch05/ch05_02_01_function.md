@@ -93,7 +93,8 @@ float a = cube(3);
 
 ![](./img/function_call.png)
 
-* 위의 구현에서는 복귀할 address를 ***고정된 특정 주소 (`200`)에 저장*** 하기 때문에 recursive function call을 지원할 수 없음 (때문에 실제로는 `stack` 이라는 data structure 가 사용됨.)
+* 위의 구현에서는 `bra`(branch always)를 통해 `cube` 함수의 실행코드가 있는 주소로 제어가 점프하기 전에 복귀할 address를 ***고정된 특정 주소 (`200`)에 저장*** 하고 있음.
+* 문제는 고정된 주소에 저장하기 때문에 `recursive function call` (재귀함수호출)을 지원할 수 없음 (때문에 실제로는 `stack` 이라는 data structure 가 사용됨.)
 * Function call은 stack에 argument들과 return address를 저장하기 때문에 ***추가적인 부하*** 가 발생한다. 
 * 하지만, 이를 없앤다고 function을 사용하지 않을 경우 program code자체에 중복되는 코드가 너무 많아져 버그에 취약해지고 가독성을 잃게 되므로 가급적 중복되는 처리는 function으로 만들어서 사용해야 한다.
 
