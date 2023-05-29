@@ -248,6 +248,7 @@ nav:
       - "DIP/ch02_01_02_simple_blob_detector.md"
       - "Old Style Features":
         - "DIP/ch02_02_01_canny.md"
+        - "DIP/ch02_02_02_harris_corner.md"
       - "DIP/ch02_03_03_hog.md"
   - "ML":
     - "Introduction":
