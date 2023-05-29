@@ -34,7 +34,7 @@ Programming에서의 function은 SW (or program)에서 특정 동작을 수행�
 
 Programming language등이 기본적으로 제공하는 함수들을 가르킴. 파일 입출력 등과 같이 많은 경우에 공통적으로 필요한 다양한 함수들이 built-in function으로 제공됨.
 
-Progrmming을 공부한다는 것은 상당 부분이 built-in function들을 올바르게 사용하는 것을 익히는 것이기도 함. (영어 공부에서 단어나 숙어 공부에 해당?)
+Programming을 공부한다는 것은 상당 부분이 built-in function들을 올바르게 사용하는 것을 익히는 것이기도 함. (영어 공부에서 단어나 숙어 공부에 해당?)
 
 ### `custom function`
 
