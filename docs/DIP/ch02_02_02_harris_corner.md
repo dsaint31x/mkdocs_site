@@ -83,6 +83,8 @@ where
 
 ![](./img/ch02/hessian_diagonalization_ellipse.png)
 
+> 위의 식에서 $I_{xx}$는 앞서의 $h_{xx}$와 같으며, $I_x^2$으로도 표기될 수 있다. 이는 x-axis를 따라 구해진 1st order derivative에 해당한다.
+
 이들 중 eigen vector는 각각 curvature가 최대인 방향과 해당 방향에 직교한 방향을 가르키며, eigen value는 이들 축의 curvature(곡률) 크기를 의미한다. 
 
 다음은 change of basis와 ellipse의 equation을 quadratic form과 연결지어서 보여줌. (단, 여기선 $Q$가 identity matrix로 놓고 처리함.)
@@ -120,7 +122,7 @@ $$\begin{aligned}f&=\frac{\lambda_0 \lambda_1}{(\lambda_0+\lambda_1)^2}\\&=\frac
 > Szeliski의 방법은 Harris와 Stephens가 1988년 제안한 방법과 같이 Hessian matrix(정확히는 2nd moment matrix)를 이용하지만 corner response function 만 차이가 있음. 
 Szeliski의 방식을 정확히 기재하면 다음과 같음.  
 >
-> $$f=\frac{\text{Det}(H)}{\text{Tr}(H)+\epsilon}$$  
+> $f=\frac{\text{Det}(H)}{\text{Tr}(H)+\epsilon}$  
 > 보다 자세한 건 다음을 참고할 것. [M.Brown, R.Szeliski, and S. Winder, Multi-image matching using multi-scale oriented patches,in IEEE Computer Society Conference on Computer Vision and Pattern Recognition (CVPR),vol.1, IEEE, 2005, pp.510–517](https://ieeexplore.ieee.org/document/1467310)
 
 Harris corner detector의 대안인 Shi-Tomasi operator (1994)의 경우, $\text{cornerness}=\min(\lambda_0,\lambda_1)$로 정의되며, 최소 eigen value의 크기가 크면 corner로 판정한다. (Harris operator 와 큰 차이는 없으나 robustness가 조금 떨어진다고 알려져 있음) : characteristic equation $\text{det}(H-\lambda I_{2})=0$ 으로부터 유도되어 다음의 등식으로 cornerness가 구해짐.

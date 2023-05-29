@@ -142,7 +142,7 @@ nav:
     - 'ch05: Computer Architecture':
       - "CE/ch05/ch05_01_01.md"
       - "CE/ch05/ch05_02_01_function.md"
-      - "CE/ch05/ch05_04_01_interrupt.md"
+      - "CE/ch05/ch05_04_02_interrupt.md"
       - "CE/ch05/ch05_05_01_idx_reg_rel_add.md"
     - 'ch06':
       - "Data Transfer":

@@ -93,9 +93,11 @@ float a = cube(3);
 
 ![](./img/function_call.png)
 
-* 위의 구현에서는 복귀할 address를 ***고정된 특정 주소 (`200`)에 저장*** 하기 때문에 recursive function call을 지원할 수 없음.
+* 위의 구현에서는 복귀할 address를 ***고정된 특정 주소 (`200`)에 저장*** 하기 때문에 recursive function call을 지원할 수 없음 (때문에 실제로는 `stack` 이라는 data structure 가 사용됨.)
 * Function call은 stack에 argument들과 return address를 저장하기 때문에 ***추가적인 부하*** 가 발생한다. 
 * 하지만, 이를 없앤다고 function을 사용하지 않을 경우 program code자체에 중복되는 코드가 너무 많아져 버그에 취약해지고 가독성을 잃게 되므로 가급적 중복되는 처리는 function으로 만들어서 사용해야 한다.
+
+> Recursive call (재귀호출) 에 대한 이해를 위해선 [Subdivision using DFS](https://dsaint31.tistory.com/category/Computer/CE)와 [recursive call : Fibonacci Sequence](https://dsaint31.tistory.com/entry/Python-recursive-call-Fibonacci-Sequence)를 참고하라.
 
 ### Function call과 stack.
 
