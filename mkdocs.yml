@@ -146,6 +146,7 @@ nav:
       - "CE/ch05/ch05_04_02_interrupt.md"
       - "CE/ch05/ch05_05_01_idx_reg_rel_add.md"
       - "CE/ch05/ch05_06_01_mmu.md"
+      - "CE/ch05/ch05_07_01_virtual_memory.md"
     - 'ch06':
       - "Data Transfer":
         - "IO Ports":         "CE/ch06/ce06_1_01_ioport.md"
