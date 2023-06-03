@@ -1,6 +1,6 @@
 # Convolution
 
-> 이 문서에서의 conovlution은 digital image processing등에서의 convolution을 다루고 있음. 
+> 이 문서에서의 convolution은 digital image processing등에서의 convolution을 다루고 있음. 
 > signal processing의 discrete convolution에 대한 건 다음 문서를 참고할 것:  
 > [Discrete Convolution](https://dsaint31.tistory.com/entry/SS-Discrete-Convolution-Linear-Discrete-Convolution), [Circular Convolution](https://dsaint31.tistory.com/entry/SS-Circular-Convolution)
 
@@ -10,7 +10,7 @@ image filtering에서 spatial domain filtering은 주로 **filter** 또는 **
 
 * 어찌보면, spatial operation의 끝판왕이라고 봐도 됨.
 
-convoluton의 수식은 다음과 같음.
+convolution의 수식은 다음과 같음.
 
 $$
 \begin{aligned}
@@ -24,7 +24,7 @@ where
 
 - $h(x,y)$ : filter or kernel
 - $f(x,y)$ : original image
-- $g(x,y)$ : output imagewhere
+- $g(x,y)$ : output image
 
 convolution은 cross-correlation과 달리 ^^교환법칙이 성립^^ 하며, impulse response(영상에선 point spread function)와 입력 신호를 이용하여 ***시스템의 response를 구하는 연산*** 임.
 
@@ -55,11 +55,13 @@ convolution은 cross-correlation과 달리 ^^교환법칙이 성립^^ 하며, im
 * $5 \times 5 \times 3$ image를 상하좌우로 1씩 padding을 수행하고, 
 * $3 \times 3$ kernel을(엄밀하게는 $3\times 3\times 3$) 통해 convolution을 수행하여 $3 \times 3 \times 2$ image를 얻어냄. 
 * Kernel은 2 pixel의 stride로 사용하여 이동함.
-* 결과 영상의 depth $2$는 kernel (or filter)이 2개 (W0, W1) 사용됨을 의미함. 
+* 결과 영상의 depth $2$는 kernel (or filter)이 2개 (`W0`, `W1`) 사용됨을 의미함.
 
-## OpenCV
+---
 
-OpenCV 는 filter2D를 통해 convolution을 제공.
+## OpenCV를 통한 convolution
+
+OpenCV 는 `filter2D`를 통해 convolution을 제공.
 
 ```Python
 dst = cv2.filter2D(
@@ -74,7 +76,7 @@ dst = cv2.filter2D(
 ```
 
 - `src` : input image
-- `ddepth` : output imaget dtype : -1 입력과 동일 / `CV_8U`,`CV_16U`, `CV16S`, `CV_32F`, `CV_64F`
+- `ddepth` : output image dtype : `-1`인 경우 input image와 동일한 `dtype`를 가짐. / `CV_8U`,`CV_16U`, `CV16S`, `CV_32F`, `CV_64F`
 - `kernel` : kernel or window or mask or filter matrix
 - `dst` : output image
 - `anchor` : kernel의 기준점. 결과값이 치환될 위치. default (-1,-1) 로 kernel의 중앙을 의미
