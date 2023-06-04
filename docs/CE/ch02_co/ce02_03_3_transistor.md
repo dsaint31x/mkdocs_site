@@ -1,6 +1,6 @@
 # Transistor (Transe + Register)
 
-오늘날 전자기기에서 주로 사용되는 소자이며, ^^전기회로와 전자회로를 구분짓는 active device^^ 의 대표격인 소자. 
+오늘날 ^^전자기기^^ 에서 주로 사용되는 소자이며, ^^`전기회로`와 `전자회로`를 구분짓는 **active device**^^ 의 대표격인 소자. 
 
 전류(BJT) 또는 전압(FET)에 의해 제어되는 
 
@@ -11,12 +11,12 @@
 로 사용된다.
 
   
-기본적으로 배울 때에는 대표적인 Bi-Junction Transistor (BJT)와 Field Effect Transisor (FET)를 다룬다. 
+기본적으로 배울 때에는 대표적인 Bi-Junction Transistor (BJT)와 Field Effect Transistor (FET)를 다룬다. 
 
 * device 하나의 효율은 BJT가 보다 좋지만, 
 * `FET`는 크기가 매우 작아 같은 크기에 60~80 배의 집적도가 가능하여 
 
-`BJT`보다 `FET`가 보다 많이 사용되는 추세임. (원가의 측면등에서도 `FET`가 훨씬 유리).
+`BJT`보다 `FET`가 보다 많이 사용되는 추세임. (원가의 측면 등에서도 `FET`가 훨씬 유리).
 
 
 FET에서도 `Metal Oxide Silicon FET`가 주로 많이 사용되고, `N-channel MOSFET` 과 `P-channel MOSFET` 중에서도 carrier가 훨씬 ^^빠른 electron을 사용^^ 하는 `N-channel MOSFET` 이 가장 많이 사용됨.  

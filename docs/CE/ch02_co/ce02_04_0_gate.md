@@ -1,7 +1,7 @@
 ---
 tags:
   - gate
-  - cominatorial
+  - combinatorial
   - boolean
   - glitch
 ---
@@ -14,12 +14,12 @@ tags:
 
 Combinatorial Logic Circuit은 
 
-* 일종의 instaneous system이며 
+* 일종의 instantaneous system이며 
 * Boolean algebra의 logic function을 구현한 것
 
 이기 때문에  
 
-Cominatorial Logic Circuit에 대한 이번 장에서는
+Combinatorial Logic Circuit에 대한 이번 장에서는
 
 * 전에 다룬 [Boolean algebra](../ch01/ch01_13_boolean_algebra.md)를 기반으로, 
 * Combinatorial logic을 구현할 때 고려해야하는 ^^noise에 대한 처리 방법^^ 과 

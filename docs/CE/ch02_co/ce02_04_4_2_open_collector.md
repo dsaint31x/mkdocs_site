@@ -1,6 +1,6 @@
 # Open-Collector (or Open-Drain) Output
 
-Tomtem-Pole Output과 달리, Open-collector (or open-drain) output은 여러 개를 같이 연결할 수 있다는 장점을 가짐.
+Totem-Pole Output과 달리, Open-collector (or open-drain) output은 여러 개를 같이 연결할 수 있다는 장점을 가짐.
 
 * 또한 `1`에 대한 출력을 5V 이상으로 변경 가능함 (pull-up resistor를 쓴 경우).
 * Totem-Pole Output보다 높은 current를 처리 가능. (LED 제어 등에 많이 사용됨)
