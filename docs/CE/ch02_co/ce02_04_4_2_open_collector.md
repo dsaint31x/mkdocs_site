@@ -18,14 +18,15 @@ Totem-Pole Output과 달리, Open-collector (or open-drain) output은 여러 개
 
 
 ## 단점
-* Totem-Pole Output보다 속도가 느림 (pull-up resistor가 낮을 수록 속도가 빠르나, 이 경우 높은 전력소모가 발생.).
+
+* Totem-Pole Output보다 속도가 느림 (pull-up resistor가 낮을수록 속도가 빠르나, 이 경우 높은 전력소모가 발생.).
 * Pull-up resistor의 도입은 또한 `0`을 출력할 때 전력을 소비하게 만듬 (낮은 pull-up resistor일수록 높은 current가 흐르게 되어 전력 소모가 커짐)
 
 ## pull-up resistor (or passive pull-up)
 
 * base가 `0`일 때, collector (or drain) 의 출력이 `floating`이 아닌 `1`이 되도록, collector를 High voltage ($V_\text{CC}$ or $V_\text{DD}$)에 연결해주는 resistor(저항)
 * 참고로 ground에 연결하는 resistor는 pull-down이라고 부름.
-* base가 `1`인 경우, output은 ground와 연결되며 `0`이 출력되게 됨. 단 transistor가 close되어도 미세한 저항이 있기 때문에, pull-up resistory에 의해 결정되는 current가 흐르게 되어 전력소모가 발생함.
+* base가 `1`인 경우, output은 ground와 연결되며 `0`이 출력되게 됨. 단 transistor가 close되어도 미세한 저항이 있기 때문에, pull-up resistor에 의해 결정되는 current가 흐르게 되어 전력소모가 발생함.
 
 ## Wired-AND
 
