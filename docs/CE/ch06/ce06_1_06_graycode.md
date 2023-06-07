@@ -41,7 +41,7 @@ gray code는 binary code로부터 계산된다.
 
 $$
 110101_{2} \Rightarrow 101111_\text{gray} 
-##
+$$
 
 
 
