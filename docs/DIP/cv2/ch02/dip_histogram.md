@@ -43,7 +43,7 @@ cv.calcHist(
 ```
 
 * `image`  : 분석대상 이미지(uint8 or float32 type). Array형태.
-* `channels` : 분석 채널(X축의 대상). 이미지가 graysacle이면 [0], color 이미지이면 [0,2] 형태(0 : Blue, 1: Green, 2: Red)
+* `channels` : 분석 채널(X축의 대상). 이미지가 gray-sacle이면 [0], color 이미지이면 [0,2] 형태(0 : Blue, 1: Green, 2: Red)
 * `mask` : 이미지의 분석영역. None이면 전체 영역. (0 or 255)
 * `histSize` : BINS 값. [256]
 * `ranges` : Range값. [0,256]
@@ -179,7 +179,7 @@ hist,bin_edges = np.histogram(
 
 feature가 1개인 경우엔 앞서 다룬 1 dimensional histogram을 구성하지만, feature가 2개인 경우엔 2D histogram으로 처리할 수 있다.
 
-Color space에서 HSV model을 생각해보면, V는 앞서 다룬 intensity이고, color에 해당하는 Hue와 saturation을 2D histogram으로 처리 가능하다.
+Color space에서 `HSV` model을 생각해보면, V는 앞서 다룬 intensity이고, color에 해당하는 Hue와 saturation을 2D histogram으로 처리 가능하다.
 
 (RGB를 이용하여 3D histogram도 가능은 하지만 많이 사용되지는 않는다.)
 
@@ -226,7 +226,7 @@ histogram에서 잘 안보이기 때문에 V=255일 때의 HS map을 기반으�
 * scaling의 값이 커질수록 2d histogram에서 강조가 되어 보이도록 처리함.
 * 푸른색과 노란색 부분이 강조되어 쉽게 확인이 가능함.
 
-Hue, Saturaiton은 color image의 특성을 나타내는 feature로 사용할 수 있다. (주의할 것은 다른 image라도 거의 비슷한 2d histogram을 가질 수 있다는 점임.)
+Hue, Saturation은 color image의 특성을 나타내는 feature로 사용할 수 있다. (주의할 것은 다른 image라도 거의 비슷한 2d histogram을 가질 수 있다는 점임.)
 
 * pixel들의 color의 분포를 나타내는 것임.
 * 위치적 정보가 사라지기 때문에 color들의 분포는 비슷하면 비슷한 2d histogram이 나올 수 있음.

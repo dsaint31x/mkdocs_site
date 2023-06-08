@@ -4,7 +4,7 @@
 
 image의 spatial frequency domain에서 high frequency 영역을 통과시키는 필터를 가르킴.
 
-> Fourier transform을 이용하여 구현할 수도 있으나, spatial domain에서 convoluton 연산을 통해서도 구현 가능함.
+> Fourier transform을 이용하여 구현할 수도 있으나, spatial domain에서 convolution 연산을 통해서도 구현 가능함.
 
 ### High Pass Filter의 특징.
 
@@ -28,7 +28,7 @@ High pass filter 또는 gradient filter등을 이용함.
 - **Filter** 등을 통해 image의 주요 feature 중 하나인 **edge 검출** 하는 것을 가르킴.
 - edge detection은 background와 foreground 를 분리(segmentation)하기 위해 필요한 가장 기본적 작업.
 - object recognization 에서도 기본이 되는 작업.
-- 즉, image recongnization, image segmentation 의 기본이 됨.
+- 즉, image recognization, image segmentation 의 기본이 됨.
 
 > `sharpening` : edge를 검출해서 edge에 해당하는 pixel값을 강조
 
@@ -140,7 +140,7 @@ cv2_imshow(results)
 - 실무에서 널리 사용되는 **1차 미분(gradient기반)** 마스크 필터 : 디지털 형태의 1차미분.
 - 1차 미분을 통한 특정방향의 Edge를 검출.
 - `opencv`에서 전용함수 제공함.
-- kernel이 작은 사이즈(3by3) 경우 등에서 edge의 direction에 대한 검출 정확도가 좋지 않은 단점이 있음 : Scharr filter가 이를 개선.
+- kernel이 작은 사이즈(3by3) 경우 등에서 edge의 direction에 대한 검출 정확도가 좋지 않은 단점이 있음 : `Scharr filter`가 이를 개선.
 
 Sobel filter의 $3 \times 3$ mask는 다음과 같음.
 
@@ -149,7 +149,7 @@ Sobel filter의 $3 \times 3$ mask는 다음과 같음.
 <figcap>출처 : [bsky's blog](https://bskyvision.com/43)</figcap>
 </figure markdown>
 
-OpenCV에서 제공하는 Sobel filter의 경우, joint Gaussian smoothing과 differentiation operation을 결합하여 구현되어있으며, 다음의 function을 사용함.
+OpenCV에서 제공하는 `Sobel filter`의 경우, joint Gaussian smoothing과 differentiation operation을 결합하여 구현되어있으며, 다음의 function을 사용함.
 
 ```Python
 cv2.Sobel(src, 

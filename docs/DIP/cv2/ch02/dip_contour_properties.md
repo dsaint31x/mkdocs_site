@@ -102,7 +102,7 @@ mean_val = cv2.mean(im,mask = mask)
 
 ## Extreme Points
 
-ojbect에서 topmost, bottommost, rightmost, and leftmost point를 extrem points라고 부름.
+object에서 topmost, bottommost, rightmost, and leftmost point를 extreme points라고 부름.
 
 ```Python
 leftmost = tuple(cnt[cnt[:,:,0].argmin()][0])
@@ -111,7 +111,7 @@ topmost = tuple(cnt[cnt[:,:,1].argmin()][0])
 bottommost = tuple(cnt[cnt[:,:,1].argmax()][0])
 ```
 
-numpy의 ndarray에서의 argmax, argmin을 활용함.
+`numpy`의 `ndarray`에서의 `argmax`, `argmin`을 활용함.
 
 ## References
 

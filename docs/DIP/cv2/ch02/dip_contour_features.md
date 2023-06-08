@@ -2,10 +2,10 @@
 
 ## Moment
 
-Image moments은 물체의 중심, 물체의 면적 등을 계산하는데 이용되는 qunatity(양)임.
+Image moments은 물체의 중심, 물체의 면적 등을 계산하는데 이용되는 quantity(양)임.
 
 > pixel intensity(←물리에서 force, mass등)의 ***정량적 크기*** 와 함께 ***분포 (어떤 기준에 대한)*** 를 고려한 ^^정량적 지표^^.  
-> 주로 `grayscale` or `binary image`에서 사용됨.
+> 주로 `gray-scale` or `binary image`에서 사용됨.
 
 moment 가 가지는 뜻을 좀 더 살펴보려면 다음 URL을 참고할 것 : [물리량의 관점에서 moment란?](https://dsaint31.tistory.com/entry/Physics-Moment-%EB%AA%A8%EB%A9%98%ED%8A%B8)
 
@@ -164,7 +164,7 @@ plt.imshow(binary_img,cmap='gray')
 plt.show()
 
 # 컨투어 찾기 
-contours, hierachy = cv2.findContours(binary_img.copy(), 
+contours, hierarchy = cv2.findContours(binary_img.copy(), 
                                       cv2.RETR_EXTERNAL,
                                       cv2.CHAIN_APPROX_SIMPLE)
 contour = contours[0]
@@ -179,7 +179,7 @@ print('epsilon=',epsilon)
 
 # 근사 컨투어 계산 
 # 주어진 contour(곡선 또는 다각형)을 epsilon(오차범위)에 맞춰
-# contour에 속하는 점들을 줄인 approxiamation(근사 컨투어)를 반환
+# contour에 속하는 점들을 줄인 approximation(근사 컨투어)를 반환
 #
 # param 1 : target contour
 # param 2 : 오차범위
@@ -196,7 +196,7 @@ print('bf:{:.2f}| af:{:.2f}'.format(
 cv2.drawContours(img0, [contour], -1, (0,255,0), 3)
 cv2.drawContours(img1, [approx], -1, (0,255,0), 3)
 
-plt.figure('origianl contour')
+plt.figure('original contour')
 plt.imshow(img0[:,:,::-1])
 plt.figure('approximated contour')
 plt.imshow(img1[:,:,::-1])
@@ -223,12 +223,12 @@ hull = cv2.convexHull(
     returnPoints=True
 ```
 
-* `points` : contour를 이루는 point들로 구성된 list임. 주의할 건, `convexHull`은 하나의 contourn만을 입력으로 받는다. (복수개의 contour를 넘겨줄 수 없음)
+* `points` : contour를 이루는 point들로 구성된 list임. 주의할 건, `convexHull`은 하나의 contour만을 입력으로 받는다. (복수개의 contour를 넘겨줄 수 없음)
 * `hull` : None으로 지정되는 경우가 일반적이며, 반환값이 저장된 변수명이 들어감. 
 * `clockwise` : orientation으로 반환되는 convexHull을 구성하는 vertex들의 순서를 시계방향으로 할지 반시계방향으로 할지를 결정.
 * `returnPoints` : `True`인 경우, convexHull을 구성하는 vertex들의 좌표들로 구성된 list를 반환하고, `False`인 경우, 입력 argument로 들어온 `points`에서 convexHull에 대응하는 vertex들의 index들을 반환함.
 
-> 파손이 된 부품에서 파손된 위치등을 찾는 경우에는 `convexicty defeat`의 위치를 찾아야 하는 경우가 많다. 이 경우에는 `returnPoints`를 False로 넘겨주어서 contour 중에서 어떤 index의 vertex가 convexHull에 속하는지를 찾은 후, 이를 `cv2.convexityDefects()`에 contour와 함께 넘겨주어 찾을 수 있음.
+> 파손이 된 부품에서 파손된 위치등을 찾는 경우에는 `convexity defeat`의 위치를 찾아야 하는 경우가 많다. 이 경우에는 `returnPoints`를 False로 넘겨주어서 contour 중에서 어떤 index의 vertex가 convexHull에 속하는지를 찾은 후, 이를 `cv2.convexityDefects()`에 contour와 함께 넘겨주어 찾을 수 있음.
 
 ## Convexity Defects
 
@@ -247,7 +247,7 @@ defects = cv.convexityDefects(cnt,hull)
 
 * start point : contour에서의 index에 해당함. convex hull에서의 시작점.
 * end point : contour에서의 index에 해당함. convex hull에서의 끝점.
-* frathest point : start와 end사이에 있는 convexity defect의 index (contour에서의 index)
+* farthest point : start와 end사이에 있는 convexity defect의 index (contour에서의 index)
 * approximate distance to farthest point.
 
 ### example
@@ -343,9 +343,9 @@ ret = cv2.matchShapes(
 
 세번째 parameter `method`는 유사도 측정에 사용할 norm을 지정한다.
 
-* `0` : L1을 이용.
-* `1` : L2을 이용.
-* `2` : L3을 이용.
+* `0` : L1을 기반.
+* `1` : L2을 기반.
+* `2` : L3을 기반.
 
 > 즉, `ret`이 작을수록 비슷한 shape임을 의미함.
 

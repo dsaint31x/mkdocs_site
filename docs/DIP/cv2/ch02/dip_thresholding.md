@@ -1,8 +1,8 @@
-# Image Tresholding
+# Image Thresholding
 
 ## Goal
 
-이 문서에서는 `Binary Image`에 대해 소개하고, 이를 만드는 기법인 `Simple Thresholding`, `Adaptive Thresholding`, `Otsu Threshodling` 등을 같이 소개한다.
+이 문서에서는 `Binary Image`에 대해 소개하고, 이를 만드는 기법인 `Simple Thresholding`, `Adaptive Thresholding`, `Otsu Thresholding` 등을 같이 소개한다.
 
 OpenCV에서는 관련하여 다음의 함수들을 제공한다.
 
@@ -199,7 +199,7 @@ image의 ***(intensity) histogram*** 에서 Threshold을 결정하고 이를 이
 
 ### p-tile
 
-* historgram으로 부터 target(대상 물체)가 차지하는 비율(`p%`)에 해당하는 intensity를 Threshold로 결정하는 방법
+* histogram으로 부터 target(대상 물체)가 차지하는 비율(`p%`)에 해당하는 intensity를 Threshold로 결정하는 방법
 * 대상물체의 비율을 미리 알 수 없기 때문에 매번 사람이 이를 정해야 한다.
 
 ---
@@ -215,7 +215,7 @@ image의 ***(intensity) histogram*** 에서 Threshold을 결정하고 이를 이
 
 ---
 
-### Otsu's thresholding (최대분산비 Thresholing) **
+### Otsu's thresholding (최대분산비 Thresholding) **
 
 Global thresholding 에서 가장 많이 사용하는 방법임.
 
@@ -230,7 +230,7 @@ Otsu thresholding은 bimodal image (histogram의 2개의 peak를 가지는 경�
 Otsu algorithm은 2개의 class로 나눌 때, 
 
 * 각 class의 ^^`within-class variance`를 최소화^^ 하면서 
-* 두 class의 `inter-calss variance`는 최대로 
+* 두 class의 `inter-class variance`는 최대로 
 
 만드는 ^^threshold를 찾는다^^.
 
@@ -265,7 +265,7 @@ ret,th = cv2.threshold(
     )
 ```
 
-* 사용하고자 하는 threholding style에 `cv2.THRESH_OTSU`를 더해주면 됨.
+* 사용하고자 하는 thresholding style에 `cv2.THRESH_OTSU`를 더해주면 됨.
 * 이 경우, 반환값 `ret`에 Otsu알고리즘으로 찾은 값이 저장됨.
 
 ## References

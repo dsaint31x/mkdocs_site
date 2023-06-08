@@ -1,9 +1,9 @@
 # Histogram Backprojection
 
-Hue와 Saturation으로 이루어진 Histrogram을 이용하여 다음의 task를 수행하는데 사용되는 기법.
+Hue와 Saturation으로 이루어진 Histogram을 이용하여 다음의 task를 수행하는데 사용되는 기법.
 
 * Image segmentation
-* Finding ojbects of interest in an image
+* Finding objects of interest in an image
 
 찾고자 하는 또는 분리하고자 하는 (indexing하고자 하는) image의 Hue, Saturation의 분포를 만들고 전체 image의 Hue, Saturation 2D histogram에서 해당 분포에 속하는 Hue와 Saturation pair들을 구한 후, 이 pair에 속하는 pixel들의 index를 구하는 backprojection을 수행하는 방식이다. 
 
@@ -12,7 +12,7 @@ Hue와 Saturation으로 이루어진 Histrogram을 이용하여 다음의 task�
 1. Hue, saturation 2d histogram을 분리하고자 하는 object 와 전체 image 각각에 대해 구한다.
 2. 이 두 2d histogram의 ratio $R=\frac{\text{Obj}}{\text{I}}$를 구하고, 이 ratio를 pixel에 backprojectino한다.
     * Backprojection으로 나오는 image $B(x,y)=R[h(x,y), s(x,y)]$가 된다.
-    * 즉 결과 이미지의 pixel intensity는 해당 pixel의 Hue와 Saturaiton에서의 $R$값으로 값이 클수록 찾고자 하는 object에 속한 pixel일 확률 큼.
+    * 즉 결과 이미지의 pixel intensity는 해당 pixel의 Hue와 Saturation에서의 $R$값으로 값이 클수록 찾고자 하는 object에 속한 pixel일 확률 큼.
 3. 2번의 결과 이미지로 구해지는 Mask 경계를 부드럽게 하기 위해 blurring이나 morphologic processing을 수행한다. 
 4. Thresholding을 통해, object에 속하는 pixel들을 선택한다.
 
@@ -101,7 +101,7 @@ plt.imshow(seg[...,::-1])
 OpenCV에서는 `cv2.calcBackProject` 함수를 제공하고 있음.
 
 * `cv2.calcHist()`와 거의 비슷한 parameter.
-* 단, backproj에 사용할 2d histogram을 입력받는다는 차이가 있음.
+* 단, backprojetion에 사용할 2d histogram을 입력받는다는 차이가 있음.
 
 ```Python
 import numpy as np

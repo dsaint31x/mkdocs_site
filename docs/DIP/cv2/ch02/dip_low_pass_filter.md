@@ -163,7 +163,7 @@ ret = cv2.GaussianKernel(
 ### Bilateral Filter
 
 - 픽셀 간의 거리 뿐 아니라 두 픽셀의 intensity의 차이도 고려한 가중치의 Kernel을 사용.
-- 기존의 blurring filter들과 달리, edge perservaton이 우수함.
+- 기존의 blurring filter들과 달리, edge preservation이 우수함.
 
 $$
 f_\text{filtered}(\textbf{x})=\dfrac{1}{W_p}\sum_{\textbf{x}_i \in \Omega}f(\textbf{x})g_r(\|f(\textbf{x})-f(\textbf{x}_i)\|)g_s(||\textbf{x}-\textbf{x}_i\|)

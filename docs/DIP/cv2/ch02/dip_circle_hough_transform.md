@@ -102,7 +102,7 @@ circles = cv2.HoughCircles(
     ]]]]])
 ```
 
-* `image`: 8-bit grayscale input image
+* `image`: 8-bit gray-scale input image
 * `method`: `HOUGH_GRADIENT` 만 선택가능함. --;;
 * `dp` : The inverse ratio of accumulator resolution and image resolution. `2`일 경우, Hough space의 width와 height가 원본대비 1/2로 줄어든다. 값이 클수록 scale이 커져서 큰 패턴을 찾게 됨.
 * `minDist`: Minimum distance between the centers of the detected circles. 값이 작을수록 검출되는 circle의 수가 증가하나 거짓 circle을 찾을 확률도 커짐. `0`을 선택할 수 없으며 이는 OpenCV의 `HoughCircles`가 동심원을 검출하지 못하는 단점으로 이어짐.
