@@ -47,6 +47,8 @@ Programming을 공부한다는 것은 상당 부분이 built-in function들을 �
 
 프로그래머가 built-in function을 기반으로 작성한 고유의 함수들. 프로그래밍을 한다는 것은 많은 function을 만들어내는 작업을 포함한다.
 
+---
+
 ## 예 : Function 만들기 
 
 다음은 Python, JavaScript, C 에서 세제곱을 수행하는 `cube`함수를 정의하는 예를 보여줌.
@@ -94,6 +96,8 @@ float cube(float x)
 float a = cube(3);
 ```
 
+---
+
 ## Function call (함수 호출)을 instruction set으로 쪼개보기
 
 > 다음은 [The Secret Life of Programs](https://nostarch.com/foundationsofcomp)의 5장에서 2번째 절의 내용 일부임.)
@@ -115,8 +119,8 @@ function의 수행이 끝나면 function call이 이루어진 다음 주소로 �
 
 이같이 ^^stack에 저장된 데이터들의 모음^^ 을 `Stack Frame`이라고 부름.
 
-* function(=subroutine)으로 전달하는 parameters (이들의 값은 호출 시 사용된 argument임)
-* local variables (C언어)
+* function(=subroutine)으로 전달하는 parameters (이들의 값은 호출 시 사용된 argument를 값으로 가짐)
+* local variables 
 * 복귀 주소
 
  stack관련해서는 다음 url을 참고. : [Stack](https://dsaint31.tistory.com/entry/CE-Stack)
