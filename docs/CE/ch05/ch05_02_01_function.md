@@ -17,9 +17,10 @@ Programming에서도 function은 ***재사용성*** 과 ***가독성*** 을 위�
 
 ## Programming에서의 Function.
 
-> 논리적으로 코드를 나누는(or 그룹짓는) 기본적인 도구.
-> - `procedure`의 추상화로서 코드의 묶음: I/O 만 파악해도 사용가능함.
-> - 함수 내 변수는 `local variable`로, 다른 함수에 의해 영향을 받지 않음.
+> 논리적으로 코드를 나누는(or 그룹짓는) 기본적인 도구.  
+>
+> - `procedure`의 추상화로서 코드의 묶음: I/O 만 파악해도 사용가능함.  
+> - 함수 내 변수는 `local variable`로, 다른 함수에 의해 영향을 받지 않음.  
 > - **parameter에 ^^호출시 주어진 argument^^ 를 할당하여 입력** 을 받고, **`return`을 통해 출력** 을 수행.
 
 Programming에서의 function은 SW (or program)에서 특정 동작을 수행하는 ***일정 code들의 모임*** 을 의미한다.  
