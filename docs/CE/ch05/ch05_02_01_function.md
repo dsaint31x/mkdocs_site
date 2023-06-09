@@ -1,8 +1,9 @@
 # Function in the Programming
 
+
 > Mathematics에서의 function과 약간의 차이점이 있으나 프로그래밍에서의 function은 많은 부분에서 Mathematics에서의 function과 유사함.
 
-수학에서 function은 특정 계산들을 `resue`하거나, 복잡한 계산을 보다 쉽게 `read`할 수 있도록 하기 위해 equation을 사용하여 특정 계산 등을 `f(x,y)`와 같은 형태로 대체하는 것이라고 볼 수 있다.
+수학에서 function은 특정 계산들을 `reuse`하거나, 복잡한 계산을 보다 쉽게 `read`할 수 있도록 하기 위해 equation을 사용하여 특정 계산 등을 `f(x,y)`와 같은 형태로 대체하는 것이라고 볼 수 있다.
 
 > 수학적으로 엄밀한 의미의 function은 mapping이나 transform의 개념으로 설명되어진다. 다음의 url을 참고하자: [함수 간략 정리](https://dsaint31.tistory.com/entry/Function-%ED%95%A8%EC%88%98-%EA%B0%84%EB%9E%B5-%EC%A0%95%EC%9D%98)
 
@@ -15,6 +16,11 @@ Programming에서도 function은 ***재사용성*** 과 ***가독성*** 을 위�
 수학에서 function은 ^^입력과 출력간의 mapping에 좀 더 초점^^ 을 두는 반면, programming에서의 function은 입력들을 받아 출력(Programming에선 return value라고 부르는 경우가 더 많음)을 만들어내는 ^^처리에 초점^^ 을 더 둔다는 차이는 있다.
 
 ## Programming에서의 Function.
+
+> 논리적으로 코드를 나누는(or 그룹짓는) 기본적인 도구.
+> - `procedure`의 추상화로서 코드의 묶음: I/O 만 파악해도 사용가능함.
+> - 함수 내 변수는 `local variable`로, 다른 함수에 의해 영향을 받지 않음.
+> - **parameter에 ^^호출시 주어진 argument^^ 를 할당하여 입력** 을 받고, **`return`을 통해 출력** 을 수행.
 
 Programming에서의 function은 SW (or program)에서 특정 동작을 수행하는 ***일정 code들의 모임*** 을 의미한다.  
 
