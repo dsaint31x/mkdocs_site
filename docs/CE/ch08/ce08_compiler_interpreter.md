@@ -23,6 +23,9 @@
 
 대표적인 예로 `Python`, PHP, ASP, Java Script, Perl 등을 들 수 있다.
 
+최근의 Interpreter language는 VM을 도입하여 고유의 유연성을 유지하면서 높은 성능을 얻고 있다. 이 경우, interpreter는 OS가 이해할 수 있는 언어로 변환이 아닌 VM이 이해할 수 있는 byte code로 변환을 수행함. 보다 자세한 건 다음 URL을 참고. [Python Interpreter and PVM (Python Virtual Machine)](
+https://dsaint31.tistory.com/entry/Python-Interpreter-and-PVM-Python-Virtual-Machine)
+
 ## 비교
 
 | Compiler Language | Interpreter Lanugae |
