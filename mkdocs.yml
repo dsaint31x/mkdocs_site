@@ -228,6 +228,9 @@ nav:
       - "ML/ch07/tSNE.md"
     - "Deep Learning (simple)":
       - "ML/ch08/datastructure_graph.md"
+  - "SS":
+    - "z-Transform":
+      - "SS/ch08/ch08_33_z_t_time_shift.md"
   - Material Test:
     - code blk: test_code_blocks.md
   - tags: tags.md
