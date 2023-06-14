@@ -2,9 +2,9 @@
 
 ## Quoted-Printable Encoding
 
-QT Encoding은 과거 7bit만을 지원하는 통신 경로로 데이터 통신을 하던 시절에 개발된 encoding방식임 (email 첨부파일 전송 등에 아직도 사용됨).
+> QT Encoding은 과거 ^^`7bit만을 지원하는 통신 경로`로 데이터 통신을 하던 시절에 개발된 encoding^^ 방식임   (`email 첨부파일 전송` 등에 아직도 사용됨).
 
-encoding방식은 다음과 같음.
+Quoted-printable encoding 방식은 다음과 같음.
 
 1. 우선 computer의 internal representation (메모리 등에 저장된 값?)을 1bytes씩 나눈다.
 2. 각 1byte를 nibble로 쪼개고 각 nible을 16진수로 표현한다. (2개의 symbol이 나옴.)
@@ -23,7 +23,7 @@ encoding방식은 다음과 같음.
     * 1byte가 3개의 글자로 표시되므로 전부 non-ascii인 한글 글자의 UTF-8 encoding된 바이트의 경우, 25문자가 한 line (한 줄)에 표시됨.
     * $3 \times 25 =75$ 이며 여기에 soft line break를 더해서 76글자임.  
 
-### Examples for QP encoding
+### Examples for QP encoding (Python version)
 
 ```python
 import quopri
@@ -78,18 +78,26 @@ b'a=EA=B0=80b=EB=82=98c=EB=8B=A4'
 
 `quopri` module에 대한 자세한 내용은 다음을 참고하라. : [quopri — MIME quoted-printable 데이터 인코딩과 디코딩](https://docs.python.org/ko/3/library/quopri.html)
 
+---
+
 ## Base64 Encoding
 
-> Quoted Praintable Encoding보다 효율이 좋은 encoding방식으로 email의 첨부파일을 encoding하는데 사용된다.
+> Quoted Printable Encoding보다 효율이 좋은 encoding방식으로 역시 email의 첨부파일을 encoding하는데 사용된다.
 
-Base64는 3bytes씩 묶어서 4개의 chracter로 encoding하는 방식으로 3bytes, 즉 24bit를 4등분하여 6bit씩 나누고 이들 6bit를 64진수로 표현한다. 6bit는 64진수 한 글자로 표현되기 때문에 3bytes가 4개의 character가 된다.
+Base64는 
+
+* 3bytes씩 묶어서 4개의 chracter로 encoding하는 방식으로 
+* 3bytes, 즉 24bit를 4등분하여 6bit씩 나누고 
+* 이들 6bit를 `64진수` (base 64)로 표현한다. 
+
+`6bit`는 ^^64진수 한 글자로 표현^^ 되기 때문에 3bytes가 4개의 character가 된다.
 
 64진수를 위해 Alphabet에서 26개의 upper-case와 26개의 lower-case, digit 10개, 그리고 `+`와 `-` 문자들을 사용한다.  
 (0-63을 위에서 나열한 순으로 할당.)
 
-3byte씩 처리되는데, 만약 raw data가 3byte의 배수가 아니라면, 끝에 `=`문자로 padding을 하여 3의 배수로 맞춘다.
+3byte씩 처리되는데, 만약 raw data가 3byte의 배수가 아니라면, 끝에 `=`문자로 `padding`을 하여 3의 배수로 맞춘다.
 
-### Examples for base64
+### Examples for base64 (Python)
 
 ```python
 import base64
@@ -114,11 +122,16 @@ b'I love \xed\x98\x84\xeb\xac\xb4'
 I love 현무
 ```
 
+---
+
 ## URL Encoding (= Percent Encoding)
 
-URL 주소에서 `/`나 `=`등의 문자들은 특별한 의미를 가지기 때문에 이들 문자들을 URL 주소에서 문자 자체로 쓰려면 변환이 필요하다.
+> 문자열을 `URL`로 encoding하기.  
+> `URL` 주소에서 `/`나 `=`등의 문자들은 특별한 의미를 가지기 때문에 이들 문자들을 URL 주소에서 문자 자체로 쓰려면 변환이 필요하다.
 
-이 경우, 사용되는 게 `URL Encoding`이다. URL에서 특별한 의미를 가진 문자를 그냥 문자 그대로 사용하기 위해서는 ^^해당 문자의 ASCII 값을 16진수로 표현^^하고 `%` 뒤에 붙여서 기재한다.
+참고 : `URL` 이 무엇인지 모른다면 다음 링크를 참조 : [URL, URI, and UNC에 대한 간략 정리.](https://dsaint31.tistory.com/entry/CE-URL-URI-and-UNC)
+
+이 경우, 사용되는 게 `URL Encoding`이다. URL에서 `특별한 의미를 가진 문자`(=escape sequence)를 그냥 **문자 그대로 사용** 하기 위해서는 ^^해당 문자의 ASCII 값을 16진수로 표현^^ 하고 이를 `%` 뒤에 붙여서 기재한다.
 
 URL에 한글 등이 있는 경우에도 자주 이용된다. 한글 한글자는 3byte이므로 각 바이트에 해당하는 16진수를 각각 `%`가 붙여져 변환된다.
 
@@ -129,4 +142,24 @@ URL에서는
 3. 이를 `%`와 16진수 숫자 2개로 바꾸어 처리
 
 하는 것이다.
+
+### Examples for URL Encoding (Python)
+
+다음 예제에서는 `Kim김`을 URL encoding을 해본다. 이 경우, 한글부분만 URL encoding으로 변경된다.
+
+```Python
+from urllib import parse
+
+str = "Kim김"
+url_enc = parse.quote(str)
+print(url_enc)
+print(parse.unquote(url_enc))
+```
+
+결과는 다음과 같다.
+
+```
+Kim%EA%B9%80
+Kim김
+```
 

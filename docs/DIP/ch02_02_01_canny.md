@@ -8,7 +8,7 @@ Canny Edge Detection은 다음과 같이 4단계로 구성된 algorithm임.
 **단계 1: Noise Reduction**
 
 - Gussian Filtering을 하여 noise 제거
-- edge 는 noise와 구분하기 어려운 특징 (gradinet를 구할 경우, noise도 매우 큰 값을 가진다)을 가지므로 Gaussian filtering으로 이를 최대한 억제한 이후 gradinet를 구하는게 일반적임.
+- edge 는 noise와 구분하기 어려운 특징 (gradient를 구할 경우, noise도 매우 큰 값을 가진다)을 가지므로 Gaussian filtering으로 이를 최대한 억제한 이후 gradient를 구하는게 일반적임.
 
 **단계 2: Gradient Extraction**
 

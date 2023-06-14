@@ -23,19 +23,23 @@ ALU, Register, Control Unit(or Execution Unit)으로 구성됨
 
 프로세서(instruction을 처리하는 logic circuit) 중 `디바이스의 중심이 되는 것을 cpu`라고 부르고, ^^보조적 역할의 processor는 co-processor라고 부름^^ (그래픽카드가 일종의 co-processor).
 
-### 참고 : Micro Control Unit (MCU)
+### 참고 : Micro Controller Unit (MCU)
 
-CPU의 기능을 하는 핵심 장치와 그 주변 장치들을 포함하고 있는 통합형 칩셋.
+CPU의 기능을 하는 핵심 장치와 그 주변 장치(memory and IO port)들을 포함하고 있는 통합형 칩셋. 보통 고성능의 연산이 필요하지 않으면서 제어 기능이 필요한 분야에서 사용됨.
 
-MPU 하나 만으로도 LED나 motro등의 다른 부품들을 control할 수 있음.
+MCU 하나 만으로도 LED나 motor등의 다른 부품들을 control할 수 있음.
+
+> 밥솥 등과 같은 전자제품들의 제어를 위한 부품으로 사용되기 때문에 컴퓨터에서 사용되는 Microprocessor에 비해 매우 낮은 연산능력의 저가의 제품이 대부분임.
+
+[참고자료 : MCU와 Micro-computer, SoC](https://dsaint31.tistory.com/entry/CE-Micro-Controller-Unit-MCU-and-Micro-computer)
 
 ## Arithmetic and Logic Unit (ALU)
 
-instruction 에 따라 데이터에 대해 산술 연산 (arhtimetic operation, 덧셈, 뺄셈, 나눗셈, 곱셈 등)과 논리 연산 (logic operation, AND, OR, XOR)을 수행하는 소자
+instruction 에 따라 데이터에 대해 산술 연산 (arithmetic operation, 덧셈, 뺄셈, 나눗셈, 곱셈 등)과 논리 연산 (logic operation, AND, OR, XOR)을 수행하는 소자
 
 ## Control Unit
 
-storage에서 main memory로 data를 load하는 명령어, main memory에서 storage로 data를 save하는 명령어, 특정 address로부터 instruciton을 로딩하는 명령어 등에 따라 명령을 내리는 장치.
+storage에서 main memory로 data를 load하는 명령어, main memory에서 storage로 data를 save하는 명령어, 특정 address로부터 instruction을 로딩하는 명령어 등에 따라 명령을 내리는 장치.
 
 * Program counter가 가르키는 address에서 수행할 명령어를 fetch하고,
 * fetch된 instruction을 decode하여 execute (실행)함.
@@ -56,3 +60,10 @@ microcode로 구현된 traffic control은 다음과 같은 memory로 만들어�
 
 주로 CPU내에서 data를 저장하고 있는 memory를 가르킴. 가장 빠른 memory이며, CPU의 구성요소.
 
+* `condition code register` : overflow, underflow
+* `program counter` (`pc`) : 다음 수행할 instruction이 저장된 메모리 위치를 가르킴.
+* `accumulator` : ALU의 operation의 result가 저장되는 register.
+* `address extension register` : 주소확장레지스터, MSB를 포함하는 상위주소 부분을 지정하는 데에 사용됨.
+* `index register` : relative addressing에서 사용되는 레지스터. 현재 address에 더해질 값을 가지고 있음.
+* `indirect address register` : memory에서 읽어들인(fetched) indirect address를 저장하고 있는 register.
+* `instruction register` : memory로부터 fetch된 instruction을 저장하고 있는 register

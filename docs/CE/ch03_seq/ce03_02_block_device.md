@@ -27,13 +27,13 @@ HDD보다 용량대비 단가가 더 낮은 장비이나, 속도는 컴퓨터 �
 * Sequential Access Storage Device & media (SASD)
 
 
-* more: [Magnetic Tape](https://dsaint31.tistory.com/manage/newpost/412?type=post&returnURL=https%3A%2F%2Fdsaint31.tistory.com%2Fentry%2FCE-Magnetic-Tape-Magnetic-Tape)
+* more: [Magnetic Tape](https://dsaint31.tistory.com/entry/CE-Magnetic-Tape-Magnetic-Tape) 
 
 ## Optical Disk
 
-이전에 프로그램 설치 (특히 OS)는 CD-ROM을 사용했을 정도이나, Flash memory의 가격이 어마어마하게 떨어지면서 거의 사용이 되지 않고 있음. 
+이전에 프로그램 설치 (특히 OS)는 대부분의 경우, CD-ROM을 사용했을 정도로 많이 사용되었으나, Flash memory의 가격이 어마어마하게 떨어지면서 현재는 거의 사용이 되지 않고 있음. 
 
-* more : [Optical Disk](https://dsaint31.tistory.com/manage/posts/)
+* more : [Optical Disk](https://dsaint31.tistory.com/entry/CE-Optical-Disk)
 
 ---
 

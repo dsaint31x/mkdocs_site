@@ -1,6 +1,6 @@
 # Vacuum Tubes (진공관)
 
-Thermionic emission (열전자 방출)을 이용하여 증폭기 및 switch역할을 할 수 있는 device.
+Thermionic emission (열전자 방출)을 이용하여 ^^amplifier (증폭기)^^ 및 ^^switch^^ 역할을 할 수 있는 device.
 
 ## 작동방식
 
@@ -14,14 +14,14 @@ heater에 의해 cathode가 충분한 온도에 도달하면 electron(열전자)
 * `G` : grid를 가르킴.
 
 `Diode` 
-: 이처럼 vacuum tube가 cathode와 anode만 가진 경우는 **전류를 한방향으로만 흐르게** 하는데 사용되며 diode라고 불림. 
+: 이처럼 vacuum tube가 cathode와 anode만 가진 경우는 **전류를 한방향으로만 흐르게** 하는데 사용되며 `diode`라고 불림. 
 
-`Tridoe` 
-: cachode에서 방출된 electron이 anode로 가는 경로에 grid를 삽입하고 해당 grid에 작은 ***전압 변화*** 를 가할 경우, cathode에서 anode로 흐르는 전류에 매우 큰 변화를 가져올 수 있음 (이를 이용하여 일종의 증폭기로 vacuum tube가 사용가능함) 
+`Triode` 
+: cathode에서 방출된 electron이 anode로 가는 경로에 grid를 삽입하고, 해당 grid에 작은 ***전압 변화*** 를 가할 경우, cathode에서 anode로 흐르는 전류에 매우 큰 변화를 가져올 수 있음 (이를 이용하여 일종의 증폭기로 vacuum tube가 사용가능함) 
 
 ## 장단점
 
-> Vaccum Tube는 Relay와 달리 물리적인 소자가 아니기 때문에 ^^*전기를 이용한 매우 우수한 switch*^^ (당시 기준)로 동작 가능하며 이는 초기 컴퓨터 개발에 주요소자로 사용된 이유였음.  
+> Vacuum Tube는 Relay와 달리 물리적인 소자가 아니기 때문에 ^^*전기를 이용한 매우 우수한 switch*^^ (당시 기준)로 동작 가능하며 이는 초기 컴퓨터 개발에 vacuum tube가 주요소자로 사용된 이유였음.  
 > 하지만, 큰 출력을 필요한 경우, vacuum tube의 크기가 매우 커져야 하는 단점을 지님.
 
 * 실제로 IC에 비해 너무 커서(bulky), 오늘날의 컴퓨터에서는 거의 사용되지 않음.

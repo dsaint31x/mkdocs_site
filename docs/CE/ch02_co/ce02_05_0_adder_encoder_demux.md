@@ -12,10 +12,12 @@ Programming에서는 단순한 statement와 expression들을 조합하여 functi
 
 ## 구성.
 
-* [Half Adder and Full Adder](#)
-* [Decoder and Encder](https://dsaint31.tistory.com/entry/CI-Binary-Decoderhttps://dsaint31.tistory.com/manage/newpost/404?type=post&returnURL=https%3A%2F%2Fdsaint31.tistory.com%2Fentry%2FCI-Binary-Decoder)
-  - One-hot code 에서 binary code로 변환하는 binary encoder
-  - 이를 반대로 수행하는 binary decoder를 간단히 살펴봄.
+* [Half Adder and Full Adder (notion)](https://dsaint31.notion.site/2-5-1-Building-an-Adder-8d766ecdc59d4241bdd70309f9651e12)
+* [Decoder and Encoder](https://dsaint31.tistory.com/entry/CI-Binary-Decoder)
+  
+    * One-hot code 에서 binary code로 변환하는 binary encoder
+    * 이를 반대로 수행하는 binary decoder를 간단히 살펴봄.
+
 * [Demux and Mux](https://dsaint31.tistory.com/entry/CI-Demultiplexer-and-Multiplexer)
-  - Demux (single input, multiple outpus)
-  - Mux (multiple inputs, single ouputs) = selector
+    * Demux (single input, multiple outpus)
+    * Mux (multiple inputs, single ouputs) = selector

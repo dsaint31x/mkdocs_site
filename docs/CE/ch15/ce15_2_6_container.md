@@ -26,13 +26,20 @@ HW의 발전으로 가능해진 것으로 마치 여러 application처럼 시분
 
 > A hypervisor is a piece of software used to create virtual machines. A virtual machine is an emulation of a computer. Virtual machines are used to create multiple computing environments on a single piece of hardware.
 
-하지만 application과 달리 OS는 HW에서 수행되는 instruction set이 있고 HW와 상호작용을 하기 때문에, "실제 물리적 시스템의 HW에서 해당 작업을 담당하는 Host OS"와 "VM 내의 OS"사이에서 ***VM내 OS의 요청을 Host OS가 수행할 수 있는 요청으로 변환해주는 중간자*** 가 필요하다. 이는 일종의 interpreter라고 볼 수 있는데, OS는 machine에 설치된다는 종래의 개념에서 virtual machine이라는 이름이 붙었다고 생각하면 쉽게 이해가 될 것이다.
+하지만 application과 달리  
+OS는 HW에서 수행되는 instruction set이 있고 HW와 상호작용을 하기 때문에,  
+"실제 물리적 시스템의 HW에서 해당 작업을 담당하는 Host OS"와  
+"VM 내의 OS"사이에서 ***VM내 OS의 요청을 Host OS가 수행할 수 있는 요청으로 변환해주는 중간자*** 가 필요하다.  
+이는 ***일종의 `interpreter`*** 라고 볼 수 있으며,  
+OS는 machine에 설치된다는 종래의 개념에서 virtual machine이라는 이름이 붙었다고 생각하면 쉽게 이해가 될 것이다.
 
-VM으로 유명한 SW들은 MS사의 `Hiper-V`와 Oracel의 `Virtual Box`, VMWare사의 `VMware` 등이 있다.
+VM으로 유명한 SW들은 MS사의 `Hiper-V`와 Oracle의 `Virtual Box`, VMWare사의 `VMware` 등이 있다.
 
-복잡한 연산 등을 VM으로 수행하기에는 High-end PC에서도 다소 무리가 있다. 하지만 간단한 워드 수준의 작업은 VM으로 충분하기 때문에 일반 사용자도 관공서나 특정 기관에서 사용해야하는 웹 어플리케이션 또는 SW가 이전 버전의 OS 나 웹브라우저 등을 요구하는 경우 (내 장비에 설치하기엔 너무 구식인 경우도 있을 수 있다)에 VM은 좋은 대안이 된다.
+복잡한 연산 등을 VM으로 수행하기에는 High-end PC에서도 다소 무리가 있다.  
+하지만 간단한 워드 수준의 작업은 VM으로 충분하기 때문에  
+일반 사용자도 *관공서* 나 *특정 기관* 에서 사용해야 하는 웹 어플리케이션 또는 SW가 이전 버전의 OS 나 웹브라우저 등을 요구하는 경우 (내 장비에 설치하기엔 너무 구식인 경우도 있을 수 있다)에 VM은 좋은 대안이 된다.
 
-
+사실 VM이 가장 유용하게 사용되는 곳은 클라우드 환경을 이루는 데이터 센터라고 할 수 있다.
 
 # References
 

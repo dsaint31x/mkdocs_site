@@ -39,12 +39,12 @@ Gaussian Pyramid는 OpenCV에서 `cv2.pyrDown`과 `cv2.pyrUp`을 통해 제공�
 
 > Physics에서 ^^octave란 용어는 진동수가 2배가 되는 경우를 의미^^ 한다. note(음)에서 pitch는 frequency에 의해 결정되는데, 같은 음이면서도 2배의 freq.를 가질 경우 한 octave가 올라갔다고 표현하는 것처럼, scale이 2배씩 차이가 나는 점을 이용하여 각 layer를 octave라고도 부른다.
 > 
-> scale이 2배 차이가 나는 layer의 경우, 한 octave가 늘어났다고 애기한다. SIFT (Scale Invariant Feature Trnasformer) 등의 경우, 한 octave를 5개의 layer로 구성시키는데 한 ocatve에서 가장 맨 아래 layer와 그 위의 ocatve의 맨 아래 layer간의 scale의 차이가 2개가 난다고 이해하면 된다.
+> scale이 2배 차이가 나는 layer의 경우, 한 octave가 늘어났다고 애기한다. SIFT (Scale Invariant Feature Transformer) 등의 경우, 한 octave를 5개의 layer로 구성시키는데 한 octave에서 가장 맨 아래 layer와 그 위의 octave의 맨 아래 layer간의 scale의 차이가 2개가 난다고 이해하면 된다.
 
 Gaussian pyramid에서 가장 기본적으로 처리될 때는 factor 2의 down-sampling이 이루어진다. 즉, 각각의 layer들이 한 octave에 해당한다.
 이 경우 가장 많이 사용되는 filter의 weight은 $h=\frac{1}{16}[1,4,6,4,1]$ 또는 $h=\frac{1}{4}[1,2,1]$이다.
 
-OpenCV에서 이를 구현한 function이 `cv2.pyrDown`이다. (`cv2.pyrUp`은 uppler layer에서 lower layer를 만드는 것으로 factor 2의 oversampling이 가해짐.)
+OpenCV에서 이를 구현한 function이 `cv2.pyrDown`이다. (`cv2.pyrUp`은 upper layer에서 lower layer를 만드는 것으로 factor 2의 oversampling이 가해짐.)
 
 4개의 octave로 구성된 Gaussian Pyramid 의 예이다.
 
@@ -58,7 +58,7 @@ OpenCV에서 이를 구현한 function이 `cv2.pyrDown`이다. (`cv2.pyrUp`은 u
 
 ### Laplacian Pyramid
 
-1983년 Burt와 Adelson이 제안한 것으로 Gaussian Pyramid의 이웃하고 있는 level들에 해당하는 image들을 size를 맞춰주는 upsampling을 하고나서 difference를 계산하는 방식으로 the second derivative (=Laplacian)의 approximation을 구함으로서, 다양한 scale의 image에 대한 laplacian으로 구성된 pyramid를 얻어낸다. 
+1983년 Burt와 Adelson이 제안한 것으로 Gaussian Pyramid의 이웃하고 있는 level들에 해당하는 image들을 size를 맞춰주는 up-sampling을 하고나서 difference를 계산하는 방식으로 the second derivative (=Laplacian)의 approximation을 구함으로서, 다양한 scale의 image에 대한 laplacian으로 구성된 pyramid를 얻어낸다. 
 
 > Laplacian의 경우 second derivative에 해당하기 때문에 급격하게 이미지의 intensity가 변하는 부분들에 대해 강조된 정보를 가지게 되며 histogram 분포가 0근처에 모이게 되는 특징을 가진다.
 
@@ -75,11 +75,15 @@ Laplacian Pyramid는 Gaussian Pyramid로부터 아래 그림과 같이 얻어진
 
 위의 단계를 거꾸로 하면 reconstruction이라고 할 수 있다. 즉, 적은 size의 이미지에서 출발하여 원래 size의 fine scale영상을 만드는 것임. (중간의 difference정보인 Laplacian들을 이용).
 
-![](../../img/ch01/LP-GP.png){width="300"}
+<figure markdown>
+![](../../img/ch01/LP-GP.png){width="600"}
+</figure>
 
-Laplacian Pyramid를 같은 widht, height로 살펴보면 다음과 같다. (상단은 histogram equalization 처리를 해줬고, 아래는 그냥 gray scale로 바꾸어 보여줬다)
+Laplacian Pyramid를 같은 width, height로 살펴보면 다음과 같다. (상단은 histogram equalization 처리를 해줬고, 아래는 그냥 gray scale로 바꾸어 보여줬다)
 
-![](../../img/ch01/laplacian_pyramids_equalizeHist_gray.png)
+<figure markdown>
+![](../../img/ch01/laplacian_pyramids_equalizeHist_gray.png){width="600"}
+</figure>
 
 * difference image라 잘 보이지 않아 histogram equalization의 처리를 하여 상단에 보여줌.
 * color difference image를 빼서 gray-scale로 바꾸어 보여준게 하단임.
@@ -90,7 +94,7 @@ Laplacian Pyramid를 같은 widht, height로 살펴보면 다음과 같다. (상
 * 즉, 이 둘이 조합되어 이루어진 laplacian pyramid의 각각의 layer들은 일종의 band-pass filter를 거친 결과물로 볼 수 있다. 
 * 이는 달리 말해서 Laplacian of Gaussian이 일종의 band-pass filter임을 의미한다.
 * 즉, Laplacian pyramid의 각 층은, 마치 Fourier transform의 경우처럼, 어떤 주파수 대역의 representation에 대응한다고 볼 수 있다.
-* Gaussina pyramid를 통해 ^^다양한 scale의 공간의 표현^^ 을 가지며, Laplacian pyramid를 통해 ^^다양한 spatial frequency에 대한 표현^^ 을 얻는다고 생각할 수도 있다.
+* Gaussian pyramid를 통해 ^^다양한 scale의 공간의 표현^^ 을 가지며, Laplacian pyramid를 통해 ^^다양한 spatial frequency에 대한 표현^^ 을 얻는다고 생각할 수도 있다.
 
 #### 수식으로 본 Laplacian approximation
 
@@ -109,7 +113,7 @@ $$
 \frac{d g(x;\sigma)}{d \sigma} = \left(\frac{x^2}{\sigma^2}-1\right)\left(\frac{1}{\sigma}\right)g(x;\sigma)
 $$
 
-즉, Lapalacian of Gaussian (LoG)의 approximation을 아래와 같이 scale $\sigma$의 image들의 difference와 $\sigma$에 대한 함수 로 표현할 수 있음.
+즉, Laplacian of Gaussian (LoG)의 approximation을 아래와 같이 scale $\sigma$의 image들의 difference와 $\sigma$에 대한 함수 로 표현할 수 있음.
 
 $$\begin{aligned}
 \frac{d^2 g(x;\sigma)}{dx^2}&=C_0({\sigma})\frac{d g(x;\sigma)}{d \sigma}\\
@@ -140,12 +144,12 @@ Image Pyramid와 유사하지만, down sampling이 없는 것이라고 생각하
 
 2D image에 scale이라는 하나의 axis를 추가하여 해당 axis에 따라 다른 scale의 image들이 놓여있게 되는 구조이다.
 
-* scale parameter (scale의 정도를 나타내는 값)는 Gaussina fitler에서의 variance $\sigma^2$ 이 사용된다.
-* scale axis 에 따라, scale만 다를 뿐 image의 width와 heigt는 같다.
+* scale parameter (scale의 정도를 나타내는 값)는 Gaussian filter에서의 variance $\sigma^2$ 이 사용된다.
+* scale axis 에 따라, scale만 다를 뿐 image의 width와 height는 같다.
 
-Gaussian Pyramid 관점에서 애기한다면, scale space에서 scale이 2배 ($\sigma$가 2배 커진 상태)가 되는 위치에서 factor 2의 down samplnig을 하면 정보손실이 최소화된 작은 크기(area는 1/4로 줄고 2배 scale을 가진)의 image를 얻을 수 있다.
+Gaussian Pyramid 관점에서 애기한다면, scale space에서 scale이 2배 ($\sigma$가 2배 커진 상태)가 되는 위치에서 factor 2의 down sampling을 하면 정보손실이 최소화된 작은 크기(area는 1/4로 줄고 2배 scale을 가진)의 image를 얻을 수 있다.
 
-> 거의 Gaussian Filter를 통해, 보다 큰 scale의 image를 얻는다. Guassian kernel에 의한 convolution이 연달아 일어날 경우, 각 kernel의 $\sigma^2$를 더함으로서 간단하게 최종 kernel을 얻을 수 있다는 장점을 가지고 있는데다, 큰 scale의 image를 만들 경우 fine한 image(작은 scale)에 대한 simplication을 왜곡없이 잘 생성하기 때문이다.
+> 거의 Gaussian Filter를 통해, 보다 큰 scale의 image를 얻는다. Gaussian kernel에 의한 convolution이 연달아 일어날 경우, 각 kernel의 $\sigma^2$를 더함으로서 간단하게 최종 kernel을 얻을 수 있다는 장점을 가지고 있는데다, 큰 scale의 image를 만들 경우 fine한 image(작은 scale)에 대한 simplication을 왜곡없이 잘 생성하기 때문이다.
 
 즉, Scale space는 image와 같은 다차원 signal에 대해서,
 
@@ -158,7 +162,7 @@ Gaussian Pyramid 관점에서 애기한다면, scale space에서 scale이 2배 (
 
 ### Applications
 
-pyramids 와 비슷하다. feature detection, compression, image synthesis 등에서 활용된다. 가장 쉬운 예는 image fusion이지만, Eucliean Magnification과 같은 경우에도 활용된다.
+pyramids 와 비슷하다. feature detection, compression, image synthesis 등에서 활용된다. 가장 쉬운 예는 image fusion이지만, Euclidean Magnification과 같은 경우에도 활용된다.
 
 
 ## References
