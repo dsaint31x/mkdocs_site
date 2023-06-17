@@ -2,7 +2,7 @@
 
 ## Module
 
-쉽게 생각하면 Python code 를 구성된 file을 가르킨다.
+쉽게 생각하면 Python code 로 구성된 file을 가르킨다.
 
 * Python에서 module은 확장자가 `.py`인 파일을 가르킴 (python code를 내용으로 가지는 file).
 * 모든 `.py` file들은 python에서 module로서 사용가능함.
