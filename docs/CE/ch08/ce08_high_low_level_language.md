@@ -12,8 +12,8 @@ Machine language와 Assembly language가 대표적.
 
 * 사람이 이해하기 쉬운 언어.
 * Abstraction이라는 개념을 도입하여 H/W에 대한 직접적 이해 없이도 프로그래밍이 가능.
-    * 기억장소의 address 대신 variable(변수)의 이름으로 데이터를 기억장치에 쓰거나 읽을 수 있음.
-    * 자연어의 단어나 표현을 이용하여 컴퓨터의 동작을 추상화
+    * 기억장소(memory)의 address 대신 variable(변수)의 이름(or identifier)으로 데이터를 기억장치에 쓰거나 읽을 수 있음 (Symbolic Addressing).
+    * 자연어의 단어나 표현을 이용하여 ^^컴퓨터의 동작을 추상화^^
     * 한 표현으로 여러 기계어 코드의 동작을 지시할 수 있음.
 
 오늘날 프로그래밍언어라고 불리는 모든 것들이 다 high level language (고급언어)임.
@@ -21,7 +21,7 @@ Machine language와 Assembly language가 대표적.
 ## Note : Abstraction (추상화)
 
 * 주어진 작업이나 객체를 속성들의 일부분을 가지고 필요한 만큼 묘사할 수 있는 방법을 지원하는 것
-* 필수적인 attribute(속성)들만으로 주어진 것을 묘사하므로 나머지 속성들은 추상화, 은닉 또는 삭제됨
+* 필수적인 attribute(속성)들만으로 주어진 것을 묘사하므로 나머지 속성들은 은닉 또는 삭제됨
 
 #### 추상화의 범주
 

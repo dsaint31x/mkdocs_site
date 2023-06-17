@@ -164,7 +164,7 @@ nav:
         - "Internet and Related Protocols":             "CE/ch06/ce06_2_03_Internet.md"
       - "Human Interface Devices":
         - "CE/ch06/ce06_4_04_keyboard.md"
-    - 'ch08':
+    - 'ch08' Programming Language and Language Processing:
       - "CE/ch08/ce08_programming_language.md"
       - "CE/ch08/ce08_high_low_level_language.md"
       - "CE/ch08/ce08_compiler_interpreter.md"
