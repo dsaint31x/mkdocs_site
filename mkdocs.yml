@@ -286,6 +286,9 @@ nav:
       - "CE/colab/cells.md"
       - "CE/colab/hotkeys.md"
       - "CE/colab/gpu.md"
+  - "SS":
+    - "z-Transform":
+      - "SS/ch08/ch08_33_z_t_time_shift.md"
   - Material Test:
     - code blk: test_code_blocks.md
   - tags: tags.md
