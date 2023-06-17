@@ -72,8 +72,16 @@ if __name__ == '__main__':
 해당 alias를 지정하는 `import` statement는 다음과 같음.
 
 ```Python
-import `ds_cal` as dc
+import ds_cal as dc
 ```
+
+* `import ds_cal`로 import한 경우 `ds_cal.ds_addition(a, b)`.
+* `import ds_cal as dc`로 Alias를 `dc`로 지정한 경우 `dc.ds_addition(a, b)` 로 접근 가능함.
+
+> Python 에서 가장 유명한 alias 중 하나는 NumPy 를 가르키는 `np`임.  
+> Numpy를 사용하는 경우, `import numpy as np` 가 가장 많이 사용됨.  
+> 다른 하나는 `matplotlib.pyplot`의 Alias인 `plt`임.  
+> pyplot을 사용하는 경우, `import matplotlib.pyplot as plt` 가 가장 많이 애용됨. 
 
 ## 원하는 attribute만 import하기.
 
