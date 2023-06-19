@@ -285,6 +285,8 @@ if __name__ == '__main__':
     main()
 ```
 
+`namespace package`의 경우, 물리적으로 다른 경로(각각의 `sys.path`에 item이어야함.)에 있더라도, 같은 패키지명을 공유할 경우 하나의 package로 Python에서 처리되는 package를 가르킴. 이 경우, 같은 패키지명을 공유하는 모든 subdirectory내에 `__init__.py`가 있어선 안됨 (Python 3.x 이상부터만 사용가능함).
+
 ---
 
 ## Summary
