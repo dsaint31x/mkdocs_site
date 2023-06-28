@@ -24,7 +24,7 @@
 * `Container`에서의 파일 변경이나 설정 변경은 오직 `Container`가 제공하는 격리된 환경에만 영향을 준다
   - Host OS와 일부 storage를 공유하는 경우도 있는데, 이 경우 해당 storage에서의 변경사항은 Host OS에 영향을 줄 수 있음.
 * `Container`는 ^^host OS와 공유하는 kernel^^ 을 제외한 격리된 환경을 제공하기 위해 image로 패키징 된다. 
-  - 해당 image에는 ^^공유하지 않는 OS의 서비스^^ 및 ^^시스템파일^^ 및 ^^가상 storage^^, 그리고 ^^target application^^이 포함됨.
+  - 해당 image에는 ^^공유하지 않는 OS의 서비스^^ 및 ^^시스템파일^^ 및 ^^가상 storage^^, 그리고 ^^target application^^ 이 포함됨.
   - Host OS 입장에서는 이 image는 일종의 파일로 보이고 수행될 때에는 독립된 process처럼 보이게 됨.
 
 > ***`Virtual Machine`의 경우, 자체 kernel을 포함한 완전한 OS를 실행*** (kernel의 공유가 없음. container와의 차이점)시키기 때문에  
@@ -56,10 +56,8 @@ Virtual Machine과 Interpreter
 application과 달리  
 
 * OS는 
-
-  * HW에서 수행되는 instruction set이 있고 
-  * HW와 상호작용을 하기 때문에,  
-
+  - HW에서 수행되는 instruction set이 있고 
+  - HW와 상호작용을 하기 때문에,  
 * "실제 물리적 시스템의 HW에서 해당 작업을 담당하는 Host OS"와  
 * "VM 내의 OS"사이에서 ***VM내 OS의 요청을 Host OS가 수행할 수 있는 요청으로 변환해주는 중간자*** 가 필요
 
