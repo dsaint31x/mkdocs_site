@@ -17,15 +17,21 @@
 * ***Host OS의 kernel 을 공유*** 하지만, 이에 대해 제한된 access만이 가능(application을 수행하는데 필요한)하도록하여 host system에 대한 격리된 view를 target application에게 제공함.
 * `Container`는 Host OS와 Kernel을 공유하므로 해당 Kernel 상에서 빌드됨.
 * 단, `Container`는 target application이 실행되기 위해 OS가 제공해야하는 기능들 중에서, Host OS와 공유한 kernel이 제공하지 않는 것들 (=target application이 요구하는 간단한 OS API및 서비스)을 따로 패키징하여 제공할 수 있다. 동시에 application에 필요한 시스템 파일(라이브러리 등)들도 Host OS와 격리하여 따로 제공이 가능하다.
-* 즉, `Container`는 
-  - OS의 일부 기능들과 library들을 
-  - Host OS의 사용자 모드 환경과 격리된 환경에서 
-  - target application이 수행되도록 제공해준다.
-* `Container`에서의 파일 변경이나 설정 변경은 오직 `Container`가 제공하는 격리된 환경에만 영향을 준다
-  - Host OS와 일부 storage를 공유하는 경우도 있는데, 이 경우 해당 storage에서의 변경사항은 Host OS에 영향을 줄 수 있음.
-* `Container`는 ^^host OS와 공유하는 kernel^^ 을 제외한 격리된 환경을 제공하기 위해 image로 패키징 된다. 
-  - 해당 image에는 ^^공유하지 않는 OS의 서비스^^ 및 ^^시스템파일^^ 및 ^^가상 storage^^, 그리고 ^^target application^^ 이 포함됨.
-  - Host OS 입장에서는 이 image는 일종의 파일로 보이고 수행될 때에는 독립된 process처럼 보이게 됨.
+
+> 즉, `Container`는 
+> 
+> * OS의 일부 기능들과 library들을 
+> * Host OS의 사용자 모드 환경과 격리된 환경에서 
+> * target application이 수행되도록 제공해준다.
+
+`Container`에서의 파일 변경이나 설정 변경은 오직 `Container`가 제공하는 격리된 환경에만 영향을 준다
+
+* Host OS와 일부 storage를 공유하는 경우도 있는데, 이 경우 해당 storage에서의 변경사항은 Host OS에 영향을 줄 수 있음.
+
+`Container`는 ^^host OS와 공유하는 kernel^^ 을 제외한 격리된 환경을 제공하기 위해 image로 패키징 된다. 
+
+* 해당 image에는 ^^공유하지 않는 OS의 서비스^^ 및 ^^시스템파일^^ 및 ^^가상 storage^^, 그리고 ^^target application^^ 이 포함됨.
+* Host OS 입장에서는 이 image는 일종의 파일로 보이고 수행될 때에는 독립된 process처럼 보이게 됨.
 
 > ***`Virtual Machine`의 경우, 자체 kernel을 포함한 완전한 OS를 실행*** (kernel의 공유가 없음. container와의 차이점)시키기 때문에  
 > 
