@@ -57,7 +57,7 @@ HW의 발전으로 가능해진 것으로 마치 여러 application처럼 시분
 
 > A hypervisor is a piece of software used to create virtual machines. A virtual machine is an emulation of a computer. Virtual machines are used to create multiple computing environments on a single piece of hardware.
 
-Virtual Machine과 Interpreter
+### Virtual Machine과 Interpreter
 
 application과 달리  
 
