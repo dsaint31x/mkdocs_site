@@ -4,9 +4,9 @@
 
 `Container`는 On-premise 나 cloud 등의 다양한 환경에서 linux 및 windows application을 패키징하고 실행하기 위한 기술.
 
-`Container`는 applicatoin을 보다 쉽게 개발, 배포 및 관리할 수 있도록 ***격리된 경량의 환경*** 을 제공함.
+`Container`는 application을 보다 쉽게 개발, 배포 및 관리할 수 있도록 ***격리된 경량의 환경*** 을 제공함.
 
-  - applicatoin이 요구하는 library들과 다른 sw를 하나의 패키지로 제공해줌.
+  - application이 요구하는 library들과 다른 sw를 하나의 패키지로 제공해줌.
   - 제공해주는 sw에 해당 sw가 동작하는데 필요한 OS까지 포함(=guest os라고 불림)되기 때문에 사실상 `container`를 수행시킬 수 있는 SW만이 Host OS (=Docker)에 있으면 된다.
 
 ---
@@ -18,19 +18,14 @@
 * `Container`는 Host OS와 Kernel을 공유하므로 해당 Kernel 상에서 빌드됨.
 * 단, `Container`는 target application이 실행되기 위해 OS가 제공해야하는 기능들 중에서, Host OS와 공유한 kernel이 제공하지 않는 것들 (=target application이 요구하는 간단한 OS API및 서비스)을 따로 패키징하여 제공할 수 있다. 동시에 application에 필요한 시스템 파일(라이브러리 등)들도 Host OS와 격리하여 따로 제공이 가능하다.
 * 즉, `Container`는 
-
-  * OS의 일부 기능들과 library들을 
-  * Host OS의 사용자 모드 환경과 격리된 환경에서 
-  * target application이 수행되도록 제공해준다.
-
+  - OS의 일부 기능들과 library들을 
+  - Host OS의 사용자 모드 환경과 격리된 환경에서 
+  - target application이 수행되도록 제공해준다.
 * `Container`에서의 파일 변경이나 설정 변경은 오직 `Container`가 제공하는 격리된 환경에만 영향을 준다
-
-  * Host OS와 일부 storage를 공유하는 경우도 있는데, 이 경우 해당 storage에서의 변경사항은 Host OS에 영향을 줄 수 있음.
-
+  - Host OS와 일부 storage를 공유하는 경우도 있는데, 이 경우 해당 storage에서의 변경사항은 Host OS에 영향을 줄 수 있음.
 * `Container`는 ^^host OS와 공유하는 kernel^^ 을 제외한 격리된 환경을 제공하기 위해 image로 패키징 된다. 
-
-  * 해당 image에는 ^^공유하지 않는 OS의 서비스^^ 및 ^^시스템파일^^ 및 ^^가상 storage^^, 그리고 ^^target application^^이 포함됨.
-  * Host OS 입장에서는 이 image는 일종의 파일로 보이고 수행될 때에는 독립된 process처럼 보이게 됨.
+  - 해당 image에는 ^^공유하지 않는 OS의 서비스^^ 및 ^^시스템파일^^ 및 ^^가상 storage^^, 그리고 ^^target application^^이 포함됨.
+  - Host OS 입장에서는 이 image는 일종의 파일로 보이고 수행될 때에는 독립된 process처럼 보이게 됨.
 
 > ***`Virtual Machine`의 경우, 자체 kernel을 포함한 완전한 OS를 실행*** (kernel의 공유가 없음. container와의 차이점)시키기 때문에  
 > 
