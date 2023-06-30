@@ -20,7 +20,9 @@ The console allows system administrators to
 
 ## Terminal
 
-> 컴퓨터에 local 또는 remote로 접속할 수 있는 console을 SW로 구현한 것. 보통 shell 이 수행되도록 해주는 wrapper라고 볼 수 있다. 과거 terminal이나 console 모두 teletype로 구성되었으나, 기술의 발전으로 다른 컴퓨터의 OS에 접속하거나 한 컴퓨터의 다중 사용자가 접속하는 게 일반적이 되면서 teletype가 컴퓨터의 SW로 바뀌게 됨. 현재는 console이나 teletype(tty)보다는 terminal이라는 용어가 보다 많이 사용된다. 
+> 컴퓨터에 local 또는 remote로 접속할 수 있는 console을 SW로 구현한 것. 보통 shell 이 수행되도록 해주는 wrapper라고 볼 수 있다. 과거 terminal이나 console 모두 teletype로 구성되었으나, 기술의 발전으로 다른 컴퓨터의 OS에 접속하거나 한 컴퓨터의 다중 사용자가 접속하는 게 일반적이 되면서 teletype가 컴퓨터의 SW로 바뀌게 됨. 현재는 console이나 teletype(tty)보다는 terminal이라는 용어가 보다 많이 사용된다.  
+> * 엄밀한 정의에서 OS는 kernel만을 가르킴.
+> * 하지만, 많은 경우, Kernel외에 Shell도 포함됨.
 
 A ***software application*** that allows users to ^^interact with a computer system^^ through a `command-line interface`. 
 
