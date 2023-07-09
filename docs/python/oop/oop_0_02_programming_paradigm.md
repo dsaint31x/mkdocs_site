@@ -49,6 +49,7 @@
 
 
 OOP는 imperative programming의 엄격한 subset이라고 보기는 어렵다. Class의 instance를 Object로 지칭하면서 Object 위주로 programming을 하는 것임. OOP는 이를 위해 기존의 imperative programming에서 없었던 `class`,`object`, `encapsulation`, `inheritance`, `polymorphism`등의 개념이 도입되었음.
+
 ---
 
 다음은 OOP와 Structured Programming을 1:1로 비교하여 그 특징들을 파악해 보겠다.
