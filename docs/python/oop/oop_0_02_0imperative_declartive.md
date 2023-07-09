@@ -18,7 +18,11 @@ Imperative programming language는 명시적으로 instruction들을 기재하�
 1. variable assignment
 2. loops
 3. conditions
-4. control structures.
+
+> 어떤 조건에 따라 어느 구문들을 수행할지를 결정하여 프로그램 수행의 흐름을 결정하는 것을 control structures라고 하며 Conditional statements, Loops, Control statements들로 구성됨.  
+> * Conditional statements : `if`, `if-else`, `switch` 등.
+> * Loops : `for`, `while` 등.
+> * Control statements : `break`, `continue`, `return` 등.
 
 `C`, `Python` 등의 언어가 imperative programming language의 예임.
 
