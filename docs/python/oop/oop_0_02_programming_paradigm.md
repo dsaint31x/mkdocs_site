@@ -42,9 +42,9 @@
 
 > 현재 OOP Language라고 불리는 경우, 최소한 다음 세가지 특성을 지원한다.  
 >
-> * Encapsulation
-> * Inheritance
-> * Polymorphism
+> * Encapsulation  
+> * Inheritance  
+> * Polymorphism  
 >
 
 
