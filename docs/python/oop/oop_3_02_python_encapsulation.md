@@ -2,7 +2,10 @@
 
 ## Data Hiding 관점
 
-Encapsulation을 엄격히 적용하려면, data에 직접 접근이 아닌 getter나 setter와 같은 method들을 통해서만 이루어져야 한다.
+Encapsulation을 엄격히 적용하려면, 
+
+* data에 직접 접근이 아닌 
+* getter나 setter와 같은 method들을 통해서만 이루어져야 한다.
 
 문제는 python에서는 이를 구현하기 쉽지 않다는 점이다. 이를 위해 Python에서 지원하는 기법은 `Name mangling`이다.
 
@@ -40,13 +43,17 @@ if __name__ == "__main__":
 * `__age`처럼 attribute의 이름에 `__`를 붙이면, python은 이 property에 data hiding을 위한 처리로 실제 이름을 `_Student__age`로 변경하여 관리한다.
 * class내에서는 `self.__age`를 사용하여 접근하는 구현이 가능하나, 외부에서 접근하려면 `__age`만으로는 되지 않는다.
 * 위 코드에서 `s.__age = 32`는 에러가 뜨진 않지만, 새로운 `__age`라는 property가 추가되고 거기에 32가 value가 된다.
-* 만약 `s.__age = 32` 대신 `print(s.__age)`같이 perperty의 value에 접근하는 경우에는 AttributeError가 발생한다. `s._Student_age`는 있지만, `s.__age`는 없기 때문이다.
+* 만약 `s.__age = 32` 대신 `print(s.__age)`같이 property의 value에 접근하는 경우에는 AttributeError가 발생한다. `s._Student_age`는 있지만, `s.__age`는 없기 때문이다.
 
-> 외부에서의 직접적인 접근을 막기 위해 도입된 것이지만...  
-> 어떤 의미로는 유명무실하기도 하다. 다 같은 개발자들이니...
+> 외부에서의 ***직접적인 접근을 막기 위해 도입*** 된 것이지만...  
+> 어떤 의미로는 유명무실하기도 하다.  
+> 다 같은 개발자들이니, 고치고자 마음을 먹으면 쉽게 처리할 수 있다.
 
+이 방식의 한계는 명확하다. Python에서는 각 object 별로 `__dict__`를 통해 property들이 관리가 되기 때문이다.
 
-> `__dict__`는 해당 object의 attribute들을 dictionary형태로 가지고 있다. 이를 통해 직접 접근을 하여 변경이 가능하다. 즉, Python에서는 엄격한 Encapusulation을 구현할 수 없다.
+> `__dict__`는 해당 object의 attribute들을 dictionary형태로 가지고 있으며 이를 통해 attribute들을 관리한다.  
+> 관리를 한다는 애기는 `__dict__`를 통한 직접 접근이 가능하다는 애기이다. 즉 dictionary 사용을 통해 attribute들의 직접변경이 가능하다.   
+> 때문에 Python에서는 엄격한 Encapsulation을 구현할 수 없다.
 
 ## property설정.
 
@@ -107,5 +114,4 @@ if __name__ == "__main__":
 
 ## References
 
-* GeeksforGeek's [Name mangling in Python
-](https://www.geeksforgeeks.org/name-mangling-in-python/)
+* GeeksforGeek's [Name mangling in Python](https://www.geeksforgeeks.org/name-mangling-in-python/)
