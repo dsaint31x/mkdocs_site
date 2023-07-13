@@ -27,5 +27,6 @@ Encapsulation은
 
 을 묶어내고, 이들 중 해당 method 만을 외부에 공개한다 (← Data hiding).
 
-> Java의 경우, 매우 엄격한 encapsulation이 가능하지만, Python에서는 우회할 수 있는 방법이 있어서 엄격한 구현이 쉽지 않음.
+> C++, Java의 경우, 매우 엄격한 encapsulation이 가능하지만,  
+> Python에서는 우회할 수 있는 방법이 있어서 엄격한 구현이 쉽지 않음. [참고](./oop_3_02_python_encapsulation.md)
 

@@ -8,6 +8,7 @@ Inheritance를 Hierarchy 구조를 따라서 각각의 Class에 (동일한) 하�
 - 단, 적용가능한 object들은 Inheritance를 통해 Hierarchy구조를 가지고 있으면서 공통의 super class를 가져야 한다.
 - Polymorphism은 그리스어로 “여러 형태”를 의미.
 
+
 ## 예제
 
 다음의 예를 보자. 각기 다른 Class의 instance들이지만, super class에서 공유하고 있는 method를 통해 같은 방식으로 호출이 이루어진다.
@@ -50,7 +51,12 @@ if __name__ == "__main__":
             print(f"{c} is not a Dog.")
 ```
 
-위의 예에서 같은 method `bark()`로 호출이 이루어지나 실제 구현은 각자의 실제 class type에 맞춰 이루어짐. 이같이 super class의 method를 자신에 맞게 다시 구현하는 것을 (method) over-riding 이라고 한다.
+위의 예에서 같은 method `bark()`로 호출이 이루어지나 실제 구현은 각자의 실제 class type에 맞춰 이루어짐. 
+
+이같이 super class의 method를 자신에 맞게 다시 구현하는 것을 (method) ***over-riding*** 이라고 한다.
+
+Overriding과 헷갈리는 개념이 overloading 있으며 이들의 차이점에 대한 보다 자세한 건 다음 URL을 참고 : [overloading, overriding, and special methods](https://ds31x.tistory.com/36)
+
 
 > 다양한 Object들이
 동일한 message (혹은 interface. 실제로는 method호출)를 통해 수행 가능. ← 개념적으로 비슷한
