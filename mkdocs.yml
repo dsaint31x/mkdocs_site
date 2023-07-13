@@ -212,7 +212,7 @@ nav:
     - "OOP Summary" : "python/oop/oop_2_00_OOP_summary.md"
     - "python":
       - "Python의 Class (차이점)": "python/oop/oop_3_01_python_class.md"
-      - "Python의 Encapsulation": "python/oop/oop_3_02_python_encapsulation.md"
+      - "python/oop/ds_setter_and_getter.md"
       - "Python의 Encapsulation": "python/oop/oop_3_02_python_encapsulation.md"
   - "Python":
     - "python/basic/module_package.md"
