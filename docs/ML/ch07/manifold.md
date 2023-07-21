@@ -21,7 +21,10 @@ A manifold is a ***topological space (위상공간)*** that ^^locally resembles 
 <figcaption>homeotropic이면서 연속적인 변화로 만들어지므로 isotopic임</figcaption>  
 </figure>
 
-> 엄밀하게 애기하면, topology는 어떤 space에서 ***open-set이란 어떤 것인지 규정*** 하는 방법 (또는 element로 open set들을 가지고 있는 set을 topology라고 할 수 있음)을 의미하며, topolgical space란 topology가 주어져 있는 집합을 의미함. open-set은 흔히 특정 데이터 샘플의 neighbor들을 의미하며 neighbor를 정의하는 방법이 주어지고, 이들의 같은 경우 같은 manifold를 가진다고 생각할 수 있다..  
+> 엄밀하게 애기하면, ^^topology는 어떤 space에서 ***open-set이란 어떤 것인지 규정*** 하는 방법 (또는 element로 open set들을 가지고 있는 set을 topology라고 할 수 있음)을 의미^^ 하며, ^^topolgical space란 topology가 주어져 있는 집합을 의미함.^^  
+> 
+> * open-set은 흔히 특정 데이터 샘플의 neighbor들을 의미하며  
+> * neighbor를 정의하는 방법(topology)이 주어지고, topology가 같은 경우 같은 manifold를 가진다고 생각할 수 있다..  
 
 **Open set이란**
 : Empty set과 Open set의 전체집합은 open set임.  
@@ -59,7 +62,7 @@ Manifold Learning은 다음의 두 가설에 의존한다.
 
 ## Manifold Hypothesis
 
-High Dimensional (Raw) Dataset은 하나 이상의 Manifold로 구성되며, 각 data sample들은 manifold상 또는 manifold에 가깝게 위치하고 있다.
+High Dimensional (Raw) Dataset은 하나 이상의 Manifold로 구성되며, 각 data sample들은 manifold 상에 위치하거나 또는 manifold에 가깝게 위치하고 있다.
 
 > Real-world data presented in high-dimensional spaces are expected to concentrate in the vicinity of a manifold $M$ of much lower dimensionality $d_M$, embedded in high-dimensional input space $R^d$. 
 - Bengio et al. 2013
