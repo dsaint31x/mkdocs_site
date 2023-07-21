@@ -1,6 +1,6 @@
 # Manifold and Manifold Learning
 
-ML에서 manifold란, 고차원 공간에 내재된 저차원 공간(subspace)로 실제 dataset의 분포를 거의 다 포함(아닌 경우도 해당 subspace근처에 data들이 존재)하고 있는 것을 가르킴. 
+ML에서 manifold란, ^^고차원 공간에 내재된 저차원 공간(subspace)^^ 으로 실제 ^^dataset의 분포를 거의 다 포함(아닌 경우도 해당 subspace근처에 data들이 존재)하고 있는 것^^ 을 가르킴. 
 
 > (위상)수학적으로는 보다 엄격한 정의가 있으나... DL이나 ML을 하는 입장에서는 이 정도면 충분할 듯.
 
