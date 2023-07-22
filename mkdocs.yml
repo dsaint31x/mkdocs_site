@@ -284,6 +284,8 @@ nav:
       - "ML/ch07/tSNE.md"
     - "Deep Learning (simple)":
       - "ML/ch08/datastructure_graph.md"
+    - "RNN":
+      - "ML/ch16_RNN/RNN_topologies.md"
     - "Colab":
       - "CE/colab/hw_spec.md"
       - "CE/colab/cells.md"
