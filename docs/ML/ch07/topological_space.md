@@ -20,15 +20,6 @@
 
 > `open-set`이란 정성적으로 애기하면, "neighbors"라는 개념을 추상화 한 것이다. 어떤 data point $p\in X$가 있다고 할 때, ***$p$를 포함하는 open-set*** 을 ***$p$의 neighbors (=open-set)*** 이라고 할 수 있다.
 
----
-
-> **Topology란? (좀더 일반적인 의미)**
-> 
-> 좀 더 많이 사용되는 방법으로 애기한다면, topology란 어떤 설계나 방법론, 또는 연결 방식 등을 의미한다. 어떤 network를 구성하는데 이를 구성할 수 있는 **여러 연결방식들** 을 topology라고 할 수 있으며, 또는 어떤 device를 만드는데 여러가지 회로 구현방식이 있을 경우 이들 회로 구현방식을 해당 device에 대한 topology라고 할 수 있다.  
->  
-> 수학적 정의에서 neighbor라는 것이 어떤 목적을 이룰 수 있는 방법, 설계들이라고 생각하면, 해당 neighbors를 규정하는 topology는 해당 방법들을 지칭하는 것이라고 생각할 수 있는 것임. 
-
-
 * topology가 같은 topological space들을 homeomorphic(위상동형) 이라 말함.  
 ![](../img/ch07/homeomorphic.png){align=center}
 * $\mathbb{R}^3$를 비롯해서 ambient space(어떤 주변공간)에 embedded(속한, 포함된)한 두 공간이 서로 (고무판을 늘이고 줄이듯이) 연속적으로 변환시킬 수 있다면 이 둘을 isotopic하다고 정의함.  
@@ -38,6 +29,18 @@
 
 정리하자면, ^^topology는 기본적으로 topological space의 성질을 나타내는 것^^ 이므로 ambient space(주변 공간)에 어떻게 embedded되어져있는지와
  isotopy만을 보고 "topology가 같은 공간"을 다르다고 착각해서는 안됨. 
+
+---
+
+### Topology란? (좀더 일반적인 의미)
+> 
+> 좀 더 많이 사용되는 방법으로 애기한다면, topology란 어떤 설계나 방법론, 또는 연결 방식 등을 의미한다.  
+> 어떤 network를 구성하는데 이를 구성할 수 있는 **여러 연결방식들** 을 topology라고 할 수 있으며, 또는 어떤 device를 만드는데 여러가지 회로 구현방식이 있을 경우 이들 회로 구현방식을 해당 device에 대한 topology라고 할 수 있다.  
+>  
+> 수학적 정의에서 neighbor라는 것을 실세계에서 어떤 목적을 이룰 수 있는 방법, 설계들이라고 생각하면, 해당 neighbors를 규정하는 topology는 해당 방법들을 지칭하는 것이라고 생각할 수 있는 것임. 
+
+---
+
 
 ## References
 
