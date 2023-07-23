@@ -46,7 +46,7 @@ single time-step의 input에 대해 sequence output이 나오는 network임.
 
 ## many to many (encoder-decoder)
 
-> `sequence-to-sequence` 의 일종이지만, `encoder-decoder`로 더 많이 불림.
+> `sequence-to-sequence` 의 일종이지만, `encoder-decoder`로 더 많이 불림 (`seq2seq`로 불림).
 
 왼쪽의 input sequence (3 time-steps)들이 존재하는 부분은 encoder라고 볼 수 있고, 이후 오른쪽의 output sequence가 있는 부분을 decoder라고 볼 수 있음.
 
@@ -58,9 +58,9 @@ input sequence를 전체를 입력받아서 encoding을 수행하여 represent�
 >  
 > 이경우 `many-to-one`과 `one-to-many`가 연결된 것으로도 볼 수 있다.
 
-## many-to-many (seq2seq)
+## many-to-many 
 
-오른쪽에서 끝에 놓인 many-to-many는 `seq2seq`로 많이 알려진 모델로
+오른쪽에서 끝에 놓인 many-to-many는 
 ***time sequence를 forecast하는 경우*** 등에 애용된다.  
 
 앞서본 `encoder-decoder`와 달리 input sequence의 모든 time step을 끝까지 기다릴 필요없다는 장점을 가진다 (최근 N개의 time step 데이터를 바탕으로 forecast를 수행). 
