@@ -50,7 +50,7 @@ single time-step의 input에 대해 sequence output이 나오는 network임.
 
 왼쪽의 input sequence (3 time-steps)들이 존재하는 부분은 encoder라고 볼 수 있고, 이후 오른쪽의 output sequence가 있는 부분을 decoder라고 볼 수 있음.
 
-input sequence를 전체를 입력받아서 encoding을 수행하여 represent를 얻고 이를 기반으로 decoding을 하여 output sequence를 얻는 형태로 2017년 transformer가 등장하기 전까지 machine translation 분야 등에서 인기있던 topology였음.
+input sequence를 전체를 입력받아서 encoding을 수행하여 represent(=`context vector`)를 얻고 이를 기반으로 decoding을 하여 output sequence를 얻는 형태로 2017년 transformer가 등장하기 전까지 machine translation 분야 등에서 인기있던 topology였음.
 
 > 위의 그림과 같이 encoder와 decoder가 연결된 가운데에서 input과 output이 같이 존재하는 형태로 그려지기도 하지만, 아래 그림처럼 input seq.가 있는 곳에선 output이 없고, output이 있는 곳에선 input이 없는 형태로 그려지기도 함.  
 >
