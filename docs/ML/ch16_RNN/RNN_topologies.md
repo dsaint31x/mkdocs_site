@@ -8,6 +8,8 @@
 
 참고 : [topology란?](https://dsaint31.me/mkdocs_site/ML/ch07/topological_space/#topology)
 
+---
+
 ## one-to-one
 
 > `vector-to-vector` 라고도 불림.  
@@ -19,6 +21,8 @@
 
 sequence 를 다루기 위해 RNN을 사용하는데, 해당 sequence가 하나의 element만 있는 경우로 의미가 없음.
 
+---
+
 ## one-to-many
 
 > `vector-to-sequence` 라고도 불림.
@@ -28,6 +32,8 @@ sequence 를 다루기 위해 RNN을 사용하는데, 해당 sequence가 하나�
 single time-step의 input에 대해 sequence output이 나오는 network임.
 
 > feature vector를 입력받는 text generation model이라고 봐도 됨.
+
+---
 
 ## many to one
 
@@ -44,6 +50,8 @@ single time-step의 input에 대해 sequence output이 나오는 network임.
 
 ![seq2vec](../img/ch16_RNN/seq_2_vec.png)
 
+---
+
 ## many to many (encoder-decoder)
 
 > `sequence-to-sequence` 의 일종이지만, `encoder-decoder`로 더 많이 불림 (`seq2seq`로 불림).
@@ -57,6 +65,8 @@ input sequence를 전체를 입력받아서 encoding을 수행하여 represent(=
 > ![encoder_decoder_network](../img/ch16_RNN/encoder_decoder_network.png)
 >  
 > 이경우 `many-to-one`과 `one-to-many`가 연결된 것으로도 볼 수 있다.
+
+---
 
 ## many-to-many 
 

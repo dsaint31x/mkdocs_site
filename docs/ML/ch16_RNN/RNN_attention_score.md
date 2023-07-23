@@ -1,5 +1,8 @@
-# Attention Score (or Attention Function, Alignment)
+# Attention Score (or Alignment)
 
+> 2014년 RNN의 `encoder-decoder` network에 도입이 되었으나, 2017년 이후 RNN 구조를 버리고 attention에 집중한 **Transformer**의 core로 사용되고 있다. **Transformer** 의 기본 구성요소라고도 할 수 있음.
+
+Attention score는 attention function이라고도 불리며,  
 Attention mechanism에서 `query`, `key`, `value` 에서 `query`와 `key`의 ***similarity*** 를 의미.
 
 > 특정 `query`에 대해 모든 `key`들의 Attention score들로 구성된 vector $\textbf{e}$에 `softmax` 함수를 취해서 attention distribution (아래그림 참고)을 구함.  
@@ -7,6 +10,7 @@ Attention mechanism에서 `query`, `key`, `value` 에서 `query`와 `key`의 ***
 >  
 > ![](../img/ch16_RNN/encoder_decoder_w_attention.png)
 
+Attention score는 input에서 어디에 집중을 해야하는지를 나타내는 지표이다.
 
 ## Attention score의 등장.
 
