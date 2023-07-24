@@ -48,10 +48,14 @@ Grave et al.이 제안한 것을 포함하여 다음과 같은 여러 attention 
 | ref. | name | def. | etc.|
 |---|---|---|---|
 |[Grave et al., 2014](https://arxiv.org/abs/1410.5401)| content-based attention | $f(\textbf{s},\textbf{h})=\frac{\textbf{s}\cdot\textbf{h}}{\|\textbf{s}\| \|\textbf{s}\|}$| |
-|[Bahdanau et al., 2015](https://arxiv.org/abs/1409.0473)| Bahdanau (or additive) attention | $f(\textbf{s},\textbf{h})=V^T \text{tanh}(W_s \textbf{s}+ W_h \textbf{s})$| Luong et al. 에선 `concat` attention score로 칭함. |
-|[Luong et al., 2015](https://arxiv.org/abs/1508.04025)| Loung attention | $f(\textbf{s}, \textbf{h})= \textbf{h} \cdot W \textbf{s}$ | 논문에서 `general` attention score|
-|[Luong et al., 2015](https://arxiv.org/abs/1508.04025)| dot attention | $f(\textbf{s},\textbf{h})= \textbf{h} \cdot \textbf{s}$ | 논문에서 `dot` attention score|
+|[Bahdanau et al., 2014](https://arxiv.org/abs/1409.0473)| Bahdanau (or additive) attention | $f(\textbf{s},\textbf{h})=V^T \text{tanh}(W_s \textbf{s} + W_h \textbf{s})$| Luong et al. 에선 `concat` attention score와 비슷. |
+|[Luong et al., 2015](https://arxiv.org/abs/1508.04025)| Loung attention | $f(\textbf{s}, \textbf{h})= \textbf{h} \cdot W \textbf{s}$ | 논문에서 `general dot product approach` 라고 기술된 attention score|
+|[Luong et al., 2015](https://arxiv.org/abs/1508.04025)| dot attention | $f(\textbf{s},\textbf{h})= \textbf{h} \cdot \textbf{s}$ | 논문에서 `dot product approach` 라고 기술된 attention score|
 |[Vaswani et al., 2017](http://papers.nips.cc/paper/7181-attention-is-all-you-need.pdf)|scaled dot-product attention|$f(\textbf{s},\textbf{h})= \frac{\textbf{s}\cdot \textbf{h}}{\sqrt{n}}$ | $n$ 은 encoder state $\textbf{h}$의 dimension임.| 
+
+* dot product approach가 additive approach보다 좀 더 나은 것으로 알려져있고 (Luong et al., 2015), 때문에 dot product approach가 보다 널리 사용됨.
+* decoder's hidden state에 접근하기 보다는 decoder의 output을 사용하는 형태로 구현하는 경우가 보다 쉽고 고속화등에서 유리한 점이 있기 때문에 많이 사용됨(성능도 나쁘지 않음).
+* decoder의 output을 사용할 경우, Luong et al.이 제안한대로 attention layout의 출력을 softmax를 activation으로 가지며 decoder의 최종 output을 내놓는 `dense`의 입력으로 직접 사용함.
 
 ## 읽어보면 좋은 자료.
 
