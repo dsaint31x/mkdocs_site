@@ -5,21 +5,21 @@ RNN의 encoder-decoder (or seq2seq) model에 ^^최초로 도입된 attention mec
 이명으로 다음을 가지고 있음.
 
 * additive attention (덧셈 attention, 가산 attention)
-* concatenative attention (연결 attentiont)
+* concatenative attention (연결 attention)
 
 > Luong Attention (dot-product attention) 보다 복잡하고 성능 면에서 아쉬운 부분이 있어서 Luong Attention보다 덜 사용됨.
 
 기존의 `seq2seq`는 encoder의 최종 hidden state만을 보낸 것과 달리, 
 Attention mechanism은 현재 time-step의 decoder cell에 필요한 encoder cell의 hidden state (가장 관련성이 높은)를 직접 접근하여 입력으로 사용한다.
 
-일반적인 attetion 용어로 애기하면, 다음과 같음.
+일반적인 attention 용어로 애기하면, 다음과 같음.
 
 * query : 현재 time-step의 decoder cell의 입력 중 하나인 바로 이전 time-step의 decoder cell의 hidden state.
 * key : encoder cell에서 각 time-step의 hidden state.
 * value : 자신의 key와 동일.
 
 > "I like soccer"를 "Me gusta el fútbol" 로 번역할 때, "fútbol"을 decode cell이 출력으로 가지려면, 입력이 "soccer"에 해당하는게 가장 좋다.  
-> 즉, Attention layer는 일종의 memory retrieval system이라고 할 수 있음. 특정 qeury를 통해 가장 적절한 기억정보(key,value)를 가져옴.
+> 즉, Attention layer는 일종의 memory retrieval system이라고 할 수 있음. 특정 query를 통해 가장 적절한 기억정보(key,value)를 가져옴.
 
 ## 예제 : seq2seq with Bahdanau Attention
 
@@ -34,10 +34,10 @@ Attention mechanism은 현재 time-step의 decoder cell에 필요한 encoder cel
 * $\textbf{v}_{(t)}$ : decoder의 time-step $t$에서의 input vector로 <sos>로 시작함. training의 경우 teacher forcing에 의해 원래 label값을 1 time-step으로 늦추어서 들어감.
 
 Bahdanau et al.은 
-2014년 기존의 seq2seq model의 decoder cell's input으로 이전 decoder cell의 출력에 해당하는 embedding을 사용(target sentense의 word들.위의 그림 참고)하는 대신, 
-encoder의 모든 hidden state를 반영한 attention value를 구하여 이를 기존 input에 concate하여 decoder cell에 입력하는 방식을 제안했다.
+2014년 기존의 seq2seq model의 decoder cell's input으로 이전 decoder cell의 출력에 해당하는 embedding을 사용(target sentence의 word들.위의 그림 참고)하는 대신, 
+encoder의 모든 hidden state를 반영한 attention value를 구하여 이를 기존 input에 concatenate하여 decoder cell에 입력하는 방식을 제안했다.
 
-> seq2seq model에서 input은 target sentense를 한 time-step으로 delay시킨 것임. 최초로는 <sos> (start of sentense) token이 추가됨.
+> seq2seq model에서 input은 target sentence를 한 time-step으로 delay시킨 것임. 최초로는 <sos> (start of sentence) token이 추가됨.
 
 이는 위의 seq2seq model에서 decoder의 $t$-time에서의 input $\textbf{v}_{(t)}$ 대신에, 
 $\textbf{v}_{(t)}$에 attention vector $\textbf{a}_{(t)}$를 concatenate 시킨 $\tilde{\textbf{v}}_{(t)}$를 input으로 사용한다.
