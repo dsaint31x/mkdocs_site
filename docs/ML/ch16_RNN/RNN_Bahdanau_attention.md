@@ -34,8 +34,10 @@ Attention mechanism은 현재 time-step의 decoder cell에 필요한 encoder cel
 * $\textbf{v}_{(t)}$ : decoder의 time-step $t$에서의 input vector로 <sos>로 시작함. training의 경우 teacher forcing에 의해 원래 label값을 1 time-step으로 늦추어서 들어감.
 
 Bahdanau et al.은 
-2014년 기존의 seq2seq model의 decoder cell's input으로 이전 decoder cell의 출력에 해당하는 embedding을 사용(위의 그림 참고)하는 대신, 
+2014년 기존의 seq2seq model의 decoder cell's input으로 이전 decoder cell의 출력에 해당하는 embedding을 사용(target sentense의 word들.위의 그림 참고)하는 대신, 
 encoder의 모든 hidden state를 반영한 attention value를 구하여 이를 기존 input에 concate하여 decoder cell에 입력하는 방식을 제안했다.
+
+> seq2seq model에서 input은 target sentense를 한 time-step으로 delay시킨 것임. 최초로는 <sos> (start of sentense) token이 추가됨.
 
 이는 위의 seq2seq model에서 decoder의 $t$-time에서의 input $\textbf{v}_{(t)}$ 대신에, 
 $\textbf{v}_{(t)}$에 attention vector $\textbf{a}_{(t)}$를 concatenate 시킨 $\tilde{\textbf{v}}_{(t)}$를 input으로 사용한다.
