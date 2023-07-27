@@ -20,7 +20,10 @@ The console allows system administrators to
 
 ## Terminal
 
-> 컴퓨터에 local 또는 remote로 접속할 수 있는 console을 SW로 구현한 것. 보통 shell 이 수행되도록 해주는 wrapper라고 볼 수 있다. 과거 terminal이나 console 모두 teletype로 구성되었으나, 기술의 발전으로 다른 컴퓨터의 OS에 접속하거나 한 컴퓨터의 다중 사용자가 접속하는 게 일반적이 되면서 teletype가 컴퓨터의 SW로 바뀌게 됨. 현재는 console이나 teletype(tty)보다는 terminal이라는 용어가 보다 많이 사용된다.  
+> 컴퓨터에 local 또는 remote로 접속할 수 있는 console을 SW로 구현한 것. 보통 shell 이 수행되도록 해주는 wrapper라고 볼 수 있다.  
+> 과거 terminal이나 console 모두 teletype(tty, 독립된 HW system)로 구성되었으나, 기술의 발전으로 다른 컴퓨터의 OS에 접속하거나 한 컴퓨터에 다중 사용자가 접속하는 게 일반화 되면서 teletype(tty)가 컴퓨터의 SW로 바뀌게 됨 (때문에 virtual terminal, terminal emulator 라고도 불림).  
+> 현재는 console이나 teletype(tty)보다는 terminal이라는 용어가 보다 많이 사용된다 (tty라는 용어는 linux등에서 많이 보임).  
+
 
 A ***software application*** that allows users to ^^interact with a computer system^^ through a `command-line interface`. 
 
@@ -60,3 +63,9 @@ Some ^^popular terminal applications^^ include
  * `Bash` (Bourne Again Shell), 
  * `Zsh`, and 
  * `PowerShell`.
+
+## 더 읽어보면 좋은 자료들.
+
+* tty의 용어 유래 등의 역사를 살펴보려면 다음 URL을 참고하라: [Keyboard와 Terminal의 역사](https://dsaint31.me/mkdocs_site/CE/ch06/ce06_4_04_keyboard/#keyboard)
+
+* [bash에 대한 간략한 소개](https://ds31x.tistory.com/48)
