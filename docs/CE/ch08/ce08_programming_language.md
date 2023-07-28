@@ -19,6 +19,8 @@
 >  
 > 여기서 조건문, 분기문, 반복문 등을 ***control structure*** 라고 부름.
 
+참고 : [Control structure](https://ds31x.blogspot.com/2023/07/basic-control-structures-and-control.html)
+
 ---
 
 ## 분류
