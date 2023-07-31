@@ -29,9 +29,9 @@ Machine language와 Assembly language가 대표적.
     * 문자열, 수, tree와 같은 계산될 자료의 특성을 추상화
     * string, number, tree 등
 * 제어 추상화(Algorithm Abstraction)
-    * 실행 순서를 제어하는 특성을 추상화
+    * 실행 순서를 제어하는 특성을 추상화 : [`Control Structure`](https://ds31x.blogspot.com/2023/07/basic-control-structures-and-control.html)
+        * 제어 추상화의 예 : 반복문, 조건문, 프로시저 호출 등
+        * Loop statements, Condition statements, Procedure call
     * 여러 기계어를 모아 이해하기 쉬운 추상 구문으로 만드는 것.
     * 관련된 프로시저 그룹의 추상화(library, package등)
-    * 제어 추상화의 예 : 반복문, 조건문, 프로시저 호출 등
-        * Loop statements, Condition statements, Procedure call
 
