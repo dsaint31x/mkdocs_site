@@ -100,7 +100,7 @@ $$R(x,y)= \frac{ \sum_{x',y'} (T'(x',y') \cdot I'(x+x',y+y')) }{ \sqrt{\sum_{x',
 
 ### Example
 
-OpenCV Tutorial에 있던 예제를 `colab`등에서 동작가능하도록 조금 수정한 예제임.
+OpenCV Tutorial에 있던 예제를 `Colab`등에서 동작가능하도록 조금 수정한 예제임.
 
 > Template Matching의 경우 가급적 원본 영상에서 template를 선택하여 사용하는게 가장 정확함. 그 외의 경우 그리 만족할만한 결과가 안나오는 경우가 많음.
 

@@ -36,7 +36,7 @@ $$
 \text{code}_c = \frac{n_c\mu_c + \alpha \mu_g }{n_c + \alpha}
 $$
 
-* $\text{encod}_c$ : category $c$에 할당되는 code. 할당되는 변수값
+* $\text{code}_c$ : category $c$에 할당되는 code. 할당되는 변수값
 * $n_c$ : category $c$에 속한 sample 수
 * $mu_c$ : category $c$에 속한 sample들의 target value의 mean.
 * $mu_g$ : target의 평균치
