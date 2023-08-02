@@ -261,26 +261,26 @@ $$\text{WSSE}=\sum_{i}\sum_{\textbf{x} \in C_i} (\textbf{x}-\textbf{c}^\text{cen
   
 $$\text{BSSE}=\sum_{i}\sum_{j\ne i} \text{Size}(C_i) (\textbf{c}^\text{center}_i-\textbf{c}^\text{center}_j)^2$$  
 
-where $\text{Size}(C_i)$는 cluster $C_i$의 크기로 보통 속한 샘플의 수를 사용함.
+: where $\text{Size}(C_i)$는 cluster $C_i$의 크기로 보통 속한 샘플의 수를 사용함.
 
 ![](./img/graph_based_view_of_cluster_cohension_separation.png)
 
-* original : ZZFJILL's [Notes of Cluster Analysis](https://zzfjill.wordpress.com/2020/02/09/notes-of-cluster-analysis/)
+: * original : ZZFJILL's [Notes of Cluster Analysis](https://zzfjill.wordpress.com/2020/02/09/notes-of-cluster-analysis/)
 
 `Silhouette Coefficient` (실루엣 계수)  
 : cohesion과 separation을 조합한 silhouette function을 모든 data point에서 개별로 구하고 이들의 평균을 구하여 하나의 숫자로 cluster가 잘되었는지를 나타냄.  
   
 $$\text{SC}=\frac{1}{M}\sum^M_{i=1}s(\textbf{x}_i)$$
 
-* Cohesion $a(\textbf{x})$ : $\textbf{x}$와, 해당 $\textbf{x}$와 같은 cluster에 속한 데이터 포인트들간의 거리에 대한 평균.
-* Separation $b(\textbf{x})$ : $\textbf{x}$와, 해당 $\textbf{x}$와 다른 cluster에 속한 데이터 포인트들간의 거리에 대한 평균.
-* Silhouette function, $s(\textbf{x})$ : $s(\textbf{x})=\frac{b(\textbf{x})-a(\textbf{x})}{\max\left\{a(\textbf{x}),b(\textbf{x})\right\}}$
-    * $s(x)$는 $[-1,1]$의 range를 가지는데, `-1`은 가장 나쁜 clustering을 의미하고, `1`은 가장 좋은 clustering을 의미함. (`0`은 indifferent에 해당.)
-    * `0`은 어느정도 넘어야 clustering이 어느정도 된 것을 의미한다.
+: * Cohesion $a(\textbf{x})$ : $\textbf{x}$와, 해당 $\textbf{x}$와 같은 cluster에 속한 데이터 포인트들간의 거리에 대한 평균.
+: * Separation $b(\textbf{x})$ : $\textbf{x}$와, 해당 $\textbf{x}$와 다른 cluster에 속한 데이터 포인트들간의 거리에 대한 평균.
+: * Silhouette function, $s(\textbf{x})$ : $s(\textbf{x})=\frac{b(\textbf{x})-a(\textbf{x})}{\max\left\{a(\textbf{x}),b(\textbf{x})\right\}}$
+:     * $s(x)$는 $[-1,1]$의 range를 가지는데, `-1`은 가장 나쁜 clustering을 의미하고, `1`은 가장 좋은 clustering을 의미함. (`0`은 indifferent에 해당.)
+:     * `0`은 어느정도 넘어야 clustering이 어느정도 된 것을 의미한다.
 
 ![](./img/silhouette_coef.png)
 
-* origin : Santhana et al., [Best Clustering Configuration Metrics: Towards Multiagent Based Clustering](https://www.researchgate.net/figure/Derivation-of-the-Overall-Silhouette-Coefficient-OverallSil_fig1_221570710)
+: * origin : Santhana et al., [Best Clustering Configuration Metrics: Towards Multiagent Based Clustering](https://www.researchgate.net/figure/Derivation-of-the-Overall-Silhouette-Coefficient-OverallSil_fig1_221570710)
 
 `Davis-Bouldin Index`(DBI)  
 : 같은 cluster내에서 평균거리(cohesion)와 다른 cluster간의 중심거리(separation)에 대한 일종의 ratio로 계산이 빠르면서도 일관성이 있는 지표로 알려져 있음.  
@@ -289,17 +289,17 @@ $$
 DBI = \frac{1}{k}\sum^k_{i=1} D_i
 $$  
     
-* $D_i =\displaystyle \max_{j\ne i}\left\{D_{ij}\right\}$
-    * $D_{ij}$ : $i$th cluster와 $j$th cluster에 대한 "cluster내 거리(within distance)"와 "cluster간 중심거리(between distance)"의 ratio(비율)
-    * $D_i$ : $i$th cluster와 관련된 $D_{ij}$중 최대값.
-* $D_{ij} = \frac{\bar{d}_i+\bar{d}_j}{d_{ij}}$
-    * $\bar{d}_i$ : $i$th cluster에 대한 중심과 해당 cluster 에 속한 데이터 포인트 간의 평균 거리 = cohesion
-    * $d_{ij}$ : $i$th cluster와 $j$th cluster의 중심거리 = separation
+: * $D_i =\displaystyle \max_{j\ne i}\left\{D_{ij}\right\}$
+:     * $D_{ij}$ : $i$th cluster와 $j$th cluster에 대한 "cluster내 거리(within distance)"와 "cluster간 중심거리(between distance)"의 ratio(비율)
+:     * $D_i$ : $i$th cluster와 관련된 $D_{ij}$중 최대값.
+: * $D_{ij} = \frac{\bar{d}_i+\bar{d}_j}{d_{ij}}$
+:     * $\bar{d}_i$ : $i$th cluster에 대한 중심과 해당 cluster 에 속한 데이터 포인트 간의 평균 거리 = cohesion
+:     * $d_{ij}$ : $i$th cluster와 $j$th cluster의 중심거리 = separation
 
-* 예 : 3개의 cluster 인 경우,
-    * $D_{ij}$ 는 $D_{12},D_{13},D_{23}$ 과 같이 3개가 구해짐.
-    * $D_i$는 $D_1=\max\left\{D_{12},D_{13}\right\}$, $D_2=\max\left\{D_{23}\right\}$ 과 같이 2개가 구해짐.
-    * $k=2$ 이며, $DBI=\text{mean}[D_1, D_2]$임.
+: * 예 : 3개의 cluster 인 경우,
+:     * $D_{ij}$ 는 $D_{12},D_{13},D_{23}$ 과 같이 3개가 구해짐.
+:     * $D_i$는 $D_1=\max\left\{D_{12},D_{13}\right\}$, $D_2=\max\left\{D_{23}\right\}$ 과 같이 2개가 구해짐.
+:     * $k=2$ 이며, $DBI=\text{mean}[D_1, D_2]$임.
 
 `Dunn Index`
 
