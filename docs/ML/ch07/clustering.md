@@ -54,6 +54,8 @@ ref.: https://scikit-learn-extra.readthedocs.io/en/stable/modules/cluster.html#k
 
 가장 가까운 data point끼리 묶어나가(linkage)는 방식.
 
+[Dendrogram이란](https://ds31x.blogspot.com/2023/08/ml-medoid.html)
+
 * 모든 data points를 묶어가가면서 Dendrogram을 하단에서 상단으로 만들어나가게 됨. 
 * 모든 data points가 한 cluster로 묶이면 (=Dendrogram의 root) 과정이 끝나고, Dendrogram의 vertical axis에서 적절한 수준에서 잘라서 cluster의 수를 조절함 (상단, 즉 root에 가까운 곳에서 cutting이 발생시 cluster의 수가 적고, leaf nodes에 가까운 곳에서 cutting이 발생시 cluster의 수가 많음).
 
@@ -273,10 +275,10 @@ $$\text{BSSE}=\sum_{i}\sum_{j\ne i} \text{Size}(C_i) (\textbf{c}^\text{center}_i
 $$\text{SC}=\frac{1}{M}\sum^M_{i=1}s(\textbf{x}_i)$$
 
 : * Cohesion $a(\textbf{x})$ : $\textbf{x}$와, 해당 $\textbf{x}$와 같은 cluster에 속한 데이터 포인트들간의 거리에 대한 평균.
-: * Separation $b(\textbf{x})$ : $\textbf{x}$와, 해당 $\textbf{x}$와 다른 cluster에 속한 데이터 포인트들간의 거리에 대한 평균.
-: * Silhouette function, $s(\textbf{x})$ : $s(\textbf{x})=\frac{b(\textbf{x})-a(\textbf{x})}{\max\left\{a(\textbf{x}),b(\textbf{x})\right\}}$
-:     * $s(x)$는 $[-1,1]$의 range를 가지는데, `-1`은 가장 나쁜 clustering을 의미하고, `1`은 가장 좋은 clustering을 의미함. (`0`은 indifferent에 해당.)
-:     * `0`은 어느정도 넘어야 clustering이 어느정도 된 것을 의미한다.
+* Separation $b(\textbf{x})$ : $\textbf{x}$와, 해당 $\textbf{x}$와 다른 cluster에 속한 데이터 포인트들간의 거리에 대한 평균.
+* Silhouette function, $s(\textbf{x})$ : $s(\textbf{x})=\frac{b(\textbf{x})-a(\textbf{x})}{\max\left\{a(\textbf{x}),b(\textbf{x})\right\}}$
+    * $s(x)$는 $[-1,1]$의 range를 가지는데, `-1`은 가장 나쁜 clustering을 의미하고, `1`은 가장 좋은 clustering을 의미함. (`0`은 indifferent에 해당.)
+    * `0`은 어느정도 넘어야 clustering이 어느정도 된 것을 의미한다.
 
 ![](./img/silhouette_coef.png)
 
@@ -290,16 +292,15 @@ DBI = \frac{1}{k}\sum^k_{i=1} D_i
 $$  
     
 : * $D_i =\displaystyle \max_{j\ne i}\left\{D_{ij}\right\}$
-:     * $D_{ij}$ : $i$th cluster와 $j$th cluster에 대한 "cluster내 거리(within distance)"와 "cluster간 중심거리(between distance)"의 ratio(비율)
-:     * $D_i$ : $i$th cluster와 관련된 $D_{ij}$중 최대값.
-: * $D_{ij} = \frac{\bar{d}_i+\bar{d}_j}{d_{ij}}$
-:     * $\bar{d}_i$ : $i$th cluster에 대한 중심과 해당 cluster 에 속한 데이터 포인트 간의 평균 거리 = cohesion
-:     * $d_{ij}$ : $i$th cluster와 $j$th cluster의 중심거리 = separation
-
-: * 예 : 3개의 cluster 인 경우,
-:     * $D_{ij}$ 는 $D_{12},D_{13},D_{23}$ 과 같이 3개가 구해짐.
-:     * $D_i$는 $D_1=\max\left\{D_{12},D_{13}\right\}$, $D_2=\max\left\{D_{23}\right\}$ 과 같이 2개가 구해짐.
-:     * $k=2$ 이며, $DBI=\text{mean}[D_1, D_2]$임.
+    * $D_{ij}$ : $i$th cluster와 $j$th cluster에 대한 "cluster내 거리(within distance)"와 "cluster간 중심거리(between distance)"의 ratio(비율)
+    * $D_i$ : $i$th cluster와 관련된 $D_{ij}$중 최대값.
+* $D_{ij} = \frac{\bar{d}_i+\bar{d}_j}{d_{ij}}$
+    * $\bar{d}_i$ : $i$th cluster에 대한 중심과 해당 cluster 에 속한 데이터 포인트 간의 평균 거리 = cohesion
+    * $d_{ij}$ : $i$th cluster와 $j$th cluster의 중심거리 = separation
+: 예 : 3개의 cluster 인 경우,
+    * $D_{ij}$ 는 $D_{12},D_{13},D_{23}$ 과 같이 3개가 구해짐.
+    * $D_i$는 $D_1=\max\left\{D_{12},D_{13}\right\}$, $D_2=\max\left\{D_{23}\right\}$ 과 같이 2개가 구해짐.
+    * $k=2$ 이며, $DBI=\text{mean}[D_1, D_2]$임.
 
 `Dunn Index`
 
