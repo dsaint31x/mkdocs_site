@@ -23,7 +23,8 @@ bagging이나 boosting이 일반적으로 같은 type의 models를 weaker learne
 > attractive approach이나, 실제 사용이 매우 번거롭다. 
 > 때문에 bagging이나 boosting에 비해 많이 사용되지 않는 편이다.
 
-## References
+## 읽어보며 좋은 자료들.
 
 * [Stacked Generalization 관련 URL](http://machine-learning.martinsewell.com/ensembles/stacking/)
+* [Stacking -Ensemble meta Algorithms for improve predictions](https://medium.com/ml-research-lab/stacking-ensemble-meta-algorithms-for-improve-predictions-f4b4cf3b9237)
 
