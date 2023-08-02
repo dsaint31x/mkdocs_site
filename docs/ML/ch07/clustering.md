@@ -91,22 +91,26 @@ Ref.: [Brendan J. Frey et al., “Clustering by Passing Messages Between Data Po
 sample $i$와 $j$의 similarity는 다음과 같은 Euclidean distance의 제곱에 음수를 취한 것임.
 
 $$
-s_{ik}= \|\textbf{x}_{i}-\textbf{x}_{j}\|^2_2
+s_{ik}= -\|\textbf{x}_{i}-\textbf{x}_{j}\|^2_2
 $$
 
-여기서 $s_{kk}$는 위의 식으로는 0이지만, hyper-parameter로 주어진다. 0보다 작은 음수값으로 주어지면 이 값이 작을수록 결과로 나오는 cluster의 수가 적어지게 된다.
+여기서 $s_{kk}$는 위의 식으로 계산할 경우 0이지만, hyper-parameter로 지정한다. 0보다 작은 음수값으로 주어지며 ^^이 값이 작을수록 결과로 나오는 cluster의 수가 적어지게 된다.^^
 
 > \# of cluster를 명시적으로 설정하지 않고, $s_{kk}$를 통해 결과에서 나오는 cluster 수를 제어한다.  
 
-보통 similarity matrix의 최소값으로 설정되지만, median, 또는 maximum으로 설정될 수 있음 (커질수로 cluster수가 증가)
+보통 similarity matrix의 최소값으로 설정됨 (커질수록 cluster수가 증가).
 
 ### responsibility 계산
 
->  sample $\textbf{x}_k$
-​​​​​가 sample $\textbf{x}_i$
-​​​​​에 대해 얼마나 exemplar로 적합한지를 나타냄.
+> sample $\textbf{x}_k$ ​가  
+> sample $\textbf{x}_i$ ​​​에 대해  
+> 얼마나 exemplar로 적합한지를 나타냄.
 
-responsibility $r_{ik}$는 sample $\textbf{x}_i$를 기준으로 하여 sample $\textbf{x}_k$ 가 sample $\textbf{x}_i$의 대표가 되어야 하는 ^^정량적 근거(sklearn 에선 the accumulated evidence라고 기술)^^ 를 구한 것으로 sample $\textbf{x}_i$를 기준으로 target sample $\textbf{x}_k$ 와의 similarity와  target sample $\textbf{x}_k$를 제외한 나머지 sample들간의 affinity를 고려한다.
+responsibility $r_{ik}$는  
+sample $\textbf{x}_i$를 기준으로 하여  
+sample $\textbf{x}_k$ 가 sample $\textbf{x}_i$의 대표(exemplar)가 되어야 하는 ^^정량적 근거(sklearn 에선 the accumulated evidence라고 기술)^^ 를 구한 것으로  
+sample $\textbf{x}_i$를 기준으로 target sample $\textbf{x}_k$ 와의 similarity와  
+target sample $\textbf{x}_k$를 제외한 나머지 sample들간의 affinity를 고려한다.
 
 식은 다음과 같다.
 
@@ -123,13 +127,14 @@ responsibility $r_{ik}$는 responsibility matrix를 생성한다.
 
 ### availability 계산
 
-availability $a_{ik}$는 sample $\textbf{x}_k$를 기준으로 하여 sample $\textbf{x}_i$ 에게 본인이 대표가 되어야 하는 정량적 근거를 구한 것이다. 이는 sample $\textbf{x}_k$과 자신을 제외한 다른 sample들로부터 responsibility를 다 더한 값과 0중에서 작은 값에 해당한다 (대부분 음수).
+availability $a_{ik}$는 sample $\textbf{x}_k$를 기준으로 하여 sample $\textbf{x}_i$ 에게 본인이 대표가 되어야 하는 정량적 근거를 구한 것이다. 이는 sample $\textbf{x}_k$와 자신을 제외한 다른 sample들로부터 responsibility를 다 더한 값과 0중에서 작은 값에 해당한다 (대부분 음수).
+이때, responsibility가 양수인 경우만 고려하는 점을 주의할 것.
 
 $$a_{ik}=\min \left(0, r_{kk}+\sum_{i^\prime \notin \{i,k\}}\max(0,r_{i^\prime k}) \right) $$
 
-$r_{kk}$ 는 자기자신의 대표성에 해당한다.
+$a_{kk}$ 는 $\textbf{x}_k$가 cluster의 중심으로 사용가능한지를 정량적으로 나타냄.(클수록 중심이 되기 쉬움)
 
-$$a_{kk}=\sum_{i^\prime = i,k}\max(0,r_{i^\prime k})$$
+$$a_{kk}=\sum_{i^\prime ne k}\max(0,r_{i^\prime k})$$
 
 ### 순서
 
@@ -137,8 +142,8 @@ $$a_{kk}=\sum_{i^\prime = i,k}\max(0,r_{i^\prime k})$$
 1. similarity matrix계산
 2. responsibility matrix 계산
 3. availability matrix 계산
-4. responsibility matrix 와 availability matrix가 수렴할 때까지 2,3번 반복.
-5. responsibility matrix 와 availability matrix를 더해 criterion matrix를 계산하고 주대각성분 $r_{kk}+a_{kk}$ 가 0 이상이 sample $\textbf{x}_k$가 cluster의 대표가 된다.
+4. ^^responsibility matrix 와 availability matrix가 수렴할 때^^ 까지 2,3번 반복.
+5. responsibility matrix 와 availability matrix를 더해 criterion matrix를 계산하고 주대각성분 $r_{kk}+a_{kk}$ 가 0 이상인 경우, sample $\textbf{x}_k$가 cluster의 대표가 된다.
 
 ### sklearn.cluster.AffinityPropagation
 
@@ -152,7 +157,9 @@ $$a_{kk}=\sum_{i^\prime = i,k}\max(0,r_{i^\prime k})$$
 > Preference는 위의 수식에서 Similarity Matrix의 main diagonal $s_{kk}$을 가르키고 있음.
 
 **Damping factor** $\lambda$
-: 반복되는 Responsibility Matrix와 Availability Matrix를 업데이트에서 Damping factor는 Exponential weighted average를 적용할 때 필요한 hyper parameter임. Exponential weighted average를 적용하여 noise에 좀 더 robust하게 해주며, 동시에 값들이 numerical oscillations (진자현상)을 보이지 않도록 막아줄 수 있다. 적절한 damping factor를 지정할 경우 보다 빨리 그리고 안정적으로 수렴하게 됨.
+: 반복되는 Responsibility Matrix와 Availability Matrix의 업데이트에서  
+Damping factor는 Exponential weighted average를 적용할 때 필요한 hyper-parameter임.  
+Exponential weighted average를 적용하여 noise에 좀 더 robust하게 해주며, 동시에 값들이 numerical oscillations (진자현상)을 보이지 않도록 막아줄 수 있다. 적절한 damping factor를 지정할 경우 보다 빨리 그리고 안정적으로 수렴하게 됨.
 
 $$
 \begin{aligned}r_{t+1}(i, k) = \lambda\cdot r_{t}(i, k) + (1-\lambda)\cdot r_{t+1}(i, k) \\
@@ -179,7 +186,7 @@ Noise에 강하고 (noise point로 지정되면 아예 cluster에서 빼버림) 
 
 * Density : 지정된 반경($\epsilon$) 내의 데이터 포인트의 갯수
 * `Core point` : 해당 점을 중심으로 $\epsilon$ 내에 존재하는 데이터 포인트의 갯수가 지정된 Density (=`MinPts`)를 초과하는 경우 Core point라고 부름.
-* Direct Density Reachable (`DDR`) : $\textbf{x}$ 가 core point $\textbf{c}와의 거리가 $\epsilon$ 이내라면 DDR이라고 칭함.
+* Direct Density Reachable (`DDR`) : $\textbf{x}$ 가 core point $\textbf{c}$와의 거리가 $\epsilon$ 이내라면 DDR이라고 칭함.
 * Density Reachable (`DR`) : DDR point들로 구성된 chain으로 연결된 경우 DR이라고 칭함.
 * Density Connected (`DC`) : $\textbf{x}$ 와 $\textbf{y}$ 가 DR이고 $\textbf{y}$ 와 $\textbf{q}$ 가 DR이면 $\textbf{x}$와 $\textbf{q}$ 는 DC라고 칭함.  
 * `Border point` : 해당 점을 중심으로 $\epsilon$ 내에 존재하는 데이터 포인트의 갯수가 지정된 Density (=`MinPts`)보다 적지만, Core point와의 거리가 $\epsilon$ 이내인 경우.
@@ -189,7 +196,7 @@ Noise에 강하고 (noise point로 지정되면 아예 cluster에서 빼버림) 
 
 ### Algorithm
 
-```c
+```C
 current_cluster_label <- 1
      for all core points do
             if the core point has no cluster label then
