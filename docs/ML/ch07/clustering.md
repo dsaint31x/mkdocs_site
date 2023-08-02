@@ -183,7 +183,7 @@ Noise에 강하고 (noise point로 지정되면 아예 cluster에서 빼버림) 
 * `Border point` : 해당 점을 중심으로 $\epsilon$ 내에 존재하는 데이터 포인트의 갯수가 지정된 Density (=`MinPts`)보다 적지만, Core point와의 거리가 $\epsilon$ 이내인 경우.
 * `Noise point` : Core point도 아니고, Border point도 아닌 데이터 포인트.
 
-![](../img/ch07/DBSCAN_minPts%3D4.png)
+![](./img/DBSCAN_minPts%3D4.png)
 
 ### Algorithm
 
@@ -220,7 +220,7 @@ Eps의 경우에는 다음의 $k$-dist Graph를 이용하여 급격히 증가하
 
 위의 성질을 이용하여 모든 데이터 포인트에 대해 $k$ nearest neighbor ($k$번째 가장 가까운 이웃)에 대한 거리를 구하고, 해당 거리로 sorting을 한 이후, 해당 $k$-nearest neighbor distance를 y축에 기재하고 이에 대응하는 data point의 수를 x축에 기재하면 아래와 같은은 $k$-dist graph를 얻게됨.
 
-![](../img/ch07/DBSCAN_tunning.png)
+![](./img/DBSCAN_tunning.png)
 
 이 경우, 적절한 `Eps`가 4에서 10 사이임을 알 수 있다. 
 
@@ -228,7 +228,7 @@ Eps의 경우에는 다음의 $k$-dist Graph를 이용하여 급격히 증가하
 
 하지만, density가 다양한 data에서는 잘 동작하지 않는다.
 
-![](../img/ch07/diverse_density_dbscan.png)
+![](./img/diverse_density_dbscan.png)
 
 * 오른쪽 하단의 경우, DBSCAN이 density가 낮은 곳의 data point들을 모두 noise로 처리한 것을 확인할 수 있다.
 * density가 높은 영역에만 집중을 한 결과임.
@@ -263,7 +263,7 @@ $$\text{BSSE}=\sum_{i}\sum_{j\ne i} \text{Size}(C_i) (\textbf{c}^\text{center}_i
 
 where $\text{Size}(C_i)$는 cluster $C_i$의 크기로 보통 속한 샘플의 수를 사용함.
 
-![](../img/ch07/graph_based_view_of_cluster_cohension_separation.png)
+![](./img/graph_based_view_of_cluster_cohension_separation.png)
 
 * original : ZZFJILL's [Notes of Cluster Analysis](https://zzfjill.wordpress.com/2020/02/09/notes-of-cluster-analysis/)
 
@@ -278,7 +278,7 @@ $$\text{SC}=\frac{1}{M}\sum^M_{i=1}s(\textbf{x}_i)$$
     * $s(x)$는 $[-1,1]$의 range를 가지는데, `-1`은 가장 나쁜 clustering을 의미하고, `1`은 가장 좋은 clustering을 의미함. (`0`은 indifferent에 해당.)
     * `0`은 어느정도 넘어야 clustering이 어느정도 된 것을 의미한다.
 
-![](../img/ch07/silhouette_coef.png)
+![](./img/silhouette_coef.png)
 
 * origin : Santhana et al., [Best Clustering Configuration Metrics: Towards Multiagent Based Clustering](https://www.researchgate.net/figure/Derivation-of-the-Overall-Silhouette-Coefficient-OverallSil_fig1_221570710)
 
