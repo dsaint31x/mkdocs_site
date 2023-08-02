@@ -246,6 +246,7 @@ Eps의 경우에는 다음의 $k$-dist Graph를 이용하여 급격히 증가하
 
 
 ---
+
 ## Cluster Validation
 
 Cluster의 평가는 내부평가와 외부평가로 나눌 수 있음.

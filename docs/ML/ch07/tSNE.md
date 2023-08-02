@@ -2,13 +2,15 @@
 
 Matten 2008년에 제안된 t-distributed Stochastic Neighbor Embedding (t-SNE)는 manifold learning의 하나로 visualization 에서 매우 강력한 성능을 보이는 transductive learning algorithm 임.
 
+* [transductive learning이란?](https://ds31x.blogspot.com/2023/08/ml-transductive-learning-and-inductive.html)
+
 Dimensionality reduction을 통해 high dimensional data를 2~3 dimensional data로 축소시키면서도 원래 데이터의 구조 및 특성을 최대한 보존함으로서 사용자가 데이터의 구조 및 특성을 시각적으로 잘 이해할 수 있도록 도와준다.
 
 ## tSNE 동작 원리 (summary)
 
 ### step 1
 
-원래 Dataset 의 모든 sample 들의 pair 들에 대해 Gaussian distribution 기반의 conditional probability (식1)로 구하고, 이들 conidtional probability가 symmetric 해지도록 평균을 취하여 최종 similarity 를 구한다. 그리고 이를 통해 similarity matrix를 산출한다.
+원래 Dataset 의 모든 sample 들의 pair 들에 대해 Gaussian distribution 기반의 conditional probability (식1)로 구하고, 이들 conditional probability가 symmetric 해지도록 평균을 취하여 최종 similarity 를 구한다. 그리고 이를 통해 similarity matrix를 산출한다.
 
 Gaussian distribution 기반의 conditional probability $p(i|j)$를 다음과 같이 정의한다.
 
@@ -34,7 +36,7 @@ $$p(i,j) = p(j,i) = \frac{p(i|j)+p(j|i)}{2} \tag{2}$$
 
 이는 단순히 평균을 구한 것이지만 pair를 구성하는 샘플의 순서와 상관없이 같은 값이 되며, symmetric 임.
 
-이를 이용하여 원래 Dataset 에서의 sample간의 simialarity를 나타내는 similarity matrix를 생성한다. 위 그림에 대한 similarity matrix는 다음 그림과 같다.
+이를 이용하여 원래 Dataset 에서의 sample간의 similarity를 나타내는 similarity matrix를 생성한다. 위 그림에 대한 similarity matrix는 다음 그림과 같다.
 
 ![](../img/ch07/similarity_matrix.png)
 
@@ -61,7 +63,7 @@ training dataset 의 모든 sample $\textbf{x}$ 들에 대응하면서 보다 �
 
 * 그림ref. 김진솔님의 [t-SNE 개념과 사용법](https://gaussian37.github.io/ml-concept-t_sne/)
 
-변환된 $Y$에서의 각 sampel pair에 대한 similiarity는 normal distribution이 아닌 Student's t distribution을 이용한다. 이 similarity의 식은 다음과 같다.
+변환된 $Y$에서의 각 sample pair에 대한 similarity는 normal distribution이 아닌 Student's t distribution을 이용한다. 이 similarity의 식은 다음과 같다.
 
 $$q(i,j)=\frac{\left(1+\|\textbf{y}_i-\textbf{y}_j\|^2_2\right)^{-1}}{\sum^m_{k\ne l}\left(1+\|\textbf{y}_k-\textbf{y}_l\|^2_2\right)^{-1}}$$
 
@@ -98,17 +100,17 @@ $$\frac{\partial L}{\partial \textbf{y}_i}=4\sum^m_{j=1}(p(i,j)-q(i,j))(\textbf{
 * 파란색이 정규분포곡선($N(0,1)$)을 나타낸 것이고 빨간색이 자유도가 3인 student $t$ distribution임.
 
 $Y$에서의 similarity $P$를 구하는데 t-distribution 이 사용된 이유는 바로 ***t-distribution이 heavy tailed 이기 때문*** 이다.
-다음 그림은 두 확률분포의 probaiblity density function (pdf)를 나타낸 것으로 t-distribution을 normal distribution과 쉽게 구분하기 위해 DoF=3인 경우의 t-distribution을 사용했다.
+다음 그림은 두 확률분포의 probability density function (pdf)를 나타낸 것으로 t-distribution을 normal distribution과 쉽게 구분하기 위해 DoF=3인 경우의 t-distribution을 사용했다.
 
 ![](../img/ch07/t_vs_normal.png)
 
 위의 그림에서 `1` 정도 거리에 떨어진 경우 high similarity라고 할 수 있는데, 이때 원본데이터에 적용된 similarity (=정규분포 기반) 값과 같은 값을 t-distribution에서 가지려면 `1`보다 적은 거리가 떨어져야 한다 (빨간 점이 왼쪽으로 이동).  
 반대로 `2` 정도 거리는 low similarity에 해당하는데, 이때는 t-distribution에서 같은 probability density를 가지려면 멀어져야 함을 보여준다 (검은 점이 오른쪽으로 이동). 
 
-이는 t-ditribution을 변환된 $Y$에서의 similarity에서 사용함으로서 low dimensional space로 Mapping되면서 high similiarity의 pair들은 서로 서로 가까워지고 low similiarity의 경우는 멀어지게 됨을 의미한다.
+이는 t-distribution을 변환된 $Y$에서의 similarity에서 사용함으로서 low dimensional space로 Mapping되면서 high similarity의 pair들은 서로 서로 가까워지고 low similarity의 경우는 멀어지게 됨을 의미한다.
 
 > **참고**  
-> high similiarity인 경우와 low similiarity인 경우에서 Pair를 이루는 sample간의 거리의 차이가 많이날수록 좋다. 이 차이가 크지 않을 경우를 가르켜 crowding problem이라고 부름. 
+> high similarity인 경우와 low similarity인 경우에서 Pair를 이루는 sample간의 거리의 차이가 많이날수록 좋다. 이 차이가 크지 않을 경우를 가르켜 crowding problem이라고 부름. 
 
 ## Example
 
@@ -133,7 +135,7 @@ $Y$에서의 similarity $P$를 구하는데 t-distribution 이 사용된 이유�
 
 * [Laurens van der Maaten's tsne blog](http://lvdmaaen.github.io/tsne)
 
-* [Laurens van der Maaten and Geoffrey E. Hinton,“Visualizaing data using t-SNE,” JMLR.](https://www.jmlr.org/papers/volume9/vandermaaten08a/vandermaaten08a.pdf)
+* [Laurens van der Maaten and Geoffrey E. Hinton,“Visualizing data using t-SNE,” JMLR.](https://www.jmlr.org/papers/volume9/vandermaaten08a/vandermaaten08a.pdf)
 
 * Laurens van der Maaten, “Learnign a parametric embedding by preserving local structure,” AISTATS
 

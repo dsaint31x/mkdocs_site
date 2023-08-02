@@ -4,10 +4,10 @@ ML에서 manifold란, ^^고차원 공간에 내재된 저차원 공간(subspace)
 
 > (위상)수학적으로는 보다 엄격한 정의가 있으나... DL이나 ML을 하는 입장에서는 이 정도면 충분할 듯.
 
-A manifold is a ***topological space (위상공간)*** that ^^locally resembles Eucludian space^^ near each point.
+A manifold is a ***topological space (위상공간)*** that ^^locally resembles Euclidean space^^ near each point.
 
 <figure markdown>
-![Manifield](../img/ch07/manifold.png){align=center}
+![Manifold](../img/ch07/manifold.png){align=center}
 <figcaption>3D 공간에 데이터들이 구 표면에 있으나 실제로 2D에 해당하는 topological space 평면에 속해있는 예</figcaption>
 </figure>
 
@@ -18,10 +18,10 @@ A manifold is a ***topological space (위상공간)*** that ^^locally resembles 
 
 <figure markdown>
 ![isotopy의 전형적 예](../img/ch07/Mug_and_Torus_morph.gif){align=center}
-<figcaption>homeotropic이면서 연속적인 변화로 만들어지므로 isotopic임</figcaption>  
+<figcaption>homotopic 이면서 연속적인 변화로 만들어지므로 isotopic임</figcaption>  
 </figure>
 
-> 엄밀하게 애기하면, ^^topology는 어떤 space에서 ***open-set이란 어떤 것인지 규정*** 하는 방법 (또는 element로 open set들을 가지고 있는 set을 topology라고 할 수 있음)을 의미^^ 하며, ^^topolgical space란 topology가 주어져 있는 집합을 의미함.^^  
+> 엄밀하게 애기하면, ^^topology는 어떤 space에서 ***open-set이란 어떤 것인지 규정*** 하는 방법 (또는 element로 open set들을 가지고 있는 set을 topology라고 할 수 있음)을 의미^^ 하며, ^^topological space란 topology가 주어져 있는 집합을 의미함.^^  
 > 
 > * open-set은 흔히 특정 데이터 샘플의 neighbor들을 의미하며  
 > * neighbor를 정의하는 방법(topology)이 주어지고, topology가 같은 경우 같은 manifold를 가진다고 생각할 수 있다..  
@@ -45,7 +45,7 @@ open set 을 Union시켜도 open set 임.
 
 **ML 또는 DL 관점에서의 이해**
 
-- Manifold는 feature extraction의 결과물 (Autoencoder에서는 encoder의 결과물)이라고 볼 수 있음. 
+- Manifold는 feature extraction의 결과물 (Auto-encoder에서는 encoder의 결과물)이라고 볼 수 있음. 
 - Manifold는 일반적으로 raw data space상에서 entangled 상태이므로 이를 disentangled로 바꾸는 transformer를 구하는 것이 바로 classifier 또는 data visualization이 하는 일임.
 
 > A $d$-dimensional manifold is a part of an $n$-dimensional space (where $d \le n$) that locally resembles a $d$-dimensional hyperplane. 
@@ -69,12 +69,12 @@ High Dimensional (Raw) Dataset은 하나 이상의 Manifold로 구성되며, 각
 
 Data point 대부분이 Manifold 근처에 있다는 애기는 다음을 의미함.
 
-> Probability density of data decreases very rapidly when getting away from the supporting maniflod.
+> Probability density of data decreases very rapidly when getting away from the supporting manifold.
 
-Manifold hypothesis 가 성립한다고 가정하면, High diemsional dataset을 compressed (=lower dimensional) meaningful representation (=latent vector, code) 로 바꾸어 표현할 수 있다.
+Manifold hypothesis 가 성립한다고 가정하면, High dimensional dataset을 compressed (=lower dimensional) meaningful representation (=latent vector, code) 로 바꾸어 표현할 수 있다.
 
 * compressed : lower dimensional
-* meaningful : 모든 데이터가 maninfold 근처에 존재.
+* meaningful : 모든 데이터가 manifold 근처에 존재.
 * representation : latent feature vector
 
 ### Smoothness Hypothesis
@@ -87,11 +87,11 @@ Dataset 에서의 data sample은 어떤 요인에 의해서 변화하는데, 해
 
 ### Curse of High Dimensionality를 풀기위한 방법 : Manifold 찾기.
 
-데이터의 space의 dimension 이 증가할 경우, 해당 space의 데이터 밀도를 유지하려면 훨씬 많은 datasample을 요구하는 것을 의미함.
+데이터의 space의 dimension 이 증가할 경우, 해당 space의 데이터 밀도를 유지하려면 훨씬 많은 data sample을 요구하는 것을 의미함.
 
 Higher dimensional data 를 그대로 사용하면, 데이터 밀도가 낮아서 실제적인 data의 distribution을 찾는 probability distribution을 찾기 어려우나 meaningful manifold를 잘 찾아낸다면, 같은 데이터로도 충분히 probability distribution 을 찾아낼 수 있음.
 
-대부분의 경우, lower dimensional representation이 ML등에서 task를 쉽게 풀 수 있도록 해준다 (이는 manifold hypothesis에 대한 implicit assumpation이라고 불림.). ***하지만 아닌 경우도 있다.*** 
+대부분의 경우, lower dimensional representation이 ML등에서 task를 쉽게 풀 수 있도록 해준다 (이는 manifold hypothesis에 대한 implicit assumption이라고 불림.). ***하지만 아닌 경우도 있다.*** 
 
 ![](../img/ch07/manifold_learning.png)
 
