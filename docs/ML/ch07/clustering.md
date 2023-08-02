@@ -300,7 +300,6 @@ $$
         * $d_{ij}$ : $i$th cluster와 $j$th cluster의 중심거리 = separation
 
 : 예 : 3개의 cluster 인 경우,
-
         * $D_{ij}$ 는 $D_{12},D_{13},D_{23}$ 과 같이 3개가 구해짐.
         * $D_i$는 $D_1=\max\left\{D_{12},D_{13}\right\}$, $D_2=\max\left\{D_{23}\right\}$ 과 같이 2개가 구해짐.
         * $k=2$ 이며, $DBI=\text{mean}[D_1, D_2]$임.
