@@ -291,12 +291,14 @@ $$
 DBI = \frac{1}{k}\sum^k_{i=1} D_i
 $$  
     
-: * $D_i =\displaystyle \max_{j\ne i}\left\{D_{ij}\right\}$
-    * $D_{ij}$ : $i$th cluster와 $j$th cluster에 대한 "cluster내 거리(within distance)"와 "cluster간 중심거리(between distance)"의 ratio(비율)
-    * $D_i$ : $i$th cluster와 관련된 $D_{ij}$중 최대값.
-* $D_{ij} = \frac{\bar{d}_i+\bar{d}_j}{d_{ij}}$
+: * $D_i =\displaystyle \max_{j\ne i}\left\{D_{ij}\right\}$.
+        * $D_{ij}$ : $i$th cluster와 $j$th cluster에 대한 "cluster내 거리(within distance)"와 "cluster간 중심거리(between distance)"의 ratio(비율)
+        * $D_i$ : $i$th cluster와 관련된 $D_{ij}$중 최대값
+
+: * $D_{ij} = \frac{\bar{d}_i+\bar{d}_j}{d_{ij}}$
     * $\bar{d}_i$ : $i$th cluster에 대한 중심과 해당 cluster 에 속한 데이터 포인트 간의 평균 거리 = cohesion
     * $d_{ij}$ : $i$th cluster와 $j$th cluster의 중심거리 = separation
+
 : 예 : 3개의 cluster 인 경우,
     * $D_{ij}$ 는 $D_{12},D_{13},D_{23}$ 과 같이 3개가 구해짐.
     * $D_i$는 $D_1=\max\left\{D_{12},D_{13}\right\}$, $D_2=\max\left\{D_{23}\right\}$ 과 같이 2개가 구해짐.
@@ -304,8 +306,8 @@ $$
 
 `Dunn Index`
 
-: cluster와 cluster 간의 거리가 클수록, 또는 같은 cluster 내의 data point간의 거리가 작을수록 큰 값을 가짐. 
-: Dunn Index가 클수록 clustering이 잘 이루어졌다고 평가할 수 있음.
+: cluster와 cluster 간의 거리가 클수록, 또는 같은 cluster 내의 data point간의 거리가 작을수록 큰 값을 가짐.  
+Dunn Index가 클수록 clustering이 잘 이루어졌다고 평가할 수 있음.
 
 $$
 \text{Dunn_index} = \frac{\text{min_distance_bw_clusters}}{\text{max_distance_bw_data_samples_in_the_same_clusters}}
