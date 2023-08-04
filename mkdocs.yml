@@ -291,7 +291,7 @@ nav:
       - "ML/ch08/datastructure_graph.md"
     - "RNN":
       - "ML/ch16_RNN/RNN_topologies.md"
-      - "ML/ch16_RNN/RNN_Bahdanau_attetion.md"
+      - "ML/ch16_RNN/RNN_Bahdanau_attention.md"
       - "ML/ch16_RNN/RNN_attention_score.md"
     - "Colab":
       - "CE/colab/hw_spec.md"
