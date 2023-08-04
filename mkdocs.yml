@@ -280,6 +280,8 @@ nav:
       - "ML/ch01/ch01_52.md"
     - "Ensemble Learning":
       - "ML/ch05/ml_stacking.md"
+    - "Dimensionality Reduction":
+      - "ML/ch06/ml_pca.md"
     - "Unsupervised Learning":
       - "ML/ch07/clustering.md"
       - "ML/ch07/manifold.md"
