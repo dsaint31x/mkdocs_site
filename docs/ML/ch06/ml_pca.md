@@ -74,3 +74,4 @@ raw dataset인 matrix $X$를 SVD (singular value decomposition)을 수행 ($X=U\
 ## 더 읽어보면 좋은 자료들
 
 * ratgo's blog : [PCA](https://ratsgo.github.io/machine%20learning/2017/04/24/PCA/)
+* ratgo's blog : [SVD와 PCA, 그리고 LSA](https://ratsgo.github.io/from%20frequency%20to%20semantics/2017/04/06/pcasvdlsa/)
