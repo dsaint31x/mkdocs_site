@@ -1,6 +1,11 @@
 # Principal Component Analysis
 
-Dataset에서 다음과 같은 hyperplane을 찾아 해당 hyperplane에 data points를 projection하여 feature vector의 dimensionality를 줄임.
+Dataset에서 
+
+1. variance를 최대로 보존하는 hyperplane을 찾고 
+3. 해당 hyperplane에 data points를 projection하여 
+
+feature vector의 dimensionality를 줄임.
 
 > 아래에서도 나오지만, Linear Algebra의 Eigen Decomposition과 Singular Value Decomposition에 대한 이해를 하고 있다면 보다 쉽게 PCA를 이해할 수 있음.
 
@@ -54,12 +59,18 @@ PCA를 linear transform으로 애기한다면,
 4. Eigen value가 큰 순으로 sorting한 eigen vectors를 구함.
 5. 구해야하는 principal components의 수 만큼 상위 eigen vectors를 principal axes로 선정.
 
-다은 방법으로,  
+이를 다르게 표현하면,  
 raw dataset인 matrix $X$를 SVD (singular value decomposition)을 수행 ($X=U\Sigma V^T$) 하여 얻은 $V$ matrix의 column vectors로 principal axes를 구할 수도 있음.
 
 * $V$는 $X$의 row space의 orthonormal basis 임.
 * 이를 PCA관점에서 Principal Matrix라고 부르기도 함.
 
-참고자료 : [ipynb 예제](https://gist.github.com/dsaint31x/43049448ec3142fd8b6b156afd68dac5)
+**참고자료** : 
+* [ipynb 예제](https://gist.github.com/dsaint31x/43049448ec3142fd8b6b156afd68dac5)
+* [covariance와 centering에 대한 참고자료](https://dsaint31.tistory.com/278)
 
 ---
+
+## 더 읽어보면 좋은 자료들
+
+* ratgo's blog : [PCA](https://ratsgo.github.io/machine%20learning/2017/04/24/PCA/)
