@@ -29,9 +29,19 @@ ref.: https://scikit-learn-extra.readthedocs.io/en/stable/modules/cluster.html#k
 * k-means는 클러스터에 속한 멤버의 평균값을 cluster center로 사용함.
 * 구현 및 적용이 간단하고 매우 빠른 속도를 보이는 장점을 가짐.
 
-> k-Means의 변형인 k-medoids는 cluster에 속한 data point들 중에서 median에 해당하는 data point를 cluster center로 지정하는 차이가 있음.
+> k-Means의 변형인 k-medoids는  
+> cluster에 속한 data point들 중에서 median에 해당하는 data point를 cluster center로 지정하는 차이가 있음.
 
 * [medoid란?](https://ds31x.blogspot.com/2023/08/ml-medoid.html)
+
+### 동작방식 ( k=2, 2개의 cluster로 나누는 경우)
+
+1. 랜덤한 2점을 고르고 이를 각 cluster의 centroid(중앙)으로 선정.
+2. 현재 선택된 centroids 로부터 나머지 모든 점들의 거리를 계산.
+3. 계산된 거리를 바탕으로 가까운 순으로 cluster 를 나눔.
+4. 각 cluster의 data point들의 평균치를 계산하여 새로운 centroid로 선정.
+5. centroid의 위치가 바뀌지않고 고정될 때까지 2~4 과정을 반복.
+
 
 ### 고려할 점.
 
