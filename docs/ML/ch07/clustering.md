@@ -54,7 +54,7 @@ ref.: https://scikit-learn-extra.readthedocs.io/en/stable/modules/cluster.html#k
 
 가장 가까운 data point끼리 묶어나가(linkage)는 방식.
 
-[Dendrogram이란](https://ds31x.blogspot.com/2023/08/ml-medoid.html)
+[Dendrogram이란](https://ds31x.blogspot.com/2023/08/ml-dendrogram.html)
 
 * 모든 data points를 묶어가가면서 Dendrogram을 하단에서 상단으로 만들어나가게 됨. 
 * 모든 data points가 한 cluster로 묶이면 (=Dendrogram의 root) 과정이 끝나고, Dendrogram의 vertical axis에서 적절한 수준에서 잘라서 cluster의 수를 조절함 (상단, 즉 root에 가까운 곳에서 cutting이 발생시 cluster의 수가 적고, leaf nodes에 가까운 곳에서 cutting이 발생시 cluster의 수가 많음).
