@@ -30,7 +30,8 @@ ref.: https://scikit-learn-extra.readthedocs.io/en/stable/modules/cluster.html#k
 * 구현 및 적용이 간단하고 매우 빠른 속도를 보이는 장점을 가짐.
 
 > k-Means의 변형인 k-medoids는  
-> cluster에 속한 data point들 중에서 median에 해당하는 data point를 cluster center로 지정하는 차이가 있음.
+> cluster에 속한 data point들 중에서 median에 해당하는 data point를 cluster center로 지정하는 차이가 있음.  
+> k-medoids가 조금 더 연산량이 많음.
 
 * [medoid란?](https://ds31x.blogspot.com/2023/08/ml-medoid.html)
 
@@ -45,9 +46,10 @@ ref.: https://scikit-learn-extra.readthedocs.io/en/stable/modules/cluster.html#k
 
 ### 고려할 점.
 
-* k-Means는 적절한 `k`의 값을 골라야 함.
-* ***초기 cluster center 지정*** 에 따라 최종 결과가 매우 크게 영향을 받음. 
-* ***지역적 패턴*** 이 있는 경우에 부정확한 결과가 나오기 쉬움.
+* k-Means는 ^^적절한 `k`의 값을 골라야 함.^^
+* ***초기 cluster center 지정*** 에 따라 최종 결과가 매우 크게 영향을 받음 (k-medoids 에서 개선). 
+* 매우 멀리 떨어져있는 data point나 noise에 취약 (k-medoids에서 개선)
+* globular shape를 가정하고 있기 때문에 다른 ***지역적 패턴*** 이 있는 경우에 부정확한 결과가 나오기 쉬움.
 * 각 그룹의 size나 density가 다를 경우 부정확한 결과가 나오기 쉬움.
     *  size차이나 density가 많이 나는 경우, `k`값을 크게 하여 여러 cluster로 나누고 이들을 다시 합치는 접근법이 효과적. 단, 여러 cluster를 합치는 방법은 Hierarchical Clustering 등의 여러가지가 있을 수 있음.
 * high dimension data에서는 효과가 떨어짐. (사전에 PCA등으로 dimensionality reduction을 수행이 필요)
@@ -67,12 +69,22 @@ ref.: https://scikit-learn-extra.readthedocs.io/en/stable/modules/cluster.html#k
 
 ## Hierarchical Clustering
 
-가장 가까운 data point끼리 묶어나가(linkage)는 방식.
+가장 가까운 data point끼리 묶어나가(linkage)는 방식 혹은 가장 멀리 떨어진 data point를 분리시켜나가는 방식으로 수행됨.
 
-[Dendrogram이란](https://ds31x.blogspot.com/2023/08/ml-dendrogram.html)
+다음 2가지로 나뉨.
+* agglomerative clustering (병합적 군집 or 상향식 군집)
+* divisive clustering (분할적 군집 or 하향식 군집)
+
+> agglomerative clustring이 보다 intrinsic and simple해서 일반적으로 많이 사용됨. 
+  
+참고자료 : [Dendrogram이란](https://ds31x.blogspot.com/2023/08/ml-dendrogram.html)
 
 * 모든 data points를 묶어가가면서 Dendrogram을 하단에서 상단으로 만들어나가게 됨. 
 * 모든 data points가 한 cluster로 묶이면 (=Dendrogram의 root) 과정이 끝나고, Dendrogram의 vertical axis에서 적절한 수준에서 잘라서 cluster의 수를 조절함 (상단, 즉 root에 가까운 곳에서 cutting이 발생시 cluster의 수가 적고, leaf nodes에 가까운 곳에서 cutting이 발생시 cluster의 수가 많음).
+* 일반적인 Non-hierarchical clustring과 달리, clusters의 수 $k$를 미리 정할 필요가 없음.
+
+> 전체 데이터를 살필 필요가 없는 greedy algorithm 이며 
+ 
 
 ### Types of Linkages
 
@@ -81,9 +93,11 @@ ref.: https://scikit-learn-extra.readthedocs.io/en/stable/modules/cluster.html#k
 1. Complete (최장연결법): 새로운 data point와 cluster 내 가장 ***먼*** data point간의 거리 를 유사도로 삼음.
 2. Single (최단연결법): 새로운 data point와 cluster 내 가장 ***가까운*** data point간의 거리 를 유사도로 삼음.
 3. Average (평균연결법): 새로운 data point와 cluster 내 모든 data point간의 ***평균*** 거리 를 유사도로 삼음.
-4. Centroid (중심연결법): 새로운 data point와 cluster의 ***중심점*** 과의 거리를 유사도로 삼음.
+4. Centroid (중심연결법): 새로운 data point와 cluster의 ***중심점*** 과의 거리를 유사도로 삼음. 
 
 위의 방식들은 cluster간의 거리를 구하는데에도 사용됨.
+
+> cluster간 거리를 구하는 다른 방법으로는 variance를 기반으로 한 Ward’s method도 있음
 
 * 참고자료 : [Hierarchical Clustering의 간단한 예제](https://ds31x.blogspot.com/2023/08/ml-example-of-hierarchical-clustering.html)
 
@@ -199,7 +213,9 @@ $$
 density based clustering의 대표적 알고리즘.  
 (K-means와 함께 non-hierarchical clustering의 대표.)
 
-Noise에 강하고 (noise point로 지정되면 아예 cluster에서 빼버림) 다양한 모양과 크기의 cluster들을 처리할 수 있는 장점을 가짐.
+거리와 관계없이 일정한 수준의 밀도를 유지하는 data points의 무리가 chain처럼 연결되어 있으면 cluster로 판정하기 때문에 noise나 outliar에 매우 robust한 성능을 보임.
+
+즉, noise와 outliar에 강하고 (noise point로 지정되면 아예 cluster에서 빼버림) 다양한 모양과 크기의 cluster들을 처리할 수 있는 장점을 가짐.
 
 * Density : 지정된 반경($\epsilon$) 내의 데이터 포인트의 갯수
 * `Core point` : 해당 점을 중심으로 $\epsilon$ 내에 존재하는 데이터 포인트의 갯수가 지정된 Density (=`MinPts`)를 초과하는 경우 Core point라고 부름.
@@ -259,9 +275,9 @@ Eps의 경우에는 다음의 $k$-dist Graph를 이용하여 급격히 증가하
 * 오른쪽 하단의 경우, DBSCAN이 density가 낮은 곳의 data point들을 모두 noise로 처리한 것을 확인할 수 있다.
 * density가 높은 영역에만 집중을 한 결과임.
 
-또한 DBSCAN도 Euclidean distance에 기반을 두고 있으며, 이 때문에 high dimensional dataset에서는 좋은 결과가 나오기 어렵다.
+또한 DBSCAN도 Euclidean distance에 기반(밀도를 구하기 위해서 사용)을 두고 있으며, 이 때문에 high dimensional dataset에서는 좋은 결과가 나오기 어렵다.
 
-
+> DBSCAN의 time coplexity는 $O(n^2)$이나 clustring을 수행하기 전에 전처리로 indexed tree 형태로 만들고 수행하는 경우엔 $O(n \log n)$ 임.
 ---
 
 ## Cluster Validation
