@@ -1,6 +1,6 @@
 # Clustering
 
-feature space에서 가까운 sample들을 모아 하나의 cluster로 묶는 task.
+feature space에서 가까운(=유사한) sample들을 모아 하나의 cluster로 묶는 task.
 
 * input : label이 되어있지 않은 training data
 * output : 유사한 sample들이 묶여있는 cluster
@@ -12,6 +12,11 @@ Unsupervised Learning의 대표적인 Task임.
 > unsupervised learning의 tasks에서  
 > 특정 application에 상관없이 unsupervised learning algorithm이 해결해야하는 ***general task*** 로서   
 > clustering과  density estimation, dimension transformation을 언급한다.
+
+Clustering은 크게 두가지 종류로 나뉨.
+
+* Hierarchical Clustering
+* Non-hierarchical Clustering
 
 ---
 
@@ -69,6 +74,8 @@ ref.: https://scikit-learn-extra.readthedocs.io/en/stable/modules/cluster.html#k
 4. Centroid (중심연결법): 새로운 data point와 cluster의 ***중심점*** 과의 거리를 유사도로 삼음.
 
 위의 방식들은 cluster간의 거리를 구하는데에도 사용됨.
+
+* 참고자료 : [Hierarchical Clustering의 간단한 예제](https://ds31x.blogspot.com/2023/08/ml-example-of-hierarchical-clustering.html)
 
 ---
 
