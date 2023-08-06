@@ -98,7 +98,7 @@ ref.: https://scikit-learn-extra.readthedocs.io/en/stable/modules/cluster.html#k
 
 위의 방식들은 cluster간의 거리를 구하는데에도 사용됨.
 
-> cluster간 거리를 구하는 다른 방법으로는 merging이 될 경우 error sum of squares (ess)의 incremental를 기반으로 한 Ward’s method도 있음
+> cluster간 거리를 구하는 다른 방법으로는 merging이 될 경우 error sum of squares (ess)의 incremental를 기반으로 한 ***Ward’s method*** 도 있음
 
 * 참고자료 : [Hierarchical Clustering의 간단한 예제](https://ds31x.blogspot.com/2023/08/ml-example-of-hierarchical-clustering.html)
 * ward’s methods 관련 : [stat.cmu.edu](https://www.stat.cmu.edu/~cshalizi/350/lectures/08/lecture-08.pdf)
@@ -214,9 +214,9 @@ $$
 density based clustering의 대표적 알고리즘.  
 (K-means와 함께 non-hierarchical clustering의 대표.)
 
-거리와 관계없이 일정한 수준의 밀도를 유지하는 data points의 무리가 chain처럼 연결되어 있으면 cluster로 판정하기 때문에 noise나 outliar에 매우 robust한 성능을 보임.
+거리와 관계없이 일정한 수준의 밀도를 유지하는 data points의 무리가 chain처럼 연결되어 있으면 cluster로 판정하기 때문에 noise나 outlier에 매우 robust한 성능을 보임.
 
-즉, noise와 outliar에 강하고 (noise point로 지정되면 아예 cluster에서 빼버림) 다양한 모양과 크기의 cluster들을 처리할 수 있는 장점을 가짐.
+즉, noise와 outlier에 강하고 (noise point로 지정되면 아예 cluster에서 빼버림) 다양한 모양과 크기의 cluster들을 처리할 수 있는 장점을 가짐.
 
 * Density : 지정된 반경($\epsilon$) 내의 데이터 포인트의 갯수
 * `Core point` : 해당 점을 중심으로 $\epsilon$ 내에 존재하는 데이터 포인트의 갯수가 지정된 Density (=`MinPts`)를 초과하는 경우 Core point라고 부름.
