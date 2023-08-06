@@ -6,6 +6,8 @@
         "DBSCAN",
         "dendrogram",
         "dsaint",
+        "Eigen",
+        "homeomorphic",
         "ipynb",
         "Kaggle",
         "medoid",

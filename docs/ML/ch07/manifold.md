@@ -1,14 +1,18 @@
 # Manifold and Manifold Learning
 
-ML에서 manifold란, ^^고차원 공간에 내재된 저차원 공간(subspace)^^ 으로 실제 ^^dataset의 분포를 거의 다 포함(아닌 경우도 해당 subspace근처에 data들이 존재)하고 있는 것^^ 을 가르킴. 
+ML에서 manifold란,  
 
-> (위상)수학적으로는 보다 엄격한 정의가 있으나... DL이나 ML을 하는 입장에서는 이 정도면 충분할 듯.
+* ^^고차원 공간에 내재된 저차원 공간(subspace)^^ 으로 
+* 실제 ^^dataset의 data points를 대부분 포함(아닌 경우도 해당 subspace근처에 data points가 존재)하고 있는 것^^ 을 가르킴. 
+
+> (위상)수학적으로는 보다 엄격한 정의가 있으나...  
+> DL이나 ML을 하는 입장에서는 이 정도면 충분할 듯.
 
 A manifold is a ***topological space (위상공간)*** that ^^locally resembles Euclidean space^^ near each point.
 
 <figure markdown>
 ![Manifold](../img/ch07/manifold.png){align=center}
-<figcaption>3D 공간에 데이터들이 구 표면에 있으나 실제로 2D에 해당하는 topological space 평면에 속해있는 예</figcaption>
+<figcaption>3D 공간에 데이터들이 구 표면에 있으나 실제로 ^^2D에 해당하는 topological space^^ (=평면)에 속해있는 예</figcaption>
 </figure>
 
 ---
@@ -18,17 +22,17 @@ A manifold is a ***topological space (위상공간)*** that ^^locally resembles 
 
 <figure markdown>
 ![isotopy의 전형적 예](../img/ch07/Mug_and_Torus_morph.gif){align=center}
-<figcaption>homotopic 이면서 연속적인 변화로 만들어지므로 isotopic임</figcaption>  
+<figcaption>^^homeomorphic^^ 이면서 ^^연속적인 변화^^ 로 만들어지므로 `isotopic`임</figcaption>  
 </figure>
 
 > 엄밀하게 애기하면, ^^topology는 어떤 space에서 ***open-set이란 어떤 것인지 규정*** 하는 방법 (또는 element로 open set들을 가지고 있는 set을 topology라고 할 수 있음)을 의미^^ 하며, ^^topological space란 topology가 주어져 있는 집합을 의미함.^^  
 > 
-> * open-set은 흔히 특정 데이터 샘플의 neighbor들을 의미하며  
-> * neighbor를 정의하는 방법(topology)이 주어지고, topology가 같은 경우 같은 manifold를 가진다고 생각할 수 있다..  
+> * `open-set`은 일반적으로 ^^특정 data point의 neighbors^^ 를 의미 (open-set은 neighbor를 abstraction!)하며  
+> * ***neighbor를 정의하는 방법*** (=`topology``)이 주어지고 topology가 같은 경우, 같은 manifold를 가진다고 생각할 수 있다.  
 
 **Open set이란**
-: Empty set과 Open set의 전체집합은 open set임.  
-open set 을 Union시켜도 open set 임.  
+: empty set과 open set의 전체집합도 open set임.  
+즉, open set 을 Union시켜도 open set 임.  
 유한한 갯수의 open set을 intersection시켜도 open set임.
 
 보다 자세한 건 다음 ULR을 참고: 
@@ -50,6 +54,8 @@ open set 을 Union시켜도 open set 임.
 
 > A $d$-dimensional manifold is a part of an $n$-dimensional space (where $d \le n$) that locally resembles a $d$-dimensional hyperplane. 
 
+---
+
 ## Manifold Learning
 
 > ***Modeling the manifold on which the training instances lie*** ; this is called ***Manifold Learning***. 
@@ -60,7 +66,9 @@ Manifold Learning은 다음의 두 가설에 의존한다.
 
 * 사실 다음의 2가설은 모든 machine learning에서의 prior로 사용되는 가설이다.
 
-## Manifold Hypothesis
+---
+
+### Manifold Hypothesis
 
 High Dimensional (Raw) Dataset은 하나 이상의 Manifold로 구성되며, 각 data sample들은 manifold 상에 위치하거나 또는 manifold에 가깝게 위치하고 있다.
 
@@ -77,6 +85,8 @@ Manifold hypothesis 가 성립한다고 가정하면, High dimensional dataset�
 * meaningful : 모든 데이터가 manifold 근처에 존재.
 * representation : latent feature vector
 
+---
+
 ### Smoothness Hypothesis
 
 Dataset 에서의 data sample은 어떤 요인에 의해서 변화하는데, 해당 sample의 feature를 조금 변화가 이루어질 경우, 데이터의 feature space에서 매끄러운 곡면 (=manifold)상에서 transition이 발생하게 된다. 
@@ -85,7 +95,9 @@ Dataset 에서의 data sample은 어떤 요인에 의해서 변화하는데, 해
 
 ![](../img/ch07/manifold_smoothness.png){align=center}
 
-### Curse of High Dimensionality를 풀기위한 방법 : Manifold 찾기.
+---
+
+## Curse of High Dimensionality를 풀기위한 방법 : Manifold 찾기.
 
 데이터의 space의 dimension 이 증가할 경우, 해당 space의 데이터 밀도를 유지하려면 훨씬 많은 data sample을 요구하는 것을 의미함.
 
