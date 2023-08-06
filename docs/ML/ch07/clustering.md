@@ -83,7 +83,7 @@ ref.: https://scikit-learn-extra.readthedocs.io/en/stable/modules/cluster.html#k
 * 모든 data points가 한 cluster로 묶이면 (=Dendrogram의 root) 과정이 끝나고, Dendrogram의 vertical axis에서 적절한 수준에서 잘라서 cluster의 수를 조절함 (상단, 즉 root에 가까운 곳에서 cutting이 발생시 cluster의 수가 적고, leaf nodes에 가까운 곳에서 cutting이 발생시 cluster의 수가 많음).
 * 일반적인 Non-hierarchical clustring과 달리, clusters의 수 $k$를 미리 정할 필요가 없음.
 
-> 전체 데이터를 살필 필요가 없는 greedy algorithm 이며 
+> 전체 데이터를 살필 필요가 없는 greedy algorithm.
  
 
 ### Types of Linkages
@@ -97,10 +97,10 @@ ref.: https://scikit-learn-extra.readthedocs.io/en/stable/modules/cluster.html#k
 
 위의 방식들은 cluster간의 거리를 구하는데에도 사용됨.
 
-> cluster간 거리를 구하는 다른 방법으로는 variance를 기반으로 한 Ward’s method도 있음
+> cluster간 거리를 구하는 다른 방법으로는 merging이 될 경우 error sum of squares (ess)의 incremental를 기반으로 한 Ward’s method도 있음
 
 * 참고자료 : [Hierarchical Clustering의 간단한 예제](https://ds31x.blogspot.com/2023/08/ml-example-of-hierarchical-clustering.html)
-
+* ward’s methods 관련 : [stat.cmu.edu](https://www.stat.cmu.edu/~cshalizi/350/lectures/08/lecture-08.pdf)
 ---
 
 ## Affinity Propagation Clustering
