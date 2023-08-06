@@ -51,7 +51,7 @@ ref.: https://scikit-learn-extra.readthedocs.io/en/stable/modules/cluster.html#k
 * 매우 멀리 떨어져있는 data point나 noise에 취약 (k-medoids에서 개선)
 * globular shape를 가정하고 있기 때문에 다른 ***지역적 패턴*** 이 있는 경우에 부정확한 결과가 나오기 쉬움.
 * 각 그룹의 size나 density가 다를 경우 부정확한 결과가 나오기 쉬움.
-    *  size차이나 density가 많이 나는 경우, `k`값을 크게 하여 여러 cluster로 나누고 이들을 다시 합치는 접근법이 효과적. 단, 여러 cluster를 합치는 방법은 Hierarchical Clustering 등의 여러가지가 있을 수 있음.
+    *  size나 density가 많이 차이나는 경우, `k`값을 크게 하여 여러 cluster로 나누고 이들을 다시 합치는 접근법이 효과적. 단, 여러 cluster를 합치는 방법은 Hierarchical Clustering 등의 여러가지가 있을 수 있음.
 * high dimension data에서는 효과가 떨어짐. (사전에 PCA등으로 dimensionality reduction을 수행이 필요)
 
 다음 그림은 각 cluster의 size가 다른 경우(붉은색 cluster의 size가 매우 큼)에 k-Means가 잘 동작하지 못하는 경우를 보여줌.
@@ -72,6 +72,7 @@ ref.: https://scikit-learn-extra.readthedocs.io/en/stable/modules/cluster.html#k
 가장 가까운 data point끼리 묶어나가(linkage)는 방식 혹은 가장 멀리 떨어진 data point를 분리시켜나가는 방식으로 수행됨.
 
 다음 2가지로 나뉨.
+
 * agglomerative clustering (병합적 군집 or 상향식 군집)
 * divisive clustering (분할적 군집 or 하향식 군집)
 
@@ -79,7 +80,7 @@ ref.: https://scikit-learn-extra.readthedocs.io/en/stable/modules/cluster.html#k
   
 참고자료 : [Dendrogram이란](https://ds31x.blogspot.com/2023/08/ml-dendrogram.html)
 
-* 모든 data points를 묶어가가면서 Dendrogram을 하단에서 상단으로 만들어나가게 됨. 
+* 모든 data points를 묶어가면서 Dendrogram을 하단에서 상단으로 만들어나가게 됨. 
 * 모든 data points가 한 cluster로 묶이면 (=Dendrogram의 root) 과정이 끝나고, Dendrogram의 vertical axis에서 적절한 수준에서 잘라서 cluster의 수를 조절함 (상단, 즉 root에 가까운 곳에서 cutting이 발생시 cluster의 수가 적고, leaf nodes에 가까운 곳에서 cutting이 발생시 cluster의 수가 많음).
 * 일반적인 Non-hierarchical clustring과 달리, clusters의 수 $k$를 미리 정할 필요가 없음.
 
