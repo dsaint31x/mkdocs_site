@@ -101,12 +101,12 @@ Data point (or cluster)와 cluster 를 결합하는 방식의 구분으로 결�
 2. Single (최단연결법): 새로운 data point와 cluster 내 가장 ***가까운*** data point간의 거리 를 유사도로 삼음.
 3. Average (평균연결법): 새로운 data point와 cluster 내 모든 data point간의 ***평균*** 거리 를 유사도로 삼음.
 4. Centroid (중심연결법): 새로운 data point와 cluster의 ***중심점*** 과의 거리를 유사도로 삼음. 
-5. ***Ward’s method*** : 두 cluster가 merging이 될 경우 error sum of squares (ess)의 incremental이 최소인 경우를 결함시키는 방식. 
+5. ***Ward’s method*** : 두 cluster가 merging이 될 경우 error sum of squares (ess)의 incremental이 최소인 경우를 결합시키는 방식. 
 
 
 * 참고자료 : [Hierarchical Clustering의 간단한 예제](https://ds31x.blogspot.com/2023/08/ml-example-of-hierarchical-clustering.html)
-* 참고자료 : [stat.cmu.edu](https://www.stat.cmu.edu/~cshalizi/350/lectures/08/lecture-08.pdf)
-
+* 참고자료 : [Distances between Clustering, Hierarchical Clustering : stat.cmu.edu](https://www.stat.cmu.edu/~cshalizi/350/lectures/08/lecture-08.pdf)
+* 참고자료 : [Ward's linkage method](https://dsaint31.tistory.com/576)
 ---
 
 ## Affinity Propagation Clustering
@@ -290,6 +290,7 @@ current_cluster_label <- 1
 또한 training에서 사용하지 않은 새로운 data point에 대한 inference가 직접적으로는 어렵다. DBSCAN으로 clustering이 된 training dataset과 label을 바탕으로 k-NN (k=1로 줘도 됨) algorithm으로 inference를 하는 방식 처럼 다른 기법의 도움이 필요하다.
 
 ---
+
 ---
 
 ## Cluster Validation
@@ -306,12 +307,14 @@ clustering에 사용하지 않은 Test set 데이터를 이용하여 평가하�
 
 ### 많이 사용되는 validation metrics
 
-`Cluster Cohesion` (군집 응집도)  
+#### `Cluster Cohesion` (군집 응집도)  
+
 : cluster 내에서 속한 sample들이 서로 얼마나 밀접한 관련이 있는지를 within sum of square error (WSSE, WSS)로 측정.  
   
 $$\text{WSSE}=\sum_{i}\sum_{\textbf{x} \in C_i} (\textbf{x}-\textbf{c}^\text{center}_i)^2$$
 
-`Cluster Separation` (군집 분리도)  
+#### `Cluster Separation` (군집 분리도)  
+
 : 한 cluster 가 다른 cluster 들과 얼마나 잘 구별되는지를 between sum of square error (BSSE, BSS)로 측정.  
   
 $$\text{BSSE}=\sum_{i}\sum_{j\ne i} \text{Size}(C_i) (\textbf{c}^\text{center}_i-\textbf{c}^\text{center}_j)^2$$  
@@ -337,7 +340,8 @@ $$\text{SC}=\frac{1}{M}\sum^M_{i=1}s(\textbf{x}_i)$$
 
 : * origin : Santhana et al., [Best Clustering Configuration Metrics: Towards Multiagent Based Clustering](https://www.researchgate.net/figure/Derivation-of-the-Overall-Silhouette-Coefficient-OverallSil_fig1_221570710)
 
-`Davis-Bouldin Index`(DBI)  
+#### `Davis-Bouldin Index`(DBI)  
+
 : 같은 cluster내에서 평균거리(cohesion)와 다른 cluster간의 중심거리(separation)에 대한 일종의 ratio로 계산이 빠르면서도 일관성이 있는 지표로 알려져 있음.  
   
 $$
@@ -352,13 +356,13 @@ $$
         * $\bar{d}_i$ : $i$th cluster에 대한 중심과 해당 cluster 에 속한 데이터 포인트 간의 평균 거리 = cohesion
         * $d_{ij}$ : $i$th cluster와 $j$th cluster의 중심거리 = separation
 
-: 예 : 3개의 cluster 인 경우,
+예 : 3개의 cluster 인 경우,
 
-        * $D_{ij}$ 는 $D_{12},D_{13},D_{23}$ 과 같이 3개가 구해짐.
-        * $D_i$는 $D_1=\max\left\{D_{12},D_{13}\right\}$, $D_2=\max\left\{D_{23}\right\}$ 과 같이 2개가 구해짐.
-        * $k=2$ 이며, $DBI=\text{mean}[D_1, D_2]$임.
+* $D_{ij}$ 는 $D_{12},D_{13},D_{23}$ 과 같이 3개가 구해짐.
+* $D_i$는 $D_1=\max\left\{D_{12},D_{13}\right\}$, $D_2=\max\left\{D_{23}\right\}$ 과 같이 2개가 구해짐.
+* $k=2$ 이며, $DBI=\text{mean}[D_1, D_2]$임.
 
-`Dunn Index`
+#### `Dunn Index`
 
 : cluster와 cluster 간의 거리가 클수록, 또는 같은 cluster 내의 data point간의 거리가 작을수록 큰 값을 가짐.  
 Dunn Index가 클수록 clustering이 잘 이루어졌다고 평가할 수 있음.
