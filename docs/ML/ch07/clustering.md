@@ -103,10 +103,12 @@ Data point (or cluster)와 cluster 를 결합하는 방식의 구분으로 결�
 4. Centroid (중심연결법): 새로운 data point와 cluster의 ***중심점*** 과의 거리를 유사도로 삼음. 
 5. ***Ward’s method*** : 두 cluster가 merging이 될 경우 error sum of squares (ess)의 incremental이 최소인 경우를 결합시키는 방식. 
 
+다음의 참고자료들을 읽어보길 바란다.
 
-* 참고자료 : [Hierarchical Clustering의 간단한 예제](https://ds31x.blogspot.com/2023/08/ml-example-of-hierarchical-clustering.html)
-* 참고자료 : [Distances between Clustering, Hierarchical Clustering : stat.cmu.edu](https://www.stat.cmu.edu/~cshalizi/350/lectures/08/lecture-08.pdf)
-* 참고자료 : [Ward's linkage method](https://dsaint31.tistory.com/576)
+* [Hierarchical Clustering의 간단한 예제](https://ds31x.blogspot.com/2023/08/ml-example-of-hierarchical-clustering.html)
+* [Distances between Clustering, Hierarchical Clustering : stat.cmu.edu](https://www.stat.cmu.edu/~cshalizi/350/lectures/08/lecture-08.pdf)
+* [Ward's linkage method](https://dsaint31.tistory.com/576)
+
 ---
 
 ## Affinity Propagation Clustering
