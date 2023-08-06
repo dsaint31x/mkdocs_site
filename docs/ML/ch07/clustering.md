@@ -18,6 +18,10 @@ Clustering은 크게 두가지 종류로 나뉨.
 * Hierarchical Clustering
 * Non-hierarchical Clustering
 
+> Elliptical clustering에서 가장 많이 사용되는 Gaussian Mixture Model은 이 문서에서 다루지 않는다.  
+> Gaussian Mixture Model은 clustering 외의 분야에서도 많이 사용되는 probability model이다.  
+> GMM에 대해 좀 더 알고 샆다면, 다음 URL을 참고하라. [ratsgo's SPEECHBOOK : Gaussian Mixture Mode](https://ratsgo.github.io/speechbook/docs/am/gmm)
+
 ---
 
 ## k-Means
@@ -49,7 +53,7 @@ ref.: https://scikit-learn-extra.readthedocs.io/en/stable/modules/cluster.html#k
 * k-Means는 ^^적절한 `k`의 값을 골라야 함.^^
 * ***초기 cluster center 지정*** 에 따라 최종 결과가 매우 크게 영향을 받음 (k-medoids 에서 개선). 
 * 매우 멀리 떨어져있는 data point나 noise에 취약 (k-medoids에서 개선)
-* globular shape를 가정하고 있기 때문에 다른 ***지역적 패턴*** 이 있는 경우에 부정확한 결과가 나오기 쉬움.
+* ***globular shape를 가정*** 하고 있기 때문에 다른 ***지역적 패턴*** 이 있는 경우(shape가 다른 cluster)에 부정확한 결과가 나오기 쉬움.
 * 각 그룹의 size나 density가 다를 경우 부정확한 결과가 나오기 쉬움.
     *  size나 density가 많이 차이나는 경우, `k`값을 크게 하여 여러 cluster로 나누고 이들을 다시 합치는 접근법이 효과적. 단, 여러 cluster를 합치는 방법은 Hierarchical Clustering 등의 여러가지가 있을 수 있음.
 * high dimension data에서는 효과가 떨어짐. (사전에 PCA등으로 dimensionality reduction을 수행이 필요)
@@ -62,6 +66,8 @@ ref.: https://scikit-learn-extra.readthedocs.io/en/stable/modules/cluster.html#k
 
 다음 그림은 지역적인 패턴의 영향을 보여줌.
 ![](./img/kmeans_cons_local_pattern.png)
+
+> 원모양에서만 k-means는 가장 잘 동작하기 때문에, 가급적 k-means를 적용하기 전에 dataset에 standardization 이나 min-max scaling을 해주는 게 좋다. (물론 원래 독특한 패턴의 shape를 가지는 cluster인 경우엔 효과가 없지만...)
 
 보다 자세한 내용은 다음 URL을 참고 : [K-means Clustering: Algorithm, Applications, Evaluation Methods, and Drawbacks](https://towardsdatascience.com/k-means-clustering-algorithm-applications-evaluation-methods-and-drawbacks-aa03e644b48a)
 
