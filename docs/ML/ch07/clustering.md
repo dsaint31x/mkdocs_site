@@ -76,32 +76,37 @@ ref.: https://scikit-learn-extra.readthedocs.io/en/stable/modules/cluster.html#k
 * agglomerative clustering (병합적 군집 or 상향식 군집)
 * divisive clustering (분할적 군집 or 하향식 군집)
 
-> agglomerative clustring이 보다 intrinsic and simple해서 일반적으로 많이 사용됨. 
+> agglomerative clustering이 보다 intrinsic and simple해서 일반적으로 많이 사용됨. 
   
 참고자료 : [Dendrogram이란](https://ds31x.blogspot.com/2023/08/ml-dendrogram.html)
 
 * 모든 data points를 묶어가면서 Dendrogram을 하단에서 상단으로 만들어나가게 됨. 
 * 모든 data points가 한 cluster로 묶이면 (=Dendrogram의 root) 과정이 끝나고, Dendrogram의 vertical axis에서 적절한 수준에서 잘라서 cluster의 수를 조절함 (상단, 즉 root에 가까운 곳에서 cutting이 발생시 cluster의 수가 적고, leaf nodes에 가까운 곳에서 cutting이 발생시 cluster의 수가 많음).
-* 일반적인 Non-hierarchical clustring과 달리, clusters의 수 $k$를 미리 정할 필요가 없음.
+* 일반적인 Non-hierarchical clustering과 달리, clusters의 수 $k$를 미리 정할 필요가 없음.
 
 > 전체 데이터를 살필 필요가 없는 greedy algorithm.
- 
+
+### 특징.
+
+* 다양한 shape의 clusters 를 가지는 dataset에서도 효과적
+* cluster를 생성할 때 각각의 connection 등에 대한 많은 정보를 가지고 있는 cluster tree (binary tree로 dendrogram으로 시각화 가능)를 생성.
+* 다양한 pair-wise distance function을 사용가능함. 
 
 ### Types of Linkages
 
-새로 할당하려는 점과 기존 Cluster간의 유사도 (or 거리)를 측정하는 방식을 Types of Linkages라고 하면 많이 사용되는 방식은 다음과 같음.
+Data point (or cluster)와 cluster 를 결합하는 방식의 구분으로 결합대상 간의 거리 (or 유사도)를 어떻게 계산하는지를 나타냄.  
+(사용되는 distance는 보통 Euclidean distance를 사용하나 half Euclidean distance square 등 다양한 종류의 distance function이 있음)
 
 1. Complete (최장연결법): 새로운 data point와 cluster 내 가장 ***먼*** data point간의 거리 를 유사도로 삼음.
 2. Single (최단연결법): 새로운 data point와 cluster 내 가장 ***가까운*** data point간의 거리 를 유사도로 삼음.
 3. Average (평균연결법): 새로운 data point와 cluster 내 모든 data point간의 ***평균*** 거리 를 유사도로 삼음.
 4. Centroid (중심연결법): 새로운 data point와 cluster의 ***중심점*** 과의 거리를 유사도로 삼음. 
+5. ***Ward’s method*** : 두 cluster가 merging이 될 경우 error sum of squares (ess)의 incremental이 최소인 경우를 결함시키는 방식. 
 
-위의 방식들은 cluster간의 거리를 구하는데에도 사용됨.
-
-> cluster간 거리를 구하는 다른 방법으로는 merging이 될 경우 error sum of squares (ess)의 incremental를 기반으로 한 ***Ward’s method*** 도 있음
 
 * 참고자료 : [Hierarchical Clustering의 간단한 예제](https://ds31x.blogspot.com/2023/08/ml-example-of-hierarchical-clustering.html)
-* ward’s methods 관련 : [stat.cmu.edu](https://www.stat.cmu.edu/~cshalizi/350/lectures/08/lecture-08.pdf)
+* 참고자료 : [stat.cmu.edu](https://www.stat.cmu.edu/~cshalizi/350/lectures/08/lecture-08.pdf)
+
 ---
 
 ## Affinity Propagation Clustering
@@ -214,9 +219,11 @@ $$
 density based clustering의 대표적 알고리즘.  
 (K-means와 함께 non-hierarchical clustering의 대표.)
 
-거리와 관계없이 일정한 수준의 밀도를 유지하는 data points의 무리가 chain처럼 연결되어 있으면 cluster로 판정하기 때문에 noise나 outlier에 매우 robust한 성능을 보임.
+일정한 수준의 밀도를 유지하는 data points의 무리가 chain처럼 연결되어 있으면 cluster로 판정 (cluster = continuous regions of high density)하기 때문에 noise나 outlier에 매우 robust한 성능을 보임.
 
-즉, noise와 outlier에 강하고 (noise point로 지정되면 아예 cluster에서 빼버림) 다양한 모양과 크기의 cluster들을 처리할 수 있는 장점을 가짐.
+> DBSCAN 은 cluster들이 density가 낮은 구역들로 분리되어 있다고 가정함.
+
+즉, noise와 outlier에 강하고 (noise point로 지정되면 아예 cluster에서 빼버림) 다양한 shape(모양)과 size(크기)의 cluster들을 처리할 수 있는 장점을 가짐.
 
 * Density : 지정된 반경($\epsilon$) 내의 데이터 포인트의 갯수
 * `Core point` : 해당 점을 중심으로 $\epsilon$ 내에 존재하는 데이터 포인트의 갯수가 지정된 Density (=`MinPts`)를 초과하는 경우 Core point라고 부름.
@@ -245,10 +252,10 @@ current_cluster_label <- 1
        end for
 ```
 
-1. hyper-parameter로 `Eps`와 `MinPts`가 주어짐.
+1. hyper-parameter로 `Eps`(=$\epsilon$)와 `MinPts`가 주어짐.
 2. Training set에서 seed 로 `core point`의 조건을 만족하는 임의의 점을 선택.
 3. seed 로부터 density를 계산하고, 이로부터 `core point`들과 `border point`들을 구분해내고, `border point`를 다 구한 후에 나머지 데이터 포인트를 `noise point`로 설정.
-4. `Eps`내의 `core point`들을 모두 연결.
+4. `Eps` (=$\epsilon$) 내의 `core point`들을 모두 연결.
 5. 연결된 `core point`들은 하나의 cluster를 이룸.
 6. 모든 `border point`들은 하나의 cluster에 속해야 함. (여러 cluster에 걸쳐있을 경우, 반복과정 중 먼저 할당된 cluster에 속하도록 처리.)
 
@@ -256,12 +263,12 @@ current_cluster_label <- 1
 
 최적의 `MinPts`를 구하는 방법은 알려진 것이 없음. 때문에 CV등을 통해 최적의 값을 찾아야 함.
 
-Eps의 경우에는 다음의 $k$-dist Graph를 이용하여 급격히 증가하는 점에서의 distance로 정한다. (여기서 $k$는 `MinPts`임)
+`Eps` $\epsilon$ 의 경우에는 다음의 $k$-dist Graph를 이용하여 급격히 증가하는 점에서의 distance로 정한다. (여기서 $k$는 `MinPts`임)
 
 * cluster 내의 각 포인트에 대해 $k$ nearest neighbor와의 거리가 대략 동일하다는 것을 이용한다.
 * noise point의 경우, $k$ nearest neighbor 와의 거리가 매우 큰 값을 가짐.
 
-위의 성질을 이용하여 모든 데이터 포인트에 대해 $k$ nearest neighbor ($k$번째 가장 가까운 이웃)에 대한 거리를 구하고, 해당 거리로 sorting을 한 이후, 해당 $k$-nearest neighbor distance를 y축에 기재하고 이에 대응하는 data point의 수를 x축에 기재하면 아래와 같은은 $k$-dist graph를 얻게됨.
+위의 성질을 이용하여 모든 데이터 포인트에 대해 $k$ nearest neighbor ($k$번째 가장 가까운 이웃)에 대한 거리를 구하고, 해당 거리로 sorting을 한 이후, 해당 $k$-nearest neighbor distance를 y축에 기재하고 이에 대응하는 data point의 수를 x축에 기재하면 아래와 같은 $k$-dist graph를 얻게됨.
 
 ![](./img/DBSCAN_tunning.png)
 
@@ -269,7 +276,7 @@ Eps의 경우에는 다음의 $k$-dist Graph를 이용하여 급격히 증가하
 
 ### Weakness
 
-하지만, density가 다양한 data에서는 잘 동작하지 않는다.
+하지만, density가 다양한 dataset에서는 잘 동작하지 않는다.
 
 ![](./img/diverse_density_dbscan.png)
 
@@ -278,7 +285,11 @@ Eps의 경우에는 다음의 $k$-dist Graph를 이용하여 급격히 증가하
 
 또한 DBSCAN도 Euclidean distance에 기반(밀도를 구하기 위해서 사용)을 두고 있으며, 이 때문에 high dimensional dataset에서는 좋은 결과가 나오기 어렵다.
 
-> DBSCAN의 time coplexity는 $O(n^2)$이나 clustring을 수행하기 전에 전처리로 indexed tree 형태로 만들고 수행하는 경우엔 $O(n \log n)$ 임.
+> DBSCAN의 computational complexity는 $O(n^2)$이나 clustering을 수행하기 전에 전처리로 indexed tree 형태로 만들고 수행하는 경우엔 $O(n \log n)$ 임.
+
+또한 training에서 사용하지 않은 새로운 data point에 대한 inference가 직접적으로는 어렵다. DBSCAN으로 clustering이 된 training dataset과 label을 바탕으로 k-NN (k=1로 줘도 됨) algorithm으로 inference를 하는 방식 처럼 다른 기법의 도움이 필요하다.
+
+---
 ---
 
 ## Cluster Validation
@@ -342,6 +353,7 @@ $$
         * $d_{ij}$ : $i$th cluster와 $j$th cluster의 중심거리 = separation
 
 : 예 : 3개의 cluster 인 경우,
+
         * $D_{ij}$ 는 $D_{12},D_{13},D_{23}$ 과 같이 3개가 구해짐.
         * $D_i$는 $D_1=\max\left\{D_{12},D_{13}\right\}$, $D_2=\max\left\{D_{23}\right\}$ 과 같이 2개가 구해짐.
         * $k=2$ 이며, $DBI=\text{mean}[D_1, D_2]$임.
