@@ -6,7 +6,7 @@ feature space에서 가까운(=유사한) sample들을 모아 하나의 cluster�
 * output : 유사한 sample들이 묶여있는 cluster
 * hyper-parameter : cluster 를 몇개 지정할지 (명시적으로 cluster의 수를 입력받는 경우도 있으나 간접적으로 이를 결정하는 값( self similarity등)을 요구하기도 함)를 보통 hyper-parameter로 요구.
 
-Unsupervised Learning의 대표적인 Task임.
+Dimension Reduction과 함께, Unsupervised Learning의 대표적인 Task임.
 
 > 일부 문헌에서는  
 > unsupervised learning의 tasks에서  
@@ -52,6 +52,7 @@ ref.: https://scikit-learn-extra.readthedocs.io/en/stable/modules/cluster.html#k
 
 * k-Means는 ^^적절한 `k`의 값을 골라야 함.^^
 * ***초기 cluster center 지정*** 에 따라 최종 결과가 매우 크게 영향을 받음 (k-medoids 에서 개선). 
+    * 좋은 결과를 위해서 여러 차례 처음부터 수행을 해봐야 함. (random initialization의 횟수인 `n_init` parameter가 k-means 구현물에 존재하는 이유.)
 * 매우 멀리 떨어져있는 data point나 noise에 취약 (k-medoids에서 개선)
 * ***globular shape를 가정*** 하고 있기 때문에 다른 ***지역적 패턴*** 이 있는 경우(shape가 다른 cluster)에 부정확한 결과가 나오기 쉬움.
 * 각 그룹의 size나 density가 다를 경우 부정확한 결과가 나오기 쉬움.
@@ -123,7 +124,9 @@ Ref.: [Brendan J. Frey et al., “Clustering by Passing Messages Between Data Po
 
 각 데이터 샘플들이 서로에게 메시지를 보내면서 일종의 투표를 수행하여 자신의 대표가 될 수 있는 데이터 샘플을 선택하여, 선택된 데이터 샘플을 중심으로 하여 다양한 크기의 cluster 가 생성되는 기법.
 
-단점은 계산 복잡도로 $O(N^2T)$를 가짐. 여기서 $N$은 샘플 수, $T$는 알고리즘 반복 횟수이다. 공간복잡도는 $O(N^2)$​​​​이다. 매우 복잡도가 높기 때문에 작은 데이터에 적합하다.
+> `affinity` 란 일반적으로 특정 data sample이 자신이 속한 cluster에 속해있는 것이 얼마나 적절한지를 정량화하는 지표를 가르킴.  
+
+단점은 계산 복잡도로 $O(N^2T)$를 가짐. 여기서 $N$은 샘플 수, $T$는 알고리즘 반복 횟수이다. 공간복잡도는 $O(N^2)$​​​​이다. 매우 복잡도가 높기 때문에 작은 데이터에서 그 사용이 제한된다.
 
 모든 데이터 샘플 간에 similarity를 계산하고 이를 기반으로 각 샘플  pair 에서 responsibility $r_{ik}$와 availability $a_{ik}$를 계산 (이들을 메시지를 보내는 것으로 표현)하고 이들로 구성된 2개의 matrix를 반복적으로 업데이트하여 clustering을 수행함.
 
