@@ -177,7 +177,7 @@ responsibility $r_{ik}$는
 * target sample $\textbf{x}_k$와의 similarity와  
 * target sample $\textbf{x}_k$를 제외한 나머지 sample들간의 affinity(친화도)를 고려한다.
 
-> 자신과 성향이 유사한 사람에게 투표하는 것을 생각하면 similarity와 repsonisbility가 비례하는 관계임을 쉽게 이해할 수 있고,  
+> 자신과 성향이 유사한 사람에게 투표하는 것을 생각하면 similarity와 responsibility가 비례하는 관계임을 쉽게 이해할 수 있고,  
 > 다른 후보에 대해 보다 높은 affinity를 가질 경우, $\textbf{x}_k$에 투표할 확률이 내려가는 점에서 뒤의 minus term도 이해할 수 있음.
 
 식은 다음과 같다.
