@@ -128,6 +128,11 @@ Ref.: [Brendan J. Frey et al., “Clustering by Passing Messages Between Data Po
 
 모든 데이터 샘플 간에 similarity를 계산하고 이를 기반으로 각 샘플  pair 에서 responsibility $r_{ik}$와 availability $a_{ik}$를 계산 (이들을 메시지를 보내는 것으로 표현)하고 이들로 구성된 2개의 matrix를 반복적으로 업데이트하여 clustering을 수행함.
 
+![](./img/affinity_prop_a_r.png)
+
+* The ‘responsibility’ matrix $R$. In this matrix, $r(\textbf{i},k)$ reflects how well-suited point $\textbf{k}$ is to be an exemplar for point  $\textbf{i}$.
+* The ‘availability’ matrix $A$. $a(\textbf{i},\textbf{k})$ reflects how appropriate it would be for point $\textbf{i}$ to choose point $\textbf{k}$ as its exemplar.
+
 > k-Means와 마찬가지로 클러스터 형태가 둥글어야 하는(globular) 가정에 기반하고,  k-medoids와 동일하게 cluster center를 data point 자체(exemplar)를 사용한다. 
 
 > k-Means는 Not-flat geometry ( 데이터가 존재하는 부분 공간이 선형이 아닌 굽어져 있는 경우) 공간처럼 euclidean distance를 쓰기 어려운 경우에는 성능이 그리 좋지 않음 반면, AP는 nearest-neighbor graph여서 보다 나은 것처럼 scikit-learning에선 언급되고 있으나, 역시 높은 성능은 아닌 듯 하다.
@@ -181,12 +186,14 @@ responsibility $r_{ik}$는 responsibility matrix를 생성한다.
 
 ### availability 계산
 
-availability $a_{ik}$는 sample $\textbf{x}_k$를 기준으로 하여 sample $\textbf{x}_i$ 에게 본인이 대표가 되어야 하는 정량적 근거를 구한 것이다. 이는 sample $\textbf{x}_k$와 자신을 제외한 다른 sample들로부터 responsibility를 다 더한 값과 0중에서 작은 값에 해당한다 (대부분 음수).
-이때, responsibility가 양수인 경우만 고려하는 점을 주의할 것.
+availability $a_{ik}$는 sample $\textbf{x}_k$가 sample $\textbf{x}_i$ 에게 본인 $\textbf{x}_k$가 대표가 되어야 하는 정량적 근거(exempler로서의 availability)를 알려주는 것임.
+* 이는 sample $\textbf{x}_k$, $\textbf{x}_i$를 제외한 다른 sample들로부터 responsibility 중 양수인 것들을 다 더한 값과 0 중에서 작은 값을 고름.
+* 이때, responsibility가 양수인 경우만 고려하는 점을 주의할 것 (대부분 음수임).
+* 주의할 건 availability는 $i \ne k$인 경우, 0이 최대임.
 
 $$a_{ik}=\min \left(0, r_{kk}+\sum_{i^\prime \notin \{i,k\}}\max(0,r_{i^\prime k}) \right) $$
 
-$a_{kk}$ 는 $\textbf{x}_k$가 cluster의 중심으로 사용가능한지를 정량적으로 나타냄.(클수록 중심이 되기 쉬움)
+$a_{kk}$ 는 $\textbf{x}_k$가 cluster의 중심(exemplar)으로 사용가능한지를 정량적으로 나타냄.(클수록 중심이 되기 쉬움)
 
 $$a_{kk}=\sum_{i^\prime ne k}\max(0,r_{i^\prime k})$$
 
