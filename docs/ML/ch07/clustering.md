@@ -1,10 +1,14 @@
-# Clustering
+# Clustering (군집)
 
 feature space에서 가까운(=유사한) sample들을 모아 하나의 cluster로 묶는 task.
 
 * input : label이 되어있지 않은 training data
 * output : 유사한 sample들이 묶여있는 cluster
 * hyper-parameter : cluster 를 몇개 지정할지 (명시적으로 cluster의 수를 입력받는 경우도 있으나 간접적으로 이를 결정하는 값( self similarity등)을 요구하기도 함)를 보통 hyper-parameter로 요구.
+
+> 쉽게 애기하면,  
+> 비슷한 data points(sample)를 묶어서 하나의 cluster (군집, group)에 할당하여 분류하는 task임.  
+> classification과의 차이는 label의 유무임.
 
 Dimension Reduction과 함께, Unsupervised Learning의 대표적인 Task임.
 
@@ -13,10 +17,13 @@ Dimension Reduction과 함께, Unsupervised Learning의 대표적인 Task임.
 > 특정 application에 상관없이 unsupervised learning algorithm이 해결해야하는 ***general task*** 로서   
 > clustering과  density estimation, dimension transformation을 언급한다.
 
-Clustering은 크게 두가지 종류로 나뉨.
+Clustering은 크게 두가지 종류로 나뉨 (cluster를 무엇으로 정의하고 있느냐에 따라 구별된다).
 
 * Hierarchical Clustering
+    * 계층적으로 cluster를 나타냄 (cluster와 cluster가 묶여서 상위 cluster를 생성하는 방식) : `agglomerative clustering`
 * Non-hierarchical Clustering
+    * 특정 centroid(중심점)의 주변에 가까이 모여있는 것을 cluster라고 정의 : `k-means`
+    * continuous regions of high density (data points가 밀집되어 있는 연속된 영역)을 cluster라고 정의 : `DBSCAN`
 
 > Elliptical clustering에서 가장 많이 사용되는 Gaussian Mixture Model은 이 문서에서 다루지 않는다.  
 > Gaussian Mixture Model은 clustering 외의 분야에서도 많이 사용되는 probability model이다.  
@@ -130,6 +137,11 @@ Ref.: [Brendan J. Frey et al., “Clustering by Passing Messages Between Data Po
 
 모든 데이터 샘플 간에 similarity를 계산하고 이를 기반으로 각 샘플  pair 에서 responsibility $r_{ik}$와 availability $a_{ik}$를 계산 (이들을 메시지를 보내는 것으로 표현)하고 이들로 구성된 2개의 matrix를 반복적으로 업데이트하여 clustering을 수행함.
 
+![](./img/affinity_prop_a_r.png)
+
+* The ‘responsibility’ matrix $R$. In this matrix, $r(\textbf{i},k)$ reflects how well-suited point $\textbf{k}$ is to be an exemplar for point  $\textbf{i}$.
+* The ‘availability’ matrix $A$. $a(\textbf{i},\textbf{k})$ reflects how appropriate it would be for point $\textbf{i}$ to choose point $\textbf{k}$ as its exemplar.
+
 > k-Means와 마찬가지로 클러스터 형태가 둥글어야 하는(globular) 가정에 기반하고,  k-medoids와 동일하게 cluster center를 data point 자체(exemplar)를 사용한다. 
 
 > k-Means는 Not-flat geometry ( 데이터가 존재하는 부분 공간이 선형이 아닌 굽어져 있는 경우) 공간처럼 euclidean distance를 쓰기 어려운 경우에는 성능이 그리 좋지 않음 반면, AP는 nearest-neighbor graph여서 보다 나은 것처럼 scikit-learning에선 언급되고 있으나, 역시 높은 성능은 아닌 듯 하다.
@@ -150,15 +162,23 @@ $$
 
 ### responsibility 계산
 
-> sample $\textbf{x}_k$ ​가  
-> sample $\textbf{x}_i$ ​​​에 대해  
-> 얼마나 exemplar로 적합한지를 나타냄.
+> sample $\textbf{x}_i$ 가  
+> sample $\textbf{x}_k$ 를  
+> exemplar로 여기는 정도 (cluster의 중심으로 투표하는 responsibility) 를 나타냄.
 
 responsibility $r_{ik}$는  
-sample $\textbf{x}_i$를 기준으로 하여  
-sample $\textbf{x}_k$ 가 sample $\textbf{x}_i$의 대표(exemplar)가 되어야 하는 ^^정량적 근거(sklearn 에선 the accumulated evidence라고 기술)^^ 를 구한 것으로  
-sample $\textbf{x}_i$를 기준으로 target sample $\textbf{x}_k$ 와의 similarity와  
-target sample $\textbf{x}_k$를 제외한 나머지 sample들간의 affinity를 고려한다.
+
+* sample $\textbf{x}_i$를 기준으로 하여  
+* sample $\textbf{x}_k$ 가 sample $\textbf{x}_i$의 대표(exemplar)가 되어야 하는 ^^정량적 근거(sklearn 에선 the accumulated evidence라고 기술)^^ 
+
+를 구한 것으로  
+
+* sample $\textbf{x}_i$를 기준으로 
+* target sample $\textbf{x}_k$와의 similarity와  
+* target sample $\textbf{x}_k$를 제외한 나머지 sample들간의 affinity(친화도)를 고려한다.
+
+> 자신과 성향이 유사한 사람에게 투표하는 것을 생각하면 similarity와 repsonisbility가 비례하는 관계임을 쉽게 이해할 수 있고,  
+> 다른 후보에 대해 보다 높은 affinity를 가질 경우, $\textbf{x}_k$에 투표할 확률이 내려가는 점에서 뒤의 minus term도 이해할 수 있음.
 
 식은 다음과 같다.
 
@@ -168,19 +188,21 @@ responsibility $r_{ik}$는
 
 * sample $\textbf{x}_i$와 sample $\textbf{x}_k$간의 similarity가 높을수록 커지고,
 * sample $\textbf{x}_i$가 다른 sample $\textbf{x}_{k^\prime}$과 affinitiy, $(a_{ik^\prime}+s_{ik^\prime})$가 클수록 작아진다.
-* 즉 sample $\textbf{x}_i$ 주변에 exemplar로 적합한 sample $\textbf{x}_k^\prime$ 이 있다면, sample $\textbf{x}_k$ 는 $\textbf{x}_i$에 대해 낮은 responsibility를 가진다. 
+* 즉, sample $\textbf{x}_i$ 주변에 exemplar로 적합한 sample $\textbf{x}_k^\prime$ 이 있다면, sample $\textbf{x}_k$ 는 $\textbf{x}_i$에 대해 낮은 responsibility를 가진다. 
 * responsibility $r_{ik}$가 양수이면서 커지면, sample $\textbf{x}_k$ 가 대표가 될 가능성이 커짐.
 
 responsibility $r_{ik}$는 responsibility matrix를 생성한다.
 
 ### availability 계산
 
-availability $a_{ik}$는 sample $\textbf{x}_k$를 기준으로 하여 sample $\textbf{x}_i$ 에게 본인이 대표가 되어야 하는 정량적 근거를 구한 것이다. 이는 sample $\textbf{x}_k$와 자신을 제외한 다른 sample들로부터 responsibility를 다 더한 값과 0중에서 작은 값에 해당한다 (대부분 음수).
-이때, responsibility가 양수인 경우만 고려하는 점을 주의할 것.
+availability $a_{ik}$는 sample $\textbf{x}_k$가 sample $\textbf{x}_i$ 에게 본인 $\textbf{x}_k$가 대표가 되어야 하는 정량적 근거(exempler로서의 availability)를 알려주는 것임.
+* 이는 sample $\textbf{x}_k$, $\textbf{x}_i$를 제외한 다른 sample들로부터 responsibility 중 양수인 것들을 다 더한 값과 0 중에서 작은 값을 고름.
+* 이때, responsibility가 양수인 경우만 고려하는 점을 주의할 것 (대부분 음수임).
+* 주의할 건 availability는 $i \ne k$인 경우, 0이 최대임.
 
 $$a_{ik}=\min \left(0, r_{kk}+\sum_{i^\prime \notin \{i,k\}}\max(0,r_{i^\prime k}) \right) $$
 
-$a_{kk}$ 는 $\textbf{x}_k$가 cluster의 중심으로 사용가능한지를 정량적으로 나타냄.(클수록 중심이 되기 쉬움)
+$a_{kk}$ 는 $\textbf{x}_k$가 cluster의 중심(exemplar)으로 사용가능한지를 정량적으로 나타냄.(클수록 중심이 되기 쉬움)
 
 $$a_{kk}=\sum_{i^\prime ne k}\max(0,r_{i^\prime k})$$
 
@@ -306,7 +328,8 @@ current_cluster_label <- 1
 
 ## Cluster Validation
 
-Cluster의 평가는 내부평가와 외부평가로 나눌 수 있음.
+다음과 같이 Cluster의 performance metrics는 내부평가와 외부평가로 나눌 수 있음.
+이들을 사용하여 최적의 $k$ 값 등을 찾아낼 수 있음 (물론 여러번 수행을 해야함).
 
 ### 내부평가
 
@@ -336,20 +359,22 @@ $$\text{BSSE}=\sum_{i}\sum_{j\ne i} \text{Size}(C_i) (\textbf{c}^\text{center}_i
 
 : * original : ZZFJILL's [Notes of Cluster Analysis](https://zzfjill.wordpress.com/2020/02/09/notes-of-cluster-analysis/)
 
-`Silhouette Coefficient` (실루엣 계수)  
+#### `Silhouette Coefficient` (실루엣 계수)  
+
 : cohesion과 separation을 조합한 silhouette function을 모든 data point에서 개별로 구하고 이들의 평균을 구하여 하나의 숫자로 cluster가 잘되었는지를 나타냄.  
   
 $$\text{SC}=\frac{1}{M}\sum^M_{i=1}s(\textbf{x}_i)$$
 
-: * Cohesion $a(\textbf{x})$ : $\textbf{x}$와, 해당 $\textbf{x}$와 같은 cluster에 속한 데이터 포인트들간의 거리에 대한 평균.
-* Separation $b(\textbf{x})$ : $\textbf{x}$와, 해당 $\textbf{x}$와 다른 cluster에 속한 데이터 포인트들간의 거리에 대한 평균.
+: * Cohesion $a(\textbf{x})$ : $\textbf{x}$와, 해당 $\textbf{x}$와 같은 cluster에 속한 data points의 거리에 대한 평균.
+* Separation $b(\textbf{x})$ : $\textbf{x}$와, 해당 $\textbf{x}$와 다른 cluster 중 가장 가까운 cluster에 속한 data points의 거리에 대한 평균.
 * Silhouette function, $s(\textbf{x})$ : $s(\textbf{x})=\frac{b(\textbf{x})-a(\textbf{x})}{\max\left\{a(\textbf{x}),b(\textbf{x})\right\}}$
-    * $s(x)$는 $[-1,1]$의 range를 가지는데, `-1`은 가장 나쁜 clustering을 의미하고, `1`은 가장 좋은 clustering을 의미함. (`0`은 indifferent에 해당.)
+    * $s(x)$는 $[-1,1]$의 range를 가지는데, `-1`은 가장 나쁜 clustering을 의미하고, `1`은 가장 좋은 clustering을 의미함. (`0`은 indifferent, 혹은 경계에 해당.)
     * `0`은 어느정도 넘어야 clustering이 어느정도 된 것을 의미한다.
 
-![](./img/silhouette_coef.jpeg){align="center"}
-
-: * origin : Santhana et al., [Best Clustering Configuration Metrics: Towards Multiagent Based Clustering](https://www.researchgate.net/figure/Derivation-of-the-Overall-Silhouette-Coefficient-OverallSil_fig1_221570710)
+<figure markdown>
+![](./img/silhouette_coef.jpeg){width="500" align="center"}
+<figcaption> origin : Santhana et al., [Best Clustering Configuration Metrics: Towards Multiagent Based Clustering](https://www.researchgate.net/figure/Derivation-of-the-Overall-Silhouette-Coefficient-OverallSil_fig1_221570710)</figcaption>
+</figure>
 
 #### `Davis-Bouldin Index`(DBI)  
 
@@ -367,9 +392,9 @@ $$
         * $\bar{d}_i$ : $i$th cluster에 대한 중심과 해당 cluster 에 속한 데이터 포인트 간의 평균 거리 = cohesion
         * $d_{ij}$ : $i$th cluster와 $j$th cluster의 중심거리 = separation
 
-예 : 3개의 cluster 인 경우,
+: 예) 3개의 cluster 인 경우,
 
-* $D_{ij}$ 는 $D_{12},D_{13},D_{23}$ 과 같이 3개가 구해짐.
+: * $D_{ij}$ 는 $D_{12},D_{13},D_{23}$ 과 같이 3개가 구해짐.
 * $D_i$는 $D_1=\max\left\{D_{12},D_{13}\right\}$, $D_2=\max\left\{D_{23}\right\}$ 과 같이 2개가 구해짐.
 * $k=2$ 이며, $DBI=\text{mean}[D_1, D_2]$임.
 
