@@ -347,9 +347,10 @@ $$\text{SC}=\frac{1}{M}\sum^M_{i=1}s(\textbf{x}_i)$$
     * $s(x)$는 $[-1,1]$의 range를 가지는데, `-1`은 가장 나쁜 clustering을 의미하고, `1`은 가장 좋은 clustering을 의미함. (`0`은 indifferent, 혹은 경계에 해당.)
     * `0`은 어느정도 넘어야 clustering이 어느정도 된 것을 의미한다.
 
+<figure markdown>
 ![](./img/silhouette_coef.jpeg){width="500" align="center"}
-
-: * origin : Santhana et al., [Best Clustering Configuration Metrics: Towards Multiagent Based Clustering](https://www.researchgate.net/figure/Derivation-of-the-Overall-Silhouette-Coefficient-OverallSil_fig1_221570710)
+<figcaption> origin : Santhana et al., [Best Clustering Configuration Metrics: Towards Multiagent Based Clustering](https://www.researchgate.net/figure/Derivation-of-the-Overall-Silhouette-Coefficient-OverallSil_fig1_221570710)</figcaption>
+</figure>
 
 #### `Davis-Bouldin Index`(DBI)  
 
