@@ -304,7 +304,8 @@ current_cluster_label <- 1
 
 ## Cluster Validation
 
-Cluster의 평가는 내부평가와 외부평가로 나눌 수 있음.
+다음과 같이 Cluster의 performance metrics는 내부평가와 외부평가로 나눌 수 있음.
+이들을 사용하여 최적의 $k$ 값 등을 찾아낼 수 있음 (물론 여러번 수행을 해야함).
 
 ### 내부평가
 
@@ -335,6 +336,7 @@ $$\text{BSSE}=\sum_{i}\sum_{j\ne i} \text{Size}(C_i) (\textbf{c}^\text{center}_i
 : * original : ZZFJILL's [Notes of Cluster Analysis](https://zzfjill.wordpress.com/2020/02/09/notes-of-cluster-analysis/)
 
 #### `Silhouette Coefficient` (실루엣 계수)  
+
 : cohesion과 separation을 조합한 silhouette function을 모든 data point에서 개별로 구하고 이들의 평균을 구하여 하나의 숫자로 cluster가 잘되었는지를 나타냄.  
   
 $$\text{SC}=\frac{1}{M}\sum^M_{i=1}s(\textbf{x}_i)$$
@@ -345,7 +347,7 @@ $$\text{SC}=\frac{1}{M}\sum^M_{i=1}s(\textbf{x}_i)$$
     * $s(x)$는 $[-1,1]$의 range를 가지는데, `-1`은 가장 나쁜 clustering을 의미하고, `1`은 가장 좋은 clustering을 의미함. (`0`은 indifferent, 혹은 경계에 해당.)
     * `0`은 어느정도 넘어야 clustering이 어느정도 된 것을 의미한다.
 
-![](./img/silhouette_coef.jpeg){width="400", align="center"}
+![](./img/silhouette_coef.jpeg){width="500" align="center"}
 
 : * origin : Santhana et al., [Best Clustering Configuration Metrics: Towards Multiagent Based Clustering](https://www.researchgate.net/figure/Derivation-of-the-Overall-Silhouette-Coefficient-OverallSil_fig1_221570710)
 
