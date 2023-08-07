@@ -195,7 +195,8 @@ responsibility $r_{ik}$는 responsibility matrix를 생성한다.
 
 ### availability 계산
 
-availability $a_{ik}$는 sample $\textbf{x}_k$가 sample $\textbf{x}_i$ 에게 본인 $\textbf{x}_k$가 대표가 되어야 하는 정량적 근거(exempler로서의 availability)를 알려주는 것임.
+availability $a_{ik}$는 sample $\textbf{x}_k$가 sample $\textbf{x}_i$ 에게 본인 $\textbf{x}_k$가 대표가 되어야 하는 정량적 근거(exemplar로서의 availability)를 알려주는 것임.
+
 * 이는 sample $\textbf{x}_k$, $\textbf{x}_i$를 제외한 다른 sample들로부터 responsibility 중 양수인 것들을 다 더한 값과 0 중에서 작은 값을 고름.
 * 이때, responsibility가 양수인 경우만 고려하는 점을 주의할 것 (대부분 음수임).
 * 주의할 건 availability는 $i \ne k$인 경우, 0이 최대임.
