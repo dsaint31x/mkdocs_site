@@ -148,15 +148,23 @@ $$
 
 ### responsibility 계산
 
-> sample $\textbf{x}_k$ ​가  
-> sample $\textbf{x}_i$ ​​​에 대해  
-> 얼마나 exemplar로 적합한지를 나타냄.
+> sample $\textbf{x}_i$ 가  
+> sample $\textbf{x}_k$ 를  
+> exemplar로 여기는 정도 (cluster의 중심으로 투표하는 responsibility) 를 나타냄.
 
 responsibility $r_{ik}$는  
-sample $\textbf{x}_i$를 기준으로 하여  
-sample $\textbf{x}_k$ 가 sample $\textbf{x}_i$의 대표(exemplar)가 되어야 하는 ^^정량적 근거(sklearn 에선 the accumulated evidence라고 기술)^^ 를 구한 것으로  
-sample $\textbf{x}_i$를 기준으로 target sample $\textbf{x}_k$ 와의 similarity와  
-target sample $\textbf{x}_k$를 제외한 나머지 sample들간의 affinity를 고려한다.
+
+* sample $\textbf{x}_i$를 기준으로 하여  
+* sample $\textbf{x}_k$ 가 sample $\textbf{x}_i$의 대표(exemplar)가 되어야 하는 ^^정량적 근거(sklearn 에선 the accumulated evidence라고 기술)^^ 
+
+를 구한 것으로  
+
+* sample $\textbf{x}_i$를 기준으로 
+* target sample $\textbf{x}_k$와의 similarity와  
+* target sample $\textbf{x}_k$를 제외한 나머지 sample들간의 affinity(친화도)를 고려한다.
+
+> 자신과 성향이 유사한 사람에게 투표하는 것을 생각하면 similarity와 repsonisbility가 비례하는 관계임을 쉽게 이해할 수 있고,  
+> 다른 후보에 대해 보다 높은 affinity를 가질 경우, $\textbf{x}_k$에 투표할 확률이 내려가는 점에서 뒤의 minus term도 이해할 수 있음.
 
 식은 다음과 같다.
 
@@ -166,7 +174,7 @@ responsibility $r_{ik}$는
 
 * sample $\textbf{x}_i$와 sample $\textbf{x}_k$간의 similarity가 높을수록 커지고,
 * sample $\textbf{x}_i$가 다른 sample $\textbf{x}_{k^\prime}$과 affinitiy, $(a_{ik^\prime}+s_{ik^\prime})$가 클수록 작아진다.
-* 즉 sample $\textbf{x}_i$ 주변에 exemplar로 적합한 sample $\textbf{x}_k^\prime$ 이 있다면, sample $\textbf{x}_k$ 는 $\textbf{x}_i$에 대해 낮은 responsibility를 가진다. 
+* 즉, sample $\textbf{x}_i$ 주변에 exemplar로 적합한 sample $\textbf{x}_k^\prime$ 이 있다면, sample $\textbf{x}_k$ 는 $\textbf{x}_i$에 대해 낮은 responsibility를 가진다. 
 * responsibility $r_{ik}$가 양수이면서 커지면, sample $\textbf{x}_k$ 가 대표가 될 가능성이 커짐.
 
 responsibility $r_{ik}$는 responsibility matrix를 생성한다.
