@@ -16,7 +16,11 @@ ML이 데이터에서 알아서 내재된 특징(feature vector, representation)
 Unsupervised Learning 으로 해결하고자 하는 ^^주요 task^^ 는 다음과 같다.
 
 `Clustering`
-: input date의 sample들의 내재적인 특징(feature)를 추출하여, 비슷한 sample들끼리 하나의 cluster로 묶는 task.
+: input date의 sample들의 내재적인 특징(feature)를 추출하여, 비슷한 sample들끼리 하나의 cluster로 묶는 task.  
+
+: * [Clustering (군집)](../ch07/clustering.md)
+: * [Applicatinos of Clustering](https://ds31x.blogspot.com/2023/08/ml-clustering.html) 
+
 
 `Dimensionality Reduction`
 : ML에서 사용되는 data들은 일종의 vector로 표현되는데, 이때 해당 vector들이 놓여지는 vector space의 공간의 차원수를 dimesnion이라고 부른다(쉽게 말하면 숫자 4개로 구성된 vector는 4차원의 공간에서의 한점을 나타내므로 차원수가 4차원이라고 할 수 있다.).  

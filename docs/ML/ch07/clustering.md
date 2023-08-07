@@ -1,10 +1,14 @@
-# Clustering
+# Clustering (군집)
 
 feature space에서 가까운(=유사한) sample들을 모아 하나의 cluster로 묶는 task.
 
 * input : label이 되어있지 않은 training data
 * output : 유사한 sample들이 묶여있는 cluster
 * hyper-parameter : cluster 를 몇개 지정할지 (명시적으로 cluster의 수를 입력받는 경우도 있으나 간접적으로 이를 결정하는 값( self similarity등)을 요구하기도 함)를 보통 hyper-parameter로 요구.
+
+> 쉽게 애기하면,  
+> 비슷한 data points(sample)를 묶어서 하나의 cluster (군집, group)에 할당하여 분류하는 task임.  
+> classification과의 차이는 label의 유무임.
 
 Unsupervised Learning의 대표적인 Task임.
 
@@ -13,10 +17,13 @@ Unsupervised Learning의 대표적인 Task임.
 > 특정 application에 상관없이 unsupervised learning algorithm이 해결해야하는 ***general task*** 로서   
 > clustering과  density estimation, dimension transformation을 언급한다.
 
-Clustering은 크게 두가지 종류로 나뉨.
+Clustering은 크게 두가지 종류로 나뉨 (cluster를 무엇으로 정의하고 있느냐에 따라 구별된다).
 
 * Hierarchical Clustering
+    * 계층적으로 cluster를 나타냄 (cluster와 cluster가 묶여서 상위 cluster를 생성하는 방식) : `agglomerative clustering`
 * Non-hierarchical Clustering
+    * 특정 centroid(중심점)의 주변에 가까이 모여있는 것을 cluster라고 정의 : `k-means`
+    * continuous regions of high density (data points가 밀집되어 있는 연속된 영역)을 cluster라고 정의 : `DBSCAN`
 
 ---
 
