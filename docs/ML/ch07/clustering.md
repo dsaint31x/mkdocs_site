@@ -356,8 +356,9 @@ $$\text{BSSE}=\sum_{i}\sum_{j\ne i} \text{Size}(C_i) (\textbf{c}^\text{center}_i
 
 : where $\text{Size}(C_i)$는 cluster $C_i$의 크기로 보통 속한 샘플의 수를 사용함.
 
-![](./img/graph_based_view_of_cluster_cohension_separation.png)
-
+<figure markdown>
+![](./img/graph_based_view_of_cluster_cohension_separation.png){width="500" align="center"}
+</figure>
 : * original : ZZFJILL's [Notes of Cluster Analysis](https://zzfjill.wordpress.com/2020/02/09/notes-of-cluster-analysis/)
 
 #### `Silhouette Coefficient` (실루엣 계수)  
@@ -374,8 +375,9 @@ $$\text{SC}=\frac{1}{M}\sum^M_{i=1}s(\textbf{x}_i)$$
 
 <figure markdown>
 ![](./img/silhouette_coef.jpeg){width="500" align="center"}
-<figcaption> origin : Santhana et al., [Best Clustering Configuration Metrics: Towards Multiagent Based Clustering](https://www.researchgate.net/figure/Derivation-of-the-Overall-Silhouette-Coefficient-OverallSil_fig1_221570710)</figcaption>
 </figure>
+
+: * origin : Santhana et al., [Best Clustering Configuration Metrics: Towards Multiagent Based Clustering](https://www.researchgate.net/figure/Derivation-of-the-Overall-Silhouette-Coefficient-OverallSil_fig1_221570710)
 
 #### `Davis-Bouldin Index`(DBI)  
 
