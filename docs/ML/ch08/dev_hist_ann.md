@@ -56,9 +56,9 @@ ANN에서는 이를 edge에 weight을 할당하여 강화가 될 수록 weight�
 
 ![](./img/TLU.png)
 
-* activation function으로 TLU는 heviside의 step function이나 signum function을 사용함.
+* activation function으로 TLU는 heaviside의 step function이나 signum function을 사용함.
 * 이후 sigmoid functions들이 사용됨.
-* 오늘날의 dense layer와 유사하며, 가장 많이 사용되는 activation function은 ReLU 임.
+* 오늘날의 dense layer (fully connected layer)와 유사하며, 가장 많이 사용되는 activation function은 ReLU 임.
 
 
 이 TLU를 기반으로 input layer (input nodes로 구성됨)와 output layer (output nodes로 구성됨) 
@@ -77,13 +77,14 @@ ANN에서는 이를 edge에 weight을 할당하여 강화가 될 수록 weight�
 
 [Principles of Neurodynamics: Perceptrons and the Theory of Brain Mechanisms, 1962](https://safari.ethz.ch/digitaltechnik/spring2018/lib/exe/fetch.php?media=neurodynamics1962rosenblatt.pdf)
 
-그 중 하나가 아래에 보이는 Multi-Layer Perceptron으로 일종의 feed-forward ANN이며 2개 이상의 layers를 쌓아 만들어짐.
+그 중 하나가 아래에 보이는 Multi-Layer Perceptron으로 일종의 feed-forward ANN이며 2개 이상의 layers를 쌓아 만들어짐.  
+(일반적으로 weight들이 있는 edge들이 몇단계로 쌓였는지로 layer의 갯수를 센다. 아래그림의 3개층으로 구성된 MLP임)
 
 ![](./img/multi_layer_perceptron.png)
 
 
-* MLP는 SLP가 못 푸는 non-linear classification (`XOR`이 가장 간단한 예)도 해결 가능했음.
-* 문제는 중간에 존재하는 여러 개의 hidden layer로 인해 증가된 weights (bias포함)를 어떻게 학습시킬지에 대한 해답을 Rosenblatt은 제시하지 못함.
+* MLP는 SLP가 못 푸는 non-linear classification (`XOR`이 가장 간단한 예)도 해결 가능함.
+* 문제는 중간에 존재하는 여러 개의 hidden layer로 인해 증가된 weights (bias포함)를 어떻게 학습시킬지에 대한 해답을 Rosenblatt는 명확히 제시하지 못했고, back-propagation이 등장하여 적용되는 1980년대까지 학습방법이 제시되지 못함.
 
 ---
 
@@ -139,12 +140,13 @@ Back-propagation을 통해 3층으로 구성된 MLP의 학습이 가능해졌고
 
 [신경회로망의 역사적 고찰](http://www.aistudy.com/neural/history_lee.htm#_bookmark_389c9e0)
 
-> 위의 url이 깨질 것을 대비한 pdf 인쇄본임. : [backup](./file/신경회로망%20의%20역사적%20고찰%20_%20이수영.pdf)
+> 다음은 위의 url이 깨질 것을 대비한 pdf 인쇄본임. : [backup](./file/신경회로망%20의%20역사적%20고찰%20_%20이수영.pdf)
 
 <br/>
 하지만, 당시의 주류 알고리즘은 Support Vector Machine이였고 ANN은 2010년 까지 SVM 등과 같은 기존의 다른 ML 기법에 비해 압도적인 성능을 보이는 분야는 아니었음.
 
-> 2000년 당시 ANN은 농담으로 흑마법이라고 부르던 연구자들도 있었을 정도임. 지금의 열풍을 생각하면 전혀 상상이 안되던 취급을 받던 시절.
+> 2000년 당시 ANN은 농담으로 흑마법이라고 부르던 연구자들도 있었을 정도임.  
+> 지금의 열풍을 생각하면 전혀 상상이 안되던 취급을 받던 시절.
 
 ---
 
@@ -153,7 +155,7 @@ Back-propagation을 통해 3층으로 구성된 MLP의 학습이 가능해졌고
 MLP가 학습이 되기 시작했으나 다른 Machine Learning 기법에 비해 뛰어난 경쟁력을 당시에 보이지 못한 이유는 다음과 같음.
 
 * 학습에 요구되는 시간이 너무나 컸음(계산량이 매우 높음)
-    * 1989 Yann LeCun 의 초기 CNN(3개의 Hidden Layer가짐)의 경우, 10개 숫자 구분을 위한 학습에 3일(days) 정도 필요.
+    * 1989년 Yann LeCun 의 초기 CNN(3개의 Hidden Layer가짐)의 경우, 10개 숫자 구분을 위한 학습에 3일(days) 정도 필요.
     * Computation power의 획기적인 개선 (Nvidia's GPGPU!)으로 해결된 문제임.
 * 엄청난 양의 Labeled data가 필요함. 
     * 1990년 10개 숫자 구분에 10,000 여개의 학습데이터 이용됨.
@@ -172,7 +174,7 @@ MLP가 학습이 되기 시작했으나 다른 Machine Learning 기법에 비해
 
 ## Key Change to the MLP from Back-propagation
 
-Rumelhart가 Back-propagation을 MLP 학습에 효과적으로 사용하기 위해 MLP의 activation function을 기존의 heaviside step function을 `logistic function`으로 변경 (`logistic function`은 sigmoid functions의 대표적 함수임)함.
+Rumelhart가 Back-propagation을 MLP 학습에 효과적으로 사용하기 위해 MLP의 activation function을 기존의 heaviside step function을 `logistic function`으로 변경 (`logistic function`은 sigmoid functions의 대표)함.
 
 Back-propagation은 Gradient decent와 Reverse-mode Autodiff의 조합이기 때문에 결국 differentiation에 기반함.
 
