@@ -24,11 +24,11 @@ logical proposition (논리 명제)를 계산 (and, or, not 등의)함.
 ### Physical Assumptions for McCulloch-Pitts Model
 
 * Neuron : 1 or 0 (= all-or-none process) 
-    * binary inputs 을 처리하여 binary output을 내보냄.
-* 특정 Neuron이 activation이 되려면 2개 이상의 고정된 갯수의 synapse가 activation 되어야 함 (일정한 시간내에)
+    * binary inputs (`1` or `0`)을 처리하여 binary output (`1` or `0`)을 내보냄.
+* 특정 Neuron이 **activation** (= output이  `1`)이 되려면 ^^2개 이상의 고정된 갯수의 synapse가 activation^^ 되어야 함 (일정한 시간내에)
     * delay는 synaptic delay만 고려. (= Neural network에서 다른 시간 지연을 고려하지 않음.)
 * absolute inhibitory input(=synapse)가 존재. 
-    * 해당하는 synapse가 activation 될 경우 그 때의 특정 neuron은 절대로 activation이 되지 못함.
+    * inhibitory synapse (위 그림에서 open circle)가 activation 될 경우 그 때의 특정 neuron은 절대로 activation이 되지 못함.
 * Neural network의 구조는 time-invariant (Weighting 및 학습에 대한 개념이 없었음).
 
 ---
@@ -56,18 +56,20 @@ ANN에서는 이를 edge에 weight을 할당하여 강화가 될 수록 weight�
 
 ![](./img/TLU.png)
 
-* activation function으로 TLU는 heaviside의 step function이나 signum function을 사용함.
-* 이후 sigmoid functions들이 사용됨.
+* activation function으로 TLU는 heaviside의 [step function](https://dsaint31.tistory.com/553)이나 [signum function (or sign function)](https://dsaint31.tistory.com/555)을 사용함.
+* 이후 [sigmoid functions](https://dsaint31.tistory.com/430)들이 사용됨 (back-propagation이 도입되면서).
 * 오늘날의 dense layer (fully connected layer)와 유사하며, 가장 많이 사용되는 activation function은 ReLU 임.
 
+> `TLU`는 linear function에 의해 정의되는 hyper-plane을 decision boundary로 삼는 일종의 binary classifier임.  
+> hyper-plane의 아래에 위치하는 경우엔 `off` 이 되고, 그 외의 경우는 `on` 이 되는 경우를 생각하면 쉽다.
 
 이 TLU를 기반으로 input layer (input nodes로 구성됨)와 output layer (output nodes로 구성됨) 
-로만 구성된 것을 `Single Layer Perceptron` 이라고 부름.
+로만 구성된 것을 `Single Layer Perceptron` or `Perceptron`이라고 부름.
 
 ![](./img/single_layer_perceptron.png)
 
-> 일반적으로 perceptron이라고 하면 SLP를 가르킨다. Scikit-Learn에서 `sklearn.linear_model.Perceptron`으로 제공되고 있다.  
-> package 명에서 알 수 있듯이 Perceptron은 linear model에 불과하다.
+> 일반적으로 `perceptron`이라고 하면 SLP를 가르킨다. Scikit-Learn에서 `sklearn.linear_model.Perceptron`으로 제공되고 있다.  
+> package 명에서도 알 수 있듯이 Perceptron은 linear model에 불과하다.
 
 ---
 
@@ -78,13 +80,13 @@ ANN에서는 이를 edge에 weight을 할당하여 강화가 될 수록 weight�
 [Principles of Neurodynamics: Perceptrons and the Theory of Brain Mechanisms, 1962](https://safari.ethz.ch/digitaltechnik/spring2018/lib/exe/fetch.php?media=neurodynamics1962rosenblatt.pdf)
 
 그 중 하나가 아래에 보이는 Multi-Layer Perceptron으로 일종의 feed-forward ANN이며 2개 이상의 layers를 쌓아 만들어짐.  
-(일반적으로 weight들이 있는 edge들이 몇단계로 쌓였는지로 layer의 갯수를 센다. 아래그림의 3개층으로 구성된 MLP임)
+(일반적으로 weight들이 있는 edge들이 몇 단계로 쌓였는지 또는 `TLU`로 구성된 layer의 갯수를 센다. 아래 그림의 3개층으로 구성된 MLP임)
 
 ![](./img/multi_layer_perceptron.png)
 
 
-* MLP는 SLP가 못 푸는 non-linear classification (`XOR`이 가장 간단한 예)도 해결 가능함.
-* 문제는 중간에 존재하는 여러 개의 hidden layer로 인해 증가된 weights (bias포함)를 어떻게 학습시킬지에 대한 해답을 Rosenblatt는 명확히 제시하지 못했고, back-propagation이 등장하여 적용되는 1980년대까지 학습방법이 제시되지 못함.
+* MLP는 perceptron (=SLP)가 못 푸는 non-linear classification (`XOR`이 가장 간단한 예)도 해결 가능함.
+* 문제는 중간에 존재하는 여러 개의 hidden layer로 인해 증가된 weights (bias포함)를 어떻게 학습시킬지에 대한 해답을 Rosenblatt는 명확히 제시하지 못했고, ^^back-propagation이 등장하여 적용되는 1980년대까지^^ MLP에 대한 학습방법이 제시되지 못함.
 
 ---
 
@@ -110,6 +112,9 @@ ANN에서는 이를 edge에 weight을 할당하여 강화가 될 수록 weight�
 ## Back-propagation의 등장 (MLP의 학습알고리즘)
 
 1960년대에 Gradient Descent를 통해 MLP를 학습시키기 위한 여러 시도가 있었으나 3층 수준의 MLP에서 모델의 error에 대한 gradients를 효과적으로 구하는 것이 쉽지 않았기 때문에 성공적인 결과를 이끌어내지 못함.
+
+> MLP에서 필요한 parameters는 weights (bias 포함)의 값들이며, 주어진 학습데이터에 대해 최적의 weights를 찾는 것을 training라고 함.  
+> 많은 machine learning에서 training (cost function을 최소화할 수 있는 weights를 찾는 과정)에 Gradient decent를 적용하기 때문에 MLP에도 이를 적용하고자 하는 시도는 매우 자연스런 현상이라고 볼 수 있음.
 
 그러던 중 1970년 Seppo Linnainmaa가 석사 논문으로 gradients 를 컴퓨터에서 효과적으로 계산해낼 수 있는 `reverse-mode automatic differentiation` 기법 (computational graph를 이용)을 제안한다.
 
@@ -182,8 +187,8 @@ Back-propagation은 Gradient decent와 Reverse-mode Autodiff의 조합이기 때
 
 Scikit-Learn에서 제공하는 `sklearn.neural_network.MLPRegressor` 와 `sklearn.neural_network.MLPClassifier` 의 hidden layer에서 사용되는 Activation functions은 다음과 같음.
 
-* `'identity'` : linear bottleneck을 만들 때에만 이용됨.
-* `'logistic'` : the logistic sigmoid function
+* `'identity'` : 주로 linear bottleneck을 만들 때에만 이용됨.
+* [`'logistic'`](https://dsaint31.tistory.com/320) : the logistic sigmoid function
 * `'tanh'` : the hyperbolic tan function
 * `'relu'` : the rectified linear function
 
