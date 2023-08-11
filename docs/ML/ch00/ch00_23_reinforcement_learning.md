@@ -8,11 +8,13 @@
 
 어떤 `Policy` 라는 ^^최상의 전략^^ 을 학습하는 것 을 가르킴.
 
-`Reinfrocement Learning` 에서 learning system을 `agent`라고 부르며, 이 agent 가 `environment` 와 상호 작용을 하면서 취한 ^^`action`에 따라 reward signal (or penalty signal)를 얻는데^^, ***최종적인 accumulated reward 를 maximize*** 하도록 ^^어떤 일련의 action들을 수행할지를 결정하는 `policy`를 학습^^ 하는 것을 가르킨다.
+`Policy`는 `Agent`가 어떤 환경에서 취하는 ***연속적인 actions*** 를 결정한다. 결국 강화학습은 최상의 연속적인 actions를 얻어내기 위한 것이라고도 볼 수 있음.
+
+`Reinforcement Learning` 에서 learning system을 `agent`라고 부르며, 이 agent 가 `environment` 와 상호 작용을 하면서 취한 ^^`action`에 따라 reward signal (or penalty signal)를 얻는데^^, ***최종적인 accumulated reward 를 maximize*** 하도록 ^^어떤 일련의 action들을 수행할지를 결정하는 `policy`를 학습^^ 하는 것을 가르킨다.
 
 > ^^A `policy` determines the action^^ an agent should take in a particular situation ^^to maximize `final accumulated reward`^^.
 
-## The three most important distinguishing properties of Reinforcement Learning Proble.
+## The three most important distinguishing properties of Reinforcement Learning Problem.
 
 아래와 같은 특징을 가지는 문제를 agent가 효과적으로 해결하도록 하는 방법들을 우리는 Reinforcement Learning method라고 한다.
 
@@ -24,35 +26,36 @@
 
 `Agent`는 ^^강화학습에서 학습자 에 해당^^ 됨.
 
-Reinforcemetn Learning Process는 다음의 요소들을 반드시 가지고 있어야 함.
+Reinforcement Learning Process는 다음의 요소들을 반드시 가지고 있어야 함.
 
-1. Agent는 environment와 interaction(상호작용)을 함. (action + sensation)
+1. `Agent`는 environment와 interaction(상호작용)을 함. (action + sensation)
     - `Action`으로 ^^Environment의 상태를 변화^^ 시킴.
-    - ^^Environment의 `State` 일부를 sensing^^ 할 수 있으며 이를 통해 다음 action을 결정함.
-2. Agent는 ***명시적인 goal*** 을 가짐. (goal)
-    - 해당 ^^goal은 Environment의 상태와 연관^^ 되어 있음.
-    - ^^goal의 달성 여부에 관련된 reward가 정의^^ 되며, Agent의 현재 state에 대한 action에 의해 변경된 environment의 state와 goal과의 연관성 등에 의해 계산된 ^^`Reward`가 agent에 주어진다.^^
+    - ^^`Environment의 State` 일부를 sensing^^ 할 수 있으며 이를 통해 다음 `action`을 결정함.
+2. `Agent`는 ***명시적인 `goal`*** 을 가짐. (goal)
+    - 해당 ^^`goal`은 Environment의 상태와 연관^^ 되어 있음.
+    - ^^goal의 달성 여부에 관련된 reward가 정의^^ 되며, `Agent의 현재 state`에 대한 `action`에 의해 변경된 `environment의 state`와 `goal`과의 연관성 등에 의해 계산된 ^^`Reward`가 agent에 주어진다.^^
 
 ![](../img/ch00/reinforcement_learning.png){width="400"}
 
 > 일반적으로 agent가 효과적으로 reinforcement learning을 하려면, `exploration` (탐험) 과 `exploitation` (이용) 사이의 균형을 잘 잡아야 한다.  
 > $^{(1)}$exploration : 다양한 situation에 대해 적절한 action을 찾기 위해서 새로운 시도를 하는 것을 의미함.  
-> $^{(2)}$explotiation : 현재까지의 경험을 토대로 가장 높은 reward를 보이는 action을 수행하는 것을 의미함.
+> $^{(2)}$exploitation : 현재까지의 경험을 토대로 가장 높은 reward를 보이는 action을 수행하는 것을 의미함.
 
 
 ## Supervised Learning과 Unsupervised Learning과의 차이점.
 
 `Reinforcement Learning`은 interaction으로부터 학습이 이루어져야하는데, 이 경우 ^^모든 situation에 대한 correct action이 지정되기 불가능^^ (=whole label제공이 불가능)함 (`supervised learning과의 차이점`). 때문에 `reward function` 등이 label 대신 주어짐. 
 
-> Reward signal은 agent가 취한 action에 대한 environment의 feedback으로 supervised learning의 ground truth에 해당하는 label과는 차이가 있다. ^^어떤 이상적인 action을 명시적으로 모든 상황에 맞게 주어질 수 없기 때문에 해당 action이 얼마나 goal을 달성하는데 유용한지를 측정하는 reward function으로부터 계산된 값^^ 이라고 봐야 한다.
+> `Reward` signal은 ^^agent가 취한 action에 대한 environment의 feedback^^ 으로 supervised learning의 ground truth에 해당하는 label과는 차이가 있다.  
+> ^^어떤 이상적인 action을 명시적으로 모든 상황에 맞게 주어질 수 없기 때문에 해당 action이 얼마나 goal을 달성하는데 유용한지를 측정하는 reward function으로부터 계산된 값^^ 이라고 봐야 한다.
 
 해당 reward function으로부터 주어지는 ^^reward signal을 maximization하는 learning이라는 점에서 `unsupervised learning`하고도 차이^^ 가 있다.
 
-> Reinforcement Learning에서는 `exploratory trial-and-error approch` 나 `deliberative planning` 등을 통해 agent는 final accumulated reward를 최대화하는 것을 목표로 한다.
+> Reinforcement Learning에서는 `exploratory trial-and-error approach` 나 `deliberative planning` 등을 통해 agent는 final accumulated reward를 최대화하는 것을 목표로 한다.
 
 ^^`Unsupervised learning`처럼 agent가 얻는 experience의 내부적인 특성 구조를 추출하는 것은 reinforcement learning의 목표가 아니다.^^ (물론 해당 추출하는 과정이 reward signal을 maximization하는 목표에 도움이 될 수는 있다.)  
 
-> Environment의 모든 state에 대해 reward와 panelty가 주어져있다고 생각하고 acton을 통해 agent는 environment의 state를 변경해 나갈 수 있다고 하자. 
+> Environment의 모든 state에 대해 reward와 penalty가 주어져있다고 생각하고 acton을 통해 agent는 environment의 state를 변경해 나갈 수 있다고 하자. 
 > 이때 agent가 acton을 결정하는 기준이 바로 policy이고 이 policy가 final accumulated reward를 최대화하는 방향으로 학습이 되게 하면 된다. 
 > 이는 매우 간단한 경우이고, 많은 경우 reward는 즉각적으로 주어지기 어려운 경우도 많다 (체스 등에서 당장은 상대편 말을 잡아서 이득이지만, 장기적으로는 킹을 잃게 되는 수가 있을 수 있고, 당장은 내 퀸을 잃지만 장기적으로는 상대 킹을 잡는 수가 있을 수 있다).
 > 더욱이 상대편이 있는 경우엔 상대방의 action에 의해서도 reward가 영향을 받게 된다는 점이 reward function에서 어려운 점이다. ^^즉, reward는 action에 대해 즉각적일 수도 있으나 대부분 delayed feedback으로 주어질 수 있다.^^

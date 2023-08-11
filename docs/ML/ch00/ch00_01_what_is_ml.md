@@ -1,6 +1,6 @@
 # Machine Learning (ML)이란?
 
-간단하게 말하면, data로부터 computer가 학습(learning)을 하도록 프로그래밍하는 과학분야 또는 기술을 가르키는 용어임.
+간단하게 말하면, ^^data로부터 computer가 학습(learning)을 하도록 프로그래밍하는 과학분야 또는 기술^^ 을 가르키는 용어임.
 
 좀더 풀어서 애기하면, computer에게 기존의 알고리즘 (with explicitly programming)과 같이 어떻게 task를 수행할지를 명시적으로 알려주지 않고, 관련 data들을 제공해주면서, computer가 스스로 해당 data로부터 task를 수행하는데 필요한 logic과 rule을 학습할 수 있도록 해주는 프로그래밍 기법 또는 이를 연구하는 분야이다.
 
@@ -71,7 +71,7 @@ ML은 다음으로 구성된다고도 생각할 수 있다.
 
 ## ML vs. Data Mining
 
-**classificatoin, regression, clustering 등을 위한 기술, 모델, 알고리즘** 을 ***이용*** 하여 
+**classification, regression, clustering 등을 위한 기술, 모델, 알고리즘** 을 ***이용*** 하여 
 ***어떤 task를 수행*** 하거나 ***problem을 해결*** 하는 것을 
 
 - **컴퓨터 과학 관점** 에서 **Machine Learning** 이라고 부름. *← 추론적*
@@ -81,7 +81,7 @@ ML은 다음으로 구성된다고도 생각할 수 있다.
 
 ### Data Mining
 
-Data Mining은 
+`Data Mining`은 
 
 1990년대 ^^통계학의 이슈들^^ 을  
 ***Machine Learning적 접근법(컴퓨터 공학적 접근법)을 사용하여 효율적으로 해결하려고 했던 움직임에 기원*** 하는데,  

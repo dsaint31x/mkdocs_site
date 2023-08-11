@@ -2,10 +2,10 @@
 
 Network (object들의 연결관계)를 나타내는 자료구조의 일종으로 node(or vertex, 정점)와 edge로 구성된다.
 
-* Ojbect들의 관계 등을 연결시켜서 Network로 표현해주는 모델.
+* Object들의 관계 등을 연결시켜서 Network로 표현해주는 모델.
 * 여러 개의 분리된 subgraph (=isolated subgraph)들로 구성될 수도 있음 
 
-> Tree구조와 함께 Ojbect간의 관계, 또는 network를 모델링하는데 많이 사용되는 자료구조임. 엄격하게 애기해서 Tree는 Directed Acyclic Graph의 하나로 root node라는 graph 내의 모든 node와 path가 존재하는 node가 하나 있는 경우를 애기함.  
+> Tree구조와 함께 Object간의 관계, 또는 network를 모델링하는데 많이 사용되는 자료구조임. 엄격하게 애기해서 Tree는 Directed Acyclic Graph의 하나로 root node라는 graph 내의 모든 node와 path가 존재하는 node가 하나 있는 경우를 애기함.  
 > Network를 모델링할 때는 Graph를, Hierarchy를 모델링할 때는 Tree가 사용됨.
 
 ## Terminology
@@ -38,7 +38,7 @@ Network (object들의 연결관계)를 나타내는 자료구조의 일종으로
 : terminal node가 일치하는 simple path.
 
 `path length`
-: 일반적으로 path를 구성하는 edge의 갯수로 표시된다. edge에 특정 weight들이 할당된 경우, 해당 weigt들이 더해져서 path length가 되기도 함. geodesic distance라고도 불림.
+: 일반적으로 path를 구성하는 edge의 갯수로 표시된다. edge에 특정 weight들이 할당된 경우, 해당 weight들이 더해져서 path length가 되기도 함. geodesic distance라고도 불림.
 
 # 종류
 

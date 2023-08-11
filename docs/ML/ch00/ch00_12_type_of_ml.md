@@ -22,7 +22,7 @@ Whether or not they are trained with human supervision.
 
 Whether the method relies on ^^comparing new data points to known ones in the training set^^ , or instead ^^detects patterns in the training data and creates a `predictive model`^^, much like scientists do.
 
-* Insance based Learning
+* Instance based Learning
 * Model based Learning
 
 ---
@@ -32,7 +32,7 @@ Whether the method relies on ^^comparing new data points to known ones in the tr
 `새로운 데이터에 대한 prediction이 가능` 한지 여부로 구분.
 
 * Inductive Learning
-* Transductive Learning
+* [Transductive Learning](http://ds31x.blogspot.com/search?q=transductive)
 
 ---
 

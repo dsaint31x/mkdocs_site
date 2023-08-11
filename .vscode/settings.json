@@ -2,6 +2,7 @@
     "cSpell.words": [
         "affinitiy",
         "Affinity",
+        "Apriori",
         "CatBoost",
         "DBSCAN",
         "dendrogram",
@@ -13,8 +14,10 @@
         "medoid",
         "medoids",
         "overfitting",
+        "RMSE",
         "scikit",
         "sklearn",
-        "textbf"
+        "textbf",
+        "transductive"
     ]
 }
