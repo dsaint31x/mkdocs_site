@@ -155,7 +155,7 @@ nav:
         - "IO Mux":           "CE/ch06/ce06_1_04_multiplexing_posts.md"
         - "Duty Cycle":       "CE/ch06/ce06_1_05_bright_duty.md"
         - "Gray Code":        "CE/ch06/ce06_1_06_graycode.md"
-        - "Paralle Transfer": "CE/ch06/ce06_1_07_parallel_com.md"
+        - "Parallel Transfer": "CE/ch06/ce06_1_07_parallel_com.md"
         - "Serial Transfer":  "CE/ch06/ce06_1_08_serial_com.md"
         - "USB":              "CE/ch06/ce06_1_09_usb.md"
       - "Network and Communication":
@@ -170,7 +170,7 @@ nav:
       - "CE/ch08/ce08_compiler_interpreter.md"
       - "CE/ch08/ce08_assembly_language.md"
     - 'ch09':
-      - "CE/ch09/ce09_webbrowser.md"
+      - "CE/ch09/ce09_web_browser.md"
     - 'ch10':
       - "Concepts for Programming":
         - "Command Line Interface": "CE/ch10/ce10_2_01_cli_terminal.md"

@@ -26,10 +26,10 @@ Web browser는 매우 다양한 instruction set을 지원하며, 이들 사용�
 
 Web browser you use every day is
 
-* a ***`virtual machine`*** -- an abstract computer with an incredibly complicated instruciton set implemented entirely in software.
+* a ***`virtual machine`*** -- an abstract computer with an incredibly complicated instruction set implemented entirely in software.
 * one of ***`interpreters`***.
 
-### Engine (or Layout Engine, Randering Engine)
+### Engine (or Layout Engine, Rendering Engine)
 
 * HTML과 CSS, XML등으로 작성된 웹페이지를 읽어들여서 사람이 읽을 수 있는 문서로 표시해주는 웹 브라우저의 핵심기능을 담당하는 component를 지칭함.
 * Markup language등에 대한 일종의 interpreter라고 볼 수 잇음.

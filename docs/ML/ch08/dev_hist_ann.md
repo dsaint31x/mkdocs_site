@@ -188,7 +188,7 @@ Back-propagation은 Gradient decent와 Reverse-mode Autodiff의 조합이기 때
 Scikit-Learn에서 제공하는 `sklearn.neural_network.MLPRegressor` 와 `sklearn.neural_network.MLPClassifier` 의 hidden layer에서 사용되는 Activation functions은 다음과 같음.
 
 * `'identity'` : 주로 linear bottleneck을 만들 때에만 이용됨.
-* [`'logistic'`](https://dsaint31.tistory.com/320) : the logistic sigmoid function
+* `'logistic'`: [the logistic sigmoid function](https://dsaint31.tistory.com/320) 
 * `'tanh'` : the hyperbolic tan function
 * `'relu'` : the rectified linear function
 
