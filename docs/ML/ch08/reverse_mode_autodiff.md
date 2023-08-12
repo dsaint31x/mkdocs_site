@@ -8,6 +8,15 @@ TensorFlow, PyTorch 등에서
 * back-propagation 수행에서 사용되는 auto differentiation의 한 기법임.
 
 
+> 컴퓨터를 사용하여 Differentiation(미분)을 수행하는 다음의 3가지 중 DL분야에서 주로 사용되는 기법
+> 
+> 1. Symbolic Differentiation
+> 2. Numerical Differentiation
+> 3. Forward-Mode or ***Reverse-Mode Auto Differentiation***
+
+위의 1번과 3번의 경우는는 Computation Graph 기법에 의존하고 있음.
+
+
 - Forward-mode Auto diff와 달리
     - output(출력단)에서 출발하여 각 input(입력단)으로(←reverse direction, backward pass)
     - 한번만 수행(단, 1번의 forward pass가 이전에 수행되어야함)하면 모든 partial differentiation들을 구할 수 있음.

@@ -30,7 +30,7 @@ Gradient Decent는 기본적으로 Differentiation의 수행을 기반함.
 
 1. Symbolic Differentiation
 2. Numerical Differentiation
-3. Forward-Mode or [Reverse-Mode Auto Differentiation](https://www.notion.so/Reverse-Mode-Autodiff-Auto-Differentiation-dd7bb85d7ab84cdfa119773f77a19298?pvs=21)
+3. Forward-Mode or [Reverse-Mode Auto Differentiation](./reverse_mode_autodiff.md)
 
 위의 1번과 3번의 경우는는 Computation Graph 기법에 의존하고 있음.
 
@@ -49,7 +49,7 @@ Gradient Decent는 기본적으로 Differentiation의 수행을 기반함.
 : - `edge` : 데이터가 흘러들어가는 방향을 나타냄.
     
     
-[Reverse-Mode Autodiff (Auto-Differentiation)](https://www.notion.so/Reverse-Mode-Autodiff-Auto-Differentiation-dd7bb85d7ab84cdfa119773f77a19298?pvs=21) ← Computational graph에서 실제 back propagation에서 사용되는 reverse-mode auto differentiation에 대한 정리임. (참고용)
+[Reverse-Mode Autodiff (Auto-Differentiation)](./reverse_mode_autodiff.md) ← Computational graph에서 실제 back propagation에서 사용되는 reverse-mode auto differentiation에 대한 정리임. (참고용)
 
 ---
 
