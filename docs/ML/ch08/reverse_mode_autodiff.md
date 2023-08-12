@@ -1,11 +1,11 @@
 # Reverse-Mode Autodiff (Auto-Differentiation)
 
-***Reverse-mode autodiff***는
+***Reverse-mode autodiff*** 는
 
 TensorFlow, PyTorch 등에서 
 
-* gradient를 구하는 
-* back-propagation 수행에서 사용되는 auto differentiation의 한 기법임.
+* gradient를 구하는 back-propagation 수행에서 사용되는
+* auto differentiation의 한 기법임.
 
 
 > 컴퓨터를 사용하여 Differentiation(미분)을 수행하는 다음의 3가지 중 DL분야에서 주로 사용되는 기법
@@ -25,7 +25,7 @@ TensorFlow, PyTorch 등에서
     - input이 많은 경우에 유리함.
         - 대부분의 딥러닝 모델에서 input이 압도적으로 output보다 많음.
     
-- Reverse-mode Auto Diff는 ***chain rule***에 기반하고 있음.
+- Reverse-mode Auto Diff는 ***chain rule*** 에 기반하고 있음.
     
 $$
 \dfrac{\partial f}{\partial x}=\dfrac{\partial f}{\partial n_i}\dfrac{\partial n_i}{\partial x}
@@ -44,7 +44,8 @@ differentiation을 효율적으로 수행함.
 
 ## 특징
 
-- 수치해석 기반의 differentiation method보다 높은 정확도를 가짐(Forward-mode autodiff 수준의 accuracy를 보임)
+- 수치해석 기반의 differentiation method보다 높은 정확도를 가짐  
+(Forward-mode autodiff 수준의 accuracy를 보임)
 - 모든 partial differentiation을 구하기 위해서 단 한번의 forward pass 와 backward pass 가 요구되어 매우 효율적임.
 - 일부 미분이 불가능한 연산(혹은 구간)이 포함된 함수도 미분할 수 있음. (해당 연산에서 partial derivative 결과를 대신하도록 처리하거나, 미분이 가능한 구간에서만 사용 등을 이용하여)
 
@@ -119,18 +120,18 @@ $z=2xy+y+3$에 대해, 입력 $x=40, y=4$ 인 경우의 Backward pass를 수행�
     - 입력값이 클수록 곱해지는 값이 커짐 → 지나치게 값이 커지게 됨을 알 수 있음.
     - forward pass에서 입력값들을 저장되어야 함.
 
-### ****Squared and Exponentiation****
+### **Squared and Exponentiation**
 
 ![Untitled](./img/back_propagation_ex_07.png)
 
 - local gradient가 곱해짐.
 - 각각의 local gradient 계산에 입력값이 필요함.
 
-### Rectified Linear Unit
+### **Rectified Linear Unit**
 
 ![Untitled](./img/back_propagation_ex_08.png)
 
-### Logistic function
+### **Logistic function**
 
 대표적인 sigmoid function에 대한 reverse-mode autodiff.
 

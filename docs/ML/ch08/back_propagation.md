@@ -8,17 +8,18 @@
 - "Gradient Descent"
 
 `Reverse-mod AutoDiff` 
-: 컴퓨터로 정확하고 빠르게 Differentiation(미분)을 수행(=gradient)하기 위해 ^^여러 다른 분야에서 사용^^ 되는 알고리즘.
-: 1970년 Seppo Linnainmaa가 석사 논문 [The representation of the cumulative rounding error of an algorithm as a Taylor expansion of the local rounding errors](https://people.idsia.ch/~juergen/linnainmaa1970thesis.pdf)에서 제안.  
-: (정말 천재적이라고 생각이 든다. Divide and Conquer 를 너무 멋지게 구현한 듯....)
+: 컴퓨터로 정확하고 빠르게 Differentiation(미분)을 수행(=gradient)하기 위해 ^^여러 다른 분야에서 사용^^ 되는 알고리즘.  
+1970년 Seppo Linnainmaa가 석사 논문 [The representation of the cumulative rounding error of an algorithm as a Taylor expansion of the local rounding errors](https://people.idsia.ch/~juergen/linnainmaa1970thesis.pdf)에서 제안.  
+(정말 천재적이라고 생각이 든다. 복잡한 문제를 작은 단위로 나누어 처리하는 기본에 충실)
 
 `Gradient Descent`
 : loss function을 model의 parameters로 편미분하여 구한 gradient를 이용하여  
-주어진 training dataset에 대해 loss function을 최소화하는 최적의 parameters를 구하는 Optimization 기법.
+주어진 training dataset에 대해 loss function을 최소화하는 최적의 parameters를 구하는 기법.
 
 > Back-propagation은 주로 딥러닝 분야에서 사용되는 용어이며 다른 분야들에서 Reverse-mode auto differentiation으로 불림. 
 
-Back-propagation을 ANN의 학습에 적용시킨 이는 1974년 Paul J. Werbos로 이를 박사학위 논문 [Beyond regression: New tools for prediction and analysis in the behavioral sciences, 1974 (Paul J. Werbos, Ph.D. dissertation)](https://www.researchgate.net/publication/35055330_Beyond_regression_new_tools_for_prediction_and_analysis_in_the_behavior_sciences_microform)에서 제안했으며, 현재의 Deep Learning의 전성기의 연 기념비적인 논문으로 인정받는 1986년 Rumelhart와 Hinton의 [Learning internal representations by error propagation (Rumelhart, Hinton)](https://www.semanticscholar.org/paper/Learning-internal-representations-by-error-Rumelhart-Hinton/111fd833a4ae576cfdbb27d87d2f8fc0640af355)를 통해 ANN의 학습기법으로 널리 사용되게 된다.
+Back-propagation을 ANN의 학습에 적용시킨 이는 1974년 Paul J. Werbos로 이를 박사학위 논문 [Beyond regression: New tools for prediction and analysis in the behavioral sciences, 1974 (Paul J. Werbos, Ph.D. dissertation)](https://www.researchgate.net/publication/35055330_Beyond_regression_new_tools_for_prediction_and_analysis_in_the_behavior_sciences_microform)에서 제안했으며,  
+현재의 Deep Learning의 전성기의 시작을 연 기념비적인 논문 중 하나인 1986년 Rumelhart와 Hinton의 [Learning internal representations by error propagation (Rumelhart, Hinton)](https://www.semanticscholar.org/paper/Learning-internal-representations-by-error-Rumelhart-Hinton/111fd833a4ae576cfdbb27d87d2f8fc0640af355)를 통해 ANN의 학습기법으로 널리 사용되게 된다.
 
 ---
 
@@ -43,13 +44,12 @@ Gradient Decent는 기본적으로 Differentiation의 수행을 기반함.
 > * 복잡한 Deep ANN의 gradient를 효율적으로 계산할 수 있음.
 
 `Computational Graph` 
-: 계산 과정을 그래프로 나타낸 것.
-:
+: 계산 과정을 그래프로 나타낸 것.  
 : - `node` : 연산 (operation)
 : - `edge` : 데이터가 흘러들어가는 방향을 나타냄.
     
     
-[Reverse-Mode Autodiff (Auto-Differentiation)](./reverse_mode_autodiff.md) ← Computational graph에서 실제 back propagation에서 사용되는 reverse-mode auto differentiation에 대한 정리임. (참고용)
+참고 : [Reverse-Mode Autodiff (Auto-Differentiation) 관련자료](./reverse_mode_autodiff.md) 
 
 ---
 
