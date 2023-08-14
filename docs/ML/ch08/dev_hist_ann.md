@@ -189,7 +189,7 @@ Scikit-Learn에서 제공하는 `sklearn.neural_network.MLPRegressor` 와 `sklea
 
 * `'identity'` : 주로 linear bottleneck을 만들 때에만 이용됨.
 * `'logistic'`: [the logistic sigmoid function](https://dsaint31.tistory.com/320) 
-* `'tanh'` : the hyperbolic tan function
+* `'tanh'` : [the hyperbolic tangent function](https://dsaint31.tistory.com/577)
 * `'relu'` : the rectified linear function
 
 
