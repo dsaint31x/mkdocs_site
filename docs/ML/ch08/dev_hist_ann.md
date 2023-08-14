@@ -216,6 +216,7 @@ activation function이 identity function일 경우, perceptron은 단순한 line
 * [Who Invented the Reverse Mode of Differentiation?](https://www.math.uni-bielefeld.de/documenta/vol-ismp/52_griewank-andreas-b.pdf)
 * [Backpropagation Applied to Handwritten Zip Code Recognition, Y. LeCun el al. 1989](http://yann.lecun.com/exdb/publis/pdf/lecun-89e.pdf)
 * [A fast learning algorithm for deep belief nets, G. E. Hinton et al.](http://www.cs.toronto.edu/~osindero/PUBLICATIONS/HOT_NC05_fast_deep_nets.pdf)
+* [DEEP LEARNING 101](https://slides.com/beamandrew/deep-learning-101/#/42)
 
 
 
