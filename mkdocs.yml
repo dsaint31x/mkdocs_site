@@ -293,6 +293,7 @@ nav:
       - "ML/ch08/reverse_mode_autodiff.md"
       - "ML/ch08/datastructure_graph.md"
       - "ML/ch09/weight_initializations.md"
+      - "ML/ch09/act_relu.md"
     - "RNN":
       - "ML/ch16_RNN/RNN_topologies.md"
       - "ML/ch16_RNN/RNN_Bahdanau_attention.md"
