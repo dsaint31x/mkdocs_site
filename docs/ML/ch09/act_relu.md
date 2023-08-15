@@ -2,6 +2,8 @@
 
 초기 perceptron의 Unit step에서 logistic 으로 activation function으로 바꾸어진 이후, 가장 효과적인 activation function으로 부상한 것이 `ReLU` 이다.
 
+$$ \text{ReLU}(x) = \text{max}(x,0)$$
+
 ## 기존 Sigmoid function의 단점.
 
 logistic과 같은 sigmoid function 계열의 activation function의 가장 큰 단점은 gradient vanishing 이 발생하기 쉽다는 점임.
