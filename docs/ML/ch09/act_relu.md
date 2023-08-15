@@ -4,6 +4,13 @@
 
 $$ \text{ReLU}(x) = \text{max}(x,0)$$
 
+GPU를 효과적으로 활용할 수 있는 구현물이 기본으로 제공되며, 가장 기본적으로 사용하기 좋은 activation function임.
+
+### ReLU 미분
+
+$$ \dfrac{d}{dx}\text{ReLU}(x) = \left\{ \begin{matrix}1 & \text{ if } x \ge 0 \\ 0 & \text{ if } x < 0 \end{matrix}\right.$$
+
+
 ## 기존 Sigmoid function의 단점.
 
 logistic과 같은 sigmoid function 계열의 activation function의 가장 큰 단점은 gradient vanishing 이 발생하기 쉽다는 점임.
@@ -53,9 +60,17 @@ where
 
 일반적으로 $0.2$ 정도의 large leakage factor가 $0.01$ 의 적은 경우보다 좋은 결과로 이어지는 것으로 알려짐.
 
-Ref. : Bing Xu et al., “Empirical Evaluation of Rectified Activations in Convolutional Network,” arXiv preprint arXiv:1505.00853 (2015).
+Ref. : [Bing Xu et al., “Empirical Evaluation of Rectified Activations in Convolutional Network,” arXiv preprint arXiv:1505.00853 (2015).](https://arxiv.org/abs/1505.00853)
 
-### Paramateric Leaky ReLu 
+#### Leaky ReLU 미분
+
+$$ \dfrac{d}{dx}\text{leakyReLU}(x)=\text{max}(1,\alpha)$$
+
+where
+
+* $0. \le \alpha < 1.$
+
+### Parametric Leaky ReLu 
 
 Leaky ReLU의 $\alpha$를 trainable parameter로 삼아서 dataset을 기반으로 최적의 값을 찾도록 한 변형이다.
 

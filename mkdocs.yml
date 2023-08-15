@@ -294,6 +294,8 @@ nav:
       - "ML/ch08/datastructure_graph.md"
       - "ML/ch09/weight_initializations.md"
       - "ML/ch09/act_relu.md"
+      - "ML/ch09/act_elu.md"
+      - "ML/ch09/act_silu.md"
     - "RNN":
       - "ML/ch16_RNN/RNN_topologies.md"
       - "ML/ch16_RNN/RNN_Bahdanau_attention.md"

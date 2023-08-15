@@ -27,9 +27,10 @@ Xavier Glorot et al.이 찾은 원인은 다음과 같음
 
 당시 ANN의 경우, 
 
-* "`logistic`` activation function"과 "normal distribution으로 초기화된 weights"를 사용했는데, 
+* "`logistic` activation function"과 "normal distribution으로 초기화된 weights"를 사용했는데, 
 * 이 조합은 각 layer에서 input nodes와 output nodes의 수가 다른 점과 함께 작용하여
 * layer에서 input에서의 variance와 output의 variance가 매우 달라지게 함(output의 variance가 커짐)을 확인함.
+    * 좀 더 자세히 말하면, input node의 갯수 ($\text{fan}_\text{in}$)에 비례하여 layer output의 variance가 커짐. (forward flow의 경우이며, backward flow의 경우엔 output node의 갯수 ($\text{fan}_\text{out}$)에 비례하여 커짐.)
 
 output의 variance가 커질 경우, forward-pass에서 점점 variance는 증가하게 되고 최종 output layer에 가까운 layer에서는 대부분 logistic activation function이 0 또는 1로 saturate(수렴)되는 결과를 일으키게 된다.
 
@@ -40,6 +41,8 @@ output의 variance가 커질 경우, forward-pass에서 점점 variance는 증�
 > forward pass에서 output의 weighted sum이 input의 weighted sum보다 커지는 `bias shift`가 발생하기 쉬움 (이는 여러 layers를 통과할수록 variance가 커지는 문제로 이어짐).  
 > 이는 `tanh` 이 logistic보다 좀더 학습을 잘 시키는 이유의 근거가 된다. (`tanh`은 mean이 0임.)
 
+* 참고 : [sigmoid](https://dsaint31.tistory.com/430)
+* 참고 : [hyperbolic tangent, `tanh`](https://dsaint31.tistory.com/577)
 * 참고 : [Random variable의 곱과 variance](https://dsaint31.tistory.com/580) 
 
 ---
@@ -92,7 +95,7 @@ $\text{fan}_\text{out}$
 주의할 것은 activation function에 따라 좀더 적절한 initialization이 결정된다는 점임. 때문에 아래 표도 궁합이 맞는 activation function이 같이 표기됨.
 
 | Initialization | Activation functions | $\sigma^2$(Normal dist.) | [$-l$, $l$] (Uniform dist.) | Keras impl. |
-|:----:|:----:|:----:|:----:|:----:|:----:|
+|:----:|:----:|:----:|:----:|:----:|
 | Yann LeCun	| SELU	| $\sigma^2 = 1/\text{fan}_\text{in}$	| $l=\sqrt{3\sigma^2}$ | `lecun_normal`, `lecun_uniform`|
 | Xavier Glorot |	None, tanh, sigmoid, softmax |	$\sigma^2 = 1/\text{fan}_\text{avg}$ | $l = \sqrt{3\sigma^2}$ | `glorot_normal`, `glorot_uniform` | 
 | Kaiming He	| ReLU, Leaky ReLU, ELU, GELU, Mish	| $\sigma^2 = 2/\text{fan}_\text{in}$ |	$l = \sqrt{3\sigma^2}$ | `he_normal`,`he_uniform`| 
