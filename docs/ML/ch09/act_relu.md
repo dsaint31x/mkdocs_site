@@ -11,7 +11,7 @@ logistic과 같은 sigmoid function 계열의 activation function의 가장 큰 
 * 양 끝단(=양과 음으로 매우 큰 input)에서의 gradient가 0에 가깝게 너무 작아지는 문제가 있음.
 * 때문에 많은 layers 가 사용되는 deep ANN 에서 사용이 적절하지 않음.
 
-—- 
+---
 
 ## ReLU 의 장점.
 
@@ -23,7 +23,7 @@ logistic과 같은 sigmoid function 계열의 activation function의 가장 큰 
 * 기존의 Glorot weight init.과 함께 사용될 경우, forward-pass에서 layer의 output이 0의 값으로 쏠리는 분포를 보이는 단점이 있으나, 이를 개선한 He weight init.과 사용시 이같은 문제가 거의 없음.
 * `ReLU`는 Sparse activation을 생성함으로서 over-fitting을 막아주는 효과를 가짐(L1 Norm기반의 Lasso loss를 사용할 경우 Model의 weights를 sparse하게 해주면서 over-fitting을 막아주던 것과 비슷)
 
-—-
+---
 
 ## ReLU 의 단점.
 
@@ -35,7 +35,7 @@ logistic과 같은 sigmoid function 계열의 activation function의 가장 큰 
     * converge 속도가 느려지는 단점을 보임 
     * 이는 the variants of `ReLU`들이 가지는 문제점으로 smooth하게 변경한 Exponential Linear Unit (ELU)등을 통해 개선됨. 
 
-—-
+---
 
 ## The variants of ReLU
 
@@ -43,11 +43,11 @@ logistic과 같은 sigmoid function 계열의 activation function의 가장 큰 
 
 negative input에 대해서 0으로 처리하는 `ReLU`와 달리 `Leaky ReLU`는 leakage factor $\alpha$ 만큼의 gradient를 유지해줌.
 
-$$\text{leaky ReLU}=\text{max}(x, \alpha x)$$
+$$\text{leakyReLU}(x)=\text{max}(x, \alpha x)$$
 
 where
 
-* $0. \ge \alpha < 1.$
+* $0. \le \alpha < 1.$
 
 단점은 $\alpha$로 인해 hyper-parameter가 하나 더 늘어났다는 점이며, 적절한 $\alpha$를 찾아야 한다는 점이다.
 
