@@ -137,7 +137,8 @@ ANN에서는 이를 edge에 weight을 할당하여 강화가 될 수록 weight�
 
 Back-propagation을 통해 3층으로 구성된 MLP의 학습이 가능해졌고, 이에 대한 연구가 1980년대에 활발히 이루어지기 시작함. 
 
-> 주의할 건 1990년대에 2개의 hidden layer를 가지는 MLP (output layer를 포함하여 3개층을 가짐)를 Deep하다고 지칭했다는 점임.
+> 주의할 건 1990년대에 2
+개 이상의 hidden layer를 가지는 MLP (output layer를 포함하여 3개층 이상을 가짐)를 Deep하다고 지칭했다는 점임.
 
 1980년대는 ANN의 부활기로 알려져 있다. 1982년 John Hopfield가 제안한 Hopfield Network 에서 알 수 있듯이 심리학자나 수학자들이 연구주제였던 ANN이 공학자들의 연구대상이 되어 ANN에 대한 HW구현, 문자인식 등의 응용분야로 연구가 활발히 시작됨. 이는 International Neural Network Society (국제신경망학회)가 1980년대 후반에 결성된 것을 봐도 알 수 있음.
 
