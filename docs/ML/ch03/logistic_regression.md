@@ -1,10 +1,25 @@
 # Logistic Regression
 
+Logistic Regression은 이름과 달리, binary classification task를 위한 모델로서 특정 class에 속할 확률을 출력해준다 (output이 하나의 확률값임).
+
+다음의 순서를 따름.
+
+1. Regression으로 어떤 score $t$ (=logit score)를 구함 
+2. 해당 score를 logistic function의 입력값으로 넣으면 0~1사이의 확률값이 나옴.
+3. 해당 확률로 classification (binary classification)
+
+
+참고 : [Logit을 통한 Logistic Regression 유도](https://dsaint31.tistory.com/320)
+
+> 이 문서는 Logistic Regression을  
+> Bernoulli Distribution에 기반한 Maximum Likelihood Estimation의 관점으로 해석하여  
+> DL에서의 binary classification model에 대한 이해로 확장해나가는 것을 목표로 함.
+
 ## Binary Classification
 
 input $\textbf{x}$가 주어질 경우, 출력이 binary class를 나타내는 task를 binary classification임.
 
-ANN등으로 만들 경우, output이 숫자 하나로 나오며 특정 class에 속할 확률 $\hat{p}$로 나오게 된다. 이는 다른 class에 속할 확률이 $q=1-\hat{p}$임을 의미하기도 한다.
+ANN등으로 만들 경우, output이 숫자 하나로 나오며 특정 class에 속할 확률 $\hat{p}$로 나오게 된다. 이는 다른 class에 속할 확률이 $\hat{q}=1-\hat{p}$임을 의미하기도 한다.
 
 해당 task에 대해 label은 $y \in \{0,1\}$로 주어져서 $i$번째 input $\textbf{x}^{(i)}$에 대응하는 label $y^{(i)}$는 0 또는 1 중의 하나가 된다.
 
@@ -43,6 +58,8 @@ $$p(y^{(i)}|\textbf{x}^{(i)};\boldsymbol{\theta})=(\hat{p}^{(i)})^{y^{(i)}}(1-\h
 
 이는 $p$가 ***Bernoulli random variable의 distribution*** 을 따름을 보여줌 (위의 식은 Bernoulli distribution의 PMF임).
 
+* ref. : [Berolli distribution에 대해서](https://dsaint31.tistory.com/582)
+
 **label $y^{(i)}=0$인 경우**
 : output $\hat{p}$가 0에 가까울수록 정답에 가까운 것이므로 likelihood가 1에 가까워지고, 반대인 경우엔 likelihood가 0에 가까워지므로 model의 결과가 얼마나 정확한지를 의미함.
 
@@ -51,14 +68,20 @@ $$p(y^{(i)}|\textbf{x}^{(i)};\boldsymbol{\theta})=(\hat{p}^{(i)})^{y^{(i)}}(1-\h
 
 > bernoulli random variable은 0 또는 1을 값으로 가지는 discrete random variable. Binary classification가 Bernoulli trial의 정의와 일치하기 때문임.
 
-위의 $p(\hat{y}|\textbf{x};\boldsymbol{\theta})$를 likelihood로 삼고 이를 최대화하는 maximum likelihood expectation (MLE)는 다음과 같으며 이를 통해 likelihood를 최대화 하는 parameters를 구할 수 있게 된다.
+달리 말하면 model의 output (=종속변수)가 Bernolli probability distribution을 따른다고 볼 수 있음.
 
-$$\begin{aligned}\boldsymbol{\theta}&=\underset{\boldsymbol{\theta}}{\text{argmax }} \prod _{i=1}^M p(y^{(i)}|\textbf{x}^{(i)};\boldsymbol{\theta})\\&=\underset{\boldsymbol{\theta}}{\text{argmax }} \prod _{i=1}^M \mathcal{L}(y^{(i)}|\textbf{x}^{(i)};\boldsymbol{\theta})\\&=\underset{\boldsymbol{\theta}}{\text{argmax }} \prod _{i=1}^M (\hat{p}^{(i)})^{y^{(i)}}(1-\hat{p}^{(i)})^{1-y^{(i)}}\end{aligned}$$
+위의 $p(\hat{y}|\textbf{x};\boldsymbol{\theta})$를 likelihood로 삼아 이를 최대화하는 maximum likelihood expectation (MLE)는 다음과 같으며 아 MLE를 통해 likelihood를 최대화 하는 parameters를 구할 수 있게 된다.
+
+> 각 likelihood들의 joint probability를 통해 training dataset의 모든 $M$개의 sample들에 기반한 최적의 parameters $\boldsymbol{\theta}$를 구한다.  
+(모델에서 각 sample들이 서로의 class를 결정할 때 각각이 독립이라는 가정에 기반.)  
+
+$$\begin{aligned}\boldsymbol{\theta}&=\underset{\boldsymbol{\theta}}{\text{argmax }} \prod _{i=1}^M p(y^{(i)}|\textbf{x}^{(i)};\boldsymbol{\theta})\\&=\underset{\boldsymbol{\theta}}{\text{argmax }} \prod _{i=1}^M \mathcal{L}(\boldsymbol{\theta}|\textbf{x}^{(i)},y^{(i)})\\&=\underset{\boldsymbol{\theta}}{\text{argmax }} \prod _{i=1}^M (\hat{p}^{(i)})^{y^{(i)}}(1-\hat{p}^{(i)})^{1-y^{(i)}}\end{aligned}$$
 
 * $\displaystyle \prod _{i=1}^M p(y^{(i)}|\textbf{x}^{(i)};\boldsymbol{\theta})$가 최대화된다는 것은 model이 정답을 맞출 확률이 커진다는 것을 의미함.
 * $\boldsymbol{\theta}$를 조절하면 해당 확률은 변하며, 각각의 $\boldsymbol{\theta}$에 따른 해당 확률값들을 모두 더할 경우 1이 되진 않음 (물론 값이 클수록 가능성은 커짐) : 때문에 likelihood라고 부르며 $\mathcal{L}$로 표기하기도 함.
 * 이는 $\hat{p}=\sigma(\textbf{x}^T\boldsymbol{\theta})$ 는 logistic regression의 출력으로 $\hat{y}=1$이 될 확률임에 기반.
 
+ref. : [likelihood (우도)](https://dsaint31.tistory.com/317)
 
 ## Negative Log-Likelihood
 
@@ -98,6 +121,19 @@ $$J(\boldsymbol{\theta}) = -\frac{1}{m} \sum_{i=1}^m \left[ y^{(i)}\log \left(\h
 
 * Gradient Decent를 사용할 경우 global minimum에 해당하는 parameters를 구할 수 있음을 의미함. 
 
+## Logistic cost function partial derivatives
+
+loss function $J(\boldsymbol{\theta})$를 $j$번째 parameter $\theta_j$에 대한 partial derivatives는 다음과 같음.
+
+$$\dfrac{\partial}{\partial \theta_j}J(\boldsymbol{\theta})=\frac{1}{M}\sum_{i=1}^M \left( \color{red}{\sigma \left( \boldsymbol{\theta}^\text{T}\textbf{x}^{(i)}\right) - y^{(i)}}\color{black}\right)\color{blue}{x_j^{(i)}}$$
+
+* $M$ : training set에서의 instance 수.
+* 각 instance에 대해,
+    * prediction error (red)를 구하고
+    * 여기에 해당하는 input vector의 $j$ feature (blue)를 곱하고
+* 이를 training set의 모든 instance에 대해 averaging.
+
+이처럼 gradient $\nabla_{\boldsymbol{\theta}}J(\boldsymbol{\theta})$를 구하고, Gradient Decent를 통해 parameter를 구해나가면 logistic regression의 training이 이루어짐. 
 
 ## Logistic Regression 과 ANN.
 
@@ -117,7 +153,10 @@ fully connected network 관점에서 loss function은 regression의 경우처럼
 
 $$\text{MSE}=\left(\frac{1}{1+e^{-\sum_{i=1}^{N}\theta_i x_i}}-1\right)^2$$
 
-하지만 이경우 아래 그림에서 보이듯이 MSE는 convexity도 성립하지 못하며, loss function의 최대값 (기껏해야 1)도 제한되는 단점이 있음을 확인할 수 있다. 
+하지만 이경우 아래 그림에서 보이듯이 MSE는 convexity도 성립하지 못하며, loss function의 최대값 (기껏해야 1)도 제한되는 단점이 있음을 확인할 수 있다. (negative log의 경우 loss function은 최대값이 무한대까지의 범위를 보임)
+
+* 이는 매우 틀린 오답을 현재 parameters의 모델이 보일 경우, loss 가 얼마나 커질 수 있는지를 보여줌.
+* 큰 오차에서는 가급적 큰 값의 오차를 보여야 함.
 
 ![](./img/nll_vs_mse.png)
 

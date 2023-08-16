@@ -278,6 +278,8 @@ nav:
     - "Ex : End_to_End Learning":
       - "ML/ch01/ch01_51.md"
       - "ML/ch01/ch01_52.md"
+    - "Linear Regression and Logistic Regression":
+      - "ML/ch03/logistic_regression.md"
     - "Ensemble Learning":
       - "ML/ch05/ml_stacking.md"
     - "Dimensionality Reduction":
