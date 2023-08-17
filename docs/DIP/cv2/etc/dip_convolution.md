@@ -33,12 +33,18 @@ convolution은 cross-correlation과 달리 ^^교환법칙이 성립^^ 하며, im
 
 > 하지만, 이미지 처리에서는 대부분 kernel을 대칭적인 것을 사용하다 보니 cross-correlation과 차이가 없는 경우가 많고, 특히 ML(기계학습)이나 DL(딥러닝)에서 kernel이 이미 상하좌우로 flip하여 입력하면 된다는 가정 하에 convolution의 구현이 실제로는 cross-correlation인 경우가 대다수임.
 
-## Kernel (or Mask, Window)
+## Kernel (or Filter, Mask, Window)
 
 - 유한한 크기의 `impulse response` (or point spread function)의 특성 계수
 - 시스템 응답 특성 계수를 가지고 있는 matrix 혹은 tensor임.
 
 ![](../../img/etc/kernel.png)
+
+DL등에서 convolution layer은 위의 2D kernel이 아닌 3D kernel로 구성되는 게 일반적임. (channel이 보통 3이므로 raw image를 입력으로 삼는 경우 kernel size의 3개의 matrix를 가지고 있다고 생각하면 됨.)
+
+- kernel의 width와 height를 통해 local receptive field의 크기가 결정됨. 
+- receptive field란 convolution의 결과로 나오는 feature map의 한 pixel(or voxel)의 값을 만드는데 관여한 input map(or image)의 영역을 의미함.
+
 
 ## Convolution 수행 방식
 
@@ -54,8 +60,22 @@ convolution은 cross-correlation과 달리 ^^교환법칙이 성립^^ 하며, im
 
 * $5 \times 5 \times 3$ image를 상하좌우로 1씩 padding을 수행하고, 
 * $3 \times 3$ kernel을(엄밀하게는 $3\times 3\times 3$) 통해 convolution을 수행하여 $3 \times 3 \times 2$ image를 얻어냄. 
-* Kernel은 2 pixel의 stride로 사용하여 이동함.
+* Kernel은 2 pixels의 `stride`를 사용하여 이동함.
 * 결과 영상의 depth $2$는 kernel (or filter)이 2개 (`W0`, `W1`) 사용됨을 의미함.
+
+### Stride
+
+Convolution을 수행할 때, `stride`는 일종의 sub-sampling factor로 동작함.
+
+이는 `stride`가 클수록 결과 feature map의 사이즈가 줄어들게 되며, DL에서 convolution layer의 computational complex를 효과적으로 낮출 수 있도록 해준다.
+Kernel이 sliding을 통해 적용되어나가는데, `stride`는 어느 간격으로 Kernel이 sliding될지를 나타낸다. (`stride`가 클수록 듬성듬성 처리된다고 생각할 수 있음.)
+
+다음은 `stride`가 $2 \times 2$인 경우(오른쪽으로 sliding할 때 2pixels, 아래로 sliding 할 때도 2pixels)임. (`stride`가 1인 경우 $3\tiems 3$ feature map이 나오는 것과 달리 이 경우 $2 \times 2$ feature map이 결과임)
+
+![](./img/no_padding_strides.gif)
+
+* $5 \times 5$ 입력에 $2\times 2$ stide로 $3\times 3$ kernel로 Convolution.
+* 상단의 녹색 matrix가 출력임.
 
 ---
 
@@ -104,3 +124,9 @@ plt.show()
 결과는 다음과 같음.
 
 ![](../../img/etc/box_filtered.png)
+
+## References
+
+* [A guide to convolution arithmetic for deep learning](https://arxiv.org/pdf/1603.07285v1.pdf)
+    * [backup](./ref/A%20guide%20to%20convolution%20arithmetic%20for%20deep%20learning_1603.07285v1.pdf)
+    * 박해선 선생님의 번역본 [A guide to convolution arithmetic for deep learning](https://tensorflow.blog/a-guide-to-convolution-arithmetic-for-deep-learning/#ch2-3)
