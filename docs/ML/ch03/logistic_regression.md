@@ -5,7 +5,7 @@ Logistic Regression은 이름과 달리, binary classification task를 위한 �
 다음의 순서를 따름.
 
 1. Regression으로 어떤 score $t$ (=logit score)를 구함 
-2. 해당 score를 logistic function의 입력값으로 넣으면 0~1사이의 확률값이 나옴.
+2. 해당 score를 logistic function의 입력값으로 넣으면 0~1사이의 확률값 $\hat{p}$이 나옴.
 3. 해당 확률로 classification (binary classification)
 
 
@@ -14,6 +14,10 @@ Logistic Regression은 이름과 달리, binary classification task를 위한 �
 > 이 문서는 Logistic Regression을  
 > Bernoulli Distribution에 기반한 Maximum Likelihood Estimation의 관점으로 해석하여  
 > DL에서의 binary classification model에 대한 이해로 확장해나가는 것을 목표로 함.
+
+![](./img/logistic_regression_ann.png)
+
+* [ori](https://docs.google.com/presentation/d/1EG6nPMYbYjS4CcCVHSpMDOg7iwlzZLxahb0E9S2LkQg/edit#slide=id.g23bf78dd669_0_0)
 
 ## Binary Classification
 
