@@ -141,7 +141,7 @@ $$\dfrac{\partial}{\partial \theta_j}J(\boldsymbol{\theta})=\frac{1}{M}\sum_{i=1
 
 ## Logistic Regression 과 ANN.
 
-Logistic Regression은 ANN의 관점에서 보면 logistic activation의 single layer fully connected network임 (loss function은 cross-entropy). 
+Logistic Regression은 ANN의 관점에서 보면 logistic activation의 single layer fully connected layer임 (loss function은 cross-entropy). 
 
 * 앞서 살펴본 negative log likelihood object function은 convex하기 때문에  global minimum을 구하는게 보장된다. (single layer인 경우에는)
 * 단, 여러 layer를 쌓는 경우 convexity는 유지되지 않는다.
@@ -153,15 +153,26 @@ Logistic Regression은 ANN의 관점에서 보면 logistic activation의 single 
 $\boldsymbol{\theta}$는 실제로 여러 개의 parameter로 구성된 vector이나 이를 scalar로 단순화하고 logistic regression의 objective function을 parameter에 대해 그리면 convex임을 확인 가능함 (input 도 scalar로 단순화하고 이는 고정시킴).
 
 
-fully connected network 관점에서 loss function은 regression의 경우처럼 Mean squared loss로 삼을 수도 있다.
+single fully connected layer 로 구현할 경우, loss function을 regression의 경우처럼 Mean squared loss로 삼을 수도 있다.
 
 $$\text{MSE}=\left(\frac{1}{1+e^{-\sum_{i=1}^{N}\theta_i x_i}}-1\right)^2$$
 
 하지만 이경우 아래 그림에서 보이듯이 MSE는 convexity도 성립하지 못하며, loss function의 최대값 (기껏해야 1)도 제한되는 단점이 있음을 확인할 수 있다. (negative log의 경우 loss function은 최대값이 무한대까지의 범위를 보임)
 
 * 이는 매우 틀린 오답을 현재 parameters의 모델이 보일 경우, loss 가 얼마나 커질 수 있는지를 보여줌.
-* 큰 오차에서는 가급적 큰 값의 오차를 보여야 함.
+* 큰 오차에서는 가급적 큰 loss를 가져야 함.
+* 때문에 MSE의 경우, 오차가 큰 초반 epoch 초반에 weight들이 최적의 값으로 빠르게 변화하지 못하는 단점을 가짐.
 
 ![](./img/nll_vs_mse.png)
 
 때문에 binary classification task를 수행하는 ANN에서 MSE보다는 cross-entropy를 선호한다.
+
+수학적으로 비교할 경우, weight와 bias에 대한 loss function의 partial derivative를 확인해보면 왜 MSE가 적절치 않은지를 확인할 수 있음.
+
+아래는 MSE의 partial derivative임.  
+앞서 보였던 logistic regression loss의 경우(=Cross entropy cost)와 달리 $\color{red}{\sigma^\prime \left(\boldsymbol{\theta}^\text{T}\textbf{x}^{(i)}\right)}$ term이 중간에 추가되어 있는데, 이 sigmoid의 미분으로 인해 partial derivative가 감소하게 되고 이는 back-propagation에서 효과적인 training에 방해가 됨.
+
+$$\dfrac{\partial}{\partial \theta_j}J(\boldsymbol{\theta})=\frac{1}{M}\sum_{i=1}^M \left( {\sigma \left( \boldsymbol{\theta}^\text{T}\textbf{x}^{(i)}\right) - y^{(i)}}\right)\color{red}{\sigma^\prime \left(\boldsymbol{\theta}^\text{T}\textbf{x}^{(i)}\right)}\color{black}{x_j^{(i)}}$$
+
+* logistic의 derivative는 0.25를 max로 가지는 normal distribution의 모양임.
+* tanh의 경우, logistic보다 큰 derivative를 가지고 있어서 학습에 보다 유리한 것으로 알려짐.
