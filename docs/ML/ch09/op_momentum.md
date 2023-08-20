@@ -2,7 +2,7 @@
 
 momentum은 운동량이라는 뜻으로 기존의 gradient decent에서 이전의 gradient 정보를 이용하여 보다 빠르게 training이 converge하도록 도와주는 방법임.
 
-> Gradient Decent의 역사가 워낙 오래된 터라, momentum optimizer도 1960년대부터 사용이 된 정말 오래된 알고리즘이다. 그래도 정말 효과적이며 많이 사용된다된
+> Gradient Decent의 역사가 워낙 오래된 터라, momentum optimizer도 1960년대부터 사용이 된 정말 오래된 알고리즘이다. 그래도 정말 효과적이며 많이 사용된다.
 
 model의 parameter vector $\boldsymbol{\theta}$를 업데이트 하는 방향을 gradient $\nabla_{\boldsymbol{\theta}}J(\theta)$만을 사용하는 regular gradient와 달리 이전의 업데이트 방향의 gradient vector와의 vector sum을 통해 parameters의 업데이트 방향을 결정함.
 
