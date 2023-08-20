@@ -23,7 +23,7 @@ $$\begin{aligned} \textbf{m}_{t+1}&=\gamma \textbf{m}_t - \eta\nabla_{\boldsymbo
     - 만약 $\gamma=0.9$일 경우, regular gradient보다 10배의 learning ratio가 적용되는 셈으로 매우 빠른 학습속도를 보임.    
 - Gradient 가 0인 곳에서도 업데이트가 이루어지므로 local minima에 탈출할 확률이 SGD보다 높음.
 
-단점으로는 inertia의 도입으로 인해 ***최적의 값*** 에서도 업데이트가 이루어져 지나칠 수 있음.← $\textbf{m}_t$를 계산할 때, 현재의 모델 파라메터($\omega_t$)에서의 gradient를 계산함.
+단점으로는 inertia의 도입으로 인해 ***최적의 값*** 에서도 업데이트가 이루어져 지나칠 수 있음.
 
 > tunning을 해야할 hyper-parameter $\gamma$가 하나 늘어나기는 하지만, 일반적으로 0.9정도면 거의 대부분 regular gradient decent보다 잘 동작하기 때문에 단점이라고 보기 어려움.
 
