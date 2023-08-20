@@ -301,6 +301,7 @@ nav:
       - "ML/ch09/batch_normalization.md"
     - "Optimizers":
       - "ML/ch09/op_momentum.md"
+      - "ML/ch09/op_nesterov.md"
     - "RNN":
       - "ML/ch16_RNN/RNN_topologies.md"
       - "ML/ch16_RNN/RNN_Bahdanau_attention.md"
