@@ -29,6 +29,8 @@ Abstraction의 관점에서 그 결과물인 `model` 이란 세상의 실제적�
 - `표현 대상` 의 feature(특징) 에 대한 description.
 - `표현 대상` 에 대한 필요한 특징을 서술한 것.
 
+> 실제로 Python에서는 class를 정의하는 `class` 키워드를 통해 새로운 type을 정의한다.
+
 ## Class vs. Instance
 
 - Class가 *실체화* 된 것. ← 프로그래밍에서 실체화란 메모리를 점유하고 사용가능해진 상태를 의미.
@@ -74,7 +76,7 @@ OOP에서 Abstraction은 대상이 되는 **Object 의 feature(특징)** 을 Dat
 * Data : Attribute = 머리카락 색
 * Operation : Behavior, Method = 자르기
 
-OOP에서 넓은 범위의 Object는 모든 것(현실 세계와 프로그래밍 세계 포함)을 가르키며, **Object의 특징** 은 abstracton을 통해 Class로 기술되며,Class는 Attribute와 Method로 구성되게 된다.
+OOP에서 넓은 범위의 Object는 모든 것(현실 세계와 프로그래밍 세계 포함)을 가르키며, **Object의 특징** 은 abstraction을 통해 Class로 기술되며,Class는 Attribute와 Method로 구성되게 된다.
 
 ---
 
@@ -104,6 +106,6 @@ if __name__ == "__main__":
 
 위의 코드에서 `self.x` 는 Class `Samp`의 instance가 가지는 attribute이지만, getter만이 정의가 되어있다. `s.x = 23` 의 assignment가 getter보다 먼저 이루어지지 않으면 에러가 난다. (처음 python을 봤을 때 이게 뭐지 라고 생각한 것 중 하나임.)  
 
-이는 동적으로 class에 attribute 추가가 가능(dynamic language라는 특성 활용이라고 봐야할지...)하다는 애기이다. class에 method도 동적으로 추가가 가능한 felxibility를 python은 제공한다. (개인적으로 선호하는 방식은 아니다). 
+이는 동적으로 class에 attribute 추가가 가능(dynamic language라는 특성 활용이라고 봐야할지...)하다는 애기이다. class에 method도 동적으로 추가가 가능한 flexibility를 python은 제공한다. (개인적으로 선호하는 방식은 아니다). 
 
-때문에 가급적 생성자 `__init__`에서 사용할 member variable에 해당하는 vairiable들을 초기할당이라도 해두는게 좋다. Java나 C++을 먼저 익힌 경우에는 당연한 애기인데... python부터 배운 분들의 코드를 보면 순간적으로 당황할 때가 있다(오류는 아니지만, 호출 순서가 달라지면 에러가 뜨기 쉬움.)
+때문에 가급적 생성자 `__init__`에서 사용할 member variable에 해당하는 variable들을 초기할당이라도 해두는게 좋다. Java나 C++을 먼저 익힌 경우에는 당연한 애기인데... python부터 배운 분들의 코드를 보면 순간적으로 당황할 때가 있다(오류는 아니지만, 호출 순서가 달라지면 에러가 뜨기 쉬움.)

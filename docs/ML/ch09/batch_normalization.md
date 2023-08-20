@@ -9,6 +9,11 @@ Gradient Vanishing과 Exploding의 위험을 효과적으로 감소시킴.
 
 > internal covariate shift를 해결하는 방법은 layer의 input에 whitening을 가해서, input의 feature들이 서로에 대해 independent (=uncorrelated)하고 각각의 variance가 1이 되도록 해주면 된다. 하지만 2015년 `BN`을 제안한 Sergey Ioffe et al.에 따르면  whitening은 covariance matrix 등의 계산이 필요해서 계산량이 너무 많고, 각 layer의 parameters의 효과를 상쇄시키는 등의 문제점이 있어서 ANN에 직접 적용할 경우 부작용이 컸기 때문에 일단 input의 features가 이미 uncorrelated라고 가정하고 input mini-batch에 대해 feature 각각을 normalize 시키고 activation non-linearity 효과를 죽이지 않도록 최적의 scaling과 shift를 추가적으로 가해줌 (이때 scaling factor와 shift factor는 parameter로 처리하여 training dataset에서 최적의 값을 찾도록 처리함.)
 
+참고할 것은 internal covariate shift를 BN이 막아주지 못하며, 실제 ics가 deep learning의 학습에 지장을 주지 않고 오히려 BN이 optimization landscape에서의 smoothing 효과를 가져오기 때문에 좋은 성능을 보인 것이라는 후속연구가 있음.
+(실제로 ICS보다는 layer에 TASK를 푸는데 있어서 최적의 분포를 가지는 input으로 바꾸어주는 (ReLU등과도 궁합이 잘 맞음) 특성과 optimization landscape smoothing이 BN의 장점이라고 생각됨)
+
+* 참고 : [How Does Batch Normalization Help Optimization?](https://arxiv.org/abs/1805.11604
+
 ## 장점
 
 * Gradient Vanishing과 exploding을 효과적으로 감소시킴에 따라 `sigmoid`를 hidden layer의 activation으로 사용할 수 있을 정도의 성능을 보임.
@@ -33,7 +38,7 @@ Gradient Vanishing과 Exploding의 위험을 효과적으로 감소시킴.
 
 기존의 weight initialization과 activation function을 통한 Gradient vanishing과 exploding 해결방안은 훈련 초기 layer의 input과 output의 variance를 비슷하게 유지시키는 것은 가능했으나 training으로 인해 weights가 변화하게 될 경우 그 효과가 떨어지는 문제점을 가짐.
 
-이에 반해 `BN`은 training 이 진행되면서 layer들에게 최적의 input을 제공함으로써 internal covariate shift를 효과적으로 막아줌.
+이에 반해 `BN`은 training 이 진행되면서 각각의 parameters가 훈련되어 layer의 입력(혹은 출력)이 다음 layer에서의 훈련에 적합하도록 조정이 된다는 장점을 가짐.
 
 ## Algorithm
 
@@ -72,3 +77,4 @@ $$\hat{\textbf{v}} \leftarrow \hat{\textbf{v}} \times \text{momentum} + \textbf{
 
 
 * BEOMSU KIM's [Batch Normalization 설명 및 구현](https://shuuki4.wordpress.com/2016/01/13/batch-normalization-%EC%84%A4%EB%AA%85-%EB%B0%8F-%EA%B5%AC%ED%98%84/)
+* [Batch Normalization에 대해서 알아보자](https://velog.io/@choiking10/Batch-Normalization%EC%97%90-%EB%8C%80%ED%95%B4%EC%84%9C-%EC%95%8C%EC%95%84%EB%B3%B4%EC%9E%90)
