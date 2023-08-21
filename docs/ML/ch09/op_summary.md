@@ -27,12 +27,16 @@ Grdient (or Jacobian)에 의존하는 방법들과 2차 partial derivatives (Hes
 * Images credit: [Alec Radford](https://twitter.com/alecrad).
 * [참고 사이트: cs231n](https://cs231n.github.io/neural-networks-3)
 
+<figure markdown>
 ![](./img/opt2.gif){width="400" align="center"}
+</figure>
 
 * Contours of a loss surface and time evolution of different optimization algorithms. (별모양이 최적값임)
     * Momentum 기반의 알고리즘들(Momentum와 NAG)서 overshooting이 보임. (hill에서 공을 아래로 굴릴 때 보이는 왔다갔다하와 동작.)
 
+<figure markdown>
 ![](./img/opt1.gif){width="400" align="center"}
+</figure>
 
 * A visualization of a saddle point in the optimization landscape, where the curvature along different dimension has different signs (one dimension curves up and another down). 
     * SGD는 제대로 최소값으로 나가지 못하는 것을 확인할 수 있음.
