@@ -300,8 +300,13 @@ nav:
       - "ML/ch09/act_silu.md"
       - "ML/ch09/batch_normalization.md"
     - "Optimizers":
+      - "ML/ch09/op_summary.md"
       - "ML/ch09/op_momentum.md"
       - "ML/ch09/op_nesterov.md"
+      - "ML/ch09/op_adagrad.md"
+      - "ML/ch09/op_rmsprop.md"
+      - "ML/ch09/op_adam.md"
+      - "ML/ch09/op_nadam.md"
     - "RNN":
       - "ML/ch16_RNN/RNN_topologies.md"
       - "ML/ch16_RNN/RNN_Bahdanau_attention.md"

@@ -16,6 +16,8 @@ $$\boldsymbol{\theta}_{t+1}=\boldsymbol{\theta}_{t}+ \textbf{m}_{t+1}$$
 
 $$\begin{aligned} \textbf{m}_{t+1}&=\gamma \textbf{m}_t - \eta\nabla_{\boldsymbol{\theta}}J(\boldsymbol{\theta}_t)\\ \\ \textbf{m}_0 &= \textbf{0}\end{aligned}$$
 
+> $\gamma$를 inertia의 정도라고도 볼 수 있지만, friction의 정도라고도 볼 수 있음. `0`인 경우, 매우 큰 friction을 의미하고, `1`인 경우 friction이 없는 경우를 의미한다. friction이 아예 없는 경우 optimum solution 근처에서 oscillation이 심하기 때문에 `0.9` 정도로 약간의 friction을 주는 것이 좋음.
+
 관성계수(inertia coef.) $\gamma$은 일반적으로 0.9를 사용.
 
 - SGD보다 일반적으로 빠른 수렴속도
