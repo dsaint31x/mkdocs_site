@@ -8,7 +8,8 @@ Grdient (or Jacobian)에 의존하는 방법들과 2차 partial derivatives (Hes
 
 ## Gradient 계열 Optimizers
 
-대표적인 알고리즘의 요약은 다음과 같음.
+대표적인 알고리즘의 요약.
+
 * Batch Gradient Decent (or Vanilla Gradeint Decent) : Gradient계열의 원조.
 * Stochastic Gradient Decent : data 하나만으로 업데이트를 수행하여 Batch GD의 느린 문제 수정
     * Mini-batch GD : Batch GD와 SGD의 중간형.
