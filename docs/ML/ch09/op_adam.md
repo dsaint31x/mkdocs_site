@@ -1,6 +1,6 @@
-# Adamptive Moment Estimation (Adam)
+# Adaptive Momentum Estimation (Adam)
 
-`RMSProp` (adaiptive learning rate)과 Momentum기법(update방향 변경)을 합친 optimizer.
+`RMSProp` (adaptive learning rate)과 Momentum기법(update방향 변경)을 합친 optimizer.
 
 많은 variants를 가지고 있으며, 가장 많이 사용되는 gradient 기반의 optimizer임.
 
@@ -35,3 +35,7 @@ optimizer = tf.keras.optimizers.Adam(learning_rate=0.001,
 * momentum decay hyperparameter $\beta_1$ : `0.9`
 * scaling decay hyperparameter $\beta_2$ : `0.999`
 * the smoothing term $\epsilon$ : `1e-7`
+
+## References
+
+[Adam: A Method for Stochastic Optimization](https://arxiv.org/abs/1412.6980)

@@ -2,33 +2,38 @@
 
 > An interesting part (region) of an image.
 
-Local Feature (or Feature Descriptor)는 2000년대부터 correspondence problem 을 푸는데 필요한 correspondence를 검출하는데 이용(SIFT 2004)되면서 많은 발전이 이루어졌다. 기존의 ^^edge segment 기반의 방식(1970년대 등장하여 1980년대 많이 사용됨)^^ 보다 우수한 성능을 보였고 무엇보다 ^^gray-scale image에서 직접 계산이 가능^^ 하여 image matching 및 classification, image registration 등에서 널리 사용됨.  
+Local Feature (or Feature Descriptor)는 2000년대 correspondence problem에서 요구되는 ***correspondence를 검출*** 하는데 이용(SIFT 2004)되면서 등장하여 많은 발전이 이루어진 기술임.  
+
+* 기존의 ^^edge segment 기반의 방식(1970년대 등장하여 1980년대 많이 사용됨)^^ 보다 우수한 성능을 보였고 
+* 무엇보다 ^^gray-scale image에서 직접 계산이 가능^^ 하여 image matching 및 classification, image registration 등에서 널리 사용됨.  
 
 > CNN, transformer등의 DL기술이 보다 높은 성능을 보이면서 과거에 비해 그 중요도가 줄어드는 추세임.  
-> Dataset으로부터 hiearchy feature extraction 이 자동으로 이루어진다는 점이 Deep Learning의 가장 큰 장점 중 하나라고 할 수 있음.
-  
+> Dataset으로부터 ***hierarchy feature extraction 이 자동으로 이루어진다*** 는 점이 Deep Learning의 가장 큰 장점 중 하나라고 할 수 있음.
+
+<br/>
+
 대표적인 Local Feature는 다음과 같다.
 
 * Histogram of Oriented Gradient 계열 알고리즘 (output: float로 구성된 vector)
-    * Histogram of Oriented Gradient (HOG) : 2005. Dalal and Triggs
-    * SIFT (Scale Invariant Feature Transform) : 2004. Lowe et al.
-    * SURF (Speed Up Robust Feature) : 2006. Bay et al.
+    * Histogram of Oriented Gradient (`HOG`) : 2005. Dalal and Triggs
+    * `SIFT` (Scale Invariant Feature Transform) : 2004. Lowe et al.
+    * `SURF` (Speed Up Robust Feature) : 2006. Bay et al.
 * Binary Descriptors 계열 (output: binary vector)
-    * Binary Robust Independent Elementary Feature (BRIEF) : 2010. Calonder et al.
-    * Oriented and Rotated BRIEF (ORB) : 2011. Rublee et al.
-    * Binary robust invariant scalable key-points (BRISK) : 2011. Leutenegger et al.
-    * Fast retina key-point (FREAK) : 2012. Alahi et al.
+    * Binary Robust Independent Elementary Feature (`BRIEF`) : 2010. Calonder et al.
+    * Oriented and Rotated BRIEF (`ORB`) : 2011. Rublee et al.
+    * Binary robust invariant scalable key-points (`BRISK`) : 2011. Leutenegger et al.
+    * Fast retina key-point (`FREAK`) : 2012. Alahi et al.
 
-Local Feature는 "원본 영상"의 key-point(특징점)들에서 계산되어 local feature descriptor (or feature vector)들 로 표현된다.
+Local Feature는 "원본 영상"의 `key-point`(특징점)들에서 계산되어 `local feature descriptor` (or feature vector)들로 표현된다.
 
-* key-point (특징점) : "원본 영상"에서 local feature에 해당하는 위치. 해당 점을 중심으로 작은 ***region*** (or ***patch***, cell, block)이 설정되며, 이 region에 속하는 pixel들을 이용하여 feature descriptor가 계산된다.
-* (local feature) descriptor : key-point가 속한 patch의 local feature를 표현하고 있는 객체. 주로 vector (real number or binary)로 표현되기 때문에 feature vector라고도 불린다. Local Feature의 실제적인 값에 해당하기 때문에 feature descriptor를 계산하는 알고리즘의 이름으로 local feature를 부른다.  
+* `key-point` (특징점) : "원본 영상"에서 local feature에 해당하는 위치. 해당 점을 중심으로 작은 ***region*** (or ***patch***, cell, block)이 설정되며, 이 region에 속하는 pixels을 이용하여 feature descriptor가 계산된다.
+* (local feature) `descriptor` : ***key-point가 속한 patch의 local feature를 표현하고 있는 객체.*** 주로 vector (real number or binary)로 표현되기 때문에 `feature vector`라고도 불린다. Local Feature의 실제적인 값에 해당하기 때문에 feature descriptor를 계산하는 알고리즘의 이름으로 local feature를 부른다.  
 즉, HOG descriptor라고 하면, HOG 알고리즘으로 얻은 local feature를 가르킨다.
 
-> 초기에 개발된 알고리즘들은 corner 나 blob을 그냥 detection하는 경우가 많았다.  
+> 초기에 개발된 알고리즘들은 corner 나 blob을 단순히 detection하는 것들 위주였음.   
 > 이 경우 ***key-point만을 detect*** 하여 원본에서의 locational information과 size 를 계산할 뿐 이를 바탕으로 ***feature descriptor로 encoding하지 않음***.  
 > locational information과 size는 *geometric transform 등에 covariant* 하기 때문에, 이들에 대해서도 invariant한 feature를 구하기 위해서는 추가적인 처리가 필요하다.  
-> 이후의 알고리즘들은 이를 위해, ***feature descriptor를 계산하는 단계*** 가 추가되었다.
+> 이후의 알고리즘들은 이를 개선하기위해, ***feature descriptor를 계산하는 단계*** 가 추가되었다.
 
 일반적으로 local feature를 얻는 algorithm들은 다음의 두 단계로 구성된다. (일부 알고리즘들은 하나의 단계에 대한 해법에 그치는 경우도 많다.)
 
@@ -111,7 +116,6 @@ Local Feature는 "원본 영상"의 key-point(특징점)들에서 계산되어 l
 - Locality를 우선시(적은 영역에서 계산됨)할 경우, 보통 Distinctiveness가 떨어짐.
 - 높은 Repeatability를 우선시 계산량이 많아지는 게 보통임.
 
----
 ---
 
 ## Good Key-points : Edge, Corner and Blob
@@ -198,9 +202,13 @@ Blob 은 **Binary Large Object** 의 줄임말로, ^^같은 성질을 가지는 
 일반적으로 각 scale에 해당하는 $\sigma^2$ 을 곱해주어 scale normalized Laplacian을 얻는다.
 
 > 여기서 나오는 scale은 `scale space`에서 나오는 용어임.  
-> `scale space`는 대상을 여러 scale에 걸쳐 표현하는 multi-scale representation을 만드는 기법 중의 하나로 `image pyramid`와 함께 가장 널리 사용되는 방법이다. scale이 클수록 image가 blurring되어 기본 구성요소가 넓은 영역을 차지하게 된다.  
-> scale이 작아지면, image에서 detail한 정보가 보존된다. 큰 Blob을 검출하기 위해 scale이 커진다는 건 기본적으로 큰 blob이 구성요소로 간주되고, 작은 blob들은 무시됨을 의미한다.  
-> 보통 ^^scale은 확률분포의 $\sigma^2$$ 에 해당하는 값으로 표현^^ 된다(즉, variance에 해당). 동일 영상을 $\sigma^2$이 큰 Gaussian distribution으로 blurring시키면 Scale $t=\sigma^2$에 해당하는 image를 얻게 된다.
+> `scale space`는 대상을 여러 scale에 걸쳐 표현하는 multi-scale representation을 만드는 기법 중의 하나로 `image pyramid`와 함께 가장 널리 사용되는 방법이다.  
+>
+> * **scale이 클수록 image가 blurring** 되어 기본 구성요소(single pixel)가 넓은 영역을 차지하게 된다.  
+> * **scale이 작아지면, image에서 detail한 정보가 보존된다.** 
+>
+> 큰 Blob을 검출하기 위해 scale이 커진다는 건 기본적으로 큰 blob이 구성요소로 간주되고, 작은 blob들은 무시됨을 의미한다.  
+> 보통 ^^scale은 확률분포의 $\sigma^2$ 에 해당하는 값으로 표현^^ 된다(즉, variance에 해당). 동일 영상을 $\sigma^2$이 큰 Gaussian distribution으로 blurring시키면 Scale $t=\sigma^2$에 해당하는 image를 얻게 된다.
 
 ### Example
 
