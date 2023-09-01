@@ -6,6 +6,8 @@
 * blue box : hidden layer
 * orange box : output layer
 
+> `RNN`에서는 위의 box를 `cell`이라고도 칭함.
+
 참고 : [topology란?](https://dsaint31.me/mkdocs_site/ML/ch07/topological_space/#topology)
 
 ---
@@ -17,9 +19,9 @@
 
 입력과 출력이 각각 `single time-step에 해당하는 vector` (or scalar)임.
 
-사실 RNN에서 가장 단순한 구조이지만, 더 단순한 `Fully connected network` (or `Dense`)등으로 구현되는 경우와 차이가 거의 없다. 
+사실 RNN에서 가장 단순한 구조로 ***단일 memory cell***로 만들어지며 실제로 사용되는 경우는 거의 없음. 
 
-sequence 를 다루기 위해 RNN을 사용하는데, 해당 sequence가 하나의 element만 있는 경우로 의미가 없음.
+* ref. : [memory cell](./RNN_memory_cell.md#memory-cell)
 
 ---
 
@@ -76,3 +78,5 @@ input sequence를 전체를 입력받아서 encoding을 수행하여 represent(=
 앞서본 `encoder-decoder`와 달리 input sequence의 모든 time step을 끝까지 기다릴 필요없다는 장점을 가진다 (최근 N개의 time step 데이터를 바탕으로 forecast를 수행). 
 
 > 이는 causal system이라는 가정이 깔려있다고도 볼 수 있음.
+
+참고 : [Causal System이란](https://dsaint31.tistory.com/586#Causal%--System%--and%--Non-causal%--System)

@@ -1,33 +1,40 @@
 # Recurrent Neural Network (순환신경망, `RNN`)
 
-ANN은 일종의 node들을 edge로 연결한 일종의 system이라고 볼 수 있다. 
+> time series data와 같은 sequential data를 다루는데 적합한 ANN.  
+> feedback connection을 가짐.  
+>
+> * [time series data란](https://dsaint31.tistory.com/604)
+
+ANN은 일종의 node들을 edge로 연결한 *일종의 system* 이라고 볼 수 있다. 
 
 > 일반적으로 system은 특정 input에 대해 특정 output을 mapping 시켜주는 transformer 또는 function으로 해석되며, input과 output을 가지는 sub-system의 연결 방식에 따라 구분되기도 한다. 
 
-ANN의 연결방식에서 input에서 output으로 연결이 하나의 방향으로만 이루어진 경우, feed-forward network라고 부른다. 
+ANN의 연결방식에서 input에서 output으로 연결이 하나의 방향으로만 이루어진 경우, `feed-forward network`라고 부른다. 
 
-* feed-forward network는 일종의 memoryless system (or instantaneous system)임.
+* feed-forward network는 일종의 memoryless system (or ***instantaneous system*** )임.
 * 이전 결과에 상관없이 현재의 input에 의해서만 output이 결정됨.
 * sequence type의 input을 처리할 때, input의 전체 length가 한번에 feed-forward network에 주어져야함.
     * 이는 input의 크기가 고정됨을 의미.
 
-instantaneous system과 대조되는 것이 바로 dynamic system (memory system)으로 이같은 systems에서는 feedback connection이 존재한다. ANN에서 feedback connection이 있는 구조를 Recurrent Neural Network (RNN)라고 칭함.
+Feed-forward network에 해당하는 instantaneous system과 대조되는 것이 바로 ***dynamic system (memory system, state machine)***으로 이같은 systems에서는 ***feedback connection이 존재*** 한다.  
+ANN에서 feedback connection이 있는 구조를 `Recurrent Neural Network` (`RNN`)라고 칭함.
 
-* feedback connection은 system이나 subsystem에서의 output이 앞단이나 자신의 input으로 사용되도록 연결된 것을 가르킴.
+* feedback connection은 system이나 subsystem에서의 ***output을 앞단이나 자신의 input으로 사용되도록 연결** 된 것을 가르킴.
     * feedback connection이 있는 경우, network는 일종의 loop를 이루게 됨.
 * dynamic system은 feedback connection을 통해 과거의 output이 현재의 output에 영향을 주도록 구현됨.
-    * dynamic system은 state를 가지고 있으며, state와 input에 의해 output이 결정되고, 해당 state는 과거의 state와 현재의 input에 의해 변화됨.
-* 과거의 output을 기억하여 이를 이용한다고 볼 수 있으며 때문에 memory를 가진 system이라고 부름.
+    * dynamic system은 과거의 input과 output에 대한 기억에 해당하는 `state`를 가지고 있으며, ***state와 input`에 의해 output이 결정*** 된다.
+    * 현재의 `state`는 과거의 `state`와 현재의 `input`에 의해 결정됨.
+* 과거의 output을 기억하여 이를 이용한다고 볼 수 있으며 때문에 ***memory를 가진 system*** 이라고 부름.
 
 참고 : [feedback connection 요약자료](https://dsaint31.tistory.com/600)  
 참고 : [Dynamic System and Instantaneous System](https://bme808.blogspot.com/2022/10/dynamic-system.html)
 
-다음의 그림은 RNN의 구조를 보여줌.
+다음의 그림은 `RNN`의 구조를 보여줌.
 
 ![](./img/simple_rnn.png)
 
 * input $\textbf{x}$에 대해서 weight $U$가 곱해짐.
-* $\textbf{h}$는 hidden state라고 불려지며 일종의 memory라고 볼 수 있음.
+* $\textbf{h}$는 hidden state라고 불려지며 **일종의 memory** 라고 볼 수 있음.
 * feedback connection을 통해 과거의 $\textbf{h}$와 현재의 input $\textbf{x}$에 의해 현재의 state가 결정됨.
 * hidden state로부터 output이 나오는 부분은 위그림은 단순히 $W$로 표현했으나 이는 `RNN`에서 고정된 것이 아님. 단순한 dense layer를 사용할 수도 있으나 보다 복잡하게 구성될수도 있음.
 * hidden state라고 불리는 이유는 output만으로 나오지 않는 경우 i/o 단에서는 보이지 않기 때문임.
@@ -41,6 +48,11 @@ instantaneous system과 대조되는 것이 바로 dynamic system (memory system
 * 이후 다음 time의 data point에 해당하는 vector가 `RNN`에 입력됨.
 * 이 경우 input들은 각각이 입력된 시간을 가지며, state들도 어느 시점의 state인지가 구분됨.
 
+> 때문에 `RNN`은 input과 output으로 sequential data를 사용할 수 있음.  
+> 자세한 건 `RNN`의 topologies를 참조 : [url](./RNN_topologies.md)  
+> 
+> * 여기서 sequence는 vector을 한 timestep의 item으로 가지는 sequence임.
+
 위의 `RNN` 그림을 풀어서(unfold)로 표시하면 다음과 같음
 
 ![](./img/unfolded_rnn.png)
@@ -49,8 +61,9 @@ instantaneous system과 대조되는 것이 바로 dynamic system (memory system
 * 무한한 길이의 sequence type이 input으로 주어지면 unfold로 그릴 경우 역시 무한한 길이로 표현됨.
 * 참고로 이 그림에서 한번에 들어가는 input (특정 시점의 input vector)가 바로 $\textbf{x}_{t-1}$임.
 
-> 이론상이라고 한 이유는 `RNN`의 가장 큰 문제점 중 하나가 현재 output 또는 state를 결정하는데 있어서 오래전에 입력된 input일수록 영향력이 줄어든다는 점임.  
-> 이를 해결하기 위해 LSTM, GRU 등이 제안되었지만 완전히 해결이 된 것은 아님.
+> 이론상이라고 한 이유는 `RNN`에서 현재 output 또는 state를 결정할 때 오래전에 입력된 input일수록 영향력이 줄어든다는 문제점을 가지고 있기 때문임.  
+> 오래전 input이라도 현재의 output을 결정하는데 매우 중요한 정보일 수 있는데, `RNN`에서는 input이 들어온 시점이 오래될수록 현재 output에 대한 영향력이 줄어듬 (오래된 일에 대한 기억력이 좋지 못하다고 볼 수 있음)  
+> 이를 해결하기 위해 `LSTM`, `GRU` 등이 제안되었지만 완전히 해결이 된 것은 아님.
 
 임의의 길이의 sequence를 처리할 수 있기 때문에 `RNN`은 다음과 같은 데이터를 처리하는데 사용됨.
 
