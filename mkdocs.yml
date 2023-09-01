@@ -308,6 +308,7 @@ nav:
       - "ML/ch09/op_adam.md"
       - "ML/ch09/op_nadam.md"
     - "RNN":
+      - "ML/ch16_RNN/RNN_intro.md"
       - "ML/ch16_RNN/RNN_topologies.md"
       - "ML/ch16_RNN/RNN_Bahdanau_attention.md"
       - "ML/ch16_RNN/RNN_attention_score.md"
