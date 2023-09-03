@@ -70,7 +70,7 @@ Convolution을 수행할 때, `stride`는 일종의 sub-sampling factor로 동�
 이는 `stride`가 클수록 결과 feature map의 사이즈가 줄어들게 되며, DL에서 convolution layer의 computational complex를 효과적으로 낮출 수 있도록 해준다.
 Kernel이 sliding을 통해 적용되어나가는데, `stride`는 어느 간격으로 Kernel이 sliding될지를 나타낸다. (`stride`가 클수록 듬성듬성 처리된다고 생각할 수 있음.)
 
-다음은 `stride`가 $2 \times 2$인 경우(오른쪽으로 sliding할 때 2pixels, 아래로 sliding 할 때도 2pixels)임. (`stride`가 1인 경우 $3\tiems 3$ feature map이 나오는 것과 달리 이 경우 $2 \times 2$ feature map이 결과임)
+다음은 `stride`가 $2 \times 2$인 경우(오른쪽으로 sliding할 때 2pixels, 아래로 sliding 할 때도 2pixels)임. (`stride`가 1인 경우 $3\times 3$ feature map이 나오는 것과 달리 이 경우 $2 \times 2$ feature map이 결과임)
 
 ![](./img/no_padding_strides.gif)
 

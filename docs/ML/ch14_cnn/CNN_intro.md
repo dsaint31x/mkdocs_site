@@ -10,6 +10,11 @@ Image 를 input으로 다루는 경우 가장 일반적으로 사용되는 ANN�
 `CNN`은 image data에서 다음의 2개의 가정이 성립한다고 가정함으로서 `MLP`에 비해 매우 적은 parameters를 가지게 됨.  
 때문에 image를 input으로 할 때 `MLP`에 비해 적은 데이터에서도 매우 학습이 잘 이루어짐.
 
+**Convolution 에 대한 참고자료**
+
+* DIP's [Convolution](../../dip/cv2/etc/dip_convolution.md)
+* [Convolution's Matrix Representation](https://bme808.blogspot.com/2022/10/ml-transposed-convolution.html) : matrix representation 부분만 봐도 된다.
+
 ---
 
 ## Locality of Pixel Dependencies
