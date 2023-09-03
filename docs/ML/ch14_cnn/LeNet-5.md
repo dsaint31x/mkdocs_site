@@ -17,7 +17,7 @@ ori. [GradientBased Learning Applied to Document Recognition, Yann LeCun et al.,
 | S4 | average pooling layer (주의1) | $5\times 5 \times 16$ | $2\times 2$  | 2 | tanh |
 | C5 | convolutional layer (주의2) | $1\times 1 \times 120$ | $5\times 5$  | 1 | tanh |
 | F6 | fully connected layer  | $84$ | -  | - | tanh |
-| OUTPU | fully connected layer  | $10$ | -  | - | Eculidean Radial Basis Function |
+| OUTPUT | fully connected layer  | $10$ | -  | - | Euclidean Radial Basis Function |
 
 * 주의1 : 현재의 average pooling layer와 달리 평균을 구한후 scaling과 shift를 trainable parameter로 수행하고 이 결과값에 activation function을 적용한 결과를 출력 (이 처리가 각 feature map 별로 이루어진다.).
     * 오늘날에는 max pooling layer로 대체해서 구현되는 경우가 많은 편.

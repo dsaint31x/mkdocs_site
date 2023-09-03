@@ -1,7 +1,8 @@
 # Recurrent Neural Network (순환신경망, `RNN`)
 
 > time series data와 같은 sequential data를 다루는데 적합한 ANN.  
-> feedback connection을 가짐.  
+> `feedback connection`을 가짐.  
+> 때문에 weight를 구분하여 가지는 layer들이 쌓이기도 하지만, feedback connection에 의해 time에 대해 weight를 공유하는 layer가 쌓이는 효과를 가지기 때문에 매우 복잡한 ANN이 됨. 
 >
 > * [time series data란](https://dsaint31.tistory.com/604)
 
@@ -53,12 +54,12 @@ ANN에서 feedback connection이 있는 구조를 `Recurrent Neural Network` (`R
 > 
 > * 여기서 sequence는 vector을 한 timestep의 item으로 가지는 sequence임.
 
-위의 `RNN` 그림을 풀어서(unfold)로 표시하면 다음과 같음
+위의 `RNN` 그림을 풀어서(unrolled)로 표시하면 다음과 같음
 
 ![](./img/unfolded_rnn.png)
 
 * feedback connection을 time별로 풀어서 표현함.
-* 무한한 길이의 sequence type이 input으로 주어지면 unfold로 그릴 경우 역시 무한한 길이로 표현됨.
+* 무한한 길이의 sequence type이 input으로 주어지면 unrolled로 그릴 경우 역시 무한한 길이로 표현됨.
 * 참고로 이 그림에서 한번에 들어가는 input (특정 시점의 input vector)가 바로 $\textbf{x}_{t-1}$임.
 
 > 이론상이라고 한 이유는 `RNN`에서 현재 output 또는 state를 결정할 때 오래전에 입력된 input일수록 영향력이 줄어든다는 문제점을 가지고 있기 때문임.  

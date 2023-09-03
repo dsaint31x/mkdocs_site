@@ -307,12 +307,18 @@ nav:
       - "ML/ch09/op_rmsprop.md"
       - "ML/ch09/op_adam.md"
       - "ML/ch09/op_nadam.md"
+    - "CNN":
+      - "ML/ch14_cnn/CNN_intro.md"
+      - "ML/ch14_cnn/LeNet-5.md"
+      - "ML/ch14_cnn/alexnet.md"
     - "RNN":
       - "ML/ch16_RNN/RNN_intro.md"
       - "ML/ch16_RNN/RNN_memory_cell.md"
       - "ML/ch16_RNN/RNN_topologies.md"
       - "ML/ch16_RNN/RNN_Bahdanau_attention.md"
       - "ML/ch16_RNN/RNN_attention_score.md"
+    - "GAN":
+      - "ML/ch17_GM/GAN_intro.md"
     - "Colab":
       - "CE/colab/hw_spec.md"
       - "CE/colab/cells.md"
