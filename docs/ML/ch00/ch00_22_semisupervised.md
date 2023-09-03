@@ -11,7 +11,8 @@
 
 ^^`semi-supervised learning`은 결국, `unsupervised learning`과 `supervised learning`의 조합^^ 으로 어디까지를 무엇으로 할지 등등에 따라 다양한 variation을 가질 수 있다.
 
-역사적으로 가장 유명한 `Semi-supervised Learning` 중 하나로 은 Hinton교수님의 Deep Belief Network (DBN)을 꼽을 수 있음.  
+역사적으로 가장 유명한 `Semi-supervised Learning` 중 하나로 Hinton교수님의 `Deep Belief Network` (DBN)을 꼽을 수 있음.  
+
 Hinton 교수님은 
 
 * 각 계층의 Restricted Boltzmann Machine (RBM)을 unsupervised learning을 시키고 
@@ -19,4 +20,4 @@ Hinton 교수님은
 
 방식으로 DBN을 학습시킴.
 
-^^DBN은 Deep Neural Network가 학습 가능함을 보인 최초의 ANN^^ 으로 가치를 가진다 (이같은 방식을 `Greedy Layer-wise Learning`이라 부르며, 오늘날 end-to-end learning이 주류로 자리잡으면서 많이 사용되진 않음.)
+^^DBN은 Deep Neural Network가 학습 가능함을 보인 최초의 `ANN`^^ 으로 가치를 가진다 (이같은 방식을 `Greedy Layer-wise Learning`이라 부르며, 오늘날 end-to-end learning이 주류로 자리잡으면서 많이 사용되진 않음.)

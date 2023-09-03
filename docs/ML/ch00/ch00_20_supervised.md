@@ -60,10 +60,10 @@ Supervised Learning 으로 해결하고자 하는 ^^주요 task^^ 는 다음과 
 
 ## Deep Learning에서의 Tasks.
 
-Regression과 Classification 은 DL에서도 대표적인 task이지만,
-Detection 및 Segmentation등의 Task도 굉장히 많이 다루어짐. 
+Regression과 Classification 은 DL에서도 대표적인 task이지만,  
+DL에선 Detection 및 Segmentation등의 Task도 굉장히 많이 다루어짐. 
 
-> DL의 성능이 워낙 좋다보니 Segmentation과 같이 어려운 task도 주요 task로 포함되어 사용된다.  
+> DL의 성능이 워낙 좋다보니 Segmentation과 같이 어려운 task도 많이 다루어짐.    
 > 일반적으로 난이도는 segmentation이 가장 어렵고, 그다음이 detection, 그다음이 classification 순이다. (Labelling도 마찬가지임.)
 
 ![](./img/DL_tasks.png)
@@ -71,8 +71,8 @@ Detection 및 Segmentation등의 Task도 굉장히 많이 다루어짐.
 ### Classification
 
 * 분류문제이며 출력이 다음과 같은 일종의 vector로 나옴.
-* `[Cancer, Precancer, Inflammation, Normal]``
-* `[0.7,0.15,0.1,0.05]`` 가 출력일 경우, Cancer라고 모델이 판정한 경우이며 `0.7` 정도가 그 판정에 대한 confidence임.
+* `[Cancer, Precancer, Inflammation, Normal]`
+* `[0.7,0.15,0.1,0.05]` 가 출력일 경우, Cancer라고 모델이 판정한 경우이며 `0.7` 정도가 그 판정에 대한 confidence임.
 
 ### Object Detection
 
@@ -89,6 +89,8 @@ Detection 및 Segmentation등의 Task도 굉장히 많이 다루어짐.
 
 ---
 
+### Single Object vs. Multiple Object
+
 Object Detection과 Segmentation의 경우, single object 혹은 multiple object이냐 에 따라 다음과 같은 구분도 가능함.
 
 ![](./img/DL_object_num_task.png)
@@ -99,6 +101,8 @@ Object Detection과 Segmentation의 경우, single object 혹은 multiple object
 
 * Single Object만을 다루는 task는 `“Classification + Localization”`이라고도 부름.
 * Multiple Object인 경우를 포함하여 `Object Detection`, `Segmentation` 이라고 지칭함. ( 이 경우를 보다 일반적으로 사용한다.)
+
+---
 
 ### Semantic Segmentation vs. Instance Segmentation
 

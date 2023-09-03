@@ -11,10 +11,10 @@ ML은 다음과 같은 구분 기준을 가지고 subcategory들로 나눌 수 �
 
 Whether or not they are trained with human supervision.
 
-* Supervised Learning **
-* Semi-supervised Learning
-* Unsupervised Learning *
-* Reinforcement Learning
+* [Supervised Learning](./ch00_20_supervised.md) **
+* [Semi-supervised Learning](./ch00_22_semisupervised.md)
+* [Unsupervised Learning](./ch00_22_semisupervised.md) *
+* [Reinforcement Learning](./ch00_23_reinforcement_learning.md)
 
 ---
 

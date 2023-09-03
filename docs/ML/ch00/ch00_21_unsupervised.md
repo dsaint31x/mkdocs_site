@@ -26,7 +26,7 @@ Unsupervised Learning 으로 해결하고자 하는 ^^주요 task^^ 는 다음�
 : ML에서 사용되는 data들은 일종의 vector로 표현되는데, 이때 해당 vector들이 놓여지는 vector space의 공간의 차원수를 dimension이라고 부른다(쉽게 말하면 숫자 4개로 구성된 vector는 4차원의 공간에서의 한점을 나타내므로 차원수가 4차원이라고 할 수 있다.).  
 다차원의 데이터들은 `curse of dimension`과 같은 문제점이 있기 때문에 가지고 있는 ^^information의 소실을 최대한 막고 dimension을 축소^^ (=compression)해야하는 경우가 많으며 이를 수행하는 task를 `Dimensionality reduction`이라고 부른다.
 
-* `(Data) Visualization` : `Dimensionality reduction`에서 ^^target dimension을 2 또는 3 차원으로 한 경우^^ 로, data들의 분포의 특징등을 시각적으로 잘 나타내는 task 또는 application을 지칭.  
+: * `(Data) Visualization` : `Dimensionality reduction`에서 ^^target dimension을 2 또는 3 차원으로 한 경우^^ 로, data들의 분포의 특징등을 시각적으로 잘 나타내는 task 또는 application을 지칭.  
 ML 또는 Data Mining으로 찾아낸 데이터들의 특성 또는 분포를 2차원의 chart (보통 scattergram, scatter plot)로 표현하여 ^^데이터에 대한 insight를 제공^^ 하는데 사용됨.
 
 `Anomaly detection` (or `novelty detection`, `odd detection`)
@@ -58,12 +58,12 @@ Dimensionality Reduction과 Representation Learning들과 매우 밀접하게 �
 
 ---
 
-## Self-supervised Learning.
+## Self-supervised Learning (of DL).
 
 `Unsupervised learning`의 경우, **dataset에 내재되어있는 feature를 추출하는 데 초점** 이 보다 쏠려있는 것과 비교하여  
 `Self-supervised learning`은 **자체적으로 labeling을 수행하고 난 다음에 일반적인 supervised learning으로 해결하는 task (= downstream task)를 수행** 하는 차이가 있다.
 
-> Self-supervised Learning은 ***Supervised Learning을 위한 Technique***이라고 볼 수 있음.
+> Self-supervised Learning은 ***Supervised Learning을 위한 Technique*** 이라고 볼 수 있음.
 
 대부분의 self-supervised learning의 경우, 
 
