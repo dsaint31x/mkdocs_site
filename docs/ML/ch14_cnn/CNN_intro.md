@@ -8,7 +8,13 @@ Image 를 input으로 다루는 경우 가장 일반적으로 사용되는 ANN�
 * `Pooling Layer` : `max pooling` or `average pooling`. sub-sampling을 담당. (convolution layer와 함께 사용되어 higher layer의 receptive field를 효과적으로 커지게 해줌.)
 
 `CNN`은 image data에서 다음의 2개의 가정이 성립한다고 가정함으로서 `MLP`에 비해 매우 적은 parameters를 가지게 됨.  
+
+* [Locality of Pixel Dependencies](#locality-of-pixel-dependencies)
+* [Stationarity of Statistics](#stationarity-of-statistics)
+
 때문에 image를 input으로 할 때 `MLP`에 비해 적은 데이터에서도 매우 학습이 잘 이루어짐.
+
+결국 global pattern을 학습하는 MLP와 달리 ***`CNN`은 kernel size에 해당하는 local feature pattern을 학습*** 하게 됨.
 
 **Convolution 에 대한 참고자료**
 
@@ -36,7 +42,6 @@ Image data가 `locality of pixel dependencies`라는 특성을 가짐에 착안�
 
 * 아랫부분은 MLP에 해당. (dense layer)
 
-결국 global pattern을 학습하는 MLP와 달리 CNN은 kernel size에 해당하는 local feature pattern을 학습하게 됨.
 
 ---
 
