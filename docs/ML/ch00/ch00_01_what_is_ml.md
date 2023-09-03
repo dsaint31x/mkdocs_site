@@ -39,6 +39,12 @@ A computer program is said
 ML이 실제로 유용하게 사용된 첫번째 사례는 1990년대의 spam filter라고 할 수 있다.  
 spam filter의 경우를 위의 정의에 비추어 `E`, `T`, `P`를 잘 나누어보면 ML에 대한 정확한 개념이 자리잡을 것이다.
 
+* `T`ask 는 ML로 풀고자 하는 문제이다.
+* `E`xperience 는 Data를 의미한다.
+* `P`erformance 는 사람을 위한 metric과 model 학습을 위한 loss function으로 나타내어진다. 
+
+> 참고로 ML을 통해 얻어지는 model은 결국 일종의 function이며, ML을 통해 model의 parameter (=weight + bias)들이 task를 수행하는데 최적의 값 (loss값을 최소화 = loss를 parameter로 편미분한 gradient의 반대방향으로 update)을 가지도록 update해나가는 과정이 training임.
+
 ---
 
 ## ML의 구성요소
