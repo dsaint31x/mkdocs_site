@@ -158,7 +158,7 @@ AI와, ML, 그리고 DL은 다음과 같은 관계를 보인다.
 **DL**
 : 현재 가장 우수한 성능의 ML을 구현하는 기술로 ***많은 Layers로 구성된 ANN (Artificial Neural Network)*** 을 가르킴.
 
-* MLP, CNN, RNN, Transformer
+* MLP, CNN, RNN, Transformer, GAN
 
 
 
