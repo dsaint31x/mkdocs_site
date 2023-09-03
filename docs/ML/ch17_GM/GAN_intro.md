@@ -37,7 +37,7 @@ $$
 \boldsymbol{\theta}_{\text{optimum}}=\underset{\boldsymbol{\theta}}{\text{arg max }} \text{KL}(P(\textbf{x}_m)||P(\textbf{x}_m|\boldsymbol{\theta}))
 $$
 
-
+---
 
 ## Generative Adversarial Network (GAN)
 
@@ -52,9 +52,13 @@ $$
     * 이후 generative model이 학습되는 순으로 진행됨.
 * 최종적으로 discriminator가 input data의 실제 여부를 구분하지 못하는 (50:50의 확률) 상태가 되면 이 적대적 학습이 종료되고 최적의 generative model을 얻게 됨.
 
-> 참고로 GAN은 implicit density model로서 명시적으로 probability distribution을 정의하지 않는다 . 이에 반해 Variational AutoEncoder (VAE, 2019)는 explicit density model (정확히 계산가능한 건 아니라서 intractable)임 (때문에 model 평가 기준이 명확하고 훈련이 보다 용이하다는 장점을 가지나 해당 model로부터 생성된 $\textbf{X}$의 품질은 GAN보다 떨어지기 쉬움.).
+### GAN vs. Variational AutoEncoder (VAE)
 
-사실 GAN은 data probability distribution을 estimation하는 것을 목표로 한다기 보다 train dataset의 data sample과 비슷한 data를 생성하는 것을 목표로함.
+GAN은 implicit density model로서 명시적으로 probability distribution을 정의하지 않는다.  
+
+이에 반해 Variational AutoEncoder (VAE, 2019)는 explicit density model (정확히 계산가능한 건 아니라서 intractable)임 (때문에 model 평가 기준이 명확하고 훈련이 보다 용이하다는 장점을 가지나 해당 model로부터 생성된 $\textbf{x}$의 품질은 GAN보다 떨어지기 쉬움.).
+
+사실 GAN은 data probability distribution을 estimation하는 것을 목표로 한다기 보다 train dataset의 data sample과 비슷한 data를 생성하는 것을 목표로 함.
 
 > GAN은 Generator를 잘 만드는게 목표이지 유사한 probability distribution을 만드는 것엔 관심 없음. 
 

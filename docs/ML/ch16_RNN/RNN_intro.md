@@ -6,6 +6,10 @@
 >
 > * [time series data란](https://dsaint31.tistory.com/604)
 
+---
+
+## Feedforward Network vs. RNN
+
 ANN은 일종의 node들을 edge로 연결한 *일종의 system* 이라고 볼 수 있다. 
 
 > 일반적으로 system은 특정 input에 대해 특정 output을 mapping 시켜주는 transformer 또는 function으로 해석되며, input과 output을 가지는 sub-system의 연결 방식에 따라 구분되기도 한다. 
@@ -17,10 +21,10 @@ ANN의 연결방식에서 input에서 output으로 연결이 하나의 방향으
 * sequence type의 input을 처리할 때, input의 전체 length가 한번에 feed-forward network에 주어져야함.
     * 이는 input의 크기가 고정됨을 의미.
 
-Feed-forward network에 해당하는 instantaneous system과 대조되는 것이 바로 ***dynamic system (memory system, state machine)***으로 이같은 systems에서는 ***feedback connection이 존재*** 한다.  
+Feed-forward network에 해당하는 instantaneous system과 대조되는 것이 바로 ***dynamic system (memory system, state machine)*** 으로 이같은 systems에서는 ***feedback connection이 존재*** 한다.  
 ANN에서 feedback connection이 있는 구조를 `Recurrent Neural Network` (`RNN`)라고 칭함.
 
-* feedback connection은 system이나 subsystem에서의 ***output을 앞단이나 자신의 input으로 사용되도록 연결** 된 것을 가르킴.
+* feedback connection은 system이나 subsystem에서의 ***output을 앞단이나 자신의 input으로 사용되도록 연결*** 된 것을 가르킴.
     * feedback connection이 있는 경우, network는 일종의 loop를 이루게 됨.
 * dynamic system은 feedback connection을 통해 과거의 output이 현재의 output에 영향을 주도록 구현됨.
     * dynamic system은 과거의 input과 output에 대한 기억에 해당하는 `state`를 가지고 있으며, ***state와 input`에 의해 output이 결정*** 된다.
@@ -29,6 +33,10 @@ ANN에서 feedback connection이 있는 구조를 `Recurrent Neural Network` (`R
 
 참고 : [feedback connection 요약자료](https://dsaint31.tistory.com/600)  
 참고 : [Dynamic System and Instantaneous System](https://bme808.blogspot.com/2022/10/dynamic-system.html)
+
+---
+
+## RNN의 구조
 
 다음의 그림은 `RNN`의 구조를 보여줌.
 
@@ -54,17 +62,23 @@ ANN에서 feedback connection이 있는 구조를 `Recurrent Neural Network` (`R
 > 
 > * 여기서 sequence는 vector을 한 timestep의 item으로 가지는 sequence임.
 
-위의 `RNN` 그림을 풀어서(unrolled)로 표시하면 다음과 같음
+### unrolling RNN 
+
+위의 `RNN` 그림을 풀어서(unrolling)로 표시하면 다음과 같음
 
 ![](./img/unfolded_rnn.png)
 
 * feedback connection을 time별로 풀어서 표현함.
-* 무한한 길이의 sequence type이 input으로 주어지면 unrolled로 그릴 경우 역시 무한한 길이로 표현됨.
+* 무한한 길이의 sequence type이 input으로 주어지면 unrolling로 그릴 경우 역시 무한한 길이로 표현됨.
 * 참고로 이 그림에서 한번에 들어가는 input (특정 시점의 input vector)가 바로 $\textbf{x}_{t-1}$임.
 
 > 이론상이라고 한 이유는 `RNN`에서 현재 output 또는 state를 결정할 때 오래전에 입력된 input일수록 영향력이 줄어든다는 문제점을 가지고 있기 때문임.  
 > 오래전 input이라도 현재의 output을 결정하는데 매우 중요한 정보일 수 있는데, `RNN`에서는 input이 들어온 시점이 오래될수록 현재 output에 대한 영향력이 줄어듬 (오래된 일에 대한 기억력이 좋지 못하다고 볼 수 있음)  
 > 이를 해결하기 위해 `LSTM`, `GRU` 등이 제안되었지만 완전히 해결이 된 것은 아님.
+
+---
+
+## Input Data Type.
 
 임의의 길이의 sequence를 처리할 수 있기 때문에 `RNN`은 다음과 같은 데이터를 처리하는데 사용됨.
 
@@ -76,6 +90,10 @@ ANN에서 feedback connection이 있는 구조를 `Recurrent Neural Network` (`R
 특히 `RNN`은 번역이나 `speech-to-text` 등에 많이 사용되었던 방식임 
 
 > 현재 번역과 같은 자연어 처리에는 `transformer`를 기반으로 처리하는 게 일반적임. `RNN`은 초기에 사용됨.
+
+---
+
+## RNN의 응용분야.
 
 `RNN`은 sequential data를 다루는데 가장 기본적으로 적용되는 모델이라고 할 수 있으나, `Transformer`의 등장으로 그 사용범위가 줄어들고 있는 추세이다.
 

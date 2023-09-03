@@ -9,7 +9,7 @@ ori. [GradientBased Learning Applied to Document Recognition, Yann LeCun et al.,
 ![](./img/lenet5.png)
 
 | Layer Name | Type | output (=feature map) | kernel | stride | activation |
-| :----: | :----: | :----: | :----: | :----: | | :----: |
+| :----: | :----: | :----: | :----: | :----: | :----: |
 | INPUT | input layer | $32\times 32 \times 1$ |  - | - | - |
 | C1 | convolutional layer | $28\times 28 \times 6$ | $5\times 5$  | 1 | tanh |
 | S2 | average pooling layer (주의1) | $14\times 14 \times 6$ | $2\times 2$  | 2 | tanh |
