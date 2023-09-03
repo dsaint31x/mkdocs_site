@@ -2,8 +2,9 @@
 
 Gradient Vanishing과 Exploding의 위험을 효과적으로 감소시킴.
 
-* Layer parameter가 변함에 따라, 다음 layer에 들어오는 input의 distribution이 바뀌는 ***internal covariate shift*** 문제를 Gradient Vanishing and/or Exploding의 원인이라고 가정.
+* Layer parameter가 변함에 따라, 다음 layer에 들어오는 input의 distribution이 바뀌는 ***Internal Covariate Shift*** (ICS) 문제를 Gradient Vanishing and/or Exploding의 원인이라고 가정.
 * 이를 위해 layer의 Input을 standardization을 하고, task 수행에 최적의 분포가 되도록 scaling과 shifting을 학습하여 이를 layer input에 적용.
+* 단, `RNN`의 time 방향으로 unrolling된 쪽에 `BN`은 적용해도 큰 효과가 없는 것으로 알려짐 (`RNN`에서는 대신 `Layer Normalization`을 사용한다.)
 
 어찌 보면 layer 별로 최적의 input 분포를 가지도록 pre-processing을 해주는 것이 batch normalization이다. (여기서 최적의 분포란 현재 training dataset을 기준으로 task를 가장 잘 수행할 수 있게 해주는 input의 분포를 의미.)
 
@@ -25,12 +26,12 @@ Gradient Vanishing과 Exploding의 위험을 효과적으로 감소시킴.
 
 참고할 것은 
 
-* Internal Covariate Shift (ICS)를 `BN`이 막아주지 못하며, 
-* 실제 ICS가 deep learning의 학습에 지장을 주지 않고 
+* Internal Covariate Shift (ICS)를 `BN`이 실제로는 막아주지 못하며, 
+* 다행스럽게도 ICS가 deep learning의 학습에 지장을 그리 주지 않는 것으로 알려짐. 
 * 오히려 `BN`이 optimization landscape에서의 smoothing 효과를 가져오기 때문에 
 * 좋은 성능을 보인 것이라는 후속연구가 있음.
 
-`BN`은 ICS를 해결해서 좋은 성능을 보인다고 해석하기 보다는 
+때문에 `BN`은 ICS를 해결해서 좋은 성능을 보인다고 해석하기 보다는 
 
 * 각 layer들에 대해 ***"Task를 푸는데 있어서 최적의 분포를 가지는 input"*** 으로 바꾸어주는 특성(ReLU등과도 궁합이 잘 맞음)과 
 * optimization landscape smoothing이 이루어지기 때문에
@@ -41,11 +42,11 @@ Gradient Vanishing과 Exploding의 위험을 효과적으로 감소시킴.
 
 ## 장점
 
-* Gradient Vanishing과 exploding을 효과적으로 감소시킴에 따라 `sigmoid`를 hidden layer의 activation으로 사용할 수 있을 정도의 성능을 보임.
-* Weight initialization이 training에 미치는 효과를 감소시켜서 poor weight initialization에서도 학습이 잘 이루어지게 해줌.(그렇다고 억지로 나쁜 weight initialization을 사용할 필요는 없음)
-* learning ratio를 크게 잡아도 Training이 잘 이루어지게 해줌.
-    * `BN` 등장 전에는 learning ratio를 지나치게 크게 작을 경우, gradient vanishing 또는 expanding이 심해지는 등의 문제로 학습이 제대로 되기 힘들었음.
-* mini-batch size를 크게 해주면 그 효과가 떨어지기는 하지만, 어느정도의 regularization 효과를 부가적으로 가지기 때문에 학습속도를 저하시키는 drop-out을 ANN에서 제거할 수 있게 해줌.
+* Gradient Vanishing과 exploding을 효과적으로 감소시킴에 따라 ^^`sigmoid`를 hidden layer의 activation으로 사용할 수 있을 정도의 성능 향상^^ 을 보임.
+* Weight initialization이 training에 미치는 효과를 감소시켜서 ^^poor weight initialization에서도 학습이 잘 이루어지게 해줌.^^ (그렇다고 억지로 나쁜 weight initialization을 사용할 필요는 없음)
+* ^^learning ratio를 크게 해도 Training이 잘 이루어지게 해 줌^^.
+    * `BN` 등장 전에는 learning ratio를 지나치게 크게  경우, gradient vanishing 또는 expanding이 심해지는 등의 문제로 학습이 제대로 되기 힘들었음.
+* mini-batch size를 크게 해주면 그 효과가 떨어지기는 하지만, ^^어느 정도의 regularization 효과^^ 를 부가적으로 가지기 때문에 학습속도를 저하시키는 drop-out을 ANN에서 제거할 수 있게 해줌 (즉, ***overfitting 방지 효과*** 도 가짐.).
 
 ## 단점
 

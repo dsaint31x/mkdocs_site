@@ -15,12 +15,12 @@ input-output의 pair들을 가지고 있기 때문에 input과 output의 relatio
 
 Supervised Learning 으로 해결하고자 하는 ^^주요 task^^ 는 다음과 같다.
 
-`Classification`
+`Classification` (분류)
 : Discrete한 category를 label로 가지면서, 특정 data sample에 대해 해당 category를 할당하는 task. exclusive하게 category가 할당될 수도 있지만, 여러 label이 하나의 data sample에 할당될 수도 있음.
 
 ![](../img/ch00/classification.png){width="400" align="center"}
 
-`Regression`
+`Regression` (회귀)
 : Continuous한 숫자값을 label로 가지는 경우로, 특정 data sample에 대해 해당 숫자값을 할당하는 task임. Statistics에서 regression model 등에서 유래된 이름으로, input을 dependent variable (or predictor)로, 그리고 output을 independent variable (or target)으로 생각하면 된다.
 
 ![](../img/ch00/regression.png){width="400" align="center}
@@ -52,6 +52,61 @@ Supervised Learning 으로 해결하고자 하는 ^^주요 task^^ 는 다음과 
 * Support Vector Machine
 * Decision Tree
 * Random Forest
-* Artificial Neural Network
+* Artificial Neural Network ***
     * ^^Auto-encoder, Restricted Boltzmann Machine (RBM) 등은 `unsupervised`임^^ .
     * ^^Deep Belief Network (DBN) 등은 `semi-supervised`로 분류^^ 됨.
+
+---
+
+## Deep Learning에서의 Tasks.
+
+Regression과 Classification 은 DL에서도 대표적인 task이지만,
+Detection 및 Segmentation등의 Task도 굉장히 많이 다루어짐. 
+
+> DL의 성능이 워낙 좋다보니 Segmentation과 같이 어려운 task도 주요 task로 포함되어 사용된다.  
+> 일반적으로 난이도는 segmentation이 가장 어렵고, 그다음이 detection, 그다음이 classification 순이다. (Labelling도 마찬가지임.)
+
+![](./img/DL_tasks.png)
+
+### Classification
+
+* 분류문제이며 출력이 다음과 같은 일종의 vector로 나옴.
+* `[Cancer, Precancer, Inflammation, Normal]``
+* `[0.7,0.15,0.1,0.05]`` 가 출력일 경우, Cancer라고 모델이 판정한 경우이며 `0.7` 정도가 그 판정에 대한 confidence임.
+
+### Object Detection
+
+* Classification을 겸하고 있으며, image 내에 해당 object(or region)에 bounding box를 그려 위치도 찾아냄.
+* 각 bounding box마다 classification의 출력이 같이 나옴.
+
+### Segmentation
+
+* bounding box와 달리 해당 object에 속하는 pixel들을 정확히 분류함.
+* 출력이 input image와 같은 사이즈의 binary이미지가 분류하는 class의 수만큼 나옴.
+    * 또는 가로세로비가 같은 축소된 이미지
+* cancer에 해당하는 출력이미지는 image에서 cancer 영역의 pixel들이 1을 가지고, 나머진 0일 가짐.
+    * 또는 하나의 출력이미지에서 cancer에 속하는 pixel들은 1을, precancer는 2를, inflammation은 3을, Normal은 4를 할당하고 unknown등에 0을 할당하는 형태도 가능함. 
+
+---
+
+Object Detection과 Segmentation의 경우, single object 혹은 multiple object이냐 에 따라 다음과 같은 구분도 가능함.
+
+![](./img/DL_object_num_task.png)
+
+* 위의 Segmentation은 Instance segmentation으로 같은 type의 object라도 다른 instance이면 다르게 labeling을 함. 
+
+즉, 엄격하게 분류하는 경우,
+
+* Single Object만을 다루는 task는 `“Classification + Localization”`이라고도 부름.
+* Multiple Object인 경우를 포함하여 `Object Detection`, `Segmentation` 이라고 지칭함. ( 이 경우를 보다 일반적으로 사용한다.)
+
+### Semantic Segmentation vs. Instance Segmentation
+
+![](./img/segmentation_type.png)
+
+Segmentation은 다음과 같이 두가지로 나뉨.
+
+* Semantic Segmentation : pixel단위로 물체를 구분한 뒤 각각의 물체가 어떤 class인지만 구분
+* Instance Segmentation : 같은 class이더라도 다른 것이라면 구분
+
+

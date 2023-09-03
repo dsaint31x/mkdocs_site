@@ -4,8 +4,14 @@
 
 Image 를 input으로 다루는 경우 가장 일반적으로 사용되는 ANN임.
 
-* `Convolutional Layer` : feature map 추출.
-* `Pooling Layer` : `max pooling` or `average pooling`. sub-sampling을 담당. (convolution layer와 함께 사용되어 higher layer의 receptive field를 효과적으로 커지게 해줌.)
+* `Convolutional Layer` : feature map 추출하는 filter의 역할.
+* `Pooling Layer` : `max pooling` or `average pooling`. sub-sampling을 담당.   
+    * convolution layer와 함께 사용되어 higher layer의 receptive field를 효과적으로 커지게 해줌.
+    * 지나치게 pooling의 mask가 크거나 많이 사용할 경우, spatial information loss가 커짐.
+* 위 2개의 layer들을 조합하여 깊게 쌓게 될 경우, 근처에 있는 pixel들만을 중점적으로 보면서 점점 더 넓은 영역으로 확장해서 살펴보는 형태로 receptive field가 커지게 됨. (위치적으로 가까운 neuron들끼리 살펴보다가 higher layer로 갈수록 멀리 있는 정보들도 같이 보게 됨.)
+    * 한번에 큰 size의 kernel을 사용하는 것보다 작은 size kernel을 여럿 쌓는 게 효과적임.
+    * hierarchical feature map이 가능해지며, 가까운 pixel들을 중요하게 보면서 먼 곳의 pixel들을 고려해나가는 형태의 처리가 가능해짐.
+    * CNN에서 lower layer들은 edge나 texture등의 low level feature를 추출하고, higher layer로 갈수록 복잡한 high level feature들이 추출됨. (해당 high level feature들은 low level feature들을 조합하여 구성됨.)
 
 `CNN`은 image data에서 다음의 2개의 가정이 성립한다고 가정함으로서 `MLP`에 비해 매우 적은 parameters를 가지게 됨.  
 
