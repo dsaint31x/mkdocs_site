@@ -2,11 +2,15 @@
 
 간단하게 말하면, ^^data로부터 computer가 학습(learning)을 하도록 프로그래밍하는 과학분야 또는 기술^^ 을 가르키는 용어임.
 
-좀더 풀어서 애기하면, computer에게 기존의 알고리즘 (with explicitly programming)과 같이 어떻게 task를 수행할지를 명시적으로 알려주지 않고, 관련 data들을 제공해주면서, computer가 스스로 해당 data로부터 task를 수행하는데 필요한 logic과 rule을 학습할 수 있도록 해주는 프로그래밍 기법 또는 이를 연구하는 분야이다.
+좀 더 풀어서 애기하면, 
+
+* computer에게 기존의 알고리즘 (with explicitly programming)과 같이 어떻게 task를 수행할지를 명시적으로 알려주지 않고, 
+* 관련 data들을 제공해주면서, computer가 스스로 해당 data로부터 task를 수행하는데 필요한 logic과 rule을 학습할 수 있도록 해주는 프로그래밍 기법 
+    * 또는 이를 연구하는 분야이다.
 
 ## General Definition
 
-위의 정의는 ML이라는 용어를 최초로 제시한 Arthur Samuel이 제안한 정의이다.
+위의 정의는 ML이라는 용어를 최초로 제시(또는 대중화에 기여)한 Arthur Samuel (1901-1990)이 제안한 정의이다.
 
 ---
 
@@ -48,7 +52,7 @@ ML은 다음으로 구성된다고도 생각할 수 있다.
 **`Representation`**
 
 - 수행하고자 하는 task(혹은 해결하고자 하는 문제)에 맞추어 
-**입력값** 을 어떤 **결괏값** 으로 만들지를 결정하는 방법(=model or algorithm)
+**입력값** 을 어떤 **결괏값** 으로 만들지를 결정하는 방법(=`model` or `algorithm`)
     - SVM, Decision Tree, k-means model
 
 **Evaluation**
@@ -62,12 +66,14 @@ ML은 다음으로 구성된다고도 생각할 수 있다.
 - evaluation 에서 원하는(또는 요구되는) 기준(성능)을 
 ***최적으로 만족시키기 위한 조건(~ model의 *parameter, weight*)*** 을 **찾는 방법**.
 - 좀 더 기술적으로 애기하면, model의 parameter(or weight)를 evaluation에서 원하는 수준의 좋은 metric 수치를 얻도록 update하는 방법.
-    - Gradient Decent, Adam 등.
+    - Gradient Descent, Adam 등.
 
 **Generalization**
 
 - 학습된 model을 이용하여 ***새로운 데이터에 대한 예측*** 을 수행.
     - 학습에 사용되지 않은 데이터에 대해 학습된 model로 inference수행.
+
+---
 
 ## ML vs. Data Mining
 

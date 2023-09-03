@@ -8,6 +8,12 @@ McCulloch (의사, 신경생리학자)와 Pitts (인지심리학자, 논리학�
 
 on-off로 동작(=switch)하는 기능을 가진 artificial neuron들을 그물망 형태로 연결(network)하면 사람의 뇌에서 이루어지는 논리적 연산을 흉내낼 수 있음을 제안.
 
+이는 달리 말할 경우, artificial neuron들을 합쳐서 범용적인 컴퓨팅 장치를 만들 수 있다는 애기임.
+
+> McCulloch과 Pitts의 이론은 실제 인간 두뇌 활동에 대한 정확한 모델링은 아닌 것으로 판명되었으나, 현대 digital computer의 기본이 stored program computer를 제안한 John von Neumann에게까지 영향을 주었고 ANN의 탄생에도 큰 영향을 미침.  
+> 
+> * [The von Neumann Architecture](../../CE/ch00/history_of_computers.md#the-von-neumann-architecture)
+
 ### McCulloch and Pitts의 Simple Neurons
 
 logical proposition (논리 명제)를 계산 (and, or, not 등의)함.
@@ -16,30 +22,37 @@ logical proposition (논리 명제)를 계산 (and, or, not 등의)함.
 
 * closed circle (안이 채워진 원)은 excitatory edge를 의미.
 * open circle (안이 비워진 원)은 inhibitory edge를 의미.
+
+위 그림은 다음 4가지 종류의 연산을 보여줌.
+
 * `precession` : identity op.
 * `disjunction` : $2=1 \lor 2$ (`or`).
 * `conjunction` : $3=1 \land 2$ (`and`).
-* `conjoined negation` $3 = 1 \land \neg 2$: 
+* `conjoined negation` : $3 = 1 \land \neg 2$.
+
+**ref.**: [초기의 신경망 이론 및 모델, 김대수, 1992](http://www.aistudy.com/neural/model_kim.htm)
 
 ### Physical Assumptions for McCulloch-Pitts Model
 
-* Neuron : 1 or 0 (= all-or-none process) 
+1. Neuron : 1 or 0 (= all-or-none process) 
     * binary inputs (`1` or `0`)을 처리하여 binary output (`1` or `0`)을 내보냄.
-* 특정 Neuron이 **activation** (= output이  `1`)이 되려면 ^^2개 이상의 고정된 갯수의 synapse가 activation^^ 되어야 함 (일정한 시간내에)
-    * delay는 synaptic delay만 고려. (= Neural network에서 다른 시간 지연을 고려하지 않음.)
-* absolute inhibitory input(=synapse)가 존재. 
+2. 특정 Neuron이 **activation** (= output이  `1`)이 되려면 ^^2개 이상의 고정된 갯수의 synapse가 activation^^ 되어야 함 (일정한 시간내에)
+3. delay는 synaptic delay만 고려. (= Neural network에서 다른 시간 지연을 고려하지 않음.)
+4. absolute inhibitory input(=synapse)가 존재. 
     * inhibitory synapse (위 그림에서 open circle)가 activation 될 경우 그 때의 특정 neuron은 절대로 activation이 되지 못함.
-* Neural network의 구조는 time-invariant (Weighting 및 학습에 대한 개념이 없었음).
+5. Neural network의 구조는 time-invariant (Weighting 및 ***학습에 대한 개념이 없었음*** ).
+
+> ML에서 training이란 결국, task에 최적화된 weights (or parameters)의 값을 구하는 것인데, 위의 5번 가정에 위배된다. (이후 Hebb's rule을 반영하면서 weights의 값을 변경하는 개념이 도입됨.)
 
 ---
 
 ## weight factor의 도입
 
-Donald Olding Hebb (캐나다, 심리학자)이 [The Organization of Behavior: A Neuropsychological Theory(1949)](https://pure.mpg.de/rest/items/item_2346268_3/component/file_2346267/content)을 통해 Neural network (생물의)에서 반복적인 signal이 발생할 경우, 해당 signal과 관련된 neurons의 synapse 연결이 강화되는 일종의 학습효과가 있다는 "학습 및 기억과 관련된 가설"을 제안 (이를 Hebb's rule이라고 지칭).
+Donald Olding Hebb (캐나다, 심리학자)이 [The Organization of Behavior: A Neuropsychological Theory(1949)](https://pure.mpg.de/rest/items/item_2346268_3/component/file_2346267/content)을 통해 Neural network (생물의)에서 반복적인 signal이 발생(=firing)할 경우, 해당 signal과 관련된 neurons의 synapse 연결이 강화되는 일종의 학습효과가 있다는 "학습 및 기억과 관련된 가설"을 제안 (이를 `Hebb's rule`이라고 지칭).
 
 * Long-term Memory의 경우, Short-term Memory와 달리 연결된 Neuron에 물리적 변화(연결된 synapse의 강화 등등)가 이뤄짐.
 
-ANN에서는 이를 edge에 weight을 할당하여 강화가 될 수록 weight가 커지고 약화될 수록 weight을 줄이는 형태로 모델링.
+ANN에서는 이를 edge에 weight을 할당하여 강화될수록 weight가 커지고 약화될수록 weight을 줄이는 형태로 모델링.
 
 ---
 
@@ -47,12 +60,14 @@ ANN에서는 이를 edge에 weight을 할당하여 강화가 될 수록 weight�
 
 1957년 Frank Rosenblatt (심리학자)에 의해 가장 단순한 ANN architecture인 `Perceptron`이 제안됨.
 
+* 최초의 구현된 Artificial Neural Network 가 바로 `Perceptron`임.
+
 [The PERCEPTRON: A Probabilistic Model for Information Storage and Organization in the Brain , 1958](https://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.335.3398&rep=rep1&type=pdf)
 
 `Perceptron`은 다음의 `Threshold Logic Unit` (TLU, 또는 Linear Threshold Unit, LTU)라고 불리는 artificial neuron을 기본 구성단위로 삼음.
 
 * McCulloch와 Pitts의 neuron에 
-* Hebbs의 학습을 반영한 weight 개념을 추가함.
+* Hebbs의 학습을 반영한 ***weight 개념*** 을 추가함.
 
 ![](./img/TLU.png)
 
@@ -68,7 +83,7 @@ ANN에서는 이를 edge에 weight을 할당하여 강화가 될 수록 weight�
 
 ![](./img/single_layer_perceptron.png)
 
-> 일반적으로 `perceptron`이라고 하면 SLP를 가르킨다. Scikit-Learn에서 `sklearn.linear_model.Perceptron`으로 제공되고 있다.  
+> 일반적으로 `perceptron`이라고 하면 `SLP`를 가르킨다. Scikit-Learn에서 `sklearn.linear_model.Perceptron`으로 제공되고 있다.  
 > package 명에서도 알 수 있듯이 Perceptron은 linear model에 불과하다.
 
 ---
@@ -79,14 +94,20 @@ ANN에서는 이를 edge에 weight을 할당하여 강화가 될 수록 weight�
 
 [Principles of Neurodynamics: Perceptrons and the Theory of Brain Mechanisms, 1962](https://safari.ethz.ch/digitaltechnik/spring2018/lib/exe/fetch.php?media=neurodynamics1962rosenblatt.pdf)
 
+> 해당 논문은 매우 읽기 어렵고, 여러 형태의 perceptron에 각각의 이름을 붙여 혼란스러운 것으로 유명하다. 게다가 학습이 당시로서는 불가했는데도 이에 대한 인식이 없었기 때문에 여러가지로 아쉬운 점이 많은 논문이다.)
+
+* 참고 : Perceptron convergence theorem을 통해 linearly separable 한 문제에 대해서 perceptron은 정답에 수렴할 수 있음.  
+
 그 중 하나가 아래에 보이는 Multi-Layer Perceptron으로 일종의 feed-forward ANN이며 2개 이상의 layers를 쌓아 만들어짐.  
 (일반적으로 weight들이 있는 edge들이 몇 단계로 쌓였는지 또는 `TLU`로 구성된 layer의 갯수를 센다. 아래 그림의 3개층으로 구성된 MLP임)
 
 ![](./img/multi_layer_perceptron.png)
 
 
-* MLP는 perceptron (=SLP)가 못 푸는 non-linear classification (`XOR`이 가장 간단한 예)도 해결 가능함.
+* `MLP`는 perceptron (=SLP)가 못 푸는 non-linear classification (`XOR`이 가장 간단한 예)도 해결 가능함.
 * 문제는 중간에 존재하는 여러 개의 hidden layer로 인해 증가된 weights (bias포함)를 어떻게 학습시킬지에 대한 해답을 Rosenblatt는 명확히 제시하지 못했고, ^^back-propagation이 등장하여 적용되는 1980년대까지^^ MLP에 대한 학습방법이 제시되지 못함.
+
+> Feedforward ANN의 경우, 이론상으로는 임의의 어떤 function이라도 approximation 할 수 있음이 현재 증명됨 : [Universal Approximation Theorem (UAT)](https://ds31x.blogspot.com/2023/08/dl-universal-approximation-theorem-uat.html?view=classic)
 
 ---
 
@@ -94,7 +115,7 @@ ANN에서는 이를 edge에 weight을 할당하여 강화가 될 수록 weight�
 
 1969년 Marvin Minsky 와 Seymour Papert는 [Perceptrons: An Introduction to Computational Geometry](https://en.wikipedia.org/wiki/Perceptrons_(book))라는 책을 통해 SLP의 한계를 수학적으로 증명함.
 
-* SLP는 linear classifier에 불과 → 비선형 분류(XOR) 문제를 풀 수 없음을 수학적으로 증명.
+* ***`SLP`는 linear classifier에 불과*** → 단순한 `XOR` 문제(linearly separable하지 않은 문제 중 가장 단순한 형태.)도 풀 수 없음을 수학적으로 증명.
 * MLP 사용할 경우엔 이를 해결할 수 있으나 weight과 bias의 값을 어떻게 구할지 (=학습알고리즘)가 제시되지 못함.
 * 즉, 학습 방법이 제시되어 있지 못함.
 * 결국, 당시 수준으론 실제 문제를 풀 수준의 ANN 구축이 불가함을 Minsky가 증명한 셈이 되었다.
@@ -104,8 +125,10 @@ ANN에서는 이를 edge에 weight을 할당하여 강화가 될 수록 weight�
 ![](./img/and_or_xor_perceptron.png)
 
 * perceptron의 linear function을 통해 decision boundary로 사용할 hyperplane (초평면)이 정의됨.
-* SLP는 결국 하나의 hyperplane만을 정의하게 되는데, 2차원에 놓인 data point에 대해 hyperplane은 결국 1차원 (1=2-1)이 되므로 결국 직선이 decision boundary가 된다.
+* `SLP`는 layer가 하나이기 때문에 결국 하나의 hyperplane만을 정의하게 되는데, 2차원에 놓인 data point에 대해 hyperplane은 결국 1차원 (1=2-1)이 되므로 결국 직선이 decision boundary가 된다.
 * 위의 그림에서 보이듯이 XOR문제는 두 개의 직선이 필요하며 이는 2개의 layer로 구성된 MLP가 필요함을 알 수 있다.
+
+> 1980년대 backpropagation의 등장으로 MLP가 학습가능해지기 전까지 ANN은 사장된 상태가 된 것으로 유명함.
 
 ---
 
@@ -182,7 +205,7 @@ MLP가 학습이 되기 시작했으나 다른 Machine Learning 기법에 비해
 
 Rumelhart가 Back-propagation을 MLP 학습에 효과적으로 사용하기 위해 MLP의 activation function을 기존의 heaviside step function을 `logistic function`으로 변경 (`logistic function`은 sigmoid functions의 대표)함.
 
-Back-propagation은 Gradient decent와 Reverse-mode Autodiff의 조합이기 때문에 결국 differentiation에 기반함.
+Back-propagation은 Gradient decent와 Reverse-mode Autodiff.의 조합이기 때문에 결국 differentiation에 기반함.
 
 때문에 미분가능하면서 step function과 유사한 `logistic function`으로 activation function을 삼음.
 
@@ -197,7 +220,7 @@ Scikit-Learn에서 제공하는 `sklearn.neural_network.MLPRegressor` 와 `sklea
 ### SLP와 MLP의 차이점
 
 * SLP를 보통 Perceptron이라고 부르며, activation function이 step function임.
-* MLP는 학습이 되기 위해서 back-propagation으로 gradient를 구해야하면 때문에 미분 가능한 activation function인 sigmoid functions과 여러 다른 function (적어도 subgradient를 구할 수 있어야함)으로 변경이 이루어짐.
+* MLP는 학습이 되기 위해서 back-propagation으로 gradient를 구해야하면 때문에 미분 가능한 activation function인 sigmoid functions과 여러 다른 function (적어도 sub-gradient를 구할 수 있어야함)으로 변경이 이루어짐.
 
 
 ### Activation function의 중요성.
@@ -211,6 +234,7 @@ activation function이 identity function일 경우, perceptron은 단순한 line
 
 즉, activation function이 있기 때문에 MLP가 SLP와 차이를 가지게 되는 것이며, 달리 말하면 layers를 깊이 쌓는 구조가 single layer나 적은 수의 layers로 구성된 구조보다 높은 성능을 가지는 근본적인 이유가 activation function의 존재 때문임.
 
+---
 
 ## References
 
@@ -218,11 +242,4 @@ activation function이 identity function일 경우, perceptron은 단순한 line
 * [Backpropagation Applied to Handwritten Zip Code Recognition, Y. LeCun el al. 1989](http://yann.lecun.com/exdb/publis/pdf/lecun-89e.pdf)
 * [A fast learning algorithm for deep belief nets, G. E. Hinton et al.](http://www.cs.toronto.edu/~osindero/PUBLICATIONS/HOT_NC05_fast_deep_nets.pdf)
 * [DEEP LEARNING 101](https://slides.com/beamandrew/deep-learning-101/#/42)
-
-
-
-
-
-
-
-
+* [초기의 신경망 이론 및 모델, 김대수, 1992](http://www.aistudy.com/neural/model_kim.htm)
