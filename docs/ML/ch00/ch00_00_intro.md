@@ -102,7 +102,7 @@ ML을 위해 제안된 다양한 기법들이 있으며 대략적으로 나누�
 
 * 적은 수의 layer로 구성된 ANN을 가르켜 perceptron이라고 부르며 이는 ML에 속함.
 
-##  Representative Learning
+##  Representative Learning **
 
 입력에 대해 요구되는 출력(~expectation)을   
 가능한 범위 내에서 정확하게 산출할 수 있는 approximation model을 만들기 위해(Task를 잘 수행하는데 필요한)  
@@ -113,10 +113,13 @@ ML을 위해 제안된 다양한 기법들이 있으며 대략적으로 나누�
 * Manifold Learning : [manifold에 대한 참고자료](../ch07/manifold.md)
 * Auto-encoder
 
-## Deep Learning 이란.
+## Deep Learning (DL) 이란. ***
 
-엄격하게 애기하면 Deep Learning은 ML의 한 종류이며, Representative Learning 에 속한다.  
-우수하고 효율적인 Machine Learning을 실현할 수 있는 기법이 Deep Learning이며, 이는 학습데이터로부터 최적의 hierarchy representation을 알아서 추출할 수 있다는 장점에 기인한다.
+엄격하게 애기하면 `Deep Learning`은 `ML`의 한 종류이며, `Representative Learning`에 속한다.  
+
+> 보다 엄밀하게 애기하면, `ML`의 한 분야인 `ANN`에서 hidden layer를 여러 개 사용하는 방법을 Deep Learning이라고 한다.
+
+우수하고 효율적인 Machine Learning을 실현할 수 있는 기법이 Deep Learning이며, 이는 ***학습데이터로부터 최적의 hierarchy representation을 알아서 추출할 수 있다*** 는 장점에 기인한다.
 
 다음의 Deep Learning의 정의를 살펴보라.
 
@@ -124,7 +127,16 @@ ML을 위해 제안된 다양한 기법들이 있으며 대략적으로 나누�
 
 ![http://www.cs.utoronto.ca/~rgrosse/cacm2011-cdbn.pdf](../img/ch00/dl_hiearchy_rep.png)
 
-* DL은 데이터로부터, 스스로 계층적인 representation을 추출해내는 능력을 가짐.
+* `DL`은 데이터로부터, 스스로 계층적인 representation을 추출해내는 능력을 가짐.
+    * 이를 달리 말하면, DL은 non-linear dataset의 input vector들을 task에 맞추어진 linear separability를 가진 feature vector들로 transform해주는 일종의 function을 만들어 낸다. (+ dataset으로부터 알아서...)
+    * `DL`은 기존의 feature engineering이 하던 일을 dataset으로부터 알아서 해준다.
+    * `DL`은 kernel SVM에서 kernel trick으로 우회해서 처리하던 것을 dataset으로부터 lower level layer에서 학습하여 직접 처리한다. 
+* ANN에서 layer를 여러 개 쌓을 경우, 이를 단일 layer로 처리하는 경우에 비해 적은 수의 neuron으로 같은 표현력을 가질 수 있으며, 보다 빨리 학습이 되고, noise에 영향을 덜 받는 것으로 알려져 있다. 
+
+> 실제로 logistic regression가 동일한 동작을 ANN (정확히는 `SLP`)으로 구현 가능하고, SVM은 hinge loss function과 Frobenius norm regularization을 사용하는 linear activation의 `SLP`라고 봐도 무방할 정도로 다른 ML 알고리즘들과 ANN은 많은 부분에서 공통점을 가지고 있다. 즉, DL도 ML의 한 분야에 불과하다.  
+> 하지만, 위에서 말한 알아서 최적의 representation을 여러 층으로 쌓인 non-linear activation function을 가지는 low layers를 통해 dataset으로부터 직접 얻어낸다는 점이 `DL`이 다른 `ML` 알고리즘과 비교할 수 없는 유용성을 가지게 해준 가장 큰 특징이다.  
+
+즉, 어떤 함수라도 근사할 수 있는 ANN ([UAT참고](http://ds31x.blogspot.com/))에 보다 효과적으로 학습되도록 hierarchical representative learning의 기능을 더한 것이 바로 DL이라고 생각해도 크게 틀리지 않다.
 
 ## Summary : AI, Machine Learning, and Deep Learning
 
