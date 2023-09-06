@@ -27,12 +27,12 @@ Whether the method relies on ^^comparing new data points to known ones in the tr
 
 ---
 
-### Prediction의 가능 여부에 따른 구분.
+## Prediction의 가능 여부에 따른 구분.
 
 `새로운 데이터에 대한 prediction이 가능` 한지 여부로 구분.
 
 * Inductive Learning
-* [Transductive Learning](http://ds31x.blogspot.com/search?q=transductive)
+* [Transductive Learning](http://ds31x.blogspot.com/2023/08/ml-transductive-learning-and-inductive.html?view=classic) *
 
 ---
 
