@@ -8,6 +8,8 @@
 * 관련 data들을 제공해주면서, computer가 스스로 해당 data로부터 task를 수행하는데 필요한 logic과 rule을 학습할 수 있도록 해주는 프로그래밍 기법 
     * 또는 이를 연구하는 분야이다.
 
+---
+
 ## General Definition
 
 위의 정의는 ML이라는 용어를 최초로 제시(또는 대중화에 기여)한 Arthur Samuel (1901-1990)이 제안한 정의이다.
@@ -66,6 +68,7 @@ ML은 다음으로 구성된다고도 생각할 수 있다.
 - Representation 의 결괏값이 수행하고자하는 task를 얼마나 잘 수행하는지 판정.
     - [Root Mean Squared Error (RMSE)](https://www.notion.so/Root-Mean-Squared-Error-RMSE-d2da420a632545f6bde38db4507abcb2)
     - [Mean Absolute Error (MAE)](https://www.notion.so/Mean-Absolute-Error-MAE-8ba37f490ddd4700af4a8a1cd60fa48d)
+
 
 **Optimization**
 

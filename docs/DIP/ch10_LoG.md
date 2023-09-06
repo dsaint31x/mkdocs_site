@@ -26,7 +26,7 @@ $$
 
 ## Laplacian of a Gaussian (LoG)
 
-의료영상을 포함한 영상처리에서 Laplacian은 수평과 수직방향의 2차 미분에 해당함(Tayler seriese expansion 으로 approximation이 유도됨)
+의료영상을 포함한 영상처리에서 Laplacian은 수평과 수직방향의 2차 미분에 해당함(Taylor series expansion 으로 approximation이 유도됨)
 
 $$
 \nabla^2 f(x,y)=\frac{\partial^2}{\partial x^2}f(x,y)+\frac{\partial^2}{\partial y^2}f(x,y)
@@ -83,7 +83,7 @@ LoG의 approximation들이 보다 많이 사용된다.
 * 주의할 점은 Gaussian filter $g(1), g(2)$가 각기 다른 $\sigma$를 가진다는 점임.
 * SIFT등에서도 일반적으로 LoG가 아닌 DoG를 사용한다.
 
-수식으로 DoG가 어떻게 LoG의 appoximation이 되는지는 다음 URL을 참고하라.
+수식으로 DoG가 어떻게 LoG의 approximation이 되는지는 다음 URL을 참고하라.
 
 * [수식으로 본 Laplacian approximation](./cv2/ch02/dip_pyramid.md#수식으로-본-laplacian-approximation)
 

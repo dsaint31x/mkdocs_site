@@ -21,6 +21,8 @@ AI는 매우 다양한 분야의 학문과 연계됨.
 * 수학 : 대수학, 논리학, 확률 …
 * 컴퓨터 과학(공학 포함), 로봇공학 : 다른 분야의 연구 결과를 통해 실제 동작하는 구현물을 만들어냄.
 
+---
+
 ## AI 에 대한 구분.
 
 Stuart Russell 및 Peter Norvig가 기재한 AI 연구의 선도적인 교과서 [Artificial Intelligence: A Modern Approach, 4th US ed.](http://aima.cs.berkeley.edu/)에서 제시한 
@@ -35,6 +37,8 @@ AI가 ***기존의 컴퓨터 시스템과 구분되는  4가지 잠재적 목표
 
 * 체스, 바둑
 * 이미지 인식(일부)
+
+---
 
 ## Turing Test
 
@@ -87,6 +91,8 @@ ML은
 
 > 참고로 `Rule-based Algorithm`의 경우, 개발자가 `data`를 분석하여 명시적으로 작업수행방법을 rule로서 제공해주기 때문에 ML에 속하지 않음.
 
+---
+
 ### ML을 위한 다양한 알고리즘 (or 기법)
 
 ML을 위해 제안된 다양한 기법들이 있으며 대략적으로 나누어 보면 다음과 같다.
@@ -102,6 +108,8 @@ ML을 위해 제안된 다양한 기법들이 있으며 대략적으로 나누�
 
 * 적은 수의 layer로 구성된 ANN을 가르켜 perceptron이라고 부르며 이는 ML에 속함.
 
+---
+
 ##  Representative Learning **
 
 입력에 대해 요구되는 출력(~expectation)을   
@@ -112,6 +120,8 @@ ML을 위해 제안된 다양한 기법들이 있으며 대략적으로 나누�
 
 * Manifold Learning : [manifold에 대한 참고자료](../ch07/manifold.md)
 * Auto-encoder
+
+---
 
 ## Deep Learning (DL) 이란. ***
 
@@ -140,6 +150,8 @@ ML을 위해 제안된 다양한 기법들이 있으며 대략적으로 나누�
 > 하지만, 위에서 말한 알아서 최적의 representation을 여러 층으로 쌓인 non-linear activation function을 가지는 low layers를 통해 dataset으로부터 직접 얻어낸다는 점이 `DL`이 다른 `ML` 알고리즘과 비교할 수 없는 유용성을 가지게 해준 가장 큰 특징이다.  
 
 즉, 어떤 함수라도 근사할 수 있는 ANN ([UAT참고](http://ds31x.blogspot.com/))에 보다 효과적으로 학습되도록 hierarchical representative learning의 기능을 더한 것이 바로 DL이라고 생각해도 크게 틀리지 않다.
+
+---
 
 ## Summary : AI, Machine Learning, and Deep Learning
 

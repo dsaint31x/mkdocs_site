@@ -5,7 +5,9 @@ Labeling이 필요없는 ML로서 최근들어 중요성이 더욱 커지고 있
 사람이 추가해주는 ^^`label` 데이터가 없으며, 
 ML이 데이터에서 알아서 내재된 특징(feature vector, representation)들을 추출^^ 하여 Task를 수행한다.
 
-![](../img/ch00/tSNE_MNIST.png){width="400"}
+<figure markdown>
+![](../img/ch00/tSNE_MNIST.png){width="400" align="center"}
+</figure>
 
 * MNIST 데이터에서 label없이 unsupervised learning으로 clustering을 수행한 결과임 (t-SNE).
 
@@ -19,7 +21,7 @@ Unsupervised Learning 으로 해결하고자 하는 ^^주요 task^^ 는 다음�
 : input date의 sample들의 내재적인 특징(feature)를 추출하여, 비슷한 sample들끼리 하나의 cluster로 묶는 task.  
 
 : * [Clustering (군집)](../ch07/clustering.md)
-: * [Applications of Clustering](https://ds31x.blogspot.com/2023/08/ml-clustering.html) 
+    * [Applications of Clustering](https://ds31x.blogspot.com/2023/08/ml-clustering.html) 
 
 
 `Dimensionality Reduction`
@@ -33,7 +35,9 @@ ML 또는 Data Mining으로 찾아낸 데이터들의 특성 또는 분포를 2�
 : Training data에 있는 sample과 다른 특성을 가지는 sample (outlier, odd)들을 탐지하는 task.  
 일반적으로 ^^training data에는 outlier가 없다고 생각하고 학습^^ 하고, 새로 주어진 data sample이 기존의 training data와 같은지 아니면 outlier인지를 구분한다.
 
-![](../img/ch00/anomaly_detection.png){width="400"}
+<figure markdown>
+![](../img/ch00/anomaly_detection.png){width="400" align="center"}
+</figure>
 
 `Manifold Learning`
 : 학습 데이터들에 내재된 ^^manifold를 모델링(or extraction)^^ 하는 task를 가르킴.  

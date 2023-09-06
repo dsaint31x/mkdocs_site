@@ -23,14 +23,14 @@ ML의 경우, data로부터 computer가 직접 rule을 만들어내기 때문에
 대신 최신 spam 메일에 대한 데이터를 학습 데이터로 해당 model에 공급해주어 model을 갱신해주면 된다. [Online Learning](./ch00_41_online_learning.md) 등의 기술을 적용하면 ^^학습 데이터의 변화에 대해 ***자동적으로 최적화*** 되는 모델^^ 을 얻을 수 있다.
 
 <figure markdown>
-![](../img/ch00/ml_vs_traditional_app.png) {width="300" align="center"}
+![](../img/ch00/ml_vs_traditional_app.png){width="300" align="center"}
 </figure>
 
 * ref. : Hands-On Machine Learning with Scikit-Learn, Keras, and TensorFlow, 3rd Edition, Aurélien Géron
 
 ---
 
-***3번 경우의 예***는 
+***3번 경우의 예*** 는 
 
 * 음성 인식이나 
 * 의료 영상을 이용한 진단, 
@@ -40,7 +40,7 @@ ML의 경우, data로부터 computer가 직접 rule을 만들어내기 때문에
 
 ---
 
-***4번의 경우***는 사실 `ML` 보다는 `Data Mining`이 적절한 경우이다.  
+***4번의 경우*** 는 사실 `ML` 보다는 `Data Mining`이 적절한 경우이다.  
 
 * 하지만, `ML`의 많은 기법들(모두는 아님)이 특정 결과를 도출하는데 어떤 요소가 얼만큼의 영향을 끼쳤는지를 정량적으로 제시해줄 있으며, 
 * 이를 통해 사람들에게 데이터의 분포나 해당 문제 해결에 필요한 insight를 제공해줄 수 있다.  
