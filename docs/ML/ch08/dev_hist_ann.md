@@ -4,6 +4,10 @@
 
 McCulloch (의사, 신경생리학자)와 Pitts (인지심리학자, 논리학자)가 쓴 다음의 논문이 최초의 Artificial Neuron을 제안한 것으로 인정되고 있음.
 
+<figure markdown>
+![](./img/mc_culloch_n_pitts.png){width="400" align="center"}
+</figure>
+
 [A logical calculus of ideas immanent in nervous activity, 1943](https://link.springer.com/article/10.1007/BF02478259)
 
 on-off로 동작(=switch)하는 기능을 가진 artificial neuron들을 그물망 형태로 연결(network)하면 사람의 뇌에서 이루어지는 논리적 연산을 흉내낼 수 있음을 제안.
@@ -13,6 +17,8 @@ on-off로 동작(=switch)하는 기능을 가진 artificial neuron들을 그물�
 > McCulloch과 Pitts의 이론은 실제 인간 두뇌 활동에 대한 정확한 모델링은 아닌 것으로 판명되었으나, 현대 digital computer의 기본이 stored program computer를 제안한 John von Neumann에게까지 영향을 주었고 ANN의 탄생에도 큰 영향을 미침.  
 > 
 > * [The von Neumann Architecture](../../CE/ch00/history_of_computers.md#the-von-neumann-architecture)
+
+---
 
 ### McCulloch and Pitts의 Simple Neurons
 
@@ -48,9 +54,11 @@ logical proposition (논리 명제)를 계산 (and, or, not 등의)함.
 
 ## weight factor의 도입
 
+![](./img/hebb.png)
+
 Donald Olding Hebb (캐나다, 심리학자)이 [The Organization of Behavior: A Neuropsychological Theory(1949)](https://pure.mpg.de/rest/items/item_2346268_3/component/file_2346267/content)을 통해 Neural network (생물의)에서 반복적인 signal이 발생(=firing)할 경우, 해당 signal과 관련된 neurons의 synapse 연결이 강화되는 일종의 학습효과가 있다는 "학습 및 기억과 관련된 가설"을 제안 (이를 `Hebb's rule`이라고 지칭).
 
-* Long-term Memory의 경우, Short-term Memory와 달리 연결된 Neuron에 물리적 변화(연결된 synapse의 강화 등등)가 이뤄짐.
+* ***Long-term Memory의 경우***, Short-term Memory와 달리 연결된 Neuron에 물리적 변화(연결된 synapse의 강화 등등)가 이뤄짐.
 
 ANN에서는 이를 edge에 weight을 할당하여 강화될수록 weight가 커지고 약화될수록 weight을 줄이는 형태로 모델링.
 
@@ -60,7 +68,11 @@ ANN에서는 이를 edge에 weight을 할당하여 강화될수록 weight가 커
 
 1957년 Frank Rosenblatt (심리학자)에 의해 가장 단순한 ANN architecture인 `Perceptron`이 제안됨.
 
-* 최초의 구현된 Artificial Neural Network 가 바로 `Perceptron`임.
+* 최초의 ***구현된 Artificial Neural Network*** 가 바로 `Perceptron`임.
+
+<figure markdown>
+![](./img/Rosenblatt.png){width="400" align="center"}
+</figure>
 
 [The PERCEPTRON: A Probabilistic Model for Information Storage and Organization in the Brain , 1958](https://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.335.3398&rep=rep1&type=pdf)
 
@@ -113,6 +125,10 @@ ANN에서는 이를 edge에 weight을 할당하여 강화될수록 weight가 커
 
 ## Perceptron의 한계
 
+<figure markdown>
+![](./img/minsky.png){width="400" align="center'}
+</figure>
+
 1969년 Marvin Minsky 와 Seymour Papert는 [Perceptrons: An Introduction to Computational Geometry](https://en.wikipedia.org/wiki/Perceptrons_(book))라는 책을 통해 SLP의 한계를 수학적으로 증명함.
 
 * ***`SLP`는 linear classifier에 불과*** → 단순한 `XOR` 문제(linearly separable하지 않은 문제 중 가장 단순한 형태.)도 풀 수 없음을 수학적으로 증명.
@@ -120,7 +136,7 @@ ANN에서는 이를 edge에 weight을 할당하여 강화될수록 weight가 커
 * 즉, 학습 방법이 제시되어 있지 못함.
 * 결국, 당시 수준으론 실제 문제를 풀 수준의 ANN 구축이 불가함을 Minsky가 증명한 셈이 되었다.
 
-> 안타깝게도 Rosenblatt은 perceptron의 한계를 극복하지 못했고 자살로 생을 마감했다. 아이러니한 건 Minsky와 Resenblatt이 고교 동창이라는 점이다. 최초의 ANN의 유행을 만든 사람과 그 유행을 끝장낸 사람이 한 고등학교에서 나온 셈.
+> 안타깝게도 Rosenblatt은 perceptron의 한계를 극복하지 못했고 1971년 의문의 사고(자살로 추정됨)로 43세의 생을 마감했다. 아이러니한 건 Minsky와 Resenblatt이 고교 동창이라는 점이다. 최초의 ANN의 유행을 만든 사람과 그 유행을 끝장낸 사람이 한 고등학교에서 나온 셈.
 
 ![](./img/and_or_xor_perceptron.png)
 
@@ -139,13 +155,17 @@ ANN에서는 이를 edge에 weight을 할당하여 강화될수록 weight가 커
 > MLP에서 필요한 parameters는 weights (bias 포함)의 값들이며, 주어진 학습데이터에 대해 최적의 weights를 찾는 것을 training라고 함.  
 > 많은 machine learning에서 training (cost function을 최소화할 수 있는 weights를 찾는 과정)에 Gradient decent를 적용하기 때문에 MLP에도 이를 적용하고자 하는 시도는 매우 자연스런 현상이라고 볼 수 있음.
 
+<figure markdown>
+![](./img/dev_backpropagation.png){width="500" align="center"}
+</figure>
+
 그러던 중 1970년 Seppo Linnainmaa가 석사 논문으로 gradients 를 컴퓨터에서 효과적으로 계산해낼 수 있는 `reverse-mode automatic differentiation` 기법 (computational graph를 이용)을 제안한다.
 
 [The representation of the cumulative rounding error of an algorithm as a Taylor expansion of the local rounding errors](https://people.idsia.ch/~juergen/linnainmaa1970thesis.pdf) : 핀란드어로 쓰여져 있다. --;;
 
 > 흔히 `reverse-mode autodiff`라고 불림.
 
-뒤이어 1974년 Paul J. Werbos가 박사학위 논문에서 `reverse-mode autodiff`와 gradient descent를 결합한 `Back-propagation`` 를 MLP에 적용한다.
+뒤이어 1974년 Paul J. Werbos가 박사학위 논문에서 `reverse-mode autodiff`와 gradient descent를 결합한 `Back-propagation` 를 MLP에 적용한다.
 
 [Beyond regression: New tools for prediction and analysis in the behavioral sciences, 1974 (Paul J. Werbos, Ph.D. dissertation)](https://www.researchgate.net/publication/35055330_Beyond_regression_new_tools_for_prediction_and_analysis_in_the_behavior_sciences_microform)
 
@@ -163,7 +183,8 @@ Back-propagation을 통해 3층으로 구성된 MLP의 학습이 가능해졌고
 > 주의할 건 1990년대에 2
 개 이상의 hidden layer를 가지는 MLP (output layer를 포함하여 3개층 이상을 가짐)를 Deep하다고 지칭했다는 점임.
 
-1980년대는 ANN의 부활기로 알려져 있다. 1982년 John Hopfield가 제안한 Hopfield Network 에서 알 수 있듯이 심리학자나 수학자들이 연구주제였던 ANN이 공학자들의 연구대상이 되어 ANN에 대한 HW구현, 문자인식 등의 응용분야로 연구가 활발히 시작됨. 이는 International Neural Network Society (국제신경망학회)가 1980년대 후반에 결성된 것을 봐도 알 수 있음.
+1980년대는 ANN의 부활기로 알려져 있다. 1982년 John Hopfield가 제안한 Hopfield Network 의 경우, ***과거 심리학자나 수학자들이 연구주제였던 ANN*** 을 ***공학자들의 연구대상으로 바꾸었고***, 이를 통해 ANN에 대한 HW구현, 문자인식 등의 응용분야로 연구가 활발히 이루어지기 시작됨.  
+이는 International Neural Network Society (국제신경망학회)가 1980년대 후반에 결성된 것을 봐도 알 수 있음.
 
 다음 글은 1992년에 KAIST 뇌과학연구센터의 이수영 박사님이 쓰신 글로 ANN에 대한 1990년대의 상황을 알 수 있음.
 
@@ -201,7 +222,7 @@ MLP가 학습이 되기 시작했으나 다른 Machine Learning 기법에 비해
 
 ---
 
-## Key Change to the MLP from Back-propagation
+## Key Change to the MLP from Back-propagation : Activation Function
 
 Rumelhart가 Back-propagation을 MLP 학습에 효과적으로 사용하기 위해 MLP의 activation function을 기존의 heaviside step function을 `logistic function`으로 변경 (`logistic function`은 sigmoid functions의 대표)함.
 
@@ -220,7 +241,7 @@ Scikit-Learn에서 제공하는 `sklearn.neural_network.MLPRegressor` 와 `sklea
 ### SLP와 MLP의 차이점
 
 * SLP를 보통 Perceptron이라고 부르며, activation function이 step function임.
-* MLP는 학습이 되기 위해서 back-propagation으로 gradient를 구해야하면 때문에 미분 가능한 activation function인 sigmoid functions과 여러 다른 function (적어도 sub-gradient를 구할 수 있어야함)으로 변경이 이루어짐.
+* MLP는 학습이 되기 위해서 back-propagation으로 gradient를 구해야하면 때문에 미분 가능한 activation function인 sigmoid functions과 여러 다른 functions (적어도 sub-gradient를 구할 수 있어야함)로 변경이 이루어짐.
 
 
 ### Activation function의 중요성.

@@ -20,10 +20,10 @@ ML이 기존의 explicit programming보다 유용한 경우는 다음과 같다.
 
 ML의 경우, data로부터 computer가 직접 rule을 만들어내기 때문에 구현물에서 개발자가 수정을 해줄 필요가 없다.  
 ^^즉, 한번 개발된 model로 충분^^ 하다.  
-대신 최신 spam 메일에 대한 데이터를 학습 데이터로 해당 model에 공급해주어 model을 갱신해주면 된다. [Online Learning](./ch00_41_online_learning.md) 등의 기술을 적용하면 ^^학습 데이터의 변화에 대해 ***자동적으로 최적화*** 되는 모델^^ 을 얻을 수 있다.
+대신 최신 spam 메일에 대한 데이터를 학습 데이터로 해당 model에 공급해주어 model을 갱신(학습을 통해 model parameters의 갱신을 의미)해주면 된다. [Online Learning](./ch00_41_online_learning.md) 등의 기술을 적용하면 ^^학습 데이터의 변화에 대해 ***자동적으로 최적화*** 되는 모델^^ 을 얻을 수 있다.
 
 <figure markdown>
-![](../img/ch00/ml_vs_traditional_app.png){width="300" align="center"}
+![](../img/ch00/ml_vs_traditional_app.png){width="600" align="center"}
 </figure>
 
 * ref. : Hands-On Machine Learning with Scikit-Learn, Keras, and TensorFlow, 3rd Edition, Aurélien Géron

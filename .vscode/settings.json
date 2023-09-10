@@ -5,6 +5,7 @@
         "Apriori",
         "autodiff",
         "backprojection",
+        "Backpropagation",
         "CatBoost",
         "Colab",
         "Convolutional",
