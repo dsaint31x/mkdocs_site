@@ -54,7 +54,9 @@ logical proposition (논리 명제)를 계산 (and, or, not 등의)함.
 
 ## weight factor의 도입
 
-![](./img/hebb.png)
+<figure markdown>
+![](./img/hebb.png){width="400" align="center"}
+</figure>
 
 Donald Olding Hebb (캐나다, 심리학자)이 [The Organization of Behavior: A Neuropsychological Theory(1949)](https://pure.mpg.de/rest/items/item_2346268_3/component/file_2346267/content)을 통해 Neural network (생물의)에서 반복적인 signal이 발생(=firing)할 경우, 해당 signal과 관련된 neurons의 synapse 연결이 강화되는 일종의 학습효과가 있다는 "학습 및 기억과 관련된 가설"을 제안 (이를 `Hebb's rule`이라고 지칭).
 
@@ -71,7 +73,7 @@ ANN에서는 이를 edge에 weight을 할당하여 강화될수록 weight가 커
 * 최초의 ***구현된 Artificial Neural Network*** 가 바로 `Perceptron`임.
 
 <figure markdown>
-![](./img/Rosenblatt.png){width="400" align="center"}
+![](./img/Rosenblatt.png){width="300" align="center"}
 </figure>
 
 [The PERCEPTRON: A Probabilistic Model for Information Storage and Organization in the Brain , 1958](https://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.335.3398&rep=rep1&type=pdf)
