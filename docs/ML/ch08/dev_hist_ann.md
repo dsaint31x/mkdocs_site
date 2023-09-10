@@ -100,6 +100,18 @@ ANN에서는 이를 edge에 weight을 할당하여 강화될수록 weight가 커
 > 일반적으로 `perceptron`이라고 하면 `SLP`를 가르킨다. Scikit-Learn에서 `sklearn.linear_model.Perceptron`으로 제공되고 있다.  
 > package 명에서도 알 수 있듯이 Perceptron은 linear model에 불과하다.
 
+다음은 Perceptron에서 node $i$와 $j$를 잇는 weight $w_{i,j}$의 update가 어떻게 이루어지는지를 보여주는 식으로 Gradient Descent와 매우 유사함을 알 수 있다.
+
+$$
+w_{i,j}^{(\text{next step})}=w_{i,j}+\eta(y_i-\hat{y}_j)x_i
+$$
+
+* $y_j$ : target value of node $j$.
+* $\hat{y}_{j}$ : node $j$의 출력.
+* $\eta$ : learning rate.
+
+
+
 ---
 
 ## Multi-Layer Perceptron (MLP) 등장.
@@ -110,7 +122,8 @@ ANN에서는 이를 edge에 weight을 할당하여 강화될수록 weight가 커
 
 > 해당 논문은 매우 읽기 어렵고, 여러 형태의 perceptron에 각각의 이름을 붙여 혼란스러운 것으로 유명하다. 게다가 학습이 당시로서는 불가했는데도 이에 대한 인식이 없었기 때문에 여러가지로 아쉬운 점이 많은 논문이다.)
 
-* 참고 : Perceptron convergence theorem을 통해 linearly separable 한 문제에 대해서 perceptron은 정답에 수렴할 수 있음.  
+* 참고 : Perceptron convergence theorem을 통해 linearly separable 한 문제에 대해서 perceptron은 정답에 수렴할 수 있음 (단, solution은 여러개 존재할 수 있으며 training data에 대한 정답으로 SVM처럼 최적의 해라는 보장이 없음).  
+
 
 그 중 하나가 아래에 보이는 Multi-Layer Perceptron으로 일종의 feed-forward ANN이며 2개 이상의 layers를 쌓아 만들어짐.  
 (일반적으로 weight들이 있는 edge들이 몇 단계로 쌓였는지 또는 `TLU`로 구성된 layer의 갯수를 센다. 아래 그림의 3개층으로 구성된 MLP임)
