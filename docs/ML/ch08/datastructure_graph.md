@@ -51,7 +51,7 @@ Network (object들의 연결관계)를 나타내는 자료구조의 일종으로
 edge에 특정 weight들이 할당된 경우, 해당 weight들이 더해져서 path length가 되기도 함.  
 geodesic distance라고도 불림.
 
-—-
+---
 
 ## 종류
 
@@ -79,7 +79,7 @@ simple path 중 terminal node가 동일한 경우를 가르킴. 또는 해당 si
 ### Acyclic
 cycle이 없는 graph를 지칭.
 
-——
+---
 
 ## Implementation
 

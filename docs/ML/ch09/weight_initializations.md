@@ -27,10 +27,10 @@ Xavier Glorot et al.이 찾은 원인은 다음과 같음
 
 당시 ANN의 경우, 
 
-* "`logistic` activation function"과 "normal distribution으로 초기화된 weights"를 사용했는데, 
-* 이 조합은 각 layer에서 input nodes와 output nodes의 수가 다른 점과 함께 작용하여
-* layer에서 input에서의 variance와 output의 variance가 매우 달라지게 함(output의 variance가 커짐)을 확인함.
-    * 좀 더 자세히 말하면, input node의 갯수 ($\text{fan}_\text{in}$)에 비례하여 layer output의 variance가 커짐. (forward flow의 경우이며, backward flow의 경우엔 output node의 갯수 ($\text{fan}_\text{out}$)에 비례하여 커짐.)
+* ***"`logistic` activation function"***과 ***"normal distribution으로 초기화된 weights"*** 를 사용했는데, 
+* 이 조합은 ^^각 layer에서 input nodes와 output nodes의 수가 다른 점^^ 과 함께 작용하여
+* layer에서 ***input에서의 variance와 output의 variance가 매우 달라지게 함(output의 variance가 커짐)*** 을 확인함.
+    * 좀 더 자세히 말하면, ^^input node의 갯수 ($\text{fan}_\text{in}$)에 비례하여 layer output의 variance가 커짐^^. (forward flow의 경우이며, backward flow의 경우엔 output node의 갯수 ($\text{fan}_\text{out}$)에 비례하여 커짐.)
 
 output의 variance가 커질 경우, forward-pass에서 점점 variance는 증가하게 되고 최종 output layer에 가까운 layer에서는 대부분 logistic activation function이 0 또는 1로 saturate(수렴)되는 결과를 일으키게 된다.
 
@@ -69,7 +69,7 @@ $\text{fan}_\text{in}$과 $\text{fan}_\text{out}$이 같지 않을 경우 varian
 * random이어야 하는 이유는 weights의 분포가 asymmetric해야하기 때문임.
 
 때문에 normal distribution으로 초기화할 경우 gradient vanishing이 발생하기 쉬움을 알 수 있다.
-(normal distribution의 variance가 1은 너무 크다. 만약 0.01 정도로 줄인다면 좀더 나은 결과를 얻을 수 있음.)
+(normal distribution의 variance인 1은 gradient vanishing의 관점에서 보면 작지 않다. 때문에, 만약 0.01 정도로 줄인다면 좀더 나은 결과를 얻을 수 있음.)
 
 
 ## "Fan in" and "Fan out"
@@ -90,7 +90,12 @@ $\text{fan}_\text{out}$
 
 ## Weight Initialization Methods
 
-초기에 많이 애용된 constant로 고정된 경우나 Normal distribution을 사용한 경우는, 오늘날 사용되지 않으며 다음의 방법들이 주로 이용된다.
+초기에 많이 애용된 
+
+* constant로 고정된 경우나 
+* Normal distribution을 사용한 경우는, 
+
+오늘날 사용되지 않으며 다음의 방법들이 주로 이용된다.
 
 주의할 것은 activation function에 따라 좀더 적절한 initialization이 결정된다는 점임. 때문에 아래 표도 궁합이 맞는 activation function이 같이 표기됨.
 
@@ -101,9 +106,9 @@ $\text{fan}_\text{out}$
 | Kaiming He	| ReLU, Leaky ReLU, ELU, GELU, Mish	| $\sigma^2 = 2/\text{fan}_\text{in}$ |	$l = \sqrt{3\sigma^2}$ | `he_normal`,`he_uniform`| 
 
 * 위의 normal distribution들은 variance만 차이가 있을 뿐, 모두 mean=0임.
-* Xavier Glorto et al.이 제안한 방식의 경우, ReLU가 유행하기 전까지 가장 많이 사용되었으나 아쉽게도 ReLU와는 잘 맞지 않는다 (layer가 깊어질수록 0에 치우침)는 결과들로 인해 Kaiming He et al.의 방식이 제안됨.
-* ReLU에서 0이상의 값은 그대로 통과시키다보니 다시 $\text{fan}_\text{in}$만을 고려하면서 LeCun의 방식에서 coefficient를 조금 다르게 줌. ReLU 계열들을 사용시 기본으로 사용됨.
-* 참고로 LeCun의 방법과 가장 궁합이 맞는 SELU는 뒤에 개발된 방식임.
+* Xavier Glorto et al.이 제안한 방식의 경우, `ReLU`가 유행하기 전까지 가장 많이 사용되었으나 아쉽게도 `ReLU`와는 잘 맞지 않는다 (layer가 깊어질수록 0에 치우치게 된다.)는 결과들로 인해 ***Kaiming He et al.*** 의 방식이 제안됨.
+    * `ReLU`에서 0 이상의 값은 그대로 통과시키다보니 다시 $\text{fan}_\text{in}$만을 고려하면서 He의 방식에서는 coefficient를 조금 다르게 줌. `ReLU` 계열들을 사용시 기본으로 사용됨.
+* 참고로 LeCun의 방법과 가장 궁합이 맞는 `SELU`는 한참 뒤인 2017년에 개발된 방식임.
 
 ## References
 * [Efficient BackProp. Yann LeCun et al.1998](https://www.researchgate.net/publication/2811922_Efficient_BackProp)
