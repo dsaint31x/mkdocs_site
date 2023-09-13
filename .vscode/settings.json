@@ -24,6 +24,8 @@
         "sklearn",
         "Stationarity",
         "textbf",
-        "transductive"
+        "transductive",
+        "underfit",
+        "underfitting"
     ]
 }
