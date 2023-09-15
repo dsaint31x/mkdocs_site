@@ -1,30 +1,49 @@
 # Sigmoid Linear Unit (SiLU) : from GELU to MiSH
 
-Smooth function과 ReLU의 장점을 조합한 `ELU`를 넘어서는 성능을 보이며 보다 복잡한 task의 ANN에 많이 사용되는 activation functions는 Swish라는 이름으로 더 유명한 Sigmoid Linear Unit (`SiLU`)임.
+Smooth function과 ReLU의 장점을 조합한 `ELU`를 넘어서는 성능을 보이며 보다 복잡한 task의 ANN에 많이 사용되는 activation functions는 `Swish`라는 이름으로 더 유명한 Sigmoid Linear Unit (`SiLU`)임. 실제로 `GELU`(2016)를 통해 `smoothness`의 장점과 `monotonic`과 `non-convex`를 만족하는 activation function의 유용성이 증명되었고, `SiLU`(2016,2017)와 `MiSH`(2019) 등이 제안됨.
 
-`SiLU`는 이명으로 `Swish`라고도 불리며, smooth, non-convex and non-monotonic variants of ReLU의 대표적 activation function임.
+> 이 중 복잡도와 성능이 균형잡혔고 mobilenet등의 실적이 알려진 `SiLU`가 가장 널리 사용되고 있음.
 
-## Smooth, non-convex and non-monotonic variant of ReLU : GELU
+`SiLU`는 이명으로 `Swish`라고도 불리며, 
 
-`ELU`` 까지는 activation functions 의 경우 
+* smooth, 
+* non-convex and 
+* non-monotonic 
 
-* monotonic 과 
-* convex라는 특성을 가지고 있었음. 
+variants of ReLU의 대표적 activation function임.
 
-하지만 2016년 Gaussian Error Linear Unit (`GELU`)가 등장하면서 기존의 activation functions 이상의 성능을 보임에 따라, monotonic 하지 않고 convexity 도 만족하지 않는 복잡한 형태이면서 smooth 한 activation function의 유용성을 확인하게 된다.
+* `SiLU` was developed with influenced from `GELU`  
+
+---
+
+## Smooth, non-convex and non-monotonic variant of ReLU 의 시작 : GELU
+
+`ELU` 까지는 activation functions 의 경우 
+
+* `monotonic` 과 
+* `convexity` 라는 
+
+특성을 가지고 있었음. 
+
+<figure markdown>
+![](./img/gelu_deri.png){width="400" align="center"}
+</figure>
+
+하지만 2016년 ***Gaussian Error Linear Unit*** (`GELU`)가 기존의 activation functions 이상의 성능을 보임에 따라, `monotonic` 하지 않고 `convexity` 도 만족하지 않는 smooth 한 activation function 이 많이 이용되기 시작함.
 
 [Dan Hendrycks and Kevin Gimpel, “Gaussian Error Linear Units (GELUs)”, arXiv preprint arXiv:1606.08415 (2016)](https://arxiv.org/abs/1606.08415).
 
 ---
 
-## Gaussian Error Linear Unit (GELU)
+### Gaussian Error Linear Unit (GELU)
 
 $$\text{GELU}(x) =x \Phi (x)$$
 
 * standard ***Gaussian Cumulative Distribution Function*** $\Phi(x)$를 이용함.
-* ReLU계열보다 훨씬 연산량이 많지만, 복잡한 task에서 ELU를 포함 기존의 activation function들보다 우수한 성능을 보임
+* `ReLU`계열보다 훨씬 연산량이 많지만, 복잡한 task에서 `ELU`를 포함 기존의 activation function들보다 우수한 성능을 보임
 
-`GELU`는 좋은 성능을 보이지만 연산량이 많다는 단점을 가지고 있음. 위의 `GELU`를 제안한 논문에서 ***Sigmoid Linear Unit*** (`SiLU`)를 같이 제안하고 이를 `GELU`와 비교하였다는 점임.
+`GELU`는 ^^좋은 성능을 보이지만 연산량이 많다는 단점^^ 을 가지고 있음. 
+`GELU`를 제안한 논문에서 ***Sigmoid Linear Unit*** (`SiLU`)를 같이 제안하고 이를 `GELU`와 비교하였다는 점임.
 
 해당 논문에서는 `SiLU`는 GELU보다 떨어지는 성능으로 보고되었으나, 이후 더 단순한 수식임에도 GELU를 거의 그대로 모사할 수 있는 ***Generalization*** 이 이루어지면서 보다 많이 사용이 되기 시작함.
 
@@ -32,7 +51,11 @@ $$\text{GELU}(x) =x \Phi (x)$$
 
 ## Sigmoid Linear Unit (SiLU or Swish)
 
-> 대표적 CNN 중 하나인 mobilenet에서 사용됨.
+> 대표적 CNN 중 하나인 `mobilenet`에서 사용됨.
+
+<figure markdown>
+![](./img/silu_relu.png){width="400" align="center"}
+</figure>
 
 `SiLU`는 다음과 같이 sigmoid function을 기반으로 ReLU 및 GELU와 매우 흡사한 shape의 activation function을 만들 수 있음.
 
@@ -52,9 +75,17 @@ $$ \text{SiLU}_{\beta} = x \sigma (\beta x) \\ \text{GELU}(x) \approx x \sigma (
 
 > `PReLU`와 같이 `SiLU`도 $\beta$를 trainable parameter로 삼는 parameterized Siwsh도 있음 (역시 적은 학습데이터에선 over-fit할 확률이 커짐)
 
+---
+
 ### SiLU 미분
 
 $$\dfrac{d}{dx}\text{SiLU}(x) = \text{SiLU}(x) + \sigma (x)(1-\text{SiLU}(x))$$
+
+<figure markdown>
+![](./img/derivative_silu.png){width="400" align="center"}
+</figure>
+
+$$\begin{aligned} \dfrac{d}{dx}f(x) &= 1\sigma(x) + x\sigma(x)(1-\sigma(x)) \\ &= \sigma(x) + x\sigma(x)-x(\sigma(x))^2 \\ &= \sigma(x) + f(x)- f(x)\sigma(x) \\&=\sigma(x) +f(x)(1-\sigma(x))\end{aligned}$$
 
 ---
 

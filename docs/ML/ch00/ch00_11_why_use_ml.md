@@ -26,6 +26,7 @@ ML의 경우, data로부터 computer가 직접 rule을 만들어내기 때문에
 ![](../img/ch00/ml_vs_traditional_app.png){width="600" align="center"}
 </figure>
 
+
 * ref. : Hands-On Machine Learning with Scikit-Learn, Keras, and TensorFlow, 3rd Edition, Aurélien Géron
 
 ---
