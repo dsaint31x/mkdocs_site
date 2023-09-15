@@ -27,7 +27,7 @@ Xavier Glorot et al.이 찾은 원인은 다음과 같음
 
 당시 ANN의 경우, 
 
-* ***"`logistic` activation function"***과 ***"normal distribution으로 초기화된 weights"*** 를 사용했는데, 
+* ***"`logistic` activation function"*** 과 ***"normal distribution으로 초기화된 weights"*** 를 사용했는데, 
 * 이 조합은 ^^각 layer에서 input nodes와 output nodes의 수가 다른 점^^ 과 함께 작용하여
 * layer에서 ***input에서의 variance와 output의 variance가 매우 달라지게 함(output의 variance가 커짐)*** 을 확인함.
     * 좀 더 자세히 말하면, ^^input node의 갯수 ($\text{fan}_\text{in}$)에 비례하여 layer output의 variance가 커짐^^. (forward flow의 경우이며, backward flow의 경우엔 output node의 갯수 ($\text{fan}_\text{out}$)에 비례하여 커짐.)

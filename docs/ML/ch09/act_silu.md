@@ -1,6 +1,6 @@
 # Sigmoid Linear Unit (SiLU) : from GELU to MiSH
 
-Smooth function과 ReLU의 장점을 조합한 `ELU`를 넘어서는 성능을 보이며 보다 복잡한 task의 ANN에 많이 사용되는 activation functions는 `Swish`라는 이름으로 더 유명한 Sigmoid Linear Unit (`SiLU`)임. 실제로 `GELU`(2016)를 통해 `smoothness`의 장점과 `monotonic`과 `non-convex`를 만족하는 activation function의 유용성이 증명되었고, `SiLU`(2016,2017)와 `MiSH`(2019) 등이 제안됨.
+Smooth function과 ReLU의 장점을 조합한 `ELU`(2015)를 넘어서는 성능을 보이며 보다 복잡한 task의 ANN에 많이 사용되는 activation functions는 `Swish`라는 이름으로 더 유명한 Sigmoid Linear Unit (`SiLU`)임. 실제로 `GELU`(2016)를 통해 `smoothness`의 장점과 `monotonic`과 `non-convex`를 만족하는 activation function의 유용성이 증명되었고, `SiLU`(2016,2017)와 `MiSH`(2019) 등이 제안됨.
 
 > 이 중 복잡도와 성능이 균형잡혔고 mobilenet등의 실적이 알려진 `SiLU`가 가장 널리 사용되고 있음.
 

@@ -6,10 +6,13 @@ $$ \text{ReLU}(x) = \text{max}(x,0)$$
 
 GPU를 효과적으로 활용할 수 있는 구현물이 기본으로 제공되며, 가장 기본적으로 사용하기 좋은 activation function임.
 
+---
+
 ### ReLU 미분
 
 $$ \dfrac{d}{dx}\text{ReLU}(x) = \left\{ \begin{matrix}1 & \text{ if } x \ge 0 \\ 0 & \text{ if } x < 0 \end{matrix}\right.$$
 
+---
 
 ## 기존 Sigmoid function의 단점.
 
@@ -40,7 +43,7 @@ logistic과 같은 sigmoid function 계열의 activation function의 가장 큰 
 * 미분이 가능한 smooth function이 아니기 때문에 Lasso loss를 Gradient Decent에서 사용할 때의 문제점을 그대로 `ReLU` 도 가짐.
     * 0에서의 discontinuity를 가지는 경우 최적의 값 근처에서 gradient decent bounce가 발생.
     * converge 속도가 느려지는 단점을 보임 
-    * 이는 the variants of `ReLU`들이 가지는 문제점으로 smooth하게 변경한 Exponential Linear Unit (ELU)등을 통해 개선됨. 
+    * 이는 the variants of `ReLU`들이 가지는 문제점으로 smooth하게 변경한 ***Exponential Linear Unit*** (`ELU`)등을 통해 개선됨. 
 
 ---
 
@@ -62,6 +65,8 @@ where
 
 Ref. : [Bing Xu et al., “Empirical Evaluation of Rectified Activations in Convolutional Network,” arXiv preprint arXiv:1505.00853 (2015).](https://arxiv.org/abs/1505.00853)
 
+---
+
 #### Leaky ReLU 미분
 
 $$ \dfrac{d}{dx}\text{leakyReLU}(x)=\text{max}(1,\alpha)$$
@@ -70,7 +75,9 @@ where
 
 * $0. \le \alpha < 1.$
 
-### Parametric Leaky ReLu 
+---
+
+### Parametric Leaky ReLu (PReLU)
 
 Leaky ReLU의 $\alpha$를 trainable parameter로 삼아서 dataset을 기반으로 최적의 값을 찾도록 한 변형이다.
 
