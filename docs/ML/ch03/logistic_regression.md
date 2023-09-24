@@ -70,11 +70,12 @@ $$p(y^{(i)}|\textbf{x}^{(i)};\boldsymbol{\theta})=(\hat{p}^{(i)})^{y^{(i)}}(1-\h
 **label $y^{(i)}=1$인 경우**
 : output $\hat{p}$가 1에 가까울수록 정답에 가까운 것이므로 likelihood가 1에 가까워지고, 반대인 경우엔 likelihood가 0에 가까워지므로 model의 결과가 얼마나 정확한지를 의미함.
 
-> bernoulli random variable은 0 또는 1을 값으로 가지는 discrete random variable. Binary classification가 Bernoulli trial의 정의와 일치하기 때문임.
+> bernoulli random variable은 0 또는 1을 값으로 가지는 discrete random variable.  
+> Binary classification가 Bernoulli trial의 정의와 일치하기 때문임.
 
 달리 말하면 model의 output (=종속변수)가 Bernolli probability distribution을 따른다고 볼 수 있음.
 
-위의 $p(\hat{y}|\textbf{x};\boldsymbol{\theta})$를 likelihood로 삼아 이를 최대화하는 maximum likelihood expectation (MLE)는 다음과 같으며 아 MLE를 통해 likelihood를 최대화 하는 parameters를 구할 수 있게 된다.
+위의 $p(\hat{y}|\textbf{x};\boldsymbol{\theta})$를 likelihood로 삼아 이를 최대화하는 maximum likelihood expectation (`MLE`)는 다음과 같으며, 이 `MLE`를 통해 likelihood를 최대화 하는 parameters를 구할 수 있게 된다.
 
 > 각 likelihood들의 joint probability를 통해 training dataset의 모든 $M$개의 sample들에 기반한 최적의 parameters $\boldsymbol{\theta}$를 구한다.  
 (모델에서 각 sample들이 서로의 class를 결정할 때 각각이 독립이라는 가정에 기반.)  
@@ -150,22 +151,24 @@ Logistic Regression은 ANN의 관점에서 보면 logistic activation의 single 
 
 > 달리 말하면, 이 single layer FCN도 negative log likelihood를 object function으로 삼은 Bernoulli Distribution에 기반한 MLE의 일종으로 해석가능함을 의미함.  
 
-$\boldsymbol{\theta}$는 실제로 여러 개의 parameter로 구성된 vector이나 이를 scalar로 단순화하고 logistic regression의 objective function을 parameter에 대해 그리면 convex임을 확인 가능함 (input 도 scalar로 단순화하고 이는 고정시킴).
+***$\boldsymbol{\theta}$는 실제로 여러 개의 parameter로 구성된 `vector`*** 이나 이를 scalar로 단순화하고 logistic regression의 objective function을 parameter에 대해 그리면 convex임을 확인 가능함 (input 도 scalar로 단순화하고 이는 고정시킴).
 
 
 single fully connected layer 로 구현할 경우, loss function을 regression의 경우처럼 Mean squared loss로 삼을 수도 있다.
 
 $$\text{MSE}=\left(\frac{1}{1+e^{-\sum_{i=1}^{N}\theta_i x_i}}-1\right)^2$$
 
-하지만 이경우 아래 그림에서 보이듯이 MSE는 convexity도 성립하지 못하며, loss function의 최대값 (기껏해야 1)도 제한되는 단점이 있음을 확인할 수 있다. (negative log의 경우 loss function은 최대값이 무한대까지의 범위를 보임)
+하지만 이경우 아래 그림(red line)에서 보이듯이 MSE는 convexity도 성립하지 못하며, loss function의 최대값 (기껏해야 1)도 제한되는 단점이 있음을 확인할 수 있다. (negative log의 경우 loss function은 최대값이 무한대까지의 범위를 보임)
 
 * 이는 매우 틀린 오답을 현재 parameters의 모델이 보일 경우, loss 가 얼마나 커질 수 있는지를 보여줌.
 * 큰 오차에서는 가급적 큰 loss를 가져야 함.
 * 때문에 MSE의 경우, 오차가 큰 초반 epoch 초반에 weight들이 최적의 값으로 빠르게 변화하지 못하는 단점을 가짐.
 
-![](./img/nll_vs_mse.png)
+<figure markdown>
+![](./img/nll_vs_mse.png){width="400" align="center"}
+</figure>
 
-때문에 binary classification task를 수행하는 ANN에서 MSE보다는 cross-entropy를 선호한다.
+때문에 binary classification task를 수행하는 ANN에서 `MSE`보다는 `cross-entropy`를 선호한다.
 
 수학적으로 비교할 경우, weight와 bias에 대한 loss function의 partial derivative를 확인해보면 왜 MSE가 적절치 않은지를 확인할 수 있음.
 
@@ -176,3 +179,9 @@ $$\dfrac{\partial}{\partial \theta_j}J(\boldsymbol{\theta})=\frac{1}{M}\sum_{i=1
 
 * logistic의 derivative는 0.25를 max로 가지는 normal distribution의 모양임.
 * tanh의 경우, logistic보다 큰 derivative를 가지고 있어서 학습에 보다 유리한 것으로 알려짐.
+
+---
+
+## References
+
+[Minimizing the Negative Log-Likelihood, in English](https://willwolf.io/2017/05/18/minimizing_the_negative_log_likelihood_in_english/?fbclid=IwAR0nSqtezeZqG0kc2OqQZBSzxB-UXiNKILD44oPGlFcPxGdTbPyOokDyIVE)
