@@ -16,6 +16,8 @@
 ![](./img/transfer_learning.png){width="400" align="center"}
 </figure>
 
+> 엄밀하게 애기할 경우, pre-trained model을 Freeze시킨 채로 맨 위 Layer만 학습을 시키는 것을 transfer learning이라고 부르고, 이후 pre-trained model의 일부 혹은 전체 layers를 학습시키는 것을 fine-tunning이라고 지칭하기도 한다. 하지만 대부분의 경우 이 두과정이 같이 이루어지기 때문에 transfer-learning으로 크게 지칭하는 경우도 많다.
+
 ---
 
 ## Transfer Learning의 장점.
@@ -43,6 +45,12 @@ Keras의 경우, [Keras Applications](https://keras.io/api/applications/)를 통
 However, ^^the pre-trained model may not be optimal for the specific problem^^ at hand. This is where `fine-tuning` becomes necessary.
 
 즉, pre-trained network를 그대로 사용하기 보다는 현재의 학습데이터에 맞추어 fine-tunning을 해주어야만 적절한 성능을 얻을 수 있다.
+
+이상적으로는 다음과 같은 4가지 경우로 나누어지지만, 1번과 4번의 경우로 수행하는 경우는 생각보다 많지 않다.
+
+<figure markdown>
+![](./img/transfer_learning_type.png){width="400" align="center"}
+</figure>
 
 ## Transfer Learning의 일반적인 순서
 
@@ -107,7 +115,9 @@ Deep Belief Network (2006)에서 제안된 방식으로 현재의 end-to-end lea
 
 Auto-encoder나 Restricted Bolzmann machine을 통해 하나의 layer들을 각각 unsupervised pretraining을 수행하고, 이후 현재의 task의 labeled training dataset을 통해 fine-tunning하는 방식임.
 
-![](./img/glpt.png)
+<figure markdown>
+![](./img/glpt.png){width="400" align="center"}
+</figure>
 
 우선 input data를 첫번째 layer를 통과시켜 feature vector를 얻고, 이 feature vector로부터 원래의 input data로 복원시키는 decoding을 수행하는 layer를 붙인 일종의 auto-encoder를 훈련시킨다. 이는 unsupervised learning이며 해당 훈련이 종료되면 ecoding을 수행한 부분이 바로 첫번째 layer가 된다. 이후 훈련된 첫번째 layer의 출력데이터가 두번째 layer의 input data가 되고, 이를 첫번째 layer의 경우와 마찬가지로 feature vector(두번째 layer의)를 얻어내고 이를 다시 input data(두번째 layer의 input data이므로 첫번째 layer의 출력데이터에 해당)로 decode하는 layer를 붙여서 auto-encoder를 만들어 다시 훈련시킨다.
 
@@ -116,6 +126,10 @@ Auto-encoder나 Restricted Bolzmann machine을 통해 하나의 layer들을 각�
 이같은 greedy layer-wise pretraining은 labeled data가 매우 부족할 때 효과적이다. 
 
 초창기에는 Restricted Boltzmann Machine이 이용되었으나, 이후에는 위의 설명과 같은 auto-encoder가 많이 사용된다.
+
+<figure markdown>
+![](./img/uspt.png){width="400" align="center"}
+</figure>
 
 최근엔 Auto-encoder나 GAN으로 어느정도의 layers가 쌓인 network를 한번에 unsupervised pretraining을 하고 이후 labeled data로 fine-tunning을 하는 방식이 보다 많이 사용되는 추세임.
 
