@@ -24,29 +24,32 @@ Gradient Vanishing과 Exploding의 위험을 효과적으로 감소시킴.
 > 
 > 을 사용하고 있다.
 
-참고할 것은 
+위의 내용은 `BN`이 처음 제안될 당시의 것으로 추가 연구에 따라 다음과 같은 다른 해석이 일반적임.
 
-* Internal Covariate Shift (ICS)를 `BN`이 실제로는 막아주지 못하며, 
-* 다행스럽게도 ICS가 deep learning의 학습에 지장을 그리 주지 않는 것으로 알려짐. 
-* 오히려 `BN`이 optimization landscape에서의 smoothing 효과를 가져오기 때문에 
-* 좋은 성능을 보인 것이라는 후속연구가 있음.
+* 우선, Internal Covariate Shift (ICS)를 `BN`이 실제로 방지하지 못하는 것이 밝여짐. 
+* 하지만, 다행스럽게도 ICS가 deep learning의 학습에 지장을 그리 주지 않는 것으로 알려짐. 
+* `BN`은 ICS를 막기보다는 optimization landscape에서의 smoothing 효과를 부여하며 
+* 이때문에 학습을 향상시키는 것이라는 후속연구가 있음.
 
 때문에 `BN`은 ICS를 해결해서 좋은 성능을 보인다고 해석하기 보다는 
 
 * 각 layer들에 대해 ***"Task를 푸는데 있어서 최적의 분포를 가지는 input"*** 으로 바꾸어주는 특성(ReLU등과도 궁합이 잘 맞음)과 
 * optimization landscape smoothing이 이루어지기 때문에
 
-좋은 성능을 보이는 것으로 생각하는게 현재 시점에서는 보다 나은 해석이라고 생각됨.
+좋은 성능을 보이는 것으로 생각하는게 현재 시점에서는 보다 나은 해석으로 받아들여짐.
 
 * 참고 : [How Does Batch Normalization Help Optimization?](https://arxiv.org/abs/1805.11604)
 
 ## 장점
 
-* Gradient Vanishing과 exploding을 효과적으로 감소시킴에 따라 ^^`sigmoid`를 hidden layer의 activation으로 사용할 수 있을 정도의 성능 향상^^ 을 보임.
+* `BN`은 Gradient Vanishing과 exploding을 효과적으로 감소시킴에 따라 ^^`sigmoid`를 hidden layer의 activation으로 사용할 수 있을 정도의 성능 향상^^ 을 보임.
 * Weight initialization이 training에 미치는 효과를 감소시켜서 ^^poor weight initialization에서도 학습이 잘 이루어지게 해줌.^^ (그렇다고 억지로 나쁜 weight initialization을 사용할 필요는 없음)
 * ^^learning ratio를 크게 해도 Training이 잘 이루어지게 해 줌^^.
-    * `BN` 등장 전에는 learning ratio를 지나치게 크게  경우, gradient vanishing 또는 expanding이 심해지는 등의 문제로 학습이 제대로 되기 힘들었음.
+    * `BN` 등장 전에는 learning ratio를 지나치게 크게 할 경우, gradient vanishing 또는 expanding이 심해지는 등의 문제로 학습이 제대로 되기 힘들었음.
 * mini-batch size를 크게 해주면 그 효과가 떨어지기는 하지만, ^^어느 정도의 regularization 효과^^ 를 부가적으로 가지기 때문에 학습속도를 저하시키는 drop-out을 ANN에서 제거할 수 있게 해줌 (즉, ***overfitting 방지 효과*** 도 가짐.).
+    * 하지만, drop-out만큼의 regularization의 효과는 보이지 않는 경우가 많음.
+
+---
 
 ## 단점
 
@@ -55,10 +58,21 @@ Gradient Vanishing과 Exploding의 위험을 효과적으로 감소시킴.
 * mini-batch의 크기에 영향을 많이 받음. 지나치게 작은 mini-batch 크기에서는 `BN`이 제대로 동작하기 어려움.
 * RNN 등에서는 Time마다 통계적으로 다른 분포의 input을 가지기 때문에 `BN`의 적용이 쉽지 않음 (때문에 RNN등에서는 feature에 대해 적용되는 `BN`이 아닌 단순한 `gradient clipping`이나 `sample`에 대해 적용되는 layer normalization이 대신 사용됨)
 
-위의 단점들은 대부분이 해결방안이 같이 기재되어 있다. 이는 `BN`이 얼마나 ANN학습에 필수적인 기법인지를 보여준다. 2015년 `BN`이 제안된 이후 이 기법은 필수적인 layer가 되었다 (CNN에서는 거의 필수적으로 사용된다).
+위의 단점들은 `RNN`의 경우를 제외하고 대부분이 해결방안이 같이 기재되어 있다.  
 
+실제로 `BN`은 현재 ANN 학습에서 필수적으로 사용되고 있다. 실제로 2015년 `BN`이 제안된 이후 `BN`은 필수적인 layer가 되었다 (CNN에서는 거의 필수적으로 사용된다).
+
+
+> 참고로,  
+> 
+> * 적절한 Weigh initialization과 Activation function의 사용과 
+> * `BN` 외에 
+> 
+> Grandient Exploding Problem을 방지하기 위해 자주 사용되는 방법으로는 `Gradient Clipping`이 있음.
+>  
 > `Gradient Clipping` 은 RNN에서 자주 발생하는 Gradient Exploding을 해결하기 위한 방법으로 optimizer 객체에서 설정하며 gradient vector의 각 element의 값의 크기를 기준(`clipvalue`)으로 하거나, gradient vector의 norm을 기준(`clipnorm`)으로 하여 clipping이 일어남.
 
+---
 
 ## 기존 해법과의 비교.
 
@@ -66,7 +80,11 @@ Gradient Vanishing과 Exploding의 위험을 효과적으로 감소시킴.
 
 이에 반해 `BN`은 training 이 진행되면서 각각의 parameters가 훈련되어 layer의 입력(혹은 출력)이 다음 layer에서의 훈련에 적합하도록 조정이 된다는 장점을 가짐.
 
+---
+
 ## Algorithm
+
+`BN`의 경우, training과 inference 단계에서 조금 다른 처리를 취함.
 
 ### Training
 

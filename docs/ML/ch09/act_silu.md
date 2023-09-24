@@ -42,6 +42,8 @@ $$\begin{aligned}\text{GELU}(x) &=x \Phi (x)\\&=xP(X\le x),\quad X \sim \mathcal
 
 $$\Phi(x) = \frac{1}{2}+\frac{1}{2}\text{erf}(x/\sqrt{2})$$
 
+* [error function이란?](https://dsaint31.tistory.com/612)
+
 `GELU`는 좋은 성능을 보이지만 연산량이 많다는 단점을 가지고 있음. 
 
 재미있는 건, 위의 `GELU`를 제안한 논문에서 ***Sigmoid Linear Unit*** (`SiLU`)를 같이 제안하고 이를 `GELU`와 비교하였다는 점임.
@@ -101,6 +103,7 @@ $$\text{mish}(x)=x \text{tanh}(\text{softplus}(x)) = \text{tanh}(\log (1+e^x))$$
 ![](./img/mish.png){width="500" aligh="center"}
 </figure>
 
+---
 
 ## References
 

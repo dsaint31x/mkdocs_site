@@ -1,27 +1,10 @@
 # Weight Initialization (가중치 초기화)
 
-ANN이 1990년대 부활의 싹을 틔우고 있을 때에 가장 큰 문제점은 바로 Gradient Vanishing (and Exploding) Problem이었다.
-
-Weight Initialization은 이 문제를 개선하기 위한 방법으로 제안되었고 2010년에 상당한 성과를 보여 가장 먼저 위 문제에 대한 해법으로 널리 사용되게 된다 (현재도 기본적으로 사용된다.)
-
----
-
-## Gradient Vanishing and Exploding Problems
-
-Back-propagation의 경우, forward-flow와 backward-flow 두 단계로 수행되고, backward-flow에서는 loss function의 partial derivatives (=error gradient)가 output에서 input으로 전달되게 되는데,  
-ANN이 깊을 경우 해당 gradient가 output에서 작은 값으로 시작되면 중간에 너무 작은 값이 되어 input에 가까울 layers의 weights를 제대로 update하지 못하고 소실되는 문제가 발생한다.
-
-이를 Gradient Vanishing Problem이라고 부르며, 반대로 Gradient가 지나치게 증폭되어 model이 diverge하는 경우가 Gradient Exploding Problem임.
-
-![](./img/gradient_vanishing.png)
-
-ANN의 경우 깊어져야 task에 대한 representative feature를 얻어낼 수 있는데, Gradient vanishing은 이를 막는 가장 큰 문제점이었다.
-
----
+Weight Initialization은 Gradient Vanishing or Exploding Problem을 개선하기 위해 연구된 방법으로 2010년에 상당한 성과를 보이면서 deep neural network를 효과적으로 학습시키기 위해 널리 사용됨. (현재도 기본적으로 사용된다.)
 
 ## Weight Initialization 중요성.
 
-2000년대까지도 왜 이런 문제가 발생하는지를 정확히 파악하지 못했는데, 2010년 Xavier Glorot et al.에 의해 이를 획기적으로 개선(해결이 아니고 개선임)하는 방법으로 적절한 weight initialization과 activation function의 조합이 제안된다.
+2000년대까지도 왜 Gradient vanishing 및 exploding이 발생하는지를 정확히 파악하지 못했는데, 2010년 Xavier Glorot et al.에 의해 이에 대한 단서가 찾아졌고, 이를 통해 획기적으로 개선(해결이 아니고 개선임)하는 방법으로 적절한 weight initialization과 activation function의 조합이 제안된다.
 
 Xavier Glorot et al.이 찾은 원인은 다음과 같음
 
