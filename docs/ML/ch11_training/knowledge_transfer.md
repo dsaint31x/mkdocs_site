@@ -3,6 +3,8 @@
 > The application of skills, knowledge, and/or attitudes that were learned in one situation to another learning situation. (Perkins, 1992)  
 > 다른 학습 상황에 배운 기술, 지식 및/또는 태도를 적용하는 것. (퍼킨스, 1992)
 
+---
+
 ## 정의
 
 `Transfer learning` is 
@@ -40,6 +42,8 @@ It is a popular approach because it saves
 
 Keras의 경우, [Keras Applications](https://keras.io/api/applications/)를 통해, ImageNet으로 사전훈련이 된 다양한 Deep Learning Model을 제공한다.
 
+---
+
 ## Fine Tunning의 필요성.
 
 However, ^^the pre-trained model may not be optimal for the specific problem^^ at hand. This is where `fine-tuning` becomes necessary.
@@ -51,6 +55,8 @@ However, ^^the pre-trained model may not be optimal for the specific problem^^ a
 <figure markdown>
 ![](./img/transfer_learning_type.png){width="400" align="center"}
 </figure>
+
+---
 
 ## Transfer Learning의 일반적인 순서
 
@@ -78,6 +84,8 @@ However, ^^the pre-trained model may not be optimal for the specific problem^^ a
 
 무엇보다도, transfer learning을 사용할 때 learning rate는 from scratch의 경우보다 작게 선택해야 하는 점을 명심해야 한다 (`RMSProp`등을 사용하는 경우 momentum도 보다 작은 값으로 fine-tunning하는게 좋). 
 
+---
+
 ## 현재 학습데이터에 따른 고려사항.
 
 만약, 훈련 데이터가 매우 적고, 위의 과정으로도 좋은 성능이 나오지 않는다면 pre-trained network의 downstream layers를 제거한 후, 현재 task에 해당하는 output layers를 붙이는 방법도 있음. 
@@ -88,7 +96,7 @@ However, ^^the pre-trained model may not be optimal for the specific problem^^ a
 
 ---
 
-## References
+### References
 
 CNN 중 하나인 EfficientNet으로 Transfer Learning을 수행한 다음 Tutorial은 전형적인 transfer learning의 방식을 보여줌.
 
@@ -101,9 +109,17 @@ CNN 중 하나인 EfficientNet으로 Transfer Learning을 수행한 다음 Tutor
 
 labeled data가 충분하지 않은 경우 사용되는 방법으로 ***labeled data를 쉽게 구할 수 있으면서 비슷한 task*** 로 DNN을 학습시키고 해당 DNN의 upstream layers (=low-level layers)를 pre-trained layers로 사용하는 방법임.
 
+<figure markdown>
+![](./img/auxiliary_learning.png){widht="400" align="center"}
+</figure>
+
 BERT나 GPT의 경우, 문장에서 일부 단어를 지우고 이를 예측하도록 훈련시키거나 일정길이의 문장을 주고 이후 나타날 단어를 예측하도록 훈련시킨 모델을 pre-trained network로 활용하였는데, 이같은 방법들이 바로 Auxiliary Task를 통해 pre-trained network를 얻어낸 실제 사례라고 할 수 있음.
 
 이를 가르켜 self-supervised learning이라고도 함.
+
+### References
+
+* [Auxiliary Learning](https://paperswithcode.com/task/auxiliary-learning/codeless)
 
 ---
 
