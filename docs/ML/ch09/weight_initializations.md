@@ -10,7 +10,7 @@ Xavier Glorot et al.이 찾은 원인은 다음과 같음
 
 당시 ANN의 경우, 
 
-* ***"`logistic` activation function"***과 ***"normal distribution으로 초기화된 weights"*** 를 사용했는데, 
+* ***"`logistic` activation function"*** 과 ***"normal distribution으로 초기화된 weights"*** 를 사용했는데, 
 * 이 조합은 ^^각 layer에서 input nodes와 output nodes의 수가 다른 점^^ 과 함께 작용하여
 * layer에서 ***input에서의 variance와 output의 variance가 매우 달라지게 함(output의 variance가 커짐)*** 을 확인함.
     * 좀 더 자세히 말하면, ^^input node의 갯수 ($\text{fan}_\text{in}$)에 비례하여 layer output의 variance가 커짐^^. (forward flow의 경우이며, backward flow의 경우엔 output node의 갯수 ($\text{fan}_\text{out}$)에 비례하여 커짐.)
@@ -32,7 +32,7 @@ output의 variance가 커질 경우, forward-pass에서 점점 variance는 증�
 
 ***중요***
 
-ANN에서 gradient vanishing을 막으려면 다음이 성립해야 한다.
+ANN에서 weight initialization 관점에서 gradient vanishing을 막으려면 다음이 성립해야 한다.
 
 * 각 layer를 거쳐도 variance는 변화가 없어야 한다.
 * 이는 forward-flow 와 backward-flow 모두에서 성립해야 한다.
@@ -42,7 +42,7 @@ $\text{fan}_\text{in}$과 $\text{fan}_\text{out}$이 같지 않을 경우 varian
 
 이 타협안은 바로 문제가 되는 variance를 $\text{fan}_\text{in}$ 과 $\text{fan}_\text{out}$ 를 기반으로 조절하는 것이었음.
 
-사실 Yann LeCun et al. (1998)도 비슷한 형태의 Weight Initialization을 제시했다.
+> 사실 [Yann LeCun et al. (1998)](https://www.researchgate.net/publication/2811922_Efficient_BackProp) 도 비슷한 형태의 Weight Initialization을 제시했다.
 
 이 외에 weight의 초기화에서 주의할 점들은 다음과 같음.
 
@@ -54,6 +54,7 @@ $\text{fan}_\text{in}$과 $\text{fan}_\text{out}$이 같지 않을 경우 varian
 때문에 normal distribution으로 초기화할 경우 gradient vanishing이 발생하기 쉬움을 알 수 있다.
 (normal distribution의 variance인 1은 gradient vanishing의 관점에서 보면 작지 않다. 때문에, 만약 0.01 정도로 줄인다면 좀더 나은 결과를 얻을 수 있음.)
 
+---
 
 ## "Fan in" and "Fan out"
 
@@ -71,6 +72,8 @@ $\text{fan}_\text{out}$
 * $\text{fan}_\text{in}$ : $5 \times 5 \times 3 = 72$
 * $\text{fan}_\text{out}$ : $5 \times 5 \times 10 = 250$
 
+---
+
 ## Weight Initialization Methods
 
 초기에 많이 애용된 
@@ -78,9 +81,10 @@ $\text{fan}_\text{out}$
 * constant로 고정된 경우나 
 * Normal distribution을 사용한 경우는, 
 
-오늘날 사용되지 않으며 다음의 방법들이 주로 이용된다.
+오늘날 사용되지 않으며 ***다음의 방법들*** 이 주로 이용된다.
 
-주의할 것은 activation function에 따라 좀더 적절한 initialization이 결정된다는 점임. 때문에 아래 표도 궁합이 맞는 activation function이 같이 표기됨.
+주의할 것은 activation function에 따라 좀더 적절한 initialization이 결정된다는 점임.  
+때문에 아래 표에서 궁합이 맞는 activation functions 가 같이 표기됨.
 
 | Initialization | Activation functions | $\sigma^2$(Normal dist.) | [$-l$, $l$] (Uniform dist.) | Keras impl. |
 |:----:|:----:|:----:|:----:|:----:|
@@ -91,7 +95,7 @@ $\text{fan}_\text{out}$
 * 위의 normal distribution들은 variance만 차이가 있을 뿐, 모두 mean=0임.
 * Xavier Glorto et al.이 제안한 방식의 경우, `ReLU`가 유행하기 전까지 가장 많이 사용되었으나 아쉽게도 `ReLU`와는 잘 맞지 않는다 (layer가 깊어질수록 0에 치우치게 된다.)는 결과들로 인해 ***Kaiming He et al.*** 의 방식이 제안됨.
     * `ReLU`에서 0 이상의 값은 그대로 통과시키다보니 다시 $\text{fan}_\text{in}$만을 고려하면서 He의 방식에서는 coefficient를 조금 다르게 줌. `ReLU` 계열들을 사용시 기본으로 사용됨.
-* 참고로 LeCun의 방법과 가장 궁합이 맞는 `SELU`는 한참 뒤인 2017년에 개발된 방식임.
+* 참고로 LeCun의 방법과 가장 궁합이 맞는 `SELU` (Scaled Exponential Linear Unit)는 한참 뒤인 2017년에 제안됨.
 
 ## References
 * [Efficient BackProp. Yann LeCun et al.1998](https://www.researchgate.net/publication/2811922_Efficient_BackProp)
