@@ -188,10 +188,14 @@ $$\text{MSE}=\left(\frac{1}{1+e^{-\sum_{i=1}^{N}\theta_i x_i}}-1\right)^2$$
 아래는 MSE의 partial derivative임.  
 앞서 보였던 logistic regression loss의 경우(=Cross entropy cost)와 달리 $\color{red}{\sigma^\prime \left(\boldsymbol{\theta}^\text{T}\textbf{x}^{(i)}\right)}$ term이 중간에 추가되어 있는데, 이 sigmoid의 미분으로 인해 partial derivative가 감소하게 되고 이는 back-propagation에서 효과적인 training에 방해가 됨.
 
-$$\dfrac{\partial}{\partial \theta_j}J(\boldsymbol{\theta})=\frac{1}{M}\sum_{i=1}^M \left( {\sigma \left( \boldsymbol{\theta}^\text{T}\textbf{x}^{(i)}\right) - y^{(i)}}\right)\color{red}{\sigma^\prime \left(\boldsymbol{\theta}^\text{T}\textbf{x}^{(i)}\right)}\color{black}{x_j^{(i)}}$$
+$$\begin{aligned}\dfrac{\partial}{\partial \theta_j}J(\boldsymbol{\theta})&=\frac{1}{M}\sum_{i=1}^M \left( {\sigma \left( \boldsymbol{\theta}^\text{T}\textbf{x}^{(i)}\right) - y^{(i)}}\right)\color{red}{\sigma^\prime \left(\boldsymbol{\theta}^\text{T}\textbf{x}^{(i)}\right)}\color{black}{x_j^{(i)}}\\&=\frac{1}{M}\sum_{i=1}^M \left( {\sigma \left( \boldsymbol{\theta}^\text{T}\textbf{x}^{(i)}\right) - y^{(i)}}\right)\color{red}{\sigma \left(\boldsymbol{\theta}^\text{T}\textbf{x}^{(i)}\right)(1-\sigma \left(\boldsymbol{\theta}^\text{T}\textbf{x}^{(i)}\right))}\color{black}{x_j^{(i)}}\end{aligned}$$
 
 * logistic의 derivative는 0.25를 max로 가지는 normal distribution의 모양임.
 * tanh의 경우, logistic보다 큰 derivative를 가지고 있어서 학습에 보다 유리한 것으로 알려짐.
+
+참고1: [derivative of logistic function](https://dsaint31.tistory.com/613)
+
+참고2: [hyperbolic tangent function](https://dsaint31.tistory.com/577)
 
 ---
 
