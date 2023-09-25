@@ -30,7 +30,7 @@ variants of `ReLU`의 대표적 activation function임.
 ## Gaussian Error Linear Unit (GELU)
 
 <figure markdown>
-![](./img/gelu_elu.png){widht="400" align="center"}
+![](./img/gelu_elu.png){width="400" align="center"}
 </figure>
 
 $$\begin{aligned}\text{GELU}(x) &=x \Phi (x)\\&=xP(X\le x),\quad X \sim \mathcal{N}(0,1)\end{aligned}$$
@@ -54,11 +54,12 @@ $$\Phi(x) = \frac{1}{2}+\frac{1}{2}\text{erf}(x/\sqrt{2})$$
 
 ## Sigmoid Linear Unit (SiLU or Swish)
 
-> 대표적 CNN 중 하나인 mobilenet에서 사용됨.
 
 <figure markdown>
 ![](./img/silu.png){width="600" align="center"}
 </figure>
+
+대표적 CNN 중 하나인 mobilenet에서 사용됨.
 
 `SiLU`는 다음과 같이 sigmoid function을 기반으로 `ReLU` 및 `GELU`와 매우 흡사한 shape의 activation function을 만들 수 있음.
 
