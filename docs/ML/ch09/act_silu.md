@@ -57,7 +57,7 @@ $$\Phi(x) = \frac{1}{2}+\frac{1}{2}\text{erf}(x/\sqrt{2})$$
 > 대표적 CNN 중 하나인 mobilenet에서 사용됨.
 
 <figure markdown>
-![](./img/silu.png){width="500" align="center"}
+![](./img/silu.png){width="600" align="center"}
 </figure>
 
 `SiLU`는 다음과 같이 sigmoid function을 기반으로 `ReLU` 및 `GELU`와 매우 흡사한 shape의 activation function을 만들 수 있음.
@@ -72,7 +72,7 @@ $$\text{SiLU}(x)=x \sigma(x)$$
 
 `SiLU`의 경우, [sigmoid function](https://dsaint31.tistory.com/577)의 ***input에 $\beta$로 scaling을 하는 generalization*** 을 통해, GELU와 거의 동등한 동작 (연산의 측면에서는 `GELU`보다 우수함)보이도록 만들 수 있으며, 보다 나은 성능을 얻을 수 있는 것으로 알려짐.
 
-$$\begin{aligned}\text{SiLU}_{\beta} &= x \sigma (\beta x) \\\\ \text{GELU}(x) &\approx x \sigma (1.702 x) &= \text{SiLU}_{\beta=1.702}(x)\end{aligned}$$
+$$\begin{aligned}\text{SiLU}_{\beta} &= x \sigma (\beta x) \\\\ \text{GELU}(x) &\approx x \sigma (1.702 x) \\ &= \text{SiLU}_{\beta=1.702}(x)\end{aligned}$$
 
 `SiLU`는 `Swish`라는 이름으로 더 유명하며 Keras 등에서 `GELU`와 함께 제공됨 (2023.9 현재 Keras의 `SiLU`는 $x \sigma (\beta x)$이며 default $\beta=1$임.)
 
