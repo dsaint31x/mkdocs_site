@@ -1,4 +1,4 @@
-# Trasfer Learning
+# Transfer Learning
 
 > The application of skills, knowledge, and/or attitudes that were learned in one situation to another learning situation. (Perkins, 1992)  
 > 다른 학습 상황에 배운 기술, 지식 및/또는 태도를 적용하는 것. (퍼킨스, 1992)
@@ -53,8 +53,10 @@ However, ^^the pre-trained model may not be optimal for the specific problem^^ a
 이상적으로는 다음과 같은 4가지 경우로 나누어지지만, 1번과 4번의 경우로 수행하는 경우는 생각보다 많지 않다.
 
 <figure markdown>
-![](./img/transfer_learning_type.png){width="400" align="center"}
+![](./img/transfer_learning_type.png){width="700" align="center"}
 </figure>
+
+* 유사성
 
 ---
 
