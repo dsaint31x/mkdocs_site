@@ -8,7 +8,6 @@ Logistic Regression은 이름과 달리, binary classification task를 위한 �
 2. 해당 score를 logistic function의 입력값으로 넣으면 0~1사이의 확률값 $\hat{p}$이 나옴.
 3. 해당 확률로 classification (binary classification)
 
-
 참고 : [Logit을 통한 Logistic Regression 유도](https://dsaint31.tistory.com/320)
 
 > 이 문서는 Logistic Regression을  
@@ -19,6 +18,8 @@ Logistic Regression은 이름과 달리, binary classification task를 위한 �
 
 * [ori](https://docs.google.com/presentation/d/1EG6nPMYbYjS4CcCVHSpMDOg7iwlzZLxahb0E9S2LkQg/edit#slide=id.g23bf78dd669_0_0)
 
+---
+
 ## Binary Classification
 
 input $\textbf{x}$가 주어질 경우, 출력이 binary class를 나타내는 task를 binary classification임.
@@ -26,6 +27,8 @@ input $\textbf{x}$가 주어질 경우, 출력이 binary class를 나타내는 t
 ANN등으로 만들 경우, output이 숫자 하나로 나오며 특정 class에 속할 확률 $\hat{p}$로 나오게 된다. 이는 다른 class에 속할 확률이 $\hat{q}=1-\hat{p}$임을 의미하기도 한다.
 
 해당 task에 대해 label은 $y \in \{0,1\}$로 주어져서 $i$번째 input $\textbf{x}^{(i)}$에 대응하는 label $y^{(i)}$는 0 또는 1 중의 하나가 된다.
+
+---
 
 ## Posterior probability로 살펴본 Binary classification.
 
@@ -50,6 +53,8 @@ $$p(y=1 | \textbf{x}) \approx \hat{p}(y=1 | \textbf{x}; \boldsymbol{\theta}) = h
 
 * training dataset $\left\{(x^{(i)},y^{(i)})| i=1, \dots, M \right\}$에서 model로부터 얻는 posterior probability distribution $\hat{p}(\hat{y}=1| \textbf{x}; \boldsymbol{\theta})$가 
 * 실제 training dataset의 확률분포 $p(y=1 | \textbf{x})$에 가장 비슷하도록 조정됨을 의미한다.
+
+---
 
 ## 모델이 정답을 맞출 확률 : Bernoulli Distribution
 
@@ -88,6 +93,8 @@ $$\begin{aligned}\boldsymbol{\theta}&=\underset{\boldsymbol{\theta}}{\text{argma
 
 ref. : [likelihood (우도)](https://dsaint31.tistory.com/317)
 
+---
+
 ## Negative Log-Likelihood
 
 MLE는 utility function을 사용하므로 최대화가 목표이나, loss function으로 이를 바꾸면 최소화의 문제로 바뀜.
@@ -116,15 +123,19 @@ $$J(\boldsymbol{\theta}) = -\frac{1}{m} \sum_{i=1}^m \left[ y^{(i)}\log \left(\h
 * Likelihood objective function을 Negative Log Likelihood로 바꾸어서 사용한다.
 
 > DL에서 binary classification에서 이용하는 cross-entropy 와 위의 Negative Log Likelihood 를 살펴보면 매우 유사함을 알 수 있음. 
+>  
+> [Cross Entropy란?](https://dsaint31.tistory.com/entry/Math-Cross-Entropy)
 
 참고로 위의 loss function은 linear regression (=logistic activation이 없는 경우)과 달리 closed form solution이 알려져 있지 않음. 
 
 * Normal equation과 같은 analytic method로 최적의 parameter를 한번에 구할 수 없음.
-* non-linear는 거의 대부분 쉽게 풀리지 않는다. ==;;
+* sigmoid activation의 도입으로 non-linear이며, non-linear의 경우 거의 대부분 쉽게 풀리지 않는다(closed form solution 없음). ==;;
 
-하지만, 위의 loss function은 convex function임.
+하지만, 위의 loss function은 ***convex function***임.
 
 * Gradient Decent를 사용할 경우 global minimum에 해당하는 parameters를 구할 수 있음을 의미함. 
+
+---
 
 ## Logistic cost function partial derivatives
 
@@ -139,6 +150,8 @@ $$\dfrac{\partial}{\partial \theta_j}J(\boldsymbol{\theta})=\frac{1}{M}\sum_{i=1
 * 이를 training set의 모든 instance에 대해 averaging.
 
 이처럼 gradient $\nabla_{\boldsymbol{\theta}}J(\boldsymbol{\theta})$를 구하고, Gradient Decent를 통해 parameter를 구해나가면 logistic regression의 training이 이루어짐. 
+
+---
 
 ## Logistic Regression 과 ANN.
 
