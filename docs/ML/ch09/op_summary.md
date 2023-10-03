@@ -1,10 +1,16 @@
 # Optimizers
 
+<<<<<<< HEAD
 Gradient (or Jacobian)에 의존하는 방법들과 2차 partial derivatives (Hessian)에 의존하는 방법들로 나누어짐.
+=======
+크게 ***Grdient (or Jacobian)에 의존하는 방법들*** 과 ***2차 partial derivatives (Hessian)에 의존하는 방법*** 들로 나누어짐.
+>>>>>>> a27c0a4596fa8babd152744160cbf6046b6aae89
 
-파라메터가 적은 모델들의 경우 Hessian 계열이 사용되기도 하나, Deep Neural Network에선 Gradient 계열만이 사용됨.
+파라메터가 적은 모델들의 경우 Hessian 계열이 사용되기도 하나, ***Deep Neural Network에선 Gradient 계열 만이 사용됨.***
 
 * parameters의 수의 square에 비례하는 연산을 요구하는 Hessian 계열은 메모리 문제와 함께 너무 느린 학습속도로 인해 DNN 에 적합하지 않음.
+
+---
 
 ## Gradient 계열 Optimizers
 
@@ -52,18 +58,18 @@ AdaMax
 </figure>
 
 * Contours of a loss surface and time evolution of different optimization algorithms. (별모양이 최적값임)
-    * Momentum 기반의 알고리즘들(Momentum와 NAG)서 overshooting이 보임. (hill에서 공을 아래로 굴릴 때 보이는 왔다갔다하는 동작.)
-
----
+    * Momentum 기반의 알고리즘들(`Momentum`와 `NAG`)에서 ***overshooting*** 이 보임. (hill에서 공을 아래로 굴릴 때 보이는 왔다갔다하와 동작.)
 
 <figure markdown>
 ![](./img/opt1.gif){width="400" align="center"}
 </figure>
 
-* A visualization of a ***saddle point*** in the optimization landscape, where the curvature along different dimension has different signs (one dimension curves up and another down). 
-    * SGD의 경우, 제대로 최소값을 향해 진행되지 못하는 것을 확인할 수 있음.
-        * 고정된 learning rate를 사용하는 경우, ^^local minima에 매우 취약함^^ 을 알 수 있음.
-    * Adaptive Learning ratio계열의 (Adagrad, Adadelta, Rmsprop) 알고리즘들은 효과적으로 학습이 이루어짐을 확인 가능함.
+* A visualization of a saddle point in the optimization landscape, where the curvature along different dimension has different signs (one dimension curves up and another down). 
+    * `SGD`는 제대로 최소값으로 나가지 못하는 것을 확인할 수 있음.
+        * ***고정된 learning rate를 사용하는 경우, local minima에 매우 취약함*** 을 알 수 있음.
+    * ***Adaptive Learning ratio계열*** 의 (`Adagrad``, `Adadelta`, `Rmsprop`) 알고리즘들은 효과적으로 학습이 이루어짐을 확인 가능함.
+
+---
 
 ---
 

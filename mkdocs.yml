@@ -294,6 +294,7 @@ nav:
       - "ML/ch08/back_propagation.md"
       - "ML/ch08/reverse_mode_autodiff.md"
       - "ML/ch08/datastructure_graph.md"
+      - "ML/ch09/sol_gv_ge.md"
       - "ML/ch09/weight_initializations.md"
       - "ML/ch09/act_relu.md"
       - "ML/ch09/act_elu.md"
@@ -307,6 +308,8 @@ nav:
       - "ML/ch09/op_rmsprop.md"
       - "ML/ch09/op_adam.md"
       - "ML/ch09/op_nadam.md"
+    - "Transfer Learning":
+      - "ML/ch11_training/knowledge_transfer.md"
     - "CNN":
       - "ML/ch14_cnn/CNN_intro.md"
       - "ML/ch14_cnn/LeNet-5.md"

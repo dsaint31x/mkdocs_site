@@ -33,19 +33,19 @@ Gradient Vanishing과 Exploding의 위험을 효과적으로 감소시킴.
 
 ## BN과 ICS 가정
 
-참고할 것은 
+위의 내용은 `BN`이 처음 제안될 당시의 것으로 추가 연구에 따라 다음과 같은 다른 해석이 일반적임.
 
-* ***Internal Covariate Shift (ICS)를 `BN`이 실제로는 막아주지 못하며,*** 
-* 다행스럽게도 ICS가 deep learning의 학습에 지장을 그리 주지 않는 것으로 알려짐. 
-* 오히려 `BN`이 ***optimization landscape에서의 smoothing 효과*** 를 가져오기 때문에 
-* 좋은 성능을 보인 것이라는 후속연구가 있음.
+* 우선, Internal Covariate Shift (ICS)를 `BN`이 실제로 방지하지 못하는 것이 밝여짐. 
+* 하지만, 다행스럽게도 ICS가 deep learning의 학습에 지장을 그리 주지 않는 것으로 알려짐. 
+* `BN`은 ICS를 막기보다는 optimization landscape에서의 smoothing 효과를 부여하며 
+* 이때문에 학습을 향상시키는 것이라는 후속연구가 있음.
 
 때문에 `BN`은 ICS를 해결해서 좋은 성능을 보인다고 해석하기 보다는 
 
 * 각 layer들에 대해 ***"Task를 푸는데 있어서 최적의 분포를 가지는 input"*** 으로 바꾸어주는 특성(`ReLU` 등과도 궁합이 잘 맞음)과 
 * optimization landscape smoothing이 이루어지기 때문에
 
-좋은 성능을 보이는 것으로 생각하는게 현재 시점에서는 보다 나은 해석이라고 생각됨.
+좋은 성능을 보이는 것으로 생각하는게 현재 시점에서는 보다 나은 해석으로 받아들여짐.
 
 * 참고 : [How Does Batch Normalization Help Optimization?](https://arxiv.org/abs/1805.11604)
 
@@ -102,6 +102,8 @@ Keras에서는 optimizer 객체에서 설정하며
 ---
 
 ## Algorithm
+
+`BN`의 경우, training과 inference 단계에서 조금 다른 처리를 취함.
 
 ### Training
 

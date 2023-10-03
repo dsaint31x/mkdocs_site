@@ -61,7 +61,11 @@ where
 
 단점은 $\alpha$로 인해 hyper-parameter가 하나 더 늘어났다는 점이며, 적절한 $\alpha$를 찾아야 한다는 점이다.
 
+> 하지만 Bing xu et al. 2015에 따르면, 거의 모든 경우 Leaky ReLU가 ReLU보다 나은 성능을 보이는 것으로 보고됨.
+
 일반적으로 $0.2$ 정도의 large leakage factor가 $0.01$ 의 적은 경우보다 좋은 결과로 이어지는 것으로 알려짐.
+
+> 그렇다고 클수록 좋은 건 아님.
 
 Ref. : [Bing Xu et al., “Empirical Evaluation of Rectified Activations in Convolutional Network,” arXiv preprint arXiv:1505.00853 (2015).](https://arxiv.org/abs/1505.00853)
 
@@ -75,14 +79,12 @@ where
 
 * $0. \le \alpha < 1.$
 
----
+### Parametric Leaky ReLU (`PReLU`) and Randomized Leaky ReLU (`RReLU`)
 
-### Parametric Leaky ReLu (PReLU)
-
-Leaky ReLU의 $\alpha$를 trainable parameter로 삼아서 dataset을 기반으로 최적의 값을 찾도록 한 변형이다.
+Leaky ReLU의 $\alpha$를 trainable parameter로 삼아서 dataset을 기반으로 최적의 값을 찾도록 한 변형이 `PReLU`이다.
 
 * 단점은 적은 수의 training dataset에서 over-fit하기 싶다는 점임.
-* 적은 수의 training dataset에서는 $\alpha$를 일정값의 범위에서 random하게 선택하여 training시키고, 이후 사용된 값의 평균으로 지정하여 inference를 수행하는 `Randomized Leaky ReLU`를 사용하는게 보다 나음.
+* over-fit이 일어나기 쉬운 적은 수의 training dataset에서는 $\alpha$를 일정값의 범위에서 random하게 선택하여 training시키고, 이후 사용된 값의 평균으로 지정하여 inference를 수행하는 ***Randomized Leaky ReLU*** (`RReLU`)를 사용하는게 보다 나음.
  
     
  

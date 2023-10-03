@@ -1,27 +1,10 @@
 # Weight Initialization (가중치 초기화)
 
-ANN이 1990년대 부활의 싹을 틔우고 있을 때에 가장 큰 문제점은 바로 Gradient Vanishing (and Exploding) Problem이었다.
-
-Weight Initialization은 이 문제를 개선하기 위한 방법으로 제안되었고 2010년에 상당한 성과를 보여 가장 먼저 위 문제에 대한 해법으로 널리 사용되게 된다 (현재도 기본적으로 사용된다.)
-
----
-
-## Gradient Vanishing and Exploding Problems
-
-Back-propagation의 경우, forward-flow와 backward-flow 두 단계로 수행되고, backward-flow에서는 loss function의 partial derivatives (=error gradient)가 output에서 input으로 전달되게 되는데,  
-ANN이 깊을 경우 해당 gradient가 output에서 작은 값으로 시작되면 중간에 너무 작은 값이 되어 input에 가까울 layers의 weights를 제대로 update하지 못하고 소실되는 문제가 발생한다.
-
-이를 Gradient Vanishing Problem이라고 부르며, 반대로 Gradient가 지나치게 증폭되어 model이 diverge하는 경우가 Gradient Exploding Problem임.
-
-![](./img/gradient_vanishing.png)
-
-ANN의 경우 깊어져야 task에 대한 representative feature를 얻어낼 수 있는데, Gradient vanishing은 이를 막는 가장 큰 문제점이었다.
-
----
+Weight Initialization은 Gradient Vanishing or Exploding Problem을 개선하기 위해 연구된 방법으로 2010년에 상당한 성과를 보이면서 deep neural network를 효과적으로 학습시키기 위해 널리 사용됨. (현재도 기본적으로 사용된다.)
 
 ## Weight Initialization 중요성.
 
-2000년대까지도 왜 이런 문제가 발생하는지를 정확히 파악하지 못했는데, 2010년 Xavier Glorot et al.에 의해 이를 획기적으로 개선(해결이 아니고 개선임)하는 방법으로 적절한 weight initialization과 activation function의 조합이 제안된다.
+2000년대까지도 왜 Gradient vanishing 및 exploding이 발생하는지를 정확히 파악하지 못했는데, 2010년 Xavier Glorot et al.에 의해 이에 대한 단서가 찾아졌고, 이를 통해 획기적으로 개선(해결이 아니고 개선임)하는 방법으로 적절한 weight initialization과 activation function의 조합이 제안된다.
 
 Xavier Glorot et al.이 찾은 원인은 다음과 같음
 
@@ -49,7 +32,7 @@ output의 variance가 커질 경우, forward-pass에서 점점 variance는 증�
 
 ***중요***
 
-ANN에서 gradient vanishing을 막으려면 다음이 성립해야 한다.
+ANN에서 weight initialization 관점에서 gradient vanishing을 막으려면 다음이 성립해야 한다.
 
 * 각 layer를 거쳐도 variance는 변화가 없어야 한다.
 * 이는 forward-flow 와 backward-flow 모두에서 성립해야 한다.
@@ -59,7 +42,7 @@ $\text{fan}_\text{in}$과 $\text{fan}_\text{out}$이 같지 않을 경우 varian
 
 이 타협안은 바로 문제가 되는 variance를 $\text{fan}_\text{in}$ 과 $\text{fan}_\text{out}$ 를 기반으로 조절하는 것이었음.
 
-사실 Yann LeCun et al. (1998)도 비슷한 형태의 Weight Initialization을 제시했다.
+> 사실 [Yann LeCun et al. (1998)](https://www.researchgate.net/publication/2811922_Efficient_BackProp) 도 비슷한 형태의 Weight Initialization을 제시했다.
 
 이 외에 weight의 초기화에서 주의할 점들은 다음과 같음.
 
@@ -71,6 +54,7 @@ $\text{fan}_\text{in}$과 $\text{fan}_\text{out}$이 같지 않을 경우 varian
 때문에 normal distribution으로 초기화할 경우 gradient vanishing이 발생하기 쉬움을 알 수 있다.
 (normal distribution의 variance인 1은 gradient vanishing의 관점에서 보면 작지 않다. 때문에, 만약 0.01 정도로 줄인다면 좀더 나은 결과를 얻을 수 있음.)
 
+---
 
 ## "Fan in" and "Fan out"
 
@@ -88,6 +72,8 @@ $\text{fan}_\text{out}$
 * $\text{fan}_\text{in}$ : $5 \times 5 \times 3 = 72$
 * $\text{fan}_\text{out}$ : $5 \times 5 \times 10 = 250$
 
+---
+
 ## Weight Initialization Methods
 
 초기에 많이 애용된 
@@ -95,9 +81,10 @@ $\text{fan}_\text{out}$
 * constant로 고정된 경우나 
 * Normal distribution을 사용한 경우는, 
 
-오늘날 사용되지 않으며 다음의 방법들이 주로 이용된다.
+오늘날 사용되지 않으며 ***다음의 방법들*** 이 주로 이용된다.
 
-주의할 것은 activation function에 따라 좀더 적절한 initialization이 결정된다는 점임. 때문에 아래 표도 궁합이 맞는 activation function이 같이 표기됨.
+주의할 것은 activation function에 따라 좀더 적절한 initialization이 결정된다는 점임.  
+때문에 아래 표에서 궁합이 맞는 activation functions 가 같이 표기됨.
 
 | Initialization | Activation functions | $\sigma^2$(Normal dist.) | [$-l$, $l$] (Uniform dist.) | Keras impl. |
 |:----:|:----:|:----:|:----:|:----:|
@@ -108,7 +95,7 @@ $\text{fan}_\text{out}$
 * 위의 normal distribution들은 variance만 차이가 있을 뿐, 모두 mean=0임.
 * Xavier Glorto et al.이 제안한 방식의 경우, `ReLU`가 유행하기 전까지 가장 많이 사용되었으나 아쉽게도 `ReLU`와는 잘 맞지 않는다 (layer가 깊어질수록 0에 치우치게 된다.)는 결과들로 인해 ***Kaiming He et al.*** 의 방식이 제안됨.
     * `ReLU`에서 0 이상의 값은 그대로 통과시키다보니 다시 $\text{fan}_\text{in}$만을 고려하면서 He의 방식에서는 coefficient를 조금 다르게 줌. `ReLU` 계열들을 사용시 기본으로 사용됨.
-* 참고로 LeCun의 방법과 가장 궁합이 맞는 `SELU`는 한참 뒤인 2017년에 개발된 방식임.
+* 참고로 LeCun의 방법과 가장 궁합이 맞는 `SELU` (Scaled Exponential Linear Unit)는 한참 뒤인 2017년에 제안됨.
 
 ## References
 * [Efficient BackProp. Yann LeCun et al.1998](https://www.researchgate.net/publication/2811922_Efficient_BackProp)

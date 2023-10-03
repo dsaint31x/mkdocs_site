@@ -1,8 +1,18 @@
 # Sigmoid Linear Unit (SiLU) : from GELU to MiSH
 
-Smooth function과 ReLU의 장점을 조합한 `ELU`(2015)를 넘어서는 성능을 보이며 보다 복잡한 task의 ANN에 많이 사용되는 activation functions는 `Swish`라는 이름으로 더 유명한 Sigmoid Linear Unit (`SiLU`)임. 실제로 `GELU`(2016)를 통해 `smoothness`의 장점과 `monotonic`과 `non-convex`를 만족하는 activation function의 유용성이 증명되었고, `SiLU`(2016,2017)와 `MiSH`(2019) 등이 제안됨.
+* ^^Smooth function과 ReLU의 장점을 조합^^ 한 `ELU`를 넘어서는 성능을 보이며 
+* 보다 복잡한 task의 ANN에 많이 사용되는 activation function
+* Swish라는 이름으로도 잘 알려짐.
 
-> 이 중 복잡도와 성능이 균형잡혔고 mobilenet등의 실적이 알려진 `SiLU`가 가장 널리 사용되고 있음.
+`SiLU`는 이명으로 `Swish`라고도 불리며, 
+
+* smooth, 
+* non-convex and 
+* non-monotonic 
+
+variants of `ReLU`의 대표적 activation function임.
+
+---
 
 `SiLU`는 이명으로 `Swish`라고도 불리며, 
 
@@ -37,7 +47,11 @@ variants of ReLU의 대표적 activation function임.
 
 ### Gaussian Error Linear Unit (GELU)
 
-$$\text{GELU}(x) =x \Phi (x)$$
+<figure markdown>
+![](./img/gelu_elu.png){width="400" align="center"}
+</figure>
+
+$$\begin{aligned}\text{GELU}(x) &=x \Phi (x)\\&=xP(X\le x),\quad X \sim \mathcal{N}(0,1)\end{aligned}$$
 
 * standard ***Gaussian Cumulative Distribution Function*** $\Phi(x)$를 이용함.
 * `ReLU`계열보다 훨씬 연산량이 많지만, 복잡한 task에서 `ELU`를 포함 기존의 activation function들보다 우수한 성능을 보임
@@ -57,21 +71,27 @@ $$\text{GELU}(x) =x \Phi (x)$$
 ![](./img/silu_relu.png){width="400" align="center"}
 </figure>
 
-`SiLU`는 다음과 같이 sigmoid function을 기반으로 ReLU 및 GELU와 매우 흡사한 shape의 activation function을 만들 수 있음.
+<figure markdown>
+![](./img/silu.png){width="600" align="center"}
+</figure>
+
+대표적 CNN 중 하나인 mobilenet에서 사용됨.
+
+`SiLU`는 다음과 같이 sigmoid function을 기반으로 `ReLU` 및 `GELU`와 매우 흡사한 shape의 activation function을 만들 수 있음.
 
 $$\text{SiLU}(x)=x \sigma(x)$$
 
-* $\sigma (x)=\frac{1}{1+e^{-x}}$ : sigmoid function
+* $\sigma (x)=\frac{1}{1+e^{-x}}$ : [sigmoid function](https://dsaint31.tistory.com/577)
 
 아래 논문이 `SiLU`를 재발견한 논문임.
 
 [Prajit Ramachandran et al., “Searching for Activation Functions”, arXiv preprint arXiv:1710.05941 (2017).](https://arxiv.org/abs/1710.05941)
 
-`SiLU`의 경우, sigmoid function의 input에 $\beta$로 scaling을 하는 generalization을 통해, GELU와 거의 동등한 동작 (연산의 측면에서는 `GELU`보다 우수함)보이도록 만들 수 있으며, 보다 나은 성능을 얻을 수 있는 것으로 알려짐.
+`SiLU`의 경우, [sigmoid function](https://dsaint31.tistory.com/577)의 ***input에 $\beta$로 scaling을 하는 generalization*** 을 통해, GELU와 거의 동등한 동작 (연산의 측면에서는 `GELU`보다 우수함)보이도록 만들 수 있으며, 보다 나은 성능을 얻을 수 있는 것으로 알려짐.
 
-$$ \text{SiLU}_{\beta} = x \sigma (\beta x) \\ \text{GELU}(x) \approx x \sigma (1.702 x) = \text{SiLU}_{\beta=1.702}(x)$$
+$$\begin{aligned}\text{SiLU}_{\beta} &= x \sigma (\beta x) \\\\ \text{GELU}(x) &\approx x \sigma (1.702 x) \\ &= \text{SiLU}_{\beta=1.702}(x)\end{aligned}$$
 
-`SiLU`는 `Swish`라는 이름으로 더 유명하며 Keras 등에서 `GELU`와 함께 제공됨 (단점은 generalized SiLU는 아님)
+`SiLU`는 `Swish`라는 이름으로 더 유명하며 Keras 등에서 `GELU`와 함께 제공됨 (2023.9 현재 Keras의 `SiLU`는 $x \sigma (\beta x)$이며 default $\beta=1$임.)
 
 > `PReLU`와 같이 `SiLU`도 $\beta$를 trainable parameter로 삼는 parameterized Siwsh도 있음 (역시 적은 학습데이터에선 over-fit할 확률이 커짐)
 
@@ -91,7 +111,7 @@ $$\begin{aligned} \dfrac{d}{dx}f(x) &= 1\sigma(x) + x\sigma(x)(1-\sigma(x)) \\ &
 
 ## 참고 : Mish
 
-2019년에 Diganta Misra가 제안한 또다른 non-monotonic activation function `Mish`가 `Swish`나 `GELU` 보다 좀 더 나은 성능을 보이는 것으로 보고함.
+2019년에 Diganta Misra가 제안한 또다른 non-monotonic activation function `Mish`가 `Swish`나 `GELU` 보다 CNN에서 좀 더 나은 성능을 보이는 것으로 보고함.
 
 [Mish: A Self Regularized Non-Monotonic Activation Function](https://arxiv.org/abs/1908.08681)
 
@@ -102,8 +122,17 @@ $$\text{mish}(x)=x \text{tanh}(\text{softplus}(x)) = \text{tanh}(\log (1+e^x))$$
 * negative input에 대해선 `Swish`와 비슷
 * positive input에 대해선 `GELU`와 비슷.
 
+`Swish`와 비교하여 `Mish`는 좀더 강한 regularization 효과를 가지면서 gradient가 보다 smooth하다고 알려짐.
+
+<figure markdown>
+![](./img/mish.png){width="500" aligh="center"}
+</figure>
+
+---
+
 ## References
 
 * [Hyperbolic Tangent Function (tanh)](https://dsaint31.tistory.com/577)
 * [Softplus](https://dsaint31.tistory.com/250)
 * [Hands-On Machine Learning with Scikit-Learn, Keras, and TensorFlow, 3rd Edition](https://learning.oreilly.com/library/view/hands-on-machine-learning/9781098125967/)
+* [[논문읽기]Mish(2019), A Self Regularized Non-Monotonic Activation Function](https://deep-learning-study.tistory.com/636)
