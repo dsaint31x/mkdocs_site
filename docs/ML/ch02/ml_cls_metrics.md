@@ -1,5 +1,35 @@
 # Performance Measures for Classifiers
 
+## Confusion matrix
+
+Confusion matrix(오차행렬)은 
+
+* row는 label의 class를 나타내며, 
+* column은 prediction 결과 class를 나타낸다.
+
+Classifier의 성능을 확실하게 파악할 수 있다는 장점이 있으나 하나의 값으로 표현되지 않는다는 단점을 가짐.
+
+`sklearn.metrics.confusion_matrix` 를 사용하여 쉽게 구할 수 있음.
+
+binary classifier의 경우,
+
+|  | Negative | Positive |
+| :---: | :---: | :---: |
+| $H_1$: False ($H_0$: True) | $TN$, True Negative | $FP$, False Positive (Type-I error)|
+| $H_1$: True ($H_0$: False)| $FN$, False Negative (Type-II error) | $TP$, True Positive |
+
+* $H_1$ : alternative hypothesis
+* $H_0$ : null hypothesis
+* False Positive 는 Type-I error(1종오류) 또는 $\alpha$ error라고도 불림.
+* False Negative 는 Type-II error(2종오류) 또는 $\beta$ error라고도 불림.
+* 가설검증 등에서 사용하는 $\alpha$ value (Critical value, significance level)가 작아질수록 Type-I error가 일어날 확률은 감소하지만 Type-II error가 일어날 확률은 커짐.
+
+<figure markdown>
+![](./img/type1_type2_error.png)
+</figure>
+
+* 가설검증은 type-1 error를 줄이는데 초점을 둠. ($\alpha=0.05$에서 $\alpha=0.01$을 쓰는 추세)
+
 ## Accuracy (정확도)
 
 Prediction에서 Ground True값인 label을 정확하게 맞춘 확률을 의미함.
@@ -165,6 +195,22 @@ Label이 Positive인 sample이 적은 경우 또는 false positive 를 false neg
 
 ---
 
+## F Score ( f measure or f-beta score)
+
+Precision과 Recall을 동시에 반영하는 measure로 많이 사용됨.
+
+Precision과 Recall의 Harmonic mean으로 수식은 다음과 같음.
+
+$$\begin{aligned}F_{\beta}=F&=\dfrac{1}{\alpha\dfrac{1}{\text{precision}}+(1-\alpha)\dfrac{1}{\text{recall}}}\\ &=\dfrac{(\beta^2+1)\text{precision}\times\text{recall}}{\beta^2\text{precision}+\text{recall}}\end{aligned}$$
+
+* Precision과 Recall이 모두 중요할 경우 $\beta=1$
+* Recall이 보다 중요할 경우 보통  $\beta=2$ : 의료분야등에서 많이 이용됨.
+* Precision이 보다 중요할 경우 $\beta=0.5$
+
+
+---
+
 ## 참고자료
 
-[Accuracy, precision, and recall in multi-class classification](https://www.evidentlyai.com/classification-metrics/multi-class-metrics)
+* [Accuracy, precision, and recall in multi-class classification](https://www.evidentlyai.com/classification-metrics/multi-class-metrics)
+* [[Math] Mean : Measures of Central Tendency](https://dsaint31.tistory.com/483)
