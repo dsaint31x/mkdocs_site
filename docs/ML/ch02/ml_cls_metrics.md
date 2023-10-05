@@ -30,6 +30,8 @@ binary classifier의 경우,
 
 * 가설검증은 type-1 error를 줄이는데 초점을 둠. ($\alpha=0.05$에서 $\alpha=0.01$을 쓰는 추세)
 
+---
+
 ## Accuracy (정확도)
 
 Prediction에서 Ground True값인 label을 정확하게 맞춘 확률을 의미함.

@@ -67,7 +67,7 @@ $$p(y^{(i)}|\textbf{x}^{(i)};\boldsymbol{\theta})=(\hat{p}^{(i)})^{y^{(i)}}(1-\h
 
 이는 $p$가 ***Bernoulli random variable의 distribution*** 을 따름을 보여줌 (위의 식은 Bernoulli distribution의 PMF임).
 
-* ref. : [Berolli distribution에 대해서](https://dsaint31.tistory.com/582)
+* ref. : [Bernoulli distribution에 대해서](https://dsaint31.tistory.com/582)
 
 **label $y^{(i)}=0$인 경우**
 : output $\hat{p}$가 0에 가까울수록 정답에 가까운 것이므로 likelihood가 1에 가까워지고, 반대인 경우엔 likelihood가 0에 가까워지므로 model의 결과가 얼마나 정확한지를 의미함.
@@ -78,7 +78,7 @@ $$p(y^{(i)}|\textbf{x}^{(i)};\boldsymbol{\theta})=(\hat{p}^{(i)})^{y^{(i)}}(1-\h
 > bernoulli random variable은 0 또는 1을 값으로 가지는 discrete random variable.  
 > Binary classification가 Bernoulli trial의 정의와 일치하기 때문임.
 
-달리 말하면 model의 output (=종속변수)가 Bernolli probability distribution을 따른다고 볼 수 있음.
+달리 말하면 model의 output (=종속변수)가 Bernoulli probability distribution을 따른다고 볼 수 있음.
 
 위의 $p(\hat{y}|\textbf{x};\boldsymbol{\theta})$를 likelihood로 삼아 이를 최대화하는 maximum likelihood expectation (`MLE`)는 다음과 같으며, 이 `MLE`를 통해 likelihood를 최대화 하는 parameters를 구할 수 있게 된다.
 
