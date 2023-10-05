@@ -82,7 +82,7 @@ Sensitivity 또는 True Positive Rate라고도 불린다. Precision과 분자는
 * 즉, 특정 class를 label로 가지는 sample들에 대해 몇 퍼센트를 해당 class로 맞추었는지를 의미함.
 * precision과 마찬가지로 class별로 구해진다.
 
-$$\text{Recall}_\text{cls_A} = \dfrac{TP_\text{cls_A}}{TP_\text{cls_A}+FN_\text{cls_\text{cls_A}}}$$
+$$\text{Recall}_\text{cls_A} = \dfrac{TP_\text{cls_A}}{TP_\text{cls_A}+FN_\text{cls_A}}$$
 
 Recall과 Precision은 trade-off 관계이다. threshold를 올리면 precision은 향상되지만, recall은 떨어지게 된다.
 
@@ -115,9 +115,10 @@ Weighed Average
 $$\text{Precision}_\text{weighted} = \dfrac{N_\text{cls_A}\text{Precision}_\text{cls_B}+N_\text{cls_B}\text{Precision}_\text{cls_B}+ \dots +N_\text{cls_N}\text{Precision}_\text{cls_N}}{M}$$
 
 
-$$\text{Recall}_\text{weighted} = \dfrac{N_\text{cls_A}\text{Recall}_\text{cls_A}+N_\text{cls_B}\text{Recall}_\text{cls_B}+ \dots +N_\text{cls_N}\text{Recall}_\text{cls_N}}{M}$$
+$$\text{Recall}_\text{weighted} = \dfrac{M_\text{cls_A}\text{Recall}_\text{cls_A}+M_\text{cls_B}\text{Recall}_\text{cls_B}+ \dots +M_\text{cls_N}\text{Recall}_\text{cls_N}}{M_\text{total}}$$
 
-* $M$ : number of samples
+* $M_\text{total}$ : number of total samples
+* $M_\text{cls_A}$ : number of samples of class A
 
 ---
 
