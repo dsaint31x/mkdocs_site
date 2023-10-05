@@ -95,22 +95,27 @@ Recall과 Precision은 trade-off 관계이다. threshold를 올리면 precision�
 Macro Average
 : 각 class별로 precision과 recall을 구하고 이들의 평균을 낸 경우. 각 클래스별로 동일한 weight를 주어 평균을 구함.
 
-$$\text{Precision}_\text{macro} = \dfrac{\text{Precision}_\text{cls_A}+\text{Precision}_\text{cls_B}+ dots +\text{Precision}_\text{cls_N}}{N}$$
-$$\text{Recall}_\text{macro} = \dfrac{\text{Recall}_\text{cls_A}+\text{Recall}_\text{cls_B}+ dots +\text{Recall}_\text{cls_N}}{N}$$
+$$\text{Precision}_\text{macro} = \dfrac{\text{Precision}_\text{cls_A}+\text{Precision}_\text{cls_B}+ \dots +\text{Precision}_\text{cls_N}}{N}$$
+
+$$\text{Recall}_\text{macro} = \dfrac{\text{Recall}_\text{cls_A}+\text{Recall}_\text{cls_B}+ \dots +\text{Recall}_\text{cls_N}}{N}$$
 
 * $N$ : number of classes
 
 Micro Average
 : 각 class별로 TP, FP, TN, FP를 구하고, 각 class의 TP, FP, TN, FP를 더해서 최종 TP와 FP, TN, FP를 구하고 이로부터 Precision과 Recall을 구한다.
 
-$$\text{Precision}_\text{micro} = \dfrac{TP_\text{cls_A}+TP_\text{cls_B}+ dots +TP_\text{cls_N}}{TP_\text{cls_A}+TP_\text{cls_B}+ dots +TP_\text{cls_N}+ FP_\text{cls_A}+FP_\text{cls_B}+ dots +FP_\text{cls_N}}$$
-$$\text{Recall}_\text{micro} = \dfrac{TP_\text{cls_A}+TP_\text{cls_B}+ dots +TP_\text{cls_N}}{TP_\text{cls_A}+TP_\text{cls_B}+ dots +TP_\text{cls_N}+ FN_\text{cls_A}+FN_\text{cls_B}+ dots +FN_\text{cls_N}}$$
+$$\text{Precision}_\text{micro} = \dfrac{TP_\text{cls_A}+TP_\text{cls_B}+ \dots +TP_\text{cls_N}}{TP_\text{cls_A}+TP_\text{cls_B}+ \dots +TP_\text{cls_N}+ FP_\text{cls_A}+FP_\text{cls_B}+ \dots +FP_\text{cls_N}}$$
+
+
+$$\text{Recall}_\text{micro} = \dfrac{TP_\text{cls_A}+TP_\text{cls_B}+ \dots +TP_\text{cls_N}}{TP_\text{cls_A}+TP_\text{cls_B}+ \dots +TP_\text{cls_N}+ FN_\text{cls_A}+FN_\text{cls_B}+ \dots +FN_\text{cls_N}}$$
 
 Weighed Average
 : 각 class별로 precision과 recall을 구하고 label에서 각 class의 샘플수를 weight로 삼아 average를 계산함.
 
-$$\text{Precision}_\text{weighted} = \dfrac{N_\text{cls_A}\text{Precision}_\text{cls_B}+N_\text{cls_B}\text{Precision}_\text{cls_B}+ dots +N_\text{cls_N}\text{Precision}_\text{cls_N}}{M}$$
-$$\text{Recall}_\text{weighted} = \dfrac{N_\text{cls_A}\text{Recall}_\text{cls_A}+N_\text{cls_B}\text{Recall}_\text{cls_B}+ dots +N_\text{cls_N}\text{Recall}_\text{cls_N}}{M}$$
+$$\text{Precision}_\text{weighted} = \dfrac{N_\text{cls_A}\text{Precision}_\text{cls_B}+N_\text{cls_B}\text{Precision}_\text{cls_B}+ \dots +N_\text{cls_N}\text{Precision}_\text{cls_N}}{M}$$
+
+
+$$\text{Recall}_\text{weighted} = \dfrac{N_\text{cls_A}\text{Recall}_\text{cls_A}+N_\text{cls_B}\text{Recall}_\text{cls_B}+ \dots +N_\text{cls_N}\text{Recall}_\text{cls_N}}{M}$$
 
 * $M$ : number of samples
 
