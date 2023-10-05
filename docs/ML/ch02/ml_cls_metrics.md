@@ -124,7 +124,10 @@ $$\text{Recall}_\text{weighted} = \dfrac{M_\text{cls_A}\text{Recall}_\text{cls_A
 
 ## Precision-Recall Curve and Precision-Recall Trade-off
 
-Binary classification에서 주로 얻어지는 curve. multi-class classification에서는 특정 class로 한정해야 그릴 수 있음. (class별로 precision과 recall이 나오므로)
+Binary classification에서 주로 얻어지는 curve. 
+
+Multiclass 의 경우는 다음 URL을 참고할 것 (micro 를 이용.).
+[scikit-learn's plot_precision_recall](https://scikit-learn.org/0.15/auto_examples/plot_precision_recall.html)
 
 해당 class로 판정하는 threshold를 조절하여 각각의 경우의 precision과 recall에 점을 찍는 방식으로 그려진다.
 
