@@ -69,12 +69,18 @@ cv2_imshow(results)
 ![](../../img/ch02/dip_gradient00.png)
 </figure>
 
+---
+
 ### Lawrence Roberts Filter (Cross Filter)
 
 1963년 로렌스 로버츠 제안.
 
 - diagonal edge를 매우 잘 검출.
 - noise에 약하고, 검출된 edge강도가 낮은 편.
+
+<figure markdown>
+![](./img/roberts_filter.png){width="500" align="center"}
+</figure>
 
 ```Python
 import cv2
@@ -84,8 +90,8 @@ from google.colab.patches import cv2_imshow
 
 img = cv2.imread(img_path)
 
-gx_kernel = np.array([[1,0],[0,-1]])
-gy_kernel = np.array([[0,1],[-1,0]])
+gx_kernel = np.array([[-1,0],[0,1]])
+gy_kernel = np.array([[0,-1],[1,0]])
 
 x_edge = cv2.filter2D(img,-1,gx_kernel)
 y_edge = cv2.filter2D(img,-1,gy_kernel)
@@ -95,12 +101,20 @@ results = np.hstack((img,np.abs(x_edge),np.abs(y_edge),np.abs(x_edge)+np.abs(y_e
 cv2_imshow(results)
 ```
 
+---
+
 ### Prewitt Filter
 
 주디스 프리윗이 제안
 
 - centered difference의 digital version이라고 볼 수 있음.
-- It shows weak performance for diagonal edge detection.
+- It shows **weak** performance for ***diagonal edge detection***.
+
+Sobel mask의 경우와 유사한 성능에 좀더 빠른 응답시간을 보임. 단, Soble에 비해 밝기 변화에 대하여 비중이 약간 적게 준 관계로 ***edge가 덜 부각*** 됨.
+
+<figure markdown>
+![](./img/Prewitt_filter.png)
+</figure>
 
 ```Python
 import cv2
@@ -133,14 +147,18 @@ cv2_imshow(results)
 ![](../../img/ch02/dip_prewitt_centered_diff.png)
 </figure>
 
+---
+
 ### Sobel Filter
 
 1968년 Irwin Sobel이 제안
 
 - 실무에서 널리 사용되는 **1차 미분(gradient기반)** 마스크 필터 : 디지털 형태의 1차미분.
-- 1차 미분을 통한 특정방향의 Edge를 검출.
+- 1차 미분을 통한 **특정방향의 Edge를 검출**.
 - `opencv`에서 전용함수 제공함.
-- kernel이 작은 사이즈(3by3) 경우 등에서 edge의 direction에 대한 검출 정확도가 좋지 않은 단점이 있음 : `Scharr filter`가 이를 개선.
+- kernel이 작은 사이즈(3by3) 경우 등에서 edge의 direction(방향)에 대한 검출 정확도가 좋지 않은 단점이 있음 : `Scharr filter`가 이를 개선.
+    - Kernel이 커질수록 edge가 두꺼워지고 선명해짐.
+    - 단 복잡한 모양의 image나 contrast의 변화가 공간적으로 촘촘한 구간에서 일어나는 경우 위의 Kernel이 커져도 큰 효과를 보지 못함. 
 
 Sobel filter의 $3 \times 3$ mask는 다음과 같음.
 
@@ -164,7 +182,7 @@ cv2.Sobel(src,
 - `dy`: y에 대한 미분 차수
 - `ksize`: Sobel kernel 크기 (1,3,5,7 만 가능)
 
-x축과 y축에 가해지는 미분 차수(degree)를 다르게 설정할 수 있으며, kernel size (`ksize`)도 조절가능함.
+x축과 y축에 가해지는 미분 차수(degree)를 다르게 설정 (order가 아닌 degree임)할 수 있으며, kernel size (`ksize`)도 조절가능함.
 
 * [degree 란?](https://dsaint31.tistory.com/entry/Math-Differential-Equation#Degree)
 
@@ -190,6 +208,8 @@ cv2_imshow(results)
 위의 코드의 결과는 다음과 같음.
 
 ![](../../img/ch02/dip_sobel.png)
+
+---
 
 ### Scharr Filter
 
@@ -219,7 +239,7 @@ cv2_imshow(results)
 
 ![](../../img/ch02/dip_scharr.png)
 
-
+---
 
 ## Laplacian Filter
 
