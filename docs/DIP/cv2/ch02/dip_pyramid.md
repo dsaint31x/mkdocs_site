@@ -102,7 +102,7 @@ laplacian은 2nd derivate라고 볼 수 있는데, Gaussian distribution의 1st 
 
 $$
 \begin{aligned}
-g(x;\sigma)&=\frac{1}{\sqrt{2\pi\sigma^2}}e^{\frac{x^2}{2\sigma^2}}\\
+g(x;\sigma)&=\frac{1}{\sqrt{2\pi\sigma^2}}e^{-\frac{x^2}{2\sigma^2}}\\
 \frac{d g(x;\sigma)}{dx}&=\frac{-x}{\sigma^2}g(x;\sigma)\\
 \frac{d^2 g(x;\sigma)}{dx^2}&=\left(\frac{x^2}{\sigma^2}-1\right)\left(\frac{1}{\sigma^2}\right)g(x;\sigma)\\
 \end{aligned}$$

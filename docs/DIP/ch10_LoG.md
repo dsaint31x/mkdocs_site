@@ -1,10 +1,13 @@
 # Laplacian of Gaussian (LoG)
 
-LoG는 Marr과 Hildreth에 의해 1980년에 제안된 기법. 
+`LoG`는 Marr과 Hildreth에 의해 1980년에 제안된 기법. 
 
-Gaussian blurring을 사용하여 noise를 제거(or 완화)시킨 후 Laplacian을 가하여 edge를 추출.
+* Gaussian blurring을 사용하여 noise를 제거(or 완화)시킨 후 
+* Laplacian을 가하여 edge를 추출.
 
 Laplacian이 edge를 잘 찾아내는 장점을 가지나, noise도 같이 증폭시키는 단점을 가지고 있기 때문에, Laplacian의 장점을 극대화하고 단점을 상쇄하기 위해 제안되었음.
+
+---
 
 ## Gaussian Blurring
 
@@ -24,15 +27,20 @@ $$
 G(x,y) = \exp \left[ -\left( \dfrac{(x-x_o)^2}{2\sigma_\text{x}^2}+\dfrac{(y-y_o)^2}{2\sigma_\text{y}^2}\right)\right]
 $$
 
+---
+
 ## Laplacian of a Gaussian (LoG)
 
-의료영상을 포함한 영상처리에서 Laplacian은 수평과 수직방향의 2차 미분에 해당함(Taylor series expansion 으로 approximation이 유도됨)
+의료영상을 포함한 영상처리에서 Laplacian은 ***수평과 수직방향의 2차 미분*** 에 해당함(Taylor series expansion 으로 approximation이 유도됨)
 
 $$
 \nabla^2 f(x,y)=\frac{\partial^2}{\partial x^2}f(x,y)+\frac{\partial^2}{\partial y^2}f(x,y)
 $$
 
-Log는 Gaussian filter를 input image $f$에 가해주고(convolution) 이후에 Laplacian을 가해줌. 
+`Log`는 
+
+1. Gaussian filter를 input image $f$에 가해주고(convolution) 
+2. 이후에 Laplacian을 가해줌. 
 
 좀더 수식에서 중요한 부분에 집중하기 위해 $x_o=y_o=0$으로 처리하여 전개하면 다음과 같음.
 
@@ -52,6 +60,8 @@ $$
 \nabla^2G(x,y)=\left[\frac{x^2+y^2-2\sigma^2}{\sigma^2}\right]\text{exp}\left(-\frac{x^2+y^2}{2\sigma^2}\right)
 $$
 
+---
+
 ## 3-D plot and Kernel
 
 아래 그림에서 보이듯이 멕시코 전통 모자를 뒤집어놓은 것처럼 보여서 LoG 연산자는 Mexican hat 연산자 라고도 불림.
@@ -62,18 +72,30 @@ $$
 ![](./img/ch10/LoG.png)
 </figure markdown>
 
-LoG는 frequency domain으로 생각하면, Laplacian Kernel과 Gaussian Blurring Kernel을 곱한 것이 바로 LoG의 Kernel이 된다.
+LoG는 frequency domain으로 생각하면, 
 
-$9\times 9$ LoG kernel을 다음 그림에서 보여준다.
+* Laplacian Kernel과 
+* Gaussian Blurring Kernel을 ***곱한 것*** 이 
+
+바로 ***`LoG`의 Kernel*** 이 된다.
+(spatial domain의 convolution이 freq. domain에서는 곱하기가 됨)
+
+다음은 $9\times 9$ LoG kernel을 다음 그림에서 보여준다.
 
 <figure markdown>
 ![](./img/ch10/LoG2.png)
 </figure markdown>
 
-1980년 Marr와 Hildreth에 의해 제안된 LoG의 경우, 계산량 측면에서 불리한 점들이 있어서 직접 사용되기 보다는
-LoG의 approximation들이 보다 많이 사용된다.
+---
 
-가장 대표적인 LoG의 approximation이 바로 Difference of Gaussian (DoG)이며 다음 그림이 DoG를 잘 설명해준다.
+## Difference of Gaussian (`DoG`)
+
+1980년 Marr와 Hildreth에 의해 제안된 `LoG`의 경우, 
+
+* 계산량 측면에서 불리한 점들이 있어서 직접 사용되기 보다는
+* `LoG`의 ***approximation들이 보다 많이 사용*** 된다.
+
+가장 대표적인 `LoG`의 approximation이 바로 ***Difference of Gaussian*** (`DoG`)이며 다음 그림이 `DoG`를 잘 설명해준다.
 
 <figure markdown>
 ![](./img/ch10/DoG.png)
@@ -85,7 +107,9 @@ LoG의 approximation들이 보다 많이 사용된다.
 
 수식으로 DoG가 어떻게 LoG의 approximation이 되는지는 다음 URL을 참고하라.
 
-* [수식으로 본 Laplacian approximation](./cv2/ch02/dip_pyramid.md#수식으로-본-laplacian-approximation)
+* [수식으로 본 Laplacian approximation](https://dsaint31.me/mkdocs_site/DIP/cv2/ch02/dip_pyramid/#laplacian-approximation)
+
+---
 
 # References
 

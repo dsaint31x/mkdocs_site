@@ -11,6 +11,8 @@ filter란 입력이미지에서
 
 > 이 문서에서는 spatial domain filter에서도 low pass filter를 다룬다.
 
+---
+
 ## Spatial domain filter and Frequency domain filter
 
 `Spatial domain filter`
@@ -20,6 +22,8 @@ filter란 입력이미지에서
 
 `Frequency domain filter`
 : Spatial domain의 입력 영상을 Fourier Transform(FT)등을 통해 *freq. domain* 으로 변환하여 처리가 이루어지는 filter.
+
+---
 
 ## Low Pass Filters (on Spatial domain)
 
@@ -86,6 +90,8 @@ cv2.blur(
 )
 ```
 
+---
+
 ### Median Filter
 
 - kernel 범위의 pixel intensity 들의 median으로 output image 의 대상 pixel intensity를 바꿈.
@@ -115,6 +121,8 @@ cv2.medianBlur(
     dst
 )
 ```
+
+---
 
 ### Gaussian Filter
 
@@ -160,6 +168,8 @@ ret = cv2.GaussianKernel(
 
 * ret : 1차원 가우시안 커널이므로 `ret*ret.T` (outer product)를 통해 2차원으로 만들어 사용하는게 일반적.
 
+---
+
 ### Bilateral Filter
 
 - 픽셀 간의 거리 뿐 아니라 두 픽셀의 intensity의 차이도 고려한 가중치의 Kernel을 사용.
@@ -204,6 +214,8 @@ cv2.bilateralFilter(
 
 > `sigmaColor`와 `sigmaSpace`의 range는 10~150 로 사용하고, 둘 다 같은 값으로 지정하는 것을 OpenCV tutorial에 권함.
 
+---
+
 ## Noises
 
 Smoothing filter (or Low pass filter)에서 주로 제거하고자 하는 noise는 다음과 같음.
@@ -221,6 +233,8 @@ Smoothing filter (or Low pass filter)에서 주로 제거하고자 하는 noise�
 ![](../../img/ch02/Noises.png)
 <figcap>Reference : https://slideplayer.com/slide/5225380/</figcap>
 </figure>
+
+---
 
 ## References
 
