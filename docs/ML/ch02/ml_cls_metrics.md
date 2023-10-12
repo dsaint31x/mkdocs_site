@@ -172,7 +172,7 @@ ROC는 False Positive Rate (FPR, fall-out) 에 대해 Recall (=True Positive Rat
 
 OvR 또는 OvO 를 이용하여 Multi-class classification에서도 그릴 수는 있으나 주로 binary classification에서 사용됨.
 
-Multi-class의 경우의 ROC는 다음 URL을 참고할 것.
+Multi-class의 경우의 ROC Curve는 다음 URL을 참고할 것.
 [Multiclass Receiver Operating Characteristic (ROC)](https://scikit-learn.org/stable/auto_examples/model_selection/plot_roc.html)
 
 PR-Curve와 유사한 형태이나 Left-top이 ideal model의 performance에 해당하기 때문에 chart가 Left-top (High recall and Low FPR)에 가까울수록 높은 성능의 모델임.
@@ -188,7 +188,7 @@ FPR은 1-TNR (=1-specificity)에 해당한다. specificity는 negative인 sample
 
 ### Area under the Curve (AUC)
 
-ROC 에서 curve 아래의 area(면적)을 가르키며, 1에 가까울수록 ideal한 model임.
+ROC Curve에서 curve 아래의 area(면적)을 가르키며, 1에 가까울수록 ideal한 model임.
 
 ---
 

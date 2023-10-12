@@ -280,6 +280,7 @@ nav:
       - "ML/ch01/ch01_52.md"
     - "Classification":
       - "ML/ch02/ml_cls_metrics.md"
+      - "ML/ch02/ml_cls_types.md"
     - "Linear Regression and Logistic Regression":
       - "ML/ch03/logistic_regression.md"
     - "Ensemble Learning":
