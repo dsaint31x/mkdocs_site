@@ -1,11 +1,5 @@
 # Optimizers
 
-<<<<<<< HEAD
-Gradient (or Jacobian)에 의존하는 방법들과 2차 partial derivatives (Hessian)에 의존하는 방법들로 나누어짐.
-=======
-크게 ***Grdient (or Jacobian)에 의존하는 방법들*** 과 ***2차 partial derivatives (Hessian)에 의존하는 방법*** 들로 나누어짐.
->>>>>>> a27c0a4596fa8babd152744160cbf6046b6aae89
-
 파라메터가 적은 모델들의 경우 Hessian 계열이 사용되기도 하나, ***Deep Neural Network에선 Gradient 계열 만이 사용됨.***
 
 * parameters의 수의 square에 비례하는 연산을 요구하는 Hessian 계열은 메모리 문제와 함께 너무 느린 학습속도로 인해 DNN 에 적합하지 않음.
