@@ -88,6 +88,9 @@ Model의 architecture (or configuration)은 다음의 방법들을 통해 Serial
 
 다음과 같이 `get_config()` 메서드와 `cls.from_config()` 클래스 메서드를 구현함.
 
+* custom layer나 custom model의 경우 반드시 `get_config()` 메서드를 구현해야 한다.
+* `__init__()`의 arguments 중, Python의 object가 아닌 것의 경우 반드시 serialization 처리가 `get_config()`에 구현되어있어야 하며, deserialization처리가 `from_config()`에 구현되어야 한다.
+
 ```Python
 class CustomModel(keras.Model):
     def __init__(self, hidden_units):
