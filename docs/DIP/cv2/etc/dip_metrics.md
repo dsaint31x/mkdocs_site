@@ -46,7 +46,7 @@ where
 ### Mean Squared Error (MSE) 
 
 $$
-\text{MSE}(\textbf{y},\hat{\textbf{y}})=\frac{1}{m}\sum^m_{i=1}\left(\hat{\textbf{y}}_i-\textbf{y}_i\right)^2
+\text{MSE}(\textbf{y},\hat{\textbf{y}})=\sqrt{\frac{1}{m}\sum^m_{i=1}\left(\hat{\textbf{y}}_i-\textbf{y}_i\right)^2}
 $$
 
 where
