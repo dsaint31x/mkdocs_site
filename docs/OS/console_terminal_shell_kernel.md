@@ -23,7 +23,7 @@ The ***console*** allows system administrators to
 
 ## Terminal
 
-> 컴퓨터에 local 또는 remote로 접속할 수 있는 console을 SW로 구현한 것.  
+> 컴퓨터에 local 또는 remote로 접속할 수 있는 ***console을 SW로 구현한 것***.  
 > (보통 shell 이 수행되도록 해주는 wrapper라고 볼 수 있다.)
 >
 > 과거 terminal이나 console 모두 teletype(`tty`, 독립된 HW system)로 구성되었으나,  
@@ -55,7 +55,7 @@ Some ^^popular terminal applications^^ include
 > 사용자와 OS사이에 위치하고,  
 > 사용자가 입력한 command들을 OS로 전달하여 실행시키고 
 > 그 결과를 사용자에게 다시 보여주는 역할을 담당한다.  
-> Terminal 에서 CLI 에서 보다 많이 언급되는 편임.  
+> Terminal 에서 동작하며, CLI 를 사용하는 게 일반적임.
 > 
 > OS의 구성요소 (OS를 아주 간단하게 `kernel`과 `shell`로 구성된다고 그리는 경우도 많음.)로서  
 > shell은 `kernel`과 사용자 사이에 위치한다.  
