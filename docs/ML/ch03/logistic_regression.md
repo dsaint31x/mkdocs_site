@@ -277,4 +277,6 @@ NFLT (No Free Lunch Theorme)에 의해
 
 ## References
 
-[Minimizing the Negative Log-Likelihood, in English](https://willwolf.io/2017/05/18/minimizing_the_negative_log_likelihood_in_english/?fbclid=IwAR0nSqtezeZqG0kc2OqQZBSzxB-UXiNKILD44oPGlFcPxGdTbPyOokDyIVE)
+* [Minimizing the Negative Log-Likelihood, in English](https://willwolf.io/2017/05/18/minimizing_the_negative_log_likelihood_in_english/?fbclid=IwAR0nSqtezeZqG0kc2OqQZBSzxB-UXiNKILD44oPGlFcPxGdTbPyOokDyIVE)
+* [Binomial Distribution](https://dsaint31.tistory.com/467)
+* [Poisson Distirbution](https://dsaint31.tistory.com/636)
