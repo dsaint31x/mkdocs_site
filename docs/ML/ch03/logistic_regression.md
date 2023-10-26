@@ -2,25 +2,43 @@
 
 Logistic Regression은 이름과 달리, binary classification task를 위한 모델로서 특정 class에 속할 확률을 출력해준다 (output이 하나의 확률값임).
 
-다음의 순서를 따름.
+* 일반적으로 1 또는 0 으로 표기하여 
+* 특정 class에 속하는 경우 1을 결과값으로 하고, 
+* 해당 class에 속하지 않고 다른 class에 속하는 경우 0을 결과값으로 함.
+
+실제로 Logistic Regression에서는  
+두 class 중 하나를 지정하여 해당 class에 속할 경우를 1로,  
+아닐 경우를 0으로 지정(label이 해당값으로 설정됨)하고,  
+Logistic Regression의 출력(예측 class)은 1에 해당하는 class에 속할 확률이 된다.
+
+Logistic Regression의 동작 순서는 다음과 같음.
 
 1. Regression으로 어떤 score $t$ (=*logit score* or *log odds score* )를 구함 
 2. 해당 score를 logistic function의 입력값으로 넣으면 0~1사이의 확률값 $\hat{p}$이 나옴.
 3. 해당 확률로 classification (binary classification)
 
-참고 : [Logit을 통한 Logistic Regression 유도](https://dsaint31.tistory.com/320)
+참고 : [Logit의 개념과 이를 통한 Logistic Regression 유도](https://dsaint31.tistory.com/320)
+
+---
 
 > 이 문서는 Logistic Regression을  
-> Bernoulli Distribution에 기반한 Maximum Likelihood Estimation의 관점으로 해석하여  
-> DL에서의 binary classification model에 대한 이해로 확장해나가는 것을 목표로 함.
+> Bernoulli Distribution에 기반한 Maximum Likelihood Expection의 관점으로 해석하여  
+> `DL`에서의 binary classification model에 대한 이해로 확장해나가는 것을 목표로 함.
 
-![](./img/logistic_regression_ann.png)
+다음 그림은 Computational Graph 또는 Single Layer Perceptron (or Dense Layer)로 표현한 Logistic Regression임.
 
+![](./img/logistic_regression_ann.png){width="500"}
+
+다음은 Logistic Regression의 출력 $\hat{p}$의 수식이다.
 $$
-\hat{p}(\hat{y}=1) = \sigma(t) = \sigma \left( b+\omega_1x_1+\omega_2x_2 +\dots+\omega_n x_n\right)
+\hat{p}(\hat{y}=1) = \sigma(t) = \sigma \left( b+\omega_1x_1+\omega_2x_2 +\dots+\omega_n x_n\right) \\
+\hat{p}(\hat{y}=1) = \hat{p}
 $$
 
-* [ori](https://docs.google.com/presentation/d/1EG6nPMYbYjS4CcCVHSpMDOg7iwlzZLxahb0E9S2LkQg/edit#slide=id.g23bf78dd669_0_0)
+* class 1에 속할 확률 $\hat{p}(\hat{y}=1)$이 출력임.
+* 때문에 0.5 이상일 경우 class 1에 속한다고 판정하고, 미만일 경우는 class 0에 속한다고 판정.
+
+[figure ori.](https://docs.google.com/presentation/d/1EG6nPMYbYjS4CcCVHSpMDOg7iwlzZLxahb0E9S2LkQg/edit#slide=id.g23bf78dd669_0_0)
 
 ---
 
@@ -28,35 +46,63 @@ $$
 
 input $\textbf{x}$가 주어질 경우, 출력이 binary class를 나타내는 task를 binary classification임.
 
-ANN등으로 만들 경우, output이 숫자 하나로 나오며 특정 class에 속할 확률 $\hat{p}$로 나오게 된다. 이는 다른 class에 속할 확률이 $\hat{q}=1-\hat{p}$임을 의미하기도 한다.
+ANN 등으로 만들 경우,  
+output이 숫자 하나로 나오며 class 1에 속할 확률 $\hat{p}$로 나오게 된다 (위의 Logistic Regression의 경우와 같음).  
+이는 다른 class에 속할 확률이 $\hat{q}=1-\hat{p}$임을 의미하기도 한다.
 
-해당 task에 대해 label은 $y \in \{0,1\}$로 주어져서 $i$번째 input $\textbf{x}^{(i)}$에 대응하는 label $y^{(i)}$는 0 또는 1 중의 하나가 된다.
+해당 task에 대해 label은 $y \in \{0,1\}$로 주어져서  
+$i$번째 input $\textbf{x}^{(i)}$에 대응하는 label $y^{(i)}$는 `0` 또는 `1` 중의 하나가 된다.
+
+* $i$번째 sample의 label $y^{(i)}$가 1의 값인 경우, $i$번째 sample이 class 1에 속할 확률이라고 생각할 수 있다. (정답은 고정이니 확률이 100%인 1로 기재.)
+* $i$번째 sample의 label $y^{(i)}$가 0의 값인 경우도 역시 $i$번째 sample이 class 1에 속할 확률이라고 생각할 수 있다. (정답은 고정이니 확률이 0%인 0으로 기재.)
+* $i$번째 sample이 class 0 으로 label이 지정된 경우, 해당 sampel이 class 1일 확률은 0이라고 봐도 된다.
+
+즉, $i$번째 sample의 label $y^{(i)}$를 class의 index로 봐도 되지만, class 1에 속할 확률이라고 볼 수도 있다.
+
+이는 달리 말하면 binary classifier의 output은 class 1에 속할 확률이라고 볼 수 있음을 의미한다.
 
 ---
 
 ## Posterior probability로 살펴본 Binary classification.
 
-binary classification model의 output이   
-**$\hat{y}$가 1일 확률 $\hat{p}$** 는  
+binary classification model의 output인,   
+**$\hat{y}$가 1일 확률 $\hat{p} = \hat{p}(\hat{y}=1)$** 는  
 logistic regression의 경우 다음과 같이 주어진다.
 
-$$\hat{p}=h_{\boldsymbol{\theta}}(\textbf{x})=\sigma(\textbf{x}^T\boldsymbol{theta})$$
+$$\hat{p}=h_{\boldsymbol{\theta}}(\textbf{x})=\sigma(\textbf{x}^T\boldsymbol{\theta})$$
 
-* $h_{\boldsymbol{\theta}}( \cdot )$ : hypothesis. model을 나타내는 function으로 model의 parameters가 $\boldsymbol{\theta}$임을 의미.
-* $\hat{p}$ : 1에 속할 확률. model이 예측한 결과이므로 hat이 씌어짐.
+* $h_{\boldsymbol{\theta}}( \cdot )$ : hypothesis의 약자 $h$로 model을 나타내는 function임. model의 parameters가 $\boldsymbol{\theta}$임을 아래첨자로 나타냄.
+* $\hat{p}$ : class 1에 속할 probability를 의미. model이 예측한 결과이므로 hat이 씌어짐.
     * logistic regression의 output임.
+    * 일반적인 binary classifier의 output이기도함.
+    * $\hat{p}(\hat{y}=1)$ 를 줄여서 표현한 것임.
 * $\sigma( \cdot )$ : logistic function.
 
-이 $\hat{p}$는 $\textbf{x}$와 $\boldsymbol{\theta}$가 주어졌을 때, $\hat{y}=1$일 일종의 사후확률(posterior probability)이며 해당 확률이 0.5 이상이며 $\hat{y}=1$이라고 판정하고 아니면 $\hat{y}=0$이라고 판정한다고 볼 수 있음.
+Logistic Regression의 output $\hat{p}$ (class 1에 속할 probability)는  
+$\textbf{x}$와 $\boldsymbol{\theta}$가 주어졌을 때,  
+Random variable $\hat{y}$가 1의 값을 가질 확률(probability)이기 때문에  
+해당 확률이 0.5 이상이며 $\hat{y}=1$이라고 판정하고  
+아니면 $\hat{y}=0$이라고 판정한다고 볼 수 있음.
+
+---
 
 이를 다음과 같이 표기할 수 있다.
 
-$$p(y=1 | \textbf{x}) \approx \hat{p}(y=1 | \textbf{x}; \boldsymbol{\theta}) = h_{\boldsymbol{\theta}}(\textbf{x})$$
+$$p(y=1 | \textbf{x}) \approx \hat{p}(\hat{y}=1 | \textbf{x}; \boldsymbol{\theta}) = h_{\boldsymbol{\theta}}(\textbf{x})$$
 
 이는 model의 (trainable) parameters $\boldsymbol{\theta}$는 
 
-* training dataset $\left\{(x^{(i)},y^{(i)})| i=1, \dots, M \right\}$ ($M$은 training dataset에서 sample의 갯수임)에서 model로부터 얻는 posterior probability distribution $\hat{p}(\hat{y}=1| \textbf{x}; \boldsymbol{\theta})$가 
-* 실제 training dataset의 확률분포 $p(y=1 | \textbf{x})$에 가장 비슷하도록 조정됨을 의미한다.
+* training dataset $\left\{(x^{(i)},y^{(i)})| i=1, \dots, M \right\}$ ($M$은 training dataset에서 sample의 갯수임)에서 model로부터 얻는 일종의 conditional probability distribution $\hat{p}(\hat{y}=1| \textbf{x}; \boldsymbol{\theta})$가 
+* 실제 training dataset의 확률분포 $p(y=1 | \textbf{x})$에 가장 비슷 ($\approx$)해지도록 조정되어야 함
+
+을 의미한다.
+
+0 또는 1의 값을 가지는 random variable $\hat{y}$에 대한 probability distribution이  
+label에 해당하는 random variable $y$의 probability distribution이 일치하도록  
+model의 parameters $\boldsymbol{\theta}$를 조정하기 위해서는
+
+$y$, $\hat{y}$의 probability distribution을 지정하는 Probability Mass Function을 알아야 함.
+
 
 ---
 
@@ -67,9 +113,10 @@ $$p(y=1 | \textbf{x}) \approx \hat{p}(y=1 | \textbf{x}; \boldsymbol{\theta}) = h
 $$p(y^{(i)}|\textbf{x}^{(i)};\boldsymbol{\theta})=(\hat{p}^{(i)})^{y^{(i)}}(1-\hat{p}^{(i)})^{1-y^{(i)}}$$
 
 * $p(y^{(i)}|\textbf{x}^{(i)};\boldsymbol{\theta})$는 주어진 $i$번째 input $\textbf{x}$와 현재 model parameters $\boldsymbol{\theta}$ 하에서 모델이 정답(label) $y^{(i)}$를 출력할 likelihood를 의미함.
-* $\hat{p}^{(i)}=\sigma(\textbf{x^{(i)}}^T\boldsymbol{\theta})$ 는 input $\textbf{x}^{(i)}$에 대한 logistic regression의 출력으로 예측치 $\hat{y}=1$이 될 확률임.
+* $\hat{p}^{(i)}=\sigma({\textbf{x}^{(i)}}^T\boldsymbol{\theta})$ 는 input $\textbf{x}^{(i)}$에 대한 logistic regression의 output으로 class 1에 속할 probability임. * 즉, $\hat{y}=1$이 될 확률이다.
 
-위의 식은 Logistic regression model이 정답을 맞출 확률 $p$가 ***Bernoulli random variable의 distribution*** 을 따름을 보여줌 (위의 식은 Bernoulli distribution의 PMF임).
+위의 식은 Logistic regression model이 정답을 맞출 확률 $p$가 ***Bernoulli random variable의 distribution*** 을 따름을 보여줌  
+(위의 식은 Bernoulli distribution의 PMF임).
 
 * ref. : [Bernoulli distribution에 대해서](https://dsaint31.tistory.com/582)
 
@@ -81,37 +128,48 @@ $$p(y^{(i)}|\textbf{x}^{(i)};\boldsymbol{\theta})=(\hat{p}^{(i)})^{y^{(i)}}(1-\h
 
 > 참고로 Bernoulli random variable은 0 또는 1을 값으로 가지는 discrete random variable 임.  
 > Binary classification가 Bernoulli trial로 볼 수 있음을 의미함.  
-> 달리 말하면 model의 output (=종속변수)가 Bernoulli probability distribution을 따른다고 볼 수 있음.
+> 달리 말하면 binary classification model이 정답을 맞출 확률은  
+> Bernoulli probability distribution을 따른다고 볼 수 있음.
 
-위의 $p(\hat{y}|\textbf{x};\boldsymbol{\theta})$를 likelihood로 삼아 
+위의 $p(\hat{y}|\textbf{x};\boldsymbol{\theta})$를 likelihood로 삼고
 
 (ref. : [likelihood (우도)](https://dsaint31.tistory.com/317))
 
-이를 최대화하는 maximum likelihood expectation (`MLE`)는 다음과 같으며, 이 `MLE`를 통해 구해진  
-likelihood를 최대화 하는 parameters $\boldsymbol{\theta}$가 바로 학습이 끝난 model을 구성한다.
-
-> 각 likelihood들의 joint probability를 통해 training dataset의 모든 $M$개의 sample들에 기반한 최적의 parameters $\boldsymbol{\theta}$를 구한다.  
-(모델에서 각 sample들이 서로의 class를 결정할 때 각각에 대해 독립이라는 가정에 기반.)  
+이를 최대화하는 maximum likelihood expectation (`MLE`)를 기재하면  다음과 같음. 
 
 $$\begin{aligned}\boldsymbol{\theta}&=\underset{\boldsymbol{\theta}}{\text{argmax }} \prod _{i=1}^M p(y^{(i)}|\textbf{x}^{(i)};\boldsymbol{\theta})\\&=\underset{\boldsymbol{\theta}}{\text{argmax }} \prod _{i=1}^M \mathcal{L}(\boldsymbol{\theta}|\textbf{x}^{(i)},y^{(i)})\\&=\underset{\boldsymbol{\theta}}{\text{argmax }} \prod _{i=1}^M (\hat{p}^{(i)})^{y^{(i)}}(1-\hat{p}^{(i)})^{1-y^{(i)}}\end{aligned}$$
 
-* $\displaystyle \prod _{i=1}^M p(y^{(i)}|\textbf{x}^{(i)};\boldsymbol{\theta})$가 최대화된다는 것은 Logistic regression model이 정답을 맞출 확률이 커진다는 것을 의미함.
-* $\boldsymbol{\theta}$를 조절하면 해당 확률은 변하며, 각각의 $\boldsymbol{\theta}$에 따른 해당 확률값들을 모두 더할 경우 1이 되진 않음 (물론 값이 클수록 가능성은 커짐) : 때문에 likelihood라고 부르며 이 부분을 강조하여 $\mathcal{L}$로 표기하기도 함.
-* 이는 $\hat{p}=\sigma(\textbf{x}^T\boldsymbol{\theta})$ 는 logistic regression의 출력으로 $\hat{y}=1$이 될 확률임에 기반.
+* $\displaystyle \prod _{i=1}^M p(y^{(i)}|\textbf{x}^{(i)};\boldsymbol{\theta})$가 최대화된다는 것은 Logistic regression model이 정답을 맞출 가능성이 커진다는 것을 의미함.
+* $\boldsymbol{\theta}$를 조절하면 ***해당 정답을 맞출 가능성*** 은 변하며, 각각의 $\boldsymbol{\theta}$에 따른 해당 가능성의 값들을 모두 더할 경우 1이 되진 않음 (물론 값이 클수록 가능성은 커짐) : 때문에 ***likelihood*** 라고 부르며 이 부분을 강조하여 likelyhood function $\mathcal{L}$로 표기하기도 함.
+* likelihood 를 구하는데 사용되는 $\hat{p}=\sigma(\textbf{x}^T\boldsymbol{\theta})$ 는 logistic regression의 output으로 $\hat{y}=1$이 될 확률(class 1에 속할 확률)임.
 
+이 `MLE`를 통해 구해진 
+***likelihood를 최대화 하는 parameters $\boldsymbol{\theta}$*** 를 가지는 model이 
+바로 binary classification task에 대한 최적의 model이 됨.
+
+> 위의 식의 경우,  
+> 각 likelihood들의 joint probability를 통해 training dataset의 모든 $M$개의 sample들을 고려하여 최적의 parameters $\boldsymbol{\theta}$를 구한다.  
+> (각 sample들이 서로의 class를 결정할 때 각 sample간에 ***독립*** 적으로 구해진다는 가정에 기반.) 
+
+`MLE`의 object function은 utility function으로 ***최대화가 목적임***.
 
 ---
 
 ## Negative Log-Likelihood
 
-`MLE`는 ^^utility function을 사용하므로 최대화가 목표^^ 이므로, loss function으로 사용하기 위해서는 다음과 같이 최소화의 문제로 바꾸면 됨.
+`MLE`는 ^^utility function을 사용하므로 최대화가 목표^^ 이므로,  
+최소화를 사용하는 Gradient Descent의 loss function으로 이를 사용하기 위해서는  
+다음과 같은 처리가 필요함.
 
-* 위의 likelihood를 loss function으로 바꾸면 
+위의 likelihood에
+
 * `-` 기호를 붙여주면(negation) 된다. 
-* `-1`을 곱하면 utility function을 loss function으로 변경하게 됨.
 
-그리고 likelihood를 training dataset의 모든 샘플에 대해 구하기 위해선 
+즉, utility function에 `-1`을 곱하면 loss function이 된다.
 
+그리고 likelihood를 training dataset의 모든 샘플에 대해 적용할 때, 
+
+* joint probability이기 때문에
 * 각 likelihood를 곱해야 하는데, 
 * 이처럼 곱해주는 것($\prod$)보다는 
 * 더해나가는게($\sum$) 편하므로 
@@ -122,7 +180,7 @@ $$\begin{aligned}\boldsymbol{\theta}&=\underset{\boldsymbol{\theta}}{\text{argma
 * Negative : loss function으로 삼아 최소화 문제로 변경.
 * Log : $\prod$ 대신 $\sum$을 사용하기 위해.
 
-이를 통해 얻은 Objective function (=loss function) $J$는 다음과 같음.
+이를 통해 얻은 Object function (=loss function) $J$는 다음과 같음.
 
 $$J(\boldsymbol{\theta}) = -\frac{1}{m} \sum_{i=1}^m \left[ y^{(i)}\log \left(\hat{p}^{(i)}\right)+ (1-y^{(i)})\log\left(1-\hat{p}^{(i)}\right)\right]$$
 
@@ -134,14 +192,14 @@ $$J(\boldsymbol{\theta}) = -\frac{1}{m} \sum_{i=1}^m \left[ y^{(i)}\log \left(\h
 지금까지 살펴본 내용은 다음을 의미함.
 
 * binary classification인 logistic regression은 일종의 `MLE`라고 볼 수 있다.
-* 해당 `MLE`는 확률분포가 Bernoulli Distribution이라는 것을 기반으로 한다.
+* 해당 `MLE`는 정답을 맞출 확률분포가 Bernoulli Distribution이라는 것을 기반으로 한다.
 * Likelihood objective function을 Negative Log Likelihood로 바꾸어서 사용한다.
 
 > DL에서 binary classification에서 이용하는 cross-entropy 와 위의 Negative Log Likelihood 를 살펴보면 매우 유사함을 알 수 있음. 
 >  
 > [Cross Entropy란?](https://dsaint31.tistory.com/entry/Math-Cross-Entropy)
 
-참고로 위의 loss function은 linear regression (=logistic activation이 없는 경우)과 달리 closed form solution이 알려져 있지 않음. 
+참고로 위의 loss function은 linear regression (=logistic activation이 없는 경우)과 달리 ***closed form solution이 알려져 있지 않음***. 
 
 * Normal equation과 같은 analytic method로 최적의 parameter를 단번에 직접 구할 수 없음.
 * sigmoid activation의 도입으로 non-linear이며, non-linear의 경우 거의 대부분 쉽게 풀리지 않는다(closed form solution 없음). ==;;
