@@ -40,7 +40,7 @@ DIP에서는
 >  
 > Morphological transformations are some simple operations based on the `image shape`.
 > 
-> - It is ^^normally performed on **binary images** ^^.
+> - It is ^^normally performed on **binary images**^^ .
 > - It needs two inputs,
 >     - one is our original image,
 >     - second one is called **structuring element** or **kernel** which decides the nature of operation.
@@ -60,7 +60,7 @@ DIP에서는
 응용분야로는
 
 - Morphology filtering
-- Thinning
+- Thinning (~세선화)
 - Pruning 등등
 
 ---
@@ -202,7 +202,7 @@ Erosion : ref. [KOCW](http://www.kocw.net/home/search/kemView.do?kemId=1127905&a
     ![Untitled](../../img/ch02/erosion_ex02.png)
     
     - 이 예제에서는 어두운 부분이 255(or 1)에 해당하고, 흰색이 0에 해당함.
-    - Object(글자)들의 ***경계가 침식되어 세선화*** (object의 크기가 줄었다고 볼 수 있음) 됨.
+    - Object(글자)들의 ***경계가 침식되어 세선화(thinning)*** (object의 크기가 줄었다고 볼 수 있음) 됨.
     - 가로 방향의 *가는 선분들* 제거
     - 글자에 속하는 pixel들의 경우, `SE`(구조요소)에 따른 erosion(침식)의 강도가 다소 낮기 때문에, ***전체적인 object의 구조가 상대적으로 잘 보존됨***.
     - ^^`SE`(구조요소) 보다 더 작은 부분을 잡음으로 처리^^ 하여 제거하고, 그렇지 않은 부분은 형태의 주요 요소로 보고 가급적 그 형태를 유지(boundary의 부분은 제거되어 object의 크기가 줄어들게된다).
