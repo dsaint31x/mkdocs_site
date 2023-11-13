@@ -313,6 +313,9 @@ nav:
       - "ML/ch09/op_nadam.md"
     - "Transfer Learning":
       - "ML/ch11_training/knowledge_transfer.md"
+    - "Hyperparameter Tuning":
+      - "ML/ch08/keras_tuner.md"
+      - "ML/ch08/dl_hyperparameters.md"
     - "CNN":
       - "ML/ch14_cnn/CNN_intro.md"
       - "ML/ch14_cnn/LeNet-5.md"
