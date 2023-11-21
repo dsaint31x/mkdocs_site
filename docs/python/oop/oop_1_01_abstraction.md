@@ -22,6 +22,8 @@ Abstraction의 관점에서 그 결과물인 `model` 이란 세상의 실제적�
 
 > 어떤 대상 → Class 로 정의하는 것이 OOP에서의 abstraction이 됨.
 
+---
+
 ## OOP에서의 Class란?
 
 - `표현 대상` 에 대한 abstraction의 결과물.
@@ -30,6 +32,8 @@ Abstraction의 관점에서 그 결과물인 `model` 이란 세상의 실제적�
 - `표현 대상` 에 대한 필요한 특징을 서술한 것.
 
 > 실제로 Python에서는 class를 정의하는 `class` 키워드를 통해 새로운 type을 정의한다.
+
+---
 
 ## Class vs. Instance
 
@@ -46,6 +50,8 @@ Abstraction의 관점에서 그 결과물인 `model` 이란 세상의 실제적�
 > * object = instance = variable
 
 많이 사용되는 예는 붕어빵틀과 붕어빵이다. 여기서 class는 붕어빵틀이고, instance는 붕어빵이라고 볼 수 있다.
+
+---
 
 ## Attribute and Behavior
 
@@ -66,6 +72,8 @@ Abstraction의 관점에서 그 결과물인 `model` 이란 세상의 실제적�
 
 일반적으로 이렇게 사용되지만, 분야에 따라 조금씩 차이가 있으므로 주의해야한다. 참고로 Python에서는 `attribute`라는 용어로 ^^C++에서의 `member variable` 개념과 `method` 개념^^ 을 합쳐서 표현하는 경향이 있다.  
 `member variable`과 `member function`은 C++에서 많이 사용되며, Java에서는 `member variable`과 `method`가 많이 이용된다.
+
+---
 
 ## Summary
 
