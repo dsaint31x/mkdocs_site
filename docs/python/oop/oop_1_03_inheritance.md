@@ -4,8 +4,10 @@ OOP에서 애용되는 Object간의 관계(relation) 중의 하나이다. Inheri
 
 Hierarchy(계층화)와 함께 modularity (모듈화)와 코드의 재사용성을 극대화 시킬 수 있는 방법임.
 
-> Hierarchy(계층화) 를 다시 한번 읽어볼 것.
->
+> [Hierarchy(계층화)](./oop_1_001_modularity.md#oop에서-modularity와-hierarchy) 를 다시 한번 읽어볼 것.
+> 
+
+---
 
 ## Class의 Hierarchy 구조
 
@@ -96,7 +98,7 @@ if __name__ == "__main__":
 
 * multiple inheritance가 발생하면 다이아몬드 모양이 만들어진다고 해서 `다이아몬드 상속`이라고 부르기도 한다.
 
-Python에서는 다중상속을 지원하고 Method Resolution Order (`mro()`로 확인 가능)에 따라, 왼쪽에 놓인 super class에서부터 우선권이 주어진다.
+Python에서는 다중상속을 지원하고 ***Method Resolution Order*** (`mro()`로 확인 가능)에 따라, 왼쪽에 놓인 super class에서부터 우선권이 주어진다.
 
 ### Example (Python)
 
