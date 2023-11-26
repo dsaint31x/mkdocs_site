@@ -14,7 +14,7 @@ Alex Krizhevsky 의 이름을 따서 AlexNet. Hinton et al.이 Deep Learning의 
 * `ReLU` 를 activation으로 도입.
 * 다음의 세가지 regularization을 통해 보다 깊게 layer를 쌓음 
     * dropout layer 도입 (F9, F10의 출력의 50%를 dropout). *
-    * data agumentation 수행. *
+    * data argumentation 수행. *
     * local response normalization. (오늘날 batch normalization으로 대체됨)
 * overlapping pooling (kernel_size=3, stride=2)을 사용.
 
@@ -40,6 +40,8 @@ Alex Krizhevsky 의 이름을 따서 AlexNet. Hinton et al.이 Deep Learning의 
 | F6 | fully connected layer | $4096$ | - | -| - | ReLU | - |
 | F7 | fully connected layer | $4096$ | - | -| - | ReLU | - |
 | OUTPUT | fully connected layer  | $1000$ | -  | - | softmax | - |
+
+---
 
 ## References
 

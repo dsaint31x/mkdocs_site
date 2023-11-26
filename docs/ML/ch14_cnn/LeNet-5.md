@@ -2,6 +2,8 @@
 
 ori. [GradientBased Learning Applied to Document Recognition, Yann LeCun et al., 1998.](http://vision.stanford.edu/cs598_spring07/papers/Lecun98.pdf)
 
+---
+
 1998년에 손글씨를 인식하기 위해 제안된 CNN 으로, 가장 유명한 CNN 중 하나임.
 
 구조는 다음과 같음.
@@ -40,7 +42,9 @@ $$ y_i = \sum_j (x_j-w_{ij})^2 $$
 * $y_i$ : OUTPUT의 출력. ($i$는 $[0,9]$ 중 한 정수. $i=0$인 경우 $y_i$는 입력 image가 숫자 0일지 여부를 나타냄.)
     * Euclidean distance기반이라 $y_0=0$일 경우 image는 숫자 0임. (작을수록 해당 클래스에 가까움)
 * $x_j$ : F6의 output으로 OUTPUT의 입력임. ($j$는 [0,83] 범위의 자연수.)
-* $w_{ij} : 입력의 $i$-node와 출력의 $j$-node간의 edge의 weight.
+* $w_{ij}$ : 입력의 $i$-node와 출력의 $j$-node간의 edge의 weight.
+
+---
 
 ## References
 
