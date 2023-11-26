@@ -61,10 +61,10 @@ Supervised Learning 으로 해결하고자 하는 ^^주요 task^^ 는 다음과 
 ## Deep Learning에서의 Tasks.
 
 Regression과 Classification 은 DL에서도 대표적인 task이지만,  
-DL에선 Detection 및 Segmentation등의 Task도 굉장히 많이 다루어짐. 
+DL에선 Detection 및 Segmentation 등의 Task도 굉장히 많이 다루어짐. 
 
 > DL의 성능이 워낙 좋다보니 Segmentation과 같이 어려운 task도 많이 다루어짐.    
-> 일반적으로 난이도는 segmentation이 가장 어렵고, 그다음이 detection, 그다음이 classification 순이다. (Labelling도 마찬가지임.)
+> 일반적으로 난이도는 Segmentation이 가장 어렵고, 그다음이 Detection, 그다음이 Classification 순이다. (Labeling에서 이 난이도 순서가 유지됨.)
 
 ![](./img/DL_tasks.png)
 
@@ -81,9 +81,10 @@ DL에선 Detection 및 Segmentation등의 Task도 굉장히 많이 다루어짐.
 
 ### Segmentation
 
-* bounding box와 달리 해당 object에 속하는 pixel들을 정확히 분류함.
-* 출력이 input image와 같은 사이즈의 binary이미지가 분류하는 class의 수만큼 나옴.
-    * 또는 가로세로비가 같은 축소된 이미지
+* bounding box만 산출하는 Object Detection 달리 대상 object인지 여부를 pixellevel에서 정확히 분류함.
+* 출력으로 분류하고자 하는 class의 수만큼의 input image와 같은 사이즈의 binary images가 산출됨.
+    * 또는 가로세로비가 같은 축소(or 확대)된 이미지
+    * 일반적으로는 aspect ratio(가로세로비)만이 유지된 축소된 binary images가 출력임.
 * cancer에 해당하는 출력이미지는 image에서 cancer 영역의 pixel들이 1을 가지고, 나머진 0일 가짐.
     * 또는 하나의 출력이미지에서 cancer에 속하는 pixel들은 1을, precancer는 2를, inflammation은 3을, Normal은 4를 할당하고 unknown등에 0을 할당하는 형태도 가능함. 
 
