@@ -2,23 +2,36 @@
 
 ori. [ImageNet Classification with Deep Convolutional Neural Networks](https://proceedings.neurips.cc/paper_files/paper/2012/file/c399862d3b9d6b76c8436e924a68c45b-Paper.pdf)
 
-Alex Krizhevsky 의 이름을 따서 AlexNet. Hinton et al.이 Deep Learning의 위력을 확실히 알리는데 일조한 유명한 network임.
+---
 
-* ImageNet Large-Scale Visual Recognition Challenge 에서 CNN의 열풍을 가져온 모델 
+Alex Krizhevsky 의 이름을 따서 AlexNet.  
+Hinton et al.이 Deep Learning의 위력을 확실히 알리는데 일조한 유명한 network임.
+
+* ImageNet Large-Scale Visual Recognition Challenge 에서 CNN의 열풍을 가져온 모델 (2012년 우승모델)
 * 2012년 이후 우승 모델은 8layer 이상 (pooling layer 제외)의 CNN이 됨.
 * 2011년 까지 우승 모델의 성능은 Top-5 error가 25% 수준에 불과했으며 deep learning이 아님.
 
 2012년  ImageNet Large-Scale Visual Recognition Challenge(ILSVRC)에서 압도적 성능으로 1위 (top-5 error = 17%, 참고로 2위는 26%)를 차지하면서 CNN의 대유행을 가져옴.
 
-* LeNet의 convolutational layer + pooling layer 의 방식을 조금 바꾸어 convolutional layer를 연달아 연결.
+> ILSVRC 2013의 우승 모델인 ZF Net도 사실상 AlexNet의 variant (kernel size, feature map의 갯수, stride 등이 다름.)에 불과.
+
+* LeNet의 convolutional layer + pooling layer 의 방식을 조금 바꾸어 convolutional layer를 연달아 연결.
 * `ReLU` 를 activation으로 도입.
 * 다음의 세가지 regularization을 통해 보다 깊게 layer를 쌓음 
-    * dropout layer 도입 (F9, F10의 출력의 50%를 dropout). *
-    * data argumentation 수행. *
+    * `dropout layer` 도입 (F9, F10의 출력의 50%를 dropout). *
+    * `data argumentation` 수행. *
     * local response normalization. (오늘날 batch normalization으로 대체됨)
 * overlapping pooling (kernel_size=3, stride=2)을 사용.
 
-> ILSVRC 2013의 우승 모델인 ZF Net도 사실상 AlexNet의 variant에 불과.
+> `Local Response Normalization` (`LRN`)
+> 
+> 일종의 경쟁적인 normalization으로, 특정 neuron이 강하게 활성화될 경우, 다른 feature map의 해당 위치의 neuron들의 활성화가 억제되는 구조임.  
+> 생물학적인 neurons에서의 동작을 모사한 것.  
+> 이후 개발된 VGG 모델에서 `LRN`이 그리 큰 성능향상으로 이어지지 않는 것으로 보고되어 이후로 널리 사용되지 못함.  
+> 오늘날 해당 역할은 `batch normalization`으로 대체된 상태임.
+
+
+
 
 구조는 다음과 같음.
 
