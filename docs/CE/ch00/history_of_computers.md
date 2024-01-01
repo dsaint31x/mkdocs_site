@@ -45,7 +45,7 @@
 * millisecond 단위의 연산속도.
 
 과학 계산, 통계처리, 미사일 탄도 계산 등에 이용되었음.  
-S/W 라는 개념이 없었던 세대이다.  
+S/W 라는 개념이 없다고 봐도 되는 세대이다.  
 컴퓨터가 수행할 동작을 배선을 통해 만든 회로를 교체해야 하는 형태 (=`hard wired 방식`)이다.
 
 > H/W : 컴퓨터를 구성하는 물리적 기계장치.  
@@ -121,6 +121,10 @@ Neumann은
 memory(기억장치)에 컴퓨터의 instruction들과 data들을 함께 저장하는 `stored program` 방식을 1946년에 제안했고,  
 `EDVAC`이 이를 구현했음  
 (`EDSAC`이 먼저 이를 구현했으나 `EDVAC`관련 보고서에서 stored program computer architecture에 대한 언급이 등장함). 
+Neumann은  
+memory(기억장치)에 컴퓨터의 instruction들과 data들을 함께 저장하는 `stored program` 방식을 1946년에 제안했고,  
+`EDVAC`이 이를 구현했음  
+(`EDSAC`이 먼저 이를 구현했으나 `EDVAC`관련 보고서에서 stored program computer architecture에 대한 언급이 등장함). 
 
 * data와 program을 동일한 방식으로 memory에 저장하고, 동일한 방식으로 처리.
 * 실행되는 program은 우선 main memory에 적재되어야 함.
@@ -133,9 +137,23 @@ memory(기억장치)에 컴퓨터의 instruction들과 data들을 함께 저장�
 > 이 경우, program과 data에 동시에 접근이 가능하다는 장점을 가지지만, 분리된 bus와 memory가 필요하여 보다 복잡한 구성이 요구됨.  
 > 
 > 현대 컴퓨터에선 CPU 내부에선 Havard architecture를 적용하고, 외부는 von Neumann architecture를 적용한 구조를 채택한 경우가 많음.
+> *data와 program이 저장되는 memory* 가  
+> von Neumann architecture 에선 동일하기 때문에  
+> ***bottleneck 현상*** 이라는 단점을 가짐.  
+>  
+> 이를 분리시킨 구조인 **Havard architecture** 도 존재함.  
+> 이 경우, program과 data에 동시에 접근이 가능하다는 장점을 가지지만, 분리된 bus와 memory가 필요하여 보다 복잡한 구성이 요구됨.  
+> 
+> 현대 컴퓨터에선 CPU 내부에선 Havard architecture를 적용하고, 외부는 von Neumann architecture를 적용한 구조를 채택한 경우가 많음.
 
 ^^EDVAC (or EDSAC) 이후, 이를 기점으로 `Software`라는 개념이 등장함!^^
 
+stored program architecture 이전에는 
+
+* hard wired 방식으로 
+* computer가 수행하는 task를 변경하려면, 
+* 물리적으로 전선을 연결하여 ***회로를 새로 구성*** 해야함 
+* (해당 컴퓨터의 H/W지식 없이는 task변경 자체가 불가능.)
 stored program architecture 이전에는 
 
 * hard wired 방식으로 
@@ -158,7 +176,12 @@ stored program architecture 이전에는
 
 125만 달러 수준의 고가였고, 관공서 및 대형 연구소 등에서 사용됨.  
 참고로 당시 대한민국 1인당 GDP는 50~60 달러 수준
+125만 달러 수준의 고가였고, 관공서 및 대형 연구소 등에서 사용됨.  
+참고로 당시 대한민국 1인당 GDP는 50~60 달러 수준
 
+> `UNIVAC`이 유명해진 이유는,  
+> 1952년 대통령선거에서 개표가 5% 정도 진행된 시점에서 ^^매우 적은 sample만으로 정확히 당선자로 아이젠하워를 예측^^ (CBS TV)하는데 사용되었기 때문임.  
+> 군사적 목적 이외의 컴퓨터의 효용성을 대중에 크게 알린 사건임.
 > `UNIVAC`이 유명해진 이유는,  
 > 1952년 대통령선거에서 개표가 5% 정도 진행된 시점에서 ^^매우 적은 sample만으로 정확히 당선자로 아이젠하워를 예측^^ (CBS TV)하는데 사용되었기 때문임.  
 > 군사적 목적 이외의 컴퓨터의 효용성을 대중에 크게 알린 사건임.
@@ -177,6 +200,9 @@ stored program architecture 이전에는
     * secondary memory : magnetic tape(자기테이프), magnetic disc(자기디스크) 등.
 * micro-second 단위의 연산속도.
 * `Operating System (OS)`  등장.
+* ^^batch processing(1950년대)^^ 이 주로 사용되었으나 ^^Multi-programming(1960년대)의 개념^^ 도 등장.
+    * `Multi-programming`이란 I/O 처리로 인해 CPU연산이 필요하지 않은 경우,  
+    다른 프로그램에게 CPU를 사용할 수 있도록 해줌. (이를 위해 여러 프로그램이 main memory에서 동시에 상주함.)
 * ^^batch processing(1950년대)^^ 이 주로 사용되었으나 ^^Multi-programming(1960년대)의 개념^^ 도 등장.
     * `Multi-programming`이란 I/O 처리로 인해 CPU연산이 필요하지 않은 경우,  
     다른 프로그램에게 CPU를 사용할 수 있도록 해줌. (이를 위해 여러 프로그램이 main memory에서 동시에 상주함.)
@@ -202,15 +228,33 @@ stored program architecture 이전에는
 > 반면, multi-programming은  
 > 오직 단일 CPU의 idle time을 줄이기 위한 context changing에만 초점을 둔 것으로  
 > 여러 작업이 동시에 실행되는 것을 보장하지 않는다.  
+> `multi-programming`과 비슷한 개념이 `multi-tasking`임.  
+>
+> 하나의 장비에서 여러 프로그램이 동시에 수행을 목표로 하기보다는  
+> ^^CPU의 idle time을 줄이기 위해 도입된 multi-programming^^ 과 달리,  
+> ^^`multi-tasking`은 하나의 resource를 여러 process들이 공유하는 개념으로  
+> ***동시에 수행*** 되는 것을 목표^^ 로 하고 있어서 ^^multi-programming의 논리적인 확장^^ 이라고 볼 수 있다.  
+>  
+> 사실 resource에서 가장 중요한 것이 CPU 이기 때문에 어찌 보면 유사한 개념이지만,  
+> multitasking은 round-robin scheduling algorithm과 같은 ^^스케쥴링 알고리즘이 multi-programming에 보다 추가^^ 된 것이며  
+> 여러 task를 동시에 수행시키기 위한 기술(사실은 그렇게 느껴지게 하기 위한 기술)이다.  
+> 
+> 반면, multi-programming은  
+> 오직 단일 CPU의 idle time을 줄이기 위한 context changing에만 초점을 둔 것으로  
+> 여러 작업이 동시에 실행되는 것을 보장하지 않는다.  
 >  
 > 결국, `multitasking`은 ^^multi-programming에 multi-processing과 time-sharing 등의 개념 등이 보다 추가^^ 된 것이다.  
+>
 >
 > 보다 자세한 건 다음 url을 참고하라. [Difference Between Multiprogramming and Multitasking](https://www.tutorialspoint.com/difference-between-multiprogramming-and-multitasking)
 
 `TRADIC`, `TX-0` 등이 유명한 2세대 컴퓨터임.
+`TRADIC`, `TX-0` 등이 유명한 2세대 컴퓨터임.
 
 > `ENIAC`이 17,000개의 vacuum tube를 사용한 것에 비교하여 `TRADIC`은 ^^800개의 transistor를 사용하면서 1/15,000 수준의 전력을 소비^^ 했음.
 
+1960년 초반에 등장한 `키보드`와 `모니터`의 등장으로 기존의 `batch processing`에서 `interactive system`(1960년대)으로의 변화가 가능해짐.   
+키보드와 모니터 등을 통해 사용자에게 작업이 진행되는 중간에 입력과 출력이 가능해졌다 (interaction). 
 1960년 초반에 등장한 `키보드`와 `모니터`의 등장으로 기존의 `batch processing`에서 `interactive system`(1960년대)으로의 변화가 가능해짐.   
 키보드와 모니터 등을 통해 사용자에게 작업이 진행되는 중간에 입력과 출력이 가능해졌다 (interaction). 
 
@@ -232,11 +276,17 @@ stored program architecture 이전에는
 
 1956년 MIT Lincoln 연구소의 Ken Olson과 Stan Olson (형제임), Harlan Anderson 이  
 미 해군의 후원으로 개발한 ***범용 transistor 기반 컴퓨터*** .
+1956년 MIT Lincoln 연구소의 Ken Olson과 Stan Olson (형제임), Harlan Anderson 이  
+미 해군의 후원으로 개발한 ***범용 transistor 기반 컴퓨터*** .
 
 ---
 
 #### LARC (Livermore Atomic Research Computer)
 
+2차 세계대전 이후  
+^^핵무기 개발 경쟁^^ 으로 인해 탄생한 초기 `슈퍼컴퓨터`.  
+버클리 대학 부설 로렌스 연구소와 스페릴랜드사가 미 해군 연구개발센터에 1960년 개발 설치한 슈퍼컴퓨터 
+(참고로 개발 비용에 비해선 만족스러운 성능이 아니었다고 함.) 
 2차 세계대전 이후  
 ^^핵무기 개발 경쟁^^ 으로 인해 탄생한 초기 `슈퍼컴퓨터`.  
 버클리 대학 부설 로렌스 연구소와 스페릴랜드사가 미 해군 연구개발센터에 1960년 개발 설치한 슈퍼컴퓨터 
@@ -257,6 +307,8 @@ stored program architecture 이전에는
 * nano-second의 연산속도
 * 컴퓨터에 family (계열) 개념이 일반화되면서 기종간 호환성이 커짐.
 
+IBM 360 (1964), CDC 7600, UNIVAC1108(이 컴퓨터는 일부 문헌에서 2세대로도 기재되지만 IC의 개념으로 보면 3세대라 보는게 맞다고 생각됨) 등이 유명한 3세대 컴퓨터임.  
+또한 1964년의 ***BASIC을 기점으로 S/W 자체가 상용*** 으로 팔리는 제품으로 인정을 받기 시작.
 IBM 360 (1964), CDC 7600, UNIVAC1108(이 컴퓨터는 일부 문헌에서 2세대로도 기재되지만 IC의 개념으로 보면 3세대라 보는게 맞다고 생각됨) 등이 유명한 3세대 컴퓨터임.  
 또한 1964년의 ***BASIC을 기점으로 S/W 자체가 상용*** 으로 팔리는 제품으로 인정을 받기 시작.
 
@@ -294,6 +346,7 @@ SW 만으로 돈을 주고 사야하는 제품이 등장하기 시작한 초창�
 
 ### 정보처리 속도 단위
 
+`FLOPS (Floating-point Operation Per Second)`는 정보처리 속도 단위로 초당 부동소수점 연산 횟수를 의미함. Mega-, Giga- 등의 prefix가 사용된다. 다른 단위로는 IPS (Instruction Per Second)로 초당 명령어 횟수도 있음.
 `FLOPS (Floating-point Operation Per Second)`는 정보처리 속도 단위로 초당 부동소수점 연산 횟수를 의미함. Mega-, Giga- 등의 prefix가 사용된다. 다른 단위로는 IPS (Instruction Per Second)로 초당 명령어 횟수도 있음.
 
 > 인간의 경우 LIPS (Logical Inference Per Second)로 초당 논리적추론 횟수 를 적용할 수 있는데, 보통 ^^인간이 2 LIPS 정도^^ 가 가능하다. 참고로 1LIPS는 대략 100~1,000 개의 instruction으로 구성된다고 알려짐.
