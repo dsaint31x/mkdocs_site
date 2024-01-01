@@ -192,6 +192,9 @@ nav:
     - "OS/disk_partition_volume.md"
     - "OS/linux_cmds.md"
     - "OS/windows_cmds.md"
+  - "markdown and LaTeX":
+    - "CE/markdown_latex/markdown.md"
+    - "CE/markdown_latex/latex.md"
   - "OOP":
     - "OOP and Programming Paradigm":
       - "python/oop/oop_0_00_OOP.md"
