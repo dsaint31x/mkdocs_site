@@ -7,6 +7,8 @@
     * Single-purpose computer
 * 범용 컴퓨터 (General-purpose computer)
 
+---
+
 ## 처리능력에 따른 분류. ***
 
 아래로 갈수록 크기와 성능이 떨어진다.
@@ -24,7 +26,7 @@
     * PC규모에 minicomputer수준의 성능을 집약시키려는 시도.
     * High-end PC의 발전에 따라 위치가 모호해짐.
 * PC (Micro computer)
-    * Microprocessor를 CPU로 사용하는 컴퓨터.
+    * `Microprocessor`를 CPU로 사용하는 컴퓨터.
     * 다음과 같은 세부적인 분류가 이루어짐.
         * Desktop
         * Laptop
@@ -32,11 +34,16 @@
         * Palmtop (smart phone에 의해 없어진 카테고리?)
 
 
-> Microprocessor : 기계어 코드를 실행하기 위해 실행과정을 단계별로 나누어 처리를 위한 마이크로 코드를 작성하고, 이 마이크로 코드에 의해 단계적으로 처리하는 논리회로
+
+> `Microprocessor` :  
+> 기계어 코드를 실행하기 위해 실행과정을 단계별로 나누어 처리를 위한 마이크로 코드를 작성하고,  
+> 이 마이크로 코드에 의해 단계적으로 처리하는 논리회로
+
+---
 
 ## 취급 데이터에 따른 분류
 
-오늘날 컴퓨터는 대부분 digital computer로 digital data를 다루지만, 일부 analog data를 다루는 `analog computer`도 존재 (현재는 거의 보기 어렵다. 일부 분야에서 embeded computer들이 대체).
+오늘날 컴퓨터는 대부분 digital computer로 digital data를 다루지만, 일부 analog data를 다루는 `analog computer`도 존재 (현재는 거의 보기 어렵다. 일부 분야에서 embedded computer들이 대체).
 
 Analog computer는 ^^continuous data (실제적으로 analog data)^^ 를 다루며, ^^증폭회로^^ 로 구성되어 ^^주로 미적분 연산을 수행^^ 한다.
 

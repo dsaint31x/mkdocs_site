@@ -16,15 +16,18 @@
 
 `Colossus`
 : Alan Turing이 만든 bombe (에니그마를 해독하기 위한 전기기계식 컴퓨터?)와 그의 확률론적 방식에 영향을 받아, 1943~1945년 개발된 컴퓨터.
-이미테이션 게임이라는 영화를 보면 관련 이야기들이 나옴. 
+이미테이션 게임이라는 영화를 보면 관련 이야기들이 나옴.  
 2차세계대전(1939~1945) 중 독일군의 암호전신기인 Lorenz Cipher를 해독하기 위해 개발된 세계최초의 `프로그래밍(외장형)이 가능한 전자디지털 computer`였음.  
-^^군사기밀이었기 때문에 한참 후에 존재가 공개(1970년대)^^ 된 컴퓨터(Vacuum tube를 사용했고, 스위치 및 플러그를 이용한 프로그래밍을 지원) 
+^^군사기밀이었기 때문에 한참 후에 존재가 공개(1970년대)^^ 된 컴퓨터 (Vacuum tube를 사용했고, 스위치 및 플러그를 이용한 프로그래밍을 지원) 
 
 `(Harvard) Mark I`
-: 세계최초의 `전기기계식 computer`로 알려짐. 1944년 IBM사에 개발한 것으로 Automatic Sequence Control Calculator (ASCC)라고 불린 일종의 자동계산기 (Harvard에 납품되어서 Harvard가 붙는데, 그냥 Mark I이 이름). 
-3,000개의 `Relay(전기기계식 switch)`와 4마력의 motor 72개로 구성됨. 
+: 세계최초의 `전기기계식 computer`로 알려짐.  
+1944년 IBM사에 개발한 것으로 Automatic Sequence Control Calculator (ASCC)라고 불린 일종의 자동계산기  
+(Harvard에 납품되어서 Harvard가 붙는데, 그냥 Mark I이 이름).  
+3,000개의 [`Relay(전기기계식 switch)`](../ch02_co/ce02_03_1_relay.md)와 4마력의 motor 72개로 구성됨.  
 15.3m의 길이에 2.4m의 높이에 걸맞는 31.5톤의 무게로 알려짐(기계식의 위엄?).  
-`톱니바퀴로 가감산이 가능한 계산기를 gear(치차)식 계산기`라고 부르는데, 이것의 극한으로 간 것이 Mark I임 (motor가 필요한 이유가 gear등을 회전시켜야 하기 때문).  
+`톱니바퀴로 가감산이 가능한 계산기를 gear(치차)식 계산기`라고 부르는데, 이것의 극한으로 간 것이 Mark I 임  
+(motor가 필요한 이유가 gear등을 회전시켜야 하기 때문).  
 원폭 개발 등에 사용됨. 
 
 > 전기 기계식 : Relay가 사용됨을 의미함.
@@ -52,13 +55,12 @@ S/W 라는 개념이 없다고 봐도 되는 세대이다.
 > H/W : 컴퓨터를 구성하는 물리적 기계장치.  
 > S/W : H/W를 운영하고 이용하기 위한 프로그램.
 
-사실, machine language와 assembler 가 등장하기 시작.
 
 ---
 
 #### ENIAC (Electronic `Numerical` Integrator and Calculator) **
 
-> 10진수 체계, Vacuum tube(~`전자식`)
+> 10진수 체계, Vacuum tube (~`전자식`)
 
 1946년 개발된 일반적으로 알려진 ***최초의 전자 디지털 컴퓨터*** 로 알려진 컴퓨터.
 

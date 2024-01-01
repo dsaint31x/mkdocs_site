@@ -4,6 +4,7 @@
         "Affinity",
         "Apriori",
         "ASCC",
+        "ASIC",
         "Atanasoff",
         "autodiff",
         "backprojection",
@@ -22,10 +23,12 @@
         "homeomorphic",
         "ipynb",
         "Kaggle",
+        "Kilby",
         "LARC",
         "Mauchly",
         "medoid",
         "medoids",
+        "NAND",
         "overfitting",
         "RMSE",
         "scikit",
@@ -38,6 +41,8 @@
         "underfit",
         "underfitting",
         "UNIVAC",
+        "Velilog",
+        "VHDL",
         "VLSI"
     ]
 }
