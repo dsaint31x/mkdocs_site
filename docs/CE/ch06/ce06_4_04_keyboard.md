@@ -13,7 +13,7 @@
 
 > 1960년 후반에 RV 자동차(Recreational Vehicle) 크기의 컴퓨터가 등장하면서 회사나 큰 부서에서 컴퓨터를 사용하게 되면서 컴퓨터에 대한 사용빈도가 증가했고, 점점 interactive한 사용이 가능한 input/output device의 개발로 이어짐.
 
-1963년도의 Teletype ASR-33 의 경우, 출력은 모니터가 아닌 종이에 인쇄되는 프린터가 담당함. 
+1963년도의 Teletype ASR-33 의 경우, 출력은 모니터가 아닌 ***종이에 인쇄되는 프린터*** 가 담당함. 
 
 <figure markdown>
 ![](./img/ASR33_hardcopy_terminal.png)
@@ -22,6 +22,7 @@
 
 > `t`ele`ty`pewriter의 약어인 `tty`가 terminal을 의미하는 abbreviation임.
 
+---
 
 ## Monitor
 
@@ -31,8 +32,12 @@ tty에서 hard-copy tty에서 screen (or video display unit)이 적용되기 시
 
 1976년 PC가 등장하면서 키보드와 함께 대표적인 input/output device로 자리잡게됨. 1980년대 초반 IBM이 컴퓨터 장비를 위한 CRT 모니터를 내놓고, 1984년에는 16칼라 모니터를 개발함.
 
+---
+
 ## Mouse 
 
-mouse 는 1980년대 널리 퍼지게 된 입력장치 (당시에는 볼마우스). 80년대 이후 사실상 입력장치는 키보드와 마우스 콤비로 이루어짐.
+mouse 는 1980년대 널리 퍼지게 된 입력장치 (당시에는 볼마우스). 
 
-Quadrature encoder 2개를 이용한 것으로 Stanford Research Institute의 Douglas Engebart가 1968년 발명.
+80년대 이후 사실상 입력장치는 키보드와 마우스 콤비로 이루어짐.
+
+Quadrature encoder 2개를 이용한 것으로 Stanford Research Institute의 ***Douglas Engebart*** 가 1968년 발명.

@@ -19,4 +19,4 @@ LED 등을 사용할 때, brightness adjustment가 필요하다면, duty cycle�
 
 ## References
 
-[Duty Cycle : wikipeda](https://ko.wikipedia.org/wiki/%EB%93%80%ED%8B%B0_%EC%82%AC%EC%9D%B4%ED%81%B4)
+[Duty Cycle : wikipedia](https://ko.wikipedia.org/wiki/%EB%93%80%ED%8B%B0_%EC%82%AC%EC%9D%B4%ED%81%B4)
