@@ -65,8 +65,11 @@
 
 #### 다중 프로그래밍(Multi-programming) 시스템
 
+CPU (당시엔 거의 core가 하나)의 idle time을 줄이기 위한 시스템.
+
 1. 여러 개의 프로그램을 동시에 메모리에 적재하여 하나의 프로그램이 수행하다가 I/O, 인터럽트 등에 의해 대기 상태가 되면 그 동안 다른 프로그램을 실행하는 방식이다.
 2. 입출력과 프로그램의 실행을 병렬로 할 수 있어, CPU 사용 효율이 증가한다.
+3. context changing 에 초점을 둔 시스템이라고 봐도 될 듯.
 
 ---
 
@@ -79,9 +82,20 @@
 
 ---
 
+#### Multi-tasking System
+
+1. 하나의 resource를 여러 process들이 공유
+2. 여러 tasks가 동시에 수행 되도록 느껴지게 하는 시스템
+   * round-robin scheduling algorithm과 같은 스케쥴링 알고리즘이 multi-programming에 보다 추가
+3. multi-programming의 논리적인 확장
+4. multi-programming에 multi-processing과 time-sharing 등의 개념 등이 보다 추가
+
+---
+
 #### 다중 처리 (Multi-processing) 시스템
 
 1. 여러 개의 CPU와 한 개의 주기억 장치로 여러 프로그램을 동시에 처리하는 시스템.
+2. 여러 process가 수행됨.
 
 ---
 

@@ -190,9 +190,6 @@ stored program architecture 이전에는
 * ^^batch processing(1950년대)^^ 이 주로 사용되었으나 ^^Multi-programming(1960년대)의 개념^^ 도 등장.
     * `Multi-programming`이란 I/O 처리로 인해 CPU연산이 필요하지 않은 경우,  
     다른 프로그램에게 CPU를 사용할 수 있도록 해줌. (이를 위해 여러 프로그램이 main memory에서 동시에 상주함.)
-* ^^batch processing(1950년대)^^ 이 주로 사용되었으나 ^^Multi-programming(1960년대)의 개념^^ 도 등장.
-    * `Multi-programming`이란 I/O 처리로 인해 CPU연산이 필요하지 않은 경우,  
-    다른 프로그램에게 CPU를 사용할 수 있도록 해줌. (이를 위해 여러 프로그램이 main memory에서 동시에 상주함.)
         * 이전의 방식(한 프로그램이 끝날 때까지 점유)은 Uni-programming (단일 프로그램)이라고 불림.
         * 고가의 컴퓨터를 효율적으로 사용하기 위한 기술이었고 이는 time-sharing system으로 이어짐.
     * `Batch processing`이란
