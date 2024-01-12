@@ -17,6 +17,8 @@
 
 이를 통해 기존의 batch job형태가 아닌 컴퓨터와의 interaction 이 가능해지기 시작함. 이는 1970년대 초반 time-sharing computer (시분할 시스템)의 등장 과도 연관됨 (모니터는 대중화가 좀 더 늦음).
 
+* **Note** : [Time Sharing System](../../OS/operating_system.md#시분할-time-sharing-시스템)
+
 > 1960년 후반에 RV 자동차(Recreational Vehicle) 크기의 컴퓨터가 등장하면서 회사나 큰 부서에서 컴퓨터를 사용하게 되면서 컴퓨터에 대한 사용빈도가 증가했고, 점점 interactive한 사용이 가능한 input/output device의 개발로 이어짐.
 
 1963년도의 Teletype ASR-33 의 경우, 출력은 모니터가 아닌 ***종이에 인쇄되는 프린터*** 가 담당함. 
