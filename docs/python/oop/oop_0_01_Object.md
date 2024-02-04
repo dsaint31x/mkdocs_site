@@ -17,6 +17,7 @@
 3. value: 앞서의 type에 의해 object가 가질 수 있는(또는 할당되는) value의 범위가 결정됨. 같은 bytes로 표현되더라도 type이 다르면 다른 value로 해석될 수 있음 (자연수 65와 upper case A의 경우를 예로 들 수 있음.)
 4. reference count: garbage collection등을 위해 해당 object가 얼마나 많은 곳에서 사용되는지를 count 함.
 
+* 참고자료: [Garbage Collection 이란](https://dsaint31.tistory.com/497)
 ---
 
 ## OOP란
