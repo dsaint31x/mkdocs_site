@@ -4,7 +4,8 @@
 
 TensorFlow, PyTorch 등에서 
 
-* gradient를 구하는 back-propagation 수행에서 사용되는
+* gradient를 구하는 back-propagation 수행에서 필요한
+* 미분(differentiation)을 구하기 위해 사용되는 
 * auto differentiation의 한 기법임.
 
 
@@ -14,10 +15,10 @@ TensorFlow, PyTorch 등에서
 > 2. Numerical Differentiation
 > 3. Forward-Mode or ***Reverse-Mode Auto Differentiation***
 
-위의 1번과 3번의 경우는는 Computation Graph 기법에 의존하고 있음.
+위의 1번과 3번의 경우는 Computation Graph 기법에 의존하고 있음.
 
 
-- Forward-mode Auto diff와 달리
+- **Forward-mode Auto diff** 와 달리
     - output(출력단)에서 출발하여 각 input(입력단)으로(←reverse direction, backward pass or backward flow)
     - 한번만 수행(단, 1번의 forward pass가 이전에 수행되어야 함)하면 모든 partial differentiation들을 구할 수 있음.
 - output에서 시작하는 특성상,
@@ -31,7 +32,7 @@ $$
 \dfrac{\partial f}{\partial x}=\dfrac{\partial f}{\partial n_i}\dfrac{\partial n_i}{\partial x}
 $$
     
-- 이를 위해서는 forward pass에서 각 노드에서의 연산 결과 및 입력값들을 저장하고 있어야 함.  
+- 이를 위해서는 forward pass 과정에서 각 node에서의 ***연산 결과*** 및 ***입력값*** 들을 저장하고 있어야 함.  
     - 일반적인 prediction (or inference) 과정과의 차이점임.
 - pytorch등에서는 옵션 등을 통해 autodiff에 사용할 각 노드의 결과를 저장할지 여부를 결정할 수 있음.
     - validation set를 대상으로 수행될 때는 이같은 저장을 하지 않고 수행함으로서 계산 효율을 향상시킴.
@@ -46,10 +47,10 @@ differentiation을 구하게 됨.
 
 ## 특징
 
-- 수치해석 기반의 differentiation method보다 ***높은 정확도*** 를 가짐  
+- 수치해석 기반의 differentiation method (=Numerical Differentiation)보다 ***높은 정확도*** 를 가짐  
 (Forward-mode autodiff 수준의 accuracy를 보임)
 - 모든 partial differentiation을 구하기 위해서 단 한번의 forward pass 와 backward pass 가 요구되어 매우 효율적임.
-    - Forward-mode autodiff와의 차이점.
+    - 여러 차례의 반복이 필요한 Forward-mode autodiff와의 차이점.
 - 일부 미분이 불가능한 연산(혹은 구간)이 포함된 함수도 미분할 수 있음. (해당 연산에서 partial derivative 결과를 대신하도록 처리하거나, 미분이 가능한 구간에서만 사용 등을 이용하여)
 
 ---
