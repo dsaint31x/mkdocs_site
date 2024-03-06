@@ -135,7 +135,7 @@ nav:
         - "CE/ch04/ce04_04_cpu.md"
         - "CE/ch04/ce04_04_01_alu.md"
         - "CE/ch04/ce04_11.md"
-        - "CE/ch04/ce04_22.md"
+        - "CE/ch04/ce04_22_fetch_execute.md"
         - "CE/ch04/ce04_31.md"
       - "CE/ch04/ce04_41.md"
       - "CE/ch04/ce04_51.md"
