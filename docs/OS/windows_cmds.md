@@ -1,7 +1,15 @@
 # 명령어 (Windows)
 
-이 문서는 window의 command.exe 또는 power shell, windows terminal등의 CLI에서 사용되는 기본적인 명령어를 소개함.
-  
+이 문서는  Windows의 command.exe 에서 사용되는 기본적인 명령어를 소개함.
+
+Command Prompt는 
+
+* PowerShell과 함께 Windows에서 사용되는 CLI(Command Line Interface)임.
+* Windows의 기본적인 명령어를 실행하고, 간단한 script (`.bat` 파일)를 실행하는데 사용됨.
+* Windows의 가장 기본적인 Command Line Interpreter(CLI)이며, PowerShell에 비해 제한된 기능을 가짐.
+    * `CLI` 는 Command Line Interface 또는 Command Line Interpreter를 가르킴.
+
+---
 
 `Window키+r`를 누르고 `cmd` 를 입력하고 엔터를 누르면, command prompt창이 뜸.
 
@@ -16,14 +24,17 @@ C:\Users\MMMIL>
 
 - `C:\Users\MMMIL>` 부분을 prompt라고 부르며, 현재 cwd를 나타냄.
 - 기본적으로 사용자의 home 디렉토리를 cwd로 하여 시작함.
-- `MMMIL`은 winodws의 현재 사용자의 ID임.
+- `MMMIL`은 windows의 현재 사용자의 ID임.
 
-commnad prompt에서 커서가 깜빡거리고 있으며 이 경우 명령어를 입력하고 엔터를 누르면 해당 명령어가 수행됨.
+command prompt에서 커서가 깜빡거리고 있으며 이 경우 명령어를 입력하고 엔터를 누르면 해당 명령어가 수행됨.
 
+---
 
-## File 관련
+---
 
-### File 목록 표시
+## 1. File 관련
+
+### 1-1. File 목록 표시
 
 ```python
 dir c:
@@ -38,7 +49,9 @@ dir *.txt
 
 - 현재 경로(cwd)에서 `.txt` 확장명을 가진 파일 리스트를 보여줌
 
-### 파일 내용의 출력
+---
+
+### 1-2. 파일 내용의 출력
 
 ```python
 type 파일명
@@ -47,7 +60,9 @@ type 파일명
 - 텍스트 파일의 내용을 보고 싶을 때 사용됨.
 - 파일이 매우 클 경우, `more`를 이용하여 나누어 출력할 수 있음.
 
-### 파일의 복사
+---
+
+### 1-3. 파일의 복사
 
 ```basic
 copy [옵션] source destination 
@@ -61,9 +76,10 @@ copy [옵션] source[+...] destination
         - 아스키 파일(텍스트 파일)을 의미
     - `/b`
         - binary 파일 의미
-        
 
-### 파일 지우기
+---        
+
+### 1-4. 파일 지우기
 
 ```basic
 del [옵션] 파일_이름
@@ -76,7 +92,9 @@ erase [옵션] 파일_이름
     - `/p`
         - 각 파일을 삭제하기 전에 물어봄.
 
-### 파일 이름 바꾸기
+---
+
+### 1-5. 파일 이름 바꾸기
 
 ```basic
 ren filename1 filename2
@@ -89,9 +107,13 @@ ren filename1 filename2
     - `1.txt`를 `4.txt`로 변경.
     `ren 1.txt 4.txt`
 
-## directory 관련
+---
 
-### 디렉토리 이동 및 현재 디렉토리 출력.
+---
+
+## 2. directory 관련
+
+### 2-1. 디렉토리 이동 및 현재 디렉토리 출력.
 
 ```basic
 cd target_dir_path
@@ -111,7 +133,9 @@ cd
 
 > `cd`는 chagne directory의 abbreviation임.
 
-### 디렉토리 생성.
+---
+
+### 2-2. 디렉토리 생성.
 
 ```basic
 mkdir new_dir_path
@@ -120,7 +144,9 @@ mkdir new_dir_path
 - `new_dir_path`에 해당하는 directory를 생성한다.
 - 이미 있는 경우엔 에러 메시지를 보여줌.
 
-### 디렉토리 삭제.
+---
+
+### 2-3. 디렉토리 삭제.
 
 ```basic
 rmdir target_dir_path
@@ -130,7 +156,9 @@ rmdir target_dir_path
 - `rmdir`은 비어있는 디렉토리만 삭제가능함.
 - `del` 혹은 `erase`로 디렉토리를 지정할 경우, 해당 디렉토리 밑의 모든 것을 지울지를 물어보며, y를 통해 다 삭제하고 나서 `rmdir`로 디렉토리 제거.
 
-### 드라이브 이동
+---
+
+### 2-4. 드라이브 이동
 
 ```basic
 d:
@@ -140,9 +168,11 @@ d:
 - cwd는 이전에 `d`드라이브에서 작업하던 path로 놓이게 됨. (보통은 `d` 드라이브 최상단)
 - `c:` 를 입력시 `c` 드라이브로 이동.
 
-## Etc
+---
 
-### 화면 지우기
+## 3. Etc
+
+### 3-1. 화면 지우기
 
 ```basic
 cls
@@ -150,7 +180,7 @@ cls
 
 - command prompt window에 출력된 내용이 너무 많을 경우 `cls`를 통해 화면을 지우면 깨끗해짐.
 
-### 문자열 출력하기
+### 3-2. 문자열 출력하기
 
 ```basic
 echo [option] [문자열]
@@ -181,7 +211,7 @@ echo 테스트.
 > `chcp` 는 CHange Code Page를 의미함.
 
 
-### 날짜 및 시간
+### 3-3. 날짜 및 시간
 
 ```basic
 date
@@ -197,7 +227,7 @@ time
 - 시간을 보여주고 변경할 수 있음
 - 변경을 원치 않으면 그냥 enter를 입력
 
-### 도움말
+### 3-4. 도움말
 
 ```basic
 help 알고자하는_명령어
