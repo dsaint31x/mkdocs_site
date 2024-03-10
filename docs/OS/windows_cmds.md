@@ -170,9 +170,56 @@ d:
 
 ---
 
-## 3. Etc
+---
 
-### 3-1. 화면 지우기
+## 3. Network
+
+### 3-1. Internet Protocol Address 확인하기.
+
+```basic
+ipconfig
+```
+
+* Linux 등에서의 `ifconfig`에 대응.
+
+---
+
+### 3-2. 특정 컴퓨터와 연결여부 확인.
+
+```basic
+ping 대상컴퓨터_ip
+```
+
+* `ping` 은 packet internet groper의 약어로, 패킷의 전달여부를 체크함.
+
+---
+
+---
+
+### 3-3. 
+
+```basic
+netstat -an |find "찾고자하는_문자열_패턴"
+```
+
+* `netstat` : 컴퓨터의 네트워크 상태를 확인하는 명령어.
+* `-a` : 모든 연결 및 수신 대기 중인 port 를 표시.
+* `-n` : address 나 port 등을 숫자로 표현.
+* `-l` : 수신대기중인 port
+* `-u` : UDP 사용 port
+* `-t` : TCP 사용 port
+
+위의 예에서 `find`는 pipe `|`를 이용하여 `netstat`에서 특정 ip관련 정보만 추리는 용도로 사용됨.
+
+* Pipe에 대한 내용은 다음을 참고: [Pipe와 다중명령어](https://ds31x.tistory.com/96)
+
+---
+
+---
+
+## Z. Etc
+
+### Z-1. 화면 지우기
 
 ```basic
 cls
@@ -180,7 +227,7 @@ cls
 
 - command prompt window에 출력된 내용이 너무 많을 경우 `cls`를 통해 화면을 지우면 깨끗해짐.
 
-### 3-2. 문자열 출력하기
+### Z-2. 문자열 출력하기
 
 ```basic
 echo [option] [문자열]
@@ -211,7 +258,7 @@ echo 테스트.
 > `chcp` 는 CHange Code Page를 의미함.
 
 
-### 3-3. 날짜 및 시간
+### Z-3. 날짜 및 시간
 
 ```basic
 date
@@ -227,7 +274,7 @@ time
 - 시간을 보여주고 변경할 수 있음
 - 변경을 원치 않으면 그냥 enter를 입력
 
-### 3-4. 도움말
+### Z-4. 도움말
 
 ```basic
 help 알고자하는_명령어
