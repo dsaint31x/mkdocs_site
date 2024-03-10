@@ -85,7 +85,9 @@ CNN은 이를 이용하여
 > 때문에 `global average pooling`이나 `global max pooling`과 같은 ***flattening*** 을 수행하면  
 > ***translation invariant한 feature vector*** 를 얻게 된다.
 >  
-> 만약, translation variant한 feature vector가 필요하다면, spatial invariant한 kernel을 사용하는 등의 처리가 필요하다. 아니면 Capsule Network를 사용해도 된다.
+> 만약, translation variant한 feature vector가 필요하다면,  
+> 값 자체에 위치정보가 포함되는 spatial variant한 kernel을 사용하는 등의 처리가 필요하다.  
+> 아니면 Capsule Network를 사용해도 된다.
 
 ---
 

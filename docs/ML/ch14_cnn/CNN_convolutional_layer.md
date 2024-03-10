@@ -41,7 +41,7 @@ Signal Processing에서는 Convolution과 Cross Correlation은 용도가 분명�
 
 feature map의 **한 pixel의 값** 을 결정하는데 참여하는 input의 pixels의 수를 결정.
 
-* kernel size가 클수록 recpetive field가 커짐.
+* kernel size가 클수록 receptive field가 커짐.
 * kernel size가 클수록 parameters 의 수가 커짐.
 * 일반적으로 kernel size는 홀수이며, kernel의 정가운데 pixel의 위치를 anchor라고 부름.
 
@@ -55,7 +55,7 @@ feature map의 **한 pixel의 값** 을 결정하는데 참여하는 input의 pi
 convolution에서 sliding을시킬 때 건너뛰는 pixel의 수.
 
 * stride가 클수록 convolutional layer의 출력인 feature map의 넓이와 높이가 작음.
-* recpetive field가 겹치지 않도록 조정하는게 일반적임.
+* receptive field가 겹치지 않도록 조정하는게 일반적임.
 
 ![](./img/Stride.png)
 
@@ -63,7 +63,7 @@ convolution에서 sliding을시킬 때 건너뛰는 pixel의 수.
 
 convolution의 경우, 출력이 입력보다 작은 크기(폭과 높이)가 되게 된다.
 
-이를 방지하기 위해, 출력을 padding하여 좀더 큰 크기로 convolution의입력이 되도록 함으로서 같은 크기의 출력이 나오도록 할 수 있음.
+이를 방지하기 위해, 입력을 padding하여 좀 더 큰 크기로 만들어서 convolution의 출력이 padding 전의 입력과 같은 크기가 되도록 처리하는 게 일반적임.
 
 TensorFlow의 경우, `padding` 파라메터를 `same`으로 지정하면 zero-padding을 수행하여 입력과 같은 크기의 출력이 나오도록 할 수 있음.
 

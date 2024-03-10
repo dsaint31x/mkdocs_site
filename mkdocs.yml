@@ -322,6 +322,8 @@ nav:
       - "ML/ch14_cnn/CNN_pooling_layer.md"
       - "ML/ch14_cnn/LeNet-5.md"
       - "ML/ch14_cnn/alexnet.md"
+      - "ML/ch14_cnn/vgg.md"
+      - "ML/ch14_cnn/resnet.md"
     - "RNN":
       - "ML/ch16_RNN/RNN_intro.md"
       - "ML/ch16_RNN/RNN_memory_cell.md"
