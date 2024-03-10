@@ -1,13 +1,34 @@
 # Command Line Interface (CLI)
 
-이 문서에서는 `CLI`에 대한 소개와 이를 수행해주는 `Terminal`을 살펴보고, 이들을 통한 `I/O가 이루어지는 과정`을 간략히 설명한다.  
+이 문서에서는 `CLI`에 대한 소개와 이를 수행해주는 `Terminal`을 살펴본다. 
+
+
+그리고 이들을 통한 `I/O가 이루어지는 과정`을 간략히 설명한다.  
 Terminal을 통한 CLI방식으로 I/O가 이루어지는 과정을 살펴보면서, I/O `Interrupt`와 `Context switching`에 대한 개념을 소개하며, OS가 제공하는 I/O를 위한 `system call`의 개념과 이를 이용하는 `표준 입출력 라이브러리`에 대한 개념도 간략히 살펴본다. 
+
+> `CLI`에 대한 간단한 개념만 필요한 경우엔 `CLI`와 `Terminal` 까지만 읽어도 좋다.
+
+---
 
 ## Command Line Interface 란?
 
 > 키보드를 이용하여 terminal을 통해 computer와 대화하는 방식.  
 
-키보드로 command(명령)을 typing하여 입력하고, computer도 terminal 등에 문자를 출력하여 응답하는 방식임. (실제로 컴퓨터 초기에는 typewriter처럼 컴퓨터가 종이에 출력을 해줌.)
+흔히 interactive 방식과 scripting 방식 두가지로 동작함.
+
+### Interactive 방식 (or 대화식 모드)
+
+키보드로 command(명령)을 typing하여 입력하고, computer도 terminal 등에 문자를 출력하여 응답하는 Interactive 방식임. (실제로 컴퓨터 초기에는 typewriter처럼 컴퓨터가 종이에 출력을 해줌.)
+
+> REPL (Run-Evaluation-Print, Loop의 약어) 모드라고도 불림.
+
+### Scripting 방식 (or Shell Scripting방)
+
+OS의 shell이 해석하여 실행할 수 있는 instructions을 특수한 종류의 파일(shell script 파일)로 실행되는 순서대로 기재해놓고, 해당 파일을 실행하여 일련의 instructions들을 한번에 실행하는 방식.
+
+> python에서 `.py`파일로 만든 소스 파일을 수행하는 것과 유사하게, `.sh` (or `.zsh`) 파일들을 shell 이 수행하는데 이를 scripting 방식이라고 함.
+
+---
 
 ## Graphic User Interface 란?
 
@@ -15,22 +36,44 @@ Terminal을 통한 CLI방식으로 I/O가 이루어지는 과정을 살펴보면
 
 computer 전문가 들보다는 다른 업무를 위해 computer를 사용하는 이들에게 익숙한 방식. 자동화등의 측면에서는 효율이 떨어진다.
 
+---
+
 ## Terminal
 
->컴퓨터 초창기에는 HW로 ***컴퓨터에 연결된 물리적인 I/O 장치*** 였으나, 현재는 ***S/W로 사용자에게 CLI를 제공*** 한다. 
+>컴퓨터 초창기에는 H/W로 ***컴퓨터에 연결된 물리적인 I/O 장치 (`Console`, `tty` 이라고도 불림`)*** 였으나, 현재는 ***S/W로 사용자에게 CLI를 제공*** 한다. 
 
-사용자의 명령을 기다리는 command prompt를 보여주고 사용자가 명령을 입력하면 그 결과를 문자로 출력하여 반응함.  
-Terminal은
+사용자의 명령을 기다리는 command prompt를 보여주고 사용자가 명령을 입력하면 그 결과를 문자로 출력하여 반응함.
+
+> ***오늘날 `Terminal` 은 `CLI`를 제공하는 S/W*** 이기 때문에,  `Terminal emulator`, `soft terminal` 과 같이 불리기도 함. 
+
+`Terminal`은
 
 * 키보드나 모니터의 장치 드라이버로부터 입력과 출력에 대한 처리를 위해 도움을 받아야 하고, 
 * 이는 OS를 통해 이루어짐. 
   
 
-즉, CLI를 채택한 user application들은 Terminal을 통해 입출력이 이루어지고 있으나 실제로는 내부에서 OS의 도움을 받고 있음. 
+즉, `CLI`를 채택한 user application들은 ***`Terminal`을 통해 입출력***이 이루어지고 있으나 실제로는 내부에서 `OS`의 도움을 받고 있음. 
 
-* Termianl : 사용자와 상호작용.
+* Terminal : 사용자와 상호작용.
 * OS (including device drivers) : 물리적 I/O 디바이스와 Terminal, User Application을 중재.
-* User Application (system call 사용) : CLI 를 OS와 Terminal의 도움을 받아 제공받고, 이를 통해 사용자와 상호작용을 수행.
+* User Application (system call 사용) : User CLI application은 `CLI` 를 **OS와 Terminal의 도움을 받아 제공** 하고, 해당 `CLI`를 통해 사용자와 상호작용을 수행.
+
+오늘날 많이 이용되는 `Terminal`들은 다음과 같음.
+
+* `xterm`
+* `rxvt`
+* `Gnome Terminal`
+* `iterm2`
+
+물리적인 Terminal을 `Console`이라고도 부르는데, 보다 자세한 건 다음을 참고하라.
+
+**참고** : [Console, Terminal and Shell](../../OS/console_terminal_shell_kernel.md)
+
+---
+
+> 다음은 조금 어려운 내용이므로 `CLI`와 `GUI`, `Terminal`의 개념만 필요한 경우엔 아래는 생략해도 좋다.
+
+---
 
 ## I/O Interrupt for CLI based User Application.
 

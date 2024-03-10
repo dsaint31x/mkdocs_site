@@ -135,7 +135,7 @@ nav:
         - "CE/ch04/ce04_04_cpu.md"
         - "CE/ch04/ce04_04_01_alu.md"
         - "CE/ch04/ce04_11.md"
-        - "CE/ch04/ce04_22.md"
+        - "CE/ch04/ce04_22_fetch_execute.md"
         - "CE/ch04/ce04_31.md"
       - "CE/ch04/ce04_41.md"
       - "CE/ch04/ce04_51.md"
@@ -192,6 +192,9 @@ nav:
     - "OS/disk_partition_volume.md"
     - "OS/linux_cmds.md"
     - "OS/windows_cmds.md"
+  - "markdown and LaTeX":
+    - "CE/markdown_latex/markdown.md"
+    - "CE/markdown_latex/latex.md"
   - "OOP":
     - "OOP and Programming Paradigm":
       - "python/oop/oop_0_00_OOP.md"

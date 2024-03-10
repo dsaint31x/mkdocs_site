@@ -75,14 +75,14 @@ Computational Graph 에 기반하며, 다음의 두 단계로 gradient를 구함
 
 위의 과정을 통해 model의 parameters는 오차가 작아지는 방향(~ `loss function이 줄어드는 방향` = `-1 * gradient`)으로 반복해서 update가 이루어짐.
 
-- 전체 training dataset의 samples에 대해 gradient를 계산하고 parameter update가 이루어지면 1번의 반복횟수로 count함.
-- 이 반복횟수를 `1 epoch`라고 부름.
+- 전체 training dataset의 samples에 대해 gradient를 계산하고 parameter update가 이루어지면 1번의 반복 (하나의 반복을 `epoch`라고 부름)이 끝남.
+- 이를 여러 번 반복하고 반복한 횟수가 n인 경우 n `epoch` 수행했다 라고 기술함.
 
 ---
 
 ## 간단한 예
 
 1. input에 weight를 곱하고 bias를 합친 값 (linear)이 threshold를 넘을 경우, 1을 출력하고 아니면 0을 출력 (nonlinear) : `dense` layer (or fully connected layer)
-2. 1의 과정을 입력층 → 은닉층 → 출력층 순으로 적용하는 forward propagation 수행.
+2. 대상 `dense` layer에 대해 입력을 넣어 출력을 구하는 forward propagation 수행.
 3. ***2를 수행한 출력*** 과 **정답** 간의 ***오차*** 를 구하고, 해당 오차를 back-propagation하여 오차를 줄이는 방향인 gradient를 구함.
 4. Gradient Decent로 해당 gradient와 learning ratio를 통해 Model의 parameters를 업데이트. 
