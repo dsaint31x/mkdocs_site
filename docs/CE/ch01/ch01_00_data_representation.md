@@ -1,6 +1,6 @@
 # Representation of data within a computer system.
 
-## Data vs. Information
+## 1. Data vs. Information
 
 ![](../ch01/img/data_information.png)
 
@@ -26,20 +26,30 @@
 
 >보통 input으로 사용되는 ^^[측정](https://dsaint31.tistory.com/469#%EC%B-%B-%EA%B-%A-%-A%--Measurement-%EC%B-%A-%EC%A-%---%EC%-D%B-%EB%-E%--%-F) 등으로 획득된 data를 raw data^^ 라고 부르며, 이후엔 거의 data라고 부름.
 
-## Computer and Data
+---
+
+---
+
+## 2. Computer and Data
 
 Computer의 또다른 정의는 다음과 같다.  
 
-    외부로부터 입력된 값을 받아들여 처리한 결과를 출력시키거나 장래에 사용하기 위해 보관하는 장치
+    외부로부터 입력된 값을 받아들여 처리한 결과를  
+    출력시키거나 장래에 사용하기 위해 보관하는 장치
 
 이를 줄여서 말하면 ***Data를 처리하여 information를 얻는 장치*** 라고 할 수 있다.
 
-> Computer의 다른 이름인 Electronic Data Processing System(EDPS), Automatic Data Processing System(ADPS) 들이 data processing에 초점을 둔 경우이다.
+> Computer의 다른 이름인  
+> Electronic Data Processing System(EDPS),  
+> Automatic Data Processing System(ADPS) 들이  
+> ***data processing에 초점*** 을 둔 경우이다.
+
+---
 
 Computer가 다루는 information들은 다음과 같다.
 
 * Data
-    * Numerical data : number (real number, natural number, integer, ...)
+    * Numerical data : Number (real number, natural number, integer, ...)
     * Non-numerical data : Letter (or `char`actor), Symbol
 * Data structure (자료구조)
     * Linear Lists, 
@@ -48,36 +58,62 @@ Computer가 다루는 information들은 다음과 같다.
     * etc
 * Program (Instruction set)
 
-## Data Representation
+---
+
+---
+
+## 3. Data Representation
 
 Computer 가 다루는 data들은 computer의 내부 및 외부에서 다양한 representation을 가지게 된다.
 
 ![](../ch01/img/data_representation.png)
 
-> 주로 내부에서 사용되는 표현은 주로 계산을 위한 경우로  이진수를 기반으로 하는 numerical data 중심이며, ^^외부와의 Information exchange (정보교환) 을 위해 사용되는 표현은 code^^ 등을 기반으로하는 non-numerical data 중심이라고 볼 수 있다.
+> 내부에서 사용되는 표현은 주로 ***계산을 위한 경우*** 로  
+> 이진수를 기반으로 하는 numerical data 중심이며,  
+> ^^외부와의 Information exchange (정보교환) 을 위해 사용되는 표현은 code^^ 등을 기반으로 하는  
+> non-numerical data 중심이라고 볼 수 있다.
 
-다음과 같이 data 종류 및 용도에 따라 Internal Representation과 External Representation으로 바뀌어 컴퓨터에서 사용된다. 
+---
+
+다음과 같이 data 종류 및 용도에 따라 
+
+* Internal Representation과 
+* External Representation으로 
+
+바뀌어 컴퓨터에서 사용된다. 
 
 `Numbers` (for computing)
 : Most of numbers stored in the computer are eventually changed by some kinds of calculations
 
-* Internal Representation ***for calculation*** efficiency.
+* ***Internal*** Representation ***for calculation*** efficiency.
 * Final results need to be converted to as External Representation for presentability.
 
 `Alphabets`, `Symbols`, and `some Numbers` 
 : Elements of these information do not change in the course of processing
 
-* No needs for Internal Representation since they are not used for calculations
+* ***No needs for Internal Representation*** since they are not used for calculations
 * External Representation ***for processing and presentability***
 
-## Operations
+---
 
-Computer가 data를 처리하는 연산을 가르킴.  
-computer가 수행하는 작업을 가르키는 instruction과 비슷하게 사용되는데 
+---
 
-* <u>`operation`은 주로 숫자 또는 논리 연산을 의미</u>하고 * <u>`instruction`은 자료의 로딩, 복사 등의 컴퓨터가 수행하는 작업들의 기본 단위</u>를 의미하는 경우로 많이 사용됨.
 
-> Operation은 수학 등으로 정의하면, empty set이 아닌 `set`에서 2개의 element를 이용하여 제 3의 element를 만드는 것을 가르킴.
+## 4. Operations
+
+Computer가 data를 처리하는 ***연산*** 을 가르킴.
+
+* computer가 수행하는 작업을 가르키는 instruction과 비슷하게 사용되지만,
+* <u>`operation`은 주로 숫자 또는 논리 연산을 의미</u>하고 
+* <u>`instruction`은 자료의 로딩, 복사 등의 컴퓨터가 수행하는 작업들의 기본 단위</u>를 의미하는 경우로 많이 사용됨.
+
+> Operation은 수학 등에서 정의되는 경우가 많음.  
+> 수학에서의 Operation이란  
+> 
+> * Empty set이 아닌 `set`에서 
+> * 2개의 element를 이용하여 제 3의 element를 만드는 것을 가르킴.
+
+---
 
 Operation의 구분은 operand (피연산자)에 따라 다음과 같이 구분됨.
 
@@ -92,6 +128,3 @@ operand 의 type에 따라 다음으로도 나뉨.
 
 * Numerical Operator
 * Logic Operator
-
-
-
