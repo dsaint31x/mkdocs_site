@@ -1,4 +1,10 @@
-# Declarative Programming Language vs. Imperative Programming Language
+# 참고: Declarative Programming Language vs. Imperative Programming Language
+
+Structured Programming 과 OOP 간의 차이점을 보기 전에 참고하면 좋음.
+
+Declarative programming과 imperative programming은 Structured Programming으로 분류됨.
+
+---
 
 ## Declarative Programming Language
 
@@ -7,13 +13,19 @@ Declarative Programming Language는 프로그래밍 소스 코드가 결과물�
 
 대표적인 예가 ***SQL (Structured Query Language)*** 과 Prolog이다. ***SQL*** 의 경우, query로 얻어와야 하는 데이터를 기술하며, 해당 SQL을 요청받은 Database가 이를 반환해준다. 또는 데이터 (or table)간의 관계를 기술해주면 해당 내용대로 데이터 및 table을 생성한다.
 
-즉, Declarative Programming Language에서는 개발자가 원하는 결과 또는 원하는 입력과 결과의 관계를 기술하는 형태로 프로그래밍이 이루어진다. ^^소스 코드에서는 해당 결과를 얻기 위해 어떻게 처리가 이루어질 지는 기술하지 않는다.^^
+즉, Declarative Programming Language에서는 개발자가 원하는 결과 또는 원하는 입력과 결과의 관계를 기술하는 형태로 프로그래밍이 이루어진다.  
+^^소스 코드에서는 해당 결과를 얻기 위해 어떻게 처리가 이루어질 지는 기술하지 않는다.^^
+
+---
 
 ## Imperative Programming Language
 
 Imperative programming language는 명시적으로 instruction들을 기재하여 컴퓨터가 어떻게(how) 동작할지를 기술한다.
 
 즉, 실행(execute)할 instruction들을 순서대로 기술한다. 프로그래머는 각각의 instruction들이 어떤 조건과 순서로 동작할지를 기술하며 다음을 명시적으로 소스코드에 기재한다.
+
+
+Imperative Programming Language 는 다음의 세가지를 지원하는게 일반적임.
 
 1. variable assignment
 2. loops
@@ -26,6 +38,8 @@ Imperative programming language는 명시적으로 instruction들을 기재하�
 > * Control statements : `break`, `continue`, `return` 등.
 
 `C`, `Python` 등의 언어가 imperative programming language의 예임.
+
+---
 
 ## 요약.
 

@@ -44,27 +44,31 @@ class Samp1:
 def Func1():
     pass
 
-a = Samp1
+a = Samp1()
 b = Func1
 
 c = 7
 
-print(f"a's type:{type(a)}") # a's type:<class 'type'>
+print(f"a's type:{type(a)}")         # a's type:<class '__main__.Samp1'>
 print(f"Samp1's type:{type(Samp1)}") # Samp1's type:<class 'type'>
+
 print(f"Func1's type:{type(Func1)}") # Func1's type:<class 'function'>
-print(f"b's type:{type(b)}") # b's type:<class 'function'>
+print(f"b's type:{type(b)}")         # b's type:<class 'function'>
+
 print(f"Literal 7's type:{type(7)}") # Literal 7's type:<class 'int'>
-print(f"c's type:{type(c)}") # c's type:<class 'int'>
-print(f"int's type:{type(int)}") # int's type:<class 'type'>
+print(f"c's type:{type(c)}")         # c's type:<class 'int'>
+print(f"int's type:{type(int)}")     # int's type:<class 'type'>
 ```
 
-> `literal`의 ^^데이터 값 자체를 나타내는 표현^^ 을 가르킨다. ([details](https://dsaint31.tistory.com/entry/Basic-Literal))
+> `literal`은 ^^데이터 값 자체를 나타내는 표현^^ 을 가르킨다. ([details](https://dsaint31.tistory.com/462))
+
+---
 
 ## 동적으로 class attribute 추가 및 제거하기.
 
 Python에서는 모든 것이 object이므로 ^^항상 특정 variable name에 assignment가 가능^^ 하다. 
 
-또한 dynamic langauge로서 변수형과 이름을 정의하고 나서 값을 할당하는 것이 아닌, ^^instance가 메모리에 할당되는 때가 바로 assignement 이루어지는 시점^^ 이라는 특징을 가진다.  
+또한 dynamic language로서 변수형과 이름을 정의하고 나서 값을 할당하는 것이 아닌, ^^instance가 메모리에 할당되는 때가 바로 assignment 이루어지는 시점^^ 이라는 특징을 가진다.  
 
 이 두 특성이 조합되면, class의 동적(dynamically)으로 attribute들을 추가하고 삭제할 수 있게 된다.
 
