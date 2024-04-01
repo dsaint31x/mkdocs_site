@@ -10,6 +10,7 @@
 
 로 사용된다.
 
+***
   
 기본적으로 배울 때에는 대표적인 Bi-Junction Transistor (BJT)와 Field Effect Transistor (FET)를 다룬다. 
 
@@ -23,15 +24,24 @@ FET에서도 `Metal Oxide Silicon FET`가 주로 많이 사용되고, `N-channel
 
 > 워낙 작게 만들 수 있기 때문에 컴퓨터의 소형화에 큰 기여를 함. 
 
+***
+
 ## 단점
 
-* 너무 작게 만들 경우 발열이 커져 substrate인 silicon에 손상을 줄 수 있어 ^^소형화에 한계^^ 가 있다. 
-* carrier의 속도에 의한 ^^동작속도 한계^^ 가 있음. (차세대 반도체 소자는 carrier의 직접 이동이 아닌 방법이 고려되고 있음.)
+* "너무 작게 만들 경우 (IC대비) 발열이 커지고"  
+이같은 발열은 substrate인 silicon에 대한 손상으로 이어지기 때문에  
+^^소형화에 한계^^ 가 있다. 
+* carrier의 속도에 의한 ^^동작속도 한계^^ 가 있음.  
+    * 차세대 반도체 소자는 carrier의 직접 이동이 아닌 방법이 고려되고 있음.
+
+***
 
 ## 요약
 
 Transistor는 ***물리적인 switching을 수행하는 Relay (전기기계식)*** 나 ***열을 가해야하는 Vacuum tube (전자식)*** 등에 비해서 가격, 속도, 크기, 수명 등의 모든 면에서 우수한 device임.  
 (열전자 대신 ^^semi-conductor를 이용^^ 한 Vacuum tube라고 보면 이해가 쉬움)
+
+***
 
 ## *N-MOS* and *P-MOS* FET : `CMOS`
 
@@ -39,6 +49,11 @@ Transistor는 ***물리적인 switching을 수행하는 Relay (전기기계식)*
 
 `N-MOS`와 `P-MOS`는 각기 상보적인(complementary) 특징을 가지기 때문에 이 둘을 잘 조합한 ***CMOS (Complement Metal Oxide Silicon) FET*** 이 낮은 전력 소모 등의 장점을 보임으로서 컴퓨터에서 많이 사용된다.
 
-워낙 낮은 전력소모를 보이기 때문에, 컴퓨터의 Basic Input/Output System (BIOS)에서 필요로 하는 주변기기 정보를 저장하는데 사용되는 반도체기반 소자가 바로 CMOS이다. 때문에 `CMOS`와 `BIOS`가 엄연히 다른 것인데도 컴퓨터 사용자들 사이에서 마치 같은 용어인 것처럼 같이 사용하는 경우가 많다.
+***매우 낮은 전력소모*** 를 보이기 때문에,  
+컴퓨터의 `Basic Input/Output System` (BIOS)에서  
+**주변기기 정보를 저장**하는데 사용되는 반도체기반 소자가  
+바로 CMOS이다.  
+때문에 `CMOS`와 `BIOS`가 엄연히 다른 것인데도  
+컴퓨터 사용자들 사이에서 마치 같은 용어인 것처럼 같이 사용하는 경우가 많다.
 
 * [BIOS란](https://dsaint31.tistory.com/entry/Basic-Input-Output-System-BIOS)
