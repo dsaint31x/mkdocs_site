@@ -26,6 +26,37 @@ FET에서도 `Metal Oxide Silicon FET`가 주로 많이 사용되고, `N-channel
 
 ***
 
+## 기본 원리.
+
+다음 YouTube 동영상을 참고할 것.
+
+* [Transistor 소개: NPN BJT 기반](https://youtu.be/7ukDKVHnac4?si=zY9qjSMH9NvL9fjp)
+* [Transistor 소개: 좀더 자세한 버전](https://youtu.be/J4oO7PT_nzQ?si=Od3FC_qIKtEPX26X)
+
+> 가장 쉽게 이해할 수 있는 NPN BJT로 공부하는게 일반적임.  
+>
+> * PN Junction Diode에 대해 익히고,
+> * NPN BJT 로 switch 또는 amplifier로서의 동작원리를 파악할 것.
+>  
+> 이후 Field Effect Transistor로 넘어가는게 좋음. (컴퓨터 개론 등에서는 FET까지는 다루지 않음)
+
+기본적으로 BJT는 다음의 그림으로 표시됨.
+
+![](./imgs/bjt.png)
+
+* `E`: Emitter는 Carrier를 공급하는 역할
+* `B`: Base는 Carrier의 관점에서는 잠깐 머무르는 곳이며, Base는 BJT가 On/Off 여부를 결정.
+* `C`: Collector는 Carrier를 모으는 역할을 함.
+
+NPN BJT에서 
+
+1. B-E에 Forward Bias를 가하고 (B=1, E=0), : 0.7V 이상. 
+2. B-C에 Reverse Bias를 가하면 (B=0, E=1),
+3. E에서 C로 electron이 흘러가게 되어 On 상태 (혹은 증폭된 상태) 가 됨.
+
+
+***
+
 ## 단점
 
 * "너무 작게 만들 경우 (IC대비) 발열이 커지고"  
