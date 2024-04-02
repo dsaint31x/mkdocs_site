@@ -94,8 +94,10 @@ Recall과 Precision은 trade-off 관계이다. threshold를 올리면 precision�
 
 ## Precision and Recall for Multi-class classification
 
-Macro Average
-: 각 class별로 precision과 recall을 구하고 이들의 평균을 낸 경우. 각 클래스별로 동일한 weight를 주어 평균을 구함.
+### ***Macro Average***
+
+각 class별로 precision과 recall을 구하고 이들의 평균.  
+각 클래스별로 동일한 weight를 주어 평균을 구함.
 
 $$\text{Precision}_\text{macro} = \dfrac{\text{Precision}_\text{cls_A}+\text{Precision}_\text{cls_B}+ \dots +\text{Precision}_\text{cls_N}}{N}$$
 
@@ -103,33 +105,52 @@ $$\text{Recall}_\text{macro} = \dfrac{\text{Recall}_\text{cls_A}+\text{Recall}_\
 
 * $N$ : number of classes
 
-Micro Average
-: 각 class별로 TP, FP, TN, FP를 구하고, 각 class의 TP, FP, TN, FP를 더해서 최종 TP와 FP, TN, FP를 구하고 이로부터 Precision과 Recall을 구한다.
+> Imbalanced classes 인 Dataset 으로 훈련한 모델의 경우, Macro Average 가 나쁘게 나오기 쉬움.  
+> 모든 클래스 별 가중치가 동일하기 때문에, 샘플수가 적은 클래스에서의 샘플 하나가 미치는 영향력이 큰 특성을 보임.
 
-$$\text{Precision}_\text{micro} = \dfrac{TP_\text{cls_A}+TP_\text{cls_B}+ \dots +TP_\text{cls_N}}{TP_\text{cls_A}+TP_\text{cls_B}+ \dots +TP_\text{cls_N}+ FP_\text{cls_A}+FP_\text{cls_B}+ \dots +FP_\text{cls_N}}$$
+### ***Micro Average***
+
+각 class별로 TP, FP, TN, FP를 구하고,  
+각 class의 TP, FP, TN, FP를 더해서  
+최종 TP와 FP, TN, FP를 구하고  
+이로부터 Precision과 Recall을 구한다.
+
+$$\text{Precision} = \dfrac{TP_\text{cls_A}+ \dots +TP_\text{cls_N}}{TP_\text{cls_A}+ \dots +TP_\text{cls_N}+ FP_\text{cls_A}+ \dots +FP_\text{cls_N}}$$
+
+$$\text{Recall} = \dfrac{TP_\text{cls_A}+ \dots +TP_\text{cls_N}}{TP_\text{cls_A}+ \dots +TP_\text{cls_N}+ FN_\text{cls_A}+ \dots +FN_\text{cls_N}}$$
+
+> Imbalanced classes의 경우에 대해 Weighted Average 와 비슷한 수치를 보인다.  
+> scikit-learn 등에서 제공하는 함수들에서 Macro Average와 Weighted Average를 기본으로 제공하고, 특성이 Weighted Average와 유사하다 보니 자주 쓰이진 않는 편임.
+
+### ***Weighted Average***
+
+각 class별로 precision과 recall을 구하고 label에서 각 class의 샘플수를 weight로 삼아 average를 계산함.
+
+$$\text{Precision}_\text{weighted} = \dfrac{M_\text{cls_A}\text{Precision}_\text{cls_A}+ \dots +M_\text{cls_N}\text{Precision}_\text{cls_N}}{M}$$
 
 
-$$\text{Recall}_\text{micro} = \dfrac{TP_\text{cls_A}+TP_\text{cls_B}+ \dots +TP_\text{cls_N}}{TP_\text{cls_A}+TP_\text{cls_B}+ \dots +TP_\text{cls_N}+ FN_\text{cls_A}+FN_\text{cls_B}+ \dots +FN_\text{cls_N}}$$
-
-Weighed Average
-: 각 class별로 precision과 recall을 구하고 label에서 각 class의 샘플수를 weight로 삼아 average를 계산함.
-
-$$\text{Precision}_\text{weighted} = \dfrac{M_\text{cls_A}\text{Precision}_\text{cls_B}+M_\text{cls_B}\text{Precision}_\text{cls_B}+ \dots +M_\text{cls_N}\text{Precision}_\text{cls_N}}{M}$$
-
-
-$$\text{Recall}_\text{weighted} = \dfrac{M_\text{cls_A}\text{Recall}_\text{cls_A}+M_\text{cls_B}\text{Recall}_\text{cls_B}+ \dots +M_\text{cls_N}\text{Recall}_\text{cls_N}}{M_\text{total}}$$
+$$\text{Recall}_\text{weighted} = \dfrac{M_\text{cls_A}\text{Recall}_\text{cls_A}+ \dots +M_\text{cls_N}\text{Recall}_\text{cls_N}}{M_\text{total}}$$
 
 * $M_\text{total}$ : number of total samples
 * $M_\text{cls_A}$ : number of samples of class A
 
+> sample (or support) 수가 많은 클래스를 잘 맞히는 모델에게 가장 유리한 metric.  
+> Imbalanced classes 의 경우 모델의 성능을 과대평가하는 경향이 있음.
+
 ---
 
-## Precision-Recall Curve and Precision-Recall Trade-off
+## Precision-Recall Curve (PR Curve) and Precision-Recall Trade-off
 
-Binary classification에서 주로 얻어지는 curve. 
+PR-Curve는 Binary classification에서 주로 얻어지는 Curve.  
+PR-Curve 에서 curve 아래의 area를 ***Average Precision*** 이라고도 부름 (y-axis가 Precision 인 경우).
 
-Multiclass 의 경우는 다음 URL을 참고할 것 (micro 를 이용.).
-[scikit-learn's plot_precision_recall](https://scikit-learn.org/0.15/auto_examples/plot_precision_recall.html)
+> Multi-class 의 경우는 다음 URL을 참고할 것 ( 앞서 살펴본 micro-average 를 이용.).  
+> 
+> * [scikit-learn's plot_precision_recall](https://scikit-learn.org/0.15/auto_examples/plot_precision_recall.html)
+>
+> 참고로, Multi-class Classification 또는 Detection과 같은 Task 에서  
+> Mean Average Precision (mAP)을 metric으로 많이 사용하는데,  
+> <u>mAP는 각 클래스별로 Average Precision을 구하고, 이들의 평균을 구한 것</u> 을 가르킴.   
 
 해당 class로 판정하는 threshold를 조절하여 각각의 경우의 precision과 recall에 점을 찍는 방식으로 그려진다.
 
@@ -215,7 +236,7 @@ Precision과 Recall의 Harmonic mean으로 수식은 다음과 같음.
 $$\begin{aligned}F_{\beta}=F&=\dfrac{1}{\alpha\dfrac{1}{\text{precision}}+(1-\alpha)\dfrac{1}{\text{recall}}}\\ &=\dfrac{(\beta^2+1)\text{precision}\times\text{recall}}{\beta^2\text{precision}+\text{recall}}\end{aligned}$$
 
 * Precision과 Recall이 모두 중요할 경우 $\beta=1$
-* Recall이 보다 중요할 경우 보통  $\beta=2$ : 의료분야등에서 많이 이용됨.
+* Recall이 보다 중요할 경우 보통  $\beta=2$ : 의료분야 등에서 많이 이용됨.
 * Precision이 보다 중요할 경우 $\beta=0.5$
 
 
