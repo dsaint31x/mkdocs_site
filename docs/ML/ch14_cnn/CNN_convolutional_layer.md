@@ -1,16 +1,22 @@
 # Convolutional Layer
 
-Locality of Pixel Dependency 와Stationarity of Statstics 에 기반한 cnn의 주요 구성 요소.
+(Locality of Pixel Dependency 와 Stationarity of Statstics 에 기반한) **CNN의 주요 구성 요소.**
 
 * CNN은 convolutional layer를 통해 feature(특징)을 추출함.
 * Convolutional layer의 출력인 feature map은 추출된 feature의 위치와 강도를 가지고 있음.
 
-하나의 kernel (폭과 높이, 그리고 depth로 dimension이 결정됨)과 bias를 이용한 convolution을 수행하여 하나의 feature map을 얻어냄.
+> Plain CNN은 convolutional layer와 max (or average) pooling 이 기본 구성요소임.
 
-* 작은 크기의 kernel (=filter라고도 불림)을 사용
+![](../../DIP/etc/convolution_how.gif)
+
+***
+
+하나의 kernel (width 와 height, 그리고 depth로 dimension이 결정됨)과 bias를 이용한 convolution을 수행하여 하나의 feature map을 얻어냄.
+
+* 작은 크기 (3x3 or 5x5) 의 kernel (=filter라고도 불림)을 사용
 	* 이전 layer의 일부 neurons만이 연결됨 (전체가 연결되는 dense와 다름)
 	* kernel 크기에 따라 receptive field가 결정됨.
-* sliding을 통해 입력 layer의 모든 neurons에 적용함.
+* sliding (stride로 지정된 만큼 이동)을 통해 입력 layer의 모든 neurons에 적용함.
 	* 입력 layer에서 위치에 상관없이 현재 kernel에 대한 반응강도를 얻어냄.
 	* feature map은 이들 반응강도를 각receptive field의 위치에 따라 2D로 배치한 것임 (feature vector는 특징을 1차원으로 나타낸 vector임. feature map은 특정 kernel에 대한 response를 feature 값으로 하여 2차원으로 배치한 map임.)
 * 하나의 입력에 대해 여러 kernels를 적용하여 여러 feature map을 얻게 되며, 이들을 다시 입력으로 삼아 다른 여러 kernels를 적용하도록 계층으로 쌓음.
@@ -21,13 +27,14 @@ Locality of Pixel Dependency 와Stationarity of Statstics 에 기반한 cnn의 �
 
 ![](../img/ch00/dl_hiearchy_rep.png)
 
-* 만약 input의 depth가 10인 경우, kernel의 depth도 10이 된다.
+* 만약 input의 depth가 10인 경우, kernel의 depth도 10이 되는 게 일반적임 (depth separated conv. 제외).
 
 ---
 
-## Correlation과Convolution.
+## Correlation과 Convolution.
 
-Signal Processing에서는 Convolution과 Cross Correlation은 용도가 분명히 다른 연산이지만, DL에서는 대부분의 Convolution은 Cross Correlation으로 구현된다.
+Signal Processing에서는 Convolution과 Cross Correlation은 용도가 분명히 다른 연산이지만,  
+***DL에서는 대부분의 Convolution은 Cross Correlation으로 구현*** 된다.
 
 다음 URL 참고.
 
@@ -71,6 +78,12 @@ TensorFlow의 경우, `padding` 파라메터를 `same`으로 지정하면 zero-p
 
 ### Note
 
-Convolutional Layer는 Dense Layer에 비해서는 메모리 사용량이 적지만, 적다고 보기는 어려운 수준의 메모리 사용량을 가짐.
+Convolutional Layer는  
 
-때문에 훈련과정에서 out of memory가 발생할 경우, batch size를 줄이거나 stride를 크게 하는 등의 처리가 필요함.
+* Dense Layer에 비해서는 확실히 적은 메모리 사용량을 보이지만, 
+* 여전히 꽤 많은 량의 메모리를 요구함.
+
+때문에 훈련과정에서 out of memory가 발생할 경우, 
+
+* batch size를 줄이거나 
+* stride를 크게 하는 등의 처리가 필요함.
