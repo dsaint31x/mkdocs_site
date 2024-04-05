@@ -45,7 +45,7 @@ convolution을 수행하여 두 개의 feature map을 얻어냄.
 Signal Processing에서는 Convolution과 Cross Correlation은 용도가 분명히 다른 연산이지만,  
 ***DL에서는 대부분의 Convolution은 Cross Correlation으로 구현*** 된다.
 
-다음 URL 참고.
+**다음 URL 참고.**
 
 참고 : [Cross Correlation](https://dsaint31.tistory.com/382) 
 
@@ -61,7 +61,9 @@ feature map의 **한 pixel의 값** 을 결정하는데 참여하는 input의 pi
 * kernel size가 클수록 parameters 의 수가 커짐.
 * 일반적으로 kernel size는 홀수이며, kernel의 정가운데 pixel의 위치를 anchor라고 부름.
 
+<figure markdown>
 ![](./img/kernel.gif)
+</figure markdown>
 
 > CNN에서 kernel의 weights는 Training을 통해 dataset으로부터 최적의 값들로 설정됨 (ML에서의 특징).  
 >
@@ -103,3 +105,9 @@ Convolutional Layer는
 
 * batch size를 줄이거나 
 * stride를 크게 하는 등의 처리가 필요함.
+
+***
+
+# 같이 읽어보면 좋은 자료들
+
+* [Convolution 이란?](../../DIP/cv2/etc/dip_convolution/) 
