@@ -7,27 +7,36 @@
 
 > Plain CNN은 convolutional layer와 max (or average) pooling 이 기본 구성요소임.
 
-![](../../DIP/img/etc/convolution_how.gif)
 
 ***
 
-하나의 kernel (width 와 height, 그리고 depth로 dimension이 결정됨)과 bias를 이용한 convolution을 수행하여 하나의 feature map을 얻어냄.
+다음 그림은 convolution의 과정을 보여줌.  
+두 개의 kernel (filter라고 불림. width 와 height, 그리고 depth로 dimension이 결정됨)과 bias를 이용한  
+convolution을 수행하여 두 개의 feature map을 얻어냄.  
+($7 \times 7 \times 3$ 이 입력으로 하여 $3 \times 3 \times 2$ 출력을 얻음) 
 
-* 작은 크기 (3x3 or 5x5) 의 kernel (=filter라고도 불림)을 사용
+![](../../DIP/img/etc/convolution_how.gif)
+
+* 작은 크기 (3x3 or 5x5) 의 kernel (=filter 라고도 불림)을 사용
 	* 이전 layer의 일부 neurons만이 연결됨 (전체가 연결되는 dense와 다름)
 	* kernel 크기에 따라 receptive field가 결정됨.
-* sliding (stride로 지정된 만큼 이동)을 통해 입력 layer의 모든 neurons에 적용함.
+* sliding (`stride`로 지정된 만큼 이동)을 통해 입력 layer의 모든 neurons에 적용함.
 	* 입력 layer에서 위치에 상관없이 현재 kernel에 대한 반응강도를 얻어냄.
-	* feature map은 이들 반응강도를 각receptive field의 위치에 따라 2D로 배치한 것임 (feature vector는 특징을 1차원으로 나타낸 vector임. feature map은 특정 kernel에 대한 response를 feature 값으로 하여 2차원으로 배치한 map임.)
+	* feature map은 이들 반응강도를 각receptive field의 위치에 따라 2D로 배치한 것임  
+	    * feature vector는 특징을 1차원으로 나타낸 vector임.  
+	    * feature map은 특정 kernel에 대한 response를 feature 값으로 하여 2차원으로 배치한 map임.
 * 하나의 입력에 대해 여러 kernels를 적용하여 여러 feature map을 얻게 되며, 이들을 다시 입력으로 삼아 다른 여러 kernels를 적용하도록 계층으로 쌓음.
-	* 이같은 구조는 여러 feature maps로 구성된 hierarchicy를 얻음.
+	* 이같은 구조는 여러 feature maps로 구성된 hierarchy를 얻음.
 	* lower layer에서는 low level feature maps 를 얻음 (edge, corner, texture 등)
 	* intermediate layer에서는low level feature maps를 조합한 intermediate feature를 추출해 냄.
 	* higher layer에서는 task와 밀접하게 관련되며 이들 intermediate features를 조합하여 구성되는 high level feature를 추출해냄.
 
-![](../img/ch00/dl_hiearchy_rep.png)
+<figure markdown>
+![](../img/ch00/dl_hiearchy_rep.png){width=600, align=center}
+</figure markdown>
 
-* 만약 input의 depth가 10인 경우, kernel의 depth도 10이 되는 게 일반적임 (depth separated conv. 제외).
+* 만약 input의 depth가 10인 경우, kernel의 depth도 10이 되는 게 일반적임. 
+    * depth separated convolution 제외.
 
 ---
 
@@ -54,21 +63,28 @@ feature map의 **한 pixel의 값** 을 결정하는데 참여하는 input의 pi
 
 ![](./img/kernel.gif)
 
-> kernel의 weights를 cnn에서는 데이터로부터 DL의 training과정 중에 알아서 설정됨.  
-> Digital Image Processing 에서의 spatial filtering의 경우, 사람이 kernel의 weight를 설정하는 것과 달리 DL에서는 Task에 적합한 Kernel의 weights를 데이터로부터 구해냄.
+> CNN에서 kernel의 weights는 Training을 통해 dataset으로부터 최적의 값들로 설정됨 (ML에서의 특징).  
+>
+> * Digital Image Processing 에서의 spatial filtering의 경우, 
+> * 사람이 kernel의 weight를 설정하는 것과 달리  
+> * DL에서는 Task에 적합한 Kernel의 weights를 dataset으로부터 구해냄.
+
+***
 
 ### stride
 
 convolution에서 sliding을시킬 때 건너뛰는 pixel의 수.
 
-* stride가 클수록 convolutional layer의 출력인 feature map의 넓이와 높이가 작음.
+* stride가 클수록 convolutional layer의 출력으로 나오는 feature map의 width와 height가 작게됨.
 * receptive field가 겹치지 않도록 조정하는게 일반적임.
 
 ![](./img/Stride.png)
 
+***
+
 ### padding
 
-convolution의 경우, 출력이 입력보다 작은 크기(폭과 높이)가 되게 된다.
+convolution의 경우, padding하지 않는다면 출력이 입력보다 작은 크기(폭과 높이)가 되게 된다.
 
 이를 방지하기 위해, 입력을 padding하여 좀 더 큰 크기로 만들어서 convolution의 출력이 padding 전의 입력과 같은 크기가 되도록 처리하는 게 일반적임.
 
