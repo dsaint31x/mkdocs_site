@@ -7,7 +7,7 @@
 
 > Plain CNN은 convolutional layer와 max (or average) pooling 이 기본 구성요소임.
 
-![](../../DIP/etc/convolution_how.gif)
+![](../../DIP/img/etc/convolution_how.gif)
 
 ***
 
