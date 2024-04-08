@@ -26,7 +26,14 @@
     - **Data를 처리하는 프로시저** 에 초점을 맞춤.
     - 때문에 재사용하기 위해서는 **Data(변수 로 추상화)와 프로시저(함수 로 추상화)를 모두 잘 이해** 하고 있어야 함.
 
-> Structured Programming은 ***Imperative Programming의 subset***이라고도 볼 수 있다. Imperative Programming에서 소스코드의 유지 보수 및 명확성 등을 위해 modular design과 control structure( loop and conditional block)등의 사용을 강조한 것임.
+> Structured Programming은 ***Imperative Programming의 subset*** 이라고도 볼 수 있다.  
+> Imperative Programming에서 
+> 
+> * 소스코드의 유지 보수 및 명확성 등을 위해 
+> * modular design과 
+> * control structure( loop and conditional block) 등의 사용을 강조한 것임.
+
+***
 
 ## Object Oriented Programming
 
