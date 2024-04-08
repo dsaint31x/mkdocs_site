@@ -18,6 +18,8 @@
 
 ## Structured Programming
 
+수학적 함수가 아닌 프로그래밍에서의 함수에 초점을 두어 개발.
+
 - `goto`문을 제거한 방식.
 - **Module 로 분리** 하여 **재사용성 을 강화** 시킴.
 - C, Pascal 등에서 **Function(or Procedure)이 가장 대표적인 module** 임(Python의 module과 헷갈리지 말 것).
