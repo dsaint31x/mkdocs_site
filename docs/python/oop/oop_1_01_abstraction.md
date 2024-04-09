@@ -5,16 +5,22 @@
 >  
 > Abstraction(추상화) = 어떤 대상으로부터 모양(feature) 을 뽑아내는 것
 
+---
+
 Abstraction의 의미는 다음과 같음.
 
 - 내부의 복잡한 사실을 숨겨서, 이해 및 사용하기 쉽도록 단순화한 것
 - **문제 해결** 하는데 있어 **중요하고 필수적인 사항** 만을 다루도록 **단순화시키는 것** 을 **abstraction(추상화)** 라 함.
 - 필수적이고 중요한 이미지나 관념 (=feature) 만을 표현
 
+---
+
 Abstraction의 관점에서 그 결과물인 `model` 이란 세상의 실제적인 것이 ***현재 주어진 문제를 풀기위해 단순화된 것*** 이라고 볼 수 있음.
 
 - 필요한 특징(feature)만을 뽑아낸 것.
 - feature는 상태값과 동작으로 나뉘며, 이는 attribute(or field, variable)와 behavior(or method, function)이라 불림.
+
+---
 
 비슷하게 modeling은 model을 생성하는 과정이며, 즉 abstraction과 비슷한 의미로 사용될 수 있음.
 
@@ -88,6 +94,8 @@ OOP에서 넓은 범위의 Object는 모든 것(현실 세계와 프로그래밍
 
 ---
 
+## C++ 을 이용한 Object와 Instance 설명.
+
 다음은 C++의 관점에서 Object(우리 문서에서는 instance)와 abstraction을 잘 보여주는 그림이라 첨부합니다.  
 (출처가 기억이 안 납니다. ㅠㅠ)
 
@@ -100,7 +108,10 @@ OOP에서 넓은 범위의 Object는 모든 것(현실 세계와 프로그래밍
 
 ---
 
-Python에서 class의 member variable (or instance variable)은 조금 독특하다. Python의 특성상 assignment에서 변수 생성이 이루어지는 터라, C++처럼 미리 정의해두는 게 아닌, 실제로 값을 할당할 때, 만들어지는 특성을 가진다. 
+## 참고: Python 의 특이점 (동적인 instance attribute 생성)
+
+Python에서 class의 member variable (or instance variable)은 조금 독특하다.  
+Python의 특성상 assignment에서 변수 생성이 이루어지는 터라, C++처럼 미리 정의해두는 게 아닌, 실제로 값을 할당할 때, 만들어지는 특성을 가진다. 
 
 ```python
 class Samp:
@@ -114,6 +125,8 @@ if __name__ == "__main__":
 
 위의 코드에서 `self.x` 는 Class `Samp`의 instance가 가지는 attribute이지만, getter만이 정의가 되어있다. `s.x = 23` 의 assignment가 getter보다 먼저 이루어지지 않으면 에러가 난다. (처음 python을 봤을 때 이게 뭐지 라고 생각한 것 중 하나임.)  
 
-이는 동적으로 class에 attribute 추가가 가능(dynamic language라는 특성 활용이라고 봐야할지...)하다는 애기이다. class에 method도 동적으로 추가가 가능한 flexibility를 python은 제공한다. (개인적으로 선호하는 방식은 아니다). 
+이는 동적으로 class에 instance attribute 추가가 가능(dynamic language라는 특성 활용이라고 봐야할지...)하다는 애기이다. class에 method도 동적으로 추가가 가능한 flexibility를 python은 제공한다. (개인적으로 선호하는 방식은 아니다). 
 
-때문에 가급적 생성자 `__init__`에서 사용할 member variable에 해당하는 variable들을 초기할당이라도 해두는게 좋다. Java나 C++을 먼저 익힌 경우에는 당연한 애기인데... python부터 배운 분들의 코드를 보면 순간적으로 당황할 때가 있다(오류는 아니지만, 호출 순서가 달라지면 에러가 뜨기 쉬움.)
+* [Python에서 class attributes와 instance attributes 구분을 위한 자료: method 중심으로 설명](https://ds31x.tistory.com/66)
+
+때문에 가급적 생성자 `__init__`에서 사용할 member variable(=instance attributes)에 해당하는 variable들을 초기할당이라도 해두는게 좋다. Java나 C++을 먼저 익힌 경우에는 당연한 애기인데... python부터 배운 분들의 코드를 보면 순간적으로 당황할 때가 있다(오류는 아니지만, 호출 순서가 달라지면 에러가 뜨기 쉬움.)

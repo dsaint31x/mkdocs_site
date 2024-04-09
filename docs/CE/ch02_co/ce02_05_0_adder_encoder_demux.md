@@ -19,5 +19,5 @@ Programming에서는 단순한 statement와 expression들을 조합하여 functi
     * 이를 반대로 수행하는 `binary decoder`를 간단히 살펴봄.
 
 * [Demux and Mux](https://dsaint31.tistory.com/entry/CI-Demultiplexer-and-Multiplexer)
-    * Demux (single input, multiple outpus)
-    * Mux (multiple inputs, single ouputs) = selector
+    * Demux (single input, multiple outputs)
+    * Mux (multiple inputs, single outputs) = selector
