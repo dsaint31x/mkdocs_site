@@ -12,7 +12,7 @@ Programming에서는 단순한 statement와 expression들을 조합하여 functi
 
 ## 구성.
 
-* [Half Adder and Full Adder](./ce02_05_1_adder)
+* [Half Adder and Full Adder](./ce02_05_1_adder.md)
 * [Decoder and Encoder](https://dsaint31.tistory.com/entry/CI-Binary-Decoder)
   
     * One-hot code 를 입력받아 binary code(이진수)로 변환하는 `priority encoder`
