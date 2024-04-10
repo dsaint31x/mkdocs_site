@@ -17,6 +17,8 @@ Back propagation은 다음 2가지를 조합하여 ANN을 학습시킴.
 : <u>loss function을 "model의 parameters"로 편미분</u>하여 구한 ***gradient를 이용*** 하여  
 주어진 training dataset에 대해 loss function을 최소화하는 최적의 parameters를 구하는 기법.
 
+* **참고:** [Gradient Descent Method](https://dsaint31.tistory.com/633)
+
 > Back-propagation은 주로 딥러닝 분야에서 사용되는 용어이며  
 > 다른 분야들에서는 Reverse-mode auto differentiation이라고 불림. 
 
