@@ -40,13 +40,15 @@ Schematic diagram (7474 or DM74LS74)은 다음과 같음.
 다음과 같은 데이터 시트를 이용하여 flip-flop 의 동작을 파악한다.
 
 <figure markdown>
-![sheet](img/D_flip_flop_DM74LS74A.png){width=400, align=center}
+![sheet](img/D_flip_flop_DM74LS74A.png){width=500, align=center}
 </figure>
+
+* **참고: [D Filp-Flop 7474 의 동작 테이블에 대한 좀 더 자세한 설명](https://dsaint31.tistory.com/699)**
 
 Gate로 D Flip-Flop 의 구조를 보면 다음과 같음. (`S-R Latch` 3개를 이용함.)
 
 <figure markdown>
-![design](img/D_flip_flop_design.png){widht=400, align=center}
+![design](img/D_flip_flop_design.png){width=500, align=center}
 </figure>
 
 ***
