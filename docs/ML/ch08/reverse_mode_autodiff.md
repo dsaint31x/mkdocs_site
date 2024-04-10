@@ -135,7 +135,7 @@ $z=2xy+y+3$에 대해, 입력 $x=40, y=4$ 인 경우의 Backward pass(or backwar
 
 ## **Reverse-mode auto differentiation 패턴**
 
-### Add and Multiplication
+### **Add and Multiplication**
 
 ![Untitled](./img/back_propagation_ex_06.png)
 
