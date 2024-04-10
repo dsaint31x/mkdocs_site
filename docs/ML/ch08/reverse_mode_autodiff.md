@@ -48,7 +48,7 @@ $$
 
 ---
 
-## 특징
+## **Reverse mode auto differentiaion 특징**
 
 - 수치해석 기반의 differentiation method (=Numerical Differentiation)보다 ***높은 정확도*** 를 가짐  
 (Forward-mode autodiff 수준의 accuracy를 보임)
@@ -60,9 +60,9 @@ $$
 
 ---
 
-## Example 1
+## **Example 1**
 
-### Computation Graph
+### **Computation Graph**
 
 $z=2xy+y+3$에 대한 Computation Graph는 다음과 같음.
 
@@ -73,7 +73,7 @@ $z=2xy+y+3$에 대한 Computation Graph는 다음과 같음.
 
 ***
 
-### Forward pass
+### **Forward pass**
 
 $z=2xy+y+3$에 대해, 입력 $x=40, y=4$를 대입하고, Forward pass 수행한 결과
 
@@ -84,7 +84,7 @@ $z=2xy+y+3$에 대해, 입력 $x=40, y=4$를 대입하고, Forward pass 수행�
 
 ***
 
-### Backward pass (1)
+### **Backward pass (1)**
 
 Backward mode autodiff의 핵심인 backward pass는 다음과 같음.
 
@@ -96,7 +96,7 @@ Backward mode autodiff의 핵심인 backward pass는 다음과 같음.
 
 ***
 
-### Backward pass (2)
+### **Backward pass (2)**
 
 $z=2xy+y+3$에 대해, 입력 $x=40, y=4$ 인 경우의 Backward pass(or backward flow)수행은 다음과 같음. 해당 수행은 반드시 대응하는 입력에 대해 Forward pass를 수행하고 난 이후 이루어짐.
 
@@ -113,7 +113,7 @@ $z=2xy+y+3$에 대해, 입력 $x=40, y=4$ 인 경우의 Backward pass(or backwar
 
 ***
 
-## Node에 대한 backward-mode differentiation (국소적 연산, Local gradient)
+## **Node에 대한 reverse-mode differentiation (국소적 연산, Local gradient)**
 
 ![Untitled](./img/back_propagation_ex_04.png)
 
@@ -133,7 +133,7 @@ $z=2xy+y+3$에 대해, 입력 $x=40, y=4$ 인 경우의 Backward pass(or backwar
 
 ---
 
-## Reverse-mode auto differentiation 패턴
+## **Reverse-mode auto differentiation 패턴**
 
 ### Add and Multiplication
 
@@ -180,7 +180,7 @@ $z=2xy+y+3$에 대해, 입력 $x=40, y=4$ 인 경우의 Backward pass(or backwar
 
 ---
 
-## Example 2
+## **Example 2**
 
 **[Stanford University - CS231n: Convolutional Neural Networks for Visual Recognition (2017) 강의](http://cs231n.stanford.edu/2017/syllabus.html) 에 나오는 예제.**
 
@@ -192,7 +192,7 @@ $z=2xy+y+3$에 대해, 입력 $x=40, y=4$ 인 경우의 Backward pass(or backwar
 
 ---
 
-## References
+## **References**
 
 * [Syllabus | CS 231N](http://cs231n.stanford.edu/2017/syllabus.html)
 * [Back-propagation for a Linear Layer](https://web.eecs.umich.edu/~justincj/teaching/eecs498/FA2020/linear-backprop.html)
