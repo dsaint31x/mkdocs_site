@@ -155,9 +155,15 @@ $z=2xy+y+3$에 대해, 입력 $x=40, y=4$ 인 경우의 Backward pass(or backwar
 
 ***
 
-### **Rectified Linear Unit**
+### **Rectified Linear Unit (ReLU)**
+
+2024년 현재 가장 애용되는 activation function.
+
+* **참고:** [ReLU](../ch09/act_relu.md)
 
 ![Untitled](./img/back_propagation_ex_08.png)
+
+* 꼭 미분가능하지 않아도 activation function으로 사용가능함을 기억할 것.
 
 ***
 
