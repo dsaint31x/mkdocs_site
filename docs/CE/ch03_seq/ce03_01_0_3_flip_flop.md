@@ -48,7 +48,7 @@ Schematic diagram (7474 or DM74LS74)은 다음과 같음.
 Gate로 D Flip-Flop 의 구조를 보면 다음과 같음. (`S-R Latch` 3개를 이용함.)
 
 <figure markdown>
-![design](img/D_flip_flop_design.png){width=500, align=center}
+![design](img/D_flip_flop_design.png){width=300, align=center}
 </figure>
 
 ***
@@ -69,7 +69,9 @@ Gate로 D Flip-Flop 의 구조를 보면 다음과 같음. (`S-R Latch` 3개를 
 
 이들과 Propagation Delay를 반영한 Timing Diagram은 다음과 같음.
 
-![timing consideration](img/setup_hold_timing_diagram.png)
+<figure markdown>
+![timing consideration](img/setup_hold_timing_diagram.png){width=500, align=center}
+</figure>
 
 * Latch보다는 입력을 받아들이는 시간이 짧지만, 위의 timing diagram에서 보이듯이 입력이 출력으로 반영되기 위한 일정 시간들이 필요함.
 
