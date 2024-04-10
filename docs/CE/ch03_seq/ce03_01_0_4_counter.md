@@ -24,6 +24,9 @@ Counter는 register와 함께 flip-flop의 대표적인 응용사례임.
 
 이 별칭에서도 알 수 있듯이 각 flip-flop에서의 출력이 동시에 이루어지지 않고 앞단의 출력이 나오고 나서 출력되는 구조임. 
 
+다음은 ripple counter의 timing diagram 임  
+(아래 그림의 `Q`는 위의 그림에서의 `C`에 해당함.).
+
 <figure markdown>
 ![](./img/ripple_counter_timing_diagram.jpeg){width=400, alighn=center}
 </figure>
