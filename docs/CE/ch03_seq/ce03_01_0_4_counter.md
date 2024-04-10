@@ -28,7 +28,7 @@ Counter는 register와 함께 flip-flop의 대표적인 응용사례임.
 (아래 그림의 `Q`는 위의 그림에서의 `C`에 해당함.).
 
 <figure markdown>
-![](./img/ripple_counter_timing_diagram.jpeg){width=400, alighn=center}
+![](./img/ripple_counter_timing_diagram.jpeg){width=400, align=center}
 </figure>
 
 * 때문에 propagation delay와 같은 요소에 취약할 수 밖에 없음. 
@@ -43,6 +43,8 @@ Counter는 register와 함께 flip-flop의 대표적인 응용사례임.
 
  다음은 synchronous counter로서 clock, $\text{CK}$를 공유함으로서 모든 flip-flop들이 정확히 같은 시간에 값이 변화하게 된다.
  
- ![synchronous counter](img/synchronous_counter.png)
+ <figure markdown>
+ ![synchronous counter](img/synchronous_counter.png){width=400, align=center}
+ </figure>
  
  * 출력이 valid하기까지 요구되는 setup 및 hold time, propagation delay영향은 있으나 각 flip-flop들이 동일한 clock에 맞춰 동작함.

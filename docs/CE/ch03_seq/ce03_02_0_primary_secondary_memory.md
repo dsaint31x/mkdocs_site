@@ -4,22 +4,32 @@ computer에서 데이터를 기억하기 위해 사용하는 device를 총칭.
 
 ## 기억 장치 종류 및 구성
 
-
 종류를 나타내면 다음과 같음.
 
-![memory](img/memory_diagram.png)
+<figure markdown>
+![memory](img/memory_diagram.png){align=center}
+</figure>
 
 다음과 같은 그림으로 간략히 표시 가능함.
 
-![memory구분](img/memory_simple.png)
+<figure markdown>
+![memory구분](img/memory_simple.png){align=center}
+</figure>
+
+* CPU 내에서 ALU 각 직접 참조하는 memory: Register 임.
 
 참고로 Cache의 구분은 다음과 같음.
 
-![cache](img/cache_AMD_octacore.png)
+<figure markdown>
+![cache](img/cache_AMD_octacore.png){align=center, width=300}
+</figure>
+
+* cache 는 주로 Static RAM(SRAM)임.
+* 위의 그림은 AMD Octa-Core 에 대한 것임.
 
 ## 주기억장치 
 
-* CPU 가 직접 참조하는 고속의 메모리
+* CPU 가 직접 참조하는 고속의 메모리 (DRAM임)
 * 프로그램이 실행될 때 필요한 프로그램이나 자료를 보조 기억 장치로부터 이동시켜 실행시킬 수 있는 기억 장소.
 * 프로그램을 기억하는 프로그램 영역과 입력 자료를 기억하는 영역, 출력 자료를 기억하는 영역, 작업을 실행하여 중간 계산 결과를 기억하는 작업 영역으로 구성.
 
