@@ -99,7 +99,7 @@ Computational Graph 에 기반하며, 다음의 두 단계로 gradient를 구함
 
 ## **간단한 예**
 
-1. input에 weight를 곱하고 bias를 합친 값 (affine combination)이 threshold를 넘을 경우 1을 출력하고 아니면 0을 출력 (nonlinear activation) : `dense` layer (or fully connected layer)
+1. input에 weight를 곱하고 bias를 합친 값 (affine transformation)이 threshold를 넘을 경우 1을 출력하고 아니면 0을 출력 (nonlinear activation) : `dense` layer (or fully connected layer)
 2. 대상 `dense` layer에 대해 입력을 넣어 출력을 구하는 forward pass 수행.
 3. ***2를 수행한 출력*** 과 **정답** 간의 ***오차*** 를 구하고, 해당 오차를 backward pass하여 오차를 줄이는 방향인 gradient를 구함.
 4. Gradient Decent로 해당 gradient와 learning ratio를 통해 Model의 parameters를 업데이트. 
