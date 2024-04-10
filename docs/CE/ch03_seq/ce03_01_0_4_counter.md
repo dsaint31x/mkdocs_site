@@ -11,21 +11,34 @@ Counter는 register와 함께 flip-flop의 대표적인 응용사례임.
 
 ## Asynchronous (Ripple) Counter
 
-![ripple counter]
+<figure markdown>
+![](./img/ripple_counter.png){width=400,align=center}
+</figure>
 
-> 그림 추가할 것.
 
-* Signal이 Clock Pulse부분에 들어가면서, signal이 0에서 1로 변할 때 마다 그 count(횟수)를 세어서 $\text{C}_0,\text{C}_1,\text{C}_2$에 출력함.
+* Signal이 Clock Pulse부분에 들어가면서, signal(=`CK`, clock)이 0에서 1로 변할 때 (rising edge)마다 그 count(횟수)를 세어서 $\text{C}_0,\text{C}_1,\text{C}_2$에 출력함.
 * Signal은 보통 oscillator(발진자)로부터 오게 되고, $\text{C}_0,\text{C}_1,\text{C}_2$들은 각각 앞의 입력에 비해 2배 더 긴 주기의 신호를 생성해냄.
-* `D-flip flop`의 input $D$에 $\overline{Q}$가 연결되어 있기 때문에 1로 올라가고 나선 다시 0으로 떨어지게 되며 이를 $\text{CK}$에 들어오는 signal에 맞춰 반복하게 됨.
+* `D-flip flop`의 input $D$에 $\overline{Q}$가 연결되어 있기 때문에 signal의 rising edge 마다 반전(0에서 1, 또는 1에서 0)이 됨. 
 
-repple counter라는 별칭을 가지고 있는데 구성하고 있는 `D Flip-Flop`의 출력이 왼쪽에서 오른쪽으로 전달되는 것이 마치 물결이 퍼져나가는 것과 비슷하다는 점에서 유래됨. 이 별칭에서도 알 수 있듯이 각 flip-flop에서의 출력이 동시에 이루어지지 않고 앞단의 출력이 나오고 나서 출력되는 구조임. 때문에 propagation delay와 같은 요소에 취약할 수 밖에 없다. 실제로 clock signal (위의 그림에서 `signal`)이 매우 빠르게 바뀔 경우, 정상적인 동작이 이루어지지 못한다.
+위의 그림과 같은 counter 는 ripple counter라는 별칭을 가지고 있는데, 구성하고 있는 `D Flip-Flop`의 출력이 왼쪽에서 오른쪽으로 전달되는 것이 마치 물결이 퍼져나가는 것과 비슷하다는 점에서 유래됨.  
 
-## Synchoronous Counter
+이 별칭에서도 알 수 있듯이 각 flip-flop에서의 출력이 동시에 이루어지지 않고 앞단의 출력이 나오고 나서 출력되는 구조임. 
+
+<figure markdown>
+![](./img/ripple_counter_timing_diagram.jpeg){width=400, alighn=center}
+</figure>
+
+* 때문에 propagation delay와 같은 요소에 취약할 수 밖에 없음. 
+* 위의 timing diagram에서 음영이 이루어진  propagation delay를 확인할 수 있음.
+* propagation delay 때문에, clock signal 이 매우 빠르게 바뀔 경우, 정상적인 동작이 이루어지지 못한다.
+
+***
+
+## Synchronous Counter
 
 > synchronous 란 clock을 공유한다는 뜻으로 HW나 SW나 동기식이 훨씬 제어가 쉽다. 단 일정부분 느려지는 trade-off가 있다.
 
- 다음은 synchronous counter로서 $\text{CK}$를 공유함으로서 모든 flip-flop들이 정확히 같은 시간에 값이 변화하게 된다.
+ 다음은 synchronous counter로서 clock, $\text{CK}$를 공유함으로서 모든 flip-flop들이 정확히 같은 시간에 값이 변화하게 된다.
  
  ![synchronous counter](img/synchronous_counter.png)
  
