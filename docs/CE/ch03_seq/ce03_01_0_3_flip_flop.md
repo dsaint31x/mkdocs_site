@@ -29,7 +29,9 @@ flip-flop들을 묶어서
 
 Schematic diagram (7474 or DM74LS74)은 다음과 같음.
 
-![D flip-flop Schematic Diagram](img/D_flipflop_schematic.png)
+<figure markdown>
+![D flip-flop Schematic Diagram](img/D_flipflop_schematic.png){width=300, align=center}
+</figure>
 
 - $D$ : input
 - $Q$ : output
