@@ -28,7 +28,7 @@ J. Werbos는 자신의 박사학위 논문 [Beyond regression: New tools for pre
 
 ---
 
-## 컴퓨터를 이용한 Differentiation. 
+## **컴퓨터를 이용한 Differentiation** 
 
 > Gradient Decent는 기본적으로 Differentiation의 수행을 요구함.
 
@@ -64,7 +64,7 @@ J. Werbos는 자신의 박사학위 논문 [Beyond regression: New tools for pre
 ---
 
 
-## Back-propagation
+## **Back-propagation**
 
 Computational Graph 에 기반하며, 다음의 두 단계로 gradient를 구함.
 
@@ -95,7 +95,9 @@ Computational Graph 에 기반하며, 다음의 두 단계로 gradient를 구함
 
 ---
 
-## 간단한 예
+---
+
+## **간단한 예**
 
 1. input에 weight를 곱하고 bias를 합친 값 (affine combination)이 threshold를 넘을 경우 1을 출력하고 아니면 0을 출력 (nonlinear activation) : `dense` layer (or fully connected layer)
 2. 대상 `dense` layer에 대해 입력을 넣어 출력을 구하는 forward pass 수행.
