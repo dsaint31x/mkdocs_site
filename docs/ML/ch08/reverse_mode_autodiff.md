@@ -38,10 +38,13 @@ $$
     - validation set를 대상으로 수행될 때는 이같은 저장을 하지 않고 수행함으로서 계산 효율을 향상시킴.
     
 
-> Computation Graph를 사용하기 때문에, 국소적 계산이 이루어지며, 
-각 노드의 국소적 계산 결과인 local gradient를 chain rule에 기반해 곱해나가는 역전파를 수행하여 
-differentiation을 구하게 됨.
+> Computation Graph를 사용하기 때문에 ***국소적 계산*** 이 이루어지며, 
+
+>  각 노드의 국소적 계산 결과인 local gradient를 ***chain rule에 기반*** 해 곱해나가는 `back-propagation` (역전파) 를 수행하여  
+> differentiation을 구하게 됨.
 > 
+
+---
 
 ---
 
@@ -52,6 +55,8 @@ differentiation을 구하게 됨.
 - 모든 partial differentiation을 구하기 위해서 단 한번의 forward pass 와 backward pass 가 요구되어 매우 효율적임.
     - 여러 차례의 반복이 필요한 Forward-mode autodiff와의 차이점.
 - 일부 미분이 불가능한 연산(혹은 구간)이 포함된 함수도 미분할 수 있음. (해당 연산에서 partial derivative 결과를 대신하도록 처리하거나, 미분이 가능한 구간에서만 사용 등을 이용하여)
+
+---
 
 ---
 
@@ -66,6 +71,8 @@ $z=2xy+y+3$에 대한 Computation Graph는 다음과 같음.
 * 왼쪽부터 node를 거쳐서 computation이 수행됨.
 * node는 operation이고, edge는 데이터의 흐름(flow)를 의미함.
 
+***
+
 ### Forward pass
 
 $z=2xy+y+3$에 대해, 입력 $x=40, y=4$를 대입하고, Forward pass 수행한 결과
@@ -74,6 +81,8 @@ $z=2xy+y+3$에 대해, 입력 $x=40, y=4$를 대입하고, Forward pass 수행�
 
 * 각 node의 연산 결과를 저장해야만 reverse-mode autodiff가 가능함.
 * 때문에 80, 320 등의 중간연산 결과들을 포함하는 각 node의 입출력이 모두 저장됨.
+
+***
 
 ### Backward pass (1)
 
@@ -84,6 +93,8 @@ Backward mode autodiff의 핵심인 backward pass는 다음과 같음.
 - manual differentiation의 결과(붉은색 좌하단)와 backward-mode autodiff의 결과(푸른색 우측)가 일치함.
 - 각 노드별로 국소적인 미분을 수행하고, 이를 chain rule에 기반하여 곱하여 확장해나감.
 - 각 노드의 연산에 대한 건 이후 자세히 다룸.
+
+***
 
 ### Backward pass (2)
 
@@ -98,7 +109,9 @@ $z=2xy+y+3$에 대해, 입력 $x=40, y=4$ 인 경우의 Backward pass(or backwar
 
 실제 결과도 정확히 manual differentiation과 일치.
 
----
+***
+
+***
 
 ## Node에 대한 backward-mode differentiation (국소적 연산, Local gradient)
 
@@ -106,7 +119,8 @@ $z=2xy+y+3$에 대해, 입력 $x=40, y=4$ 인 경우의 Backward pass(or backwar
 
 노드(=연산)에 대한 입/출력 을 바탕으로 local gradient $\left(\dfrac{\partial n_2}{\partial n_1}\right)$를 구하고, chain rule에 기반하여 이전 결과$\left(\dfrac{\partial L}{\partial n_2} \right)$에 곱하여 gradient를 구해 나감.
 
-> 입/출력 은 vector, matrix 로 확장 가능하며, 입/출력 이 모두 vector인 경우 흔히 알려진 Jacobian matrix가 local gradient가 됨.
+> 입/출력 은 vector, matrix 로 확장 가능하며,  
+> 입/출력 이 모두 vector인 경우 흔히 알려진 Jacobian matrix가 local gradient가 됨.
 
 ![Untitled](./img/back_propagation_ex_05.png)
 
@@ -130,6 +144,8 @@ $z=2xy+y+3$에 대해, 입력 $x=40, y=4$ 인 경우의 Backward pass(or backwar
     - 입력값이 클수록 곱해지는 값이 커짐 → 지나치게 값이 커지게 됨을 알 수 있음.
     - forward pass에서 입력값들을 저장되어야 함.
 
+***
+
 ### **Squared and Exponentiation**
 
 ![Untitled](./img/back_propagation_ex_07.png)
@@ -137,13 +153,19 @@ $z=2xy+y+3$에 대해, 입력 $x=40, y=4$ 인 경우의 Backward pass(or backwar
 - local gradient가 곱해짐.
 - 각각의 local gradient 계산에 입력값이 필요함.
 
+***
+
 ### **Rectified Linear Unit**
 
 ![Untitled](./img/back_propagation_ex_08.png)
 
+***
+
 ### **Logistic function**
 
 대표적인 sigmoid function에 대한 reverse-mode autodiff.
+
+* 참고: [Derivative of Logistic Function](https://dsaint31.tistory.com/613)
 
 ![Untitled](./img/back_propagation_ex_09.png)
 
@@ -151,7 +173,8 @@ $z=2xy+y+3$에 대해, 입력 $x=40, y=4$ 인 경우의 Backward pass(or backwar
 
 ![Untitled](./img/back_propagation_ex_10.png)
 
-- 왼쪽 하단의 축약형에서 sigmoid로 표기한 이유는 일반적으로 (거의 대부분) sigmoid function이라고도 혼용해서 부르기 때문에 기재를 함. (엄밀히 말하면 logistic function이며, sigmoid function의 대표적인 함수이나 그에 속하는 하나의 함수에 불과함)
+- 왼쪽 하단의 축약형에서 sigmoid로 표기한 이유는 일반적으로 (거의 대부분) sigmoid function이라고도 혼용해서 부르기 때문임. 
+- 엄밀히 말하면 logistic function이며, logistic function은 sigmoid function의 대표적인 함수이나 그에 속하는 하나의 함수에 불과함.
 - 우측에서 직접 local gradient를 구한 경우를 보여주고, 일반적 형식($y$를 이용한)도 보여줌.
 - reverse-mode autodiff의 경우, forward pass 에서 노드의 출력($y$)을 backward pass에서 입력으로 사용하므로 이같은 형태(output $y$를 이용한 표현식)가 보다 이후 계산에서 편리함. ← forward pass당시의 출력값 저장 필요.
 
