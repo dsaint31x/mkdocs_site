@@ -42,7 +42,7 @@ J. Werbos는 자신의 박사학위 논문 [Beyond regression: New tools for pre
 
 위의 1번과 3번의 경우는 ***Computation Graph 기법*** 에 의존하고 있음.
 
-* [Tree와 Graphg](https://dsaint31.tistory.com/463)
+* [Tree와 Graph](https://dsaint31.tistory.com/463)
 * [Graph란](./datastructure_graph.md)
 
 특히 3번에서 Reverse-mode Auto Diff.는 Deep ANN을 학습시키기 위해 사용되는 대표적 기법임.
