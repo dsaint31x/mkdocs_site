@@ -41,7 +41,7 @@ Euclidean distance를 포함한 difference vector의 L-p norm 등은 distance의
     - [nominal scale](https://dsaint31.tistory.com/469#Nominal%--scale%---%EB%AA%--%EB%AA%--%EC%B-%--%EB%-F%---)을 적용한 입력 vector에선 similarity의 정도를 구하기 어려움. 
     - 이는 [nominal scale](https://dsaint31.tistory.com/469#Nominal%--scale%---%EB%AA%--%EB%AA%--%EC%B-%--%EB%-F%---)에서는 L-p norm 기반의 distance를 사용하기 적절치 않다는 뜻임.
     
-- vector가 아닌 일종의 ***probability distribution으로 보는 경우** 라면, distribution의 difference를 구하는 cross-entropy, Kullbeck-Leibler Divergence등이 사용될 수도 있다.
+- vector가 아닌 일종의 ***probability distribution으로 보는 경우*** 라면, distribution의 difference를 구하는 cross-entropy, Kullbeck-Leibler Divergence등이 사용될 수도 있다.
 
 참고 : 영상처리 등에서 similarity를 정량화하기 위한 metrics를 설명한 다음 URL을 읽어볼 것 : [distance function이란](https://dsaint31.me/mkdocs_site/DIP/cv2/etc/dip_metrics/#distance-function-or-metric)
 
