@@ -1,15 +1,19 @@
 # Logistic Regression
 
-Logistic Regression은 이름과 달리, binary classification task를 위한 모델로서 특정 class에 속할 확률을 출력해준다 (output이 하나의 확률값임).
+Logistic Regression은  
+이름과 달리, binary classification task를 위한 모델로서  
+특정 class에 속할 확률을 결과값으로 가짐.(output이 하나의 확률값임).
 
-* 일반적으로 1 또는 0 으로 표기하여 
-* 특정 class에 속하는 경우 1을 결과값으로 하고, 
-* 해당 class에 속하지 않고 다른 class에 속하는 경우 0을 결과값으로 함.
+* Label은 일반적으로 1 또는 0 으로 표기하여 
+* 특정 class에 속하는 경우 1을 label로 가지고
+* 해당 class에 속하지 않고 다른 class에 속하는 경우 0을 label 값으로 함.
 
 실제로 Logistic Regression에서는  
 두 class 중 하나를 지정하여 해당 class에 속할 경우를 1로,  
-아닐 경우를 0으로 지정(label이 해당값으로 설정됨)하고,  
-Logistic Regression의 출력(예측 class)은 1에 해당하는 class에 속할 확률이 된다.
+아닐 경우를 0으로 지정(label이 해당값으로 설정됨)한다.
+
+
+즉, Logistic Regression의 출력(예측 class)은 1에 해당하는 class에 속할 확률이 된다.
 
 Logistic Regression의 동작 순서는 다음과 같음.
 
@@ -22,21 +26,23 @@ Logistic Regression의 동작 순서는 다음과 같음.
 ---
 
 > 이 문서는 Logistic Regression을  
-> Bernoulli Distribution에 기반한 Maximum Likelihood Expection의 관점으로 해석하여  
-> `DL`에서의 binary classification model에 대한 이해로 확장해나가는 것을 목표로 함.
+> Bernoulli Distribution에 기반한  
+> ***Maximum Likelihood Expectation의 관점으로 해석*** 하여  
+> `DL`에서의 binary classification model에 대한 이해로  
+> 확장해나가는 것을 목표로 함.
 
-다음 그림은 Computational Graph 또는 Single Layer Perceptron (or Dense Layer)로 표현한 Logistic Regression임.
+다음 그림은 Computational Graph 또는 Single Layer Perceptron (or `Dense` Layer)로 표현한 Logistic Regression임.
 
 ![](./img/logistic_regression_ann.png){width="500"}
 
 다음은 Logistic Regression의 출력 $\hat{p}$의 수식이다.
 $$
-\hat{p}(\hat{y}=1) = \sigma(t) = \sigma \left( b+\omega_1x_1+\omega_2x_2 +\dots+\omega_n x_n\right) \\
+\hat{p}(\hat{y}=1) = \sigma(t) = \sigma \left( b+\omega_1x_1+\omega_2x_2 +\dots+\omega_n x_n\right) \\ \quad \\
 \hat{p}(\hat{y}=1) = \hat{p}
 $$
 
 * class 1에 속할 확률 $\hat{p}(\hat{y}=1)$이 출력임.
-* 때문에 0.5 이상일 경우 class 1에 속한다고 판정하고, 미만일 경우는 class 0에 속한다고 판정.
+* 0.5 이상일 경우 class 1에 속한다고 판정하고, 미만일 경우는 class 0에 속한다고 판정.
 
 [figure ori.](https://docs.google.com/presentation/d/1EG6nPMYbYjS4CcCVHSpMDOg7iwlzZLxahb0E9S2LkQg/edit#slide=id.g23bf78dd669_0_0)
 
@@ -44,22 +50,34 @@ $$
 
 ## Binary Classification
 
-input $\textbf{x}$가 주어질 경우, 출력이 binary class를 나타내는 task를 binary classification임.
+input $\textbf{x}$가 주어질 경우,  
+하나의 클래스에 속하는지 안 속하는지를 결정하는 task를 
+***binary classification*** 이라고 함.
+
+> 하나의 클래스에 속하는 경우(=1)와 속하지 않는 경우(=-1) 두 개의 클래스ㄹ 가지기 때문에 binary classification 이라고 불림.
 
 ANN 등으로 만들 경우,  
-output이 숫자 하나로 나오며 class 1에 속할 확률 $\hat{p}$로 나오게 된다 (위의 Logistic Regression의 경우와 같음).  
-이는 다른 class에 속할 확률이 $\hat{q}=1-\hat{p}$임을 의미하기도 한다.
+output이 숫자 하나로 나오며  
+이는 class 1에 속할 확률 $\hat{p}$ 에 해당함.
+
+> 앞서 설명한 Logistic Regression의 경우와 같음.  
+
+동시에, 다른 class에 속할 확률은  
+$\hat{q}=1-\hat{p}$ 이 된다.
 
 해당 task에 대해 label은 $y \in \{0,1\}$로 주어져서  
 $i$번째 input $\textbf{x}^{(i)}$에 대응하는 label $y^{(i)}$는 `0` 또는 `1` 중의 하나가 된다.
 
-* $i$번째 sample의 label $y^{(i)}$가 1의 값인 경우, $i$번째 sample이 class 1에 속할 확률이라고 생각할 수 있다. (정답은 고정이니 확률이 100%인 1로 기재.)
-* $i$번째 sample의 label $y^{(i)}$가 0의 값인 경우도 역시 $i$번째 sample이 class 1에 속할 확률이라고 생각할 수 있다. (정답은 고정이니 확률이 0%인 0으로 기재.)
-* $i$번째 sample이 class 0 으로 label이 지정된 경우, 해당 sampel이 class 1일 확률은 0이라고 봐도 된다.
+* $i$번째 sample의 label $y^{(i)}$가 1의 값인 경우, $i$번째 sample이 class 1에 속할 확률이라고 생각할 수 있다. 
+    * 정답은 고정이니 확률이 100%인 `1`로 기재.
+* $i$번째 sample의 label $y^{(i)}$가 0의 값인 경우도 역시 $i$번째 sample이 class 1에 속할 확률이라고 생각할 수 있다. 
+    * 정답은 고정이니 확률이 0%인 `0`으로 기재.
+    * $i$번째 sample이 class 0 으로 label이 지정된 경우, 해당 sample이 class 1일 확률은 `0`이 된다.
 
 즉, $i$번째 sample의 label $y^{(i)}$를 class의 index로 봐도 되지만, class 1에 속할 확률이라고 볼 수도 있다.
 
-이는 달리 말하면 binary classifier의 output은 class 1에 속할 확률이라고 볼 수 있음을 의미한다.
+이는 달리 말하면 binary classifier의 output은  
+***class 1에 속할 확률*** 이라고 볼 수 있음을 의미한다.
 
 ---
 
@@ -67,22 +85,25 @@ $i$번째 input $\textbf{x}^{(i)}$에 대응하는 label $y^{(i)}$는 `0` 또는
 
 binary classification model의 output인,   
 **$\hat{y}$가 1일 확률 $\hat{p} = \hat{p}(\hat{y}=1)$** 는  
-logistic regression의 경우 다음과 같이 주어진다.
+Logistic regression의 경우 다음과 같음.
 
 $$\hat{p}=h_{\boldsymbol{\theta}}(\textbf{x})=\sigma(\textbf{x}^T\boldsymbol{\theta})$$
 
-* $h_{\boldsymbol{\theta}}( \cdot )$ : hypothesis의 약자 $h$로 model을 나타내는 function임. model의 parameters가 $\boldsymbol{\theta}$임을 아래첨자로 나타냄.
-* $\hat{p}$ : class 1에 속할 probability를 의미. model이 예측한 결과이므로 hat이 씌어짐.
-    * logistic regression의 output임.
+* $h_{\boldsymbol{\theta}}( \cdot )$ : hypothesis의 약자 $h$로 model을 나타내는 function임. 
+    * model의 parameters가 $\boldsymbol{\theta}$임을 아래첨자로 나타냄.
+* $\hat{p}$ : class 1에 속할 probability를 의미. 
+    * model이 예측한 결과이므로 hat $\hat$이 씌어짐.
+    * Logistic regression의 output임.
     * 일반적인 binary classifier의 output이기도함.
     * $\hat{p}(\hat{y}=1)$ 를 줄여서 표현한 것임.
-* $\sigma( \cdot )$ : logistic function.
+* $\sigma( \cdot )$ : Logistic function.
 
 Logistic Regression의 output $\hat{p}$ (class 1에 속할 probability)는  
 $\textbf{x}$와 $\boldsymbol{\theta}$가 주어졌을 때,  
 Random variable $\hat{y}$가 1의 값을 가질 확률(probability)이기 때문에  
-해당 확률이 0.5 이상이며 $\hat{y}=1$이라고 판정하고  
-아니면 $\hat{y}=0$이라고 판정한다고 볼 수 있음.
+
+* 해당 확률이 0.5 이상이며 $\hat{y}=1$이라고 판정하고  
+* 아니면 $\hat{y}=0$이라고 판정한다고 볼 수 있음.
 
 ---
 
@@ -108,28 +129,46 @@ $y$, $\hat{y}$의 probability distribution을 지정하는 Probability Mass Func
 
 ## Logistic regression model이 정답을 맞출 확률 : Bernoulli Distribution
 
-모델이 $i$번째 sample의 input $\textbf{x}^{(i)}$에 대해 정답 $y^{(i)}$을 맞출 확률 $p$는 다음과 같이 정의할 수 있다.
+Logistic regression 모델이  
+
+* $i$번째 sample의 input $\textbf{x}^{(i)}$에 대해 
+* 정답 $y^{(i)}$을 맞출 확률 $p$는 다음과 같이 정의할 수 있다.
 
 $$p(y^{(i)}|\textbf{x}^{(i)};\boldsymbol{\theta})=(\hat{p}^{(i)})^{y^{(i)}}(1-\hat{p}^{(i)})^{1-y^{(i)}}$$
 
 * $p(y^{(i)}|\textbf{x}^{(i)};\boldsymbol{\theta})$는 주어진 $i$번째 input $\textbf{x}$와 현재 model parameters $\boldsymbol{\theta}$ 하에서 모델이 정답(label) $y^{(i)}$를 출력할 likelihood를 의미함.
-* $\hat{p}^{(i)}=\sigma({\textbf{x}^{(i)}}^T\boldsymbol{\theta})$ 는 input $\textbf{x}^{(i)}$에 대한 logistic regression의 output으로 class 1에 속할 probability임. * 즉, $\hat{y}=1$이 될 확률이다.
+* $\hat{p}^{(i)}=\sigma({\textbf{x}^{(i)}}^T\boldsymbol{\theta})$ 는 input $\textbf{x}^{(i)}$에 대한 logistic regression의 output으로 class 1에 속할 probability임. 
+* 즉, $\hat{p}^{(i)}$는 $\hat{y}=1$이 될 확률이다.
 
-위의 식은 Logistic regression model이 정답을 맞출 확률 $p$가 ***Bernoulli random variable의 distribution*** 을 따름을 보여줌  
-(위의 식은 Bernoulli distribution의 PMF임).
+위의 식은  
+Logistic regression model이 정답을 맞출 확률 $p$가 
+<u>***Bernoulli random variable의 distribution*** 을 따름</u> 을 보여줌  
 
-* ref. : [Bernoulli distribution에 대해서](https://dsaint31.tistory.com/582)
+> 위의 식은 Bernoulli distribution의 PMF임.
+> 
+> * ref. : [Bernoulli distribution에 대해서](https://dsaint31.tistory.com/582)
 
 **label $y^{(i)}=0$인 경우**
-: Logistic regression model의 output $\hat{p}$가 0에 가까울수록 정답에 가까운 것이므로 위의 $p$는 1에 가까워지고, 반대인 경우엔 $p$는 0에 가까워지므로 model의 결과가 얼마나 정확한지를 의미함.
+: Logistic regression model의 output $\hat{p}$가 0에 가까울수록 정답에 가까운 것이므로  
+위의 $p$는 1에 가까워지고,  
+반대인 경우엔 $p$는 0에 가까워지므로  
+결국, 위의 식 $p$는 model의 결과가 얼마나 정확한지를 의미함.
 
 **label $y^{(i)}=1$인 경우**
-: Logistic regression model의 output $\hat{p}$가 1에 가까울수록 정답에 가까운 것이므로 $p$가 1에 가까워지고, 반대인 경우엔 $p$가 0에 가까워지므로 model의 결과가 얼마나 정확한지를 의미함.
+: Logistic regression model의 output $\hat{p}$가 1에 가까울수록 정답에 가까운 것이므로  
+정답에 가까울수록 위의 식 $p$는 1에 가까워진다.  
+즉, $p$는 model의 결과가 얼마나 정확한지를 의미함.
 
-> 참고로 Bernoulli random variable은 0 또는 1을 값으로 가지는 discrete random variable 임.  
-> Binary classification가 Bernoulli trial로 볼 수 있음을 의미함.  
-> 달리 말하면 binary classification model이 정답을 맞출 확률은  
-> Bernoulli probability distribution을 따른다고 볼 수 있음.
+> 참고로  
+> ***Bernoulli random variable*** 은 
+>
+> * 0 또는 1을 값으로 가지는 
+> * discrete random variable 임.  
+>
+> 이는 Binary classification가 Bernoulli trial로 볼 수 있음을 의미함.  
+> 
+> * 달리 말하면 binary classification model이 정답을 맞출 확률은  
+> * ***Bernoulli probability distribution*** 을 따른다고 볼 수 있음.
 
 위의 $p(\hat{y}|\textbf{x};\boldsymbol{\theta})$를 likelihood로 삼고
 
@@ -141,15 +180,19 @@ $$\begin{aligned}\boldsymbol{\theta}&=\underset{\boldsymbol{\theta}}{\text{argma
 
 * $\displaystyle \prod _{i=1}^M p(y^{(i)}|\textbf{x}^{(i)};\boldsymbol{\theta})$가 최대화된다는 것은 Logistic regression model이 정답을 맞출 가능성이 커진다는 것을 의미함.
 * $\boldsymbol{\theta}$를 조절하면 ***해당 정답을 맞출 가능성*** 은 변하며, 각각의 $\boldsymbol{\theta}$에 따른 해당 가능성의 값들을 모두 더할 경우 1이 되진 않음 (물론 값이 클수록 가능성은 커짐) : 때문에 ***likelihood*** 라고 부르며 이 부분을 강조하여 likelyhood function $\mathcal{L}$로 표기하기도 함.
-* likelihood 를 구하는데 사용되는 $\hat{p}=\sigma(\textbf{x}^T\boldsymbol{\theta})$ 는 logistic regression의 output으로 $\hat{y}=1$이 될 확률(class 1에 속할 확률)임.
+* likelihood 를 구하는데 사용되는 $\hat{p}=\sigma(\textbf{x}^T\boldsymbol{\theta})$ 는 logistic regression의 output으로 $\hat{y}=1$이 될 확률(class 1에 속할 확률)을 의미함.
 
-이 `MLE`를 통해 구해진 
-***likelihood를 최대화 하는 parameters $\boldsymbol{\theta}$*** 를 가지는 model이 
-바로 binary classification task에 대한 최적의 model이 됨.
+이 `MLE`를 통해 구해진  
+***likelihood를 최대화 하는 parameters $\boldsymbol{\theta}$*** 를  
+가지는 model이 
+바로 **binary classification task에 대한 최적의 model** 이 됨.
 
 > 위의 식의 경우,  
-> 각 likelihood들의 joint probability를 통해 training dataset의 모든 $M$개의 sample들을 고려하여 최적의 parameters $\boldsymbol{\theta}$를 구한다.  
-> (각 sample들이 서로의 class를 결정할 때 각 sample간에 ***독립*** 적으로 구해진다는 가정에 기반.) 
+> 각 likelihood들의 ***joint probability*** 를 통해  
+> 
+> * training dataset의 모든 $M$개의 sample들을 고려하여 
+> * 최적의 parameters $\boldsymbol{\theta}$를 구한다.  
+> * 단, 각 sample들이 서로의 class를 결정할 때 각 sample간에 ***독립*** 적으로 구해진다는 가정에 기반.
 
 `MLE`의 object function은 utility function으로 ***최대화가 목적임***.
 
@@ -303,8 +346,8 @@ Logistic regression의 logistic function을 multi-class로 확장하면 softmax 
 * 증명 : [https://dsaint31.tistory.com/319](From softmax to logistic function)
 
 > 이는 binary classification이 logistic function을 activation으로 하던 것을 일반화하여  
-> multiclass classification의 경우  
-> softmax function을 activation으로 삼게 됨을 의미함.
+> multi-class classification의 경우  
+> ***softmax function을 activation으로 삼게 됨을 의미*** 함.
 
 * [참고 : softmax function](https://dsaint31.tistory.com/294)
 
@@ -325,11 +368,12 @@ Logistic Regression이 Beroulli Distribution에 기반한 `MLE` 였던 것을 mu
 > 라는 가정을 기반으로 regression이 수행되기 때문에  
 > 해당 가정에 맞지 않는 task에서는 bias가 발생한다.
 
-NFLT (No Free Lunch Theorme)에 의해
+NFLT (No Free Lunch Theorem)에 의해
+
 * Model이 기반하고 있는 가정이 성립하는 경우 해당 model은 좋은 성능을 보이지만, 
 * 아닐 경우 더 나쁜 성능을 보일 수 밖에 없다.
 
-[No Free Lunch Theorem](https://dsaint31.tistory.com/605)
+> 참고: [No Free Lunch Theorem (NFLT)](https://dsaint31.tistory.com/605)
 
 ---
 
