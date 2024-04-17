@@ -10,14 +10,16 @@ Small-scale integration (`SSI`)을 이용하여 여러 `gate`들로 구성된 �
 
 Programming에서는 단순한 statement와 expression들을 조합하여 function이라는 building block을 만들어내는데 이에 대한 hardware version이라고 생각할 수 있음.
 
+---
+
 ## 구성.
 
 * [Half Adder and Full Adder](./ce02_05_1_adder.md)
-* [Decoder and Encoder](https://dsaint31.tistory.com/entry/CI-Binary-Decoder)
+* [Decoder and Encoder](https://dsaint31.tistory.com/404)
   
     * One-hot code 를 입력받아 binary code(이진수)로 변환하는 `priority encoder`
     * 이를 반대로 수행하는 `binary decoder`를 간단히 살펴봄.
 
-* [Demux and Mux](https://dsaint31.tistory.com/entry/CI-Demultiplexer-and-Multiplexer)
+* [Demux and Mux](https://dsaint31.tistory.com/403)
     * Demux (single input, multiple outputs) : 하나의 입력을 여러 출력 중 하나로 연결해줌.
     * Mux (multiple inputs, single outputs) = selector : 여러 입력 중 하나를 하나의 출력에 연결해줌.
