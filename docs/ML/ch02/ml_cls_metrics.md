@@ -250,11 +250,14 @@ ROC Curve에서 curve 아래의 area(면적)을 가르키며, 1에 가까울수�
 
 ---
 
-## PR-Curve vs. ROC-Curve
+## **PR-Curve vs. ROC-Curve**
 
-Label이 Positive인 sample이 적은 경우 또는 false positive 를 false negative 보다 중요하게 생각할 때, PR-Curve가 보다 선호된다.
+다음의 경우 RR-Curve보다 ROC-Curve가 선호된다.
 
-* 위의 경우, ROC-Curve의 경우보다 PR-Curve는 보다 AUC가 낮게 나와서 성능의 차이를 보다 잘 보여준다.
+* Label이 Positive인 sample이 적은 경우 또는  
+* false positive 를 false negative 보다 중요하게 생각할 때
+
+> 위의 경우, ROC-Curve의 경우보다 PR-Curve는 ***보다 AUC가 낮게 나와서 성능의 차이를 보다 잘 보여준다*** .
 
 다음 그림은 MNIST에서 5와 5가 아닌 경우를 분류하는 binary classification을 수행하는 동일 모델에 대해 ROC-Curve와 PR-Curve를 그린 것임.
 
@@ -264,7 +267,7 @@ Label이 Positive인 sample이 적은 경우 또는 false positive 를 false neg
 
 ---
 
-## F Score ( f measure or f-beta score)
+## **F Score ( f measure or f-beta score)**
 
 Precision과 Recall을 동시에 반영하는 measure로 많이 사용됨.
 
@@ -279,7 +282,7 @@ $$\begin{aligned}F_{\beta}=F&=\dfrac{1}{\alpha\dfrac{1}{\text{precision}}+(1-\al
 
 ---
 
-## 참고자료
+## **참고자료**
 
 * [Accuracy, precision, and recall in multi-class classification](https://www.evidentlyai.com/classification-metrics/multi-class-metrics)
 * [[Math] Mean : Measures of Central Tendency](https://dsaint31.tistory.com/483)
