@@ -16,8 +16,8 @@ binary classifier의 경우,
 
 |  | Negative | Positive |
 | :---: | :---: | :---: |
-| $H_1$: False <br/>($H_0$: True) | $TN$, True Negative | $FP$, False Positive (Type-I error)|
-| $H_1$: True <br/> ($H_0$: False)| $FN$, False Negative (Type-II error) | $TP$, True Positive |
+| $H_1$: False <br/>($H_0$: True) | $TN$, True Negative | $FP$, False Positive<br/>(Type-I error)|
+| $H_1$: True <br/> ($H_0$: False)| $FN$, False Negative<br/> (Type-II error) | $TP$, True Positive |
 
 * $H_1$ : alternative hypothesis
 * $H_0$ : null hypothesis
@@ -67,42 +67,60 @@ $$\text{Accuracy} = \dfrac{TP+TN}{TP+FP+TN+FN}$$
 
 * 즉, 특정 class라고 예측한 경우에서 몇 퍼센트가 정답을 맞추었는지를 나타냄.
 * 특정 class라고 예측한 경우에서의 정답률에 해당함.
+* model에 대해 하나의 값만이 구해지는 Accuracy와 달리, 각 class 별로 구해질 수 있음.
 
 $$\text{Precision}_\text{cls_A} = \dfrac{TP_\text{cls_A}}{TP_\text{cls_A}+FP_\text{cls_A}}$$
 
 * $TP_\text{cls_A}$ : Label과 Predict 모두 class A인 sample들의 수.
 * $FP_\text{cls_A}$ : Predict는 class A였으나 Label이 class A가 아닌 sample들의 수.
 
-Precision을 올리는 쉬운 방법은 정말 확실하게 해당 class A인 경우에만 class A로 판정하는 것임. 즉, 판정시 사용하는 threshold를 매우 높게 잡으면 precision은 올라간다.
+Precision을 올리는 쉬운 방법은 "정말 확실하게 해당 class A인 경우에만 class A로 판정"하는 것임.  
+즉, 판정시 사용하는 threshold를 매우 높게 잡으면 precision은 올라간다.
 
 > imbalanced classes의 경우에도, precision은 다음에 다룰 recall과 함께 성능을 잘 반영해준다.  
 > 각 class별로 precision이 나오며 특정 관심이 있는 class에서의 model의 성능을 따로 확인할 수 있다.
 
-문제는 threshold를 올려서 precision을 올리는 경우, Label이 class A이지만 prediction에서 낮은 score를 기록할 경우, class A라고 판정하지 않을 확률이 올라간다. (이는 recall or sensitivity가 낮아지는 문제로 이어짐)
+문제는 threshold를 올려서 precision을 올리는 경우, 
+
+* Label이 class A이지만 prediction에서 낮은 score를 기록할 경우, 
+* class A라고 판정하지 않을 확률이 올라간다. 
+* 이는 recall or sensitivity가 낮아지는 문제로 이어짐 : ***Precision-Recall Trade-off***
 
 ---
 
 ## Recall (재현율)
 
-Sensitivity 또는 True Positive Rate라고도 불린다. Precision과 분자는 같지만 분모가 달라진다. 분모가 Label이 특정 class인 샘플의 수가 된다. 
+Sensitivity 또는 ***True Positive Rate*** 라고도 불린다.  
+Precision과 분자는 같지만 분모가 달라진다. 분모가 "Label이 특정 class인 샘플의 수"가 된다. 
 
 * 즉, 특정 class를 label로 가지는 sample들에 대해 몇 퍼센트를 해당 class로 맞추었는지를 의미함.
 * precision과 마찬가지로 class별로 구해진다.
 
 $$\text{Recall}_\text{cls_A} = \dfrac{TP_\text{cls_A}}{TP_\text{cls_A}+FN_\text{cls_A}}$$
 
-Recall과 Precision은 trade-off 관계이다. threshold를 올리면 precision은 향상되지만, recall은 떨어지게 된다.
+앞서 말한대로, ***Recall과 Precision은 trade-off 관계*** 이다. 
 
-극단적으로 항상 class A라고 판정할 경우, class A에 대한 recall은 1.0 (=100%)를 달성할 수 있다. 당연하지만 이 경우 class A의 precision은 매우 나뻐지게 된다.
+* threshold를 올리면 precision은 향상되지만, 
+* 이는 동시에 recall을 떨어뜨리게 된다.
+
+극단적으로 항상 class A 라고 판정할 경우, class A에 대한 recall은 1.0 (=100%)를 달성할 수 있다.  
+당연하지만 이 경우 class A의 precision은 매우 나뻐지게 된다.
 
 --- 
 
 ## Precision and Recall for Multi-class classification
 
+Accuracy와 달리, Precision과 Recall은 class별로 구해지기 때문에,  
+모델 전체의 성능을 보려면 각 class에서의 precision과 recall의 대표값을 구해야 한다.
+
+이때 사용되는 average 의 종류는 아래와 같이 3가지가 있다.
+
 ### ***Macro Average***
 
 각 class별로 precision과 recall을 구하고 이들의 평균.  
-각 클래스별로 동일한 weight를 주어 평균을 구함.
+
+* 각 클래스별로 동일한 weight를 주어 평균을 구함.
+* imbalanced dataset에 주로 애용되는 방법임.
 
 $$\text{Precision}_\text{macro} = \dfrac{\text{Precision}_\text{cls_A}+\text{Precision}_\text{cls_B}+ \dots +\text{Precision}_\text{cls_N}}{N}$$
 
@@ -124,12 +142,16 @@ $$\text{Precision} = \dfrac{TP_\text{cls_A}+ \dots +TP_\text{cls_N}}{TP_\text{cl
 
 $$\text{Recall} = \dfrac{TP_\text{cls_A}+ \dots +TP_\text{cls_N}}{TP_\text{cls_A}+ \dots +TP_\text{cls_N}+ FN_\text{cls_A}+ \dots +FN_\text{cls_N}}$$
 
-> Imbalanced classes의 경우에 대해 Weighted Average 와 비슷한 수치를 보인다.  
-> scikit-learn 등에서 제공하는 함수들에서 Macro Average와 Weighted Average를 기본으로 제공하고, 특성이 Weighted Average와 유사하다 보니 자주 쓰이진 않는 편임.
+> Imbalanced classes의 경우에 대해 Weighted Average 와 매우 비슷한 수치를 보인다.  
+> scikit-learn 등에서 제공하는 함수들에서 Macro Average와 Weighted Average만을 기본으로 제공하고 Micro avg.는 제공하지 않음.  
+> 특성이 Weighted Average와 유사하다 보니 자주 쓰이진 않는 편임.
 
 ### ***Weighted Average***
 
 각 class별로 precision과 recall을 구하고 label에서 각 class의 샘플수를 weight로 삼아 average를 계산함.
+
+* 특별한 언급이 없는 경우, weighted average 라고 해석하면 거의 맞음.
+* 단 imbalanced dataset 의 경우엔, minor class에 대한 성능 하락을 무시하게 되므로 주의해야 함.
 
 $$\text{Precision}_\text{weighted} = \dfrac{M_\text{cls_A}\text{Precision}_\text{cls_A}+ \dots +M_\text{cls_N}\text{Precision}_\text{cls_N}}{M}$$
 
@@ -191,26 +213,36 @@ MNIST 데이터 (0-9까지의 숫자 데이터)에서 class 5에 대한 분류�
 
 ## Receiver operating characteristics (ROC) and AUC
 
-ROC는 False Positive Rate (FPR, fall-out) 에 대해 Recall (=True Positive Rate)를 그린 graph임.
+ROC는 `False Positive Rate` (=`FPR`, fall-out) 에 대해 `Recall` (=`True Positive Rate`)를 그린 graph임.
 
 * x축 : FPR (=1-NTR = 1-specificity)
 * y축 : TPR (=recall, sensitivity)
+
+> 의료분야에서는 ROC가 PR-Curve 보다 자주 보인다.
 
 OvR 또는 OvO 를 이용하여 Multi-class classification에서도 그릴 수는 있으나 주로 binary classification에서 사용됨.
 
 Multi-class의 경우의 ROC Curve는 다음 URL을 참고할 것.
 [Multi-class Receiver Operating Characteristic (ROC)](https://scikit-learn.org/stable/auto_examples/model_selection/plot_roc.html)
 
-PR-Curve와 유사한 형태이나 Left-top이 ideal model의 performance에 해당하기 때문에 chart가 Left-top (High recall and Low FPR)에 가까울수록 높은 성능의 모델임.
+PR-Curve와 유사한 형태이나  
+Left-top이 ideal model의 performance에 해당하기 때문에  
+graph가 Left-top (High recall and Low FPR)에 가까울수록 높은 성능의 모델임.
 
 ### False Positive Rate (=FPR)
 
 $$\text{FPR}=\dfrac{FP}{FP+TN}= 1-\dfrac{TN}{FP+TN} = 1-\text{specificity}$$
 
-* Label이 Negative인 sample의 수가 분모이며 분자는 Label이 negative인데 positive로 predict한 sample의 수임.
-* 작을수록 좋은 모델임.
+* Label이 Negative인 sample의 수가 분모이며 
+* 분자는 Label이 negative인데 positive로 predict한 sample의 수임.
+* 즉, FPR이 작을수록 좋은 모델임.
 
-FPR은 1-TNR (=1-specificity)에 해당한다. specificity는 negative인 sample을 negative로 predict할 확률로 True Negative Rate라고도 불림.
+Recall (=True Positive Rate)과 달리, 분모는 실제 negative인 모든 sample 수이며, 분자는 positive 잘못 판정한 sample 수임.
+
+> FPR은 1-TNR (=1-specificity)에 해당한다.  
+> 
+> * specificity는 negative인 sample을 negative로 predict할 확률로 
+> * True Negative Rate라고도 불림.
 
 ### Area under the Curve (AUC)
 
