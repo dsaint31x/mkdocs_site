@@ -2,12 +2,13 @@
 
 ## Confusion matrix
 
-Confusion matrix(오차행렬)은 
+Confusion matrix(오차행렬, 혼동행렬)은 
 
-* row는 label의 class를 나타내며, 
-* column은 prediction 결과 class를 나타낸다.
+* row는 label의 `ideal class` 를 나타내며, 
+* column은 `predicted class` 를 나타낸다.
 
-Classifier의 성능을 확실하게 파악할 수 있다는 장점이 있으나 하나의 값으로 표현되지 않는다는 단점을 가짐.
+Confusion matrix는 Classifier의 성능을 확실하게 파악할 수 있다는 장점이 있으나  
+***하나의 값으로 표현되지 않는다는 단점*** 을 가짐.
 
 `sklearn.metrics.confusion_matrix` 를 사용하여 쉽게 구할 수 있음.
 
@@ -15,8 +16,8 @@ binary classifier의 경우,
 
 |  | Negative | Positive |
 | :---: | :---: | :---: |
-| $H_1$: False ($H_0$: True) | $TN$, True Negative | $FP$, False Positive (Type-I error)|
-| $H_1$: True ($H_0$: False)| $FN$, False Negative (Type-II error) | $TP$, True Positive |
+| $H_1$: False <br/>($H_0$: True) | $TN$, True Negative | $FP$, False Positive (Type-I error)|
+| $H_1$: True <br/> ($H_0$: False)| $FN$, False Negative (Type-II error) | $TP$, True Positive |
 
 * $H_1$ : alternative hypothesis
 * $H_0$ : null hypothesis
@@ -28,7 +29,8 @@ binary classifier의 경우,
 ![](./img/type1_type2_error.png)
 </figure>
 
-* 가설검증은 type-1 error를 줄이는데 초점을 둠. ($\alpha=0.05$에서 $\alpha=0.01$을 쓰는 추세)
+* 가설검증은 Type-1 error를 줄이는데 초점을 둠. 
+* $\alpha=0.05$에서 $\alpha=0.01$을 쓰는 추세
 
 ---
 
@@ -194,7 +196,7 @@ ROC는 False Positive Rate (FPR, fall-out) 에 대해 Recall (=True Positive Rat
 OvR 또는 OvO 를 이용하여 Multi-class classification에서도 그릴 수는 있으나 주로 binary classification에서 사용됨.
 
 Multi-class의 경우의 ROC Curve는 다음 URL을 참고할 것.
-[Multiclass Receiver Operating Characteristic (ROC)](https://scikit-learn.org/stable/auto_examples/model_selection/plot_roc.html)
+[Multi-class Receiver Operating Characteristic (ROC)](https://scikit-learn.org/stable/auto_examples/model_selection/plot_roc.html)
 
 PR-Curve와 유사한 형태이나 Left-top이 ideal model의 performance에 해당하기 때문에 chart가 Left-top (High recall and Low FPR)에 가까울수록 높은 성능의 모델임.
 
