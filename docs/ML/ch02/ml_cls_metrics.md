@@ -49,10 +49,13 @@ $$\text{Accuracy} = \dfrac{TP+TN}{TP+FP+TN+FN}$$
 * $FP$ : False Positive (실제로 Label이 Positive인데 Negative라고 predict한 갯수)
 * $FN$ : False Negative (실제로 Label이 Negative인데 Positive라고 predict한 갯수)
 
-가장 일반적으로 사용되는 Performance measure이지만, unbalanced classification의 경우엔 성능을 제대로 나타내지 못한다는 단점이 있음.
+가장 일반적으로 사용되는 Performance measure이지만,  
+***imbalanced classification의 경우엔 성능을 제대로 나타내지 못한다*** 는 단점이 있음.
 
 
-예를 들어 유병률이 0.1% 희귀병을 판정하는 classifier의 경우, 아무 로직 없이 무조건 희귀병이 아니라고 판정해도 99.9%의 accuracy를 얻게된다.
+예를 들어 유병률이 0.1% 희귀병을 판정하는 classifier의 경우,  
+아무 로직 없이 무조건 희귀병이 아니라고 판정해도  
+99.9%의 accuracy를 얻게된다.
 
 * 이같은 단점 때문에 precision과 recall 등과 함께 사용됨.
 
