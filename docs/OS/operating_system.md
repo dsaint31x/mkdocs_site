@@ -1,5 +1,7 @@
 # Operating System (운영체제)
 
+* 다음 URL을 꼭 읽어볼 것: [OS란?](https://dsaint31.tistory.com/219)
+
 오케스트라의 지휘자처럼, ^^컴퓨터 시스템을 구성하고 있는 여러가지 자원(resource)^^ 에게 어떤 동작을 하도록 **지시하고 관리하는 역할** 을 하는 ***프로그램들의 집합***.
 
 사용자 측면에서 ***컴퓨터의 하드웨어에 대한 지식 없이도 컴퓨터시스템을 쉽게 사용 가능*** 케 해주고 시스템 측면에선 ***컴퓨터 시스템의 성능을 최대 한도로 향상*** 시키는 프로그램.
@@ -85,11 +87,21 @@ CPU (당시엔 거의 core가 하나)의 idle time을 줄이기 위한 시스템
 
 #### Multi-tasking System
 
-1. 하나의 resource를 여러 process들이 공유
+1. 하나의 resource (=일반적으로 CPU)를 여러 process들이 공유
 2. 여러 ***tasks가 동시에 수행 되도록 느껴지게 하는 시스템***
    * round-robin scheduling algorithm과 같은 ***스케쥴링 알고리즘*** 이 multi-programming에 보다 추가
 3. multi-programming의 논리적인 확장
 4. multi-programming에 multi-processing과 time-sharing 등의 개념 등이 보다 추가
+
+> **Task란**
+>
+> OS에서 실행되는 Program의 instance를 가르키는 ***Process** 와 비교할 때,  
+> ***Task*** 는 보다 일반적인 용어임.  
+> 특정 목표를 달성하기 위해 수행되는 작업이나 활동을 의미하며, 컴퓨터에서는 흔히 하나 이상의 Process로 구성됨.
+> 특정 작업을 완료하는데 필요한 모든 단계를 포함하기도 함.
+>
+> * Process는 OS가 관리하는 단위임.
+> * Task는 OS의 관리 단위가 아님.
 
 ---
 
@@ -102,7 +114,7 @@ CPU (당시엔 거의 core가 하나)의 idle time을 줄이기 위한 시스템
 
 #### 실시간 처리 (Real Time) 시스템
 
-1. 프로세서 작동이나 데이터 흐름에 엄격한 시간 제약이 있을 때 사용.
+1. 프로세서 작동이나 데이터 흐름에 ***엄격한 (처리 혹은 응답)시간 제약*** 이 있을 때 사용.
 2. 발생 data를 곧바로 바로 처리.
 3. 실시간 시스템의 운영체제는 보통 특수 목적용이다.  
    ex) 기차표 예약 업무, 은행 업무
@@ -118,5 +130,5 @@ CPU (당시엔 거의 core가 하나)의 idle time을 줄이기 위한 시스템
 #### 분산 처리 시스템
 
 1. 네트워크를 통해 통신하여 그 기능을 제공
-2. 여러 프로세서를 사용하지만, 밀결합(tightly-coupled) 구조가 아닌 소결합(loosely-coupled) 형태
+2. 여러 프로세서를 사용하지만, 밀결합(tightly-coupled) 구조가 아닌 ***소결합(loosely-coupled)*** 형태
 3. 컴퓨터 버스나 클럭을 공유하지 않고, 네트워크를 이용해 통신
