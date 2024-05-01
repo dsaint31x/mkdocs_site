@@ -108,33 +108,32 @@ S/W 라는 개념이 없다고 봐도 되는 세대이다.
 
 ### The von Neumann Architecture ***
 
-`Stored program computer`의 구조로서 현대 컴퓨터들이 대부분 채택하고 있음.
-다음과 같은 세 부분으로 구성됨.
+`Stored program computer`라고 불리며,  
+현대 컴퓨터들이 대부분 채택하고 있는 구조.
+
+> program(=instructions)을 data와 똑같이 메모리에 저장하여  
+> 소프트웨어 변경의 유연성을 제공하고,  
+> 다양한 작업을 수행할 수 있는 범용성을 갖춘 컴퓨터 구조
+
+흔히, 다음과 같은 세 부분으로 구성됨.
+
+* data를 외부로부터 입력받고, 처리 결과를 외부에 표시하는 I/O Device (키보드, 모니터, 프린터 등등)
+* data와 program의 저장을 담당하는 memory (storage를 포함)
+* data를 program에 따라 처리를 담당하는 CPU (`Control Unit`과 `ALU`등으로 구성됨.)
 
 <figure markdown>
 ![von Neumann Architecture](./img/von_Neumann_arch.png){ width="300" }
 <figcaption>Stored program Architecture</figcaption>
 </figure>
 
-* data를 외부로부터 입력받고, 처리 결과를 외부에 표시하는 I/O Device (키보드, 모니터, 프린터 등등)
-* data와 program의 저장을 담당하는 memory (storage를 포함)
-* data를 program에 따라 처리를 담당하는 CPU (`Control Unit`과 `ALU`등으로 구성됨.)
-
 Neumann은  
 memory(기억장치)에 컴퓨터의 instruction들과 data들을 함께 저장하는 `stored program` 방식을 1946년에 제안했고,  
-`EDVAC`이 이를 구현했음  
-(`EDSAC`이 먼저 이를 구현했으나 `EDVAC`관련 보고서에서 stored program computer architecture에 대한 언급이 등장함). 
+`EDVAC`이 이를 1952년 구현했음  
+(`EDSAC`이 먼저 이를 1949년에 구현했으나 `EDVAC`관련 보고서에서 stored program computer architecture에 대한 언급이 등장함). 
 
 * data와 program을 동일한 방식으로 memory에 저장하고, 동일한 방식으로 처리.
 * 실행되는 program은 우선 main memory에 적재되어야 함.
 
-> *data와 program이 저장되는 memory* 가  
-> von Neumann architecture 에선 동일하기 때문에  
-> ***bottleneck 현상*** 이라는 단점을 가짐.  
->  
-> 이를 분리시킨 구조인 **Harvard architecture** 도 존재함.  
-> 이 경우, program과 data에 동시에 접근이 가능하다는 장점을 가지지만, 분리된 bus와 memory가 필요하여 보다 복잡한 구성이 요구됨.  
-> 
 > *data와 program이 저장되는 memory* 가  
 > von Neumann architecture 에선 동일하기 때문에  
 > ***bottleneck 현상*** 이라는 단점을 가짐.  
@@ -200,8 +199,8 @@ stored program architecture 이전에는
 
 > `multi-programming`과 비슷한 개념이 `multi-tasking`임.  
 >
-> 하나의 장비에서 여러 프로그램이 동시에 수행을 목표로 하기보다는  
 > ^^CPU의 idle time을 줄이기 위해 도입된 multi-programming^^ 과 달리,  
+> (multi-programming은 하나의 장비에서 여러 프로그램의 동시 수행을 목표로 하지 않음.)  
 > ^^`multi-tasking`은 하나의 resource를 여러 process들이 공유하는 개념으로  
 > ***동시에 수행*** 되는 것을 목표^^ 로 하고 있어서 ^^multi-programming의 논리적인 확장^^ 이라고 볼 수 있다.  
 >  
@@ -213,12 +212,16 @@ stored program architecture 이전에는
 > 오직 단일 CPU의 idle time을 줄이기 위한 context changing에만 초점을 둔 것으로  
 > 여러 작업이 동시에 실행되는 것을 보장하지 않는다.  
 >  
-> 결국, `multitasking`은 ^^multi-programming에 multi-processing과 time-sharing 등의 개념 등이 보다 추가^^ 된 것이다.  
+> 결국, 확장된 `multitasking`은 ^^multi-programming에 multi-processing과 time-sharing 등의 개념 등이 보다 추가^^ 된 것이다.  
 >
-> 보다 자세한 건 다음 url을 참고하라. [Difference Between Multiprogramming and Multitasking](https://www.tutorialspoint.com/difference-between-multiprogramming-and-multitasking)
+> 보다 자세한 건 다음 urls을 참고하라.  
+> 
+> * [Difference Between Multiprogramming and Multitasking](https://www.tutorialspoint.com/difference-between-multiprogramming-and-multitasking)
+> * [Multi-tasking system](../../OS/operating_system.md#multi-tasking-system)
+> * [Multi-programming system](../../OS/operating_system.md#다중-프로그래밍multi-programming-시스템)
+
 
 `TRADIC`, `TX-0` 등이 유명한 2세대 컴퓨터임.
-
 
 > `ENIAC`이 17,000개의 vacuum tube를 사용한 것에 비교하여 `TRADIC`은 ^^800개의 transistor를 사용하면서 1/15,000 수준의 전력을 소비^^ 했음.
 
