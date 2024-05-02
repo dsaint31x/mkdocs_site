@@ -123,8 +123,8 @@ def hamming_dist( i, j ):
 image에 직접 사용되기 보다는 image의 feature vector를 계산하고, 이들 간의 distance (or difference)를 계산하는데 사용된다.
 
 - data의 Probability distribution(확률분포)을 고려한 distance.
-- 다음 그림에서 $\mu$와 보다 가까운 것을 고를 때, 단순히 L2-norm을 고려할 경우 $\textbf{b}$가 보다 가깝지만,  각 점들의 분포를 고려하면 $\textbf{c}$라고 말할 수 있다.
-    ![](../../img/etc/Mahalanobis_Dist.jpeg)
+- 다음 그림에서 $\mu$와 보다 가까운 것을 고를 때, 단순히 L2-norm을 고려할 경우 $\textbf{b}$가 보다 가깝지만,  각 점들의 분포를 고려하면 $\textbf{c}$라고 말할 수 있다.  
+<figure markdown>![](../../img/etc/Mahalanobis_Dist.jpeg){width=200}</figure markdown>
 
 > 이처럼 데이터의 확률분포를 고려한 distance로서 Mahalanobis distance가 사용되며,
 > 이는 mean vector, $\mu$와 [covariance matrix, $\Sigma$](https://dsaint31.tistory.com/entry/Statistics-Covariance-vs-Correlation#Example%--%-A%--Covariance%--Matrix) 를 사용하여 계산됨.  
