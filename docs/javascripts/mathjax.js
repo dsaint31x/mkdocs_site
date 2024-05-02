@@ -9,11 +9,11 @@ window.MathJax = {
       ignoreHtmlClass: ".*|",
       processHtmlClass: "arithmatex"
     }
-  };
+};
   
-  document$.subscribe(() => { 
-    MathJax.startup.output.clearCache()
-    MathJax.typesetClear()
-    MathJax.texReset()
-    MathJax.typesetPromise()
-  })
+document$.subscribe(() => { 
+  MathJax.startup.output.clearCache()
+  MathJax.typesetClear()
+  MathJax.texReset()
+  MathJax.typesetPromise()
+})

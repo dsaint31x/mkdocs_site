@@ -35,7 +35,7 @@ Image 를 input으로 다루는 경우 가장 일반적으로 사용되는 ANN�
 
 **Convolution 에 대한 참고자료**
 
-* DIP's [Convolution](../../dip/cv2/etc/dip_convolution.md)
+* DIP's [Convolution](../../DIP/cv2/etc/dip_convolution.md)
 * [Convolution's Matrix Representation](https://bme808.blogspot.com/2022/10/ml-transposed-convolution.html) : matrix representation 부분만 봐도 된다.
 
 ---
