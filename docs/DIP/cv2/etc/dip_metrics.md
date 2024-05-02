@@ -17,20 +17,21 @@ metric (or distance function)의 정의는 다음과 같음 (수학적 정의).
 The requirements for a metric include being 
 
 1. non-negative : $d(x,y) \ge 0$, 
-2. identity of indiscernibles : $d(x,x)=0$,
+2. identity of indiscernibles (식별불가능자의 동일성) : $d(x,x)=0$,
 3. symmetric : $d(x,y)=d(y,x)$, and 
 4. satisfying the triangle inequality : $d(x,y) \le d(x,z)+d(z,y)$. 
 
 Additionally, a distance function should give a small distance for similar objects and a large distance for dissimilar objects.
 
-> distance function은 SSIM과 같이 similarity measures를 포함하는 경우도 있어서 metric보다 좀더 넓은 개념으로 취급되기도 하지만, **일반적** 으로는 metric과 같은 의미로 사용된다. Overall, the distinction between the terms "distance function" and "metric" is not always strictly observed, and the two terms are often used interchangeably in practice.
+> distance function은 SSIM과 같이 similarity measures를 포함하는 경우도 있어서 metric보다 좀더 넓은 개념으로 취급되기도 하지만, **일반적** 으로는 metric과 같은 의미로 사용된다.  
+Overall, the distinction between the terms "distance function" and "metric" is not always strictly observed, and the two terms are often used interchangeably in practice.
 
 ## difference 계열
 
 ### Mean Absolute Difference (MAD, or Mean Absolute Error, MAE)
 
 $$
-\text{MAE}(\textbf{y},\hat{\textbf{y}})=\frac{1}{m}\sum^m_{i=1}|\hat{\textbf{y}}_i-\textbf{y}_i|
+\text{MAE}(\textbf{y},\hat{\textbf{y}})=\frac{1}{m}\sum^m_{i=1}|\hat{y}_i-y_i|
 $$
 
 where
