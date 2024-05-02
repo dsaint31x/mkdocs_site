@@ -37,25 +37,25 @@ where
 
 * $m$ : # of pixels
 * $\hat{\textbf{y}}$ : current image (ideal image와 비교하고자하는 image)
-* $\hat{\textbf{y}}_i$ : current image에서 $i$번째 pixel의 값 (or vector).
+* $\hat{y}_i$ : current image에서 $i$번째 pixel의 값.
 * $\textbf{y}$ : ideal image 
-* $\textbf{y}_i$ : ideal image에서 $i$번째 pixel의 값 (or vector).
+* $y_i$ : ideal image에서 $i$번째 pixel의 값 (or vector).
 
-`np.mean(np.abs(img-ideal))`로 쉽게 구할 수 있으며, L-1 norm을 사용하기 때문에 outlier에 영향을 MSE에 비해 덜 받음.
+`np.mean(np.abs(img-ideal))`로 쉽게 구할 수 있으며, L-1 norm 의 경우처럼 outlier에 영향을 MSE에 비해 덜 받음.
 
 ### Mean Squared Error (MSE) 
 
 $$
-\text{MSE}(\textbf{y},\hat{\textbf{y}})=\sqrt{\frac{1}{m}\sum^m_{i=1}\left(\hat{\textbf{y}}_i-\textbf{y}_i\right)^2}
+\text{MSE}(\textbf{y},\hat{\textbf{y}})=\frac{1}{m}\sum^m_{i=1}\left(\hat{y}_i-y_i\right)^2
 $$
 
 where
 
 * $m$ : # of pixels
 * $\hat{\textbf{y}}$ : current image (ideal image와 비교하고자하는 image)
-* $\hat{\textbf{y}}_i$ : current image에서 $i$번째 pixel의 값 (or vector).
+* $\hat{y}_i$ : current image에서 $i$번째 pixel의 값.
 * $\textbf{y}$ : ideal image 
-* $\textbf{y}_i$ : ideal image에서 $i$번째 pixel의 값 (or vector).
+* $y_i$ : ideal image에서 $i$번째 pixel의 값 (or vector).
 
 미분이 가능하기때문에 매우 많이 사용되지만, sign을 +로 만들기 위해 취한 squared로 인해 MAE에 비해 큰 값을 가지게 되고, outlier의 영향이 커지는 단점을 가짐.
 
@@ -66,7 +66,7 @@ where
 ### Root Mean Squared Error (RMSE)
 
 $$
-\text{RMSE}(\textbf{y},\hat{\textbf{y}})=\frac{1}{m}\sum^m_{i=1}\|\hat{\textbf{y}}_i-\textbf{y}_i\|_2
+\text{RMSE}(\textbf{y},\hat{\textbf{y}})=\sqrt{\frac{1}{m}\sum^m_{i=1}\left(\hat{y}_i-y_i\right)^2}
 $$
 
 MSE가 squared로 인해 값이 커지는 문제를 square root를 이용하여 해결함. L-2 norm기반이기 때문에 미분 가능하다는 장점을 가지지만 L-1 norm에 기반한 MAE보다 outlier의 영향이 크다는 단점을 가지고 있음.
@@ -80,7 +80,7 @@ MSE가 squared로 인해 값이 커지는 문제를 square root를 이용하여 
 ### Sum of Squared Error (SSE)
 
 $$
-\text{SSE}(\textbf{y},\hat{\textbf{y}})=\sum^m_{i=1}\left(\hat{\textbf{y}}_i-\textbf{y}_i\right)^2
+\text{SSE}(\textbf{y},\hat{\textbf{y}})=\sum^m_{i=1}\left(\hat{y}_i-y_i\right)^2
 $$
 
 MSE에서 전체 샘플 갯수로 나누는 연산이 빠진 형태. 일반적으로 pixel의 수가 고정된 경우에 사용됨. (연산량은 줄어드나 값이 커지기 때문에 MSE, RMSE보다 많이 사용되진 않는 편)
@@ -94,7 +94,9 @@ MSE에서 전체 샘플 갯수로 나누는 연산이 빠진 형태. 일반적�
 길이가 같은 binary image 혹은 binary vector 간의 다른 bit의 수를 세는 것임.  
 즉, 각각의 위치에서 값을 비교하고, 값이 다른 bit의 갯수를 count.
 
-![](../../img/ch02/Hamming_distance.png)
+<figure markdown>
+![](../../img/ch02/Hamming_distance.png){width="80"}
+</figure markdown>
 
 * `xor`를 사용하면 간단히 구현할 수 있음.
 
@@ -123,7 +125,7 @@ image에 직접 사용되기 보다는 image의 feature vector를 계산하고, 
 - 다음 그림에서 $\mu$와 보다 가까운 것을 고를 때, 단순히 L2-norm을 고려할 경우 $\textbf{b}$가 보다 가깝지만,  각 점들의 분포를 고려하면 $\textbf{c}$라고 말할 수 있다.
     ![](../../img/etc/Mahalanobis_Dist.jpeg)
 
-> 이처럼 데이터의 확률분포를 고려한 distance로서 Mahalanobis distance가 사용되며,  
+> 이처럼 데이터의 확률분포를 고려한 distance로서 Mahalanobis distance가 사용되며,
 > 이는 mean vector, $\mu$와 [covariance matrix, $\Sigma$](https://dsaint31.tistory.com/entry/Statistics-Covariance-vs-Correlation#Example%--%-A%--Covariance%--Matrix) 를 사용하여 계산됨.  
 > 참고로, covariance matrix $\Sigma$가 identity matrix인 경우 Mahalanobis distance는 Euclidean distance와 같음.
 
