@@ -25,6 +25,6 @@
 - `Ctrl + M Y` : 해당 셀을 코드 셀로 변경
 - `Ctrl + M M` : 해당 셀을 마크 다운 셀로 변경
 - `Ctrl + M I` : Interrupt
-- `Ctrl+M` : 런타임 다시 시작
+- `Ctrl + M .` : 런타임 다시 시작 (period)
 - `Ctrl + M Z` : 실행 취소
 - `Ctrl+Shift+Z` : 마지막 셀 작업 실행취소
