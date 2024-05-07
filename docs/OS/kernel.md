@@ -89,19 +89,6 @@ Kernel이 수행하는 H/W resource관리는 다음과 같음.
 `I/O Communication`
 : 입출력 통신 관리
 
-
-<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3232161401562757"
-     crossorigin="anonymous"></script>
-<ins class="adsbygoogle"
-     style="display:block; text-align:center;"
-     data-ad-layout="in-article"
-     data-ad-format="fluid"
-     data-ad-client="ca-pub-3232161401562757"
-     data-ad-slot="5759309749"></ins>
-<script>
-     (adsbygoogle = window.adsbygoogle || []).push({});
-</script>
-
 ---
 
 ## OS에서의 역할.

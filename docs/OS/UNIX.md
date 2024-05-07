@@ -36,6 +36,8 @@
     * POSIX 표준을 일부 지원하는 서브시스템을 제공. 
     * Windows 10부터는 Windows Subsystem for Linux (WSL)을 도입하여 Linux 커널을 실행할 수 있는 환경을 제공하고 있으며, 이는 Windows 10의 20H1 업데이트부터는 WSL2로 발전하여 진짜 Linux 커널이 실행되도록 지원하고 있음.
 
+> 참고: POSIX
+
 결론적으로 LINUX와 Mac OS 등의 현대적 컴퓨터 OS의 기반이자 원형이 되어준 운영체제로 컴퓨터의 역사상 가장 중요한 위치를 차지하고 있는 것이 UNIX임.
 
 Windows를 제외한 거의 모든 OS는 UNIX에 기반을 두고 있다고 볼 수 있고 이는 모바일 기기의 OS에서도 마찬가지로, android와 iOS, 타이젠 등도 다 UNIX-like라고 볼 수 있다. 
