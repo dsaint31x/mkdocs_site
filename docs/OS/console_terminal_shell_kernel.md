@@ -55,7 +55,7 @@ Some ^^popular terminal applications^^ include
 ## Shell
 
 > `사용자`와 `OS`(정확히는 `kernel`) 사이에 위치하고,  
-> 사용자가 입력한 command들을 해석하여 OS(정확히는 `kernel``)로 전달하여 실행시키고 
+> 사용자가 입력한 command들을 해석하여 OS(정확히는 `kernel`)로 전달하여 실행시키고 
 > 그 결과를 사용자에게 다시 보여주는 역할을 담당한다.  
 > `Terminal` 내부에서 동작하며, `CLI` 를 사용하는 게 일반적임.
 > 

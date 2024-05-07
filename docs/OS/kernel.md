@@ -38,11 +38,11 @@ Kernel은 ***User program과 H/W resource 사이에서 이들을 연결*** 해�
      * `C Standard Library`는 `System call`에 대한 ***Wrapper*** 기능을 제공하며 `glibc`나 `musl` 과 같은 다양한 implementation을 가짐. 
 * H/W와 Kernel간의 interface는 일반적으로 다음과 같은 H/W별로 그룹화된 **개별 interface** 들의 모음으로 구성됨.
 
-* CPU Interface : Task Management 에 대응
-* Main Memory Interface : Memory Management에 대응
-* File System and Block Device Driver Interface : File System Management에 대응
-* Network Interface (and Driver) : Network Management에 대응
-* Device Driver (=키보드, 터미널, H/W interrupts 등) : Device Driver Management, Interrupt Handling 등에 대응
+    * ***CPU Interface*** : Task Management 에 대응
+    * ***Main Memory Interface*** : Memory Management에 대응
+    * ***File System and Block Device Driver Interface*** : File System Management에 대응
+    * ***Network Interface (and Driver)*** : Network Management에 대응
+    * ***Device Driver Interface*** (=키보드, 터미널, H/W interrupts 등) : Device Driver Management, Interrupt Handling 등에 대응
 
 ---
 
