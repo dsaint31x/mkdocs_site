@@ -8,7 +8,13 @@
 (슈퍼컴퓨터, 서버, PC 모두 분야에서 UNIX는 점점 보기 어려운게 현실임)
 
 > UNIX도 Multics (Multiplexed Information and Computing Service)라는 시분할 운영체제에 기반을 두고 개발이 되었다.  
-> Multics는 상업용으로는 성공을 거두지 못하였기 때문 현대적 OS의 시작이라는 타이틀을 UNIX에게 넘겨준 면은 있지만, UNIX는 Multics없이는 개발될 수 없다고 단언할 수 있을 정도로 그 기반을 제공해준 OS임.
+> Multics는 상업용으로는 성공을 거두지 못하였기 때문 현대적 OS의 시작이라는 타이틀을 UNIX에게 넘겨준 면은 있지만, UNIX는 Multics없이는 개발될 수 없다고 단언할 수 있을 정도로 그 기반을 제공해준 OS로 가치를 인정받고 있음.
+
+## 발전사
+
+다음의 URL을 참고.
+
+* 참고: [System V, BSD, 그리고 LINUX 와 MacOS](http://ds31x.tistory.com/134)
 
 ## 특징
 
@@ -21,8 +27,8 @@
 ## 다른 os 들과의 관계.
 
 1. **UNIX의 상용화 및 Linux의 등장**: 
-    * 초기 UNIX는 여러 대학과 연구 기관에서 소스 코드 접근이 가능했고 사실상 무료로 이용가능한 매우 저가의 라이선스 형태로 배포되었으나, 
-    * AT&T 사가 반독점 문제로 인해 여러 회사로 분할되면서 상용화가 이루어지게 됨. 
+    * 초기 UNIX는 여러 대학과 연구 기관에서 소스 코드 접근이 가능(모든 소스코드가 공개되어있었고 접근 가능했음)했고 사실상 무료로 이용가능한 매우 저가의 라이선스 형태로 배포되었으나, 
+    * AT&T 사가 반독점법 등으로 인해 여러 회사로 분할(1984년)되면서 상용화가 강력하게 이루어지게 됨 (가격의 급상승 및 소스코드 접근이 제한되며 소스코드 자체가 공개되지 않게됨.). 
     * UNIX를 포함하여 많은 S/W 의 상용화가 가속화되면서 반작용으로 open source 운동이 일어났으며 
     * 이들의 결실 중 하나가 UNIX와 호환되는 자유로운 os인 Linux의 등장으로 이어짐.
 2. **UNIX, Linux, MacOS의 관계와 POSIX**: 
@@ -36,7 +42,7 @@
     * POSIX 표준을 일부 지원하는 서브시스템을 제공. 
     * Windows 10부터는 Windows Subsystem for Linux (WSL)을 도입하여 Linux 커널을 실행할 수 있는 환경을 제공하고 있으며, 이는 Windows 10의 20H1 업데이트부터는 WSL2로 발전하여 진짜 Linux 커널이 실행되도록 지원하고 있음.
 
-> 참고: POSIX
+> 참고: [POSIX에 대하여.](../CE/ch15/ce15_2_4_portability/#portable-operating-system-interface-posix)
 
 결론적으로 LINUX와 Mac OS 등의 현대적 컴퓨터 OS의 기반이자 원형이 되어준 운영체제로 컴퓨터의 역사상 가장 중요한 위치를 차지하고 있는 것이 UNIX임.
 

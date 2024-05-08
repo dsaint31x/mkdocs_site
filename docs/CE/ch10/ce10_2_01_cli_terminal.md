@@ -40,21 +40,24 @@ computer 전문가 들보다는 다른 업무를 위해 computer를 사용하는
 
 ## Terminal
 
->컴퓨터 초창기에는 H/W로 ***컴퓨터에 연결된 물리적인 I/O 장치 (`Console`, `tty` 이라고도 불림`)*** 였으나, 현재는 ***S/W로 사용자에게 CLI를 제공*** 한다. 
+> 컴퓨터 초창기에는 H/W로 ***컴퓨터에 연결된 물리적인 I/O 장치 (`Console`, `tty` 이라고도 불림`)*** 였으나,  
+> 현재는 ***S/W로 사용자에게 CLI를 제공*** 한다. 
 
-사용자의 명령을 기다리는 command prompt를 보여주고 사용자가 명령을 입력하면 그 결과를 문자로 출력하여 반응함.
+사용자의 명령을 기다리는 command prompt를 보여주고  
+사용자가 명령을 입력하면 그 결과를 문자로 출력하여 반응함.
 
 > ***오늘날 `Terminal` 은 `CLI`를 제공하는 S/W*** 이기 때문에,  `Terminal emulator`, `soft terminal` 과 같이 불리기도 함. 
 
 `Terminal`은
 
-* 키보드나 모니터의 장치 드라이버로부터 입력과 출력에 대한 처리를 위해 도움을 받아야 하고, 
+* 키보드나 모니터의 장치 드라이버로부터  
+* ***입력과 출력에 대한 처리*** 를 위해 도움을 받는데, 
 * 이는 OS를 통해 이루어짐. 
   
 
-즉, `CLI`를 채택한 user application들은 ***`Terminal`을 통해 입출력***이 이루어지고 있으나 실제로는 내부에서 `OS`의 도움을 받고 있음. 
+즉, `CLI`를 채택한 user application들은 ***`Terminal`을 통해 입출력*** 이 이루어지고 있으나 실제로는 내부에서 `OS`의 도움을 받고 있음. 
 
-* Terminal : 사용자와 상호작용.
+* Terminal : 사용자와 상호작용을 담당.
 * OS (including device drivers) : 물리적 I/O 디바이스와 Terminal, User Application을 중재.
 * User Application (system call 사용) : User CLI application은 `CLI` 를 **OS와 Terminal의 도움을 받아 제공** 하고, 해당 `CLI`를 통해 사용자와 상호작용을 수행.
 
@@ -69,6 +72,9 @@ computer 전문가 들보다는 다른 업무를 위해 computer를 사용하는
 
 **참고** : [Console, Terminal and Shell](../../OS/console_terminal_shell_kernel.md)
 
+
+---
+
 ---
 
 > 다음은 조금 어려운 내용이므로 `CLI`와 `GUI`, `Terminal`의 개념만 필요한 경우엔 아래는 생략해도 좋다.
@@ -82,16 +88,16 @@ computer 전문가 들보다는 다른 업무를 위해 computer를 사용하는
 하지만, 실제로는 한 순간에 하나의 core 당 하나의 program이 동작하는 것이고 core를 사용하는 시간을 나누어 여러 개의 program들이 동시에 동작되도록 보이는 것 뿐이다.  
 
 `process` and `process context`
-: 실제 동작하는 program의 명령어들과 데이터는 core의 regiser들에 저장되어 있어야 한다. **한 core에서 동작하는 단위** 를 `process`라고 부르며 이 process가 core에서 재실행되기 위해 필요한 데이터들을 `process context`라고 부른다.  
+: 실제 동작하는 program의 명령어들과 데이터는 core의 register들에 저장되어 있어야 한다. **한 core에서 동작하는 단위** 를 `process`라고 부르며 이 process가 core에서 재실행되기 위해 필요한 데이터들을 `process context`라고 부른다.  
 
 `context switching`
 : 하나의 core에서 여러 process가 시분할(Time Dividing)으로 실행되는 경우, 실행되던 process의 context가 기억장치에 저장(`stack`이 이용됨)이 되고, 실행될 process의 context가 register등에 load되어야 하며, 이런 과정을 `context switching` 이라고 부름.
 
 
 CLI 를 사용하는 User application이 단일 process로 동작한다고 가정할 때, 이 역시 하나의 core에서 수행되기 위해서는 자신의 context가 cpu의 register들에 load 되어야 한다. 사용자의 키보드로부터의 입력을 대기하는 순간에 core를 사용하고 있는 건 비효율적이므로 ^^OS가 I/O(입출력)을 대기하는 process들은 보통 context switching을 시켜서 sleep상태로 두는^^ 경우가 일반적이다.  
-즉, User appliation이 I/O를 수행하기 위해 OS에게 `system call`을 하는 순간, OS는 사용자가 키보드 및 모니터로부터 I/O을 완료하기 전까지 해당 process를 `sleep` 시킨다. (해당 system call이 buffered input을 지원하면서 요구한 경우이고, 사용자가 키보드를 누를 때마다 처리가 이루어지도록 지정도 가능하긴 함.)
+즉, User application이 I/O를 수행하기 위해 OS에게 `system call`을 하는 순간, OS는 사용자가 키보드 및 모니터로부터 I/O을 완료하기 전까지 해당 process를 `sleep` 시킨다. (해당 system call이 buffered input을 지원하면서 요구한 경우이고, 사용자가 키보드를 누를 때마다 처리가 이루어지도록 지정도 가능하긴 함.)
 
-I/O가 이루어지고 있는 동안, OS는 해당 User applicatoin을 sleep 시키고, 다른 process를 수행할 수 있다. 이후 I/O가 종료되면 OS는 해당 User appliation을 깨워서 core에서 수행되도록 context switching을 수행한다. 다시 말하면, I/O 종료 event가 발생하면 `interrupt` 에 의해 User appliation은 sleep 상태에서 나와 다시 core에서 수행되는 것으로 생각할 수 있다.  
+I/O가 이루어지고 있는 동안, OS는 해당 User application을 sleep 시키고, 다른 process를 수행할 수 있다. 이후 I/O가 종료되면 OS는 해당 User application을 깨워서 core에서 수행되도록 context switching을 수행한다. 다시 말하면, I/O 종료 event가 발생하면 `interrupt` 에 의해 User application은 sleep 상태에서 나와 다시 core에서 수행되는 것으로 생각할 수 있다.  
 
 위의 내용은 매우 간단히 애기한 것으로 실제 동작은 보다 복잡하다. **context switching은 부하가 많이 걸리는 작업** 으로 지나치게 많이 발생할 경우 오히려 효율이 매우 떨어지게 되어 사용자가 컴퓨터가 매우 느리다고 생각할 수 있다. 때문에, 이를 효과적으로 수행하기 위해 OS는 다양한 알고리즘을 사용하며 보다 많은 구성요소들의 도움을 받는다. 
 

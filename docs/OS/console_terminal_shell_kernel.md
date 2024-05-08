@@ -3,8 +3,8 @@
 
 ## Console: 
 
-> 컴퓨터(주로 서버)에 command를 작성하여 입력하고 그 결과를 확인할 수 있는 (물리적) 입출력 장치.  
-> Terminal과 비슷한 의미를 가지고 있으나 보다 ^^물리적인 측면이 강조된 경우 사용^^ 된다.
+> 컴퓨터(주로 서버)에 command를 작성하여 입력하고 그 결과를 확인할 수 있는 ***(물리적) 입출력 장치*** .  
+> Terminal과 비슷한 의미를 가지고 있으나 보다 ^^***물리적인 측면이 강조*** 된 경우 사용^^ 된다.
 
 A ^^physical device^^ that typically comprises 
 
@@ -26,11 +26,15 @@ The ***console*** allows system administrators to
 > 컴퓨터에 local 또는 remote로 접속할 수 있는 ***console을 S/W로 구현한 것***.  
 > (보통 `shell`이 수행되도록 해주는 wrapper라고 볼 수 있다.)
 >
-> 과거 terminal이나 console 모두 teletype(`tty`, 독립된 HW system)로 구성되었으나,  
-> 기술의 발전으로 다른 컴퓨터의 OS에 접속하거나 한 컴퓨터에 다중 사용자가 접속하는 게 일반화 되면서 `tty`가 컴퓨터의 SW로 바뀌게 됨.  
-> (때문에 virtual terminal, terminal emulator, soft terminal 라고도 불림).  
+> 과거 terminal이나 console 모두 teletype(`tty`, 독립된 HW system)로 구성되었으나, 기술의 발전으로 
+> 
+> * 다른 컴퓨터의 OS에 접속하거나 
+> * 한 컴퓨터에 다중 사용자가 접속하는 게 일반화 되면서 
+> * `tty`가 컴퓨터의 SW로 바뀌게 됨.  
 >
-> 현재는 console이나 teletype(tty)보다는 terminal이라는 용어가 보다 많이 사용된다  
+> 때문에 terminal은 virtual terminal, terminal emulator, soft terminal 라고도 불림  
+>
+> 현재는 console이나 teletype(tty) writer보다는 terminal이라는 용어가 보다 많이 사용된다  
 > (`tty`라는 용어는 linux등에서 많이 보임).  
 
 오늘날 Terminal은 Command Line Interface(`CLI`)를 제공하는 S/W로 `shell`이 구동되는 wrapper S/W라고 보면 된다.
@@ -52,12 +56,17 @@ Some ^^popular terminal applications^^ include
 
 ---
 
+---
+
 ## Shell
 
-> `사용자`와 `OS`(정확히는 `kernel`) 사이에 위치하고,  
-> 사용자가 입력한 command들을 해석하여 OS(정확히는 `kernel`)로 전달하여 실행시키고 
-> 그 결과를 사용자에게 다시 보여주는 역할을 담당한다.  
-> `Terminal` 내부에서 동작하며, `CLI` 를 사용하는 게 일반적임.
+> `사용자`와 ***`OS`의 `kernel`*** 사이에 위치하고,  
+>
+> * 사용자가 입력한 command들을 해석하여 
+> * OS(정확히는 `kernel`)로 전달하여 실행시키고 
+> * 그 결과를 사용자에게 다시 보여주는 역할을 담당한다.
+>  
+> ^^`Terminal` 내부에서 동작^^ 하며, `CLI` 를 사용하는 게 일반적임.
 > 
 > OS의 구성요소 (`OS`를 아주 간단하게 `kernel`과 `shell`로 구성된다고 그리는 경우도 많음.)로서  
 > `shell`은 `kernel`과 사용자 사이에 위치한다.  
@@ -72,7 +81,7 @@ Some ^^popular terminal applications^^ include
 > * `Interactive mode` (REPL)
 > * `Scripting mode` (batch processing)
 >
-> **참고** : [`CLI`](../CE/ch10/ce10_2_01_cli_terminal.md#command-line-interface-란)
+> **참고** : [`CLI`에 대해서.](../CE/ch10/ce10_2_01_cli_terminal.md#command-line-interface-란)
 
 A software program that provides users with access to the operating system's services and resources. 
  
