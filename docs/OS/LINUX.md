@@ -2,12 +2,19 @@
 
 1991년 당시 학생이었던 Linus Torvalds가 개발한 UNIX-like OS임. 
 
-Linux-like OS이면서 교육용 OS인 Minix 을 기반으로 Linux의 소스코드가 개발된 것으로 알려져 있다.
+Linux-like OS이면서 
+
+* 교육용 OS인 [Minix](https://namu.wiki/w/Minix) 을 기반(개발환경으로 이용했으며, Minix의 코드를 사용한 건 아님)으로 
+* Linux의 소스코드가 개발된 것으로 알려져 있다.
 
 > 엄밀히 말하면 Linux는 Kernel이라고 봐야 하고, 그 외의 구성요소는 GNU project에 의해 만들어졌다.  
 > 때문에 GNU/Linux라고 불리는 경우가 많다.
 
 1983년 Richard Stallman 이 설립한 Free Software Foundation에서 GNU project (Gnu is Not Unix)를 시작하면서 Linux에서 동작가능한 다양한 software들의 개발이 활발하게 이루어짐.
+
+Linux의 역사는 다음 URL을 참고.
+
+* 참고: [System V, BSD, 그리고 LINUX 와 MacOS](http://ds31x.tistory.com/134)
 
 Linux는 GNU의 General Public License (GPL)을 따르며, GNU의 다양한 S/W의 지원을 받기 때문에 GNU/Linux로 많이 불린다. 실제로 Linux는 Linus Torvalds의 Linux kernel과 GNU의 다양한 SW들로 구성된 OS라고 볼 수 있다.
 
@@ -27,6 +34,7 @@ Linux는 다양한 배포판을 가지고 있으며 이들 배포판들은 각�
 
 Debian 계열(Debian, Mint, Ubuntu 등)과 Redhat (Redhat, Fedora, CentOS)계열 등으로 나누어짐.
 
-> 개인적으로 Debian계열을 선호하지만, 상업용으로는 보다 Redhat 계열 (특히 CentOS)이 많이 보이는 듯 함.
+> 개인적으로 Debian계열을 선호하지만, 상업용으로는 보다 Redhat 계열 (특히 CentOS)이 좀 더 많이 사용되는 것으로 보인다.  
+> 참고로, 기계학습이나 데이터 사이언스 계열에서는 Ubuntu 가 가장 많이 사용되는 추세임.
 
-사실 server(super computer포함) 와 Embedded system, mobile에서 Linux 기반의 OS가 모두 1위를 차지하고 있다. 유일하게 1위가 아닌 분야가 desktop 시장임.
+현재 server(super computer포함) 와 Embedded system, mobile에서 Linux 기반의 OS가 모두 1위를 차지하고 있다. 유일하게 1위가 아닌 분야가 desktop 시장임.

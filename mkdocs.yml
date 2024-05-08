@@ -191,7 +191,8 @@ nav:
       - "CE/ch15/ce15_2_4_portability.md"
       - "CE/ch15/ce15_2_5_package_management.md"
       - "CE/ch15/ce15_2_6_container.md"
-  - "os":
+  - "OS":
+    - "OS/os_title.md"
     - "OS/operating_system.md"
     - "OS/kernel.md"
     - "OS/console_terminal_shell_kernel.md"
