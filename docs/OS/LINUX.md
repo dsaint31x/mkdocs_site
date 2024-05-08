@@ -15,7 +15,7 @@ Linux는 다양한 배포판을 가지고 있으며 이들 배포판들은 각�
 
 ## 특징
 
-* 공개형 Open Source 임 : Source가 완전 공개가 되어 있기 때문에 이를 기반으로 다양한 파생 OS개발이 가능함.
+* 개방형 Open Source 임 : Source가 완전 공개가 되어 있기 때문에 이를 기반으로 다양한 파생 OS개발이 가능함.
     * 배포판들의 대부분 Linux kernel을 공유하고 그 외의 SW가 각 배포하는 주체들에 의해 차이점을 가진다.
 * interactive system (~time sharing system)이면서 multi-processing 및 multi-user system임.
 * 다중 작업 및 다중 사용자를 지원 : Linux는 Unix 못지 않게 서버를 위한 OS로 강력한 지지를 받고 있음. 
