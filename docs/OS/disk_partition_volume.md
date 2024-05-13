@@ -11,12 +11,15 @@
 
 ### **참고** : Disk and Disc
     
-`Disk`
+`Disk` : [ref. HDD정리자료.](https://dsaint31.tistory.com/411)
 
 - 자기 디스크로(Magnetic Disk) 둥근 원반에 자성을 가진 물체를 입히고 그 표면에 자력을 이용하여 데이터를 기록하고 자기장의 변화를 통해 데이터를 읽는 방식의 자기 기록 매체를 의미.
 - 플로피 디스크 드라이브, ZIP 드라이브, 하드 디스크 드라이브 등
+- Solid State Drive (SSD)로 대체되고 있음.
+
     
-`Disc`    
+`Disc` : [ref. optical disc](https://dsaint31.tistory.com/445)
+
 - 광 디스크로(Optical Disc) 둥근 원반에 얇은 반사체를 입힌 후 레이저를 이용하여 홈을 파서 데이터를 기록하고 레이저 반사의 변화를 통해 데이터를 읽는 방식의 광학 기록 매체를 의미.
 - 대표적으로 CD, DVD, 블루레이 등
 
@@ -26,9 +29,10 @@
 
 - Fixed Disk (고정 디스크)
     - 시스템에 장착되어 이동불가인 디스크.
-    - SSD, SATA, IDE 등
+    - SATA HDD, IDE HDD 등
+    - [SSD](https://dsaint31.tistory.com/413)도 고정식이 많으나 magnetic disk가 아닌 nand flash memory에 기인한다는 차이점 있음. 
 - Removable Disk (이동식 디스크)
-    - USB,e-SATA 등
+    - [USB Flash Memory](https://dsaint31.tistory.com/413),e-SATA HDD 등
 - Virtual Disk (가상 디스크)
     - Daemon이나 ISO 툴 등
 - Raid Disk

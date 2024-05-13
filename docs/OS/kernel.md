@@ -59,7 +59,7 @@ Kernel은 컴퓨터 HW의 physical resource를 관리하며, 이들의 `abstract
 | --- | --- |
 | CPU | Task or Processor |
 | Memory (or RAM) | Page or Segment |
-| Disk (or HDD, SDD) | File |
+| Disk (or HDD, SSD) | File |
 | Network | Socket |
 
 > User space에서는 Kernel에 의해 보다 abstraction이 많이된 resource에 접근하기 때문에 상대적으로 속도가 느리지만 보다 안전하고 편리한 기능을 사용가능함.  
