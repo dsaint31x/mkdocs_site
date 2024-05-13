@@ -202,6 +202,7 @@ nav:
     - "OS/file.md"
     - "OS/folderNdirectory.md"
     - "OS/path.md"
+    - "OS/file_system.md"
     - "OS/disk_partition_volume.md"
     - "OS/linux_cmds.md"
     - "OS/windows_cmds.md"
