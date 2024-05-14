@@ -129,7 +129,7 @@ nav:
         - 'register':        'CE/ch03_seq/ce03_01_0_5_register.md'
     - 'HW vs SW':  'CE/ch03_seq/ce03_05_hw_and_sw.md'
     - 'ch04: Computer Structure':
-      - 'CE/ch04_00_intro_computer_structure.md'
+      - 'CE/ch04/ce04_00_intro_computer_structure.md'
       - "Memory (and Storage)":
         - 'memory summary':  'CE/ch03_seq/ce03_02_0_primary_secondary_memory.md'
         - 'RAM and ROM':
