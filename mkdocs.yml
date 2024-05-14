@@ -151,7 +151,7 @@ nav:
         - "CE/ch04/ce04_22_fetch_execute.md"
         - "CE/ch04/ce04_31.md"
         - "CE/ch04/ce04_41.md"
-      - "Parallel Computing"
+      - "Parallel Computing":
         - CE/ch04/ce04_50.md"
         - CE/ch04/ce04_51.md"
         - CE/ch04/ce04_52_cluster_system.md"
