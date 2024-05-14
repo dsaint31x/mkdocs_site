@@ -1,14 +1,20 @@
-# Input and Output
+# Input and Output BUS
 
 현재의 컴퓨터들은 memory와 I/O Device를 같은 bus로 연결 하여 정보를 주고 받음.
 
 ![](./img/shared_memory_io_bus.jpeg)
 
+---
+
+---
+
 ## Bus
 
-컴퓨터 내에서  ***CPU(중앙 처리 장치)가*** Primary memory (주기억장치) 및 I/O device (입출력 장치) 들과 **정보를 전송하는데 사용하는 전기적 공통 선로**.
+컴퓨터 내에서  ***CPU(중앙 처리 장치)가***  
+Primary memory (주기억장치) 및 I/O device (입출력 장치) 들과  
+**정보를 전송하는데 사용하는 전기적 공통 선로**.
 
-> 컴퓨터 내에서 데이터(address포함) 전송은 bus를 통해 이루어짐.
+> 컴퓨터 내에서 ***데이터(address포함) 전송***은 ***bus를 통해 이루어짐***.
 > 
 
 - ***구조*** 에 따른 분류 (← 현대 컴퓨터는 이 둘이 합쳐진 구조)
@@ -27,6 +33,9 @@
     - Expansions (확장버스, 다른 기능을 지원하는 장치를 연결할 때 많이 사용됨.)
     - slot 형태 (or port)라 “확장슬롯“이라고도 불림.
 
+---
+
+---
 
 ## External Bus의 종류.
 
@@ -38,9 +47,13 @@
 
 1981 (PC/XT Bus, 8bit ISA), 1984 (PC/AT Bus, 16bit ISA)
 
+---
+
 ### EISA (Extended ISA)
 
 ISA보다 향상된 기능. 하지만 역시 현재 거의 사용되지 않음.
+
+---
 
 ### VESA (Video Electronics Standard Association)
 
@@ -48,17 +61,21 @@ ISA보다 향상된 기능. 하지만 역시 현재 거의 사용되지 않음.
 
 `PCI`로 대체됨.
 
+---
+
 ### PCI (Peripheral Component Interconnect)
 
 현재 널리 쓰이는 `PCI-E`의 이전 (old) 버스. 하지만 ^^PCI-E와 호환성이 없음.^^
 
 plug-and-play 기능을 지원하고 bridge회로를 통해 높은 호환성을 보임.
 
+---
+
 ### AGP (Advanced Graphics Port)
 
-GPU카드 전용버스 (2000년대에 일반적으로 그래픽카드가 부착되던 port. 현재는 PCI-E)가 그 자리를 물려받음).
+GPU카드 전용버스 (2000년대에 일반적으로 그래픽카드가 부착되던 port. 현재는 PCI-E가 그 자리를 물려받음).
 
-그래픽카드만 장착가능 (속도도 PCI-E보다 느림).
+***그래픽카드만 장착가능*** (속도도 PCI-E보다 느림).
 
 Intel이 제안했고 그래픽카드를 위한 높은 속도와 대용량 데이터 전송 능력을 보였으며 4가지의 속도 모드로  8x (AGP 3.0) 가 가장 빠른 형태임. 
 
@@ -66,7 +83,9 @@ Intel이 제안했고 그래픽카드를 위한 높은 속도와 대용량 데�
 를 기준으로 몇 배의 속도인지를 나타냄.
 > 
 
-### PCI-E (PCI Express)
+---
+
+### ***PCI-E (PCI Express)*** 
 
 2023 년 현재 그래픽카드 등의 고속의 데이터 전송이 요구되는 외부장치를 장착하는 port. 16x (8GB/sec)까지의 양방향 고속 데이터 전송이 가능함. 
 
@@ -86,6 +105,8 @@ PCI 의 한계를 극복하고자 개발이 되었으나, 개발 당시 가장 �
 
 * PCI-E 는 full duplex 이므로 실제 데이터 대역폭은 위의 숫자에서 2를 곱하면 됨.
 
+---
+
 ### USB
 
-이후 다룸.
+[Universal Serial Bus](../ch06/ce06_1_09_usb.md) 참고.

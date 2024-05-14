@@ -1,9 +1,14 @@
 # The Central Processing Unit (CPU)
 
-> operator (or instruction)을 해석하여 실행하는 장치. 컴퓨터의 두뇌에 해당.
+> Instruction 을 해석하여 실행하는 장치.  
+> ***컴퓨터의 두뇌*** 에 해당.
 
 ALU, Register, Control Unit(or Execution Unit)으로 구성됨  
-(이들 3가지만으로 구성된 CPU의 핵심구성요소를 core라고 부르며, CPU는 이 외에도 cache memory, internal bus 등을 포함하고 있음)
+
+* 이들 3가지만으로 구성된 CPU의 핵심구성요소를 ***core*** 라고 부르지만, 
+* CPU는 이 외에도 cache memory, internal bus 등을 포함하고 있음
+
+---
 
 ### 참고 : Core
 
@@ -13,38 +18,71 @@ ALU, Register, Control Unit(or Execution Unit)으로 구성됨
 * Register, 
 * Control Unit
 
-을 가르킴.
+로 구성됨.
+
+---
 
 ### 참고 : Microprocessor
 
 `MPU`(Micro Processor Unit), `Micro-processor`라는 용어가 혼용됨.
 
-과거 CPU는 여러개의 칩으로 만들어졌으나 현재는 대부분 one-chip으로 구현됨. 때문에 `micro-processor(하나의 칩으로 구현된 CPU)`와 혼용되어 사용됨. (CPU는 인텔이, MPU는 모토로라가 사용하던 용어)
+과거 CPU는 여러개의 칩으로 만들어졌으나 현재는 대부분 one-chip으로 구현됨.  
+때문에 `micro-processor(하나의 칩으로 구현된 CPU)`와 혼용되어 사용됨. (CPU는 인텔이, MPU는 모토로라가 사용하던 용어)
 
-프로세서(instruction을 처리하는 logic circuit) 중 `디바이스의 중심이 되는 것을 cpu`라고 부르고, ^^보조적 역할의 processor는 co-processor라고 부름^^ (그래픽카드가 일종의 co-processor).
+프로세서(instruction을 처리하는 logic circuit) 중 
+
+* `디바이스의 중심이 되는 것을 cpu`라고 부르고, 
+* ^^보조적 역할의 processor는 co-processor라고 부름^^ (그래픽카드가 일종의 co-processor).
+
+> 참고로 microprocessor를 cpu로 하는 pc를 가르켜 microcomputer라고 부르는 경우도 많음.
+
+---
 
 ### 참고 : Micro Controller Unit (MCU)
 
-CPU의 기능을 하는 핵심 장치와 그 주변 장치(memory and IO port)들을 포함하고 있는 통합형 칩셋. 보통 고성능의 연산이 필요하지 않으면서 제어 기능이 필요한 분야에서 사용됨.
+CPU의 기능을 하는 핵심 장치와 그 주변 장치(memory and IO port)들을 포함하고 있는 ***통합형 칩셋*** . 
+
+보통 고성능의 연산이 필요하지 않으면서 ***제어 기능이 필요한 분야*** 에서 사용됨.
 
 MCU 하나 만으로도 LED나 motor등의 다른 부품들을 control할 수 있음.
 
-> 밥솥 등과 같은 전자제품들의 제어를 위한 부품으로 사용되기 때문에 컴퓨터에서 사용되는 Microprocessor에 비해 매우 낮은 연산능력의 저가의 제품이 대부분임.
+> 밥솥 등과 같은 전자제품들의 제어를 위한 부품으로 사용되기 때문에  
+> 컴퓨터에서 사용되는 Microprocessor에 비해 매우 낮은 연산능력을 가지지만  
+> 매우 경제적인 저가로 제작 가능.
 
 [참고자료 : MCU와 Micro-computer, SoC](https://dsaint31.tistory.com/entry/CE-Micro-Controller-Unit-MCU-and-Micro-computer)
+
+---
+
+---
 
 ## Arithmetic and Logic Unit (ALU)
 
 instruction 에 따라 데이터에 대해 산술 연산 (arithmetic operation, 덧셈, 뺄셈, 나눗셈, 곱셈 등)과 논리 연산 (logic operation, AND, OR, XOR)을 수행하는 소자
 
+
+---
+
+---
+
 ## Control Unit
 
-storage에서 main memory로 data를 load하는 명령어, main memory에서 storage로 data를 save하는 명령어, 특정 address로부터 instruction을 로딩하는 명령어 등에 따라 명령을 내리는 장치.
+CPU가 컴퓨터의 다른 구성 요소와 상호 작용하고 명령을 실행하는 데 필요한 모든 작업을 지시하고 조정하는 역할을 담당.
+
+* CU는 instruction decoding을 수행함: PC가 가르키는 instruction을 메모리로부터 읽어들이는 fetch를 수행하고 이 fetched instruction을 decoding함.
+* instruction decoding에 따라 CPU의 다른 구성요소들에 지시를 내려 해당 instruction을 수행함.
+* CU는 데이터가 CPU 내부와 컴퓨터 시스템 전체에서 어떻게 이동하는지를 관리함: 데이터를 메모리와 레지스터, ALU 등으로 전달 및 저장되는 과정을 제어함.
+
+> instruction에 따라, memory와 ALU, I/O device에 제어 신호를 보내고 해당 장치들로부터 신호를 받아 다음 처리를 제어하는 장치
+> storage에서 main memory로 data를 load하는 명령어, main memory에서 storage로 data를 save하는 명령어, 특정 address로부터 instruction을 로딩하는 명령어 등에 따라 ***명령을 내리는 장치***.
+
+instruction을 fetch하고 decode하며, 이를 execute하기 위해 필요한 제어신호를 보내는 device.
 
 * Program counter가 가르키는 address에서 수행할 명령어를 fetch하고,
 * fetch된 instruction을 decode하여 execute (실행)함.
+* 실제적으로 ALU에게 필요한 연산과 데이터를 제공하고 결과값을 올바른 메모리 장소로 보내는 일들을 담당.
 
-instruction에 따라, memory와 ALU, I/O device에 제어 신호를 보내고 해당 장치들로부터 신호를 받아 다음 처리를 제어.
+---
 
 Random logic으로 구현할 수 있지만, microcode (microinstruction을 지원하는 memory (=writable ROM 이용)로 구현된 방식) 방식으로 구현되는 경우가 많음.
 
@@ -56,9 +94,14 @@ microcode로 구현된 traffic control은 다음과 같은 memory로 만들어�
 
 > control unit을 만들기 위해 여러 microcoded block이 사용될 수 있고, 하나의 microcoded block을 만들기 위해 nanocoded block들이 사용될 수 있음. 
 
+---
+
+---
+
 ## Register
 
-주로 CPU내에서 data를 저장하고 있는 memory를 가르킴. 가장 빠른 memory이며, CPU의 구성요소.
+주로 ***CPU 내에서 data를 저장하고 있는 memory를 가르킴.***  
+가장 빠른 memory이며, CPU의 구성요소.
 
 * `condition code register` : overflow, underflow
 * `program counter` (`pc`) : 다음 수행할 instruction이 저장된 메모리 위치를 가르킴.
