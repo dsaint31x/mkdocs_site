@@ -1,32 +1,21 @@
-# Linux : 명령어 모음.
+# 명령어 (Linux)
 
+이 문서는 Linux의 bash(Bourne Again SHell)에서 사용되는 기본적인 명령어를 소개합니다.
 
-### 현재 directory 확인
+Bash는
 
-현재 directory를 확인하는 명령어는 `pwd`(print working directory)이다.
+* Linux의 Terminal과 사용되는 Shell임.
+* Linux의 기본적인 명령어를 실행하고, 간단한 스크립트 (`.sh` 파일)를 실행하는데 사용됨.
+* Linux의 가장 기본적인 Shell 중 하나로, 가장 널리 사용됨.
+    * `CLI`는 Command Line Interface 또는 Command Line Interpreter를 가리킵니다.
 
-```bash
-pwd
-```
+***
 
-- 현재 위치를 확인한다. 즉, 현재 directory의 절대 경로를 출력한다.
+***
 
----
+## 1. File 관련
 
-### directory 이동
-
-다른 사용자의 접근을 막아 놓은 directory를 제외하고는 어느 directory로든 이동 가능.
-
-```bash
-cd target_directory_path
-```
-
-- 현재 directory를 변경
-- `pwd` 명령어 출력이 변경되게 됨.
-
----
-
-### directory 내용 보기
+### 1-1. File 목록 표기: directory 내용 보기
 
 directory에 있는 파일이나 서브 directory 등 directory의 내용을 보는 명령은 ls(list)이다.
 
@@ -55,70 +44,7 @@ ls [option] file_or_dir_path
 
 ---    
 
-### directory 만들기
-
-```bash
-mkdir [option] directory_path
-```
-
-- directory를 생성.
-- Option
-    
-    `-p` : 하위 directory를 계층적으로 생성할 때 중간 단계의 directory가 없으면 자동으로 중간 단계 directory를 생성하면서 전체 directory를 생산한다.
-    
----
-
-### directory 삭제하기
-
-```bash
-rmdir [option] directory_path
-```
-
-- directory를 삭제
-- Options
-    
-    `-p` : `--parent`로도 쓰임. 지정한 데릭터리를 삭제한 뒤, 그 directory의 부모 directory가 빈 directory일 경우 부모 directory도 자동으로 삭제.
-
----
-
-### File이나 Directory 삭제.
-
-```bash
-rm [option] target_path
-```
-
-- 파일이나 directory를 삭제함.
-- Options
-
-    `-r` : `--recursive`로도 쓰임. directory가 target인 경우 사용되며, target 밑의 하위 directory 및 파일을 모두 제거함.
-
-    `-i` : 삭제할 때마다 삭제여부등을 물어봄.
-
-    `-f` : `--force`로도 쓰임. 삭제여부를 물어보지 않고 강제로 지움. 존재하지 않는 파일인 경우에도 명령어가 수행됨. (없는 파일을 지울 때는 없다는 메시지가 뜨는데 이런 메시지가 뜨지 않음)
-
----
-
-### 복사
-
-```bash
-cp [option] src_path target_path
-```
-
-- file이나 directory를 복사함.
-
----
-
-### 이름변경 또는 이동
-
-```bash
-mv [option] src_path target_path
-```
-
-- file이나 directory를 이동시키거나 이름을 변경함.
-
----
-
-### (Text) 출력
+### 1-2. Text File 내용 출력
 
 ```bash
 cat target
@@ -131,20 +57,104 @@ cat target
 
 ---
 
-### 특정 패턴 검색
-
-`grep` : Global Regular Expression Print의 abbreviation.
+### 1-3. 복사
 
 ```bash
-grep pattern
+cp [option] src_path target_path
 ```
 
-- 입력에서의 특정 문자열 패턴(pattern)을 검색.
-- `pattern` 이 Regular Expression (정규표현식)임.
+- file이나 directory를 복사함.
 
 ---
 
-### 파일 권한 변경
+### 1-4. 삭제.
+
+```bash
+rm [option] target_path
+```
+
+- 파일이나 directory를 삭제함.
+- Options
+
+    `-r` : `--recursive`로도 쓰임. directory가 target인 경우 사용되며, target 밑의 하위 directory 및 파일을 모두 제거함.
+
+    `-i` : 삭제할 때마다 삭제여부 등을 물어봄.
+
+    `-f` : `--force`로도 쓰임. 삭제여부를 물어보지 않고 강제로 지움. 존재하지 않는 파일인 경우에도 명령어가 수행됨. (없는 파일을 지울 때는 없다는 메시지가 뜨는데 이런 메시지가 뜨지 않음)
+
+---
+
+### 1-5. 이름변경 또는 이동
+
+```bash
+mv [option] src_path target_path
+```
+
+- file이나 directory를 이동시키거나 이름을 변경함.
+
+---
+
+---
+
+## 2. Directory 관련
+
+
+### 2-1. 현재 directory 확인
+
+현재 directory를 확인하는 명령어는 `pwd`(print working directory)이다.
+
+```bash
+pwd
+```
+
+- 현재 위치를 확인한다. 즉, 현재 directory의 절대 경로를 출력한다.
+
+---
+
+### 2-2. directory 이동
+
+다른 사용자의 접근을 막아 놓은 directory를 제외하고는 어느 directory로든 이동 가능.
+
+```bash
+cd target_directory_path
+```
+
+- 현재 directory를 변경
+- `pwd` 명령어 출력이 변경되게 됨.
+
+---
+
+### 2-3. directory 생성
+
+```bash
+mkdir [option] directory_path
+```
+
+- directory를 생성.
+- Option
+    
+    `-p` : 하위 directory를 계층적으로 생성할 때 중간 단계의 directory가 없으면 자동으로 중간 단계 directory를 생성하면서 전체 directory를 생산한다.
+    
+---
+
+### 2-4. directory 삭제하기
+
+```bash
+rmdir [option] directory_path
+```
+
+- directory를 삭제
+- Options
+    
+    `-p` : `--parent`로도 쓰임. 지정한 데릭터리를 삭제한 뒤, 그 directory의 부모 directory가 빈 directory일 경우 부모 directory도 자동으로 삭제.
+
+---
+
+---
+
+## 3. Permission 관련.
+
+### 3-1. 권한 변경
 
 ```bash
 chmod mode target
@@ -182,7 +192,7 @@ chmod go-rwx target_path
 
 ---
 
-### 소유자 변경
+### 3-2. 소유자 변경
 
 ```bash
 chown [option] [user][:group] target_path
@@ -192,7 +202,11 @@ chown [option] [user][:group] target_path
 
 ---
 
-### 프로세스 및 리소스 모니터링
+---
+
+## 4. Resource 확인.
+
+### 4-1. 프로세스 및 리소스 모니터링
 
 ```bash
 top
@@ -202,10 +216,29 @@ top
 
 ---
 
-### 네트워크 인터페이스 정보 확인
+### 4-2. 네트워크 인터페이스 정보 확인
 
 ```bash
 ifconfig
 ```
 
 - 네트워크 인터페이스의 정보를 표시
+
+---
+
+---
+
+## Z. Etc
+
+### 특정 패턴 검색
+
+`grep` : Global Regular Expression Print의 abbreviation.
+
+```bash
+grep pattern
+```
+
+- 입력에서의 특정 문자열 패턴(pattern)을 검색.
+- `pattern` 이 Regular Expression (정규표현식)임.
+
+---
