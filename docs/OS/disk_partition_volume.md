@@ -1,5 +1,11 @@
 # Disk, Partition, and Volume
 
+좀더 간략하게 살펴보려면, 다음 URL참고.
+
+* [HDD, Partition, Volume, Drive and File System](https://ds31x.tistory.com/262)
+
+***
+
 ## Disk
 
 > 시스템에 장착되어 있는 magnetic disk 저장 장치
@@ -124,11 +130,11 @@ Partition Scheme라고 하면, HDD나 storage를 조직화하는 방법으로 �
 > * 하나 이상의 partition에 파일 시스템이 포맷되고 
 > * os에서 데이터를 접근할 수 있도록 만들어진 논리적인 저장 단위임.
 
-<span color="red">Volume은 partition에 format을 통해 file system이 구성된 것을 가르킴.</span>
+쉽게 말해서, ***Volume은 partition에 format을 통해 file system이 구성된 것을 가르킴.***
 
-- 일반적으로 volume은 **드라이브 문자를 지정** 받아 ***드라이브*** 가 됨.
-- 기본 디스크에선 하나의 파티션이 하나의 볼륨이 되는게 일반적임.
-    - 단일 하드 디스크에서 여러 개의 볼륨 (기본디스크)
+- 일반적으로 volume은 **드라이브 문자를 지정** 받아 ***Drive*** 가 됨.
+- Primary Disk 에선 하나의 partition이 하나의 volume이 되는게 일반적임.
+    - 단일 HDD 에서 여러 개의 볼륨 도 가능함 (in Primary Disk)
         - 이 경우, 하나의 partition이 하나의 volume.
     - 여러 하드 디스크로 된 하나의 볼륨 (동적디스크)
         - 이 경우, 여러 partition이 하나의 volume
@@ -142,7 +148,20 @@ Partition Scheme라고 하면, HDD나 storage를 조직화하는 방법으로 �
 
 ## Drive
 
-<span color="red"> 드라이브 문자가 지정된 Volume </span>
+* OS가 데이터를 쓰고 읽을 수 있는 상태가 된 Volume.
+* OS에 ***mounting이 이루어진 volume*** 로, windows의 경우엔 드라이브 문자가 할당됨.
+
+### Mounting이란?
+
+OS 가 Storage Device(HW) 또는 특정 Partition에 적용된 File System을 인식하고 접근할 수 있게 하는 과정.
+
+* Volume 연결: Volume을 "OS의 파일 시스템 트리의 특정 지점에 연결" 하여 사용자 및 시스템이 데이터를 저장하거나 접근할 수 있도록 함.
+* Mount Point 사용: OS 는 Mount Point라는 특정 디렉토리 (UNIX계열) 또는 드라이브 문자를 사용(Windows)하여 Mounting를 수행.
+    * 예시: Linux에서는 `/mnt` 또는 `/media` 디렉토리가 자주 사용되는 mount point.
+* 접근성 확보: Volume이 마운트되면, 해당 Mount Point를 통해 Drive 내의 파일과 디렉토리에 접근 가능.
+
+즉, mounting은 데이터에 접근하고 관리하는 데 필수적이며, file system의 활성화와 데이터의 안전한 읽기/쓰기를 가능하게 함.
+
 
 ---
 
