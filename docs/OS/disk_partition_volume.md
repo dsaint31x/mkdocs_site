@@ -2,7 +2,7 @@
 
 ## Disk
 
-> 시스템에 장착되어 있는 저장 장치
+> 시스템에 장착되어 있는 magnetic disk 저장 장치
 
 - 윈도우에선 시스템에 장착된 storage(저장 장치)를 의미
 - partition(혹은 volume)으로 나뉘어 사용되는 저장장치
@@ -65,7 +65,7 @@
 
 ## Partition 
 
-> disk(디스크)의 공간을 논리적으로 분할하여 별도의 데이터 영역으로 분할한 공간
+> hard disk drive(or SSD)  논리적으로 분할하여 별도의 데이터 영역으로 분할한 공간
 
 **별도의 디스크처럼 동작하는 컴퓨터 하드 디스크의 일부**.
 
@@ -124,7 +124,7 @@ Partition Scheme라고 하면, HDD나 storage를 조직화하는 방법으로 �
 > * 하나 이상의 partition에 파일 시스템이 포맷되고 
 > * os에서 데이터를 접근할 수 있도록 만들어진 논리적인 저장 단위임.
 
-Volume은 partition에 format을 통해 file system이 구성된 것을 가르킴.
+<span color="red">Volume은 partition에 format을 통해 file system이 구성된 것을 가르킴.</span>
 
 - 일반적으로 volume은 **드라이브 문자를 지정** 받아 ***드라이브*** 가 됨.
 - 기본 디스크에선 하나의 파티션이 하나의 볼륨이 되는게 일반적임.
@@ -142,9 +142,7 @@ Volume은 partition에 format을 통해 file system이 구성된 것을 가르�
 
 ## Drive
 
-파일 시스템에서 포맷하여 ^^드라이브 문자가 지정된 볼륨^^.
-
-> 드라이브 문자가 지정된 저장영역
+<span color="red"> 드라이브 문자가 지정된 Volume </span>
 
 ---
 
