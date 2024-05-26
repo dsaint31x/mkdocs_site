@@ -33,7 +33,7 @@ Logistic Regression의 동작 순서는 다음과 같음.
 
 다음 그림은 Computational Graph 또는 Single Layer Perceptron (or `Dense` Layer)로 표현한 Logistic Regression임.
 
-![](./img/Logistic_regression_ann.png){width="500"}
+![](./img/logistic_regression_ann.png){width="500"}
 
 다음은 Logistic Regression의 출력 $\hat{p}$의 수식이다.
 $$
@@ -92,7 +92,7 @@ $$\hat{p}=h_{\boldsymbol{\theta}}(\textbf{x})=\sigma(\textbf{x}^T\boldsymbol{\th
 * $h_{\boldsymbol{\theta}}( \cdot )$ : hypothesis의 약자 $h$로 model을 나타내는 function임. 
     * model의 parameters가 $\boldsymbol{\theta}$임을 아래첨자로 나타냄.
 * $\hat{p}$ : class 1에 속할 probability를 의미. 
-    * model이 예측한 결과이므로 hat $\hat$이 씌어짐.
+    * model이 예측한 결과이므로 hat $\hat$ 이 씌어짐.
     * Logistic regression의 output임.
     * 일반적인 binary classifier의 output이기도함.
     * $\hat{p}(\hat{y}=1)$ 를 줄여서 표현한 것임.
