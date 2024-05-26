@@ -69,14 +69,16 @@ instruction 에 따라 데이터에 대해 산술 연산 (arithmetic operation, 
 
 CPU가 컴퓨터의 다른 구성 요소와 상호 작용하고 명령을 실행하는 데 필요한 모든 작업을 지시하고 조정하는 역할을 담당.
 
-* CU는 instruction decoding을 수행함: PC가 가르키는 instruction을 메모리로부터 읽어들이는 fetch를 수행하고 이 fetched instruction을 decoding함.
-* instruction decoding에 따라 CPU의 다른 구성요소들에 지시를 내려 해당 instruction을 수행함.
+* CU는 instruction decoding을 수행함: <u>PC(Program Counter)가 가르키는 instruction을 메모리로부_터 읽어들이는 `fetch`를 수행</u>하고 이 fetched instruction을 decoding함.
+* instruction decoding에 따라 CPU의 다른 구성요소들에 지시를 내려 해당 instruction을 `execute`(수행)함.
 * CU는 데이터가 CPU 내부와 컴퓨터 시스템 전체에서 어떻게 이동하는지를 관리함: 데이터를 메모리와 레지스터, ALU 등으로 전달 및 저장되는 과정을 제어함.
 
 > instruction에 따라, memory와 ALU, I/O device에 제어 신호를 보내고 해당 장치들로부터 신호를 받아 다음 처리를 제어하는 장치
 > storage에서 main memory로 data를 load하는 명령어, main memory에서 storage로 data를 save하는 명령어, 특정 address로부터 instruction을 로딩하는 명령어 등에 따라 ***명령을 내리는 장치***.
 
-instruction을 fetch하고 decode하며, 이를 execute하기 위해 필요한 제어신호를 보내는 device.
+요약하면,  
+
+Control Unit은 instruction을 `fetch`하고 `decode`하며, 이를 `execute`하기 위해 필요한 제어신호를 보내는 device.
 
 * Program counter가 가르키는 address에서 수행할 명령어를 fetch하고,
 * fetch된 instruction을 decode하여 execute (실행)함.

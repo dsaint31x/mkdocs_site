@@ -2,7 +2,9 @@
 
 현재의 컴퓨터들은 memory와 I/O Device를 같은 bus로 연결 하여 정보를 주고 받음.
 
-![](./img/shared_memory_io_bus.jpeg)
+<figure markdown>
+![](./img/shared_memory_io_bus.jpeg){width=600, align=center}
+</figure>
 
 ---
 
@@ -14,7 +16,7 @@
 Primary memory (주기억장치) 및 I/O device (입출력 장치) 들과  
 **정보를 전송하는데 사용하는 전기적 공통 선로**.
 
-> 컴퓨터 내에서 ***데이터(address포함) 전송***은 ***bus를 통해 이루어짐***.
+> 컴퓨터 내에서 ***데이터(address포함) 전송*** 은 ***bus를 통해 이루어짐***.
 > 
 
 - ***구조*** 에 따른 분류 (← 현대 컴퓨터는 이 둘이 합쳐진 구조)
@@ -39,7 +41,7 @@ Primary memory (주기억장치) 및 I/O device (입출력 장치) 들과
 
 ## External Bus의 종류.
 
-### ISA (Industry Standard Architecture)
+### ISA (Industry Standard Architecture) *
 
 초기 확장 버스 방식. 매우 높은 호환성을 가지나 매우 느린 속도.
 
@@ -63,7 +65,7 @@ ISA보다 향상된 기능. 하지만 역시 현재 거의 사용되지 않음.
 
 ---
 
-### PCI (Peripheral Component Interconnect)
+### PCI (Peripheral Component Interconnect) *
 
 현재 널리 쓰이는 `PCI-E`의 이전 (old) 버스. 하지만 ^^PCI-E와 호환성이 없음.^^
 
@@ -71,7 +73,7 @@ plug-and-play 기능을 지원하고 bridge회로를 통해 높은 호환성을 
 
 ---
 
-### AGP (Advanced Graphics Port)
+### AGP (Advanced Graphics Port) *
 
 GPU카드 전용버스 (2000년대에 일반적으로 그래픽카드가 부착되던 port. 현재는 PCI-E가 그 자리를 물려받음).
 
@@ -85,13 +87,14 @@ Intel이 제안했고 그래픽카드를 위한 높은 속도와 대용량 데�
 
 ---
 
-### ***PCI-E (PCI Express)*** 
+### ***PCI-E (PCI Express)*** **
 
 2023 년 현재 그래픽카드 등의 고속의 데이터 전송이 요구되는 외부장치를 장착하는 port. 16x (8GB/sec)까지의 양방향 고속 데이터 전송이 가능함. 
 
 > 1 lane (x1) 이 기본 단위.
 > 
-> *`x`는 lane을 가르키며, `x` 뒤에 숫자를 표기하여 몇 개의 lane이 할당되었는지를 의미함.
+> * `x`는 lane을 가르키며, 
+> * `x` 뒤에 숫자를 표기하여 몇 개의 lane이 할당되었는지를 의미함.
 
 PCI 의 한계를 극복하고자 개발이 되었으나, 개발 당시 가장 높은 전송대역폭을 자랑하면서 그래픽카드를 위한 포트로 많이 사용되게 됨.
 
@@ -107,6 +110,6 @@ PCI 의 한계를 극복하고자 개발이 되었으나, 개발 당시 가장 �
 
 ---
 
-### USB
+### USB ***
 
 [Universal Serial Bus](../ch06/ce06_1_09_usb.md) 참고.
