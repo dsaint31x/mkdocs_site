@@ -181,7 +181,7 @@ Logistic regression model이 정답을 맞출 확률 $p$가
 $$\begin{aligned}\boldsymbol{\theta}&=\underset{\boldsymbol{\theta}}{\text{argmax }} \prod _{i=1}^M p(y^{(i)}|\textbf{x}^{(i)};\boldsymbol{\theta})\\&=\underset{\boldsymbol{\theta}}{\text{argmax }} \prod _{i=1}^M \mathcal{L}(\boldsymbol{\theta}|\textbf{x}^{(i)},y^{(i)})\\&=\underset{\boldsymbol{\theta}}{\text{argmax }} \prod _{i=1}^M (\hat{p}^{(i)})^{y^{(i)}}(1-\hat{p}^{(i)})^{1-y^{(i)}}\end{aligned}$$
 
 * $\displaystyle \prod _{i=1}^M p(y^{(i)}|\textbf{x}^{(i)};\boldsymbol{\theta})$가 최대화된다는 것은 Logistic regression model이 정답을 맞출 가능성이 커진다는 것을 의미함.
-* $\boldsymbol{\theta}$를 조절하면 ***해당 정답을 맞출 가능성*** 은 변하며, 각각의 $\boldsymbol{\theta}$에 따른 해당 가능성의 값들을 모두 더할 경우 1이 되진 않음 (물론 값이 클수록 가능성은 커짐) : 때문에 ***likelihood*** 라고 부르며 이 부분을 강조하여 likelyhood function $\mathcal{L}$로 표기하기도 함.
+* $\boldsymbol{\theta}$를 조절하면 ***해당 정답을 맞출 가능성*** 은 변하며, 각각의 $\boldsymbol{\theta}$에 따른 해당 가능성의 값들을 모두 더할 경우 1이 되진 않음 (물론 값이 클수록 가능성은 커짐) : 때문에 ***likelihood*** 라고 부르며 이 부분을 강조하여 likelihood function $\mathcal{L}$로 표기하기도 함.
 * likelihood 를 구하는데 사용되는 $\hat{p}=\sigma(\textbf{x}^T\boldsymbol{\theta})$ 는 Logistic regression의 output으로 $\hat{y}=1$이 될 확률(class 1에 속할 확률)을 의미함.
 
 이 `MLE`를 통해 구해진  

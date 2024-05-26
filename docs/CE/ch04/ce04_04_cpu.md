@@ -94,7 +94,7 @@ microcode로 구현된 traffic control은 다음과 같은 memory로 만들어�
 * 해당 `address` (실제로는 특정 instruction)에 해당하는 적절한 signal을 출력하는 memory.
 * control에 사용되는 여러 signal들 각각을 하나의 state라고 보고, 해당 state에 address를 할당한 일종의 state-machine임.
 
-> control unit을 만들기 위해 여러 microcoded block이 사용될 수 있고, 하나의 microcoded block을 만들기 위해 nanocoded block들이 사용될 수 있음. 
+> control unit을 만들기 위해 여러 microcode block이 사용될 수 있고, 하나의 microcode block을 만들기 위해 nanocode block 들이 사용될 수 있음. 
 
 ---
 

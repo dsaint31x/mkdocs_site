@@ -26,7 +26,7 @@
 
 접속방식에 따른 분류.
 
-* [Circuit Switching Network and Packet Switching Networ](https://dsaint31.tistory.com/entry/CE-Circuit-Switching-and-Packet-Switching)
+* [Circuit Switching Network and Packet Switching Network](https://dsaint31.tistory.com/entry/CE-Circuit-Switching-and-Packet-Switching)
 
 ---
 
