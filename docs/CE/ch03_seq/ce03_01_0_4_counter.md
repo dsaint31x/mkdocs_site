@@ -7,7 +7,7 @@ Counter는 register와 함께 flip-flop의 대표적인 응용사례임.
 * `Counter`는 일정한 순서로 `state`(상태)가 반복하여 변화하는 ^^일종의 `Register`^^ 임.
 * `Oscillator`의 clock pulse를 입력받아 ***Digital System(Computer포함)에서 Time에 대한 정보를 주는 소자***.
 
-흔히, Counter의 출력은 Counter의 `state`가 된다. oscillator의 pulse train의 주기에 정수배한 주기 신호들을 만들어낼 수 있음. 비동기식(Asynchoronous) counter와 동기식(synchoronous) counter로 나뉘는데 sychronous counter가 사용하기 쉽기 때문에 많이 사용됨.
+흔히, Counter의 출력은 Counter의 `state`가 된다. oscillator의 pulse train의 주기에 정수배한 주기 신호들을 만들어낼 수 있음. 비동기식(Asynchronous) counter와 동기식(synchronous) counter로 나뉘는데 synchronous counter가 사용하기 쉽기 때문에 많이 사용됨.
 
 ## Asynchronous (Ripple) Counter
 
