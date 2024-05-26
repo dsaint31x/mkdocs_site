@@ -44,7 +44,7 @@ Counter는 register와 함께 flip-flop의 대표적인 응용사례임.
  다음은 synchronous counter로서 clock, $\text{CK}$를 공유함으로서 모든 flip-flop들이 정확히 같은 시간에 값이 변화하게 된다.
  
  <figure markdown>
- ![synchronous counter](img/synchronous_counter.png){width=400, align=center}
+ ![](./img/synchronous_counter.png){width=400, align=center}
  </figure>
  
  * 출력이 valid하기까지 요구되는 setup 및 hold time, propagation delay영향은 있으나 각 flip-flop들이 동일한 clock에 맞춰 동작함.
