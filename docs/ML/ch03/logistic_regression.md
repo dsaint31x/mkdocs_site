@@ -37,7 +37,9 @@ Logistic Regression의 동작 순서는 다음과 같음.
 
 다음은 Logistic Regression의 출력 $\hat{p}$의 수식이다.
 $$
-\hat{p}(\hat{y}=1) = \sigma(t) = \sigma \left( b+\omega_1x_1+\omega_2x_2 +\dots+\omega_n x_n\right) \\ \quad \\
+\hat{p}(\hat{y}=1) = \sigma(t) = \sigma \left( b+\omega_1x_1+\omega_2x_2 +\dots+\omega_n x_n\right)
+$$
+$$ 
 \hat{p}(\hat{y}=1) = \hat{p}
 $$
 
