@@ -11,7 +11,7 @@
 ***Python에서 Module은 code의 재사용을 위해 사용*** 되며,  
 일반적으로 module들이 모여 하나의 프로그램이 된다.
 
-> ***code의 재사용** 이란,  
+> ***code의 재사용*** 이란,  
 > ^^이전에 정의한 variable과 function, class 등을 다시 code로 정의하지 않고 다시 사용하는 것^^ 을 의미함.  
 > module이 없다면 이전에 작성한 code들을 매번 copy and paste 시키거나 기억하고 다시 typing을 해야할 것이다.
 
