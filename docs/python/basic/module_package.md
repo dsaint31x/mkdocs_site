@@ -2,23 +2,23 @@
 
 ## Module
 
-쉽게 생각하면 **Python code 로 구성된 file** (`.py`) 을 가르킨다.  
+쉽게 생각하면 **Python code 로 구성된 file** `.py`자체를 가리킨다.  
 
-* Module은 import될 때 각각 고유의 namespace를 가지므로, Namespace의 역할도 수행한다.
-* Python에서 module은 확장자가 `.py`인 파일을 가르킴 (python code를 내용으로 가지는 file).
-* 모든 `.py` file들은 python에서 module로서 사용가능함.
+* Module은 import될 때 각각 고유의 namespace를 가지므로, Module은 일종의 Namespace이기도 함.
+* Python에서 module은 확장자가 `.py`인 파일을 가르킴 ( python code를 내용으로 가지는 file ).
+* **모든 `.py` file들은 python에서 module로서 사용가능함.**
 
-***Python에서 code의 재사용을 위해 사용*** 되며,  
+***Python에서 Module은 code의 재사용을 위해 사용*** 되며,  
 일반적으로 module들이 모여 하나의 프로그램이 된다.
 
-> code의 재사용이란,  
+> ***code의 재사용** 이란,  
 > ^^이전에 정의한 variable과 function, class 등을 다시 code로 정의하지 않고 다시 사용하는 것^^ 을 의미함.  
 > module이 없다면 이전에 작성한 code들을 매번 copy and paste 시키거나 기억하고 다시 typing을 해야할 것이다.
 
 ---
 
-code의 재사용을 위해 Python은 
-이전에 구현했거나 다른 이가 구현한 `.py`파일의 이름으로  
+code의 재사용을 위해 
+Python은 이전에 구현했거나 다른 이가 구현한 `.py`파일의 이름으로  
 해당 module (`.py`를 가르킴)을  
 `import` statement를 사용하여 import한다.
 
@@ -29,12 +29,14 @@ code의 재사용을 위해 Python은
 ---
 
 Python에서는 이미 standard library로  
-**built-in module** 을 제공  
-(Python의 built-in function들은 `__builtins__` 라는 모듈에 속함)  
-하고 있으며, 이 외에도  
-Third party에서 만든 library의 module들과 
-개발자가 만든 본인의 module들도  
-import가능하다.
+
+* **built-in module** 을 제공하고 있음.
+* (Python의 built-in function들은 `__builtins__` 라는 모듈에 속함)  
+
+이 외에도  
+
+* Third party에서 만든 library의 module들과 
+* 개발자가 만든 본인의 module들도 import 가능하다.
 
 > ***Note: Module Search Path***  
 >
@@ -46,8 +48,9 @@ import가능하다.
 ---
 
 참고로  
-흔히, import가 되는 `.py` 파일을 `module`이라고 부르고  
-python interpreter에게 수행되기 위해 인자로 넘겨지는 `.py` 파일은 **main program** 혹은 **main script** 라고 불린다.
+
+* 흔히, import가 되는 `.py` 파일을 `module`이라고 부르고  
+* python interpreter에게 수행되기 위해 인자로 넘겨지는 `.py` 파일은 **main program** 혹은 **main script** 라고 불린다.
 
 > 참고로 `__name__` 은 `.py`파일 즉 `module` 내에서 Python interpreter가 해당 `module`에 할당한 이름, 즉 자기자신의 `module name`을 값으로 가지는 global variable임.  
 > 해당 main script로 동작하는 경우엔 `__main__`이라는 문자열을 값으로 가짐.
@@ -118,7 +121,8 @@ import가 되는 경우에도 역시 수행이 되므로
 
 * 같은 `module`의 import가 여러 번 되어도, ***한번만 수행*** 이 된다 (최초로 import 되는 경우). 
 * 수행이 되면서 해당 `module`이 초기화가 이루어짐.
-* variable과 function의 정의는 당연히 수행이 되어야 하지만 해당 module이 main script로 동작하는 경우만 실행되어야 하는 code들도 수행이 될 수 있음.
+* variable과 function의 정의는 당연히 수행이 되어야 하지만  
+해당 module이 main script로 동작하는 경우만 실행되어야 하는 code들도 수행이 될 수 있음.
 
 ```Python
 # echo.py
@@ -150,18 +154,20 @@ main script에서만 수행되는 부분이 된다.
 > ^^`__`로 시작하고 끝나는 object는 Python 언어에서 특별하게 사용되는 object로서 Python 언어에서 정의하고 있는 대상임을 나타내는데 사용^^ 된다.
 
 다시 한번 강조하지만,  
-import 문이 동일한 module에 대해 호출이 되어도 ***최초 한번만 수행*** 이 된다.  
-때문에 특정 Python Interpreter Session이 수행되고 있는 동안에 특정 module의 소스코드 자체가 바뀌더라도 해당 변경사항이 반영되지 않는다.  
+
+* import 문이 동일한 module에 대해 호출이 여러번 되어도 ***최초 한번만 수행*** 이 된다.  
+* 때문에 특정 Python Interpreter Session이 수행되고 있는 동안에 특정 module의 소스코드 자체가 바뀌더라도 해당 변경사항이 반영되지 않는다.  
   
 이를 위해서는 `importlib` 모듈의 `reload(모듈명)` function을 이용해야 한다.  
 자세한 사용법은 다음 URL을 참고하라.  
-[모듈 변경사항 동적으로 반영하기: `importlib.reload`](https://dsaint31.tistory.com/entry/Python-importlibreload-module-%EC%9E%AC%EC%A0%81%EC%9E%AC)
+
+* [모듈 변경사항 동적으로 반영하기: `importlib.reload`](https://dsaint31.tistory.com/entry/Python-importlibreload-module-%EC%9E%AC%EC%A0%81%EC%9E%AC)
 
 ---
 
 #### 주의: reassignment.
 
-Python이 제공하는 standard library의 module의 attributes에 재할당이 (매우 쉽게) 가능하다는 단점을 Python은 가짐.
+Python은 standard library의 module의 attributes에 재할당이 (매우 쉽게) 가능하다는 단점을 가짐.
 
 다음 code는 `math` module의 `pi`라는 variable에  
 reassignment가 가능함을 보임.
@@ -176,7 +182,7 @@ math.pi = 72
 print(math.pi)
 ```
 
-`pi`는 $\pi$의 값을 가져야하는데  
+`pi`는 $\pi$ 의 값을 가져야하는데  
 이같은 reassignment는 많은 문제의 원인이 될 수 있다. 
 
 > 실제 module에 해당하는 file에서 수정이 일어나진 않고, 단순히 memory상에서 `math`의 namespace의 `pi`라는 이름이 가르키는 object가 바뀐 것이므로 해당 Python interpreter의 session에서만 `72`라는 값을 의미하게 되고, 다른 `math` 모듈을 사용하는 session에서는 문제가 없다.
@@ -216,7 +222,7 @@ import ds_cal as dc
 이처럼 필요한 attribute의 수가 적고 이름을 정확히 알고 있는 경우  
 다음과 같이 명시적으로 지정하여 필요한 기능만을 import할 수 있음.
 
-> 이 경우의 최대 장점은 모듈명에 해당하는 prefix가 필요없다는 점임.
+> 이 경우의 최대 장점은 ***모듈명에 해당하는 prefix가 필요없다*** 는 점임.
 
 ```Python
 #!/bin/env python
@@ -260,14 +266,17 @@ from ds_cal import *
 ```
 
 장점은  
-가장 편하다는 것으로 prefix가 필요없고,  
-import 할 때 필요한 attribute들을 입력해주지 않아도 된다는 것임.
+
+* 가장 편하다는 것으로 prefix가 필요없고,  
+* import 할 때 필요한 attribute들을 입력해주지 않아도 된다는 것임.
 
 > 정확히 애기하면, 모든 attribute는 아님.  
 > `_`로 시작하는 이름을 가지는 attribute들은 import가 이루어지지 않음.
 
 문제는  
-일반적으로 특정 module에서 어떤 attribute들이 있는지 알기 어렵고,  prefix를 사용하지 않기 때문에 name collusion이 발생하기 쉽다. 
+
+* 일반적으로 특정 module에서 어떤 attribute들이 있는지 알기 어렵고,  
+* prefix를 사용하지 않기 때문에 name collusion이 발생하기 쉽다. 
 
 > 해당 code의 동작은 알고는 있어야하지만,  
 > ^^사용은 절대 추천하지 않는다.^^
@@ -356,7 +365,9 @@ if __name__ == '__main__':
 ```
 
 참고로 `namespace package`의 경우,  
-물리적으로 다른 경로(각각의 `sys.path`에 item이어야함.)에 있더라도,  같은 패키지명을 공유할 경우 하나의 package로 Python에서 처리되는 package를 가르킴.  
+
+* 물리적으로 다른 경로(각각의 `sys.path`에 item이어야함.)에 있더라도,  
+* 같은 패키지명을 공유할 경우 하나의 package로 Python에서 처리되는 package를 가르킴.  
 
 이 경우, 같은 패키지명을 공유하는 모든 subdirectory내에 `__init__.py`가 있어선 안됨 (Python 3.x 이상부터만 사용가능함).
 
