@@ -2,8 +2,14 @@
 
 > Instruction 을 해석하여 실행하는 장치.  
 > ***컴퓨터의 두뇌*** 에 해당.
+>
+> 다음의 세가지로 구성됨.
+>
+> * **CU (Control Unit):** instruction에 대한 `fetch`, `decode`, `execute`, `write back` 과정을 제어.
+> * **ALU (Arithmetic Logic Unit):** 산술 연산 및 논리 연산을 실제로 수행.
+> * **Registers:** 연산에 필요한 데이터를 임시로 저장하며, 연산 결과 저장.
 
-ALU, Register, Control Unit(or Execution Unit)으로 구성됨  
+CPU는 위에서 본 것처럼 ALU, Register, Control Unit(or Execution Unit)으로 구성됨  
 
 * 이들 3가지만으로 구성된 CPU의 핵심구성요소를 ***core*** 라고 부르지만, 
 * CPU는 이 외에도 cache memory, internal bus 등을 포함하고 있음
@@ -71,14 +77,18 @@ CPU가 컴퓨터의 다른 구성 요소와 상호 작용하고 명령을 실행
 
 * CU는 instruction decoding을 수행함: <u>PC(Program Counter)가 가르키는 instruction을 메모리로부_터 읽어들이는 `fetch`를 수행</u>하고 이 fetched instruction을 decoding함.
 * instruction decoding에 따라 CPU의 다른 구성요소들에 지시를 내려 해당 instruction을 `execute`(수행)함.
-* CU는 데이터가 CPU 내부와 컴퓨터 시스템 전체에서 어떻게 이동하는지를 관리함: 데이터를 메모리와 레지스터, ALU 등으로 전달 및 저장되는 과정을 제어함.
+    * CPU의 구성요소들인 ALU와 레지스터 등에 신호를 보내어 실제 연산을 수행하도록 지시함.
+    * 예를 들어, 산술 연산이 필요하다면 ALU에 해당 연산을 수행하도록 신호를 보냄.
+* CU는 데이터가 CPU 내부와 컴퓨터 시스템 전체에서 어떻게 이동하는지를 관리함: 
+    * 데이터를 메모리와 레지스터, ALU 등으로 전달 및 저장되는 과정을 제어함.
+    * 예를 들어, CU는 연산 결과 저장 (`write back`)을 위한 데이터의 이동을 지시함.
 
 > instruction에 따라, memory와 ALU, I/O device에 제어 신호를 보내고 해당 장치들로부터 신호를 받아 다음 처리를 제어하는 장치
 > storage에서 main memory로 data를 load하는 명령어, main memory에서 storage로 data를 save하는 명령어, 특정 address로부터 instruction을 로딩하는 명령어 등에 따라 ***명령을 내리는 장치***.
 
 요약하면,  
 
-Control Unit은 instruction을 `fetch`하고 `decode`하며, 이를 `execute`하기 위해 필요한 제어신호를 보내는 device.
+***Control Unit은 instruction을 `fetch`하고 `decode`하며, 이를 `execute` 및 `write back`하기 위해 필요한 제어신호를 보내는 device:*** (이 정의를 개인적으로 가장 좋아함)
 
 * Program counter가 가르키는 address에서 수행할 명령어를 fetch하고,
 * fetch된 instruction을 decode하여 execute (실행)함.
