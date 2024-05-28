@@ -47,9 +47,9 @@
 ### 여러 OS들
 
 * Windows **
-* Linux **
-* Unix
-* Mac OS **
+* [LINUX](./LINUX.md) **
+* [UNIX](./UNIX.md)
+* mac OS **
 
 ---
 

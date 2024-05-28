@@ -2,21 +2,28 @@
 
 1991년 당시 학생이었던 Linus Torvalds가 개발한 UNIX-like OS임. 
 
-* UNIX-like OS이면서 교육용 OS인 [Minix](https://namu.wiki/w/Minix) 을 기반(개발환경으로 이용했으며, Minix의 코드를 사용한 건 아님)으로 
+* UNIX-like OS이면서 교육용 OS인 [MINIX](https://namu.wiki/w/Minix) 을 기반(개발환경으로 이용했으며, MINIX의 코드를 사용한 건 아님)으로 
 * Linux의 소스코드가 개발된 것으로 알려져 있다.
 
-> 엄밀히 말하면 Linux는 Kernel이라고 봐야 하고, 그 외의 구성요소는 GNU project에 의해 만들어졌다.  
+> 엄밀히 말하면 Linux는 Kernel이라고 봐야 하고,  
+> 그 외의 구성요소는 GNU project (`G`NU is `N`ot `U`nix의 앞글자를 딴 약어)에 의해 만들어졌다.  
 > 때문에 GNU/Linux라고 불리는 경우가 많다.
+
+---
 
 1983년 Richard Stallman 이 설립한 Free Software Foundation(FSF)에서 GNU project (Gnu is Not Unix project)를 시작하면서 Linux에서 동작가능한 다양한 software들의 개발이 활발하게 이루어짐.
 
 Linux의 역사는 다음 URL을 참고.
 
-* 참고: [System V, BSD, 그리고 LINUX 와 MacOS](http://ds31x.tistory.com/134)
+* 참고: [System V, BSD, 그리고 LINUX 와 macOS](http://ds31x.tistory.com/134)
 
 Linux는 GNU의 General Public License (GPL)을 따르며, GNU의 다양한 S/W의 지원을 받기 때문에 GNU/Linux로 많이 불린다. 실제로 Linux는 Linus Torvalds의 Linux kernel과 GNU의 다양한 SW들로 구성된 OS라고 볼 수 있다.
 
 Linux는 다양한 배포판을 가지고 있으며 이들 배포판들은 각각의 장단점을 가짐.
+
+---
+
+---
 
 ## 특징
 
@@ -25,6 +32,10 @@ Linux는 다양한 배포판을 가지고 있으며 이들 배포판들은 각�
 * interactive system (~time sharing system)이면서 multi-processing 및 multi-user system임.
 * 다중 작업 및 다중 사용자를 지원 : Linux는 Unix 못지 않게 서버를 위한 OS로 강력한 지지를 받고 있음. 
 * 매우 높은 신뢰성과 함께 다양하고 강력한 네트워크 기능을 제공 : 서버로 동작하는 장비의 거의 대다수가 Linux인 이유임.
+
+---
+
+---
 
 ## 다양한 배포판과 중요성.
 
@@ -36,6 +47,8 @@ Debian 계열(Debian, Mint, Ubuntu 등)과 Redhat (Redhat, Fedora, CentOS)계열
 
 > 개인적으로 Debian계열을 선호하지만, 상업용으로는 보다 Redhat 계열 (특히 CentOS)이 좀 더 많이 사용되는 것으로 보인다.  
 > 참고로, 기계학습이나 데이터 사이언스 계열에서는 Ubuntu 가 가장 많이 사용되는 추세임.
+
+---
 
 ### 1. Debian 계열.
 
@@ -49,6 +62,8 @@ Debian 계열(Debian, Mint, Ubuntu 등)과 Redhat (Redhat, Fedora, CentOS)계열
 
 ***Linux Mint***
 : Ubuntu를 기반으로 초보자에게 쉬운 접근성을 자랑하는 Desktop환경 제공으로 유명함. 2006년 초기버전 Ada로 공개된 이후, 다른 distro들이 주로 서버 장비를 대상으로 하는 것과 달리 desktop에 집중을 한 배포판으로 windows에서 linux로 넘어는 초보자들을 대상으로 함.
+
+---
 
 ### 2. Red Hat 계열.
 
@@ -65,6 +80,8 @@ Linux 비지니스 및 엔터프라이즈 시장에서 매우 큰 위치를 차�
 
 > CentOS의 종료는 다른 무료 서버 OS에 대한 필요성을 크게 부각시켰고, Rocky Linux나 AlmaLinux 등이 강력한 대안으로 떠오름.
 
+---
+
 ### 3. SUSE 계열.
 
 유럽 엔터프라이즈 시작에서의 강자임.
@@ -79,6 +96,8 @@ Linux 비지니스 및 엔터프라이즈 시장에서 매우 큰 위치를 차�
 > <u>rolling release는 지속적으로 업데이트가 가능하여 개별 버전으로 주기적인 업데이트 없이 최신 상태를 유지하도록 하는 방식</u> 으로 일반적인 "point release(static release)"와 구분됨.  
 > Arch Linux, openSUSE Tumbleweed, Gentoo Linux, Manjaro 등이 채택하고 있으나, 최신 기술이 신속하게 배포된다는 점은 동시에 안정성을 떨어뜨리기 때문에 엔터프이즈 환경에선 적절치 못함.
 
+---
+
 ### 4. Arch 계열.
 
 ***Arch Linux***
@@ -87,9 +106,15 @@ Linux 비지니스 및 엔터프라이즈 시장에서 매우 큰 위치를 차�
 ***Manjaro***
 : Arch Linux를 기반으로 하면서도 상대적으로 보다 쉬운 설치와 설정 및 사용성을 제공하는 distro.
 
+---
+
 ### 5. 기타.
 
 Gentoo, Slackware 와 같은 독립(?)적인 distributions도 많음.
+
+---
+
+---
 
 ## 사용분야
 
