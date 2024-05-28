@@ -85,30 +85,36 @@ CPU (당시엔 거의 core가 하나)의 idle time을 줄이기 위한 시스템
 
 ---
 
-#### Multi-tasking System
+#### Multi-tasking System ***
 
 1. 하나의 resource (=일반적으로 CPU)를 여러 process들이 공유
-2. 여러 ***tasks가 동시에 수행 되도록 느껴지게 하는 시스템***
-   * round-robin scheduling algorithm과 같은 ***스케쥴링 알고리즘*** 이 multi-programming에 보다 추가
+2. 여러 ***tasks가 동시에 수행 되는 것처럼 느껴지게 (=concurrency) 하는 시스템***
+   * round-robin scheduling algorithm과 같은 ***스케쥴링 알고리즘*** 이 multi-programming에 추가되어 multi-tasking 이 된다.
+   * 용어적 측면에서 ***`concurrency`(동시성)*** 을 갖춘 시스템이 바로 multi-tasking system임.
 3. multi-programming의 논리적인 확장
-4. multi-programming에 multi-processing과 time-sharing 등의 개념 등이 보다 추가
+4. multi-programming에 time-sharing 의 개념이 보다 추가된 것으로 볼 수 있음.
 
-> **Task란**
+> **Task란** : 매우 중요함!
 >
 > OS에서 실행되는 Program의 instance를 가르키는 ***Process*** 와 비교할 때,  
-> ***Task*** 는 보다 일반적인 용어임.  
-> 특정 목표를 달성하기 위해 수행되는 작업이나 활동을 의미하며, 컴퓨터에서는 흔히 하나 이상의 Process로 구성됨.
-> 특정 작업을 완료하는데 필요한 모든 단계를 포함하기도 함.
+> <u>***Task*** 는 보다 일반적인 용어</u>임.  
+>
+> ***Task는 특정 목표를 달성하기 위해 수행되는 작업이나 활동을 의미*** 하며,  
+> 컴퓨터에서 Task는 보통 하나 이상의 Process로 구성됨.
+> Task는 특정 작업을 완료하는데 필요한 모든 단계를 포함하는 것이 일반적임.
 >
 > * Process는 OS가 관리하는 단위임.
-> * Task는 OS의 관리 단위가 아님.
+> * 보통 Task는 OS의 관리 단위가 아님.
 
 ---
 
-#### 다중 처리 (Multi-processing) 시스템
+#### 다중 처리 (Multi-processing) 시스템 ***
 
 1. ***여러 개의 CPU*** 와 한 개의 주기억 장치로 여러 프로그램을 동시에 처리하는 시스템.
 2. 여러 process가 동시에 수행됨 (core수 만큼).
+
+multi-tasking인 `concurrency`를 구현한 것이라면,  
+multi-processing은 `parallelism`을 구현한 것임.
 
 ---
 
@@ -132,3 +138,5 @@ CPU (당시엔 거의 core가 하나)의 idle time을 줄이기 위한 시스템
 1. 네트워크를 통해 통신하여 그 기능을 제공
 2. 여러 프로세서를 사용하지만, 밀결합(tightly-coupled) 구조가 아닌 ***소결합(loosely-coupled)*** 형태
 3. 컴퓨터 버스나 클럭을 공유하지 않고, 네트워크를 이용해 통신
+
+[`Grid Computing System`](../CE/ch04/ce04_53_grid_system.md) 이 대표적인 ***분산처리 시스템*** 이다.
