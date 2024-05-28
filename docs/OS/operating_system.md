@@ -46,7 +46,7 @@
 
 ### 여러 OS들
 
-* Windows **
+* [Windows](./windows.md) **
 * [LINUX](./LINUX.md) **
 * [UNIX](./UNIX.md)
 * mac OS **
@@ -115,6 +115,8 @@ CPU (당시엔 거의 core가 하나)의 idle time을 줄이기 위한 시스템
 
 multi-tasking인 `concurrency`를 구현한 것이라면,  
 multi-processing은 `parallelism`을 구현한 것임.
+
+* **참고:** 다음 URL을 읽어볼 것: [Concurrency vs. Parallelism](https://ds31x.tistory.com/304)
 
 ---
 
