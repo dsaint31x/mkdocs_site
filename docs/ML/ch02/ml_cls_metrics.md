@@ -70,11 +70,11 @@ $99.9\%$의 accuracy를 얻게된다.
 
 model에 대해 하나의 값만이 구해지는 Accuracy와 달리, Precision은 각 class 별로 구해질 수 있음.
 
-$$\begin{aligned} \bf{Precision}_\bf{cls\_A} &= \frac{TP_\bf{cls\_A}}{TP_\bf{cls\_A}+FP_\bf{cls\_A}}\end{aligned}$$
+$$\text{Precision}(\text{cls\_A}) = \frac{TP(\text{cls\_A})}{TP(\bf{cls\_A})+FP(\bf{cls\_A})}\end{aligned}$$
 
 
-* $TP_\text{cls_A}$ : Label과 Predict 모두 class A인 sample들의 수.
-* $FP_\text{cls_A}$ : Predict는 class A였으나 Label이 class A가 아닌 sample들의 수.
+* $TP(\bf{cls\_A})$ : Label과 Predict 모두 class A인 sample들의 수.
+* $FP(\bf{cls\_A})$ : Predict는 class A였으나 Label이 class A가 아닌 sample들의 수.
 
 Precision을 올리는 쉬운 방법은 "정말 확실하게 해당 class A인 경우에만 class A로 판정"하는 것임.  
 즉, 판정시 사용하는 threshold를 매우 높게 잡으면 precision은 올라간다.
