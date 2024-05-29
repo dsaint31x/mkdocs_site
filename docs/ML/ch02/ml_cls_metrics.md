@@ -53,9 +53,9 @@ $$\text{Accuracy} = \dfrac{TP+TN}{TP+FP+TN+FN}$$
 ***imbalanced classification의 경우엔 성능을 제대로 나타내지 못한다*** 는 단점이 있음.
 
 
-예를 들어 유병률이 0.1% 희귀병을 판정하는 classifier의 경우,  
+예를 들어 유병률이 $0.1\%$ 희귀병을 판정하는 classifier의 경우,  
 아무 로직 없이 무조건 희귀병이 아니라고 판정해도  
-99.9%의 accuracy를 얻게된다.
+$99.9\%$의 accuracy를 얻게된다.
 
 * 이같은 단점 때문에 precision과 recall 등과 함께 사용됨.
 
