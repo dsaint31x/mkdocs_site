@@ -101,7 +101,7 @@ Recall도 precision과 마찬가지로 class별로 다음과 같이 구해진다
 
 
 $$
-\text{Recall}_{\bf{cls_A}} = \frac{TP_{\bf{cls_A}}}{TP_\bf{cls_A}+FN_{\text{cls_A}}}
+\text{Recall}(\bf{cls_A}) = \frac{TP(\bf{cls_A})}{TP(\bf{cls_A})+FN(\text{cls_A})}
 $$
 
 앞서 말한대로, ***Recall과 Precision은 trade-off 관계*** 이다. 
@@ -131,12 +131,12 @@ Accuracy와 달리, Precision과 Recall은 class별로 구해지기 때문에,
 아래의 식을 보면, 각 클래스의 값에 동일한 weight을 준다.
 
 $$
-\text{Precision}_\text{macro} = \frac{\text{Precision}_\text{cls_A}+\text{Precision}_\text{cls_B}+ \dots +\text{Precision}_\text{cls_N}}{N}
+\text{Precision}_{\text{macro}} = \frac{\text{Precision}_{\text{cls_A}}+\text{Precision}_{\text{cls_B}}+ \dots +\text{Precision}_{\text{cls_N}}}{N}
 $$
 
 
 $$
-\text{Recall}_\text{macro} = \frac{\text{Recall}_\text{cls_A}+\text{Recall}_\text{cls_B}+ \dots +\text{Recall}_\text{cls_N}}{N}
+\text{Recall}_{\text{macro}} = \frac{\text{Recall}_{\text{cls_A}}+\text{Recall}_{\text{cls_B}}+ \dots +\text{Recall}_{\text{cls_N}}}{N}
 $$
 
 
