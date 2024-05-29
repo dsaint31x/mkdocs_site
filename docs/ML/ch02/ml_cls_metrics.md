@@ -101,7 +101,7 @@ Recall도 precision과 마찬가지로 class별로 다음과 같이 구해진다
 
 
 $$
-\text{Recall}_\text{cls_A} = \frac{TP_\text{cls_A}}{TP_\text{cls_A}+FN_\text{cls_A}}
+\text{Recall}_{\bf{cls_A}} = \frac{TP_{\bf{cls_A}}}{TP_\bf{cls_A}+FN_{\text{cls_A}}}
 $$
 
 앞서 말한대로, ***Recall과 Precision은 trade-off 관계*** 이다. 
