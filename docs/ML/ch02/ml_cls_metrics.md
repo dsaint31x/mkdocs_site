@@ -227,9 +227,10 @@ Macro, Micro, Weighted 가 구해지는 것은 앞서 살펴본 Multi-class Clas
 2. **Precision 계산**:
    - Precision = (올바르게 예측한 라벨의 수) / (예측한 True 라벨의 수)
 
-위 예시에서, 올바르게 예측한 True 라벨의 수는 2개 (1번째와 5번째 라벨)입니다. 예측한 True 라벨의 수는 3개 (1번째, 2번째, 5번째 라벨)임.
+위 예시에서, 올바르게 예측한 True 라벨의 수는 2개 (1번째와 5번째 라벨)이며 예측한 True 라벨의 수는 3개 (1번째, 2번째, 5번째 라벨)임.
 
-따라서, 이 샘플에 대한 Precision은:
+따라서, 이 샘플에 대한 Precision은
+
 $$\text{Precision} = \frac{2}{3} \approx 0.67$$
 
 3. **여러 샘플의 Precision 계산**:
@@ -244,6 +245,7 @@ $$\text{Precision} = \frac{2}{3} \approx 0.67$$
 | 3    | [1, 1, 1, 0, 0]  | [1, 0, 1, 0, 1]  | Precision = 2/3 = 0.67            |
 
 이렇게 각 샘플별로 Precision을 계산한 후, sample-wise precision을 얻기 위해 각 샘플의 Precision 값을 평균내면:
+
 $$\text{Sample-wise Precision} = \frac{0.67 + 0.67 + 0.67}{3} = 0.67$$
 
 즉, sample-wise precision은 각 샘플의 예측 결과를 개별적으로 평가하여 평균을 내는 방식으로, 전체적으로 모델이 각 샘플에 대해 얼마나 정확하게 예측했는지를 평가함.
