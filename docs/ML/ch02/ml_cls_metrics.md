@@ -38,7 +38,7 @@ binary classifier의 경우,
 
 Prediction에서 Ground True값인 label을 정확하게 맞춘 확률을 의미함.
 
-$$\text{Accuracy} = \frac{\bf{Correct_Predictions}}{\bf{All_Predictions}}$$
+$$\text{Accuracy} = \frac{\bf{Correct\_Predictions}}{\bf{All\_Predictions}}$$
 
 Binary classification으로 말한다면
 
@@ -70,7 +70,7 @@ $99.9\%$의 accuracy를 얻게된다.
 
 model에 대해 하나의 값만이 구해지는 Accuracy와 달리, Precision은 각 class 별로 구해질 수 있음.
 
-$$\begin{aligned} \text{Precision}_\text{cls_A} &= \frac{TP_\text{cls_A}}{TP_\text{cls_A}+FP_\text{cls_A}}\end{aligned}$$
+$$\begin{aligned} \bf{Precision}_\bf{cls\_A} &= \frac{TP_\bf{cls\_A}}{TP_\bf{cls\_A}+FP_\bf{cls\_A}}\end{aligned}$$
 
 
 * $TP_\text{cls_A}$ : Label과 Predict 모두 class A인 sample들의 수.
