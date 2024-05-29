@@ -67,9 +67,13 @@ $$\text{Accuracy} = \dfrac{TP+TN}{TP+FP+TN+FN}$$
 
 * 즉, 특정 class라고 예측한 경우에서 몇 퍼센트가 정답을 맞추었는지를 나타냄.
 * 특정 class라고 예측한 경우에서의 정답률에 해당함.
-* model에 대해 하나의 값만이 구해지는 Accuracy와 달리, 각 class 별로 구해질 수 있음.
 
-$$\text{Precision}_\text{cls_A} = \dfrac{TP_\text{cls_A}}{TP_\text{cls_A}+FP_\text{cls_A}}$$
+model에 대해 하나의 값만이 구해지는 Accuracy와 달리, Precision은 각 class 별로 구해질 수 있음.
+
+
+$$
+\text{Precision}_\text{cls_A} = \dfrac{TP_\text{cls_A}}{TP_\text{cls_A}+FP_\text{cls_A}}
+$$
 
 * $TP_\text{cls_A}$ : Label과 Predict 모두 class A인 sample들의 수.
 * $FP_\text{cls_A}$ : Predict는 class A였으나 Label이 class A가 아닌 sample들의 수.
@@ -94,9 +98,13 @@ Sensitivity 또는 ***True Positive Rate*** 라고도 불린다.
 Precision과 분자는 같지만 분모가 달라진다. 분모가 "Label이 특정 class인 샘플의 수"가 된다. 
 
 * 즉, 특정 class를 label로 가지는 sample들에 대해 몇 퍼센트를 해당 class로 맞추었는지를 의미함.
-* precision과 마찬가지로 class별로 구해진다.
 
-$$\text{Recall}_\text{cls_A} = \dfrac{TP_\text{cls_A}}{TP_\text{cls_A}+FN_\text{cls_A}}$$
+Recall도 precision과 마찬가지로 class별로 다음과 같이 구해진다.
+
+
+$$
+\text{Recall}_\text{cls_A} = \dfrac{TP_\text{cls_A}}{TP_\text{cls_A}+FN_\text{cls_A}}
+$$
 
 앞서 말한대로, ***Recall과 Precision은 trade-off 관계*** 이다. 
 
@@ -122,9 +130,17 @@ Accuracy와 달리, Precision과 Recall은 class별로 구해지기 때문에,
 * 각 클래스별로 동일한 weight를 주어 평균을 구함.
 * imbalanced dataset에 주로 애용되는 방법임.
 
-$$\text{Precision}_\text{macro} = \dfrac{\text{Precision}_\text{cls_A}+\text{Precision}_\text{cls_B}+ \dots +\text{Precision}_\text{cls_N}}{N}$$
+아래의 식을 보면, 각 클래스의 값에 동일한 weight을 준다.
 
-$$\text{Recall}_\text{macro} = \dfrac{\text{Recall}_\text{cls_A}+\text{Recall}_\text{cls_B}+ \dots +\text{Recall}_\text{cls_N}}{N}$$
+$$
+\text{Precision}_\text{macro} = \dfrac{\text{Precision}_\text{cls_A}+\text{Precision}_\text{cls_B}+ \dots +\text{Precision}_\text{cls_N}}{N}
+$$
+
+
+$$
+\text{Recall}_\text{macro} = \dfrac{\text{Recall}_\text{cls_A}+\text{Recall}_\text{cls_B}+ \dots +\text{Recall}_\text{cls_N}}{N}
+$$
+
 
 * $N$ : number of classes
 
@@ -138,9 +154,15 @@ $$\text{Recall}_\text{macro} = \dfrac{\text{Recall}_\text{cls_A}+\text{Recall}_\
 최종 TP와 FP, TN, FP를 구하고  
 이로부터 Precision과 Recall을 구한다.
 
-$$\text{Precision} = \dfrac{TP_\text{cls_A}+ \dots +TP_\text{cls_N}}{TP_\text{cls_A}+ \dots +TP_\text{cls_N}+ FP_\text{cls_A}+ \dots +FP_\text{cls_N}}$$
+식은 다음과 같음.
 
-$$\text{Recall} = \dfrac{TP_\text{cls_A}+ \dots +TP_\text{cls_N}}{TP_\text{cls_A}+ \dots +TP_\text{cls_N}+ FN_\text{cls_A}+ \dots +FN_\text{cls_N}}$$
+$$
+\text{Precision} = \dfrac{TP_\text{cls_A}+ \dots +TP_\text{cls_N}}{TP_\text{cls_A}+ \dots +TP_\text{cls_N}+ FP_\text{cls_A}+ \dots +FP_\text{cls_N}}
+$$
+
+$$
+\text{Recall} = \dfrac{TP_\text{cls_A}+ \dots +TP_\text{cls_N}}{TP_\text{cls_A}+ \dots +TP_\text{cls_N}+ FN_\text{cls_A}+ \dots +FN_\text{cls_N}}
+$$
 
 > Imbalanced classes의 경우에 대해 Weighted Average 와 매우 비슷한 수치를 보인다.  
 > scikit-learn 등에서 제공하는 함수들에서 Macro Average와 Weighted Average만을 기본으로 제공하고 Micro avg.는 제공하지 않음.  
@@ -153,10 +175,16 @@ $$\text{Recall} = \dfrac{TP_\text{cls_A}+ \dots +TP_\text{cls_N}}{TP_\text{cls_A
 * 특별한 언급이 없는 경우, weighted average 라고 해석하면 거의 맞음.
 * 단 imbalanced dataset 의 경우엔, minor class에 대한 성능 하락을 무시하게 되므로 주의해야 함.
 
-$$\text{Precision}_\text{weighted} = \dfrac{M_\text{cls_A}\text{Precision}_\text{cls_A}+ \dots +M_\text{cls_N}\text{Precision}_\text{cls_N}}{M}$$
+식은 다음과 같음.
+
+$$
+\text{Precision}_\text{weighted} = \dfrac{M_\text{cls_A}\text{Precision}_\text{cls_A}+ \dots +M_\text{cls_N}\text{Precision}_\text{cls_N}}{M}
+$$
 
 
-$$\text{Recall}_\text{weighted} = \dfrac{M_\text{cls_A}\text{Recall}_\text{cls_A}+ \dots +M_\text{cls_N}\text{Recall}_\text{cls_N}}{M_\text{total}}$$
+$$
+\text{Recall}_\text{weighted} = \dfrac{M_\text{cls_A}\text{Recall}_\text{cls_A}+ \dots +M_\text{cls_N}\text{Recall}_\text{cls_N}}{M_\text{total}}
+$$
 
 * $M_\text{total}$ : number of total samples
 * $M_\text{cls_A}$ : number of samples of class A
@@ -231,7 +259,9 @@ graph가 Left-top (High recall and Low FPR)에 가까울수록 높은 성능의 
 
 ### False Positive Rate (=FPR)
 
-$$\text{FPR}=\dfrac{FP}{FP+TN}= 1-\dfrac{TN}{FP+TN} = 1-\text{specificity}$$
+$$
+\text{FPR}=\dfrac{FP}{FP+TN}= 1-\dfrac{TN}{FP+TN} = 1-\text{specificity}
+$$
 
 * Label이 Negative인 sample의 수가 분모이며 
 * 분자는 Label이 negative인데 positive로 predict한 sample의 수임.
@@ -273,7 +303,9 @@ Precision과 Recall을 동시에 반영하는 measure로 많이 사용됨.
 
 Precision과 Recall의 Harmonic mean으로 수식은 다음과 같음.
 
-$$\begin{aligned}F_{\beta}=F&=\dfrac{1}{\alpha\dfrac{1}{\text{precision}}+(1-\alpha)\dfrac{1}{\text{recall}}}\\ &=\dfrac{(\beta^2+1)\text{precision}\times\text{recall}}{\beta^2\text{precision}+\text{recall}}\end{aligned}$$
+$$
+\begin{aligned}F_{\beta}=F&=\dfrac{1}{\alpha\dfrac{1}{\text{precision}}+(1-\alpha)\dfrac{1}{\text{recall}}}\\ &=\dfrac{(\beta^2+1)\text{precision}\times\text{recall}}{\beta^2\text{precision}+\text{recall}}\end{aligned}
+$$
 
 * Precision과 Recall이 모두 중요할 경우 $\beta=1$
 * Recall이 보다 중요할 경우 보통  $\beta=2$ : 의료분야 등에서 많이 이용됨.
