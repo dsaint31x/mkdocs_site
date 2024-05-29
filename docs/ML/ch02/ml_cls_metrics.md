@@ -71,8 +71,8 @@ $$\text{Accuracy} = \dfrac{TP+TN}{TP+FP+TN+FN}$$
 model에 대해 하나의 값만이 구해지는 Accuracy와 달리, Precision은 각 class 별로 구해질 수 있음.
 
 
-$$
-\text{Precision}_\text{cls_A} = \dfrac{TP_\text{cls_A}}{TP_\text{cls_A}+FP_\text{cls_A}}
+$$\begin{aligned}
+\text{Precision}_\text{cls_A} &= \dfrac{TP_\text{cls_A}}{TP_\text{cls_A}+FP_\text{cls_A}}\end{aligned}
 $$
 
 * $TP_\text{cls_A}$ : Label과 Predict 모두 class A인 sample들의 수.
