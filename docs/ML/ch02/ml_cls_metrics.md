@@ -131,7 +131,7 @@ Accuracy와 달리, Precision과 Recall은 class별로 구해지기 때문에,
 아래의 식을 보면, 각 클래스의 값에 동일한 weight을 준다.
 
 $$
-\bf{Precision}(\bf{macro}) = \frac{\bf{Precision}(\bf{cls_A})+\bf{Precision}(\bf{cls_B})+ \dots +\bf{Precision}(\bf{cls_N}){N}
+\bf{Precision}(\bf{macro}) = \frac{\bf{Precision}(\bf{cls_A})+\bf{Precision}(\bf{cls_B})+ \dots +\bf{Precision}(\bf{cls_N})}{N}
 $$
 
 
