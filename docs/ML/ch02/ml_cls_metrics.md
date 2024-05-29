@@ -38,11 +38,11 @@ binary classifier의 경우,
 
 Prediction에서 Ground True값인 label을 정확하게 맞춘 확률을 의미함.
 
-$$\text{Accuracy} = \frac{\bf{Correct Predictions}}{\bf{All Predictions}}$$
+$$\text{Accuracy} = \frac{\bf{Correct_Predictions}}{\bf{All_Predictions}}$$
 
 Binary classification으로 말한다면
 
-$$\text{Accuracy} = \dfrac{TP+TN}{TP+FP+TN+FN}$$
+$$\text{Accuracy} = \frac{TP+TN}{TP+FP+TN+FN}$$
 
 * $TP$ : True Positive (실제로 Label이 Positive인데 Positive라고 predict한 갯수)
 * $TN$ : True Negative (실제로 Label이 Negative인데 Negative라고 predict한 갯수)
@@ -70,11 +70,8 @@ $99.9\%$의 accuracy를 얻게된다.
 
 model에 대해 하나의 값만이 구해지는 Accuracy와 달리, Precision은 각 class 별로 구해질 수 있음.
 
-$$\begin{aligned} \text{Precision}_\text{cls_A} &= \dfrac{TP_\text{cls_A}}{TP_\text{cls_A}+FP_\text{cls_A}}\end{aligned}$$
+$$\begin{aligned} \text{Precision}_\text{cls_A} &= \frac{TP_\text{cls_A}}{TP_\text{cls_A}+FP_\text{cls_A}}\end{aligned}$$
 
-$$\begin{aligned}
-\text{Precision}_\text{cls_A} &= \dfrac{TP_\text{cls_A}}{TP_\text{cls_A}+FP_\text{cls_A}}\end{aligned}
-$$
 
 * $TP_\text{cls_A}$ : Label과 Predict 모두 class A인 sample들의 수.
 * $FP_\text{cls_A}$ : Predict는 class A였으나 Label이 class A가 아닌 sample들의 수.
@@ -104,7 +101,7 @@ Recall도 precision과 마찬가지로 class별로 다음과 같이 구해진다
 
 
 $$
-\text{Recall}_\text{cls_A} = \dfrac{TP_\text{cls_A}}{TP_\text{cls_A}+FN_\text{cls_A}}
+\text{Recall}_\text{cls_A} = \frac{TP_\text{cls_A}}{TP_\text{cls_A}+FN_\text{cls_A}}
 $$
 
 앞서 말한대로, ***Recall과 Precision은 trade-off 관계*** 이다. 
@@ -134,12 +131,12 @@ Accuracy와 달리, Precision과 Recall은 class별로 구해지기 때문에,
 아래의 식을 보면, 각 클래스의 값에 동일한 weight을 준다.
 
 $$
-\text{Precision}_\text{macro} = \dfrac{\text{Precision}_\text{cls_A}+\text{Precision}_\text{cls_B}+ \dots +\text{Precision}_\text{cls_N}}{N}
+\text{Precision}_\text{macro} = \frac{\text{Precision}_\text{cls_A}+\text{Precision}_\text{cls_B}+ \dots +\text{Precision}_\text{cls_N}}{N}
 $$
 
 
 $$
-\text{Recall}_\text{macro} = \dfrac{\text{Recall}_\text{cls_A}+\text{Recall}_\text{cls_B}+ \dots +\text{Recall}_\text{cls_N}}{N}
+\text{Recall}_\text{macro} = \frac{\text{Recall}_\text{cls_A}+\text{Recall}_\text{cls_B}+ \dots +\text{Recall}_\text{cls_N}}{N}
 $$
 
 
@@ -158,11 +155,11 @@ $$
 식은 다음과 같음.
 
 $$
-\text{Precision} = \dfrac{TP_\text{cls_A}+ \dots +TP_\text{cls_N}}{TP_\text{cls_A}+ \dots +TP_\text{cls_N}+ FP_\text{cls_A}+ \dots +FP_\text{cls_N}}
+\text{Precision} = \frac{TP_\text{cls_A}+ \dots +TP_\text{cls_N}}{TP_\text{cls_A}+ \dots +TP_\text{cls_N}+ FP_\text{cls_A}+ \dots +FP_\text{cls_N}}
 $$
 
 $$
-\text{Recall} = \dfrac{TP_\text{cls_A}+ \dots +TP_\text{cls_N}}{TP_\text{cls_A}+ \dots +TP_\text{cls_N}+ FN_\text{cls_A}+ \dots +FN_\text{cls_N}}
+\text{Recall} = \frac{TP_\text{cls_A}+ \dots +TP_\text{cls_N}}{TP_\text{cls_A}+ \dots +TP_\text{cls_N}+ FN_\text{cls_A}+ \dots +FN_\text{cls_N}}
 $$
 
 > Imbalanced classes의 경우에 대해 Weighted Average 와 매우 비슷한 수치를 보인다.  
@@ -179,12 +176,12 @@ $$
 식은 다음과 같음.
 
 $$
-\text{Precision}_\text{weighted} = \dfrac{M_\text{cls_A}\text{Precision}_\text{cls_A}+ \dots +M_\text{cls_N}\text{Precision}_\text{cls_N}}{M}
+\text{Precision}_\text{weighted} = \frac{M_\text{cls_A}\text{Precision}_\text{cls_A}+ \dots +M_\text{cls_N}\text{Precision}_\text{cls_N}}{M}
 $$
 
 
 $$
-\text{Recall}_\text{weighted} = \dfrac{M_\text{cls_A}\text{Recall}_\text{cls_A}+ \dots +M_\text{cls_N}\text{Recall}_\text{cls_N}}{M_\text{total}}
+\text{Recall}_\text{weighted} = \frac{M_\text{cls_A}\text{Recall}_\text{cls_A}+ \dots +M_\text{cls_N}\text{Recall}_\text{cls_N}}{M_\text{total}}
 $$
 
 * $M_\text{total}$ : number of total samples
@@ -261,7 +258,7 @@ graph가 Left-top (High recall and Low FPR)에 가까울수록 높은 성능의 
 ### False Positive Rate (=FPR)
 
 $$
-\text{FPR}=\dfrac{FP}{FP+TN}= 1-\dfrac{TN}{FP+TN} = 1-\text{specificity}
+\text{FPR}=\frac{FP}{FP+TN}= 1-\frac{TN}{FP+TN} = 1-\text{specificity}
 $$
 
 * Label이 Negative인 sample의 수가 분모이며 
@@ -305,7 +302,7 @@ Precision과 Recall을 동시에 반영하는 measure로 많이 사용됨.
 Precision과 Recall의 Harmonic mean으로 수식은 다음과 같음.
 
 $$
-\begin{aligned}F_{\beta}=F&=\dfrac{1}{\alpha\dfrac{1}{\text{precision}}+(1-\alpha)\dfrac{1}{\text{recall}}}\\ &=\dfrac{(\beta^2+1)\text{precision}\times\text{recall}}{\beta^2\text{precision}+\text{recall}}\end{aligned}
+\begin{aligned}F_{\beta}=F&=\frac{1}{\alpha\frac{1}{\text{precision}}+(1-\alpha)\frac{1}{\text{recall}}}\\ &=\frac{(\beta^2+1)\text{precision}\times\text{recall}}{\beta^2\text{precision}+\text{recall}}\end{aligned}
 $$
 
 * Precision과 Recall이 모두 중요할 경우 $\beta=1$
