@@ -38,7 +38,7 @@ binary classifier의 경우,
 
 Prediction에서 Ground True값인 label을 정확하게 맞춘 확률을 의미함.
 
-$$\text{Accuracy} = \dfrac{\text{Correct_Predictions}}{\text{All_Predictions}}$$
+$$\text{Accuracy} = \frac{\bf{Correct Predictions}}{\bf{All Predictions}}$$
 
 Binary classification으로 말한다면
 
