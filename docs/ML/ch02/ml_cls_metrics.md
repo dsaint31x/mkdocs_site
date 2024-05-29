@@ -176,7 +176,7 @@ $$
 식은 다음과 같음.
 
 $$
-\bf{Precision}(\bf{weighted}) = \frac{M(\bf{cls_A})\bf{Precision}(\bf{cls_A})+ \dots +M(\bf{cls_N})\bf{Precision}(\bf{cls_N})}{M}
+\bf{Precision}(\bf{weighted}) = \frac{M(\bf{cls_A})\bf{Precision}(\bf{cls_A})+ \dots +M(\bf{cls_N})\bf{Precision}(\bf{cls_N})}{M(\bf{total})}
 $$
 
 
