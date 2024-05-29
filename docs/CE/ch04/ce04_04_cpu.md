@@ -101,9 +101,9 @@ CPU가 컴퓨터의 다른 구성 요소와 상호 작용하고 명령을 실행
 
 ---
 
-Random logic으로 구현할 수 있지만, microcode (microinstruction을 지원하는 memory (=writable ROM 이용)로 구현된 방식) 방식으로 구현되는 경우가 많음.
+Random logic으로 구현할 수 있지만, 1960년 대 이후로는 microcode (microinstruction을 지원하는 memory (=writable ROM 이용)로 구현된 방식) 방식으로 구현되는 경우가 많음.
 
-microcode로 구현된 traffic control은 다음과 같은 memory로 만들어짐.
+microcode로 구현된 traffic control은 다음과 같은 memory (주로 ROM)로 만들어짐.
 
 * instruction의 opcode, mode, counter 등의 조합을 `address`로 삼고,
 * 해당 `address` (실제로는 특정 instruction)에 해당하는 적절한 signal을 출력하는 memory.
@@ -111,6 +111,22 @@ microcode로 구현된 traffic control은 다음과 같은 memory로 만들어�
 
 > control unit을 만들기 위해 여러 microcode block이 사용될 수 있고,  
 > 하나의 microcode block을 만들기 위해 nanocode block 들이 사용될 수 있음. 
+
+요약하면, `Microcode`는 CPU의 제어 장치가 `machine code`(기계어 명령어)를 해석하고 실행하는 데 사용되는 저수준의 코드임.  
+
+* `machine code`(기계어명령어)는 CPU의 명령어 집합 아키텍처(ISA)에 정의된 고수준 명령어(microcode에 비해서 고수준). 
+* 이 `machine code`는 `Microcode`에 의해 더 작은 단위의 마이크로연산으로 분해됨. 
+* 각 마이크로연산은 CPU의 특정 하드웨어 기능을 제어하는 데 사용
+* Writable ROM등에 저장되며, 일종의 Firmware라고 볼 수 있음.
+    * Firmware: 하드웨어를 제어하고 하드웨어와 소프트웨어 간의 인터페이스를 제공하는, 읽기 전용 메모리(ROM), 플래시 메모리, 혹은 이와 유사한 비휘발성 메모리에 저장된 소프트웨어.
+    * Firmware에 대한 자세한 참고자료: [Firmware란](../ch03_seq/ce03_05_hw_and_sw.md#Firmware)
+
+
+
+> **Random Logic** 이란:
+>
+> Random Logic는 CPU 내부의 다양한 기능을 구현하는 데 필요한 디지털 회로들을 조합하여 특정 동작을 수행하도록 만드는 방법.  
+> 이는 일반적으로 트랜지스터, 게이트, 플립플롭 등의 기본 논리 소자를 이용해 조합 논리회로 및 순차 논리회로를 설계하는 것을 의미한다.
 
 ---
 
