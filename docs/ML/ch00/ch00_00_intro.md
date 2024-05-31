@@ -7,7 +7,8 @@ John McCarthy (AI 용어 창안자. 미국의 인지심리학자.1927-2011) 에 
 > ref. : [Basic Questions](http://www-formal.stanford.edu/jmc/whatisai/node1.html)
 
 **Q. What is `artificial intelligence`?**
-: A. It is the science and engineering of ^^making intelligent machines^^, especially intelligent computer programs. It is related to the similar task of using computers to understand human intelligence, but ***AI does not have to confine itself to methods that are biologically observable.***
+: A. It is the science and engineering of ^^making intelligent machines^^, especially intelligent computer programs. It is related to the similar task of using computers to understand human intelligence, but ***AI does not have to confine itself to methods that are biologically observable.***  
+이는 지능적인 기계, 특히 지능적인 컴퓨터 프로그램을 만드는 과학과 공학입니다. 인간 지능을 이해하기 위해 컴퓨터를 사용하는 유사한 작업과 관련이 있지만, AI는 생물학적으로 관찰 가능한 방법에만 국한될 필요는 없습니다.
 
 AI라는 용어는 1956년 [다트머스대학 컨퍼런스](./ch00_01_dartmouth_ai.md)에서 최초로 등장했으며, `기계 혹은 시스템으로부터 만들어진 지능` 또는 
 `이와 같은 지능을 만들 수 있는 방법론 등을 연구하는 분야` 를 가르킨다.
