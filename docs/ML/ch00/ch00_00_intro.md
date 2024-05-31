@@ -10,9 +10,20 @@ John McCarthy (AI 용어 창안자. 미국의 인지심리학자.1927-2011) 에 
 : A. It is the science and engineering of ^^making intelligent machines^^, especially intelligent computer programs. It is related to the similar task of using computers to understand human intelligence, but ***AI does not have to confine itself to methods that are biologically observable.***
 
 AI라는 용어는 1956년 [다트머스대학 컨퍼런스](./ch00_01_dartmouth_ai.md)에서 최초로 등장했으며, `기계 혹은 시스템으로부터 만들어진 지능` 또는 
-`이와 같은 지능을 만들 수 있는 방법론 등을 연구하는 분야` 를 가르킨다. 
+`이와 같은 지능을 만들 수 있는 방법론 등을 연구하는 분야` 를 가르킨다.
+
+---
+
+### AI 의 정의 ***
+
+인간의 지능을 모사하는 모든 기술과 연구 분야를 가르킴.
+
+* 기계 혹은 시스템으로부터 만들어진 지능.
+* 위와 같은 지능을 만들 수 있는 방법론 등을 연구하는 분야.
 
 > 참고로, Machine Learning 이라는 용어를 1959년 만들어낸 Arthur Samuel도 다트머스대학 컨퍼런스에 참석함.
+
+---
 
 AI는 매우 다양한 분야의 학문과 연계됨.
 
@@ -20,6 +31,8 @@ AI는 매우 다양한 분야의 학문과 연계됨.
 * 인지심리학 : 인간(혹은 동물)이 정보를 인지,저장,분석,처리 하는 메커니즘을 연구
 * 수학 : 대수학, 논리학, 확률 …
 * 컴퓨터 과학(공학 포함), 로봇공학 : 다른 분야의 연구 결과를 통해 실제 동작하는 구현물을 만들어냄.
+
+---
 
 ---
 
@@ -33,14 +46,14 @@ AI가 ***기존의 컴퓨터 시스템과 구분되는  4가지 잠재적 목표
 * 합리적으로 사고(생각)하는 시스템
 * ***합리적으로 행동하는 시스템***
 
-현재 어떤 AI기술도 General AI(인간처럼 사고/행동)는 구현치 못했음. 하지만, Deep Learning을 통해 Computer Vision분야 등에서는 인간 이상의 성과를 보이는 Narrow AI (특정 작업에서 인간처럼 혹은 인간 이상으로 사고/행동)가 구현되기 시작했다. 대표적인 분야는 다음과 같음.
+현재 어떤 AI기술도 General AI(인간처럼 사고/행동)는 구현치 못했음. 하지만, Deep Learning을 통해 Computer Vision분야 등에서는 인간 이상의 성과를 보이는 Narrow AI (특정 작업에서 인간처럼 혹은 인간 이상으로 사고/행동)가 구현되기 시작했다. Narrow AI의 대표적인 분야는 다음과 같음.
 
 * 체스, 바둑
 * 이미지 인식(일부)
 
 ---
 
-## Turing Test
+### Turing Test
 
 Alan Turing은 "인간처럼 행동하는 시스템"의 범주에 속하는 정의를 제시했다. 
 
@@ -77,10 +90,22 @@ Total Turing Test 통과를 위해서 AI에게 필요한 능력
 
 ---
 
-## Machine Learning 이란.
+---
+
+## Machine Learning 이란. ***
 
 ML은 "AI를 구현하기 위한 구체적 접근 방식"에 해당한다.  
-  
+
+> ML 외에 AI를 구현하기 위한 기술들로 다음이 대표적임.
+>
+> * Rule based Approach (Expert System이 대표적 예)
+> * Logic based Approach (Prolog 등을 통한 구현, 시맨틱웹, 온톨로지 기반 시스템 등)
+> * Agent based Approach (각 agent는 rule based approach나 logic based approach를 이용하는 방식.)
+
+---
+
+### ML 의 정의 ***
+
 ML은 
 
 * 대량의 `Data`와 
@@ -110,16 +135,24 @@ ML을 위해 제안된 다양한 기법들이 있으며 대략적으로 나누�
 
 ---
 
+---
+
 ##  Representative Learning **
 
-입력에 대해 요구되는 출력(~expectation)을   
-가능한 범위 내에서 정확하게 산출할 수 있는 approximation model을 만들기 위해(Task를 잘 수행하는데 필요한)  
+입력에 대해 ***요구되는 출력(~expectation)*** 을   
+가능한 범위 내에서 정확하게 산출할 수 있는 ***approximation model*** 을 만들기 위해  
+(Task를 잘 수행하는데 필요한)  
 ***유용한 representation (~embedding, feature vector)을 학습데이터를 기반으로 `학습`하여 산출*** 하는 것을 가르킴.
 
-> Generally speaking, a good representation is one that makes a subsequent learning task easier.
+> Generally speaking,  
+> a good representation is one that  
+> makes a subsequent learning task easier.
 
 * Manifold Learning : [manifold에 대한 참고자료](../ch07/manifold.md)
 * Auto-encoder
+* Deep Learning.
+
+---
 
 ---
 
@@ -136,7 +169,9 @@ ML을 위해 제안된 다양한 기법들이 있으며 대략적으로 나누�
 
 다음의 Deep Learning의 정의를 살펴보라.
 
-> Deep learning is a ^^particular kind of machine learning^^ that achieves great power and flexibility by ***learning to represent the world*** as **a nested hierarchy of concepts,** with each concept defined in relation to simpler concepts, and more abstract representations computed in terms of less abstract ones.
+> Deep learning is a ^^particular kind of machine learning^^ that achieves great power and flexibility by ***learning to represent the world*** as **a nested hierarchy of concepts,** with each concept defined in relation to simpler concepts, and more abstract representations computed in terms of less abstract ones.  
+> 
+> 딥러닝은 세계를 중첩된 개념의 계층 구조로 표현하는 방법을 학습하여 각 개념을 더 단순한 개념과 관련하여 정의하고 더 추상적인 표현은 덜 추상적인 개념의 관점에서 계산함으로써 뛰어난 성능과 유연성을 달성하는 특별한 종류의 머신 러닝입니다.
 
 ![http://www.cs.utoronto.ca/~rgrosse/cacm2011-cdbn.pdf](../img/ch00/dl_hiearchy_rep.png)
 
@@ -146,10 +181,18 @@ ML을 위해 제안된 다양한 기법들이 있으며 대략적으로 나누�
     * `DL`은 kernel SVM에서 kernel trick으로 우회해서 처리하던 것을 dataset으로부터 lower level layer에서 학습하여 직접 처리한다. 
 * ANN에서 layer를 여러 개 쌓을 경우, 이를 단일 layer로 처리하는 경우에 비해 적은 수의 neuron으로 같은 표현력을 가질 수 있으며, 보다 빨리 학습이 되고, noise에 영향을 덜 받는 것으로 알려져 있다. 
 
-> 실제로 logistic regression가 동일한 동작을 ANN (정확히는 `SLP`+sigmoid activation)으로 구현 가능하고, SVM은 hinge loss function과 Frobenius norm regularization을 사용하는 linear activation의 `SLP`라고 봐도 무방할 정도로 다른 ML 알고리즘들과 ANN은 많은 부분에서 공통점을 가지고 있다. 즉, DL도 ML의 한 분야에 불과하다.  
+> 실제로 
+> 
+> * logistic regression과 동일한 동작을 ANN (정확히는 `SLP`+sigmoid activation)으로 구현 가능하고, 
+> * SVM은 hinge loss function과 Frobenius norm regularization을 사용하는 linear activation의 `SLP`라고 봐도 무방할 정도로 
+> 
+> 다른 ML 알고리즘들과 ANN은 많은 부분에서 공통점을 가지고 있다. 즉, DL도 ML의 한 분야에 불과하다.
+>  
 > 하지만, 위에서 말한 알아서 최적의 representation을 여러 층으로 쌓인 non-linear activation function을 가지는 low layers를 통해 dataset으로부터 직접 얻어낸다는 점이 `DL`이 다른 `ML` 알고리즘과 비교할 수 없는 유용성을 가지게 해준 가장 큰 특징이다.  
 
-즉, 어떤 함수라도 근사할 수 있는 ANN ([UAT참고](http://ds31x.blogspot.com/))에 보다 효과적으로 학습되도록 hierarchical representative learning의 기능을 더한 것이 바로 DL이라고 생각해도 크게 틀리지 않다.
+즉, 어떤 함수라도 근사할 수 있는 ANN ([UAT참고](http://ds31x.blogspot.com/))에 ***보다 효과적으로 학습되도록 hierarchical representative learning의 기능을 더한 것*** 이 바로 DL이라고 생각해도 크게 틀리지 않다.
+
+---
 
 ---
 
@@ -159,6 +202,10 @@ AI와, ML, 그리고 DL은 다음과 같은 관계를 보인다.
 
 ![](../img/ch00/ai_ml_dl.png)
 
+
+**AI**
+: 인간의 지능을 모사하는 기술 또는 연구 분야.
+
 **(Narrow) AI** 
 : 특정 분야에서 인간처럼, 혹은 그 이상의 성능을 보이는 기술(or system) 
 
@@ -166,7 +213,8 @@ AI와, ML, 그리고 DL은 다음과 같은 관계를 보인다.
 * Rule-based algorithm
 
 **ML**
-: AI를 구현하기 위한 기술. 명시적 프로그래밍이 아닌 `Data`로부터 동작을 학습하는 기술
+: AI를 구현하기 위한 기술.  
+명시적 프로그래밍이 아닌 `Data`로부터 동작을 학습하는 기술
 
 * Decision Tree, SVM, Gradient Boosting and so on
 

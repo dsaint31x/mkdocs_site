@@ -12,21 +12,28 @@ Confusion matrix는 Classifier의 성능을 확실하게 파악할 수 있다는
 
 `sklearn.metrics.confusion_matrix` 를 사용하여 쉽게 구할 수 있음.
 
-binary classifier의 경우,
+binary classifier의 경우, confusion matrix는 다음과 같음.  
+(통계의 가설 검증에서 사용되는 confusion matrix와 비슷하여 이를 기반으로 표기한다.)
 
 |  | Negative | Positive |
 | :---: | :---: | :---: |
 | $H_1$: False <br/>($H_0$: True) | $TN$, True Negative | $FP$, False Positive<br/>(Type-I error)|
 | $H_1$: True <br/> ($H_0$: False)| $FN$, False Negative<br/> (Type-II error) | $TP$, True Positive |
 
-* $H_1$ : alternative hypothesis
-* $H_0$ : null hypothesis
+* $H_1$ : 
+    * alternative hypothesis. 
+    * 이진분류에선, ***label이 class에 속한 경우*** 임: label 값을 1로 표현.
+* $H_0$ : 
+    * null hypothesis. 
+    * 이진분류에선, ***label이 class에 속하지 않은 경우*** 임: label 값이 0이 됨.
 * False Positive 는 Type-I error(1종오류) 또는 $\alpha$ error라고도 불림.
+    * model이 1이라고 판정했으나, 실제로는 0인 경우임.
 * False Negative 는 Type-II error(2종오류) 또는 $\beta$ error라고도 불림.
+    * model이 0이라고 판정했으나, 실제로는 1인 경우임.
 * 가설검증 등에서 사용하는 $\alpha$ value (Critical value, significance level)가 작아질수록 Type-I error가 일어날 확률은 감소하지만 Type-II error가 일어날 확률은 커짐.
 
 <figure markdown>
-![](./img/type1_type2_error.png)
+![](./img/type1_type2_error.png){width="500", align="center"}
 </figure>
 
 * 가설검증은 Type-1 error를 줄이는데 초점을 둠. 
@@ -56,10 +63,14 @@ $$\bf{Accuracy} = \frac{TP+TN}{TP+FP+TN+FN}$$
 
 
 예를 들어 유병률이 $0.1\%$ 희귀병을 판정하는 classifier의 경우,  
-아무 로직 없이 무조건 희귀병이 아니라고 판정해도  
-$99.9\%$의 accuracy를 얻게된다.
 
-* 이같은 단점 때문에 precision과 recall 등과 함께 사용됨.
+* 아무 로직 없이 무조건 희귀병이 아니라고 판정해도  
+* $99.9\%$의 accuracy를 얻게된다.
+
+이같은 단점 때문에 accuracy만을 사용하는 경우는 balanced class인 경우로 제한되며,  
+흔히, precision과 recall 등과 함께 사용됨.
+
+classification의 종류에 상관없이 항상 단일값으로 구해짐.
 
 ---
 
@@ -67,12 +78,17 @@ $99.9\%$의 accuracy를 얻게된다.
 
 ## Precision (정밀도)
 
-특정 class의 precision이란, 해당 class라고 predict한 sample들의 수가 분모이고 해당 prediction에서 Label도 해당 class인 경우들의 수가 분자임.
+특정 class의 precision이란,  
+해당 class라고 predict한 sample들의 수가 분모이고  
+해당 prediction에서 Label도 해당 class인 경우들의 수가 분자임.
 
-* 즉, 특정 class라고 예측한 경우에서 몇 퍼센트가 정답을 맞추었는지를 나타냄.
+* 즉, ***특정 class라고 예측한 경우에서 몇 퍼센트가 정답을 맞추었는지*** 를 나타냄.
 * 특정 class라고 예측한 경우에서의 정답률에 해당함.
 
-model에 대해 하나의 값만이 구해지는 Accuracy와 달리, Precision은 각 class 별로 구해질 수 있음.
+model에 대해 하나의 값만이 구해지는 Accuracy와 달리, **Precision은 각 class 별로 구해진다**.
+
+* 때문에 이를 각 class에서의 precision들을 average 하여 대표값을 구해야 함.
+* 이를 average하는 방식에 따라 3~4가지 종류가 존재함 (아래 참조). 
 
 $$\bf{Precision}(\bf{cls_A}) = \frac{TP(\bf{cls_A})}{TP(\bf{cls_A})+FP(\bf{cls_A})}$$
 
@@ -102,6 +118,7 @@ Sensitivity 또는 ***True Positive Rate*** 라고도 불린다.
 Precision과 분자는 같지만 분모가 달라진다. 분모가 "Label이 특정 class인 샘플의 수"가 된다. 
 
 * 즉, 특정 class를 label로 가지는 sample들에 대해 몇 퍼센트를 해당 class로 맞추었는지를 의미함.
+* 역시 class 별로 구해지므로 average를 해야하는 점이 precision과 같음.
 
 Recall도 precision과 마찬가지로 class별로 다음과 같이 구해진다.
 
@@ -115,7 +132,8 @@ $$
 * threshold를 올리면 precision은 향상되지만, 
 * 이는 동시에 recall을 떨어뜨리게 된다.
 
-극단적으로 항상 class A 라고 판정할 경우, class A에 대한 recall은 1.0 (=100%)를 달성할 수 있다.  
+극단적으로  
+항상 class A 라고 판정할 경우, class A에 대한 recall은 1.0 (=100%)를 달성할 수 있다.  
 당연하지만 이 경우 class A의 precision은 매우 나뻐지게 된다.
 
 --- 
@@ -157,9 +175,9 @@ $$
 
 ### ***Micro Average***
 
-각 class별로 TP, FP, TN, FP를 구하고,  
-각 class의 TP, FP, TN, FP를 더해서  
-최종 TP와 FP, TN, FP를 구하고  
+각 class별로 TP, FP, TN, FN 를 구하고,  
+각 class의 TP, FP, TN, FN 를 더해서  
+최종 TP와 FP, TN, FN 를 구하고  
 이로부터 Precision과 Recall을 구한다.
 
 식은 다음과 같음.
@@ -173,8 +191,9 @@ $$
 $$
 
 > Imbalanced classes의 경우에 대해 Weighted Average 와 매우 비슷한 수치를 보인다.  
-> scikit-learn 등에서 제공하는 함수들에서 Macro Average와 Weighted Average만을 기본으로 제공하고 Micro avg.는 제공하지 않음.  
-> 특성이 Weighted Average와 유사하다 보니 자주 쓰이진 않는 편임.
+> 때문에, scikit-learn 등에서 제공하는 함수들에서  
+> Macro Average와 Weighted Average만을 기본으로 제공하고 Micro avg.는 제공하지 않음.  
+> 즉, 의미가 Weighted Average와 유사하다 보니 자주 쓰이진 않는 편임.
 
 ---
 
@@ -183,7 +202,7 @@ $$
 각 class별로 precision과 recall을 구하고 label에서 각 class의 샘플수를 weight로 삼아 average를 계산함.
 
 * 특별한 언급이 없는 경우, weighted average 라고 해석하면 거의 맞음.
-* 단 imbalanced dataset 의 경우엔, minor class에 대한 성능 하락을 무시하게 되므로 주의해야 함.
+* 단 imbalanced dataset 의 경우엔, ***minor class에 대한 성능 하락을 무시*** 하게 되므로 주의해야 함.
 
 식은 다음과 같음.
 
@@ -221,11 +240,11 @@ Macro, Micro, Weighted 가 구해지는 것은 앞서 살펴본 Multi-class Clas
 구체적인 예시를 통해 sample-wise precision을 살퍠보겠음.
 
 1. **예시 데이터**:
-   - 실제 라벨: [1, 0, 1, 0, 1] (즉, 1번째, 3번째, 5번째 라벨이 True)
-   - 예측 라벨: [1, 1, 0, 0, 1] (즉, 1번째, 2번째, 5번째 라벨이 True라고 예측)
+    - 실제 라벨: [1, 0, 1, 0, 1] (즉, 1번째, 3번째, 5번째 라벨이 True)
+    - 예측 라벨: [1, 1, 0, 0, 1] (즉, 1번째, 2번째, 5번째 라벨이 True라고 예측)
 
 2. **Precision 계산**:
-   - Precision = (올바르게 예측한 라벨의 수) / (예측한 True 라벨의 수)
+    - Precision = (올바르게 예측한 라벨의 수) / (예측한 True 라벨의 수)
 
 위 예시에서, 올바르게 예측한 True 라벨의 수는 2개 (1번째와 5번째 라벨)이며 예측한 True 라벨의 수는 3개 (1번째, 2번째, 5번째 라벨)임.
 
@@ -234,21 +253,23 @@ Macro, Micro, Weighted 가 구해지는 것은 앞서 살펴본 Multi-class Clas
 $$\text{Precision} = \frac{2}{3} \approx 0.67$$
 
 3. **여러 샘플의 Precision 계산**:
-   - 각 샘플에 대해 위와 같은 방식으로 Precision을 계산한 후, 모든 샘플에 대해 평균을 내면 sample-wise precision이 됨.
+    - 각 샘플에 대해 위와 같은 방식으로 Precision을 계산한 후, 
+    - 모든 샘플에 대해 평균을 내면 sample-wise precision이 됨.
 
 예를 들어, 세 개의 샘플에 대한 실제 라벨과 예측 라벨이 다음과 같다고 가정해 보자:
 
 | 샘플 | 실제 라벨       | 예측 라벨       | Precision 계산                    |
 |------|------------------|------------------|-----------------------------------|
-| 1    | [1, 0, 1, 0, 1]  | [1, 1, 0, 0, 1]  | Precision = 2/3 = 0.67            |
+| 1    | [1, 0, 1, 0, 1]  | [1, 1, 0, 0, 0]  | Precision = 1/3 = 0.33            |
 | 2    | [0, 1, 1, 0, 0]  | [0, 1, 1, 1, 0]  | Precision = 2/3 = 0.67            |
 | 3    | [1, 1, 1, 0, 0]  | [1, 0, 1, 0, 1]  | Precision = 2/3 = 0.67            |
 
 이렇게 각 샘플별로 Precision을 계산한 후, sample-wise precision을 얻기 위해 각 샘플의 Precision 값을 평균내면:
 
-$$\text{Sample-wise Precision} = \frac{0.67 + 0.67 + 0.67}{3} = 0.67$$
+$$\text{Sample-wise Precision} = \frac{0.33 + 0.67 + 0.67}{3} = 0.56$$
 
-즉, sample-wise precision은 각 샘플의 예측 결과를 개별적으로 평가하여 평균을 내는 방식으로, 전체적으로 모델이 각 샘플에 대해 얼마나 정확하게 예측했는지를 평가함.
+즉, sample-wise precision은 각 샘플의 예측 결과를 개별적으로 평가하여 평균을 내는 방식으로,  
+전체적으로 모델이 각 샘플에 대해 얼마나 정확하게 예측했는지를 평가함.
 
 ---
 
@@ -256,16 +277,12 @@ $$\text{Sample-wise Precision} = \frac{0.67 + 0.67 + 0.67}{3} = 0.67$$
 
 ## Precision-Recall Curve (PR Curve) and Precision-Recall Trade-off
 
-PR-Curve는 Binary classification에서 주로 얻어지는 Curve.  
-PR-Curve 에서 curve 아래의 area를 ***Average Precision*** 이라고도 부름 (y-axis가 Precision 인 경우).
+PR-Curve는 Binary classification에서 주로 얻어지는 Curve 이지만,  
+Multiclass classification에서도 계산 가능함.
 
 > Multi-class 의 경우는 다음 URL을 참고할 것 ( 앞서 살펴본 micro-average 를 이용.).  
 > 
 > * [scikit-learn's plot_precision_recall](https://scikit-learn.org/0.15/auto_examples/plot_precision_recall.html)
->
-> 참고로, Multi-class Classification 또는 Detection과 같은 Task 에서  
-> Mean Average Precision (mAP)을 metric으로 많이 사용하는데,  
-> <u>mAP는 각 클래스별로 Average Precision을 구하고, 이들의 평균을 구한 것</u> 을 가르킴.   
 
 해당 class로 판정하는 threshold를 조절하여 각각의 경우의 precision과 recall에 점을 찍는 방식으로 그려진다.
 
@@ -299,18 +316,31 @@ MNIST 데이터 (0-9까지의 숫자 데이터)에서 class 5에 대한 분류�
 
 ---
 
+### Average Precision (for Detection)
+
+* PR-Curve 에서 curve 아래의 area를 ***Average Precision*** 이라고도 부름 
+* y-axis가 Precision 인 경우.
+
+> 참고로, Multi-class Classification 또는 Detection과 같은 Task 에서  
+> Mean Average Precision (mAP)을 metric으로 많이 사용하는데,  
+> <u>mAP는 각 클래스별로 Average Precision을 구하고, 이들의 평균을 구한 것</u> 을 가르킴.   
+
+
+---
+
 ---
 
 ## Receiver operating characteristics (ROC) and AUC
 
-ROC는 `False Positive Rate` (=`FPR`, fall-out) 에 대해 `Recall` (=`True Positive Rate`)를 그린 graph임.
+ROC는 `False Positive Rate` (=`FPR` or `fall-out``) 에 대해 `Recall` (=`True Positive Rate`)를 그린 graph임.
 
-* x축 : FPR (=1-NTR = 1-specificity)
+* x축 : FPR (=1-TNR = 1-specificity)
 * y축 : TPR (=recall, sensitivity)
 
-> 의료분야에서는 ROC가 PR-Curve 보다 자주 보인다.
+> 의료분야에서는 ROC가 PR-Curve 보다 자주 사용되는 편임.
 
-OvR 또는 OvO 를 이용하여 Multi-class classification에서도 그릴 수는 있으나 주로 binary classification에서 사용됨.
+OvR 또는 OvO 를 이용하여 Multi-class classification에서도 그릴 수는 있으나  
+***주로 binary classification에서 사용*** 됨.
 
 Multi-class의 경우의 ROC Curve는 다음 URL을 참고할 것.
 [Multi-class Receiver Operating Characteristic (ROC)](https://scikit-learn.org/stable/auto_examples/model_selection/plot_roc.html)
@@ -379,6 +409,7 @@ $$
 
 * Precision과 Recall이 모두 중요할 경우 $\beta=1$
 * Recall이 보다 중요할 경우 보통  $\beta=2$ : 의료분야 등에서 많이 이용됨.
+    * $\beta=2$인 경우, recall이 precision에 비해 4배 더 반영됨.  
 * Precision이 보다 중요할 경우 $\beta=0.5$
 
 ---

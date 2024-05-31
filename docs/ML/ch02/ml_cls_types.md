@@ -1,4 +1,13 @@
-# The Types of Classification
+# Types of Classification
+
+## Binary Classification
+
+`Binary Classification` (이진분류)는 각 sample에 2개의 label 중 하나를 할당하는 task임.
+
+* 일반적으로 특정 class에 속하는지 아닌지를 구분하는 형태로 분류함.
+* Multiclass classification (다중클래스분류)와 Multilabel classification (다중라벨분류)의 기본이 되는 task.
+
+---
 
 ## Multiclass Classification
 
@@ -8,8 +17,8 @@
 
 sample의 `학점` 을 classification하는 것이 대표적인 예라고 할 수 있음.
 
-* Gaussian Naive Baysian 이나 Logistic Regression, Random Forrest 등은 multiclass classification task로 확장이 가능하지만,
-* 기본적으로 binary classification만이 가능한 Support Vector Machine Classifier나 Stochastic Gradient Classifier는 One-vs-One (`OvO`) 또는 One-vs-Rest (`OvR`) 등의 방식으로 여러 binary classification model을 통해 multiclass classification을 수행함.
+* Gaussian Naive Bayesian 이나 Logistic Regression, Random Forrest 등은 Multiclass classification task로 구현상 자연스럽게 확장이 가능하지만,
+* 기본적으로 binary classification 만이 가능한 Support Vector Machine Classifier나 Stochastic Gradient Classifier는 One-vs-One (`OvO`) 또는 One-vs-Rest (`OvR`) 등의 방식으로 여러 binary classification model을 통해 Multiclass classification을 수행함.
 
 > 일반적으로 `OvR`이 선호됨.  
 > 단, `SVC`와 같이 큰 training dataset에서 훈련이 어려운 경우엔 `OvO`를 취해 더 많은 수의 모델을 각각 적은 수의 학습데이터로 훈련시키는 전략이 사용되기도 함.  
@@ -28,15 +37,15 @@ sample의 `학점` 을 classification하는 것이 대표적인 예라고 할 �
 
 * 이 경우 2개의 elements로 구성된 label vector가 사용되고, 각 elements는 0,1 (or False, True)의 2가지 값 중 하나를 가지게 됨.
 
-또는 특정 사진에 2개의 인물 A와 B가 있는 경우, 해당 사진은 A 가 포함되었는지를 나타내는 binary classifcation과 B가 포함되었는지를 나타내는 binary classification이 동시에 이루어지게 구현될 수 있으며 이 경우 multilabel classification이라고 함.
+또는 특정 사진에 2개의 인물 A와 B가 있는 경우, 해당 사진은 A 가 포함되었는지를 나타내는 binary classification과 B가 포함되었는지를 나타내는 binary classification이 동시에 이루어지게 구현될 수 있으며 이 경우 Multilabel classification이라고 함.
 
 ---
 
-## Multioutput-multiclass Classification
+## Multioutput-Multiclass Classification
 
 한 sample이 여러 개의 label을 가질 수 있으며, 각각의 label은 여러 class로 구성됨.
 
-하나의 sample의 `학점`과 `학과`를 동시에 classifcation하는 task를 예로 들 수 있다.
+하나의 sample의 `학점`과 `학과`를 동시에 classification하는 task를 예로 들 수 있다.
 
 하나의 sample은 2개의 label을 가짐 : `학점`, `학과`
 각 label은 여러 class 중 하나의 값을 가짐 
@@ -47,4 +56,4 @@ sample의 `학점` 을 classification하는 것이 대표적인 예라고 할 �
 `학과`
 : 의공학과, 컴퓨터공학과, 기계학과, 전자과 등등
 
-Multioutput-multiclass classification은 줄여서 multioutput classification 이라고도 불림.
+Multioutput-Multiclass classification은 줄여서 Multioutput classification 또는 Multitask Classification 이라고도 불림.
