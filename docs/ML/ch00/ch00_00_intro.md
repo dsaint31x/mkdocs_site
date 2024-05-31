@@ -201,8 +201,9 @@ ML을 위해 제안된 다양한 기법들이 있으며 대략적으로 나누�
 
 AI와, ML, 그리고 DL은 다음과 같은 관계를 보인다.
 
-![](../img/ch00/ai_ml_dl.png)
-
+<figure markdown>
+![](../img/ch00/ai_ml_dl.png){width="500"}
+</figure>
 
 **AI**
 : 인간의 지능을 모사하는 기술 또는 연구 분야.
