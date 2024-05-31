@@ -43,17 +43,18 @@ sample의 `학점` 을 classification하는 것이 대표적인 예라고 할 �
 
 ## Multioutput-Multiclass Classification
 
-한 sample이 여러 개의 label을 가질 수 있으며, 각각의 label은 여러 class로 구성됨.
+> 한 sample이 여러 개의 label을 가질 수 있으며, 각각의 label은 여러 class로 구성됨.
 
 하나의 sample의 `학점`과 `학과`를 동시에 classification하는 task를 예로 들 수 있다.
 
-하나의 sample은 2개의 label을 가짐 : `학점`, `학과`
-각 label은 여러 class 중 하나의 값을 가짐 
+* 이 예제 task에서 하나의 sample은 2개의 label을 가짐 : 
+    * `학점`, 
+    * `학과`
+* 각 label은 다음과 같이 여러 class 중 하나의 값을 가짐 
+    * `학점` : A, B, C, D, F
+    * `학과` : 의공학과, 컴퓨터공학과, 기계학과, 전자과 등등
 
-`학점`
-: A, B, C, D, F
+Multioutput-Multiclass classification은 줄여서  
 
-`학과`
-: 의공학과, 컴퓨터공학과, 기계학과, 전자과 등등
-
-Multioutput-Multiclass classification은 줄여서 Multioutput classification 또는 Multitask Classification 이라고도 불림.
+* Multioutput classification (가장 많이 사용됨) 
+* 또는 Multitask Classification 이라고도 불림.

@@ -332,12 +332,14 @@ MNIST 데이터 (0-9까지의 숫자 데이터)에서 class 5에 대한 분류�
 
 ## Receiver operating characteristics (ROC) and AUC
 
-ROC는 `False Positive Rate` (=`FPR` or `fall-out``) 에 대해 `Recall` (=`True Positive Rate`)를 그린 graph임.
+ROC는 `False Positive Rate` (=`FPR` or `fall-out`) 에 대해 `Recall` (=`True Positive Rate`)를 그린 graph임.
 
 * x축 : FPR (=1-TNR = 1-specificity)
 * y축 : TPR (=recall, sensitivity)
 
 > 의료분야에서는 ROC가 PR-Curve 보다 자주 사용되는 편임.
+>
+> ROC는 balanced class dataset 에서 많이 사용됨.
 
 OvR 또는 OvO 를 이용하여 Multi-class classification에서도 그릴 수는 있으나  
 ***주로 binary classification에서 사용*** 됨.
@@ -353,13 +355,16 @@ graph가 Left-top (High recall and Low FPR)에 가까울수록 높은 성능의 
 
 ### False Positive Rate (=FPR)
 
+실제 negative 인 sample을 얼마나 잘못 postive로 판정했는지를 나타내는 비율.
+`fall out` 이라고도 불리며, 모델의 negative label에 대한 성능을 나타냄.
+
 $$
 \bf{FPR}=\frac{FP}{FP+TN}= 1-\frac{TN}{FP+TN} = 1-\bf{specificity}
 $$
 
 * Label이 Negative인 sample의 수가 분모이며 
 * 분자는 Label이 negative인데 positive로 predict한 sample의 수임.
-* 즉, FPR이 작을수록 좋은 모델임.
+* 즉, FPR이 작을수록 좋은 모델(negative label에 대한 성능이 우수)임.
 
 Recall (=True Positive Rate)과 달리, 분모는 실제 negative인 모든 sample 수이며, 분자는 positive 잘못 판정한 sample 수임.
 
@@ -380,9 +385,9 @@ ROC Curve에서 curve 아래의 area(면적)을 가르키며, 1에 가까울수�
 
 ## **PR-Curve vs. ROC-Curve**
 
-다음의 경우 RR-Curve보다 ROC-Curve가 선호된다.
+다음과 같은 경우, RR-Curve가 ROC-Curve 보다 선호된다.
 
-* Label이 Positive인 sample이 적은 경우 또는  
+* Label이 Positive인 sample이 적은 경우 (데이터 불균형이 심한 경우) 또는  
 * false positive 를 false negative 보다 중요하게 생각할 때
 
 > 위의 경우, ROC-Curve의 경우보다 PR-Curve는 ***보다 AUC가 낮게 나와서 성능의 차이를 보다 잘 보여준다*** .
@@ -392,6 +397,10 @@ ROC Curve에서 curve 아래의 area(면적)을 가르키며, 1에 가까울수�
 <figure markdown>
 ![](./img/PR_vs_ROC.png)
 </figure>
+
+> PR Curve는 Positive Label에 더 집중하여, Positive Label을 정확히 에측하는지의 성능을 잘 보여줌.  
+> ROC Curve는 FPR(False Positive Rate)를 고려하기 때문에 Negative Label을 정확히 예측하는지도 중시하기 때문에 모델의 균형잡힌 성능을 보여주게 된다.  
+> 문제는 Positive Label이 상대적으로 매우 적을 경우, FPR이 낮게 유지되기 때문에 이 경우 ROC Curve는 모델의 성능을 PR curve보다 지나치게 좋게 보여주는 경향이 심하다는 문제점을 가짐. 
 
 ---
 
