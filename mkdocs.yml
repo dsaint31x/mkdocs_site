@@ -167,7 +167,7 @@ nav:
       - "CE/ch05/ch05_05_01_idx_reg_rel_add.md"
       - "CE/ch05/ch05_06_01_mmu.md"
       - "CE/ch05/ch05_07_01_virtual_memory.md"
-    - 'ch06':
+    - 'ch06: Data Transfer and Network Communication':
       - "Data Transfer":
         - "IO Ports":         "CE/ch06/ce06_1_01_ioport.md"
         - "Push Btns":        "CE/ch06/ce06_1_02_push_button.md"
