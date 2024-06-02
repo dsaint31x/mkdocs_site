@@ -24,12 +24,14 @@ Parallel communication은 아주 짧은 거리에서 낮은 전압등을 사용�
 
 ## 예
 
-이전 HDD 연결하는데 사용된 IDE (or PATA, 40 pin)와 Centronic Port (or IEEE 1284, 36 pin)가 대표적인 병렬통신 방식의 주변기기 인터페이스임.  
-그 당시 대용량에 해당했던 데이터 전송인 HDD와 프린터 등에서 전송 속도를 빠르게 하기 위해 병렬방식을 채택하였으나, 이후 clock 속도 향상 등으로 인해 serial 방식으로 변경됨.  
-당시엔 고속 serial 통신 기술이 없었음 (Serial Communication은 clock 속도가 올라가야하는데 당시 clock속도는 현재와 비교하여 매우 느렸음). 
+이전 HDD 연결하는데 사용된 `IDE` (or PATA, 40 pin)와 Centronic Port (or `IEEE 1284`, 36 pin)가 대표적인 병렬통신 방식의 주변기기 인터페이스임.
+
+> 그 당시 대용량에 해당했던 데이터 전송인 HDD와 프린터 등에서 전송 속도를 빠르게 하기 위해 병렬방식을 채택하였으나,  
+> 이후 clock 속도 향상 등으로 인해 serial 방식으로 변경됨.  
+> 당시엔 고속 serial 통신 기술이 없었음.  
+> (Serial Communication은 clock 속도가 올라가야하는데 당시 clock속도는 현재와 비교하여 매우 느렸음). 
 
 다음 그림은 printer 연결에 사용되던 IEEE 1284 커넥터임.
-
 <figure markdown>
 ![IEEE 1284](./img/1024px-IEEE_1284_36pin_plughead.jpg){width="400", alight="center"}
 </figure>

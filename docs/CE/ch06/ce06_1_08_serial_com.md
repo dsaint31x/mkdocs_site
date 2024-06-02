@@ -85,6 +85,8 @@ RS-422는
 * 또한 1대의 master와 10개의 receiver로 구성되는 Multi-drop 방식으로 **여러 장비 간의 통신** 이 가능하다 (RS-232는 1:1연결 밖에 안됨). 
 * 하지만 장거리 전송을 위해 ***Differential signaling*** 을 도입하여 필요한 wire 수는 증가함 (패착...). 
 
+---
+
 ### RS-485
 
 RS-485는 
@@ -122,7 +124,7 @@ RS-232는 워낙 많이 사용되다 보니, bluetooth 등의 방식으로 무�
 > 대표적 제품으로 MAX232 가 있으나,  
 > 워낙 많이 사용되기 때문에 최근의 대부분 마이크로컨트롤러 나 임베디드 프로세서 내부에 통합되어 있다.  
 > 
-> `RS-232` 는 `UART`` 를 통신기기레벨로 구현한 것으로 
+> `RS-232` 는 `UART` 를 통신기기레벨로 구현한 것으로 
 > ***-12~+12V Level로 동작*** 한다.  
 > (전압 차이 때문에 UART 에 RS-232를 직접 연결하면 큰일난다.)
 
@@ -131,7 +133,7 @@ RS-232는 워낙 많이 사용되다 보니, bluetooth 등의 방식으로 무�
 
 다음 그림은 UART에서 7bit 길이의 특정 데이터들을 여러 Baud rate로 보내는 방식을 파형으로 나타낸 것임. 
 
-<figure markdown>
+<figure Markdown>
 ![uart_signals](img/uart_signals.png){align="center", width="800"}
 </figure>
 
@@ -156,7 +158,7 @@ USB를 serial port로 인식하게 해주는 converter임.
 * `GND`는 `GND`에 연결하고, 
 * 상대 디바이스의 `VCC`는 디바이스 스펙에 맞게 5V 또는 3.3V에 연결.
 
-<figure markdown>
+<figure Markdown>
 ![PL2303](img/PL2302_usb_serial_conv.png){align="center"}
 </figure>
  * [참고 url](https://docs.whiteat.com/usbtottl-usbtoserial/)
@@ -167,7 +169,7 @@ USB를 serial port로 인식하게 해주는 converter임.
 
 ## Mark-Space Signaling
 
-Mark와 space는 Telegraph 시스템에서 사용되던 용어이며,  
+Mark와 Space는 Telegraph 시스템에서 사용되던 용어이며,  
 serial communication의 많은 부분이 teletype에서 아이디어를 얻어서 만들어진 터라  
 아직도 serial communication에서 쓰이고 있다.  
 
@@ -176,17 +178,17 @@ serial communication의 많은 부분이 teletype에서 아이디어를 얻어�
 
 > 종이에 기재된다면,  
 > 
-> * mark는 종이에 output이 남는 것이고, 
-> * space는 종이에 인쇄되는 거 없이 비어 있는 것을 의미(no-mark)한다.
+> * Mark는 종이에 output이 남는 것이고, 
+> * Space는 종이에 인쇄되는 거 없이 비어 있는 것을 의미(no-Mark)한다.
 
 RS-232에서 
 
-* mark에서 space로의 transition이 발생하면, idle상태에서 data전송이 시작됨을 알리는 `START`로 간주한다. 
+* Mark에서 Space로의 transition이 발생하면, idle상태에서 data전송이 시작됨을 알리는 `START`로 간주한다. 
 * 이후 약속된 길이의 bit로 구성된 데이터(`Data Chunk`)가 전송되고,  
-* 이후 `END`에 해당하는 ***1 또는 1.5, 2bit 길이*** 의 `Space`가 전송되면서 데이터 전송이 끝나고 다시 idle상태로 들어가게 된다.
+* 이후 `END`에 해당하는 ***1 또는 1.5, 2bit 길이*** 의 `Mark`가 전송되면서 데이터 전송이 끝나고 다시 idle상태로 들어가게 된다.
 
-<figure markdown>
-![mark_space_signaling_rs232](img/mark_space_rs232.png){align="center', width="800"}
+<figure Markdown>
+![Mark_Space_signaling_rs232](img/Mark_Space_rs232.png){align="center', width="800"}
 </figure>
 
 * 위 그림에서 데이터는 7bit에 해당함. 
@@ -202,7 +204,7 @@ Serial communication에서는 각각의 bit가 ***정해진 시간으로 구별*
 
 다음 그림은 RS-232로 문자 A를 전송한 경우임.
 
-<figure markdown>
+<figure Markdown>
 ![uart_A_signal](img/uart_A_signal.png){align="center", width="600"}
 </figure>
 
@@ -215,7 +217,7 @@ Serial communication에서는 각각의 bit가 ***정해진 시간으로 구별*
 
 다음 그림은 serial communication을 위한 putty 터미널 설정임.
 
-<figure markdown>
+<figure Markdown>
 ![putty_serial](img/putty_serial.png){align="center", width="600"}
 </figure>
 
@@ -230,11 +232,11 @@ Serial communication에서는 각각의 bit가 ***정해진 시간으로 구별*
     * stop 신호의 길이로 여기서 1bit 로 함. 
     * 앞서 설명에 맞추려면 2bit로 해야함.
 * `Parity` : 
-    * `odd`, `even`, `mark`, `space`, `none` 을 고를 수 있으며 
+    * `odd`, `even`, `Mark`, `Space`, `none` 을 고를 수 있으며 
     * 에러를 찾아내는 `Parity`비트의 사용모드(어느 모드라도 1bit 초과의 에러검출은 안됨)를 지정함. 
     * 보통 `none`을 이용해도 큰 문제 없음.
         - `even`, `odd` : parity비트 포함하여 1의 갯수가 짝수 또는 홀수가 되도록 parity bit의 값을 결정.
-        - `mark`, `space` : parity bit가 `1` 또는 `0`으로 추가.
+        - `Mark`, `Space` : parity bit가 `1` 또는 `0`으로 추가.
         - `none` : parity bit를 사용하지 않음. 일반적으로 단거리에서 RS-232통신 중에는 그리 오류가 발생하지 않기 때문에 `none`도 많이 사용됨.
 * `Flow control` : 
     * RS-232의 pin이 9개인 이유가 이들 flow control을 위한 것인데, 
