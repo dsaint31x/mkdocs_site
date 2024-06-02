@@ -147,6 +147,8 @@ RS-232로 전송되는 경우 직접 연결하면 voltage 차이가 있기 때�
 - Arduino : 5V TTL Level
 - Raspberry Pi : 3.3V TTL Level
 
+**참고**: [TTL 이란](https://dsaint31.tistory.com/731)
+
 FTDI `FT232`, Silicon Labs `CP2102` 및 Prolific `PL2303` 등이  
 USB를 serial port로 인식하게 해주는 converter임.
 

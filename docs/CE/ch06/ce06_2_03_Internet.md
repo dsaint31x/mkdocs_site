@@ -42,7 +42,7 @@ Internet 상(or Network)에서 어떤 한 컴퓨터를 찾아낼 수 있는 **�
 * 실제로는 Ethernet card에 IP address가 할당된다.
 
 
-  [IP Address 설명 URL](https://dsaint31.tistory.com/entry/CE-Internet-Protocol-Address)
+  [IP Address 설명 URL](https://dsaint31.tistory.com/439)
 
 ---
 
@@ -52,7 +52,7 @@ Domain : 인터넷에 연결된 컴퓨터를 ***사람이 쉽게 기억하고 �
 
 * [Domain이란?](https://xn--3e0bx5euxnjje69i70af08bea817g.xn--3e0b707e/jsp/resources/domainInfo/domainInfo.jsp)
 
-* [DNS란](https://dsaint31.tistory.com/entry/CE-Domain-Name-System)
+* [DNS란](https://dsaint31.tistory.com/440)
 
 * [notion메모](https://www.notion.so/mmmil/Domain-Name-System-727bf668104a4dfaade9830fa743a96d)
 
@@ -74,7 +74,7 @@ Domain : 인터넷에 연결된 컴퓨터를 ***사람이 쉽게 기억하고 �
 : 웹 페이지(Hyper-Text)를 작성하는 언어가 ‘HTML’. 
 
 `HTTPS`  
-: http와 동일하지만 보안(secure) 기능을 추가한 것으로 http 프로토콜에 보안 기능을 제공하는 SSL 프로토콜을 접목한 형태
+: http와 동일하지만 보안(secure) 기능을 추가한 것으로 http 프로토콜에 보안 기능을 제공하는 SSL (Secure Socket Layer) 프로토콜을 접목한 형태
 
 `SMTP`  
 : email 전송 protocol
