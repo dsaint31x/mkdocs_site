@@ -1,16 +1,20 @@
 # Assembly Language (어셈블리어)
 
-1세대 programming language인 machine code의 뒤를 이어 등장한 2세대 programming language임.
+1세대 programming code인 machine code의 뒤를 이어 등장한 2세대 programming code임.
+
+
+* 1949년 EDSAC에서 사용된 Initial Orders 가 컴퓨터용 최초의 어셈블리 언어로 간주되며, 이는 최초로 `machine code` 명령어를 사람이 읽을 수 있는 형태로 표현하여 프로그래밍을 단순화하였음.
+* 이후 1951년 Symbolic Assembly Program (SAP)이 IBM 701 컴퓨터용으로 개발되었고 이는 최초의 상용 어셈블러로 알려짐.
 
 ## 특징
 
-Machine code와 1:1로 대응하는 Mnemonic언어임.
+`Machine code`와 1:1로 대응하는 ***Mnemonic*** 언어임.
 
-* Machine Language의 binary code에서의 bit pattern 들의 조합 대신 간단한 영어단어에 해당하는 mnemonics를 사용.
+* Machine code의 bit pattern 들의 조합 대신 간단한 영어단어에 해당하는 mnemonics를 사용.
 * address에 label을 붙여서 보다 기억하기 쉽고 효율적인 프로그래밍이 가능해짐.
 * comment가 가능해짐 (가독성 대폭 향상됨)
 
-> 기억하기 쉽도록 machine language 의 instructor에 상징적인 기호 (영어단어로 생각하면 쉬움)를 할당한 것임.  
+> 기억하기 쉽도록 machine code 의 instructor에 상징적인 기호 (영어단어로 생각하면 쉬움)를 할당한 것임.  
 >  
 
 다음과 같은 대응이 이루어짐.
@@ -21,12 +25,15 @@ Machine code와 1:1로 대응하는 Mnemonic언어임.
 00000000 00000000 10110000 01110001
 ```
 
-***Assembly language***
+***Assembly code***
 
 ```
 mov al, 061h
 ```
 
+* 위는 x86 Assembly code이며, 
+* AX (Accumulator register)의 하위 8비트인 `al`에 
+* 16진수로 표현된 `61`(=97)을 복사하라는 명령어.
 
 매우 실행 속도가 빠르며, 약간의 호환성(메인 프레임과 유닉스 간)을 가짐.
 
@@ -34,11 +41,11 @@ mov al, 061h
 
 ## Assembler 란?
 
-Assembly language 로 작성된 source code를 읽어들여서 해당하는 machine language code (binary code)를 생성해주는 프로그램.
+Assembly code 로 작성된 source code를 읽어들여서 해당하는 machine code code (binary code)를 생성해주는 프로그램.
 
-* Assembly language에서 사용된 symbol과 label을 실제 binary pattern으로 바꾸어줌.
+* Assembly code에서 사용된 symbol과 label을 실제 binary pattern으로 바꾸어줌.
 
-> 최초의 assembler는 machine language로 작성되었음. 해당 assembler를 이용하여 assembly language로 좀 더 나은 assembler를 만들고, 이 assembler를 이용하여 assembly language로 좀 더 나은 assembler를 만드는 식으로 개선이 이루어짐.  
+> 최초의 assembler는 machine code로 작성되었음. 해당 assembler를 이용하여 assembly code로 좀 더 나은 assembler를 만들고, 이 assembler를 이용하여 assembly code로 좀 더 나은 assembler를 만드는 식으로 개선이 이루어짐.  
 > 이같은 개선을 bootstrap (or boot)이라고도 한다. 좀더 자세한 건 다음 URL 참고 : [Bootstrap](https://ds31x.blogspot.com/2023/07/term-bootstrap.html)  
 
 ---
@@ -47,7 +54,7 @@ Assembly language 로 작성된 source code를 읽어들여서 해당하는 mach
 
 ## 사용분야
 
-80196과 같은 마이크로프로세서 혹은 firmware 프로그래밍에서 꽤 자주 사용됨. 
+80196과 같은 Micro-controller 혹은 firmware 프로그래밍에서 꽤 자주 사용됨. 
 
 * [Micro-Controller, Micro Controller Unit, Micro Control Unit](https://dsaint31.me/mkdocs_site/CE/ch04/ce04_04_cpu/#micro-controller-unit-mcu)
 
@@ -56,7 +63,7 @@ Assembly language 로 작성된 source code를 읽어들여서 해당하는 mach
 
 ## Examples
 
-Hello World를 출력하는 C 소스코드 에 대응하는 Assemly language program.
+Hello World를 출력하는 C 소스코드 에 대응하는 Assembly code program.
 
 ```Asm
 _main:
@@ -82,7 +89,7 @@ end3: ret ; 프로시저를 반환합니다.
 end4: ; _main의 경우 프로그램이 종료됩니다.
 ```
 
-Fibonacci sequence에 해당하는 Assembly language program.
+Fibonacci sequence에 해당하는 Assembly code program.
 
 ```Asm
         load    #0

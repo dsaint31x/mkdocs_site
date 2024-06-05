@@ -186,6 +186,7 @@ nav:
       - "CE/ch08/ce08_programming_language.md"
       - "CE/ch08/ce08_high_low_level_language.md"
       - "CE/ch08/ce08_compiler_interpreter.md"
+      - "CE/ch08/ce08_machine_code.md"
       - "CE/ch08/ce08_assembly_language.md"
     - 'ch09':
       - "CE/ch09/ce09_web_browser.md"

@@ -15,6 +15,8 @@
 
 `Java`도 compiler language라고 볼 수 있음 (단 `compile` 과정의 결과물인 `byte code`가 `Java VM`에서 동작한다).
 
+> [참고: Complier 의 종류](https://ds31x.tistory.com/187)
+
 ---
 
 ---
@@ -29,11 +31,12 @@
 
 대표적인 예로 `Python`, PHP, ASP, Java Script, Perl 등을 들 수 있다.
 
-최근의 Interpreter language는 VM을 도입하여 고유의 유연성을 유지하면서 높은 성능을 얻고 있다. 이 경우, interpreter는 OS가 이해할 수 있는 언어로 변환이 아닌 VM이 이해할 수 있는 byte code로 변환을 수행함. 
+최근의 Interpreter language는 VM을 도입하여 고유의 유연성을 유지하면서 높은 성능을 얻고 있다.  
+이 경우, interpreter는 OS가 이해할 수 있는 언어로 변환이 아닌 VM이 이해할 수 있는 `byte code`로 변환을 수행함. 
 
 
 > 보다 자세한 건 다음 URL을 참고. [Python Interpreter and PVM (Python Virtual Machine)](
-https://dsaint31.tistory.com/entry/Python-Interpreter-and-PVM-Python-Virtual-Machine)
+https://dsaint31.tistory.com/496)
 
 ---
 
@@ -57,7 +60,7 @@ https://dsaint31.tistory.com/entry/Python-Interpreter-and-PVM-Python-Virtual-Mac
 
 ## Static Language vs. Dynamic Language
 
-다음 URL 참고 : [Dynamic Language vs. Static Language](https://dsaint31.tistory.com/entry/Python-Dynamic-Language-vs-Static-Language)
+다음 URL 참고 : [Dynamic Language vs. Static Language](https://dsaint31.tistory.com/511)
 
 
 ---
