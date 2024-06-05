@@ -58,6 +58,7 @@ compiler의 결과물인 `object code`나 입력이 되는 `source code` 등의 
 : Byte code는 Virtual Machine이 인식하고 실행할 수 있는 중간 코드(intermediate code)로, 바이트 단위로 처리되기 때문에 `byte code`라고 불림. 
 : * 이는 플랫폼 독립적임, 
 : * 예를 들어 Java에서는 .class 파일 형태로 생성되어 JVM에서 실행되고, Python에서는 .pyc 파일 형태로 생성되어 Python VM에서 실행됨.
+* [좀더 자세한 정리](https://ds31x.tistory.com/318)
 
 #### `Binary code (바이너리코드, 이진코드)`
 : 실제 컴퓨터(정확히는 cpu)가 인식 및 수행할 수 있는 bit pattern. cpu의 instruction set에 기반. `Object code`는 binary code임 (logical address를 사용). 인식만 할 수 있는 경우를 binary code라고 부르는 경우가 많고, 실행까지 가능할 때 machine language라고 하는 사람들도 있음 (대략적으로 cpu가 인식할 수 있는 binary pattern이라고 생각해도 된다.)
