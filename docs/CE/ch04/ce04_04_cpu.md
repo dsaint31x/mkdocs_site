@@ -46,7 +46,9 @@ CPU는 위에서 본 것처럼 ALU, Register, Control Unit(or Execution Unit)으
 
 ### 참고 : Micro Controller Unit (MCU)
 
-CPU의 기능을 하는 핵심 장치와 그 주변 장치(memory and IO port)들을 포함하고 있는 ***통합형 칩셋*** . 
+CPU의 기능을 하는 핵심 장치와 그 주변 장치(memory and IO port)들을 포함하고 있는 ***통합형 칩셋*** .
+
+Micro-Controller, Micro Control Unit 이라고도 불림.
 
 보통 고성능의 연산이 필요하지 않으면서 ***제어 기능이 필요한 분야*** 에서 사용됨.
 
@@ -56,7 +58,7 @@ MCU 하나 만으로도 LED나 motor등의 다른 부품들을 control할 수 �
 > 컴퓨터에서 사용되는 Microprocessor에 비해 매우 낮은 연산능력을 가지지만  
 > 매우 경제적인 저가로 제작 가능.
 
-[참고자료 : MCU와 Micro-computer, SoC](https://dsaint31.tistory.com/entry/CE-Micro-Controller-Unit-MCU-and-Micro-computer)
+[참고자료 : MCU와 Micro-computer, SoC](https://dsaint31.tistory.com/419)
 
 ---
 
