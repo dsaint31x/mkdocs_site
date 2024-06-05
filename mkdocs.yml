@@ -188,6 +188,7 @@ nav:
       - "CE/ch08/ce08_compiler_interpreter.md"
       - "CE/ch08/ce08_machine_code.md"
       - "CE/ch08/ce08_assembly_language.md"
+      - "CE/ch08/ce08_pl_intro.md"
     - 'ch09':
       - "CE/ch09/ce09_web_browser.md"
     - 'ch10':
