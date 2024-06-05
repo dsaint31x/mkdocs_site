@@ -56,8 +56,7 @@ compiler의 결과물인 `object code`나 입력이 되는 `source code` 등의 
 
 #### `Byte code (바이트코드)`
 : Byte code는 Virtual Machine이 인식하고 실행할 수 있는 중간 코드(intermediate code)로, 바이트 단위로 처리되기 때문에 `byte code`라고 불림. 
-:
-: * 이는 플랫폼 독립적이며, 
+: * 이는 플랫폼 독립적임, 
 : * 예를 들어 Java에서는 .class 파일 형태로 생성되어 JVM에서 실행되고, Python에서는 .pyc 파일 형태로 생성되어 Python VM에서 실행됨.
 
 #### `Binary code (바이너리코드, 이진코드)`
