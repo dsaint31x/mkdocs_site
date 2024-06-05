@@ -52,17 +52,30 @@ compiler의 결과물인 `object code`나 입력이 되는 `source code` 등의 
 : object module(목적파일)이라고도 불리며, `compiler`가 ^^source code로부터 compile을 수행하여 생성한 code^^ 혹은 파일을 의미함. `machine language`나 intermediate language (register transfer language,RTL)와 같은 ^^binary code^^ 이며, **`linker`등을 통해 여러 다른 object code와 연결되어 executable code가 된다 (linking)**. 일반적으로 executable인 binary code를 machine language라고 보기 때문에 완벽한 기계어는 아니라고 보는 경우가 많다 (내부에서 cpu가 읽어들이는 logical address를 사용하고 있으며, loader에 의해 loading이 된 이후 실제 physical address로 변경됨).
 
 #### `Source code (원시코드)`
-: programming language로 작성된 텍스트로서 인간이 사용하는 문자로 이루어진 code임. 일반적으로 compiler나 interpreter의 도움 없이는 컴퓨터가 직접 읽고 수행하지 못한다.
+: programming language로 작성된 text(텍스트)로서  
+인간이 사용하는 문자로 이루어진 code 임.  
+일반적으로 compiler나 interpreter의 도움 없이는 컴퓨터가 직접 읽고 수행하지 못한다.
 
 #### `Byte code (바이트코드)`
 : Byte code는 Virtual Machine이 인식하고 실행할 수 있는 중간 코드(intermediate code)로, 바이트 단위로 처리되기 때문에 `byte code`라고 불림. 
 : * 이는 플랫폼 독립적임, 
-: * 예를 들어 Java에서는 .class 파일 형태로 생성되어 JVM에서 실행되고, Python에서는 .pyc 파일 형태로 생성되어 Python VM에서 실행됨.
-* [좀더 자세한 정리](https://ds31x.tistory.com/318)
+* 예를 들어 Java에서는 .class 파일 형태로 생성되어 JVM에서 실행되고, Python에서는 .pyc 파일 형태로 생성되어 Python VM에서 실행됨.
+* [좀더 자세한 정리: `byte code`](https://ds31x.tistory.com/318)
 
 #### `Binary code (바이너리코드, 이진코드)`
-: 실제 컴퓨터(정확히는 cpu)가 인식 및 수행할 수 있는 bit pattern. cpu의 instruction set에 기반. `Object code`는 binary code임 (logical address를 사용). 인식만 할 수 있는 경우를 binary code라고 부르는 경우가 많고, 실행까지 가능할 때 machine language라고 하는 사람들도 있음 (대략적으로 cpu가 인식할 수 있는 binary pattern이라고 생각해도 된다.)
+: 실제 컴퓨터(정확히는 cpu)가 인식 및 수행할 수 있는 bit pattern.  
+cpu의 instruction set에 기반함.  
+`Object code`는 `binary code` 로서 logical address를 사용함.  
+인식만 할 수 있는 경우를 `binary code` 라고 부르는 경우가 많고, 실행까지 가능할 때 `machine code` 라고 하는 사람들도 있음  
+(즉, `binary code`는 cpu가 인식할 수 있는 binary pattern이라고 생각해도 된다.)
 
-#### `Machine language (기계어)`
-: Programming language라기보다는 cpu가 이해하고 실행할 수 있는 operation code들, 즉 instruction set을 의미함. 이들은 binary code들이며 cpu가 읽고 수행이 가능하다.
+#### `Machine code (or Machine language, 기계어)`
+: Programming language라기보다는 cpu가 직접 이해하고 실행할 수 있는 operation code들, 즉 instruction set을 의미함.  
+때문에 instruction set architecture (ISA)에 따라 달라짐.  
+이들은 0과 1로 이루어진 binary code들이며 cpu가 읽고 수행이 가능함.
 
+#### `Microcode (마이크로코드)`
+: `Microcode`는 CPU 내부에서 `machine code`의 명령어를 실행하기 위해 필요한 더 저수준의 제어 신호를 생성하는 code.  
+이는 cpu의 마이크로아키텍처 수준에서 동작하며, 복잡한 `machine code`의 명령어를 더 간단한 hardware code 로 분해함.  
+`Microcode`는 hardware에 내장되거나 firmware 형태로 제공됨.
+: [Machine code vs. Microcode]
