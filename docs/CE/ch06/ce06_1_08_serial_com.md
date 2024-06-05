@@ -190,7 +190,7 @@ RS-232에서
 * 이후 `END`에 해당하는 ***1 또는 1.5, 2bit 길이*** 의 `Mark`가 전송되면서 데이터 전송이 끝나고 다시 idle상태로 들어가게 된다.
 
 <figure Markdown>
-![Mark_Space_signaling_rs232](img/Mark_Space_rs232.png){align="center', width="800"}
+![Mark_Space_signaling_rs232](img/mark_space_rs232.png){align="center', width="800"}
 </figure>
 
 * 위 그림에서 데이터는 7bit에 해당함. 
