@@ -5,6 +5,10 @@
 * 이들은 기계 독립적이며 자연어에 가까운 단어와 문장으로 구성.
 * 컴파일러나 인터프리터가 필요하여 기계어에 비해 효율성은 떨어지나, 상대적으로 적은 H/W 지식으로도 프로그래밍 가능.
 
+애용되는 High Level Programming Language 순위는 다음을 참고.
+
+* [GitHut 2.0: A Small Place To Discover Language In GitHub](https://madnight.github.io/githut/#/pushes/2023/4)
+
 ---
 
 ## BASIC

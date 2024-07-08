@@ -8,6 +8,10 @@
 
 ## Gradient 계열 Optimizers
 
+<figure markdown>
+![](./img/optimizers.png){width="600" align="center"}
+</figure>
+
 대표적인 알고리즘의 요약.
 
 Batch Gradient Decent (or Vanilla Gradient Decent) 
