@@ -19,7 +19,7 @@ ML에서 manifold란,
 3D에서의 2D manifold의 예를 그림으로 표현하면 다음과 같음
 
 <figure markdown>
-![Manifold](../img/ch07/manifold.png){align=center}
+![Manifold](../img/ch07/manifold.png){align=center, width="400"}
 <figcaption>3D 공간에 데이터들이 구 표면에 있으나 실제로 `2D에 해당하는 topological space` (=평면)에 속해있는 예로서 이 topology space가 바로 `manifold`임.</figcaption>
 </figure>
 
@@ -40,9 +40,9 @@ ML에서 manifold란,
 * 이웃을 정의하는 규칙 (=`topology`)이 동일한 topology spaces를 가르켜 `homeomorphic`하다고 한다.
 
 > 엄밀하게 애기하면,  
-> **`topology`는 어떤 space에서 ***open-set이란 어떤 것인지 규정*** 하는 방법**   
+> **`topology`는 어떤 space에서 `open-set이란 어떤 것인지 규정` 하는 방법**   
 > **(또는 element로 open set들을 가지고 있는 set을 topology라고 할 수 있음)을 의미** 하며,  
-> **`topological space`란 **`topology`가 주어져 있는 집합** 을 의미함.  
+> `topological space`란 **`topology`가 주어져 있는 집합** 을 의미함.  
 > 
 > * `open-set`은 일반적으로 ^^특정 data point의 neighbors^^ 를 의미 (open-set은 neighbor를 abstraction!)하며  
 > * ***neighbor를 정의하는 방법*** (=`topology`)이 주어지고 topology가 같은 경우, 같은 manifold를 가진다고 생각할 수 있다.  
@@ -69,27 +69,37 @@ ML에서 manifold란,
 - Manifold는 feature extraction의 결과물 (Auto-encoder에서는 encoder의 결과물)이라고 볼 수 있음. 
 - Manifold는 일반적으로 raw data space상에서 entangled 상태이므로 이를 disentangled로 바꾸는 transformer를 구하는 것이 바로 classifier 또는 data visualization이 하는 일임.
 
-> A $d$-dimensional manifold is a part of an $n$-dimensional space (where $d \le n$) that locally resembles a $d$-dimensional hyperplane. 
+> A $d$-dimensional manifold is  
+> a part of an $n$-dimensional space (where $d \le n$) 
+> that ***locally*** resembles a $d$-dimensional hyperplane. 
 
 ---
 
 ## Manifold Learning
 
-> ***Modeling the manifold on which the training instances lie*** ; this is called ***Manifold Learning***. 
+> ***Modeling the `manifold` on which the training instances lie*** ;  
+> this is called ***Manifold Learning***. 
 
-Unsupervised learning에서 매우 큰 부분을 차지하며, Dimensional Reduction, Data Visualization, Representative Learning 등에 많이 사용됨.
+Manifold Learning은 Unsupervised learning에서 매우 큰 부분을 차지하며, 
+
+* Dimensional Reduction, 
+* Data Visualization, 
+* Representative Learning 등에 많이 사용됨.
 
 Manifold Learning은 다음의 두 가설에 의존한다. 
 
-* 사실 다음의 2가설은 모든 machine learning에서의 prior로 사용되는 가설이다.
+1. Manifold Hypothesis
+2. Smoothness Hypothesis
+
+* 위의 2가설은 모든 machine learning에서의 prior로 사용되는 가설이다.
 
 ---
 
-### Manifold Hypothesis
+### 1. Manifold Hypothesis
 
 High Dimensional (Raw) Dataset은 하나 이상의 Manifold로 구성되며,  
 각 data sample points은 manifold 상에 위치하거나 또는 manifold에 가깝게 위치하고 있다. 
-manifold에 집중되어 분포함.
+즉, data sample points는 manifold에 집중(concentrate)되어 분포함.
 
 > Real-world data presented in high-dimensional spaces are expected to  
 > concentrate in the vicinity of a manifold $M$ of much lower dimensionality $d_M$,  
@@ -108,7 +118,7 @@ Manifold hypothesis 가 성립한다고 가정하면, High dimensional dataset�
 
 ---
 
-### Smoothness Hypothesis
+### 2. Smoothness Hypothesis
 
 Dataset 에서의 data sample은 어떤 요인에 의해서 변화하는데, 해당 sample의 feature를 조금 변화가 이루어질 경우, 데이터의 feature space에서 매끄러운 곡면 (=manifold)상에서 transition이 발생하게 된다. 
 
@@ -120,11 +130,20 @@ Dataset 에서의 data sample은 어떤 요인에 의해서 변화하는데, 해
 
 ## Curse of High Dimensionality를 풀기위한 방법 : Manifold 찾기.
 
-데이터의 space의 dimension 이 증가할 경우, 해당 space의 데이터 밀도를 유지하려면 훨씬 많은 data sample을 요구하는 것을 의미함.
+데이터의 space의 dimension 이 증가할 경우, 
 
-Higher dimensional data 를 그대로 사용하면, 데이터 밀도가 낮아서 실제적인 data의 distribution을 찾는 probability distribution을 찾기 어려우나 meaningful manifold를 잘 찾아낸다면, 같은 데이터로도 충분히 probability distribution 을 찾아낼 수 있음.
+* 해당 space의 데이터 밀도를 유지하려면 
+* 훨씬 많은 data sample을 요구하는 것을 의미함.
 
-대부분의 경우, lower dimensional representation이 ML등에서 task를 쉽게 풀 수 있도록 해준다 (이는 manifold hypothesis에 대한 implicit assumption이라고 불림.). ***하지만 아닌 경우도 있다.*** 
+Higher dimensional data 를 그대로 사용하면, 
+
+* 데이터 밀도가 낮아서 
+* 실제적인 data의 distribution을 찾는 probability distribution을 찾기 어려우나 
+* meaningful manifold를 잘 찾아낸다면, 
+* 같은 데이터로도 충분히 probability distribution 을 찾아낼 수 있음.
+
+대부분의 경우, lower dimensional representation이 ML등에서 task를 쉽게 풀 수 있도록 해준다 (이는 manifold hypothesis에 대한 implicit assumption이라고 불림.).  
+***하지만 아닌 경우도 있다.*** 
 
 ![](../img/ch07/manifold_learning.png)
 
