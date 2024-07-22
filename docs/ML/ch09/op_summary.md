@@ -1,6 +1,7 @@
 # Optimizers
 
-파라메터가 적은 모델들의 경우 Hessian 계열이 사용되기도 하나, ***Deep Neural Network에선 Gradient 계열 만이 사용됨.***
+parameters의 수가 적은 단순한 모델들의 경우 Hessian 계열이 사용되기도 하나,  
+***Deep Neural Network에선 Gradient 계열 만이 사용됨.***
 
 * parameters의 수의 square에 비례하는 연산을 요구하는 Hessian 계열은 메모리 문제와 함께 너무 느린 학습속도로 인해 DNN 에 적합하지 않음.
 

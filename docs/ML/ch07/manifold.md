@@ -8,27 +8,44 @@ ML에서 manifold란,
 > (위상)수학적으로는 보다 엄격한 정의가 있으나...  
 > DL이나 ML을 하는 입장에서는 이 정도면 충분할 듯.
 
-A manifold is a ***topological space (위상공간)*** that ^^locally resembles Euclidean space^^ near each point.
+수학적 용어로 정의하면 다음과 같음. 
+
+> A `manifold` is a ***topological space (위상공간)***  
+> that ^^locally resembles Euclidean space^^ near each point.
+>
+> * topological space의 정의는 아래 참고 자료에서 확인할 것.
+
+
+3D에서의 2D manifold의 예를 그림으로 표현하면 다음과 같음
 
 <figure markdown>
 ![Manifold](../img/ch07/manifold.png){align=center}
-<figcaption>3D 공간에 데이터들이 구 표면에 있으나 실제로 ^^2D에 해당하는 topological space^^ (=평면)에 속해있는 예</figcaption>
+<figcaption>3D 공간에 데이터들이 구 표면에 있으나 실제로 `2D에 해당하는 topological space` (=평면)에 속해있는 예로서 이 topology space가 바로 `manifold`임.</figcaption>
 </figure>
 
+
 ---
+
+### 참고
 
 **Topology**  
 : topology(위상수학)은 ‘물체의 모양을 바꿔도 (구부리기, 늘리기, 줄이기 등등) 변하지 않는 기하학적 성질 (연결성 또는 연속성 등. open-set에 해당하는 N-Ball로 생각해도 됨) 등을 연구하는 분야’다.  
 
 <figure markdown>
 ![isotopy의 전형적 예](../img/ch07/Mug_and_Torus_morph.gif){align=center}
-<figcaption>^^homeomorphic^^ 이면서 ^^연속적인 변화^^ 로 만들어지므로 `isotopic`임</figcaption>  
+<figcaption> `homeomorphic` 이면서 `연속적인 변화` 로 만들어지므로 `isotopic`임</figcaption>  
 </figure>
 
-> 엄밀하게 애기하면, ^^topology는 어떤 space에서 ***open-set이란 어떤 것인지 규정*** 하는 방법 (또는 element로 open set들을 가지고 있는 set을 topology라고 할 수 있음)을 의미^^ 하며, ^^topological space란 topology가 주어져 있는 집합을 의미함.^^  
+* `homeomorphic` 이란 "위상동형"이라고 번역되며, topology가 동일한 topology space를 가르킴.
+* 이웃을 정의하는 규칙 (=`topology`)이 동일한 topology spaces를 가르켜 `homeomorphic`하다고 한다.
+
+> 엄밀하게 애기하면,  
+> **`topology`는 어떤 space에서 ***open-set이란 어떤 것인지 규정*** 하는 방법**   
+> **(또는 element로 open set들을 가지고 있는 set을 topology라고 할 수 있음)을 의미** 하며,  
+> **`topological space`란 **`topology`가 주어져 있는 집합** 을 의미함.  
 > 
 > * `open-set`은 일반적으로 ^^특정 data point의 neighbors^^ 를 의미 (open-set은 neighbor를 abstraction!)하며  
-> * ***neighbor를 정의하는 방법*** (=`topology``)이 주어지고 topology가 같은 경우, 같은 manifold를 가진다고 생각할 수 있다.  
+> * ***neighbor를 정의하는 방법*** (=`topology`)이 주어지고 topology가 같은 경우, 같은 manifold를 가진다고 생각할 수 있다.  
 
 **Open set이란**
 : empty set과 open set의 전체집합도 open set임.  
@@ -43,7 +60,7 @@ A manifold is a ***topological space (위상공간)*** that ^^locally resembles 
 **Manifold 의 특징.**
 
 - 일반적으로 nonlinear structure를 가짐.
-- entangled로 존재하므로 이를 lower dimensionality로 disentangle시켜야 함.
+- entangled로 존재(복잡하게 얽히고 접혀 있는 상태)하므로 이를 lower dimensionality로 disentangle시켜야 함.
 - 하지만, 특정 data sample 근처의 좁은 영역 만으로 볼 경우엔 linearity를 가짐 (또는 linear하다고 approximation할 수 있음.)
 
 
@@ -70,9 +87,13 @@ Manifold Learning은 다음의 두 가설에 의존한다.
 
 ### Manifold Hypothesis
 
-High Dimensional (Raw) Dataset은 하나 이상의 Manifold로 구성되며, 각 data sample들은 manifold 상에 위치하거나 또는 manifold에 가깝게 위치하고 있다.
+High Dimensional (Raw) Dataset은 하나 이상의 Manifold로 구성되며,  
+각 data sample points은 manifold 상에 위치하거나 또는 manifold에 가깝게 위치하고 있다. 
+manifold에 집중되어 분포함.
 
-> Real-world data presented in high-dimensional spaces are expected to concentrate in the vicinity of a manifold $M$ of much lower dimensionality $d_M$, embedded in high-dimensional input space $R^d$. 
+> Real-world data presented in high-dimensional spaces are expected to  
+> concentrate in the vicinity of a manifold $M$ of much lower dimensionality $d_M$,  
+> embedded in high-dimensional input space $R^d$. 
 - Bengio et al. 2013
 
 Data point 대부분이 Manifold 근처에 있다는 애기는 다음을 의미함.
