@@ -128,8 +128,8 @@ Harris & Stephen Corner Detector가 Corner에 초점을 둔 경우라면, `Frang
 이를 Harris corner operator라고 부름.  
 $\frac{1}{f}$를  parallel resistor라고도 부른다.(편의를 위해 $\lambda_0 \ge \lambda_1$를 가정. → $r \ge 1$)
 
-$$\begin{aligned}f&=\frac{\lambda_0 \lambda_1}{(\lambda_0+\lambda_1)^2}\\&=\frac{\text{Det}(H)}{(\text{Tr}(H))^2}\\&=\frac{r\lambda_1}{ (r\lambda_1+\lambda_1)^2
-}\quad \leftarrow \lambda_0=r\lambda_1\\&=\frac{r}{(r+1)^2}\end{aligned}$$
+$$\begin{aligned}f&=\frac{\lambda_0 \lambda_1}{(\lambda_0+\lambda_1)^2}\\&=\frac{\text{Det}(H)}{(\text{Tr}(H))^2}\\&=\frac{r\lambda_1^2}{ (r\lambda_1+\lambda_1)^2
+}\quad \leftarrow \lambda_0=r\lambda_1\\&=\frac{r\lambda_1^2}{\lambda_1^2(r+1)^2}\\&=\frac{r}{(r+1)^2}\end{aligned}$$
 
 즉, $\lambda_0 = \lambda_1$ 인 경우($r= 1.0$)일 때, 가장 큰 값($f=1/4$)을 가짐.  → $f$의 값이 큰 경우는 corner 혹은 flat region임. 즉,  $\lambda_0, \lambda_1$이 일정값 이상이면서 $f$가 큰 값을 가지면 corner임.
 
