@@ -65,13 +65,13 @@ where
 
 ## Covariance Matrix and Curvature
 
-여기서, quadratic form의 가운데 matrix $H$는 Covariance Matrix (Hessian matrix 의 Approximation라고도 볼 수 있음) 이며,  
+여기서, quadratic form의 가운데 matrix $H$는 Covariance Matrix (Covariance matrix 의 Approximation라고도 볼 수 있음) 이며,  
 $H$ 항상 symmetric이므로 ***eigen decomposition이 가능*** 함.
 
 > ***참고***
 >  
 > 가운데 covariance matrix $H$는 Auto-correlation matrix 또는 2nd moment matrix라고도 불림.  
-> Hessian$\frac{1}{2}I^2$의 Hessian의 approximation (Tayor expansion에서 2차항을 무시한 approximation)으로도 볼 수 있음.  
+> $\frac{1}{2}I^2$의 Hessian의 approximation (Taylor expansion에서 2차항을 무시한 approximation)으로도 볼 수 있음.  
 >
 
 위의 $2 \times 2$ Covariance matrix의 경우, diagonalization (or eigen decomposition)을 통해 2개의 eigen value와 서로 orthonormal한 eigen vector 2개를 얻을 수 있음. 
@@ -87,7 +87,7 @@ where
 다음 내용은 $H$의 diagonalization이 surface $E$에서의 horizontal slice에서의 ellipse와의 관계를 보여준다.
 
 <figure markdown>
-![](./img/ch02/hessian_diagonalization_ellipse.png){width="500" align="center"}
+![](./img/ch02/hessian_diagonalization_ellipse.png){width="800" align="center"}
 </figure>
 
 > 위의 식에서 $I_{xx}$는 앞서의 $h_{xx}$와 같으며, $I_x^2$으로도 표기될 수 있다. 이는 x-axis를 따라 구해진 1st order derivative에 해당한다.
@@ -96,9 +96,15 @@ where
 
 다음은 change of basis와 ellipse의 equation을 quadratic form과 연결지어서 보여줌. (단, 여기선 $Q$가 identity matrix로 놓고 처리함.)
 
-![](./img/ch02/change_of_basis_quadratic_form_ellipse.png)
+<figure markdown>
+![](./img/ch02/change_of_basis_quadratic_form_ellipse.png){width="800" align="center"}
+</figure>
 
-$E$는 SSD를 의미하며 모든 방향에 대해 pixel값이 다른 경우 SSD가 커지므로 이를 locally approximation한 quadratic form의 Hessian matrix $H$의 eigen vector와 eigen value들을 통해 edge인지 corner인지를 가늠할 수 있음을 의미함.
+* $E$는 SSD를 의미하며 
+* 모든 방향에 대해 pixel값이 다른 경우 SSD가 커지므로 
+* 이에 대한 locally approximation 인 quadratic form 의 
+* Covariance matrix $H$의 eigen vector와 eigen value들을 통해 
+* edge인지 corner인지를 가늠할 수 있음을 의미함.
 
 > $E$에서의 curvature는 주변 pixel간의 변화가 짧은 공간에서 급격히 이루어질수록 커짐.
 
@@ -118,7 +124,9 @@ Harris & Stephen Corner Detector가 Corner에 초점을 둔 경우라면, `Frang
 
 ## Determinant와 Trace를 이용.
 
-위의 Hessian matrix의 `determinant`와 `trace`의 값을 이용하면 다음과 같은 수식을 얻을 수 있으며, 이를 Harris corner operator라고 부름. $\frac{1}{f}$를  parallel resistor라고도 부른다. (편의를 위해 $\lambda_0 \ge \lambda_1$를 가정. → $r \ge 1$)
+위의 Covariance Matrix의 `determinant`와 `trace`의 값을 이용하면 다음과 같은 수식을 얻을 수 있으며,  
+이를 Harris corner operator라고 부름.  
+$\frac{1}{f}$를  parallel resistor라고도 부른다.(편의를 위해 $\lambda_0 \ge \lambda_1$를 가정. → $r \ge 1$)
 
 $$\begin{aligned}f&=\frac{\lambda_0 \lambda_1}{(\lambda_0+\lambda_1)^2}\\&=\frac{\text{Det}(H)}{(\text{Tr}(H))^2}\\&=\frac{r\lambda_1}{ (r\lambda_1+\lambda_1)^2
 }\quad \leftarrow \lambda_0=r\lambda_1\\&=\frac{r}{(r+1)^2}\end{aligned}$$
