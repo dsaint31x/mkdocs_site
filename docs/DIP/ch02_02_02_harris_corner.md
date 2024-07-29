@@ -1,6 +1,7 @@
 # Harris and Stephen Corner Detection (1988)
 
-" C.Harris and M.Stephens. “A Combined Corner and Edge Detector.” Proceedings of the 4th Alvey Vision Conference: pages 147-151, 1988.
+> C.Harris and M.Stephens. `A Combined Corner and Edge Detector.`  
+> Proceedings of the 4th Alvey Vision Conference: pages 147-151, 1988.
 
 특정 point가 `corner`, `edge`인지 여부를 식별할 수 있는 방법 : `SIFT` Feature Detector보다 성능이 떨어지나 간단한 경우에서는 많이 사용된다. 물론 가장 대중적인 방법은 `SIFT`이다 (scale에 대한 robust 측면에서 SIFT가 월등히 좋은 성능을 보임)
 
@@ -10,7 +11,9 @@ Harris Corner Detector도 Moravec이 제안한 Moravec Feature Point Detector (1
 
 ## (Weighted) Sum of Squared Difference (SSD)
 
-![](img/ch02/SSD.png)
+<figure markdown>
+![](img/ch02/SSD.png){align="center" width="500"}
+</figure>
 
 특정 point, $(x_i,y_i)$에서 $(\Delta x, \Delta y)$ 만큼 특정 크기의 local window, $W$를 이동시켜서 (Weighted) Sum of Squared Difference (SSD), $E$를 계산한다. 
 
@@ -27,19 +30,19 @@ where
 - 거의 모든 방향으로 증가하면 corner이고,
 - 변화가 없으면 flat region이라고 생각할 수 있음.
 
-" Moravec Feature Point Detector (1977) 의 경우,  
-위,아래,왼쪽,오른쪽으로 윈도우를 이동시켜서 각각의 SSD들을 구하고  
-이들 중 최소값을 cornerness로 규정했음.
+> Moravec Feature Point Detector (1977) 의 경우,  
+> 위,아래,왼쪽,오른쪽으로 윈도우를 이동시켜서 각각의 SSD들을 구하고  
+> 이들 중 최소값을 cornerness 로 규정했음.
 
-## Approximation by Tayler Series Expansion
+## Approximation by Taylor Series Expansion
 
-Tayler series를 통해 $I(x+\Delta x, y+\Delta y)$를 근사하면 다음과 같음.
+Taylor series를 통해 $I(x+\Delta x, y+\Delta y)$를 근사하면 다음과 같음.
 
 $$
 \begin{aligned}f(x+\Delta x)&\approx f(x)+\frac{df(x)}{dx}\Delta x \\I(x+\Delta x, y+\Delta y)&\approx I(x, y) +\dfrac{\partial I(x,y)}{\partial x} \Delta x +\dfrac{\partial I(x,y)}{\partial y} \Delta y\end{aligned}
 $$
 
-* 위 식은 Tayler series expansion에서 1차 미분까지만 사용하여 approximation을 수행함.
+* 위 식은 Taylor series expansion에서 1차 미분까지만 사용하여 approximation을 수행함.
 
 이를 $E$에 대입하면 다음과 같은 approximation을 얻게 됨.
 
@@ -57,19 +60,21 @@ $$\begin{aligned}E(\Delta x,\Delta y) &\approx \displaystyle \begin{bmatrix}  \D
 
 where
 
-*  $\textbf{u}$를 보통 unit vector로 처리한다. (길이 1씩만 shift)
+* $\textbf{u}$를 보통 unit vector로 처리한다. (길이 1씩만 shift)
 * $\Delta x, \Delta y$에 상관없이 전체 이미지 각 pixel에서 matrix $H$는 계산이 가능함.
 
-## Hessian Matrix and Curvature
+## Covariance Matrix and Curvature
 
-여기서, quadratic form의 가운데 matrix $H$는 Hessian matrix 의 Approximation 이며, $H$ 항상 symmetric이므로 eigen decomposition이 가능함.
+여기서, quadratic form의 가운데 matrix $H$는 Covariance Matrix (Hessian matrix 의 Approximation라고도 볼 수 있음) 이며,  
+$H$ 항상 symmetric이므로 ***eigen decomposition이 가능*** 함.
 
 > ***참고***
 >  
-> 가운데 matrix $H$는 엄밀하게 말하면 $\frac{1}{2}I^2$의 Hessian의 approximation (Tayer 전개에서 2차항을 무시한 approximation)임.  때문에, auto-correlation matrix 또는 2nd moment matrix 라는 용어를 엄격한 교과서에서는 보다 선호한다. 
+> 가운데 covariance matrix $H$는 Auto-correlation matrix 또는 2nd moment matrix라고도 불림.  
+> Hessian$\frac{1}{2}I^2$의 Hessian의 approximation (Tayor expansion에서 2차항을 무시한 approximation)으로도 볼 수 있음.  
 >
 
-위의 $2 \times 2$ Hessian matrix의 경우, diagonalization(or eigen decomposition)을 통해 2개의 eigen value와 서로 orthonormal한 eigen vector 2개를 얻을 수 있음. 
+위의 $2 \times 2$ Covariance matrix의 경우, diagonalization (or eigen decomposition)을 통해 2개의 eigen value와 서로 orthonormal한 eigen vector 2개를 얻을 수 있음. 
 
 $$H=Q\Lambda Q^{-1}=Q\Lambda Q^T$$
 
@@ -81,7 +86,9 @@ where
 
 다음 내용은 $H$의 diagonalization이 surface $E$에서의 horizontal slice에서의 ellipse와의 관계를 보여준다.
 
-![](./img/ch02/hessian_diagonalization_ellipse.png)
+<figure markdown>
+![](./img/ch02/hessian_diagonalization_ellipse.png){width="500" align="center"}
+</figure>
 
 > 위의 식에서 $I_{xx}$는 앞서의 $h_{xx}$와 같으며, $I_x^2$으로도 표기될 수 있다. 이는 x-axis를 따라 구해진 1st order derivative에 해당한다.
 
@@ -93,7 +100,7 @@ where
 
 $E$는 SSD를 의미하며 모든 방향에 대해 pixel값이 다른 경우 SSD가 커지므로 이를 locally approximation한 quadratic form의 Hessian matrix $H$의 eigen vector와 eigen value들을 통해 edge인지 corner인지를 가늠할 수 있음을 의미함.
 
-> $E$에서의 curvature는 주변pixel간의 변화가 짧은 공간에서 급격히 이루어질수록 커짐.
+> $E$에서의 curvature는 주변 pixel간의 변화가 짧은 공간에서 급격히 이루어질수록 커짐.
 
 이를 정리하면 다음과 같음(eigen vector의 방향에서 pixel value의 변화량이 eigen value에 해당하며 이는 해당 방향으로의 curvature임)
 
@@ -101,7 +108,9 @@ $E$는 SSD를 의미하며 모든 방향에 대해 pixel값이 다른 경우 SSD
 - $\lambda_0,\lambda_1$이 둘 다 큰 값이며, 큰 차이가 없음. : corner
 - $\lambda_0,\lambda_1$이 둘 다 작은 값이며, 큰 차이가 없음. : flat region
 
-![](./img/ch02/ssd_02.png)
+<figure markdown>
+![](./img/ch02/ssd_02.png){width="500" align="center"}
+</figure>
 
 위 그림은 `Computer Vision with Python 3, Sauyrabh Kapur, Packt`에서 발췌한 것으로 위의 정리를 잘 나타내줌.
 
@@ -116,30 +125,36 @@ $$\begin{aligned}f&=\frac{\lambda_0 \lambda_1}{(\lambda_0+\lambda_1)^2}\\&=\frac
 
 즉, $\lambda_0 = \lambda_1$ 인 경우($r= 1.0$)일 때, 가장 큰 값($f=1/4$)을 가짐.  → $f$의 값이 큰 경우는 corner 혹은 flat region임. 즉,  $\lambda_0, \lambda_1$이 일정값 이상이면서 $f$가 큰 값을 가지면 corner임.
 
-![](./img/ch02/harris_op.png)
+<figure markdown>
+![](./img/ch02/harris_op.png){width="500" align="center"}
+</figure>
 
 > 위의 Harris operator에 대한 다른 대안으로는 Szeliski(2005)가 제시한 방식이 있다.  
-> Szeliski의 방법은 Harris와 Stephens가 1988년 제안한 방법과 같이 Hessian matrix(정확히는 2nd moment matrix)를 이용하지만 corner response function 만 차이가 있음. 
+> Szeliski의 방법은 Harris와 Stephens가 1988년 제안한 방법과 같이 Covariance matrix(or 2nd moment matrix)를 이용하지만 corner response function 만 차이가 있음. 
 Szeliski의 방식을 정확히 기재하면 다음과 같음.  
 >
 > $f=\frac{\text{Det}(H)}{\text{Tr}(H)+\epsilon}$  
-> 보다 자세한 건 다음을 참고할 것. [M.Brown, R.Szeliski, and S. Winder, Multi-image matching using multi-scale oriented patches,in IEEE Computer Society Conference on Computer Vision and Pattern Recognition (CVPR),vol.1, IEEE, 2005, pp.510–517](https://ieeexplore.ieee.org/document/1467310)
+> 보다 자세한 건 다음을 참고할 것:  
+> [M.Brown, R.Szeliski, and S. Winder, Multi-image matching using multi-scale oriented patches,in IEEE Computer Society Conference on Computer Vision and Pattern Recognition (CVPR),vol.1, IEEE, 2005, pp.510–517](https://ieeexplore.ieee.org/document/1467310)
 
 Harris corner detector의 대안인 Shi-Tomasi operator (1994)의 경우, $\text{cornerness}=\min(\lambda_0,\lambda_1)$로 정의되며, 최소 eigen value의 크기가 크면 corner로 판정한다. (Harris operator 와 큰 차이는 없으나 robustness가 조금 떨어진다고 알려져 있음) : characteristic equation $\text{det}(H-\lambda I_{2})=0$ 으로부터 유도되어 다음의 등식으로 cornerness가 구해짐.
 
 $$\lambda_1 = \frac{1}{2}\left( (h_{xx}+h_{yy})-\sqrt{(h_{xx}-h_{yy})^2+4(h_{xy})^2}\right)$$
 
-* $\lambda_0 \ge \lambda_1$로 sotring을 시켰다고 가정함. 
+* $\lambda_0 \ge \lambda_1$로 sorting 을 시켰다고 가정함. 
 
-다음 그림은 왼쪽 상단의 $I$에 대한 eigen value들을 보여줌. edge에서 $\lambda_\text{max}$가 매우 큰 값들을 가짐을 확인 가능하며,corner에서 $\lambda_\text{min}$이 큰 값들을 가짐을 확인할 수 있음.
+다음 그림은 왼쪽 상단의 $I$에 대한 eigen value들을 보여줌.  
+edge에서 $\lambda_\text{max}$가 매우 큰 값들을 가짐을 확인 가능하며,corner에서 $\lambda_\text{min}$이 큰 값들을 가짐을 확인할 수 있음.
 
-![](./img/ch02/shi_tomasi_harris_op.png)
+<figure markdown>
+![](./img/ch02/shi_tomasi_harris_op.png){width="500" align="center"}
+</figure>
 
 위 그림의 중단과 하단은 Harris operator와 Shi-Tomasi 간의 차이점을 보여줌.
 
 Harris & Stephens (1998)의 경우, 실제로는 위의 Harris corner operator가 아닌 다음의 corner response function을 사용한다. (큰 값을 가질수록 corner에 해당함)
 
-$$\begin{aligned}f&=\text{det}(H)-\alpha(\text{Tr}(H))^2 \quad \text{ whare }\alpha=1/r=0.1 \\&=h_{xx}h_{yy}-(h_{xy})^2-\alpha(h_{xx}+h_{yy})^2\\&=\lambda_0\lambda_1-\alpha(\lambda_0+\lambda_1)^2\end{aligned}$$
+$$\begin{aligned}f&=\text{det}(H)-\alpha(\text{Tr}(H))^2 \quad \text{ where }\alpha=1/r=0.1 \\&=h_{xx}h_{yy}-(h_{xy})^2-\alpha(h_{xx}+h_{yy})^2\\&=\lambda_0\lambda_1-\alpha(\lambda_0+\lambda_1)^2\end{aligned}$$
 
 where
 
