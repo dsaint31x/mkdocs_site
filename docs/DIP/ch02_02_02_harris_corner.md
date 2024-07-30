@@ -168,6 +168,11 @@ where
 
 Harris & Stephen Corner Detector가 Corner에 초점을 둔 경우라면, `Frangi Filter`는 edge detection에 초점을 둔 경우임.
 
+* Covariance Matrix 대신에 Hessian Matrix를 사용하여
+* corner 나 edge를 검출 가능함: Hessian Laplace Detector, SURF 등등.
+
+참고: [Hessian : Summary](https://dsaint31.tistory.com/318)
+
 ## Determinant와 Trace를 이용.
 
 위의 Covariance Matrix의 `determinant`와 `trace`의 값을 이용하면 다음과 같은 수식을 얻을 수 있으며,  
