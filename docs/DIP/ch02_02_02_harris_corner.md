@@ -96,7 +96,11 @@ where
 여기서, quadratic form의 
 
 * 가운데 matrix $H$는 Covariance Matrix (Covariance matrix 의 Approximation라고도 볼 수 있음) 이며,  
-* $H$는 항상 symmetric이므로 ***eigen decomposition이 가능*** 함.
+* $H$는 항상 symmetric이므로 ***eigen decomposition이 가능 (정확히는 orthogonal daigonalization*** 함.
+
+eigen decomposition이나 orthogonal diagonalization 등의 좀 더 자세한 내용은 다음 URL 참고:  
+
+* [Diagonalization, Orthogonal Diagonalization, and Symmetric Matrix](https://dsaint31.tistory.com/390)
 
 > ***참고***
 >  
@@ -114,8 +118,9 @@ $$H=Q\Lambda Q^{-1}=Q\Lambda Q^\top$$
 where
 
 * $Q$는 eigen vector들을 column으로 가지는 matrix. 
-    * 각 column 에 해당하는 eigen vector들은 mutually orthogonal임.
-    * 때문에 $Q$는 [orthogonal matrix](https://dsaint31.tistory.com/392)임: $Q^{-1} = Q^\top.
+    * covariance matrix가 symmetric이고 이를 diagonalization 한 경우이므로 
+    * 각 column 에 해당하는 eigen vector들은 ***mutually orthogonal*** 임.
+    * 때문에 $Q$는 [orthogonal matrix](https://dsaint31.tistory.com/392)임: $Q^{-1} = Q^\top$.
 * $\Lambda$는 eigen value들이 main diagonal에 위치하는 diagonal matrix임.
 * 결국 x축, y축이 아닌, $E$가 이루는 quadratic form의 horizontal plane (or horizontal slice) 들에서 이루는 ellipse의 equation의 primal axis와 secondary axis를 basis로 하는 change basis가 처리되고 각 길이에 해당하는 곱이 이루어진 이후 다시 x축, y축으로 change of basis가 이루어지게 된다.
 
