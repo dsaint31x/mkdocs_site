@@ -3,11 +3,23 @@
 > C.Harris and M.Stephens. `A Combined Corner and Edge Detector.`  
 > Proceedings of the 4th Alvey Vision Conference: pages 147-151, 1988.
 
-특정 point가 `corner`, `edge`인지 여부를 식별할 수 있는 방법 : `SIFT` Feature Detector보다 성능이 떨어지나 간단한 경우에서는 많이 사용된다. 물론 가장 대중적인 방법은 `SIFT`이다 (scale에 대한 robust 측면에서 SIFT가 월등히 좋은 성능을 보임)
+특정 point가 `corner`, `edge`인지 여부를 식별할 수 있는 방법 : 
 
-하지만, Harris and Stephen이 제안한 방법은 mathematical approach로서 SIFT를 포함한 여러 방법의 기반이 되어줌.
+* `SIFT` Feature Detector 보다 성능이 떨어지나 간단한 경우에서는 많이 사용된다. 
+* 물론 가장 대중적인 방법은 `SIFT`이다 
+* scale에 대한 robust 측면에서 SIFT가 월등히 좋은 성능을 보임.
 
-Harris Corner Detector도 Moravec이 제안한 Moravec Feature Point Detector (1977)에서 사용하고 있는 (Weighted) Sum of Squared Difference (`SSD` 또는 Difference 대신 Error를 써서 `SSE`)를 사용함.
+하지만, Harris and Stephen이 제안한 방법은 
+
+* mathematical approach로서 
+* `SIFT` 를 포함한 여러 방법의 기반이 되어줌.
+
+Harris Corner Detector도 
+
+* Moravec이 제안한 Moravec Feature Point Detector (1977)에서 사용하고 있는 
+* `(Weighted) Sum of Squared Difference` (`SSD` 또는 Difference 대신 Error를 써서 `SSE` 라고도 함)를 사용함.
+
+---
 
 ## (Weighted) Sum of Squared Difference (SSD)
 
@@ -18,10 +30,14 @@ Harris Corner Detector도 Moravec이 제안한 Moravec Feature Point Detector (1
 특정 point, $(x_i,y_i)$에서 $(\Delta x, \Delta y)$ 만큼 특정 크기의 local window, $W$를 이동시켜서 (Weighted) Sum of Squared Difference (SSD), $E$를 계산한다. 
 
 $$E(\Delta x, \Delta y) = \sum_{(x, y) \in W} W( x,  y) \left[ I(x+\Delta x, y+\Delta y)-I(x, y) \right]^2$$
+
 where
 
-- $W(x, y)$ :  Gaussian kernel 또는 uniform rectangular kernel가 사용됨. 일종의 가중치(weight)임. 이 후로는 1로 채워진 rectangular kernel이라고 가정함(for simplicity). `window function`이라고도 불림.
-- $I(~)$: 입력영상의 값.
+- $W(x, y)$ :  Gaussian kernel 또는 uniform rectangular kernel가 사용됨. 
+    - 일종의 가중치(weight)임. 
+    - 이 문서에서는 1로 채워진 rectangular kernel이라고 가정함(for simplicity). 
+    - `Window function`이라고도 불림.
+- $I(~)$ : 입력영상의 값.
 - $(x_i, y_i) \in W$ : $(x_i, y_i)$는 일반적으로 kernel $W$의 anchor (가장 가운데)에 해당함.
 
 특정 point  $(x_i, y_i)$에서 여러 방향의 SSD를 계산하여 
@@ -32,6 +48,8 @@ where
 > Moravec Feature Point Detector (1977) 의 경우,  
 > 위,아래,왼쪽,오른쪽으로 윈도우를 이동시켜서 각각의 SSD들을 구하고  
 > 이들 중 최소값을 cornerness 로 규정했음.
+
+---
 
 ## Approximation by Taylor Series Expansion
 
@@ -47,6 +65,8 @@ $$
 
 $$\begin{aligned}E(\Delta x,\Delta y) &= \sum_{(x,y) \in W} W(x,y) \left[ I(x+\Delta x, y+\Delta y)-I(x, y) \right]^2\\&\approx\sum_{(x,y) \in W} W(x,y)\left[ \left( \dfrac{\partial I(x,y)}{\partial x} \Delta x \right)^2 + \left( \dfrac{\partial I(x,y)}{\partial y} \Delta y \right)^2 +2 \dfrac{\partial I(x,y)}{\partial x}\dfrac{\partial I(x,y)}{\partial y} \Delta x \Delta y\right]\end{aligned}$$
 
+---
+
 ## Quadratic Form Approximation
 
 위 식은 다음과 같은 Quadratic form으로 표현이 가능함.
@@ -56,6 +76,7 @@ $$E(\Delta x,\Delta y) \approx \displaystyle \sum_{(x,y) \in W}W(x,y) \left(\beg
 이를 전개하면 다음이 성립.
 
 $$\begin{aligned}E(\Delta x,\Delta y) &\approx \displaystyle \begin{bmatrix}  \Delta x & \Delta y  \end{bmatrix} \left(\sum_{(x,y) \in W}W(x,y)\begin{bmatrix}  (\frac{\partial I}{\partial x})^2 & \frac{\partial I}{\partial x}\frac{\partial I}{\partial y}\\    \frac{\partial I}{\partial x}\frac{\partial I}{\partial y} & (\frac{\partial I}{\partial y})^2  \end{bmatrix} \right) \begin{bmatrix}  \Delta x\\   \Delta y \end{bmatrix} \\&= \displaystyle \begin{bmatrix}  \Delta x & \Delta y  \end{bmatrix} \begin{bmatrix}  W\circledast (\frac{\partial I}{\partial x})^2 & W\circledast  \frac{\partial I}{\partial x}\frac{\partial I}{\partial y}\\   W\circledast  \frac{\partial I}{\partial x}\frac{\partial I}{\partial y} & W\circledast  (\frac{\partial I}{\partial y})^2  \end{bmatrix} \begin{bmatrix}  \Delta x\\   \Delta y \end{bmatrix}\\&= \displaystyle \begin{bmatrix}  \Delta x & \Delta y  \end{bmatrix} \begin{bmatrix}  h_{xx} & h_{xy} \\h_{xy} & h_{yy}  \end{bmatrix} \begin{bmatrix}  \Delta x\\   \Delta y \end{bmatrix}\\&=\textbf{u}H\textbf{u}^T\end{aligned}$$
+
 where
 
 * $\textbf{u}$를 보통 unit vector로 처리한다. (길이 1씩만 shift)
@@ -75,6 +96,7 @@ $H$ 항상 symmetric이므로 ***eigen decomposition이 가능*** 함.
 위의 $2 \times 2$ Covariance matrix의 경우, diagonalization (or eigen decomposition)을 통해 2개의 eigen value와 서로 orthonormal한 eigen vector 2개를 얻을 수 있음. 
 
 $$H=Q\Lambda Q^{-1}=Q\Lambda Q^T$$
+
 where
 
 * $Q$는 eigen vector들을 column으로 가지는 matrix. 각 column 에 해당하는 eigen vector들은 mutually orthogonal임.
@@ -160,6 +182,7 @@ edge에서 $\lambda_\text{max}$가 매우 큰 값들을 가짐을 확인 가능�
 Harris & Stephens (1998)의 경우, 실제로는 위의 Harris corner operator가 아닌 다음의 corner response function을 사용한다. (큰 값을 가질수록 corner에 해당함)
 
 $$\begin{aligned}f&=\text{det}(H)-\alpha(\text{Tr}(H))^2 \quad \text{ where }\alpha=1/r=0.1 \\&=h_{xx}h_{yy}-(h_{xy})^2-\alpha(h_{xx}+h_{yy})^2\\&=\lambda_0\lambda_1-\alpha(\lambda_0+\lambda_1)^2\end{aligned}$$
+
 where
 
 * $\alpha$는 보통 0.04에서 0.1 (or 0.06)로 잡음. (Harris operator에 대응함)
