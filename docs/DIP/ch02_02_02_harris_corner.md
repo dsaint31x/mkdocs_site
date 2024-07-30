@@ -24,7 +24,7 @@ Harris Corner Detector도
 ## (Weighted) Sum of Squared Difference (SSD)
 
 <figure markdown>
-![](img/ch02/SSD.png){align="center" width="500"}
+![](img/ch02/SSD.png){align="center" width="300"}
 </figure>
 
 특정 point, $(x_i,y_i)$에서 $(\Delta x, \Delta y)$ 만큼 특정 크기의 local window, $W$를 이동시켜서 (Weighted) Sum of Squared Difference (SSD), $E$를 계산한다. 
@@ -34,9 +34,9 @@ $$E(\Delta x, \Delta y) = \sum_{(x, y) \in W} W( x,  y) \left[ I(x+\Delta x, y+\
 where
 
 - $W(x, y)$ :  Gaussian kernel 또는 uniform rectangular kernel가 사용됨. 
-    - 일종의 가중치(weight)임. 
-    - 이 문서에서는 1로 채워진 rectangular kernel이라고 가정함(for simplicity). 
-    - `Window function`이라고도 불림.
+    * 일종의 가중치(weight)임. 
+    * 이 문서에서는 1로 채워진 rectangular kernel이라고 가정함(for simplicity). 
+    * `Window function`이라고도 불림.
 - $I(~)$ : 입력영상의 값.
 - $(x_i, y_i) \in W$ : $(x_i, y_i)$는 일반적으로 kernel $W$의 anchor (가장 가운데)에 해당함.
 
@@ -49,11 +49,16 @@ where
 > 위,아래,왼쪽,오른쪽으로 윈도우를 이동시켜서 각각의 SSD들을 구하고  
 > 이들 중 최소값을 cornerness 로 규정했음.
 
+### 참고자료:
+
+* [Hans P. Moravec, 1977, "Towards Automatic Visual Obstacle Avoidance"](https://www.semanticscholar.org/paper/Towards-Automatic-Visual-Obstacle-Avoidance-Moravec/3b4a713d67a0a4f7099bdc40d818311b8827b8b7)
+* [Hans P. Moravec, 1980, "Obstacle Avoidance and Navigation in the Real World by a Seeing Robot Rover"](https://www.semanticscholar.org/paper/Obstacle-avoidance-and-navigation-in-the-real-world-Moravec/93b376bd451db8ed94a18c556da16f25a3e7961b)
+
 ---
 
 ## Approximation by Taylor Series Expansion
 
-Taylor series를 통해 $I(x+\Delta x, y+\Delta y)$를 근사하면 다음과 같음.
+[Taylor series expansion](https://dsaint31.tistory.com/465)를 통해 $I(x+\Delta x, y+\Delta y)$를 근사하면 다음과 같음.
 
 $$
 \begin{aligned}f(x+\Delta x)&\approx f(x)+\frac{df(x)}{dx}\Delta x \\I(x+\Delta x, y+\Delta y)&\approx I(x, y) +\dfrac{\partial I(x,y)}{\partial x} \Delta x +\dfrac{\partial I(x,y)}{\partial y} \Delta y\end{aligned}
@@ -81,11 +86,17 @@ where
 
 * $\textbf{u}$를 보통 unit vector로 처리한다. (길이 1씩만 shift)
 * $\Delta x, \Delta y$에 상관없이 전체 이미지 각 pixel에서 matrix $H$는 계산이 가능함.
+    * $H$는 $2 \times 2$ matrix임.
+* $W\circledast$ 는 window 내의 대응하는 weights 를 이용하는 weighted sum임.
+
+---
 
 ## Covariance Matrix and Curvature
 
-여기서, quadratic form의 가운데 matrix $H$는 Covariance Matrix (Covariance matrix 의 Approximation라고도 볼 수 있음) 이며,  
-$H$ 항상 symmetric이므로 ***eigen decomposition이 가능*** 함.
+여기서, quadratic form의 
+
+* 가운데 matrix $H$는 Covariance Matrix (Covariance matrix 의 Approximation라고도 볼 수 있음) 이며,  
+* $H$는 항상 symmetric이므로 ***eigen decomposition이 가능*** 함.
 
 > ***참고***
 >  
@@ -93,15 +104,20 @@ $H$ 항상 symmetric이므로 ***eigen decomposition이 가능*** 함.
 > $\frac{1}{2}I^2$의 Hessian의 approximation (Taylor expansion에서 2차항을 무시한 approximation)으로도 볼 수 있음.  
 >
 
-위의 $2 \times 2$ Covariance matrix의 경우, diagonalization (or eigen decomposition)을 통해 2개의 eigen value와 서로 orthonormal한 eigen vector 2개를 얻을 수 있음. 
+위의 $2 \times 2$ Covariance matrix $H$의 경우, 
 
-$$H=Q\Lambda Q^{-1}=Q\Lambda Q^T$$
+* diagonalization (or eigen decomposition)을 통해 
+* 2개의 eigen value와 서로 orthonormal한 eigen vector 2개를 얻을 수 있음. 
+
+$$H=Q\Lambda Q^{-1}=Q\Lambda Q^\top$$
 
 where
 
-* $Q$는 eigen vector들을 column으로 가지는 matrix. 각 column 에 해당하는 eigen vector들은 mutually orthogonal임.
+* $Q$는 eigen vector들을 column으로 가지는 matrix. 
+    * 각 column 에 해당하는 eigen vector들은 mutually orthogonal임.
+    * 때문에 $Q$는 [orthogonal matrix](https://dsaint31.tistory.com/392)임: $Q^{-1} = Q^\top.
 * $\Lambda$는 eigen value들이 main diagonal에 위치하는 diagonal matrix임.
-* 결국 x축, y축이 아닌, $E$가 이루는 quadratic form의 horizontal plane 들에서 이루는 ellipse의 equation의 primal axis와 secondary axis를 basis로 하는 change basis가 처리되고 각 길이에 해당하는 곱이 이루어진 이후 다시 x축, y축으로 change of basis가 이루어지게 된다.
+* 결국 x축, y축이 아닌, $E$가 이루는 quadratic form의 horizontal plane (or horizontal slice) 들에서 이루는 ellipse의 equation의 primal axis와 secondary axis를 basis로 하는 change basis가 처리되고 각 길이에 해당하는 곱이 이루어진 이후 다시 x축, y축으로 change of basis가 이루어지게 된다.
 
 다음 내용은 $H$의 diagonalization이 surface $E$에서의 horizontal slice에서의 ellipse와의 관계를 보여준다.
 
@@ -109,11 +125,17 @@ where
 ![](./img/ch02/hessian_diagonalization_ellipse.png){width="800" align="center"}
 </figure>
 
-> 위의 식에서 $I_{xx}$는 앞서의 $h_{xx}$와 같으며, $I_x^2$으로도 표기될 수 있다. 이는 x-axis를 따라 구해진 1st order derivative에 해당한다.
+> 위의 식에서 $I_{xx}$는 앞서의 $h_{xx}$와 같으며, $I_x^2$으로도 표기될 수 있다. 
+> 
+> * 이는 x-axis를 따라 구해진 1st order derivative의 제곱에 해당한다.
 
-이들 중 eigen vector는 각각 curvature가 최대인 방향과 해당 방향에 직교한 방향을 가르키며, eigen value는 이들 축의 curvature(곡률) 크기를 의미한다. 
+이들 중 
 
-다음은 change of basis와 ellipse의 equation을 quadratic form과 연결지어서 보여줌. (단, 여기선 $Q$가 identity matrix로 놓고 처리함.)
+* eigen vector는 각각 $^{(1)}$curvature가 최대인 방향과 $^{(2)}$해당 방향에 직교한 방향을 가르키며, 
+* eigen value는 이들 축의 curvature(곡률) 크기를 의미한다. 
+
+다음은 change of basis와 ellipse의 equation을 quadratic form과 연결지어서 보여줌.  
+(단, 여기선 $Q$가 identity matrix로 놓고 처리함.)
 
 <figure markdown>
 ![](./img/ch02/change_of_basis_quadratic_form_ellipse.png){width="800" align="center"}
@@ -150,21 +172,35 @@ $\frac{1}{f}$를  parallel resistor라고도 부른다.(편의를 위해 $\lambd
 $$\begin{aligned}f&=\frac{\lambda_0 \lambda_1}{(\lambda_0+\lambda_1)^2}\\&=\frac{\text{Det}(H)}{(\text{Tr}(H))^2}\\&=\frac{r\lambda_1^2}{ (r\lambda_1+\lambda_1)^2
 }\quad \leftarrow \lambda_0=r\lambda_1\\&=\frac{r\lambda_1^2}{\lambda_1^2(r+1)^2}\\&=\frac{r}{(r+1)^2}\end{aligned}$$
 
-즉, $\lambda_0 = \lambda_1$ 인 경우($r= 1.0$)일 때, 가장 큰 값($f=1/4$)을 가짐.  → $f$의 값이 큰 경우는 corner 혹은 flat region임. 즉,  $\lambda_0, \lambda_1$이 일정값 이상이면서 $f$가 큰 값을 가지면 corner임.
+즉, $\lambda_0 = \lambda_1$ 인 경우($r= 1.0$)일 때, 가장 큰 값($f=1/4$)을 가짐.  
+
+* 이 경우, $f$의 값이 큰 경우는 corner 혹은 flat region임. 
+* 즉,  $\lambda_0, \lambda_1$이 일정값 이상이면서 $f$가 큰 값을 가지면 corner임.
 
 <figure markdown>
 ![](./img/ch02/harris_op.png){width="500" align="center"}
 </figure>
 
 > 위의 Harris operator에 대한 다른 대안으로는 Szeliski(2005)가 제시한 방식이 있다.  
-> Szeliski의 방법은 Harris와 Stephens가 1988년 제안한 방법과 같이 Covariance matrix(or 2nd moment matrix)를 이용하지만 corner response function 만 차이가 있음. 
-Szeliski의 방식을 정확히 기재하면 다음과 같음.  
+> Szeliski의 방법은  
+> 
+> * Harris와 Stephens가 1988년 제안한 방법과 같이 Covariance matrix(or 2nd moment matrix)를 이용하지만  
+> * corner response function 만 차이가 있음.  
 >
-> $f=\frac{\text{Det}(H)}{\text{Tr}(H)+\epsilon}$  
+> Szeliski의 방식을 정확히 기재하면 다음과 같음.  
+>
+> $$f=\frac{\text{Det}(H)}{\text{Tr}(H)+\epsilon}$$  
+>
 > 보다 자세한 건 다음을 참고할 것:  
 > [M.Brown, R.Szeliski, and S. Winder, Multi-image matching using multi-scale oriented patches,in IEEE Computer Society Conference on Computer Vision and Pattern Recognition (CVPR),vol.1, IEEE, 2005, pp.510–517](https://ieeexplore.ieee.org/document/1467310)
 
-Harris corner detector의 대안인 Shi-Tomasi operator (1994)의 경우, $\text{cornerness}=\min(\lambda_0,\lambda_1)$로 정의되며, 최소 eigen value의 크기가 크면 corner로 판정한다. (Harris operator 와 큰 차이는 없으나 robustness가 조금 떨어진다고 알려져 있음) : characteristic equation $\text{det}(H-\lambda I_{2})=0$ 으로부터 유도되어 다음의 등식으로 cornerness가 구해짐.
+Harris corner detector의 대안인 ***Shi-Tomasi operator (1994)의 경우***, 
+
+* $\text{cornerness}=\min(\lambda_0,\lambda_1)$로 정의되며, 
+* 최소 eigen value의 크기가 크면 corner로 판정한다. 
+* (Harris operator 와 큰 차이는 없으나 robustness가 조금 떨어진다고 알려져 있음) 
+
+characteristic equation $\text{det}(H-\lambda I_{2})=0$ 으로부터 유도되어 다음의 등식으로 cornerness가 구해짐.
 
 $$\lambda_1 = \frac{1}{2}\left( (h_{xx}+h_{yy})-\sqrt{(h_{xx}-h_{yy})^2+4(h_{xy})^2}\right)$$
 
@@ -179,7 +215,10 @@ edge에서 $\lambda_\text{max}$가 매우 큰 값들을 가짐을 확인 가능�
 
 위 그림의 중단과 하단은 Harris operator와 Shi-Tomasi 간의 차이점을 보여줌.
 
-Harris & Stephens (1998)의 경우, 실제로는 위의 Harris corner operator가 아닌 다음의 corner response function을 사용한다. (큰 값을 가질수록 corner에 해당함)
+Harris & Stephens (1998)의 경우, 
+
+* 실제로는 위의 Harris corner operator가 아닌 
+* 다음의 corner response function을 사용한다. (큰 값을 가질수록 corner에 해당함)
 
 $$\begin{aligned}f&=\text{det}(H)-\alpha(\text{Tr}(H))^2 \quad \text{ where }\alpha=1/r=0.1 \\&=h_{xx}h_{yy}-(h_{xy})^2-\alpha(h_{xx}+h_{yy})^2\\&=\lambda_0\lambda_1-\alpha(\lambda_0+\lambda_1)^2\end{aligned}$$
 
@@ -190,6 +229,8 @@ where
 ![](./img/ch02/corner_response_function.png)
 
 위 그림에서 upper-left와 lower-right는 edge에 해당하고, lower-left는 flat region, upper-right가 바로 corner임. 즉 Harris & Stephens의 $f$가 클수록 corner에 해당함.
+
+---
 
 ## References
 
