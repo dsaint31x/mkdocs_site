@@ -118,7 +118,7 @@ $$H=Q\Lambda Q^{-1}=Q\Lambda Q^\top$$
 where
 
 * $Q$는 eigen vector들을 column으로 가지는 matrix. 
-    * covariance matrix가 symmetric이고 이를 diagonalization 한 경우이므로 
+    * covariance matrix가 symmetric이고 이를 orthogonal diagonalization 한 경우이므로 
     * 각 column 에 해당하는 eigen vector들은 ***mutually orthogonal*** 임.
     * 때문에 $Q$는 [orthogonal matrix](https://dsaint31.tistory.com/392)임: $Q^{-1} = Q^\top$.
 * $\Lambda$는 eigen value들이 main diagonal에 위치하는 diagonal matrix임.
@@ -136,10 +136,10 @@ where
 
 이들 중 
 
-* eigen vector는 각각 $^{(1)}$curvature가 최대인 방향과 $^{(2)}$해당 방향에 직교한 방향을 가르키며, 
-* eigen value는 이들 축의 curvature(곡률) 크기를 의미한다. 
-
-다음은 change of basis와 ellipse의 equation을 quadratic form과 연결지어서 보여줌.  
+* eigen vector 는 각각 $^{(1)}$curvature가 최대인 방향과 $^{(2)}$해당 방향에 직교한 방향을 가르키며, 
+* eigen value 는 이들 축(axis)의 curvature(곡률) 크기에 반비례함.
+ 
+다음은 change of basis ($Q, Q^\top$) 가 축을 바꿔주는 회전행렬이라고 생각하면 됨.)와 ellipse의 equation을 quadratic form과 연결지어서 보여줌.  
 (단, 여기선 $Q$가 identity matrix로 놓고 처리함.)
 
 <figure markdown>
@@ -147,7 +147,7 @@ where
 </figure>
 
 * $E$는 SSD를 의미하며 
-* 모든 방향에 대해 pixel값이 다른 경우 SSD가 커지므로 
+* 모든 방향에 대해 pixel값이 다른 경우인 corner에선, SSD가 커지므로 
 * 이에 대한 locally approximation 인 quadratic form 의 
 * Covariance matrix $H$의 eigen vector와 eigen value들을 통해 
 * edge인지 corner인지를 가늠할 수 있음을 의미함.
@@ -166,12 +166,28 @@ where
 
 위 그림은 `Computer Vision with Python 3, Sauyrabh Kapur, Packt`에서 발췌한 것으로 위의 정리를 잘 나타내줌.
 
-Harris & Stephen Corner Detector가 Corner에 초점을 둔 경우라면, `Frangi Filter`는 edge detection에 초점을 둔 경우임.
+Harris & Stephen Corner Detector 에서 Covariance Matrix를 사용하는 부분을,  
+Hessian을 사용하여 Corner 및 edge 검출이 가능함.  
+(Hessian을 사용한 `Frangi Filter`는 edge detection에 초점을 두고 있음.)
 
 * Covariance Matrix 대신에 Hessian Matrix를 사용하여
 * corner 나 edge를 검출 가능함: Hessian Laplace Detector, SURF 등등.
 
 참고: [Hessian : Summary](https://dsaint31.tistory.com/318)
+
+> 타원에서 장축과 단축에 대해, 
+> 
+> covariance matrix 에 대한 eigenvalue에서 
+> 
+> * 큰 값에 해당하는 축이 단축이고 곡률이 작고.
+> * 작은 값에 해당하는 축이 장축이고 곡률이 큼.
+>
+> 이와 달리 Hessian은  
+>
+> * 큰 값에 해당하는 축이 장축이고 곡률이 크고.
+> * 작은 값에 해당하는 축이 단축이고 곡률이 작음.
+
+---
 
 ## Determinant와 Trace를 이용.
 
@@ -210,7 +226,7 @@ Harris corner detector의 대안인 ***Shi-Tomasi operator (1994)의 경우***,
 * 최소 eigen value의 크기가 크면 corner로 판정한다. 
 * (Harris operator 와 큰 차이는 없으나 robustness가 조금 떨어진다고 알려져 있음) 
 
-characteristic equation $\text{det}(H-\lambda I_{2})=0$ 으로부터 유도되어 다음의 등식으로 cornerness가 구해짐.
+characteristic equation $\text{det}(H-\lambda I_{1})=0$ 으로부터 유도되어 다음의 등식으로 cornerness가 구해짐.
 
 $$\lambda_1 = \frac{1}{2}\left( (h_{xx}+h_{yy})-\sqrt{(h_{xx}-h_{yy})^2+4(h_{xy})^2}\right)$$
 
@@ -225,12 +241,13 @@ edge에서 $\lambda_\text{max}$가 매우 큰 값들을 가짐을 확인 가능�
 
 위 그림의 중단과 하단은 Harris operator와 Shi-Tomasi 간의 차이점을 보여줌.
 
-Harris & Stephens (1998)의 경우, 
+Harris & Stephens (1988)의 경우, 
 
 * 실제로는 위의 Harris corner operator가 아닌 
 * 다음의 corner response function을 사용한다. (큰 값을 가질수록 corner에 해당함)
 
-$$\begin{aligned}f&=\text{det}(H)-\alpha(\text{Tr}(H))^2 \quad \text{ where }\alpha=1/r=0.1 \\&=h_{xx}h_{yy}-(h_{xy})^2-\alpha(h_{xx}+h_{yy})^2\\&=\lambda_0\lambda_1-\alpha(\lambda_0+\lambda_1)^2\end{aligned}$$
+$$\begin{aligned}f&=\text{det}(H)-\alpha(\text{Tr}(H))^2 \quad \text{ where }\alpha=1/r=0.1 \\&=\lambda_0\lambda_1-\alpha(\lambda_0+\lambda_1)^2 \quad \leftarrow \text{uniform window} \\&=h_{xx}h_{yy}-(h_{xy})^2-\alpha(h_{xx}+h_{yy})^2 \\ &=g_{\sigma_I}(I_{x}^2)g_{\sigma_I}(I_{y}^2)-g_{\sigma_I}(I_{x}I_{y})^2-\alpha \{g_{\sigma_I}(I_x^2)+g_{\sigma_I}(I_y^2)\}^2\\ &\quad \uparrow \text{Gaussian Window with Integration Scale}(\sigma_I)\end{aligned}$$
+
 
 where
 
