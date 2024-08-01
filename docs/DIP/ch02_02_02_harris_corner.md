@@ -321,7 +321,9 @@ $$R_\text{Hessian} = det[\text{Hessian}] = I_{xx} I_{yy} - I_{xy}^2$$
 
 실제 구현은 다음과 같은 순서로 처리가 이루어지도록 구현됨.
 
-![](./img/ch02/harris_corner_detection_imple.png)
+<figure markdown>
+![](./img/ch02/harris_corner_detection_imple.png){width="800" align="center"}
+</figure>
 
 * difference 대신에 Sobel Filter로 사용하여 구현된다.
 * Sobel Filter를 구현하기 전에 Difference Scale을 std로 가지는 Gaussian Blurring이 이루어짐.
@@ -335,7 +337,9 @@ Harris Corner Detection은 Rotation에 대해선 invariant하지만, Scale에 �
 
 SSD를 구할 때 사용하는 window의 크기가 고정되기 때문에 image scale variant할 수 밖에 없음.
 
-![](./img/ch02/harris_limitation.png)
+<figure markdown>
+![](./img/ch02/harris_limitation.png){width="500" align="center"}
+</figure>
 
 ---
 
