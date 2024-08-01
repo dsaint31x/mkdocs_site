@@ -226,11 +226,12 @@ Harris corner detector의 대안인 ***Shi-Tomasi operator (1994)의 경우***,
 * 최소 eigen value의 크기가 크면 corner로 판정한다. 
 * (Harris operator 와 큰 차이는 없으나 robustness가 조금 떨어진다고 알려져 있음) 
 
-characteristic equation $\text{det}(H-\lambda I_{1})=0$ 으로부터 유도되어 다음의 등식으로 cornerness가 구해짐.
+characteristic equation $\text{det}(H-\lambda I)=0$ 으로부터 유도되어 다음의 등식으로 cornerness가 구해짐.
 
 $$\lambda_1 = \frac{1}{2}\left( (h_{xx}+h_{yy})-\sqrt{(h_{xx}-h_{yy})^2+4(h_{xy})^2}\right)$$
 
 * $\lambda_0 \ge \lambda_1$로 sorting 을 시켰다고 가정함. 
+* $I$ 는 Identity Matrix 임.
 
 다음 그림은 왼쪽 상단의 $I$에 대한 eigen value들을 보여줌.  
 edge에서 $\lambda_\text{max}$가 매우 큰 값들을 가짐을 확인 가능하며,corner에서 $\lambda_\text{min}$이 큰 값들을 가짐을 확인할 수 있음.
