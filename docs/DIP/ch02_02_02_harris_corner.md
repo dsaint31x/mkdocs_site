@@ -88,6 +88,12 @@ where
 * $\Delta x, \Delta y$에 상관없이 전체 이미지 각 pixel에서 matrix $H$는 계산이 가능함.
     * $H$는 $2 \times 2$ matrix임.
 * $W\circledast$ 는 window 내의 대응하는 weights 를 이용하는 weighted sum임.
+    * Uniform인 경우가 가장 단순하지만, 성능은 좋지 못함 (Not Rotation Invariant).
+    * Gaussian Window가 흔히 사용됨.
+
+<figure markdown>
+![](./img/ch02/harris_corner_window.png){width="600" align="center"}
+</figure>
 
 ---
 
@@ -96,7 +102,7 @@ where
 여기서, quadratic form의 
 
 * 가운데 matrix $H$는 Covariance Matrix (Covariance matrix 의 Approximation라고도 볼 수 있음) 이며,  
-* $H$는 항상 symmetric이므로 ***eigen decomposition이 가능 (정확히는 orthogonal daigonalization*** 함.
+* $H$는 항상 symmetric이므로 ***eigen decomposition이 가능 (정확히는 orthogonal diagonalization*** 함.
 
 eigen decomposition이나 orthogonal diagonalization 등의 좀 더 자세한 내용은 다음 URL 참고:  
 
@@ -122,7 +128,14 @@ where
     * 각 column 에 해당하는 eigen vector들은 ***mutually orthogonal*** 임.
     * 때문에 $Q$는 [orthogonal matrix](https://dsaint31.tistory.com/392)임: $Q^{-1} = Q^\top$.
 * $\Lambda$는 eigen value들이 main diagonal에 위치하는 diagonal matrix임.
-* 결국 x축, y축이 아닌, $E$가 이루는 quadratic form의 horizontal plane (or horizontal slice) 들에서 이루는 ellipse의 equation의 primal axis와 secondary axis를 basis로 하는 change basis가 처리되고 각 길이에 해당하는 곱이 이루어진 이후 다시 x축, y축으로 change of basis가 이루어지게 된다.
+* 결국 x축, y축이 아닌, 
+    * $E$가 이루는 quadratic form의 horizontal plane (or horizontal slice) 들에서 이루는 
+    * ellipse의 equation의 primal axis와 secondary axis를 basis로 하는 change basis가 처리되고 
+    * 각 길이에 해당하는 곱이 이루어진 이후 다시 x축, y축으로 change of basis가 이루어지게 된다.
+* ellipse는 $E$에서 같은 값을 가지는 등고선이라고 볼 수 있으므로, 
+    * 장축에 해당하는 방향 ($\lambda_\text{min}$에 대응)으로는 SSD의 변화가 크지 않고
+    * 단축에 해당하는 방향 ($\lambda_\text{max}$에 대응)으로는 SSD의 변화가 큼.
+* $Q$와 $Q^\top$ 는 일종의 회전변환으로 SSE의 변화율이 최대인 축과 이에 직교하는 축으로 basis변환시키고, 이를 다시 원래 축으로 돌리는 역할을 수행함.
 
 다음 내용은 $H$의 diagonalization이 surface $E$에서의 horizontal slice에서의 ellipse와의 관계를 보여준다.
 
@@ -137,7 +150,18 @@ where
 이들 중 
 
 * eigen vector 는 각각 $^{(1)}$curvature가 최대인 방향과 $^{(2)}$해당 방향에 직교한 방향을 가르키며, 
-* eigen value 는 이들 축(axis)의 curvature(곡률) 크기에 반비례함.
+* eigen value 는 이들 축(axis)에서 SSD의 curvature(곡률) 크기에 비례함.
+
+다음 그림은 이를 잘 보여줌.
+
+<figure markdown>
+![](./img/ch02/Harris_Corner_CovarianceM.png){width="600" align="center"}
+</figure>
+
+* $Q^\top$를 통해 SSD의 변화가 가장 심한 축과 이에 직교하는 축으로 change of basis가 이루어져 $\mathbf{u}=\begin{bmatrix} x' & y' \end{bmatrix}$ 로 회전이동이 이루어짐.
+* $\lambda_\text{max}$와 $\lambda_\text{min}$ 은 SSD가 가장 크게 변하는 축과, 이에 직교하는 축에서의 SSD의 변화의 정도를 의미함. 
+
+
  
 다음은 change of basis ($Q, Q^\top$) 가 축을 바꿔주는 회전행렬이라고 생각하면 됨.)와 ellipse의 equation을 quadratic form과 연결지어서 보여줌.  
 (단, 여기선 $Q$가 identity matrix로 놓고 처리함.)
@@ -179,10 +203,10 @@ Hessian을 사용하여 Corner 및 Edge 검출이 가능함.
 >   
 > covariance matrix 에 대한 eigenvalue에서 
 > 
-> * 큰 값에 해당하는 축이 단축이고 곡률이 작고.
-> * 작은 값에 해당하는 축이 장축이고 곡률이 큼.
+> * 큰 값에 해당하는 축이 단축이고 2D 타원의 곡률이 작으나 ***SSD의 변화에 해당하는 곡률*** (=$E$의 곡률)은 큼.
+> * 작은 값에 해당하는 축이 장축이고 2D 타원의 곡률이 크지만 ***SSD의 변화에 해당하는 곡률*** (=$E$의 곡률)은 작음.
 >
-> Hessian 도 eigenvalue를 통해 corner와 edge를 검출할 수 있음. 
+> Hessian 도 eigenvalue를 통해 corner와 edge를 검출할 수 있으면, Edge Detection Response Function에서만 차이를 보임. 
 
 ---
 
@@ -204,7 +228,8 @@ $$\begin{aligned}f&=\frac{\lambda_0 \lambda_1}{(\lambda_0+\lambda_1)^2}\\&=\frac
 ![](./img/ch02/harris_op.png){width="500" align="center"}
 </figure>
 
-> 위의 Harris operator에 대한 다른 대안으로는 Szeliski(2005)가 제시한 방식이 있다.  
+> 위의 Harris operator에 대한 다른 대안으로는 Noble(1989) 및 Szeliski(2005)가 제시한 방식이 있다.  
+>   
 > Szeliski의 방법은  
 > 
 > * Harris와 Stephens가 1988년 제안한 방법과 같이 Covariance matrix(or 2nd moment matrix)를 이용하지만  
@@ -217,7 +242,7 @@ $$\begin{aligned}f&=\frac{\lambda_0 \lambda_1}{(\lambda_0+\lambda_1)^2}\\&=\frac
 > 보다 자세한 건 다음을 참고할 것:  
 > [M.Brown, R.Szeliski, and S. Winder, Multi-image matching using multi-scale oriented patches,in IEEE Computer Society Conference on Computer Vision and Pattern Recognition (CVPR),vol.1, IEEE, 2005, pp.510–517](https://ieeexplore.ieee.org/document/1467310)
 
-Harris corner detector의 대안인 ***Shi-Tomasi operator (1994)의 경우***, 
+Harris corner detector의 또 다른 대안인 ***Shi-Tomasi operator (1994)의 경우***, 
 
 * $\text{cornerness}=\min(\lambda_0,\lambda_1)$로 정의되며, 
 * 최소 eigen value의 크기가 크면 corner로 판정한다. 
