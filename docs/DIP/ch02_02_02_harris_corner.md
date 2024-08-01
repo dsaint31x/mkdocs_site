@@ -167,7 +167,7 @@ where
 위 그림은 `Computer Vision with Python 3, Sauyrabh Kapur, Packt`에서 발췌한 것으로 위의 정리를 잘 나타내줌.
 
 Harris & Stephen Corner Detector 에서 Covariance Matrix를 사용하는 부분을,  
-Hessian을 사용하여 Corner 및 edge 검출이 가능함.  
+Hessian을 사용하여 Corner 및 Edge 검출이 가능함.  
 (Hessian을 사용한 `Frangi Filter`는 edge detection에 초점을 두고 있음.)
 
 * Covariance Matrix 대신에 Hessian Matrix를 사용하여
@@ -176,16 +176,13 @@ Hessian을 사용하여 Corner 및 edge 검출이 가능함.
 참고: [Hessian : Summary](https://dsaint31.tistory.com/318)
 
 > 타원에서 장축과 단축에 대해, 
-> 
+>   
 > covariance matrix 에 대한 eigenvalue에서 
 > 
 > * 큰 값에 해당하는 축이 단축이고 곡률이 작고.
 > * 작은 값에 해당하는 축이 장축이고 곡률이 큼.
 >
-> 이와 달리 Hessian은  
->
-> * 큰 값에 해당하는 축이 장축이고 곡률이 크고.
-> * 작은 값에 해당하는 축이 단축이고 곡률이 작음.
+> Hessian 도 eigenvalue를 통해 corner와 edge를 검출할 수 있음. 
 
 ---
 
