@@ -303,6 +303,19 @@ where
 
 ---
 
+## Hessian
+
+앞서 설명했던대로, Covariance Matrix 대신에 Hessian을 사용할 수도 있음.
+
+이 경우, Corner Response Function은 다음과 같음.
+
+$$R_\text{Hessian} = det[\text{Hessian}] = I_{xx} I_{yy} - I_{xy}^2$$
+
+* $I_{xx}$는 x축으로 2차 미분한 것으로
+* Hessian 은 2nd derivative로 구성되는 것을 기억할 것.
+
+---
+
 ## Implementation
 
 실제 구현은 다음과 같은 순서로 처리가 이루어지도록 구현됨.
@@ -315,8 +328,20 @@ where
 
 ---
 
+## Limitation
+
+Harris Corner Detection은 Rotation에 대해선 invariant하지만, Scale에 대해선 그렇지 못함.
+
+SSD를 구할 때 사용하는 window의 크기가 고정되기 때문에 image scale variant할 수 밖에 없음.
+
+![](./img/ch02/harris_limitation.png)
+
+---
+
 ## References
 
 * [Interest Point Detection](https://www.youtube.com/watch?v=_qgKQGsuKeQ)
 * [Corner Detection & Optical Flow](./ref/lecture6_Corner%20Detection_Optical%20Flow.pdf)
 * [Detecting Corners](./ref/Lecture7_Detecting_Corners.pdf)
+* [Jun94's Blog](https://medium.com/jun94-devpblog/cv-10-local-feature-descriptors-harris-and-hessian-corner-detector-7d524888abfd)
+* [Harris and Hessian corner Detector](https://share.goodnotes.com/s/yLGjndctwlr7QuKUN2BWnV)
