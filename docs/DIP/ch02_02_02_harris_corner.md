@@ -191,7 +191,8 @@ where
 ![](./img/ch02/change_of_basis_quadratic_form_ellipse.png){width="450" align="center"}
 </figure>
 
-* $E$는 SSD를 의미하며 
+$E$는 SSD를 의미하며 
+
 * 모든 방향에 대해 pixel값이 다른 경우인 corner에선, SSD가 커지므로 
 * 이에 대한 locally approximation 인 quadratic form 의 
 * Covariance matrix $H$의 eigen vector와 eigen value들을 통해 
