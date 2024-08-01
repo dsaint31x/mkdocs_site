@@ -80,16 +80,30 @@ $$E(\Delta x,\Delta y) \approx \displaystyle \sum_{(x,y) \in W}W(x,y) \left(\beg
 
 이를 전개하면 다음이 성립.
 
-$$\begin{aligned}E(\Delta x,\Delta y) &\approx \displaystyle \begin{bmatrix}  \Delta x & \Delta y  \end{bmatrix} \left(\sum_{(x,y) \in W}W(x,y)\begin{bmatrix}  (\frac{\partial I}{\partial x})^2 & \frac{\partial I}{\partial x}\frac{\partial I}{\partial y}\\    \frac{\partial I}{\partial x}\frac{\partial I}{\partial y} & (\frac{\partial I}{\partial y})^2  \end{bmatrix} \right) \begin{bmatrix}  \Delta x\\   \Delta y \end{bmatrix} \\&= \displaystyle \begin{bmatrix}  \Delta x & \Delta y  \end{bmatrix} \begin{bmatrix}  W\circledast (\frac{\partial I}{\partial x})^2 & W\circledast  \frac{\partial I}{\partial x}\frac{\partial I}{\partial y}\\   W\circledast  \frac{\partial I}{\partial x}\frac{\partial I}{\partial y} & W\circledast  (\frac{\partial I}{\partial y})^2  \end{bmatrix} \begin{bmatrix}  \Delta x\\   \Delta y \end{bmatrix}\\&= \displaystyle \begin{bmatrix}  \Delta x & \Delta y  \end{bmatrix} \begin{bmatrix}  h_{xx} & h_{xy} \\h_{xy} & h_{yy}  \end{bmatrix} \begin{bmatrix}  \Delta x\\   \Delta y \end{bmatrix}\\&=\textbf{u}H\textbf{u}^T\end{aligned}$$
+$$\begin{aligned}E(\Delta x,\Delta y) &\approx \displaystyle \begin{bmatrix}  \Delta x & \Delta y  \end{bmatrix} \left(\sum_{(x,y) \in W}W(x,y)\begin{bmatrix}  (\frac{\partial I}{\partial x})^2 & \frac{\partial I}{\partial x}\frac{\partial I}{\partial y}\\    \frac{\partial I}{\partial x}\frac{\partial I}{\partial y} & (\frac{\partial I}{\partial y})^2  \end{bmatrix} \right) \begin{bmatrix}  \Delta x\\   \Delta y \end{bmatrix} \\&= \displaystyle \begin{bmatrix}  \Delta x & \Delta y  \end{bmatrix} \begin{bmatrix}  W\circledast (\frac{\partial I}{\partial x})^2 & W\circledast  \frac{\partial I}{\partial x}\frac{\partial I}{\partial y}\\   W\circledast  \frac{\partial I}{\partial x}\frac{\partial I}{\partial y} & W\circledast  (\frac{\partial I}{\partial y})^2  \end{bmatrix} \begin{bmatrix}  \Delta x\\   \Delta y \end{bmatrix}\\&= \displaystyle \begin{bmatrix}  \Delta x & \Delta y  \end{bmatrix} \begin{bmatrix}  h_{xx} & h_{xy} \\h_{xy} & h_{yy}  \end{bmatrix} \begin{bmatrix}  \Delta x\\   \Delta y \end{bmatrix}\\&=\textbf{u}^\top H\textbf{u}\end{aligned}$$
 
 where
 
-* $\textbf{u}$를 보통 unit vector로 처리한다. (길이 1씩만 shift)
+* $\textbf{u}$를 보통 unit vector로 처리한다. 
+    * 길이 1씩만 shift. ($\Delta x = \Delta y = 1$)
 * $\Delta x, \Delta y$에 상관없이 전체 이미지 각 pixel에서 matrix $H$는 계산이 가능함.
     * $H$는 $2 \times 2$ matrix임.
+    * $H$는 Covariance Matrix (or 2nd moment matrix)이며 $M$으로 표기되는 경우도 많음.
+* 편미분은 일종의 difference (차분) 으로 근사됨 
+    * 수식으로는 다음이 성립: $\frac{\partial I}{\partial x}= \nabla_x I = I_x$
+    * 해당 축에 대한 difference (차분)을 통해 얻어짐.
+    * difference를 수행하기 전에 Gaussian Blurring을 하는 경우가 많고,
+    * 이 때의 $\sigma_d$를 가르켜 difference scale이라고 부름.
+    * 미분을 차분으로 근사관련해서 다음을 참고: [미분과 차분](https://dsaint31.tistory.com/540) 
 * $W\circledast$ 는 window 내의 대응하는 weights 를 이용하는 weighted sum임.
     * Uniform인 경우가 가장 단순하지만, 성능은 좋지 못함 (Not Rotation Invariant).
     * Gaussian Window가 흔히 사용됨.
+    * weighted sum이므로 결국 $H$는 $2 \times 2$ matrix가 됨.
+
+$W$를 어떤 것을 사용하는냐에 따라 성능의 차이가 있음.
+
+* local feature로서 코너를 검출하기 위해선 Rotation Invariant 해야함.
+* 때문에 Gaussian Window가 Uniform Window 보다 선호됨.
 
 <figure markdown>
 ![](./img/ch02/harris_corner_window.png){width="600" align="center"}
@@ -102,7 +116,7 @@ where
 여기서, quadratic form의 
 
 * 가운데 matrix $H$는 Covariance Matrix (Covariance matrix 의 Approximation라고도 볼 수 있음) 이며,  
-* $H$는 항상 symmetric이므로 ***eigen decomposition이 가능 (정확히는 orthogonal diagonalization*** 함.
+* $H$는 항상 symmetric이므로 ***eigen decomposition이 가능 (정확히는 orthogonal diagonalization***) 함.
 
 eigen decomposition이나 orthogonal diagonalization 등의 좀 더 자세한 내용은 다음 URL 참고:  
 
@@ -152,7 +166,7 @@ where
 * eigen vector 는 각각 $^{(1)}$curvature가 최대인 방향과 $^{(2)}$해당 방향에 직교한 방향을 가르키며, 
 * eigen value 는 이들 축(axis)에서 SSD의 curvature(곡률) 크기에 비례함.
 
-다음 그림은 이를 잘 보여줌.
+다음은 이를 잘 보여줌.
 
 <figure markdown>
 ![](./img/ch02/Harris_Corner_CovarianceM.png){width="600" align="center"}
@@ -163,11 +177,18 @@ where
 
 
  
-다음은 change of basis ($Q, Q^\top$) 가 축을 바꿔주는 회전행렬이라고 생각하면 됨.)와 ellipse의 equation을 quadratic form과 연결지어서 보여줌.  
-(단, 여기선 $Q$가 identity matrix로 놓고 처리함.)
+다음은 $Q, Q^\top$ 가 축을 바꿔주는 일종의 회전행렬이라는 점에 대한 이해를 위한 change of basis를 나타냄.
 
 <figure markdown>
-![](./img/ch02/change_of_basis_quadratic_form_ellipse.png){width="800" align="center"}
+![](./img/ch02/change_of_basis.png){width="400" align="center"}
+</figure>
+
+* $R^{-1}$이 앞서의 $Q^\top (=Q^{-1})$에 해당함.
+* 즉, eigenvalue에 해당하는 축으로 basis를 바꾸는 것에 해당함.
+
+다음은 ellipse의 equation을 quadratic form으로 표현되는 점을 나타내어 eigen decomposition으로 근사를 이해할 수 있게 해줌.
+<figure markdown>
+![](./img/ch02/change_of_basis_quadratic_form_ellipse.png){width="450" align="center"}
 </figure>
 
 * $E$는 SSD를 의미하며 
@@ -279,6 +300,18 @@ where
 ![](./img/ch02/corner_response_function.png)
 
 위 그림에서 upper-left와 lower-right는 edge에 해당하고, lower-left는 flat region, upper-right가 바로 corner임. 즉 Harris & Stephens의 $f$가 클수록 corner에 해당함.
+
+---
+
+## Implementation
+
+실제 구현은 다음과 같은 순서로 처리가 이루어지도록 구현됨.
+
+![](./img/ch02/harris_corner_detection_imple.png)
+
+* difference 대신에 Sobel Filter로 사용하여 구현된다.
+* Sobel Filter를 구현하기 전에 Difference Scale을 std로 가지는 Gaussian Blurring이 이루어짐.
+* 일반적으로 $\sigma_I > \sigma_D$임.
 
 ---
 
