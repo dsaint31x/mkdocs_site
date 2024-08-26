@@ -45,20 +45,35 @@ $$
 좀더 수식에서 중요한 부분에 집중하기 위해 $x_o=y_o=0$으로 처리하여 전개하면 다음과 같음.
 
 $$
-\begin{aligned}\nabla^2G(x,y)=&\frac{\partial^2}{\partial x^2} G(x,y)+\frac{\partial^2}{\partial y^2} G(x,y)\\=&\frac{\partial}{\partial x}\left[\frac{-x}{\sigma_x^2} \text{exp} \left( -\left( \dfrac{x^2}{2\sigma_\text{x}^2}+\dfrac{y^2}{2\sigma_\text{y}^2}\right)\right)\right]\\&+\frac{\partial}{\partial y}\left[\frac{-y}{\sigma_y^2} \text{exp} \left( -\left( \dfrac{x^2}{2\sigma_\text{x}^2}+\dfrac{y^2}{2\sigma_\text{y}^2}\right)\right)\right]\\=&\left[\frac{x^2}{\sigma_x^4}-\frac{1}{\sigma_x^2} \right] \text{exp} \left(-\left( \dfrac{x^2}{2\sigma_\text{x}^2}+\dfrac{y^2}{2\sigma_\text{y}^2}\right)\right)\\&+\left[\frac{y^2}{\sigma_y^4}-\frac{1}{\sigma_y^2} \right] \text{exp} \left(-\left( \dfrac{x^2}{2\sigma_\text{x}^2}+\dfrac{y^2}{2\sigma_\text{y}^2}\right)\right)\end{aligned}
+\begin{aligned}\nabla^2G(x,y)=&\frac{\partial^2}{\partial x^2} G(x,y)+\frac{\partial^2}{\partial y^2} G(x,y)\\
+=& \frac{1}{2\pi\sigma_x \sigma_y} \left[ \frac{\partial}{\partial x}\left\{\frac{-x}{\sigma_x^2} \text{exp} \left( -\left( \dfrac{x^2}{2\sigma_\text{x}^2}+\dfrac{y^2}{2\sigma_\text{y}^2}\right)\right)\right\} 
++\frac{\partial}{\partial y}\left\{\frac{-y}{\sigma_y^2} \text{exp} \left( -\left( \dfrac{x^2}{2\sigma_\text{x}^2}+\dfrac{y^2}{2\sigma_\text{y}^2}\right)\right)\right\}\right]
+\\=& \frac{1}{2\pi\sigma_x^5\sigma_y}\left[x^2-\sigma_x^2 \right] \text{exp} \left(- \dfrac{x^2}{2\sigma_\text{x}^2}-\dfrac{y^2}{2\sigma_\text{y}^2}\right)
+\\&+\frac{1}{2\pi\sigma_x\sigma_y^5}\left[y^2-\sigma_y^2 \right] \text{exp} \left(- \dfrac{x^2}{2\sigma_\text{x}^2}-\dfrac{y^2}{2\sigma_\text{y}^2}\right)
+\\
+=& \left[\left(\frac{x^2}{\sigma_x^4} - \frac{1}{\sigma_x^2}\right) + \left(\frac{y^2}{\sigma_y^4} - \frac{1}{\sigma_y^2}\right)\right] \frac{1}{2\pi\sigma_x\sigma_y}   \exp\left(-\frac{x^2}{2\sigma_x^2} - \frac{y^2}{2\sigma_y^2}\right) 
+\\ =& \left(\frac{x^2}{\sigma_x^4} + \frac{y^2}{\sigma_y^4} - \frac{1}{\sigma_x^2} - \frac{1}{\sigma_y^2}\right) \frac{1}{2\pi\sigma_x\sigma_y} \exp\left(-\frac{x^2}{2\sigma_x^2} - \frac{y^2}{2\sigma_y^2}\right) 
+\\ =& \left(\frac{x^2}{\sigma_x^4} + \frac{y^2}{\sigma_y^4} - \frac{1}{\sigma_x^2} - \frac{1}{\sigma_y^2}\right) G(x,y,\sigma_x,\sigma_y)
+
+\end{aligned}
 $$
 
 Gaussian blurring처럼 isotropic이라고 가정하면 다음과 같이 좀 더 간단히 정리됨.
 
 $$
-\begin{aligned}\nabla^2G(x,y)&=\frac{1}{\pi\sigma^4}\left[\frac{x^2+y^2-2\sigma^2}{2\sigma^2}\right]\text{exp}\left(-\frac{x^2+y^2}{2\sigma^2}\right)\\&=-\frac{1}{\pi \sigma^4}\left[1-\frac{x^2+y^2}{2\sigma^2}\right]\text{exp}\left(-\frac{x^2+y^2}{2\sigma^2}\right)\end{aligned}
+\begin{aligned}\nabla^2G(x,y)&=
+\left(\frac{x^2 +y^2}{\sigma^4} - \frac{2}{\sigma^2} \right)G(x,y,\sigma) \\
+&=\left(\frac{x^2 +y^2-2\sigma^2}{\sigma^4} \right)G(x,y,\sigma)
+\end{aligned}
 $$
 
-Gaussian blurring처럼 앞의 normalization factor $\frac{1}{2\pi \sigma^2}$를 생략한 형태도 많이 사용됨.
+Scale-normalized LoG는 다음과 같이 $\sigma^2$를 곱해준다. 
 
 $$
-\nabla^2G(x,y)=\left[\frac{x^2+y^2-2\sigma^2}{\sigma^2}\right]\text{exp}\left(-\frac{x^2+y^2}{2\sigma^2}\right)
+\nabla^2G(x,y)=\left[\frac{x^2+y^2-2\sigma^2}{\sigma^2}\right]G(x,y,\sigma)
 $$
+
+$G(x,y,\sigma)$에서 $\frac{x^2+y^2}{\sigma^2}$이 exp함수의 입력으로 들어가는데, normalized되는 것도 비슷한 형태 $\left[\frac{x^2+y^2-2\sigma^2}{\sigma^2}\right]$ 로 맞춰줘서 $\sigma$의 크기로 인한 문제를 해결함. 
 
 ---
 
