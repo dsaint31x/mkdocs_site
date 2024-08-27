@@ -154,7 +154,7 @@ where
 다음 내용은 $H$의 diagonalization이 surface $E$에서의 horizontal slice에서의 ellipse와의 관계를 보여준다.
 
 <figure markdown>
-![](./img/ch02/hessian_diagonalization_ellipse.png){width="800" align="center"}
+![](./img/ch02/harris_diagonalization_ellipse.png){width="800" align="center"}
 </figure>
 
 > 위의 식에서 $I_{xx}$는 앞서의 $h_{xx}$와 같으며, $I_x^2$으로도 표기될 수 있다. 
@@ -172,7 +172,7 @@ where
 ![](./img/ch02/Harris_Corner_CovarianceM.png){width="600" align="center"}
 </figure>
 
-* $Q^\top$를 통해 SSD의 변화가 가장 심한 축과 이에 직교하는 축으로 change of basis가 이루어져 $\mathbf{u}=\begin{bmatrix} x' & y' \end{bmatrix}$ 로 회전이동이 이루어짐.
+* $Q^\top$를 통해 SSD의 변화가 가장 심한 축과 이에 직교하는 축으로 change of basis가 이루어져 $\mathbf{u}=\begin{bmatrix} x' & y' \end{bmatrix}^\top$ 로 회전이동이 이루어짐.
 * $\lambda_\text{max}$와 $\lambda_\text{min}$ 은 SSD가 가장 크게 변하는 축과, 이에 직교하는 축에서의 SSD의 변화의 정도를 의미함. 
 
 
@@ -291,7 +291,12 @@ Harris & Stephens (1988)의 경우,
 * 실제로는 위의 Harris corner operator가 아닌 
 * 다음의 corner response function을 사용한다. (큰 값을 가질수록 corner에 해당함)
 
-$$\begin{aligned}f&=\text{det}(H)-\alpha(\text{Tr}(H))^2 \quad \text{ where }\alpha=1/r=0.1 \\&=\lambda_0\lambda_1-\alpha(\lambda_0+\lambda_1)^2 \quad \leftarrow \text{uniform window} \\&=h_{xx}h_{yy}-(h_{xy})^2-\alpha(h_{xx}+h_{yy})^2 \\ &=g_{\sigma_I}(I_{x}^2)g_{\sigma_I}(I_{y}^2)-g_{\sigma_I}(I_{x}I_{y})^2-\alpha \{g_{\sigma_I}(I_x^2)+g_{\sigma_I}(I_y^2)\}^2\\ &\quad \uparrow \text{Gaussian Window with Integration Scale}(\sigma_I)\end{aligned}$$
+$$\begin{aligned}f
+&=\text{det}(H)-\alpha(\text{Tr}(H))^2 \quad \text{ where }\alpha=1/r=0.1 \\
+&=\color{red}{\lambda_0\lambda_1-\alpha(\lambda_0+\lambda_1)^2} \quad \leftarrow \text{uniform window} \\
+&=h_{xx}h_{yy}-(h_{xy})^2-\alpha(h_{xx}+h_{yy})^2 \\ 
+&=g_{\sigma_I}(I_{x}^2)g_{\sigma_I}(I_{y}^2)-g_{\sigma_I}(I_{x}I_{y})^2-\alpha \{g_{\sigma_I}(I_x^2)+g_{\sigma_I}(I_y^2)\}^2\\ 
+&\quad \uparrow \text{Gaussian Window with Integration Scale}(\sigma_I)\end{aligned}$$
 
 
 where

@@ -11,6 +11,7 @@ Local Feature (or Feature Descriptor)는 2000년대 correspondence problem에서
 > Dataset으로부터 ***hierarchy feature extraction 이 자동으로 이루어진다*** 는 점이 Deep Learning의 가장 큰 장점 중 하나라고 할 수 있음.
 
 <br/>
+---
 
 대표적인 Local Feature는 다음과 같다.
 
@@ -39,12 +40,13 @@ Local Feature는 "원본 영상"의 `key-point`(특징점)들에서 계산되어
 
 1. Feature Detection : location info. 와 size (or scale) 을 얻어냄.
     * location info.와 size는 Translation, Rotation, Zoom-in/out 등의 Geometric Transform에 covariant함.
-    * key-point의 위치 및 크기를 구하는 과정에 해당.
+    * `key-point` 의 위치 및 크기를 구하는 과정에 해당.
     * corner나 blob을 찾던 초기 기법들은 이 단계만 수행함.
 2. Feature Description : 주로 orientation과 feature vector 추출.
-    * Geometric Transform에 invariant한 feature descriptor를 생성.
-    * 일부 기법은 detection과정이 아닌 2번 단계에만 적용가능한 것들도 있음.
+    * Geometric Transform에 invariant한 `feature descriptor` 를 생성.
+    * 일부 기법은 detection 과정이 아닌 2번 단계에만 적용가능한 것들도 있음.
 
+---
 
 ## Local Feature의 구성요소.
 
@@ -53,28 +55,36 @@ Local Feature는 "원본 영상"의 `key-point`(특징점)들에서 계산되어
 > Local feature를 구하는 알고리즘에 따라 이들 중 일부 만을 제공할 수 있음. (모든 경우에 이들이 다 제공되는 건 아님.)
 
 `Location information` 
-: 원본 영상에서의 위치 $(x,y)$로 사실상 key-point의 위치이다. 주로 vector로 주어짐.
+: 원본 영상에서의 위치 $(x,y)$로 사실상 key-point의 위치이다.  
+주로 vector로 주어짐.
 
 `Scale (or size)` 
-: local feature가 원본영상에서 차지하고 있는 넓이, 크기에 해당. standard deviation등에 사용되는 $\sigma$로 보통 표기됨 (정규분포 등에서 분포의 폭을 결정하는 parameter가 std인 것에 기인).
+: local feature가 원본영상에서 차지하고 있는 넓이, 크기에 해당.  
+standard deviation등에 사용되는 $\sigma$로 보통 표기됨  
+(정규분포 등에서 분포의 폭을 결정하는 parameter가 std인 것에 기인).
 
 `Orientation` 
-: Local feature가 어떻게 놓여있는지를 나타냄. "방향"이라고 볼 수 있고, rotation에 invariant한 feature를 구하기 위한 핵심 정보임.
+: Local feature가 어떻게 놓여있는지를 나타냄.  
+"방향"이라고 볼 수 있고, rotation에 invariant한 feature를 구하기 위한 핵심 정보임.
 
 `Feature vector` 
-: 이는 Feature descriptor의 핵심적인 요소라고도 할 수 있다. 특정 대상에서 특정 부위가 다른 두 영상에서 다른 조명, 다른 위치에 놓여있다고 해도 해당 부위의 이상적인 feature vector는 같아야 한다. 즉 같은 key-point인지 여부를 체크하는데 사용된다(=local feature을 기술하는 vector임).
+: 이는 Feature descriptor의 핵심적인 요소라고도 할 수 있다.  
+특정 대상에서 특정 부위가 다른 두 영상에서 다른 조명, 다른 위치에 놓여있다고 해도 해당 부위의 이상적인 feature vector는 같아야 한다.  
+즉 같은 key-point인지 여부를 체크하는데 사용된다 (=local feature을 기술하는 vector임).
 
-> 참고로 image patch를 그냥 flatten시킨 vector를 feature descriptor로 사용할 경우, noise 나 rotation등에 매우 취약하다.
+> 참고로 image patch를 그냥 flatten시킨 vector를 feature descriptor로 사용할 경우,  
+> noise 나 rotation등에 매우 취약하다.
 
 
-추가적으로 feature vector간의 similarity를 측정하는 함수가 제공된다.
+추가적으로 feature vector 간의 similarity를 측정하는 함수가 제공된다.
 
 `Similarity (or distance) function`
 
-* Correspondence (matching되는 feature descriptor, key-point pair)를 구하기 위해 제공됨.
+* Correspondence (matching되는 feature descriptors, key-point pair)를 구하기 위해 제공됨.
 * matching 등의 task에서 요구되며, Homeography (=projective transformation)를 구하기 위해 필수적임.
 * HOG family algorithm에서는 Euclidean distance가 자주 애용되고, binary descriptor family에서는 Hamming distance들이 주로 사용됨.
 
+---
 
 ## Use of Local Image Feature
 
@@ -84,13 +94,13 @@ Local Feature는 "원본 영상"의 `key-point`(특징점)들에서 계산되어
 
 ## 좋은 Local Feature의 조건
 
-* **Repeatability (vs. Repeatability) (← 반복성)**
+* **Repeatability (vs. Computation cost,계산효율) (← 반복성)**
     - 같은 물체를 찍은 두 영상이 있다고 할 때,
     - 한 영상 속의 해당 물체의 **특정 위치(ex: 모서리)에서 검출된 feature** 는
     - 다른 영상의 해당 물체의 같은 위치에서 ***동일한(or 매우 유사한) 값*** 으로 얻어져야 함.
     - 이를 만족해야만, correspondence problem에서 사용가능
         - 또한 *object localization* or *tracking* 등에서 사용가능함.
-    - **Repeatability** 를 위해서는 **invariance** 와 **robustness**가 필요함.
+    - **Repeatability** 를 위해서는 **invariance** 와 **robustness** 가 필요함.
 * **Distinctiveness (vs. Locality) (←분별력)**
     - 같은 영상에서 *물체의 다른 곳과 충분히 **구분** 되는 feature값* 을 가져야 함. (←key-point의 조건을 기억)
     - 물체의 위치 별로 구분되는 feature를 가져야만 다른 영상에서 해당 위치에 1:1로 matching 이 가능.
@@ -160,7 +170,7 @@ Edge를 만드는 요인은 다음과 같음.
 3. Non-max suppression 
 4. Hysteresis Thresholding
 
-`Edge`는 **높은 gradient magnitude**를 가지므로 gradient magnitude를 구하여 해당 pixel을 구하는데, noise들도 높은 gradient magnitude를 가지므로 (Gaussian) Smoothing등을 통해 edge 외의 noise 를 제거하고나서 gradient를 구하는 경우가 일반적임.
+`Edge`는 **높은 gradient magnitude** 를 가지므로 gradient magnitude를 구하여 해당 pixel을 구하는데, noise들도 높은 gradient magnitude를 가지므로 (Gaussian) Smoothing등을 통해 edge 외의 noise 를 제거하고나서 gradient를 구하는 경우가 일반적임.
 
 ## Corner
 
