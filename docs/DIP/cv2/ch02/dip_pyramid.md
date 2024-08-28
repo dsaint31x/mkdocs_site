@@ -24,7 +24,7 @@ raw image에 대해서 1/2 씩 작게 (or 크게) resize하여 피라미드 처�
 <figcap>Illustration of an image pyramid with 5 levels (from Wikipedia)</figcap>
 </figure>
 
-scale space와 달리 down sampling이 같이 이루어진다. 즉, $\sigma=2$로 blurring을 수행하고나서 factor=2 인 downsampling을 수행하는 방식으로 image를 생성하여 위에 쌓아올린다. 즉, pyramid 맨 하단에 가장 scale이 작고 pixel수가 많은 image가 놓이고, 같은 region을 나타내나 2배 큰 scale을 가지면서 전체 pixel의 수는 $\frac{1}{4}=\frac{1}{2}\times \frac{1}{2}$인 image가 놓인다. down sampling이 없는 scale space에 비해 적은 용량을 차지한다.
+scale space와 달리 down sampling이 같이 이루어진다. 즉, $\sigma=2$로 blurring을 수행하고나서 factor=2 인 down-sampling을 수행하는 방식으로 image를 생성하여 위에 쌓아올린다. 즉, pyramid 맨 하단에 가장 scale이 작고 pixel수가 많은 image가 놓이고, 같은 region을 나타내나 2배 큰 scale을 가지면서 전체 pixel의 수는 $\frac{1}{4}=\frac{1}{2}\times \frac{1}{2}$인 image가 놓인다. down sampling이 없는 scale space에 비해 적은 용량을 차지한다.
 
 상단의 image는 처리해야할 pixel 이 가장 적으면서도 target region의 전체적인 정보를 가지고 있으므로, 이를 먼저 처리하고 점점 더 fine한 정보가 필요하면 아래로 내려가는 방식의 처리가 가능하다. 마치 위성사진으로 전체 영역에서 필요한 부분을 찾고, 이후 특정 부분을 확대해서 보는 방식과 비슷하다.
 
@@ -140,16 +140,29 @@ OpenCV tutorial에서 제공해주는 응용사례로, 2개의 이미지를(사�
 
 ## Scale Space
 
-Image Pyramid와 유사하지만, down sampling이 없는 것이라고 생각하면 좀 더 쉽게 이해할 수 있다. 
+Scale Space는 Image Pyramid와 유사한 개념이지만, 주요 차이점은 Scale Space의 경우 down sampling을 포함하지 않고, 다양한 scale에서의 이미지를 연속적으로 표현함. 
+
+> Image Pyramid는 down-sampling을 통해 이미지 크기를 줄여가며 계층적 구조를 만듭니
+
 
 2D image에 scale이라는 하나의 axis를 추가하여 해당 axis에 따라 다른 scale의 image들이 놓여있게 되는 구조이다.
 
 * scale parameter (scale의 정도를 나타내는 값)는 Gaussian filter에서의 variance $\sigma^2$ 이 사용된다.
 * scale axis 에 따라, scale만 다를 뿐 image의 width와 height는 같다.
 
-Gaussian Pyramid 관점에서 애기한다면, scale space에서 scale이 2배 ($\sigma$가 2배 커진 상태)가 되는 위치에서 factor 2의 down sampling을 하면 정보손실이 최소화된 작은 크기(area는 1/4로 줄고 2배 scale을 가진)의 image를 얻을 수 있다.
+Gaussian Pyramid 관점에서 애기한다면, scale space에서 scale이 2배 ($\sigma^2$가 2배 커진 상태)가 되는 위치에서 factor 2의 down sampling을 하면 정보손실이 최소화된 작은 크기(area는 1/4로 줄고 2배 scale을 가진)의 image를 얻을 수 있다.
 
-> 거의 Gaussian Filter를 통해, 보다 큰 scale의 image를 얻는다. Gaussian kernel에 의한 convolution이 연달아 일어날 경우, 각 kernel의 $\sigma^2$를 더함으로서 간단하게 최종 kernel을 얻을 수 있다는 장점을 가지고 있는데다, 큰 scale의 image를 만들 경우 fine한 image(작은 scale)에 대한 simplication을 왜곡없이 잘 생성하기 때문이다.
+Gaussian Pyramid에서는 스케일이 2배 커진다는 것은  $\sigma^2$ 가 2배 커진다는 의미임. 
+
+> $\sigma$의 경우는 $\sqrt{2}$임.
+
+이때, 만약 2배 스케일에서 down-sampling을 하면, 이미지의 크기는 면적 기준으로 ¼로 줄어듭니다.  
+하지만 Scale Space는 down-sampling을 포함하지 않으므로, 이 부분은 Image Pyramid와의 차이를 이해할 때 주의해야 합니다.
+
+> 대부분 반복적인 Gaussian Filter 적용을 통해, 여러 단계의 보다 큰 scale의 image를 생성함.   
+> Gaussian kernel에 의한 convolution이 연달아 일어날 경우, **각 kernel의 $\sigma^2$를 더함으로서 간단하게 최종 kernel을 얻을 수 있다는 장점** 을 가지고 있는데다, 큰 scale의 image를 만들 경우 fine한 image(작은 scale)에 대한 simplification 을 왜곡없이 잘 생성하기 때문이다.
+>
+> $G_{\sigma_\text{t}}=G_{\sigma_1} \circledast G_{\sigma_2} \rightarrow \sigma_\text{t}^2 = \sigma_{1}^2 + \sigma_{2}^2$
 
 즉, Scale space는 image와 같은 다차원 signal에 대해서,
 
@@ -164,6 +177,9 @@ Gaussian Pyramid 관점에서 애기한다면, scale space에서 scale이 2배 (
 
 pyramids 와 비슷하다. feature detection, compression, image synthesis 등에서 활용된다. 가장 쉬운 예는 image fusion이지만, Euclidean Magnification과 같은 경우에도 활용된다.
 
+---
+
+---
 
 ## References
 
