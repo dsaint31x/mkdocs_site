@@ -364,12 +364,27 @@ if __name__ == '__main__':
     main()
 ```
 
-참고로 `namespace package`의 경우,  
+---
+
+### Namespace Package
+
+> 여러 독립적인 패키지들을 하나의 "논리적인 패키지" (단순히 하나의 namespace 에 속하도록 해주는 역할의 패키지) 처럼 보이게 해주기 위해 제안된 도구.
+>
+> * 대규모 프로젝트에서 독립적인 패키지 관리가 가능함.
+
+`namespace package`의 경우,  
 
 * 물리적으로 다른 경로(각각의 `sys.path`에 item이어야함.)에 있더라도,  
-* 같은 패키지명을 공유할 경우 하나의 package로 Python에서 처리되는 package를 가르킴.  
+* 같은 패키지명을 공유할 경우 하나의 package로 Python에서 처리됨.
+* 여러 다른 개발그룹이 동일한 패키지를 동시에 확장하여 개발하는 것을 가능하게 함.
 
-이 경우, 같은 패키지명을 공유하는 모든 subdirectory내에 `__init__.py`가 있어선 안됨 (Python 3.x 이상부터만 사용가능함).
+이 경우, 같은 패키지명을 공유하는 모든 subdirectory 내에 `__init__.py`가 있어선 안됨 (Python 3.3 이상부터만 사용가능함).
+
+`sys.path`에 정의된 경로들을 탐색하면서 namespace package로 인식된 모든 디렉토리들을 처리할 때, 동일한 이름의 디렉토리는 같은 "논리적 패키지" 로 병합함.
+
+다음의 링크에서 예를 들어 설명하고 있으니 참고할 것:  
+
+* [Namespace Package 에 대하여](https://ds31x.tistory.com/340)
 
 ---
 
@@ -377,9 +392,12 @@ if __name__ == '__main__':
 
 ## Summary
 
-* Module은 하나의 `.py`파일로 묶여있는 `variable`, `function` 그리고 `class`등의 object의 Collection을 가르킴.
-* Module은 고유의 Namespace를 가지며, 관련있는 object들을 묶어서 재사용이 가능하도록 해줌.
-* Package는 관련이 있는 module들을 가지고 있는 subdirectory에 해당하며 module들의 이름이 모인 일종의 namespace를 제공함.
+* Module은 **하나의 `.py`파일** 로 묶여있는 `variable`, `function` 그리고 `class`등의 object의 Collection을 가르킴:
+    *  **흔히 `.py` 파일 하나를 module이라고 부른다.**
+    * Module은 고유의 Namespace를 가지며, 관련있는 object들을 묶어서 재사용이 가능하도록 해줌.
+* Package는 **관련이 있는 module들을 가지고 있는 subdirectory** 에 해당:
+    * module들의 이름들을 가지고 있는(포함하는) 일종의 namespace를 제공함.
+* Module과 package 들이 모여서 ***Library*** 를 구성함. 
 
 ---
 
