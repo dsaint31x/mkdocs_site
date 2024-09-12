@@ -31,9 +31,12 @@ Unsupervised Learning 으로 해결하고자 하는 ^^주요 task^^ 는 다음�
 : * `(Data) Visualization` : `Dimensionality reduction`에서 ^^target dimension을 2 또는 3 차원으로 한 경우^^ 로, data들의 분포의 특징등을 시각적으로 잘 나타내는 task 또는 application을 지칭.  
 ML 또는 Data Mining으로 찾아낸 데이터들의 특성 또는 분포를 2차원의 chart (보통 scattergram, scatter plot)로 표현하여 ^^데이터에 대한 insight를 제공^^ 하는데 사용됨.
 
-`Anomaly detection` (or `novelty detection`, `odd detection`)
-: Training data에 있는 sample과 다른 특성을 가지는 sample (outlier, odd)들을 탐지하는 task.  
-일반적으로 ^^training data에는 outlier가 없다고 생각하고 학습^^ 하고, 새로 주어진 data sample이 기존의 training data와 같은지 아니면 outlier인지를 구분한다.
+`Outlier Detection` (이상치 탐지)
+: 전체 데이터셋 내에서 비정상적인 패턴이나 관측치를 식별하는 task. 주요 특징은 ***전체 데이터로 모델 훈련*** 시키기 때문에 "훈련데이터셋"에 outlier(이상치)가 포함되어 있음. outlier는 샘플 수가 적으므로 대다수 샘플과 크게 차이가 나는 outlier 데이터 포인트를 분류하도록 훈련됨.
+
+`Novelty Detection` (특이치 탐지)
+: outlier detection과 매우 비슷한 task이지만, novelty detection은 "정상 데이터" 만으로 모델을 훈련시켜 이후 추론 단계에서 주어지는 데이터들의 정상 여부를 판단하는 task임. 특징은 ***정상 데이터만으로 모델 훈련*** 한다는 점으로 훈련단계에서 보지 못한 패턴의 데이터 (Novelty)을 감지하도록 훈련된다는 점임.
+
 
 <figure markdown>
 ![](../img/ch00/anomaly_detection.png){width="400" align="center"}
@@ -67,17 +70,8 @@ Dimensionality Reduction과 Representation Learning들과 매우 밀접하게 �
 `Unsupervised learning`의 경우, **dataset에 내재되어있는 feature를 추출하는 데 초점** 이 보다 쏠려있는 것과 비교하여  
 `Self-supervised learning`은 **자체적으로 labeling을 수행하고 난 다음에 일반적인 supervised learning으로 해결하는 task (= downstream task)를 수행** 하는 차이가 있다.
 
-> Self-supervised Learning은 ***Supervised Learning을 위한 Technique*** 이라고 볼 수 있음.
 
-대부분의 self-supervised learning의 경우, 
-
-* unsupervised learning 나 semi-supervised learning을 수행하고 얻은 knowledge를 (=pre-training)
-* final goal을 위한 supervised learning에 transfer하는 방식을 취한다. (=downstream에 맞는 topper layer를 교체하는 등의 방식)
 
 즉, label이 전혀 없거나 일부 있는 데이터를 이용하는 부분(=pre-training)은 unsupervised learning(or semi-supervised learning)과 같으나, 최종 task는 사실상 supervised learning의 task인 경우가 대부분이다.
 
-### Example
 
-Pretext task로 context prediction을 unsupervised learning으로 수행하고, 이를 knowledge transfer시켜 원래 task를 수행.
-
-* Doersch, Carl, Abhinav Gupta, and Alexei A. Efros. "Unsupervised visual representation learning by context prediction." Proceedings of the IEEE international conference on computer vision. 2015.

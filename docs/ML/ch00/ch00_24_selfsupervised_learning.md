@@ -1,10 +1,13 @@
 # Self-supervised Learning
 
+## 사용되는 경우
 
 Self-supervised Learning은 다음과 같은 상황에서 주로 사용됨.
 
 * label이 없는 데이터가 label이 있는 데이터보다 훨씬 많을 때
 * 원래 풀고자 하는 task(main task)를 위한 labelled dataset의 샘플 수가 모델을 훈련시키기에 부족할 때
+
+## 구성 단계
 
 Self-supervised Learning은 위와 같은 경우 다음의 단계로 모델을 훈련시킴.
 
@@ -15,7 +18,8 @@ Self-supervised Learning은 위와 같은 경우 다음의 단계로 모델을 �
 2. 해당 모델을 main task에 맞게 미세 조정(fine-tuning) 수행 
     * 모델의 출력단의 구조가 변경될 수도 있음.
     * 2번 과정에서는 main task에 맞게 label이 주어진 소수의 dataset을 사용함.
-    
+
+## Pretext Task    
 
 Pretext task는 데이터 자체에서 매우 쉽게 label을 만들어낼 수 있어야 함. 
 
@@ -25,11 +29,15 @@ Pretext task는 데이터 자체에서 매우 쉽게 label을 만들어낼 수 �
 
 대표적인 예로 자연어 처리에서 BERT 모델이 사전 훈련으로 사용하는 마스크 언어 모델링이 있음.
 
+## 장점
+
 Self-supervised Learning의 장점:
 
 * label 없는 대량의 데이터 활용 가능
 * 데이터의 일반적인 특징(representative feature)을 잘 학습할 수 있음
 * 주요 과제에 적용 시 적은 양의 레이블된 데이터로도 좋은 성능 달성 가능
+
+## 결론1
 
 Self-supervised Learning은 
 
@@ -44,3 +52,17 @@ Self-supervised Learning은
 > Unsupervised Learning의 task 가 주로 clustring, dimentionality reduciton, novelit (or outlier) detection 인 점을 주의할 것.  
 > Self supvised Laerning은 task의 관점에서 unsupervised learning과 차이를 보이고, 주어진 dataset 의 측면에서 supervised learning과 차이를 가짐.  
 > 일종의 Knowledge Transfer의 한 종류라고도 할 수 있음. 
+
+## 결론2
+
+Self-supervised Learning은 ***Supervised Learning을 위한 Knowledge Transfer Technique*** 이라고도 볼 수 있음.
+
+* unsupervised learning 나 semi-supervised learning을 수행하고 얻은 knowledge를 (=pre-training for pretext task)
+* final goal(=main task)을 위한 supervised learning에 transfer하는 방식을 취한다. (=downstream에 맞는 topper layer를 교체하는 등의 방식)
+
+## Example
+
+Pretext task로 context prediction을 unsupervised learning으로 수행하고, 이를 knowledge transfer시켜 원래 task를 수행.
+
+* Doersch, Carl, Abhinav Gupta, and Alexei A. Efros. "Unsupervised visual representation learning by context prediction." Proceedings of the IEEE international conference on computer vision. 2015.
+
