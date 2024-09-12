@@ -293,6 +293,7 @@ nav:
       - "ML/ch00/ch00_20_supervised.md"
       - "ML/ch00/ch00_21_unsupervised.md"
       - "ML/ch00/ch00_22_semisupervised.md"
+      - "ML/ch00/ch00_24_selfsupervised_learning.md"
       - "ML/ch00/ch00_23_reinforcement_learning.md"
       - "ML/ch00/ch00_24_feature_attribute.md"
       - "ML/ch00/ch00_31_instance_based_learning.md"

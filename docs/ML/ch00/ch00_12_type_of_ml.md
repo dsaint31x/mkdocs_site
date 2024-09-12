@@ -16,7 +16,7 @@ Whether or not they are trained with human supervision.
 * [Semi-supervised Learning](./ch00_22_semisupervised.md)
 * [Unsupervised Learning](./ch00_22_semisupervised.md) *
 * [Reinforcement Learning](./ch00_23_reinforcement_learning.md)
-* [Self-supervised Learning](./ch00_24_selfsupervised.md)
+* [Self-supervised Learning](./ch00_24_selfsupervised_learning.md)
 
 ---
 

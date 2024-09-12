@@ -1,4 +1,6 @@
-# Feature란?
+# 관련 용어들
+
+## Feautre
 
 ML에서 feature는 data sample이 가지고 있는 한가지 특징이라고 할 수 있다.  
 
@@ -66,3 +68,19 @@ Dataset에서 한 case, 또는 한 샘플의 데이터가 vector로 표현되는
 * **참고 : [Vector Space의 정의](https://dsaint31.tistory.com/entry/Math-Definition-of-Vector-Space)
 
 때문에, 하나의 sample을 가르켜서 data point라고도 많이 애기하게 된다.
+
+---
+
+## Target and Label
+
+Supervised Learning에서 'target'과 'label'이라는 용어는 일반적으로 동의어로 취급됨.
+
+* 두 용어 모두 모델이 예측하려는 목표 변수를 지칭하며, 
+* 실제 값과 예측값을 비교하는 데 사용된다.
+
+약간의 차이를 굳이 말한다면: 
+
+* 'Target'은 주로 regression task에서 더 선호되는 용어로, 주로 연속적인 수치로 주어짐.
+* 'Label'은 classificaton task에서 더 자주 사용되며, 많은 경우 categorical data임.
+
+> 하지만 이러한 차이는 관행적인 것이며, 두 용어를 엄격히 구분하지 않고 사용하는 경우가 보다 많음.​​​​​​​​​​​​​​​​
