@@ -29,7 +29,7 @@ Supervised Learning 으로 해결하고자 하는 ^^주요 task^^ 는 다음과 
 ---
 
 `Regression` (회귀)
-: Continuous한 숫자값을 label로 가지는 경우로, 특정 data sample에 대해 해당 숫자값을 할당하는 task임. Statistics에서 regression model 등에서 유래된 이름으로, input을 dependent variable (or predictor)로, 그리고 output을 independent variable (or target)으로 생각하면 된다.
+: Continuous한 숫자값을 label로 가지는 경우로, 특정 data sample에 대해 해당 숫자값을 할당하는 task임. Statistics에서 regression model 등에서 유래된 이름으로, input을 independent variable (or predictor)로, 그리고 output을 dependent variable (or target)으로 생각하면 된다.
 
 <figure markdown>
 ![](../img/ch00/regression.png){width="400" align="center}
