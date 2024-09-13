@@ -133,7 +133,9 @@ DL에선 Detection 및 Segmentation 등의 Task도 굉장히 많이 다루어짐
 
 Object Detection과 Segmentation의 경우, single object 혹은 multiple object이냐 에 따라 다음과 같은 구분도 가능함.
 
-![](./img/DL_object_num_task.png)
+<figure markdown>
+![](./img/DL_object_num_task.png){width=500}
+</figure>
 
 * 위의 Segmentation은 Instance segmentation으로 같은 type의 object라도 다른 instance이면 다르게 labeling을 함. 
 
@@ -146,7 +148,9 @@ Object Detection과 Segmentation의 경우, single object 혹은 multiple object
 
 #### Semantic Segmentation vs. Instance Segmentation
 
-![](./img/segmentation_type.png)
+<figure markdwon>
+![](./img/segmentation_type.png){width=500}
+</figure>
 
 Segmentation은 다음과 같이 두가지로 나뉨.
 
@@ -154,6 +158,6 @@ Segmentation은 다음과 같이 두가지로 나뉨.
 * Instance Segmentation : 같은 class이더라도 다른 것이라면 구분
 
 > `semantic` 은 "의미론적" 이라는 뜻의 용어로,  
-> 객체의 ***의미*** 에 초점을 맞추어 각 pixel이 어떤 ***의미** (~종류, class)에 속하는지를 식별하는 task를 `semantic segmentation`라고 부름.
+> 객체의 ***의미*** 에 초점을 맞추어 각 pixel이 어떤 **의미** (~종류, class)에 속하는지를 식별하는 task를 `semantic segmentation`라고 부름.
 >
 > 이는 image의 내용을 의미론적으로 이해하는 task라고 볼 수 있음.
