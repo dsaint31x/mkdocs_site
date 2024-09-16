@@ -6,7 +6,7 @@
 
 - 프로그래머는 프로그래밍 과정에서 **직접 입출력을 수행하는 코드를 작성하지 않는다.**
 - 보통 **입출력을 수행하는 Standard I/O 라이브러리의 함수들을 호출** 하여 입출력을 수행함.
-- link 단계에서 코드에서 사용된 이들 라이브러리 함수들이 연결되거나(static link), runtime에 shared library로 있는 이들 라이브러리 함수들을 실행(Dynamic link)하는 방식을 취함.
+- link 단계에서 코드에서 사용된 이들 라이브러리 함수들이 연결되거나(static link), runtime에 shared library로 있는 이들 라이브러리 함수들을 이용(Dynamic link)하는 방식을 취함.
 
 * [Library에 대한 정의](https://dsaint31.tistory.com/entry/Programming-Library-vs-Framework)
 
@@ -57,7 +57,7 @@ Standard I/O Library에서 제공하는 function들은
 
 ---
 
-## 표준입출력: `stdin`,`stdotu`, and `stderr`
+## 표준입출력: `stdin`,`stdout`, and `stderr`
 
 모든 user application (혹은 사용자 프로그램)들은 입출력이 필요한데,  
 개발자가 특별히 입력과 출력을 위의 file descriptor (C언어에선 file pointer로 생각하면 편함)등으로 지정하지 않은 경우에는  

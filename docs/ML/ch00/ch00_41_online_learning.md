@@ -13,4 +13,4 @@ Input data stream으로부터 점진적 학습(incremental learning) 가능한 �
 
 Input data stream으로부터 점진적 학습(incremental learning) 가능하기 때문에, 전체 데이터 크기가 너무 커서 한번에 학습시킬 수 없을 때 (memory나 storage등에 한번에 적재가 불가능한 경우)에 사용되기도 한다. 이 경우는 out-of-core learning이라고도 불린다. 
 
-> 일반적으로 out-of-core learning의 경우엔 대부분 lauching 전에 이루어지는 offline training이다. 때문에 online learning이라는 용어는 그리 좋은 용어같지 않다. incremental learning이라는 용어의 동의어로 기억하는게 보다 나은 선택으로 보인다. 
+> 일반적으로 batch learning의 경우엔 대부분 launching 전에 이루어지는 offline training이다. 이를 고려하면 online learning이라는 용어가 좀 더 쉽게 이해가 된다. 하지만, incremental learning이라는 용어의 동의어로 기억하는게 보다 나은 선택으로 보인다. 
