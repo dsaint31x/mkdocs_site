@@ -254,7 +254,7 @@ nav:
         - "DIP/cv2/ch01/dip_1_01.md"
         - "DIP/cv2/ch01/dip_1_02.md"
       - "Image Processing":
-        - "DIP/cv2/ch00/dip_0_00_color_space.md"
+        - "DIP/cv2/ch02/dip_cv_color_space.md"
         - "DIP/cv2/ch02/dip_thresholding.md"
         - "DIP/cv2/ch02/dip_histogram.md"
         - "DIP/cv2/ch02/dip_histogram_backprojection.md"

@@ -2,12 +2,19 @@
 
 ## Goal
 
-이 문서에서는 `Binary Image`에 대해 소개하고, 이를 만드는 기법인 `Simple Thresholding`, `Adaptive Thresholding`, `Otsu Thresholding` 등을 같이 소개한다.
+이 문서에서는 `Binary Image`에 대해 소개하고,  
+이를 만드는 기법인 
+
+* `Simple Thresholding`, 
+* `Adaptive Thresholding`, 
+* `Otsu Thresholding` 등을 같이 소개한다.
 
 OpenCV에서는 관련하여 다음의 함수들을 제공한다.
 
 * `cv2.threshold`
 * `cv2.adaptiveThreshold`
+
+---
 
 ---
 
@@ -26,11 +33,18 @@ Pixel의 intensity가 `0`과 `1` 두가지 값으로만 구성된 Image.
 
 ---
 
+---
+
 ## Simple Thresholding
 
-> OpenCV는 기본적으로 `uint8`을 사용하기 때문에, binary image가 앞서 설명한 0,1이 아닌 0,255를 가진다.
+> OpenCV는 기본적으로 `uint8`을 사용하기 때문에,  
+> binary image가 앞서 설명한 0,1이 아닌 0,255를 가진다.
 
-`Simple Thresholding`은 특정 threshold 보다 큰 값은 1에서 255 중 지정된 값으로 할당하고, 나머지는 0으로 할당하는 방식으로 동작하며 OpenCV에서는 `cv2.threshold`라는 함수를 통해 제공된다.
+`Simple Thresholding`은 
+
+* 특정 threshold 보다 큰 값은 1에서 255 중 지정된 값으로 할당하고, 
+* 나머지는 0으로 할당하는 방식으로 동작하며 
+* OpenCV에서는 `cv2.threshold`라는 함수를 통해 제공된다.
 
 Global method 라고 생각하면 된다 (전체 이미지에 대해 하나의 threshold를 기준으로 적용한다).
 
@@ -51,7 +65,9 @@ Global method 라고 생각하면 된다 (전체 이미지에 대해 하나의 t
 |`cv2.THRESH_TOZERO` | `src_img(x,y)` | `0` |
 |`cv2.THRESH_TOZERO_INV` | `0` | `src_img(x,y)` |
 
-![](../../img/ch01/threshold.png)
+<figure markdown>
+![](../../img/ch01/threshold.png){width=500}
+</figure>
 
 이 외에 다음을 선택가능함.
 
@@ -111,6 +127,8 @@ plt.show()
 
 ---
 
+---
+
 ## Adaptive Thresholding
 
 > Global Thresholding은 illumination등이 균일하지 않은 경우에는 좋은 방법이 아니다. 
@@ -138,11 +156,13 @@ cv2.adaptiveThreshold(
 ```
 
 * `adaptive_method` : 어떤 방식을 사용할지를 고름.
-    * `cv2.ADAPTIVE_THRESH_MEAN_C` : block(=neighborhood area라고도 불림)의 mean을 threshold로 사용.  
+    * `cv2.ADAPTIVE_THRESH_MEAN_C` :  
+    block(=neighborhood area라고도 불림)의 mean을 threshold로 사용.  
     $T(x,y) = \mu_\text{block}(x,y) - C$
-    * `cv2.ADAPTIVE_THRESH_GAUSSIAN_C` : neighborhood 들에 대해 Gaussian window 사용한 weighted sum을 구하고 이를 threshold로 사용.  
+    * `cv2.ADAPTIVE_THRESH_GAUSSIAN_C` :  
+    neighborhood 들에 대해 Gaussian window 사용한 weighted sum을 구하고 이를 threshold로 사용.  
     $T(x,y) = G* \text{N} (x,y)-C$
-* `block_size` : neighborhood area 크기. 3이상의 홀수여야 함.
+* `block_size` : neighborhood area 크기. 3 이상의 홀수여야 함.
 * `C` - threshold 구할 때 빼주는 일종의 constant. 
 
 ---
@@ -182,6 +202,8 @@ for i in range(4):
 plt.show()
 
 ```
+
+---
 
 ---
 
@@ -267,6 +289,10 @@ ret,th = cv2.threshold(
 
 * 사용하고자 하는 thresholding style에 `cv2.THRESH_OTSU`를 더해주면 됨.
 * 이 경우, 반환값 `ret`에 Otsu알고리즘으로 찾은 값이 저장됨.
+
+---
+
+---
 
 ## References
 
