@@ -156,7 +156,7 @@ S = np.ones_like(V)
 
 print("Hue H's size        :",H.shape)
 print("Saturation S's size :",S.shape)
-print("Intnesity V's size  :",V.shape)
+print("Intensity V's size  :",V.shape)
 
 HSV_S100 = np.dstack((H, S * 1.0, V)) # depth 방향으로 배열을 합침. 가장 안쪽의 원소가 합쳐짐.
 HSV_S20  = np.dstack((H, S * 0.2, V))
@@ -194,7 +194,7 @@ plt.subplot(133)
 plt.imshow(RGB_S0, origin='upper', extent = [0,100,0,360])
 plt.ylabel('Hue')
 plt.xlabel('Value')
-plt.title('Color Sapce : S=0')
+plt.title('Color Space : S=0')
 plt.grid(False)
 
 plt.tight_layout()
@@ -241,6 +241,9 @@ yellow:[[[ 30 255 255]]]
 * `Y` : Luma (밝기) : 많은 비트수를 할당. 4bit
 * `Cb` (or `U`) : Chroma Blue (밝기와 파란색과의 색상차) : 둔감한 색상정보이므로 적은 비트수 할당. 2bit
 * `V` (or `Cr`): Chroma Red (밝기와 붉은 색의 색상차) : 둔감한 색상정보이므로 적은 비트수 할당. 2bit
+
+> ***Luma*** 는 **Y’**로 표시되며,  
+> RGB와 같은 색상 모델에서 **색상(Chroma)** 을 제거하고 **밝기 정보만을 추출** 하는 방식을 가리킴.
 
 ---
 
@@ -296,7 +299,7 @@ middle: [[[127 128 128]]]
 bright: [[[255 128 128]]]
 ```
 
-* numpy는 homogeneous data type으로 구성된 ndarray를 기본데이터로 하므로 bit절약이 로딩이후엔 의미가 없다. (각 채널당 8bit씩 할당됨.)
+* numpy는 homogeneous data type으로 구성된 ndarray를 기본데이터로 사용하므로 bit절약이 로딩이후엔 의미가 없다. (각 채널당 8bit씩 할당됨.)
 * 밝기에 해당하는 `Y`만 바뀌는 것을 확인 가능함.
 
 > HSV에서는 3번째 채널에 해당하는 intensity가 YUV에서는 맨 앞에 있다보니 YUV를 종종 이용하는 코드들도 자주 보인다.
