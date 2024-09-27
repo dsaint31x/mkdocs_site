@@ -31,22 +31,32 @@ Clustering은 크게 두가지 종류로 나뉨 (cluster를 무엇으로 정의�
 
 ---
 
-## k-Means
+## K-Means
 
 ref.: https://scikit-learn-extra.readthedocs.io/en/stable/modules/cluster.html#k-medoids
 
 가장 간단한 clustering algorithm이며, non-hierarchical clustering의 대표임.
 
-* k-means는 클러스터에 속한 멤버의 평균값을 cluster center로 사용함.
+* K-Means는 Cluster에 속한 멤버의 ***mean***에 해당하는 centroid 를 cluster center로 사용함.
+    * Centroid는 mean에 해당하며,
+    * Euclidean distance를 암묵적으로 가정함.  
 * 구현 및 적용이 간단하고 매우 빠른 속도를 보이는 장점을 가짐.
 
-> k-Means의 변형인 k-medoids는  
-> cluster에 속한 data point들 중에서 median에 해당하는 data point를 cluster center로 지정하는 차이가 있음.  
-> k-medoids가 조금 더 연산량이 많음.
+> K-Means의 변형인 K-Medoids는  
+> cluster에 속한 data point들 중에서  
+> Medoid에 해당하는 data point (~median과 유사함)를 cluster center로 지정하는 차이가 있음.  
+>
+> * K-Medoids가 조금 더 연산량이 많다는 단점을 가지나,  
+> * Medoids 의 선택이 ***distance 의 합을 최소화하는 실제 데이터 포인트들*** 로 이루어지므로
+> * Euclidean distance가 아닌 Hamming distance, Manhattan distance 등을 보다 쉽게 사용가능하며
+> * outlier에 덜 민감하다는 장점을 가짐.
+> * 실제 data point를 중심으로 삼기 때문에 초기값으로 인한 영향이 보다 줄어들게 됨
 
 * [medoid란?](https://ds31x.blogspot.com/2023/08/ml-medoid.html)
+* cosine similarity를 사용하는 K-Means도 존재함: Spherical K-Means (unit vector로 정규화를 이용함)
+* Manhattan distance를 사용하는 K-Means는 K-medians 라고 불림: 각 차원의 median으로 구성된 벡터를 cluster의 중심으로 선택 (outlier에 덜 민감하나 역시 계산량이 많음)
 
-### 동작방식 ( k=2, 2개의 cluster로 나누는 경우)
+### 동작방식 ( `K=2`, 2개의 cluster로 나누는 경우)
 
 1. 랜덤한 2점을 고르고 이를 각 cluster의 centroid(중앙)으로 선정.
 2. 현재 선택된 centroids 로부터 나머지 모든 점들의 거리를 계산.
@@ -57,25 +67,50 @@ ref.: https://scikit-learn-extra.readthedocs.io/en/stable/modules/cluster.html#k
 
 ### 고려할 점.
 
-* k-Means는 ^^적절한 `k`의 값을 골라야 함.^^
-* ***초기 cluster center 지정*** 에 따라 최종 결과가 매우 크게 영향을 받음 (k-medoids 에서 개선). 
-    * 좋은 결과를 위해서 여러 차례 처음부터 수행을 해봐야 함. (random initialization의 횟수인 `n_init` parameter가 k-means 구현물에 존재하는 이유.)
-* 매우 멀리 떨어져있는 data point나 noise에 취약 (k-medoids에서 개선)
+* K-Means는 ^^적절한 `K`의 값을 골라야 함.^^
+* ***초기 cluster center 지정*** 에 따라 최종 결과가 매우 크게 영향을 받음. 
+    * 좋은 결과를 위해서 여러 차례 처음부터 수행을 해봐야 함. 
+    * 이는 random initialization의 횟수인 `n_init` parameter가 K-Means 구현물에 존재하는 이유임.
+    * (K-medoids 에서 개선)
+* ***매우 멀리 떨어져있는 data point(outlier)*** 나 noise에 취약
+    * K-Medoids 에서 개선
 * ***globular shape를 가정*** 하고 있기 때문에 다른 ***지역적 패턴*** 이 있는 경우(shape가 다른 cluster)에 부정확한 결과가 나오기 쉬움.
+    * globulus : 공 또는 구체를 의미하는 라틴어.
+    * K-Means의 최대 약점.
+    * cluster shape에 대한 가정이 심한 순으로 나타내면 다음과 같음
+        * `K-Means` > `K-Medians` > `K-Medoids`
+        * Manhattan distance 를 사용하는 K-Medoids의 경우 네모 모양의 cluster에서 잘 동작.
+        * K-Medoids 가 Non-spherical cluster 의 경우를 잘 다루긴 하지만, 초승달 모양과 같이 복잡한 경우는 여전히 성능이 떨어짐.     
 * 각 그룹의 size나 density가 다를 경우 부정확한 결과가 나오기 쉬움.
-    *  size나 density가 많이 차이나는 경우, `k`값을 크게 하여 여러 cluster로 나누고 이들을 다시 합치는 접근법이 효과적. 단, 여러 cluster를 합치는 방법은 Hierarchical Clustering 등의 여러가지가 있을 수 있음.
-* high dimension data에서는 효과가 떨어짐. (사전에 PCA등으로 dimensionality reduction을 수행이 필요)
+    *  size나 density가 많이 차이나는 경우, 
+    * `K`값을 크게 하여 여러 cluster로 우선 나누고, 
+    * 이들을 다시 합치는 접근법이 효과적. 
+    * 단, 여러 cluster를 합치는 방법은 Hierarchical Clustering 등의 다른 방법을 이용.
+* high dimension data에서는 효과가 떨어짐. 
+    * 사전에 PCA등으로 dimensionality reduction을 수행이 필요.
 
 다음 그림은 각 cluster의 size가 다른 경우(붉은색 cluster의 size가 매우 큼)에 k-Means가 잘 동작하지 못하는 경우를 보여줌.
-![](./img/kmeans_cons_size.png)
+
+<figure markdown>
+![](./img/kmeans_cons_size.png){width=“500”}
+</figure>
 
 다음 그림은 density차이에 따른 결과를 보여줌.
-![](./img/kmeans_cons_density.png)
+
+<figure markdown>
+![](./img/kmeans_cons_density.png){width=“500”}
+</figure>
 
 다음 그림은 지역적인 패턴의 영향을 보여줌.
-![](./img/kmeans_cons_local_pattern.png)
 
-> 원모양에서만 k-means는 가장 잘 동작하기 때문에, 가급적 k-means를 적용하기 전에 dataset에 standardization 이나 min-max scaling을 해주는 게 좋다. (물론 원래 독특한 패턴의 shape를 가지는 cluster인 경우엔 효과가 없지만...)
+<figure markdown>
+![](./img/kmeans_cons_local_pattern.png)
+</figure>
+
+> 원모양에서만 K-Means는 가장 잘 동작하기 때문에,  
+> 가급적 K-Means를 적용하기 전에 dataset에  
+> standardization 이나 min-max scaling을 해주는 게 좋다.  
+> (물론 이 역시 원래 독특한 패턴의 shape를 가지는 cluster의 경우엔 효과가 없지만...)
 
 보다 자세한 내용은 다음 URL을 참고 : [K-means Clustering: Algorithm, Applications, Evaluation Methods, and Drawbacks](https://towardsdatascience.com/k-means-clustering-algorithm-applications-evaluation-methods-and-drawbacks-aa03e644b48a)
 
@@ -83,47 +118,77 @@ ref.: https://scikit-learn-extra.readthedocs.io/en/stable/modules/cluster.html#k
 
 ## Hierarchical Clustering
 
-가장 가까운 data point끼리 묶어나가(linkage)는 방식 혹은 가장 멀리 떨어진 data point를 분리시켜나가는 방식으로 수행됨.
+가장 가까운 data point끼리 묶어나가(linkage)는 방식  
+혹은 가장 멀리 떨어진 data point를 분리시켜나가는 방식으로 수행됨.
 
 다음 2가지로 나뉨.
 
 * agglomerative clustering (병합적 군집 or 상향식 군집)
 * divisive clustering (분할적 군집 or 하향식 군집)
 
-> agglomerative clustering이 보다 intrinsic and simple해서 일반적으로 많이 사용됨. 
+> agglomerative clustering이  
+> 보다 intrinsic and simple해서 일반적으로 많이 사용됨. 
+> 
+> * agglomerate: 뭉치다. 집합체.
+> * agglomeration: 집합, 응집.
   
-참고자료 : [Dendrogram이란](https://ds31x.blogspot.com/2023/08/ml-dendrogram.html)
 
-* 모든 data points를 묶어가면서 Dendrogram을 하단에서 상단으로 만들어나가게 됨. 
-* 모든 data points가 한 cluster로 묶이면 (=Dendrogram의 root) 과정이 끝나고, Dendrogram의 vertical axis에서 적절한 수준에서 잘라서 cluster의 수를 조절함 (상단, 즉 root에 가까운 곳에서 cutting이 발생시 cluster의 수가 적고, leaf nodes에 가까운 곳에서 cutting이 발생시 cluster의 수가 많음).
-* 일반적인 Non-hierarchical clustering과 달리, clusters의 수 $k$를 미리 정할 필요가 없음.
+### 동작 방식
 
-> 전체 데이터를 살필 필요가 없는 greedy algorithm.
+* 모든 data points를 묶어가면서 ***Dendrogram*** 을 하단에서 상단으로 만들어나가게 됨. 
+* 모든 data points가 한 cluster로 묶이면 (=Dendrogram의 root) 과정이 끝나고, 
+* Dendrogram의 vertical axis에서 적절한 수준에서 잘라서 cluster의 수를 조절함
+    * 상단, 즉 root에 가까운 곳에서 cutting이 발생시 cluster의 수가 적고, 
+    * leaf nodes에 가까운 곳에서 cutting이 발생시 cluster의 수가 많음).
+* 일반적인 Non-hierarchical clustering과 달리, clusters의 수 $K$를 미리 정할 필요가 없음.
+
+참고자료 : [Dendrogram이란](https://ds31x.blogspot.com/2023/08/ml-dendrogram.html) 
+
+> 전체 데이터를 살필 필요가 없는 greedy algorithm!
 
 ### 특징.
 
 * 다양한 shape의 clusters 를 가지는 dataset에서도 효과적
 * cluster를 생성할 때 각각의 connection 등에 대한 많은 정보를 가지고 있는 cluster tree (binary tree로 dendrogram으로 시각화 가능)를 생성.
-* 다양한 pair-wise distance function을 사용가능함. 
+* 다양한 pair-wise distance function 을 사용가능함. 
 
 ### Types of Linkages
 
-Data point (or cluster)와 cluster 를 결합하는 방식의 구분으로 결합대상 간의 거리 (or 유사도)를 어떻게 계산하는지를 나타냄.  
-(사용되는 distance는 보통 Euclidean distance를 사용하나 half Euclidean distance square 등 다양한 종류의 distance function이 있음)
+이는 Data point (or cluster)와 cluster 를 결합하는 방식의 구분으로 ***결합대상 간의 거리 (or 유사도)*** 를 어떻게 계산하는지를 나타냄.  
 
-1. Complete (최장연결법): 새로운 data point와 cluster 내 가장 ***먼*** data point간의 거리 를 유사도로 삼음.
-2. Single (최단연결법): 새로운 data point와 cluster 내 가장 ***가까운*** data point간의 거리 를 유사도로 삼음.
-3. Average (평균연결법): 새로운 data point와 cluster 내 모든 data point간의 ***평균*** 거리 를 유사도로 삼음.
-4. Centroid (중심연결법): 새로운 data point와 cluster의 ***중심점*** 과의 거리를 유사도로 삼음. 
-5. ***Ward’s method*** : 두 cluster가 merging이 될 경우 error sum of squares (ess)의 incremental이 최소인 경우를 결합시키는 방식. 
+> 사용되는 distance는 보통 Euclidean distance를 사용하나  
+> 다양한 종류의 distance functions가 사용가능.
 
-다음의 참고자료들을 읽어보길 바란다.
+1. Complete (최장연결법): 
+    * 새로운 data point와 
+    * cluster 내 가장 ***먼*** data point간의 거리 를 
+    * similarity(유사도)로 삼음.
+2. Single (최단연결법): 
+    * 새로운 data point와 
+    * cluster 내 가장 ***가까운*** data point간의 거리 를 
+    * 유사도로 삼음.
+3. Average (평균연결법): 
+    * 새로운 data point와 
+    * cluster 내 모든 data point간의 ***평균*** 거리 를 
+    * 유사도로 삼음.
+4. Centroid (중심연결법): 
+    * 새로운 data point와 
+    * cluster의 ***중심점*** 과의 거리를 
+    * 유사도로 삼음. 
+5. ***Ward’s method*** : 
+    * 두 cluster가 merging이 될 경우 
+    * error sum of squares (ess)의 incremental이 최소인 경우를 
+    * 결합시키는 방식. 
+
+다음의 참고자료들을 읽어보길 추천함.
 
 * [Hierarchical Clustering의 간단한 예제](https://ds31x.blogspot.com/2023/08/ml-example-of-hierarchical-clustering.html)
 * [Distances between Clustering, Hierarchical Clustering : stat.cmu.edu](https://www.stat.cmu.edu/~cshalizi/350/lectures/08/lecture-08.pdf)
 * [Ward's linkage method](https://dsaint31.tistory.com/576)
 
 ---
+
+—--
 
 ## Affinity Propagation Clustering
 
@@ -246,16 +311,18 @@ $$
 
 요약하면, 직관적인 k-Means 에 비해, 사용이 까다롭다. 때문에 간단한 경우에는 k-Means가 아직도 사용되지만, 실제로 Affinity propagation은 많이 사용되질 않는 편이다.
 
+--- 
+
 ---
 
 ## Density-Based Spatial Clustering of Applications with Noise (DBSCAN)
 
-density based clustering의 대표적 알고리즘.  
-(K-means와 함께 non-hierarchical clustering의 대표.)
+***Density Based Clustering*** 의 대표적 알고리즘.  
+( **K-Means** 와 함께 non-hierarchical clustering의 대표.)
 
-일정한 수준의 밀도를 유지하는 data points의 무리가 chain처럼 연결되어 있으면 cluster로 판정 (cluster = continuous regions of high density)하기 때문에 noise나 outlier에 매우 robust한 성능을 보임.
+**일정한 수준의 밀도를 유지** 하는 data points의 무리가 chain처럼 연결되어 있으면 cluster로 판정 (cluster = continuous regions of high density)하기 때문에 noise나 outlier에 매우 robust한 성능을 보임.
 
-> DBSCAN 은 cluster들이 density가 낮은 구역들로 분리되어 있다고 가정함.
+> DBSCAN 은 cluster들이 “density가 낮은 구역들”에 의해 각각 분리되어 있다고 가정함.
 
 즉, noise와 outlier에 강하고 (noise point로 지정되면 아예 cluster에서 빼버림) 다양한 shape(모양)과 size(크기)의 cluster들을 처리할 수 있는 장점을 가짐.
 
@@ -267,7 +334,9 @@ density based clustering의 대표적 알고리즘.
 * `Border point` : 해당 점을 중심으로 $\epsilon$ 내에 존재하는 데이터 포인트의 갯수가 지정된 Density (=`MinPts`)보다 적지만, Core point와의 거리가 $\epsilon$ 이내인 경우.
 * `Noise point` : Core point도 아니고, Border point도 아닌 데이터 포인트.
 
-![](./img/DBSCAN_minPts%3D4.png)
+<figure markdown>
+![](./img/DBSCAN_minPts%3D4.png){width=“500”}
+</figure>
 
 ### Algorithm
 
@@ -304,15 +373,19 @@ current_cluster_label <- 1
 
 위의 성질을 이용하여 모든 데이터 포인트에 대해 $k$ nearest neighbor ($k$번째 가장 가까운 이웃)에 대한 거리를 구하고, 해당 거리로 sorting을 한 이후, 해당 $k$-nearest neighbor distance를 y축에 기재하고 이에 대응하는 data point의 수를 x축에 기재하면 아래와 같은 $k$-dist graph를 얻게됨.
 
-![](./img/DBSCAN_tunning.png)
+<figure markdown>
+![](./img/DBSCAN_tunning.png){width=“500”}
+</figure>
 
 이 경우, 적절한 `Eps`가 4에서 10 사이임을 알 수 있다. 
 
 ### Weakness
 
-하지만, density가 다양한 dataset에서는 잘 동작하지 않는다.
+하지만, ***density가 다양한 dataset에서는 잘 동작하지 않는다***.
 
+<figure markdown>
 ![](./img/diverse_density_dbscan.png)
+</figure>
 
 * 오른쪽 하단의 경우, DBSCAN이 density가 낮은 곳의 data point들을 모두 noise로 처리한 것을 확인할 수 있다.
 * density가 높은 영역에만 집중을 한 결과임.
@@ -320,8 +393,12 @@ current_cluster_label <- 1
 또한 DBSCAN도 Euclidean distance에 기반(밀도를 구하기 위해서 사용)을 두고 있으며, 이 때문에 high dimensional dataset에서는 좋은 결과가 나오기 어렵다.
 
 > DBSCAN의 computational complexity는 $O(n^2)$이나 clustering을 수행하기 전에 전처리로 indexed tree 형태로 만들고 수행하는 경우엔 $O(n \log n)$ 임.
+> 
+> * High dimensional dataset에서의 성능 저하는 거의 모든 distance based algorithms가 가지는 문제점으로 DBSCAN 만의 단점이라고 보기는 어려움.
+> * Dimensionality Reduction 을 적용하여 이를 개선 가능.
+> * DBSCAN도 다른 방식의 거리 (e.g. Manhattan Distance) 도 사용가능하다는 것을 참고할 것(주로 Euclidean distance 이지만…)
 
-또한 training에서 사용하지 않은 새로운 data point에 대한 inference가 직접적으로는 어렵다. DBSCAN으로 clustering이 된 training dataset과 label을 바탕으로 k-NN (k=1로 줘도 됨) algorithm으로 inference를 하는 방식 처럼 다른 기법의 도움이 필요하다.
+또한 training에서 사용하지 않은 새로운 data point에 대한 inference가 직접적으로는 어렵다. DBSCAN으로 clustering이 된 training dataset과 label을 바탕으로 K-NN (`K=1`로 줘도 됨) algorithm으로 inference를 하는 방식 처럼 다른 기법의 도움이 필요함.
 
 ---
 
