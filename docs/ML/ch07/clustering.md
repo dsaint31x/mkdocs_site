@@ -384,10 +384,11 @@ current_cluster_label <- 1
 하지만, ***density가 다양한 dataset에서는 잘 동작하지 않는다***.
 
 <figure markdown>
-![](./img/diverse_density_dbscan.png){width=“600”}
+![](./img/diverse_density_dbscan.jpeg){width=“600”}
 </figure>
 
 * 오른쪽 하단의 경우, DBSCAN이 극단적으로 잘 동작하지 않음을 보여준다.
+* epsilon (`eps`)가 작기 때문에 density가 낮은 영역의 points은 모두 noise(파란색)가 됨.
 * density 다양한 경우, 성능이 나뻐지는 특성을 보여주고 있음.
 
 또한 DBSCAN도 Euclidean distance에 기반(밀도를 구하기 위해서 사용)을 두고 있으며, 이 때문에 high dimensional dataset에서는 좋은 결과가 나오기 어렵다.
