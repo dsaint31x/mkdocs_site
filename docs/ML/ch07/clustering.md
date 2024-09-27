@@ -63,9 +63,28 @@ Clustering은 크게 두가지 종류로 나뉨 (cluster를 무엇으로 정의�
 
 1. 랜덤한 2점을 고르고 이를 각 cluster의 centroid(중앙)으로 선정.
 2. 현재 선택된 centroids 로부터 나머지 모든 점들의 거리를 계산.
+    * 각 data point에서 가장 가까운 centroid 와의 거리를 다 더한 값이 일종의 performance 지표임.
+    * 해당 합을  현재 model의 ***`inertia`*** 라고 부름.
+    * 일종의 loss function이라고도 볼 수 있음: utility function으로 사용하기 위해선 negation을 해준다. 
 3. 계산된 거리를 바탕으로 가까운 순으로 cluster 를 나눔.
 4. 각 cluster의 data point들의 평균치를 계산하여 새로운 centroid로 선정.
 5. centroid의 위치가 바뀌지않고 고정될 때까지 2~4 과정을 반복.
+
+---
+
+### 개선 사항.
+
+* 효과적인 거리 계산 : Triangle Inequality를 이용하여,거리 계산에 요구되는 계산량을 감소시킴
+    * Charles Elkan et al., 2003
+    * [Using the Triangle Inequality to Accelerate k-means](https://cdn.aaai.org/ICML/2003/ICML03-022.pdf)
+* K-Means++ : 초기 centroids의 분포를 효과적으로 수행(초기 centroids가 서로 가급적 멀리 떨어지도록 할당)하여 최적이 아닌 solution으로 converge할 확률을 낮춤
+    * David Arthur, 2006
+    * [k-means++: The Advantages of Careful Seeding.](https://theory.stanford.edu/~sergei/papers/kMeansPP-soda.pdf)
+* MiniBatchKMeans : 각 iteration에서 전체 dataset을 사용하지 않고 minibatch를 이용하여 3-4배의 수렴속도 향상을 가져옴. 단 원래의 방식보다 inertia가 조금 떨어지는 것으로 알려짐.
+    * Davide Sculley, 2010
+    * abstract [Web-Scale k-means Clustering](https://dl.acm.org/doi/abs/10.1145/1772690.1772862)
+    * [scikit-learn docs.](https://scikit-learn.org/stable/auto_examples/cluster/plot_mini_batch_kmeans.html#sphx-glr-auto-examples-cluster-plot-mini-batch-kmeans-py)  
+  
 
 ---
 
