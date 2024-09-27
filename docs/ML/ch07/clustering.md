@@ -384,11 +384,11 @@ current_cluster_label <- 1
 하지만, ***density가 다양한 dataset에서는 잘 동작하지 않는다***.
 
 <figure markdown>
-![](./img/diverse_density_dbscan.png)
+![](./img/diverse_density_dbscan.png){width=“600”}
 </figure>
 
-* 오른쪽 하단의 경우, DBSCAN이 density가 낮은 곳의 data point들을 모두 noise로 처리한 것을 확인할 수 있다.
-* density가 높은 영역에만 집중을 한 결과임.
+* 오른쪽 하단의 경우, DBSCAN이 극단적으로 잘 동작하지 않음을 보여준다.
+* density 다양한 경우, 성능이 나뻐지는 특성을 보여주고 있음.
 
 또한 DBSCAN도 Euclidean distance에 기반(밀도를 구하기 위해서 사용)을 두고 있으며, 이 때문에 high dimensional dataset에서는 좋은 결과가 나오기 어렵다.
 
@@ -483,9 +483,7 @@ $$
 : cluster와 cluster 간의 거리가 클수록, 또는 같은 cluster 내의 data point간의 거리가 작을수록 큰 값을 가짐.  
 Dunn Index가 클수록 clustering이 잘 이루어졌다고 평가할 수 있음.
 
-$$
-\text{Dunn_index} = \frac{\text{min_distance_bw_clusters}}{\text{max_distance_bw_data_samples_in_the_same_clusters}}
-$$
+$$ \text{Dunn_index} = \frac{\text{min_distance_bw_clusters}}{\text{max_distance_bw_data_samples_in_the_same_clusters}}$$
 
 
 ## References
