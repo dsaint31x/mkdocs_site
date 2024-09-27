@@ -31,20 +31,21 @@ Clustering은 크게 두가지 종류로 나뉨 (cluster를 무엇으로 정의�
 
 ---
 
-## K-Means
+—--
 
-ref.: https://scikit-learn-extra.readthedocs.io/en/stable/modules/cluster.html#k-medoids
+## K-Means (and K-Medoids)
 
 가장 간단한 clustering algorithm이며, non-hierarchical clustering의 대표임.
 
-* K-Means는 Cluster에 속한 멤버의 ***mean***에 해당하는 centroid 를 cluster center로 사용함.
-    * Centroid는 mean에 해당하며,
+* K-Means는 Cluster에 속한 멤버의 ***mean*** 에 해당하는 centroid 를 cluster center로 사용함.
+    * Centroid는 mean을 사용하기 때문에,
     * Euclidean distance를 암묵적으로 가정함.  
 * 구현 및 적용이 간단하고 매우 빠른 속도를 보이는 장점을 가짐.
 
-> K-Means의 변형인 K-Medoids는  
+> K-Means의 변형인 `K-Medoids`는  
 > cluster에 속한 data point들 중에서  
-> Medoid에 해당하는 data point (~median과 유사함)를 cluster center로 지정하는 차이가 있음.  
+> ^^Medoids에 해당하는 data point (~median과 유사함)^^ 를  
+> cluster center로 지정하는 차이가 있음.  
 >
 > * K-Medoids가 조금 더 연산량이 많다는 단점을 가지나,  
 > * Medoids 의 선택이 ***distance 의 합을 최소화하는 실제 데이터 포인트들*** 로 이루어지므로
@@ -54,7 +55,9 @@ ref.: https://scikit-learn-extra.readthedocs.io/en/stable/modules/cluster.html#k
 
 * [medoid란?](https://ds31x.blogspot.com/2023/08/ml-medoid.html)
 * cosine similarity를 사용하는 K-Means도 존재함: Spherical K-Means (unit vector로 정규화를 이용함)
-* Manhattan distance를 사용하는 K-Means는 K-medians 라고 불림: 각 차원의 median으로 구성된 벡터를 cluster의 중심으로 선택 (outlier에 덜 민감하나 역시 계산량이 많음)
+* Manhattan distance를 사용하는 K-Means는 K-Medians 라고 불림: 각 차원의 median으로 구성된 벡터를 cluster의 중심으로 선택 (outlier에 덜 민감하나 역시 계산량이 많음)
+
+—--
 
 ### 동작방식 ( `K=2`, 2개의 cluster로 나누는 경우)
 
@@ -64,6 +67,7 @@ ref.: https://scikit-learn-extra.readthedocs.io/en/stable/modules/cluster.html#k
 4. 각 cluster의 data point들의 평균치를 계산하여 새로운 centroid로 선정.
 5. centroid의 위치가 바뀌지않고 고정될 때까지 2~4 과정을 반복.
 
+---
 
 ### 고려할 점.
 
@@ -101,19 +105,26 @@ ref.: https://scikit-learn-extra.readthedocs.io/en/stable/modules/cluster.html#k
 ![](./img/kmeans_cons_density.png){width=“500”}
 </figure>
 
-다음 그림은 지역적인 패턴의 영향을 보여줌.
+다음 그림은 Shape(or 지역적인 패턴)의 영향을 보여줌.
 
 <figure markdown>
 ![](./img/kmeans_cons_local_pattern.png)
 </figure>
 
-> 원모양에서만 K-Means는 가장 잘 동작하기 때문에,  
+> 원 모양에서만 K-Means는 가장 잘 동작하기 때문에,  
 > 가급적 K-Means를 적용하기 전에 dataset에  
-> standardization 이나 min-max scaling을 해주는 게 좋다.  
+> PCA 등의 Dimensionality Reduction을 수행하거나, 
+> standardization 이나 min-max scaling 등의 Feature Scaling 을 해주는 게 좋다.  
 > (물론 이 역시 원래 독특한 패턴의 shape를 가지는 cluster의 경우엔 효과가 없지만...)
 
-보다 자세한 내용은 다음 URL을 참고 : [K-means Clustering: Algorithm, Applications, Evaluation Methods, and Drawbacks](https://towardsdatascience.com/k-means-clustering-algorithm-applications-evaluation-methods-and-drawbacks-aa03e644b48a)
+보다 자세한 내용은 다음 URL을 참고 : 
 
+* [K-means Clustering: Algorithm, Applications, Evaluation Methods, and Drawbacks](https://towardsdatascience.com/k-means-clustering-algorithm-applications-evaluation-methods-and-drawbacks-aa03e644b48a)
+* [Ref. 1: K-Means](https://scikit-learn.org/stable/modules/clustering.html#k-means)
+* [Ref. 2: K-Medoids](https://scikit-learn-extra.readthedocs.io/en/stable/modules/cluster.html#k-medoids)
+
+---
+ 
 ---
 
 ## Hierarchical Clustering
