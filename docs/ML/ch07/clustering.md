@@ -515,7 +515,7 @@ $$
 : cluster와 cluster 간의 거리가 클수록, 또는 같은 cluster 내의 data point간의 거리가 작을수록 큰 값을 가짐.  
 Dunn Index가 클수록 clustering이 잘 이루어졌다고 평가할 수 있음.
 
-$$ \text{Dunn_index} = \frac{\text{min_distance_bw_clusters}}{\text{max_distance_bw_data_samples_in_the_same_clusters}}$$
+$$\text{Dunn_index} = \frac{\text{min_distance_bw_clusters}}{\text{max_distance_bw_data_samples_in_the_same_clusters}}$$
 
 
 ## References
