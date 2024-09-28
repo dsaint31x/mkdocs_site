@@ -519,7 +519,7 @@ $$
 : 예) 3개의 cluster 인 경우,
 
 : * $D_{ij}$ 는 $D_{12},D_{13},D_{23}$ 과 같이 3개가 구해짐.
-* $D_i$는 $D_1=\max\left\{D_{12},D_{13}\right\}$, $D_2=\max\left\{D_{23}\right\}$ 과 같이 2개가 구해짐.
+* $D_i$는 $D_1=\max \left\{ D_{12},D_{13} \right\}$, $D_2=\max \left\{ D_{23} \right\}$ 과 같이 2개가 구해짐.
 * $k=2$ 이며, $DBI=\text{mean}[D_1, D_2]$임.
 
 #### `Dunn Index`
@@ -527,7 +527,7 @@ $$
 : cluster와 cluster 간의 거리가 클수록, 또는 같은 cluster 내의 data point간의 거리가 작을수록 큰 값을 가짐.  
 Dunn Index가 클수록 clustering이 잘 이루어졌다고 평가할 수 있음.
 
-$$\text{Dunn-Index} = \frac{\text{min-distance-bw-clusters}}{\text{max-distance-bw-data-samples-in-the-same_cluster}}$$
+$$\text{Dunn-Index} = \frac{\text{min-distance-bw-clusters}}{\text{max-distance-bw-data-samples-in-the-same-cluster}}$$
 
 ---
 
