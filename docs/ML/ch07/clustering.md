@@ -10,7 +10,7 @@ feature space에서 가까운(=유사한) sample들을 모아 하나의 cluster�
 > 비슷한 data points(sample)를 묶어서 하나의 cluster (군집, group)에 할당하여 분류하는 task임.  
 > classification과의 차이는 label의 유무임.
 
-Dimension Reduction과 함께, Unsupervised Learning의 대표적인 Task임.
+Dimensionality Reduction과 함께, Unsupervised Learning의 대표적인 Task임.
 
 > 일부 문헌에서는  
 > unsupervised learning의 tasks에서  
@@ -27,7 +27,7 @@ Clustering은 크게 두가지 종류로 나뉨 (cluster를 무엇으로 정의�
 
 > Elliptical clustering에서 가장 많이 사용되는 Gaussian Mixture Model은 이 문서에서 다루지 않는다.  
 > Gaussian Mixture Model은 clustering 외의 분야에서도 많이 사용되는 probability model이다.  
-> GMM에 대해 좀 더 알고 샆다면, 다음 URL을 참고하라. [ratsgo's SPEECHBOOK : Gaussian Mixture Mode](https://ratsgo.github.io/speechbook/docs/am/gmm)
+> GMM에 대해 좀 더 알고 샆다면, 다음 URL을 참고하라. [ratsgo's SPEECHBOOK: Gaussian Mixture Model](https://ratsgo.github.io/speechbook/docs/am/gmm)
 
 ---
 
@@ -109,7 +109,7 @@ Clustering은 크게 두가지 종류로 나뉨 (cluster를 무엇으로 정의�
     * `K`값을 크게 하여 여러 cluster로 우선 나누고, 
     * 이들을 다시 합치는 접근법이 효과적. 
     * 단, 여러 cluster를 합치는 방법은 Hierarchical Clustering 등의 다른 방법을 이용.
-* high dimension data에서는 효과가 떨어짐. 
+* high dimensional data에서는 효과가 떨어짐. 
     * 사전에 PCA등으로 dimensionality reduction을 수행이 필요.
 
 다음 그림은 각 cluster의 size가 다른 경우(붉은색 cluster의 size가 매우 큼)에 k-Means가 잘 동작하지 못하는 경우를 보여줌.
