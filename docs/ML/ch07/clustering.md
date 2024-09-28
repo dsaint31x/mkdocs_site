@@ -31,7 +31,7 @@ Clustering은 크게 두가지 종류로 나뉨 (cluster를 무엇으로 정의�
 
 ---
 
-—--
+---
 
 ## K-Means (and K-Medoids)
 
@@ -86,7 +86,6 @@ Clustering은 크게 두가지 종류로 나뉨 (cluster를 무엇으로 정의�
     * abstract [Web-Scale k-means Clustering](https://dl.acm.org/doi/abs/10.1145/1772690.1772862)
     * [scikit-learn docs.](https://scikit-learn.org/stable/auto_examples/cluster/plot_mini_batch_kmeans.html#sphx-glr-auto-examples-cluster-plot-mini-batch-kmeans-py)  
   
-
 ---
 
 ### 고려할 점.
@@ -116,19 +115,19 @@ Clustering은 크게 두가지 종류로 나뉨 (cluster를 무엇으로 정의�
 다음 그림은 각 cluster의 size가 다른 경우(붉은색 cluster의 size가 매우 큼)에 k-Means가 잘 동작하지 못하는 경우를 보여줌.
 
 <figure markdown>
-![](./img/kmeans_cons_size.png){width="500"}
+![](./img/kmeans_cons_size.png){width="400"}
 </figure>
 
 다음 그림은 density차이에 따른 결과를 보여줌.
 
 <figure markdown>
-![](./img/kmeans_cons_density.png){width="500"}
+![](./img/kmeans_cons_density.png){width="400"}
 </figure>
 
 다음 그림은 Shape(or 지역적인 패턴)의 영향을 보여줌.
 
 <figure markdown>
-![](./img/kmeans_cons_local_pattern.png){width="500"}
+![](./img/kmeans_cons_local_pattern.png){width="400"}
 </figure>
 
 > 원 모양에서만 K-Means는 가장 잘 동작하기 때문에,  
