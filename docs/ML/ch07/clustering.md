@@ -516,6 +516,9 @@ Dunn Index가 클수록 clustering이 잘 이루어졌다고 평가할 수 있�
 
 $$\text{Dunn_index} = \frac{\text{min_distance_bw_clusters}}{\text{max_distance_bw_data_samples_in_the_same_clusters}}$$
 
+---
+
+---
 
 ## References
 
