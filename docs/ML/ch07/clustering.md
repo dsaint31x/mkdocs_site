@@ -218,7 +218,7 @@ Clustering은 크게 두가지 종류로 나뉨 (cluster를 무엇으로 정의�
 
 ---
 
-—--
+---
 
 ## Affinity Propagation Clustering
 
@@ -241,6 +241,8 @@ Ref.: [Brendan J. Frey et al., “Clustering by Passing Messages Between Data Po
 
 > k-Means는 Not-flat geometry ( 데이터가 존재하는 부분 공간이 선형이 아닌 굽어져 있는 경우) 공간처럼 euclidean distance를 쓰기 어려운 경우에는 성능이 그리 좋지 않음 반면, AP는 nearest-neighbor graph여서 보다 나은 것처럼 scikit-learning에선 언급되고 있으나, 역시 높은 성능은 아닌 듯 하다.
 
+---
+
 ### similarity 계산
 
 sample $i$와 $j$의 similarity는 다음과 같은 Euclidean distance의 제곱에 음수를 취한 것임.
@@ -254,6 +256,8 @@ $$
 > \# of cluster를 명시적으로 설정하지 않고, $s_{kk}$를 통해 결과에서 나오는 cluster 수를 제어한다.  
 
 보통 similarity matrix의 최소값으로 설정됨 (커질수록 cluster수가 증가).
+
+---
 
 ### responsibility 계산
 
@@ -288,6 +292,8 @@ responsibility $r_{ik}$는
 
 responsibility $r_{ik}$는 responsibility matrix를 생성한다.
 
+---
+
 ### availability 계산
 
 availability $a_{ik}$는 sample $\textbf{x}_k$가 sample $\textbf{x}_i$ 에게 본인 $\textbf{x}_k$가 대표가 되어야 하는 정량적 근거(exemplar로서의 availability)를 알려주는 것임.
@@ -302,6 +308,8 @@ $a_{kk}$ 는 $\textbf{x}_k$가 cluster의 중심(exemplar)으로 사용가능한
 
 $$a_{kk}=\sum_{i^\prime ne k}\max(0,r_{i^\prime k})$$
 
+---
+
 ### 순서
 
 0. responsibility matrix 와 availability matrix 를 모두 0으로 초기화
@@ -311,11 +319,13 @@ $$a_{kk}=\sum_{i^\prime ne k}\max(0,r_{i^\prime k})$$
 4. ^^responsibility matrix 와 availability matrix가 수렴할 때^^ 까지 2,3번 반복.
 5. responsibility matrix 와 availability matrix를 더해 criterion matrix를 계산하고 주대각성분 $r_{kk}+a_{kk}$ 가 0 이상인 경우, sample $\textbf{x}_k$가 cluster의 대표가 된다.
 
+---
+
 ### sklearn.cluster.AffinityPropagation
 
 * Gist's [ipynb파일](https://colab.research.google.com/gist/dsaint31x/9aba90db977631aa1d2776623b16a1ec/ml_affinity-propagation-clustering-algorithm.ipynb)
 
-#### Hyper-parameters
+### Hyper-parameters
 
 `Preference`
 : 각 data point들이 얼마다 exemplar로 선택될 가능성이 높은지를 지정하는 것으로, 높은 값을 부여할수록 더 많은 data point들이 exemplar가 되어서 그 결과 작은 클러스터가 더 많이 생기게 됩니다. 반대로 preference가 작을수록, 적은 수의 사이즈가 큰 클러스터가 만들어지는 경향이 있습니다.
@@ -332,6 +342,8 @@ $$
 a_{t+1}(i, k) = \lambda\cdot a_{t}(i, k) + (1-\lambda)\cdot a_{t+1}(i, k)\end{aligned}
 $$
 
+---
+
 ### Summary of Affinity Propagation Clustering
 
 * k-Means와는 다르게 `k`를 지정하지 않아도 된다는 장점이 있음.
@@ -339,7 +351,11 @@ $$
     * 그리고 k-Means에서 `k`를 결정하는 문제는 효과적인 heuristic 한 방법이 있어서 실제로 k-Means보다 쉽다고 하기 어려움.
 * 클러스터의 경계를 나눌 때는 k-Means처럼 centroid 사이의 가운데 지점을 기준으로 나누는 것이 아닌, 각 클러스터의 크기와 주변 점들과의 affinity를 고려해서 클러스터 경계를 나눔. : 실제 사용이 더 어려움. 
 
-요약하면, 직관적인 k-Means 에 비해, 사용이 까다롭다. 때문에 간단한 경우에는 k-Means가 아직도 사용되지만, 실제로 Affinity propagation은 많이 사용되질 않는 편이다.
+요약하면, 
+
+* K-Means 에 비해, 사용이 까다롭다.
+* 때문에 clustering task에서 간단한 문제인 경우에는 직관적인 K-Means가 아직도 애용되는 것과 달리,
+* Affinity propagation은 많이 사용되지 않는 편이다.
 
 --- 
 
@@ -409,6 +425,8 @@ current_cluster_label <- 1
 
 이 경우, 적절한 `Eps`가 4에서 10 사이임을 알 수 있다. 
 
+---
+
 ### Weakness
 
 하지만, ***density가 다양한 dataset에서는 잘 동작하지 않는다***.
@@ -440,13 +458,8 @@ current_cluster_label <- 1
 다음과 같이 Cluster의 performance metrics는 내부평가와 외부평가로 나눌 수 있음.
 이들을 사용하여 최적의 $k$ 값 등을 찾아낼 수 있음 (물론 여러번 수행을 해야함).
 
-### 내부평가
-
-clustering의 결과 자체를 가지고 평가함 (clustering에 사용된 학습 데이터를 이용).
-
-### 외부평가
-
-clustering에 사용하지 않은 Test set 데이터를 이용하여 평가하는 방식.
+* 내부평가: clustering의 결과 자체를 가지고 평가함 (clustering에 사용된 학습 데이터를 이용).
+* 외부평가: clustering에 사용하지 않은 Test set 데이터를 이용하여 평가하는 방식.
 
 ### 많이 사용되는 validation metrics
 
@@ -514,7 +527,7 @@ $$
 : cluster와 cluster 간의 거리가 클수록, 또는 같은 cluster 내의 data point간의 거리가 작을수록 큰 값을 가짐.  
 Dunn Index가 클수록 clustering이 잘 이루어졌다고 평가할 수 있음.
 
-$$\text{Dunn_index} = \frac{\text{min_distance_bw_clusters}}{\text{max_distance_bw_data_samples_in_the_same_clusters}}$$
+$$\text{Dunn-Index} = \frac{\text{min-distance-bw-clusters}}{\text{max-distance-bw-data-samples-in-the-same_cluster}}$$
 
 ---
 
