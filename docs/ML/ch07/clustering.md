@@ -232,14 +232,18 @@ Ref.: [Brendan J. Frey et al., “Clustering by Passing Messages Between Data Po
 
 모든 데이터 샘플 간에 similarity를 계산하고 이를 기반으로 각 샘플  pair 에서 responsibility $r_{ik}$와 availability $a_{ik}$를 계산 (이들을 메시지를 보내는 것으로 표현)하고 이들로 구성된 2개의 matrix를 반복적으로 업데이트하여 clustering을 수행함.
 
-![](./img/affinity_prop_a_r.png)
-
+<figure markdown>
+![](./img/affinity_prop_a_r.png){width="400"}
+</figure>
 * The ‘responsibility’ matrix $R$. In this matrix, $r(\textbf{i},k)$ reflects how well-suited point $\textbf{k}$ is to be an exemplar for point  $\textbf{i}$.
 * The ‘availability’ matrix $A$. $a(\textbf{i},\textbf{k})$ reflects how appropriate it would be for point $\textbf{i}$ to choose point $\textbf{k}$ as its exemplar.
 
-> k-Means와 마찬가지로 클러스터 형태가 둥글어야 하는(globular) 가정에 기반하고,  k-medoids와 동일하게 cluster center를 data point 자체(exemplar)를 사용한다. 
+> K-Means와 마찬가지로 클러스터 형태가 둥글어야 하는(globular) 가정에 기반하고,
+> K-Medoids와 동일하게 cluster center를 data point 자체(exemplar)를 사용한다. 
 
-> k-Means는 Not-flat geometry ( 데이터가 존재하는 부분 공간이 선형이 아닌 굽어져 있는 경우) 공간처럼 euclidean distance를 쓰기 어려운 경우에는 성능이 그리 좋지 않음 반면, AP는 nearest-neighbor graph여서 보다 나은 것처럼 scikit-learning에선 언급되고 있으나, 역시 높은 성능은 아닌 듯 하다.
+> K-Means는 Not-flat geometry(데이터가 존재하는 부분 공간이 선형이 아닌 굽어져 있는 경우) space처럼
+> euclidean distance를 쓰기 어려운 경우에는 성능이 그리 좋지 않음.
+> 반면, AP는 nearest-neighbor graph여서 보다 나은 것처럼 scikit-learning에선 언급되고 있으나, 역시 높은 성능은 아닌 듯 하다.
 
 ---
 
@@ -432,7 +436,7 @@ current_cluster_label <- 1
 하지만, ***density가 다양한 dataset에서는 잘 동작하지 않는다***.
 
 <figure markdown>
-![](./img/diverse_density_dbscan.jpeg){width=“600”}
+![](./img/diverse_density_dbscan.jpeg){width=“500”}
 </figure>
 
 * 오른쪽 하단의 경우, DBSCAN이 극단적으로 잘 동작하지 않음을 보여준다.
@@ -480,6 +484,7 @@ $$\text{BSSE}=\sum_{i}\sum_{j\ne i} \text{Size}(C_i) (\textbf{c}^\text{center}_i
 <figure markdown>
 ![](./img/graph_based_view_of_cluster_cohension_separation.png){width="500" align="center"}
 </figure>
+
 : * original : ZZFJILL's [Notes of Cluster Analysis](https://zzfjill.wordpress.com/2020/02/09/notes-of-cluster-analysis/)
 
 #### `Silhouette Coefficient` (실루엣 계수)  
