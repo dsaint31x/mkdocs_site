@@ -385,7 +385,7 @@ $$
 * `Noise point` : Core point도 아니고, Border point도 아닌 데이터 포인트.
 
 <figure markdown>
-![](./img/DBSCAN_minPts%3D4.png){width=“500”}
+![](./img/DBSCAN_minPts%3D4.png){width="00"}
 </figure>
 
 ### Algorithm
@@ -424,7 +424,7 @@ current_cluster_label <- 1
 위의 성질을 이용하여 모든 데이터 포인트에 대해 $k$ nearest neighbor ($k$번째 가장 가까운 이웃)에 대한 거리를 구하고, 해당 거리로 sorting을 한 이후, 해당 $k$-nearest neighbor distance를 y축에 기재하고 이에 대응하는 data point의 수를 x축에 기재하면 아래와 같은 $k$-dist graph를 얻게됨.
 
 <figure markdown>
-![](./img/DBSCAN_tunning.png){width=“500”}
+![](./img/DBSCAN_tunning.png){width="500"}
 </figure>
 
 이 경우, 적절한 `Eps`가 4에서 10 사이임을 알 수 있다. 
@@ -436,7 +436,7 @@ current_cluster_label <- 1
 하지만, ***density가 다양한 dataset에서는 잘 동작하지 않는다***.
 
 <figure markdown>
-![](./img/diverse_density_dbscan.jpeg){width=“500”}
+![](./img/diverse_density_dbscan.jpeg){width="500"}
 </figure>
 
 * 오른쪽 하단의 경우, DBSCAN이 극단적으로 잘 동작하지 않음을 보여준다.
