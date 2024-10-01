@@ -65,7 +65,10 @@ raw dataset인 matrix $X$를 SVD (singular value decomposition)을 수행 ($X=U\
 * $V$는 $X$의 row space의 orthonormal basis 임.
 * 이를 PCA관점에서 Principal Matrix라고 부르기도 함.
 
-**참고자료** : 
+---
+
+## **참고자료** 
+
 * [ipynb 예제](https://gist.github.com/dsaint31x/43049448ec3142fd8b6b156afd68dac5)
 * [covariance와 centering에 대한 참고자료](https://dsaint31.tistory.com/278)
 

@@ -22,7 +22,7 @@
 - 변환된 공간에서도 최대한 pairwise distance가 $D$와 유사하도록 하는 mapping function을 구함.
     - Classical MDS의 경우, $D$에 대해 eigenvalue decomposition을 통해 matrix factorization을 수행하여, 저차원 공간으로의 embedding을 얻음.
     - 이같은 Matrix Factorization을 통한 저차원으로의 projection을 수행하는 방식들은 inherently transductive임.
-    - 이는 새로운 node가 추가도리 경우, 이를 추가하여 다시 training하지 않을 경우 generalization을 보장하지 않음을 의미함.
+    - 이는 새로운 node가 추가될 경우, 이를 추가하여 다시 training하지 않을 경우 generalization을 보장하지 않음을 의미함.
 - 구해진 mapping function을 `embedding` 이라고도 부름.
 
 $$
@@ -36,8 +36,8 @@ where
 
 Multidimensional Scaling은 다음의 가정에 기반을 둠.
 
-- **거리가 가깝다는 것**은 **유사** 하다는 뜻
-- **거리가 멀다는 것**은 **유사도가 낮다** 는 뜻
+- **거리가 가깝다는 것** 은 **유사** 하다는 뜻
+- **거리가 멀다는 것** 은 **유사도가 낮다** 는 뜻
 
 즉, MDS는 
 
@@ -50,7 +50,7 @@ Multidimensional Scaling은 다음의 가정에 기반을 둠.
 
 MDS는 모든 pairwise distance 를 유지하려고 하기 때문에 
 loss function에서도 알 수 있듯이 
-**가까운 거리에서의 차이보다 먼 거리에서의 차이에 보다 큰 영향**을 받게 됨.
+**가까운 거리에서의 차이보다 먼 거리에서의 차이에 보다 큰 영향** 을 받게 됨.
 
 > 원래 pairwise distance가 10이었는데 변환된 공간에서 5로 변경된 경우와,
 원래 pairwise distance가 1000 이었는데 변환된 공간에서 995로 변경된 경우가 있다고 하자. 
@@ -58,7 +58,7 @@ loss function에서도 알 수 있듯이
 MDS에서는 이 둘을 같다고 처리.
 > 
 
-더욱이, **원본 데이터가 *high dimensional space*에 존재**할 경우, 
+더욱이, **원본 데이터가 *high dimensional space* 에 존재** 할 경우, 
 
 - 가까운 이웃간의 거리는 low dimensional space의 경우와 마찬가지로 의미상 으로 중요하지만
 - 지나치게 큰 거리를 가지고 있는 data sample pair 는 큰 의미가 없는 경우가 많음(high dimensional space 로 갈수록 이런 경향이 커짐).
@@ -212,7 +212,7 @@ s_stress_metric = calculate_s_stress(X_scaled, embedding_mds)
 
 ---
 
-# References
+## References
 
 [머신러닝 - MDS (Multi Dimensional Scaling)](https://velog.io/@swan9405/MDS-Multidimensional-Scaling)
 
