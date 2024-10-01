@@ -316,7 +316,7 @@ nav:
       - "ML/ch05/ml_stacking.md"
     - "Dimensionality Reduction":
       - "ML/ch06/ml_pca.md"
-      - "ML/ch06/ml_mda.md"
+      - "ML/ch06/ml_mds.md"
     - "Unsupervised Learning":
       - "ML/ch07/clustering.md"
       - "ML/ch07/manifold.md"
