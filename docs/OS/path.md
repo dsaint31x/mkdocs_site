@@ -5,16 +5,14 @@
 ## Absolute Path (**절대** 경로)
 
 - 현 작업디렉토리(cwd)와 관계없이 절대적 위치
-- `드라이브:\폴더\폴더\파일명` (windows)
-    - `c:\Windows\System32\drivers\etc\hosts`
-    - `/home/dsaint31/.bachrc (linux)`
-- `/디렉토리/디렉토리/파일명` (linux)
-    - `/home/dsaint31/.bachrc (linux)`
 
 ## Relative Path (**상대** 경로)
 
 - 현 작업디렉토리를 기준으로 상대적 위치를 가르킴.
-- `..\drivers\etc\hosts`
+
+> 보다 자세한 내용은 다음 URL을 참고할 것.
+>
+> * [Path (경로)란](https://dsaint31.tistory.com/222)
 
 ---
 
