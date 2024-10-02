@@ -305,6 +305,7 @@ nav:
       - "ML/ch00/ch00_42_batch_learning.md"
       - "ML/ch00/ch00_50.md"
     - "Ex : End_to_End Learning":
+      - "ML/ch01/ch01_41.md"
       - "ML/ch01/ch01_51.md"
       - "ML/ch01/ch01_52.md"
     - "Classification":
