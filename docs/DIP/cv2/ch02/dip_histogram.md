@@ -2,14 +2,17 @@
 
 Histogram은 image의 intensity (or pixel이 가지는 값)들의 분포를 보여줌.
 
-chart로 표현하기도 하지만 내부적 데이터로 사용하기도함.
+* chart로 표현하기도 하지만 
+* image에 대한 feature에 해당하는 내부적 데이터로 사용하기도함.
 
-image에서 histogram으로 변환은 비가역적 변환임 
+image에서 histogram으로 변환은 ***비가역적 변환*** 임  
 (다른 image들도 같은 histogram을 가질 수 있음).
 
 <figure markdown>
 ![](../../img/ch02/histogram.jpg){width="400"}
 </figure>
+
+---
 
 ## Terms
 
@@ -150,6 +153,8 @@ plt.show()
 
 ![](../../img/ch02/histogram_mask.png)
 
+---
+
 ## Histogram Calculation in NumPy
 
 ```Python
@@ -175,43 +180,88 @@ hist,bin_edges = np.histogram(
 * `hist` : histogram
 * `bin_edges` : bin을 나누는 edge들이라 `bins+1`에 대응.
 
+---
+
 ## 2D Histograms
 
-feature가 1개인 경우엔 앞서 다룬 1 dimensional histogram을 구성하지만, feature가 2개인 경우엔 2D histogram으로 처리할 수 있다.
+Depth(or Channel, Feature)가 1개인 경우엔 앞서 다룬 1 Dimensional histogram을 구성하지만,  
+feature가 2개인 경우엔 2D Histogram으로 처리할 수 있다.
 
-Color space에서 `HSV` model을 생각해보면, V는 앞서 다룬 intensity이고, color에 해당하는 Hue와 saturation을 2D histogram으로 처리 가능하다.
+Color space에서 `HSV` model을 생각해보면, 
+
+* V는 앞서 다룬 Intensity이고, 
+* color에 해당하는 Hue와 Saturation을 2D Histogram으로 처리 가능하다.
 
 (RGB를 이용하여 3D histogram도 가능은 하지만 많이 사용되지는 않는다.)
 
-> Histogram backprojection에서 H와 S를 이용하는 경우가 많기 때문에 2D histogram의 경우, Hue와 Saturation을 다루는 경우가 많다.
+> Histogram backprojection에서  
+> H와 S를 이용하기 때문에  
+> 2D Histogram의 경우, Hue와 Saturation 으로 구한다.
 
 ```Python
+# ---------------------
+# imread by using URL
+import requests
+
+def ds_url_imread(url):
+    t0 = requests.get(url)# requests.models.Response 
+    t1 = t0.content       # bytes (immutable) 
+    t2 = bytearray(t1)    # bytearray (mutable)
+    t3 = np.asarray(t2, dtype=np.uint8) #ndarray
+    img = cv2.imdecode(t3, cv2.IMREAD_UNCHANGED)
+    return img
+
+# --------------------
+# load and histogramming
+
 import numpy as np
 import cv2 
 
-img = cv2.imread('../images/2d_histogram.jpg')
+url = 'https://raw.githubusercontent.com/dsaint31x/OpenCV_Python_Tutorial/master/images/2d_histogram.jpg'
+# img = cv2.imread('../images/2d_histogram.jpg')
+img = ds_url_imread(url)
 assert img is not None, "file could not be read, check with os.path.exists()"
 
-hsv = cv2.cvtColor(img,cv2.COLOR_BGR2HSV)
-hist = cv2.calcHist([hsv], [0, 1], None, [180, 256], [0, 180, 0, 256])
+hsv  = cv2.cvtColor(
+    img,
+    cv2.COLOR_BGR2HSV,
+)
+hist = cv2.calcHist(
+    [hsv], 
+    [0, 1],           # channels
+    None,             # mask
+    [180, 256],       # histSize or size of bins
+    [0, 180, 0, 256], # range to binning
+)
+
+print(f'{hist.shape = }')
+
+# -------------------------
+# display
 
 import matplotlib.pyplot as plt
 
-plt.subplot(1,2,1)
-plt.imshow(img[...,::-1])
-plt.xticks([]); plt.yticks([])
-plt.subplot(1,2,2)
-plt.imshow(hist, 
-           interpolation='nearest', 
-           cmap='jet')
-plt.yticks([0,30,60,90,120,150,180])
-plt.xticks([0,32,64,96,128,160,192,224,256])
-# plt.colorbar()
+fig, axs = plt.subplots(1,2, figsize=(10,5))
+axs[0].imshow(img[...,::-1])
+cax = axs[1].imshow(
+    hist,
+    interpolation='nearest',
+    cmap='viridis',
+)
+fig.colorbar(cax, ax=axs[1], shrink=0.5)
+
+axs[0].set_xticks([])
+axs[0].set_yticks([])
+axs[0].set_title('original')
+axs[1].set_xticks(range(0,180,30))
+axs[1].set_xticks(range(0,256,32))
+axs[1].set_title('2D Histogram')
+
 plt.show()
 ```
 
 <figure markdown>
-![](../../img/ch02/2d_histogram.png)
+![](../../img/ch02/2d_histogram.png) 
 </figure>
 
 * 푸른 하늘에 해당하는 pixel이 많기 때문에 Hue=120 근처에서 많은 값을 보임.
@@ -220,17 +270,20 @@ plt.show()
 histogram에서 잘 안보이기 때문에 V=255일 때의 HS map을 기반으로 처리한 2d histogram은 다음과 같음.
 
 <figure markdown>
-![](../../img/ch02/scaled_2d_histogram.png)
+![](../../img/ch02/scaled_2d_histogram.png){width="600"}
 </figure>
 
-* scaling의 값이 커질수록 2d histogram에서 강조가 되어 보이도록 처리함.
+* scaling (slide-bar의 test)의 값이 커질수록 2D histogram에서 강조가 되어 보이도록 처리함.
 * 푸른색과 노란색 부분이 강조되어 쉽게 확인이 가능함.
 
-Hue, Saturation은 color image의 특성을 나타내는 feature로 사용할 수 있다. (주의할 것은 다른 image라도 거의 비슷한 2d histogram을 가질 수 있다는 점임.)
+Hue, Saturation은 color image의 특성을 나타내는 feature로 사용할 수 있다.  
+(주의할 것은 다른 image라도 거의 비슷한 2D Histogram을 가질 수 있다는 점임.)
 
 * pixel들의 color의 분포를 나타내는 것임.
-* 위치적 정보가 사라지기 때문에 color들의 분포는 비슷하면 비슷한 2d histogram이 나올 수 있음.
+* 위치적 정보가 사라지기 때문에 color들의 분포는 비슷하면 비슷한 2D Histogram이 나올 수 있음.
 * histogram간의 유사도가 image가 같은지를 나타내는 것은 아님.
+
+---
 
 ## References
 
