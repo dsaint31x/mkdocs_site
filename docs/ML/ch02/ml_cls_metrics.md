@@ -180,6 +180,14 @@ $$
 최종 TP와 FP, TN, FN 를 구하고  
 이로부터 Precision과 Recall을 구한다.
 
+> 주의할 점은,  
+> Multi-class classification의 경우,  
+> Micro-Average에서의 Precision과 Recall은 항상 Accuracy와 동일한 값이 나오게 된다.  
+>
+> * 한 클래스에서 어떤 데이터 샘플이 FP 이면, 다른 클래스에서 FN 이 된다: `FP의 합 = FN의 합`
+> * TN을 사용하지 않는다: Multi-class classification의 경우 TN의 정의가 모호하여 TN=0 인 것처럼 간주됨.
+> * `전체 샘플의 수 = TP의 합 + FP의 합 + FN의 합` 이 성립.
+
 식은 다음과 같음.
 
 $$
@@ -190,10 +198,11 @@ $$
 \bf{Recall} = \frac{TP(\bf{cls_A})+ \dots +TP(\bf{cls_N})}{TP(\bf{cls_A})+ \dots +TP(\bf{cls_N})+ FN(\bf{cls_A})+ \dots +FN(\bf{cls_N})}
 $$
 
-> Imbalanced classes의 경우에 대해 Weighted Average 와 매우 비슷한 수치를 보인다.  
-> 때문에, scikit-learn 등에서 제공하는 함수들에서  
+> Multi-class classification 의 경우  
+> Imbalanced classes의 경우에 대해 Weighted Average 와 매우 비슷한 수치이며.  
+> Accuracy와 동일하기 때문에  
+> scikit-learn 등에서 제공하는 함수들에서  
 > Macro Average와 Weighted Average만을 기본으로 제공하고 Micro avg.는 제공하지 않음.  
-> 즉, 의미가 Weighted Average와 유사하다 보니 자주 쓰이진 않는 편임.
 
 ---
 
@@ -229,6 +238,9 @@ $$
 
 Macro, Micro, Weighted 가 구해지는 것은 앞서 살펴본 Multi-class Classification과 같음.
 
+
+### Sample Average for Multi-label Classification
+
 추가적인 것은 Sample Average인데, 
 
 * 이는 각 sample 별로, 
@@ -240,8 +252,8 @@ Macro, Micro, Weighted 가 구해지는 것은 앞서 살펴본 Multi-class Clas
 구체적인 예시를 통해 sample-wise precision을 살퍠보겠음.
 
 1. **예시 데이터**:
-    - 실제 라벨: [1, 0, 1, 0, 1] (즉, 1번째, 3번째, 5번째 라벨이 True)
-    - 예측 라벨: [1, 1, 0, 0, 1] (즉, 1번째, 2번째, 5번째 라벨이 True라고 예측)
+    - 실제 라벨: `[1, 0, 1, 0, 1]` (즉, 1번째, 3번째, 5번째 라벨이 True)
+    - 예측 라벨: `[1, 1, 0, 0, 1]` (즉, 1번째, 2번째, 5번째 라벨이 True라고 예측)
 
 2. **Precision 계산**:
     - Precision = (올바르게 예측한 라벨의 수) / (예측한 True 라벨의 수)
@@ -260,9 +272,9 @@ $$\text{Precision} = \frac{2}{3} \approx 0.67$$
 
 | 샘플 | 실제 라벨       | 예측 라벨       | Precision 계산                    |
 |------|------------------|------------------|-----------------------------------|
-| 1    | [1, 0, 1, 0, 1]  | [1, 1, 0, 0, 0]  | Precision = 1/3 = 0.33            |
-| 2    | [0, 1, 1, 0, 0]  | [0, 1, 1, 1, 0]  | Precision = 2/3 = 0.67            |
-| 3    | [1, 1, 1, 0, 0]  | [1, 0, 1, 0, 1]  | Precision = 2/3 = 0.67            |
+| 1    | `[1, 0, 1, 0, 1]`  | `[1, 1, 0, 0, 0]`  | Precision = 1/3 = 0.33            |
+| 2    | `[0, 1, 1, 0, 0]`  | `[0, 1, 1, 1, 0]`  | Precision = 2/3 = 0.67            |
+| 3    | `[1, 1, 1, 0, 0]`  | `[1, 0, 1, 0, 1]`  | Precision = 2/3 = 0.67            |
 
 이렇게 각 샘플별로 Precision을 계산한 후, sample-wise precision을 얻기 위해 각 샘플의 Precision 값을 평균내면:
 
