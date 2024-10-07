@@ -7,6 +7,10 @@ Hue와 Saturation으로 이루어진 Histogram을 이용하여 다음의 task를
 
 찾고자 하는 또는 분리하고자 하는 (indexing하고자 하는) image의 Hue, Saturation의 분포를 만들고 전체 image의 Hue, Saturation 2D histogram에서 해당 분포에 속하는 Hue와 Saturation pair들을 구한 후, 이 pair에 속하는 pixel들의 index를 구하는 backprojection을 수행하는 방식이다. 
 
+---
+
+---
+
 ## Algorithm in Numpy
 
 1. Hue, saturation 2d histogram을 분리하고자 하는 object 와 전체 image 각각에 대해 구한다.
@@ -101,6 +105,9 @@ plt.imshow(seg[...,::-1])
 <figcaption>The result of histogram backproj.</figcaption>
 </figure markdown>
 
+---
+
+---
 
 ## Backprojection in OpenCV
 
