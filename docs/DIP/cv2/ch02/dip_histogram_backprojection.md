@@ -51,7 +51,7 @@ R = M/(I+1)
 h,s,v = cv2.split(hsvt)
 B = R[h.ravel(),s.ravel()]
 B = np.minimum(B,1)
-B = B.reshape(hsvt.shape[:2])h,s,v = cv.split(hsvt)
+B = B.reshape(hsvt.shape[:2])
 ```
 
 * $R=\frac{M}{I}$를 구함.
@@ -68,9 +68,10 @@ plt.imshow(B, cmap='gray')
 * blurring을 수행하여 object의 영역을 smoothing시킴.
 
 <figure markdown>
-![](../../img/ch02/hist_back_mask.png){width="500"}
+![](../../img/ch02/hist_back_ratio.png){width="500"}
 <figcaption>2D ratio image.</figcaption>
 </figure>
+
 
 ```Python
 ret,thresh = cv2.threshold(B,
@@ -81,6 +82,11 @@ ret,thresh = cv2.threshold(B,
 ```
 
 * Thresholding을 수행.
+
+<figure markdown>
+![](../../img/ch02/hist_back_mask.png){width="500"}
+<figcaption>2D Mask.</figcaption>
+</figure>
 
 ```Python
 mask = cv2.merge([thresh,thresh,thresh])
@@ -101,7 +107,7 @@ plt.imshow(seg[...,::-1])
 OpenCV에서는 `cv2.calcBackProject` 함수를 제공하고 있음.
 
 * `cv2.calcHist()`와 거의 비슷한 parameter.
-* 단, backprojetion에 사용할 2d histogram을 입력받는다는 차이가 있음.
+* 단, backprojection에 사용할 2d histogram을 입력받는다는 차이가 있음.
 
 ```Python
 import numpy as np
@@ -143,6 +149,11 @@ plt.xticks([]);plt.yticks([])
 plt.show()
 # cv2.imwrite('res.jpg',res)
 ```
+
+<figure markdown>
+![](../../img/ch02/hist_back_result_cv.png){width="500"}
+<figcaption>The result of cv2 histogram backproj.</figcaption>
+</figure markdown>
 
 ## References
 
