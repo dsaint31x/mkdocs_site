@@ -1,6 +1,6 @@
 # Histogram
 
-Histogram은 image의 intensity (or pixel이 가지는 값)들의 분포를 보여줌.
+영상에서의 Histogram은 image의 intensity (or pixel이 가지는 값)들의 분포를 보여줌.
 
 * chart로 표현하기도 하지만 
 * image에 대한 feature에 해당하는 내부적 데이터로 사용하기도함.
@@ -11,6 +11,10 @@ image에서 histogram으로 변환은 ***비가역적 변환*** 임
 <figure markdown>
 ![](../../img/ch02/histogram.jpg){width="400"}
 </figure>
+
+* [관련 gist URL](https://gist.github.com/dsaint31x/f2e0f5361cf917b067f71b60acf80d23)
+
+---
 
 ---
 
@@ -31,65 +35,122 @@ image에서 histogram으로 변환은 ***비가역적 변환*** 임
     * = X축의 from ~ to.
     * 원래의 pixel의 가지는 값보다 작게 지정할 경우, 해당 range의 pixel들만으로 histogram을 만들어냄.
 
+---
+
+---
+
 ## OpenCV's Histogram
 
 ```Python
-cv.calcHist(
-    images, 
-    channels, 
-    mask, 
-    histSize, 
-    ranges
-    hist, 
-    accumulate
+# 히스토그램 계산
+hist = cv.calcHist(
+    images=[img],      # 히스토그램을 계산할 이미지 (리스트로 전달)
+    channels=[0],      # 계산할 채널 (그레이스케일 이미지에서는 채널 0)
+    mask=None,         # 히스토그램을 계산할 마스크 (없으면 None)
+    histSize=[256],    # 히스토그램 빈의 개수 (256개의 빈 사용)
+    ranges=[0, 256],   # 값의 범위 (0에서 255 사이의 값)
+    hist=None,         # 초기 히스토그램 (None이면 새로 계산)
+    accumulate=False   # 히스토그램을 누적할지 여부 (False이면 새로 계산)
 )
 ```
 
-* `image`  : 분석대상 이미지(uint8 or float32 type). Array형태.
-* `channels` : 분석 채널(X축의 대상). 이미지가 gray-sacle이면 [0], color 이미지이면 [0,2] 형태(0 : Blue, 1: Green, 2: Red)
-* `mask` : 이미지의 분석영역. None이면 전체 영역. (0 or 255)
-* `histSize` : BINS 값. [256]
-* `ranges` : Range값. [0,256]
+1.	`images`: 입력 이미지(또는 이미지 리스트).
+    * 히스토그램을 계산할 이미지. 
+    * 이 값은 List 형태로 전달되며, 
+    * 예를 들어 `images=[img]`와 같이 사용할 수 있음.
+2.	`channels`: 히스토그램을 계산할 채널.
+    * 이미지의 채널 인덱스를 지정. 
+    * 예를 들어, 그레이스케일 이미지는 0, 컬러 이미지에서는 0(파란색 채널), 1(녹색 채널), 2(빨간색 채널)을 사용.
+3.	`mask`: 이미지에서 히스토그램을 계산할 영역을 지정하는 마스크.
+    * 특정 영역만을 대상으로 히스토그램을 계산할 때 사용되는 바이너리 마스크. 
+    * 이미지 전체를 대상으로 히스토그램을 계산할 경우 `None`으로 설정.
+4.	`histSize`: 히스토그램의 빈(bin) 개수.
+    * 히스토그램의 각 채널에 대해 계산할 빈의 개수를 지정. 
+    * 일반적으로 `histSize=[256]`과 같이 설정하여 256개의 빈을 사용할 수 있음.
+5.	`ranges`: 각 채널 값의 범위.
+    * 히스토그램을 계산할 값의 범위. 
+    * 예를 들어 `[0, 256]`과 같이 설정하면 픽셀 값이 0에서 255까지의 범위를 대상으로 히스토그램을 계산.
+6.	`hist`: (선택 사항) 초기 히스토그램.
+    * 이전에 계산된 히스토그램을 입력으로 전달하여 그 값을 기반으로 계산을 계속. 
+    * 보통 `None`으로 설정.
+7.	`accumulate`: (선택 사항) 히스토그램을 누적할지 여부.
+    * `True`로 설정하면 이전의 히스토그램 값에 새로운 값을 누적하여 계산. 
+    * 기본값은 `False`.
 
+---
 
-#### Example
+### Example
 
 ```Python
 #-*- coding:utf-8 -*-
-import os
+import os,sys
 import cv2
 import numpy as np
 import random
 from matplotlib import pyplot as plt
 
-# to histogram with intensity of pixe, load image with cv2.IMREAD_GRAY 
+import requests
 
-if IN_COLAB:
-    img1 = cv2.imread(os.path.join(PATH, 'flower1.jpg'), cv2.IMREAD_GRAYSCALE)
-    img2 = cv2.imread(os.path.join(PATH, 'flower2.jpg'), cv2.IMREAD_GRAYSCALE)
-else:
-    img1 = cv2.imread('../images/flower1.jpg',0) 
-    img2 = cv2.imread('../images/flower2.jpg',0)
+def ds_url_imread(url):
+    t0 = requests.get(url)# requests.models.Response 
+    t1 = t0.content       # bytes (immutable) 
+    t2 = bytearray(t1)    # bytearray (mutable)
+    t3 = np.asarray(t2, dtype=np.uint8) #ndarray
+    img = cv2.imdecode(t3, cv2.IMREAD_UNCHANGED)
+    return img
 
-hist1 = cv2.calcHist([img1],[0],None,[256],[0,256])
-hist2 = cv2.calcHist([img2],[0],None,[256],[0,256])
+# to histogram with intensity of pixel, load image with cv2.IMREAD_GRAY 
+
+url = 'https://raw.githubusercontent.com/dsaint31x/OpenCV_Python_Tutorial/master/images/flower1.jpg'
+img1 = ds_url_imread(url)
+assert img1 is not None, "file could not be read, check with os.path.exists()"
+
+url = 'https://raw.githubusercontent.com/dsaint31x/OpenCV_Python_Tutorial/master/images/flower2.jpg'
+img2 = ds_url_imread(url)
+assert img2 is not None, "file could not be read, check with os.path.exists()"
+
+img1 = cv2.cvtColor(img1, cv2.COLOR_BGR2GRAY)
+img2 = cv2.cvtColor(img2, cv2.COLOR_BGR2GRAY)
 
 
+hist1 = cv2.calcHist(
+            [img1],
+            [0],
+            None,
+            [256],
+            [0,256],
+     )
+hist2 = cv2.calcHist(
+            [img2],
+            [0],
+            None,
+            [256],
+            [0,256],
+     )
 
-#plt.style.use('dark_background')
-plt.subplot(2,2,1),plt.imshow(img1,'gray'),plt.title('Red Line')
-plt.subplot(2,2,2),plt.imshow(img2,'gray'),plt.title('Green Line')
-plt.subplot(2,2,3),plt.plot(hist1,color='r')
-plt.subplot(2,2,4),plt.plot(hist2,color='g')
-plt.xlim([0,256])
+fig, axes = plt.subplots(2,2, figsize=(10,10))
+axes[0,0].imshow(img1, cmap='gray')
+axes[0,0].set_title('Red Line')
+axes[0,1].imshow(img2, cmap='gray')
+axes[0,1].set_title('Green Line')
+axes[1,0].plot(hist1, color='r')
+axes[1,0].set_title('Red Line')
+axes[1,1].plot(hist2, color='g')
+axes[1,1].set_title('Green Line')
+axes[1,0].axvline(x=60, color='b', linestyle='--', linewidth=2)
 plt.show()
 
-
-hist3 = cv2.calcHist([img1],[0],None,[32],[0,128])
-print(np.shape(hist3))
-
+# ---------
+hist3 = cv2.calcHist(
+            [img1],
+            [0],
+            None,
+            [61],
+            [0,61],
+     )
 plt.figure()
-plt.plot(hist3,color='r')
+plt.plot(hist3, color='red')
+plt.axvline(x=60, color='b', linestyle='--', linewidth=2)
 plt.show()
 ```
 
@@ -101,7 +162,7 @@ plt.show()
 ![](../../img/ch02/histogram_example1.png){width="300"}
 </figure>
 
-#### MASK사용하기.
+#### MASK 사용하기.
 
 ```Python
 #-*-coding:utf-8-*-
@@ -111,10 +172,9 @@ from matplotlib import pyplot as plt
 import os
 
 
-if not IN_COLAB:
-    img = cv2.imread('../images/lena.png');
-else:
-    img = cv2.imread(os.path.join(PATH, 'lena.png'))
+url = 'https://raw.githubusercontent.com/dsaint31x/OpenCV_Python_Tutorial/master/images/lena.png'
+img = ds_url_imread(url)
+assert img is not None, "file could not be read, check with os.path.exists()"
 
 
 # mask생성
@@ -130,28 +190,34 @@ hist_full = cv2.calcHist([img],[1],None,[256],[0,256])
 # mask를 적용한 히스트로그램 green
 hist_mask = cv2.calcHist([img],[1],mask,[256],[0,256])
 
-# bgr > rgb
-#b,g,r = cv2.split(img) # divide img into b,g,r
-#img = cv2.merge([r,g,b])
-#b,g,r = cv2.split(masked_img)
-#masked_img = cv2.merge([r,g,b])
-img = img[:,:,::-1]
-masked_img = masked_img[:,:,::-1]
+fig, axs = plt.subplots(2,2, figsize=(10,10))
 
-#plt.style.use('dark_background')
-plt.subplot(221),plt.imshow(img,'gray'),plt.title('Origianl Image(red)'), plt.xticks([]), plt.yticks([])
-plt.subplot(222),plt.imshow(mask,'gray'),plt.title('Mask'), plt.xticks([]), plt.yticks([])
-plt.subplot(223),plt.imshow(masked_img,'gray'),plt.title('Masked Image(blue)'), plt.xticks([]), plt.yticks([])
+axs[0,0].imshow(img[...,::-1])
+axs[0,0].set_title('Original Image(red)')
+axs[0,0].set_xticks([])
+axs[0,0].set_yticks([])
+axs[1,0].imshow(masked_img[...,::-1])
+axs[1,0].set_title('Masked Image(blue)')
+axs[1,0].set_xticks([])
+axs[1,0].set_yticks([])
+axs[0,1].imshow(mask, cmap='gray')
+axs[0,1].set_title('Mask')
+axs[0,1].set_xticks([])
+axs[0,1].set_yticks([])
 
 # red는 원본이미지 히스토그램, blue는 mask적용된 히스토그램
-plt.subplot(224),plt.title('Histogram')
-plt.plot(hist_full,color='r'),plt.plot(hist_mask,color='b')
-plt.xlim([0,256])
+axs[1,1].plot(hist_full, color='r')
+axs[1,1].plot(hist_mask, color='b')
+axs[1,1].set_xlim([0,256])
+axs[1,1].set_title('Histogram')
 
+fig.set_tight_layout(True)
 plt.show()
 ```
 
 ![](../../img/ch02/histogram_mask.png)
+
+---
 
 ---
 
@@ -162,18 +228,28 @@ hist,bin_edges = np.histogram(
     img.ravel(),
     bins = 256,
     range = [0,256],
-    normed = False,
     weights = None,
-    density = False
+    density = False,
 )
 ```
 
-* `img` : 대상 image. NumPy는 1D-array로 동작시키기 위해 `ravel`을 사용함. `a`라고 불림
-* `bins` : # of bins
-* `range` : floating point 로 주어짐. 기본은 `[a.min(), a.max()]`임.
-* `normed` : boolean. bin의 간격이 일정할 경우에만 `True`로 사용하길 권함.
-* `weights` : `a`와 같은 크기로 각 bin의 가중치임.
-* `density` : `True`이면 probability로 출력.
+* `img` : 
+    * 대상 image. 
+    * NumPy는 1D-array로 동작시키기 위해 `ravel`을 사용함. 
+    * `a`라고 불림
+* `bins` : 
+    * # of bins
+    * 256으로 설정하여 0~255까지의 픽셀 값을 256개의 구간
+* `range` : 
+    * floating point 로 주어짐. 
+    * `[min, max)` 로 range를 할당.
+    * 기본은 `[a.min(), a.max()]`임.
+* `weights` : 
+    * `a`와 같은 크기로 각 bin의 가중치임.
+    * None으로 설정하여 가중치를 적용하지 않음.
+* `density` : 
+    * `True`이면 probability로 출력 
+    * 히스토그램을 정규화할지 여부를 지정
 
 **반환값**
 
@@ -182,9 +258,11 @@ hist,bin_edges = np.histogram(
 
 ---
 
+---
+
 ## 2D Histograms
 
-Depth(or Channel, Feature)가 1개인 경우엔 앞서 다룬 1 Dimensional histogram을 구성하지만,  
+Depth(or Channel, Feature)가 1개인 경우엔 앞서 다룬 1 Dimensional Histogram을 구성하지만,  
 feature가 2개인 경우엔 2D Histogram으로 처리할 수 있다.
 
 Color space에서 `HSV` model을 생각해보면, 

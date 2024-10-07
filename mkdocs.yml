@@ -257,9 +257,10 @@ nav:
         - "DIP/cv2/ch01/dip_1_04.md"
       - "Image Processing":
         - "DIP/cv2/ch02/dip_cv_color_space.md"
-        - "DIP/cv2/ch02/dip_thresholding.md"
         - "DIP/cv2/ch02/dip_histogram.md"
+        - "DIP/cv2/ch02/dip_histogram_based_IP.md"
         - "DIP/cv2/ch02/dip_histogram_backprojection.md"
+        - "DIP/cv2/ch02/dip_thresholding.md"
         - "Canny Edge Detection" : "DIP/ch02_02_01_canny.md"
         - "DIP/cv2/ch02/dip_pyramid.md"
         - "DIP/cv2/ch02/dip_contour_basic.md"

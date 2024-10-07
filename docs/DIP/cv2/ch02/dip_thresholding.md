@@ -135,8 +135,8 @@ plt.show()
 
 Adaptive thresholding은 
 
-* image 각 pixel에 대해 이웃하는 작은 구역을 구하고, 
-* 이를 이용해 각 pixel 별로 다른 threshold를 적용하는 방식
+* image 각 pixel에 대해 이웃하는 작은 구역들을 구하고, 
+* 이를 이용해 각 구역 별로 다른 threshold를 적용하는 방식
 
 으로 동작하며, 
 
@@ -209,7 +209,8 @@ plt.show()
 
 ## Histogram based Thresholding
 
-image의 ***(intensity) histogram*** 에서 Threshold을 결정하고 이를 이용하여 Thresholding하는 방법.
+image의 ***(intensity) histogram*** 에서  
+Threshold을 결정하고 이를 이용하여 Thresholding하는 방법.
 
 * 실제로는 Threshold를 구하기가 쉽진 않음.( 명확하지 않은 히스토그램의 골과 마루, 잡음 등)
 * 크게 다음으로 나뉨.
@@ -234,6 +235,7 @@ image의 ***(intensity) histogram*** 에서 Threshold을 결정하고 이를 이
 4. 최대 $p$를 갖는 $k$를 threshold로 한다.
 
 1번의 일정거리를 정하기가 좀 난감한 경우가 많다. 
+
 
 ---
 
@@ -266,9 +268,9 @@ where
 
 $$
 \begin{aligned}
-q_1(t) = \sum_{i=1}^{t} P(i) \quad & \& \quad q_1(t) = \sum_{i=t+1}^{I} P(i) \\
+q_1(t) = \sum_{i=1}^{t} P(i) \quad & \& \quad q_2(t) = \sum_{i=t+1}^{I} P(i) \\
 \mu_1(t) = \sum_{i=1}^{t} \frac{iP(i)}{q_1(t)} \quad & \& \quad \mu_2(t) = \sum_{i=t+1}^{I} \frac{iP(i)}{q_2(t)} \\
-\sigma_1^2(t) = \sum_{i=1}^{t} [i-\mu_1(t)]^2 \frac{P(i)}{q_1(t)} \quad & \& \quad \sigma_2^2(t) = \sum_{i=t+1}^{I} [i-\mu_1(t)]^2 \frac{P(i)}{q_2(t)}
+\sigma_1^2(t) = \sum_{i=1}^{t} [i-\mu_1(t)]^2 \frac{P(i)}{q_1(t)} \quad & \& \quad \sigma_2^2(t) = \sum_{i=t+1}^{I} [i-\mu_2(t)]^2 \frac{P(i)}{q_2(t)}
 \end{aligned}
 $$
 
