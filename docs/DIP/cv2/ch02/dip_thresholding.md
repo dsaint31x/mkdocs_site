@@ -1,5 +1,8 @@
 # Image Thresholding
 
+* [관련 gist](https://gist.github.com/dsaint31x/e617e8ada55584850247d8a3837bf49a)
+
+
 ## Goal
 
 이 문서에서는 `Binary Image`에 대해 소개하고,  
