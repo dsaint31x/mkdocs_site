@@ -199,8 +199,10 @@ $$
 $$
 
 > Multi-class classification 의 경우  
-> Imbalanced classes의 경우에 대해 Weighted Average 와 매우 비슷한 수치이며.  
-> Accuracy와 동일하기 때문에  
+> Imbalanced classes의 경우에 대해 Micro Average와 Macro Average가 큰 차이를 보이며,  
+> Weighted Average는 그 사이에 존재 (경우에 따라 차이는 있으나 Micro와 weighted가 좀더 비슷함).
+>   
+> Macro average는 Accuracy와 동일하기 때문에  
 > scikit-learn 등에서 제공하는 함수들에서  
 > Macro Average와 Weighted Average만을 기본으로 제공하고 Micro avg.는 제공하지 않음.  
 
@@ -367,7 +369,7 @@ graph가 Left-top (High recall and Low FPR)에 가까울수록 높은 성능의 
 
 ### False Positive Rate (=FPR)
 
-실제 negative 인 sample을 얼마나 잘못 postive로 판정했는지를 나타내는 비율.
+실제 negative 인 sample을 얼마나 잘못 positive로 판정했는지를 나타내는 비율.
 `fall out` 이라고도 불리며, 모델의 negative label에 대한 성능을 나타냄.
 
 $$
@@ -397,12 +399,12 @@ ROC Curve에서 curve 아래의 area(면적)을 가르키며, 1에 가까울수�
 
 ## **PR-Curve vs. ROC-Curve**
 
-다음과 같은 경우, RR-Curve가 ROC-Curve 보다 선호된다.
+다음과 같은 경우, PR-Curve가 ROC-Curve 보다 선호된다.
 
 * Label이 Positive인 sample이 적은 경우 (데이터 불균형이 심한 경우) 또는  
 * false positive 를 false negative 보다 중요하게 생각할 때
 
-> 위의 경우, ROC-Curve의 경우보다 PR-Curve는 ***보다 AUC가 낮게 나와서 성능의 차이를 보다 잘 보여준다*** .
+> 위의 경우, ROC-Curve의 경우보다 PR-Curve는 ***보다 AP(개념상 AUC)가 낮게 나와서 성능의 차이를 보다 잘 보여준다*** .
 
 다음 그림은 MNIST에서 5와 5가 아닌 경우를 분류하는 binary classification을 수행하는 동일 모델에 대해 ROC-Curve와 PR-Curve를 그린 것임.
 
@@ -432,6 +434,8 @@ $$
 * Recall이 보다 중요할 경우 보통  $\beta=2$ : 의료분야 등에서 많이 이용됨.
     * $\beta=2$인 경우, recall이 precision에 비해 4배 더 반영됨.  
 * Precision이 보다 중요할 경우 $\beta=0.5$
+
+$$\beta = \sqrt{\frac{\alpha}{1-\alpha}}, \alpha = \frac{\beta^2}{1+\beta^2}$$
 
 ---
 

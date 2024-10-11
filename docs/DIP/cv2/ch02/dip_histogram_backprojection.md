@@ -14,7 +14,7 @@ Hue와 Saturation으로 이루어진 Histogram을 이용하여 다음의 task를
 ## Algorithm in Numpy
 
 1. Hue, saturation 2d histogram을 분리하고자 하는 object 와 전체 image 각각에 대해 구한다.
-2. 이 두 2d histogram의 ratio $R=\frac{\text{Obj}}{\text{I}}$를 구하고, 이 ratio를 pixel에 backprojectino한다.
+2. 이 두 2d histogram의 ratio $R=\frac{\text{Obj}}{\text{I}}$를 구하고, 이 ratio를 pixel에 backprojection한다.
     * Backprojection으로 나오는 image $B(x,y)=R[h(x,y), s(x,y)]$가 된다.
     * 즉 결과 이미지의 pixel intensity는 해당 pixel의 Hue와 Saturation에서의 $R$값으로 값이 클수록 찾고자 하는 object에 속한 pixel일 확률 큼.
 3. 2번의 결과 이미지로 구해지는 Mask 경계를 부드럽게 하기 위해 blurring이나 morphologic processing을 수행한다. 
