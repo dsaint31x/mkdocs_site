@@ -8,9 +8,7 @@ Centroid, Area, Perimeter 등은 이전에 다룸.
 
 종횡비 (가로세로비)라고도 불림.
 
-$$
-\text{Aspect_Ratio} = \frac{\text{Width}}{\text{Height}}
-$$
+$$\text{AspectRatio} = \frac{\text{Width}}{\text{Height}}$$
 
 ```Python
 x,y,w,h = cv2.boundingRect(cnt)
@@ -21,9 +19,7 @@ aspect_ratio = float(w)/h
 
 ## Extent
 
-$$
-\text{Extent} = \frac{\text{Object_Area}}{\text{Bounding_Rectangle_Area}}
-$$
+$$\text{Extent} = \frac{\text{ObjectArea}}{\text{BoundingRectangleArea}}$$
 
 ```Python
 area    = cv2.contourArea(cnt)
@@ -37,7 +33,7 @@ extent = float(area)/rect_area
 ## Solidity
 
 $$
-\text{Solidity} = \frac{\text{Contour_Area}}{\text{ConvexHull_Area}}
+\text{Solidity} = \frac{\text{ContourArea}}{\text{ConvexHullArea}}
 $$
 
 ```Python
@@ -54,7 +50,7 @@ solidity = float(area)/hull_area
 Contour의 넓이와 동일한 넓이를 가진 원의 지름.
 
 $$
-\text{Equivalent_Diameter} = \sqrt{\frac{4 \times \text{Contour_Area}}{\pi}}
+\text{EquivalentDiameter} = \sqrt{\frac{4 \times \text{ContourArea}}{\pi}}
 $$
 
 > Equivalent Diameter is the diameter of the circle whose area is same as the contour area.
