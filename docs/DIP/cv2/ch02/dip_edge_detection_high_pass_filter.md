@@ -178,11 +178,12 @@ cv2.Sobel(src,
 ```
 
 - `src`: input
-- `dx`: x에 대한 미분 차수
-- `dy`: y에 대한 미분 차수
+- `dx`: x에 대한 미분 차수 (order)
+- `dy`: y에 대한 미분 차수 (order)
 - `ksize`: Sobel kernel 크기 (1,3,5,7 만 가능)
 
-x축과 y축에 가해지는 미분 차수(degree)를 다르게 설정 (order가 아닌 degree임)할 수 있으며, kernel size (`ksize`)도 조절가능함.
+x축과 y축에 가해지는 미분 차수 order로 degree와 다름 주의. 2차미분도 가능하다는 애기임 (Laplace와 결과값이 조금 차이가 존재.)  
+kernel size (`ksize`)도 조절가능함.
 
 * [degree 란?](https://dsaint31.tistory.com/entry/Math-Differential-Equation#Degree)
 
