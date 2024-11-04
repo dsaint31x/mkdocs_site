@@ -44,6 +44,7 @@ $$
 
 좀더 수식에서 중요한 부분에 집중하기 위해 $x_o=y_o=0$으로 처리하여 전개하면 다음과 같음.
 
+
 $$
 \begin{aligned}\nabla^2G(x,y)=&\frac{\partial^2}{\partial x^2} G(x,y)+\frac{\partial^2}{\partial y^2} G(x,y)\\
 =& \frac{1}{2\pi\sigma_x \sigma_y} \left[ \frac{\partial}{\partial x}\left\{\frac{-x}{\sigma_x^2} \text{exp} \left( -\left( \dfrac{x^2}{2\sigma_\text{x}^2}+\dfrac{y^2}{2\sigma_\text{y}^2}\right)\right)\right\} 
@@ -54,7 +55,6 @@ $$
 =& \left[\left(\frac{x^2}{\sigma_x^4} - \frac{1}{\sigma_x^2}\right) + \left(\frac{y^2}{\sigma_y^4} - \frac{1}{\sigma_y^2}\right)\right] \frac{1}{2\pi\sigma_x\sigma_y}   \exp\left(-\frac{x^2}{2\sigma_x^2} - \frac{y^2}{2\sigma_y^2}\right) 
 \\ =& \left(\frac{x^2}{\sigma_x^4} + \frac{y^2}{\sigma_y^4} - \frac{1}{\sigma_x^2} - \frac{1}{\sigma_y^2}\right) \frac{1}{2\pi\sigma_x\sigma_y} \exp\left(-\frac{x^2}{2\sigma_x^2} - \frac{y^2}{2\sigma_y^2}\right) 
 \\ =& \left(\frac{x^2}{\sigma_x^4} + \frac{y^2}{\sigma_y^4} - \frac{1}{\sigma_x^2} - \frac{1}{\sigma_y^2}\right) G(x,y,\sigma_x,\sigma_y)
-
 \end{aligned}
 $$
 
