@@ -20,6 +20,8 @@ $$m_{pq} = \sum_y\sum_x x^p y^q I(x, y) $$
 > (raw) moment의 값은 pixel intensity 뿐 아니라 pixel의 (절대)위치에 매우 큰 영향을 받는다.  
 > 보통 원점을 기준으로 계산된다.
 
+---
+
 ### Central Moment
 
 앞서 본 spatial moment는 pixel의 좌표값에 영향을 크게 받기 때문에, 이미지 내에서의 절대 위치에 따라 값이 많이 바뀌게 된다. 
@@ -32,12 +34,15 @@ $$\mu_{pq} = \sum_y\sum_x (x-\bar{x})^p (y-\bar{y})^q I(x, y) $$
 
 $\bar{x},\bar{y}$ : x, y의 mean으로 중심(image의 중심)에 해당한다.
 
+---
+
 ### Normalized Central Moment
 
 중심 모멘트를 통해 두 이미지 상의 객체가 같은지 비교할 수 있으나, 이미지의 배율 등에 따라 central moment는 같은 object에서도 차이를 가질 수 있음. object의 전체 크기를 나누어서 좀더 robust하게 만든 것이 바로 normalized central moment임.
 
 $$\nu_{pq}= \frac{\mu_{pq}}{\mu_{00}^{\left(1+\frac{p+q}{2}\right)}}$$
 
+---
 
 ### OpenCV 에서 moment구하기.
 
@@ -70,9 +75,111 @@ print( M )
 * 'nu20', 'nu11', 'nu02' 
 * 'nu30', 'nu21', 'nu12', 'nu03'
 
+Hu Moment는 일종의 global feature로 사용가능하다.  
+
+* 보다 자세한 건 다음 URL을 참고할 것: [Hu Moement란](https://dsaint31.tistory.com/800)
+
+Hu Moment를 사용하여 shape의 similarity를 계산하는 것을 일종의 shape기반의 matching이라고도 볼 수 있음.
+
+* OpenCV에서는 `cv2.matchShape()`함수로 이를 제공함 
+
+---
+
+## Hu Moment:Match Shapes
+
+object의 contour를 기반으로 object간의 shape가 유사한지 여부를 판정할 수 있음.
+
+OpenCV는 hu-moment를 기반으로 shape의 유사도를 측정하는 `cv2.matchShapes`를 제공함.
+
+```Python
+ret = cv2.matchShapes(
+    cnt1,
+    cnt2,
+    1,  # methods
+    0.0 # 0.0으로 항상 입력.
+    )
+```
+
+해당 방법에 대한 공식은 다음을 참고 : [ShapeMatchMode](https://docs.opencv.org/3.4/d3/dc0/group__imgproc__shape.html#gaf2b97a230b51856d09a2d934b78c015f)
+
+세번째 parameter `method`는 유사도 측정에 사용할 norm을 지정한다.
+
+* `0` : L1을 기반.
+* `1` : L2을 기반.
+* `2` : L3을 기반.
+
+> 즉, `ret`이 작을수록 비슷한 shape임을 의미함.
+
+마지막 parameter는 세번째 parameter에 지정한 method에서 필요한 값을 넣어주기 위해 할당되었지만, 아직 제대로 지원되지 않으므로 `0.0`을 넣어준다.
+
+다음 example은 아래 3개의 그림에서 A와 B의 shape의 차이, A와 C의 차이를 구함.
+
+![](../../img/ch02/match_shape.png)
+
+* A와 B의 차이는 `0.002025592564504297`
+
+* A와 C의 차이는 `0.3269117851861144`
+
+```Python
+import cv2
+import numpy as np
+
+url = 'https://raw.githubusercontent.com/dsaint31x/OpenCV_Python_Tutorial/master/images/star.png'
+image_ndarray = np.asarray(bytearray(requests.get(url).content), dtype=np.uint8)
+img = cv2.imdecode(image_ndarray, cv2.IMREAD_UNCHANGED)
+img = cv2.cvtColor(img, cv2.COLOR_BGRA2GRAY)
+img1 = img.copy()
+
+url = 'https://raw.githubusercontent.com/dsaint31x/OpenCV_Python_Tutorial/master/images/star2.png'
+image_ndarray = np.asarray(bytearray(requests.get(url).content), dtype=np.uint8)
+img = cv2.imdecode(image_ndarray, cv2.IMREAD_UNCHANGED)
+img = cv2.cvtColor(img, cv2.COLOR_BGRA2GRAY)
+img2 = img.copy()
+
+url = 'https://raw.githubusercontent.com/dsaint31x/OpenCV_Python_Tutorial/master/images/rect.png'
+image_ndarray = np.asarray(bytearray(requests.get(url).content), dtype=np.uint8)
+img = cv2.imdecode(image_ndarray, cv2.IMREAD_UNCHANGED)
+img = cv2.cvtColor(img, cv2.COLOR_BGRA2GRAY)
+img3 = img.copy()
+
+assert img1 is not None, "file could not be read, check with os.path.exists()"
+assert img2 is not None, "file could not be read, check with os.path.exists()"
+assert img3 is not None, "file could not be read, check with os.path.exists()"
+
+
+ret, thresh  = cv2.threshold(img1, 127, 255,0)
+ret, thresh2 = cv2.threshold(img2, 127, 255,0)
+ret, thresh3 = cv2.threshold(img3, 127, 255,0)
+
+contours, hierarchy = cv2.findContours(thresh,cv2.RETR_LIST,cv2.CHAIN_APPROX_SIMPLE)
+cnt1 = contours[0]
+
+contours,hierarchy = cv2.findContours(thresh2,2,1)
+cnt2 = contours[0]
+ret = cv2.matchShapes(cnt1,cnt2,1, 0.0)
+print( ret )
+
+contours,hierarchy = cv2.findContours(thresh3,2,1)
+cnt3 = contours[0]
+ret = cv2.matchShapes(cnt1,cnt3,1, 1.0)
+print( ret )
+```
+
+> Hu moment는 translation, rotation and scale에 대해 영향을 크게 받지 않는다.  
+> 자세한 건 다음을 참고할 것 : 
+> 
+> * [cv2.HuMoments](https://docs.opencv.org/3.4/d3/dc0/group__imgproc__shape.html#gab001db45c1f1af6cbdbe64df04c4e944)
+> * [Hu Moement란](https://dsaint31.tistory.com/800)
+
+---
+
+---
+
 ## Centroid
 
-moment로부터 구할 수 있다.
+mass of center 라고도 자주 불림.
+
+1차 moment로부터 구할 수 있다.
 
 다음과 같이 1st moment들을 0th moment로 나누어서 구한다.
 
@@ -89,10 +196,15 @@ cy = int(M['m01']/M['m00'])
 print(cx,cy)
 ```
 
+---
+
+---
 
 ## Contour Area
 
-Contour의 넓이에 해당함. 0th moment에 해당하기도 한다.
+Contour의 넓이에 해당함. 
+
+**0th moment** 에 해당하기도 한다.
 
 ```Python
 cnt = contours[0]
@@ -102,6 +214,76 @@ print(M['m00']) # area
 area = cv2.contourArea(cnt)
 print(area) # area
 ```
+
+---
+
+---
+
+## Fitting an Ellipse
+
+object를 (대략) 감싸고 있는 타원을 구할 수 있음. (완전히 감싸지 않음.)
+
+**2nd moment** 를 이용하여 장축과 단축을 구하여 얻어짐.
+
+```Python
+ellipse  = cv2.fitEllipse(contours[0])
+print(ellipse)
+tmp0 = tmp.copy()
+tmp0 = cv2.ellipse (tmp0,ellipse ,(0,255,0),2)
+plt.imshow(tmp0[...,::-1])
+plt.xticks([]),plt.yticks([])
+plt.show()
+```
+
+위의 코드에서 반환되는 `ellipse`는 다음의 정보를 가지는 tuple임.
+
+```Python
+(
+    (center_x, center_y),
+    (major_axis_length, minor_axis_length),
+    angle_between_x_and_major
+)
+```
+
+* `(center_x, center_y)` : 중점의 x,y coordinate
+* `(major_axis_length, minor_axis_length)` : ellipse의 major axis와 minor aixs의 length
+* `angle` : x-axis와 major axis의 사이각 (CW, degrees)
+
+위의 ellipse 정보로 타원을 그리는 `cv2.ellipse`에 대해 자세한 건 다음 URL을 참조 : [cv2.ellipse](../ch00/dip_0_02.md#drawing-ellipse)
+
+
+![](../../img/ch02/fitting_ellipse.png)
+
+---
+
+---
+
+## Fitting a Line
+
+Object에 맞추어 놓여진 line을 구함.
+
+역시 2nd moment에 기반함.
+
+```Python
+rows,cols = tmp.shape[:2]
+[vx,vy,x,y] = cv2.fitLine(contours[0], cv2.DIST_L2,0,0.01,0.01)
+lefty = int((-x*vy/vx) + y)
+righty = int(((cols-x)*vy/vx)+y)
+
+tmp0 = tmp.copy()
+cv2.line(tmp0,(cols-1,righty),(0,lefty),(0,255,0),2)
+plt.imshow(tmp0[...,::-1])
+plt.xticks([]),plt.yticks([])
+plt.show()
+```
+
+![](../../img/ch02/fitting_a_line.png)
+
+---
+
+---
+
+---
 
 ## Contour Perimeter
 
@@ -113,6 +295,10 @@ print(perimeter)
 ```
 
 * 2번째 argument는 해당 contour가 closed인지 여부를 나타냄.
+
+---
+
+---
 
 ## Contour Approximation
 
@@ -205,6 +391,10 @@ plt.show()
 
 ![](../../img/ch02/contour_approximation.png)
 
+---
+
+---
+
 ## Convex Hull
 
 contour에 대해서, 해당 contour를 둘러싸는 다각형을 Convex Hull이라고 부름.
@@ -229,6 +419,10 @@ hull = cv2.convexHull(
 * `returnPoints` : `True`인 경우, convexHull을 구성하는 vertex들의 좌표들로 구성된 list를 반환하고, `False`인 경우, 입력 argument로 들어온 `points`에서 convexHull에 대응하는 vertex들의 index들을 반환함.
 
 > 파손이 된 부품에서 파손된 위치등을 찾는 경우에는 `convexity defeat`의 위치를 찾아야 하는 경우가 많다. 이 경우에는 `returnPoints`를 False로 넘겨주어서 contour 중에서 어떤 index의 vertex가 convexHull에 속하는지를 찾은 후, 이를 `cv2.convexityDefects()`에 contour와 함께 넘겨주어 찾을 수 있음.
+
+---
+
+---
 
 ## Convexity Defects
 
@@ -303,6 +497,10 @@ plt.show()
 ![](../../img/ch02/star_convexity_defeat.png)
 
 
+---
+
+---
+
 ## Checking Convexity
 
 OpenCV는 특정 contour나 curve등이 convex인지 여부를 확인하는 function을 제공해줌.
@@ -311,6 +509,12 @@ OpenCV는 특정 contour나 curve등이 convex인지 여부를 확인하는 func
 k = cv2.isContourConvex(contours[0])
 print(k)
 ```
+
+
+---
+
+---
+
 
 ## Point Polygon Test
 
@@ -324,88 +528,9 @@ cv2.pointPolygonTest(
 
 특정 point가 object의 contour 내에 존재하는 경우에는 contour와의 거리를 양으로 반환하고, contour 밖에 있는 경우 음의 거리를 반환하여, 특정 point가 특정 object에 속하는지를 확인할 수 있음.
 
-## Match Shapes
+---
 
-object의 contour를 기반으로 object간의 shape가 유사한지 여부를 판정할 수 있음.
-
-OpenCV는 hu-moment를 기반으로 shape의 유사도를 측정하는 `cv2.matchShapes`를 제공함.
-
-```Python
-ret = cv2.matchShapes(
-    cnt1,
-    cnt2,
-    1,  # methods
-    0.0 # 0.0으로 항상 입력.
-    )
-```
-
-해당 방법에 대한 공식은 다음을 참고 : [ShapeMatchMode](https://docs.opencv.org/3.4/d3/dc0/group__imgproc__shape.html#gaf2b97a230b51856d09a2d934b78c015f)
-
-세번째 parameter `method`는 유사도 측정에 사용할 norm을 지정한다.
-
-* `0` : L1을 기반.
-* `1` : L2을 기반.
-* `2` : L3을 기반.
-
-> 즉, `ret`이 작을수록 비슷한 shape임을 의미함.
-
-마지막 parameter는 세번째 parameter에 지정한 method에서 필요한 값을 넣어주기 위해 할당되었지만, 아직 제대로 지원되지 않으므로 `0.0`을 넣어준다.
-
-다음 example은 아래 3개의 그림에서 A와 B의 shape의 차이, A와 C의 차이를 구함.
-
-![](../../img/ch02/match_shape.png)
-
-* A와 B의 차이는 `0.002025592564504297`
-
-* A와 C의 차이는 `0.3269117851861144`
-
-```Python
-import cv2
-import numpy as np
-
-url = 'https://raw.githubusercontent.com/dsaint31x/OpenCV_Python_Tutorial/master/images/star.png'
-image_ndarray = np.asarray(bytearray(requests.get(url).content), dtype=np.uint8)
-img = cv2.imdecode(image_ndarray, cv2.IMREAD_UNCHANGED)
-img = cv2.cvtColor(img, cv2.COLOR_BGRA2GRAY)
-img1 = img.copy()
-
-url = 'https://raw.githubusercontent.com/dsaint31x/OpenCV_Python_Tutorial/master/images/star2.png'
-image_ndarray = np.asarray(bytearray(requests.get(url).content), dtype=np.uint8)
-img = cv2.imdecode(image_ndarray, cv2.IMREAD_UNCHANGED)
-img = cv2.cvtColor(img, cv2.COLOR_BGRA2GRAY)
-img2 = img.copy()
-
-url = 'https://raw.githubusercontent.com/dsaint31x/OpenCV_Python_Tutorial/master/images/rect.png'
-image_ndarray = np.asarray(bytearray(requests.get(url).content), dtype=np.uint8)
-img = cv2.imdecode(image_ndarray, cv2.IMREAD_UNCHANGED)
-img = cv2.cvtColor(img, cv2.COLOR_BGRA2GRAY)
-img3 = img.copy()
-
-assert img1 is not None, "file could not be read, check with os.path.exists()"
-assert img2 is not None, "file could not be read, check with os.path.exists()"
-assert img3 is not None, "file could not be read, check with os.path.exists()"
-
-
-ret, thresh  = cv2.threshold(img1, 127, 255,0)
-ret, thresh2 = cv2.threshold(img2, 127, 255,0)
-ret, thresh3 = cv2.threshold(img3, 127, 255,0)
-
-contours, hierarchy = cv2.findContours(thresh,cv2.RETR_LIST,cv2.CHAIN_APPROX_SIMPLE)
-cnt1 = contours[0]
-
-contours,hierarchy = cv2.findContours(thresh2,2,1)
-cnt2 = contours[0]
-ret = cv2.matchShapes(cnt1,cnt2,1, 0.0)
-print( ret )
-
-contours,hierarchy = cv2.findContours(thresh3,2,1)
-cnt3 = contours[0]
-ret = cv2.matchShapes(cnt1,cnt3,1, 1.0)
-print( ret )
-```
-
-> hu-moment는 translation, rotation and scale에 대해 영향을 크게 받지 않는다. 자세한 건 다음을 참고할 것 : [cv2.HuMoments](https://docs.opencv.org/3.4/d3/dc0/group__imgproc__shape.html#gab001db45c1f1af6cbdbe64df04c4e944)
-
+---
 
 ## Bounding Rectangle
 
@@ -418,6 +543,9 @@ print( ret )
 * 붉은색의 사각형은 rotated bounding rectangle이라고 불림.
     * `cv2.minAreaRect()`를 통해 구해짐.
 
+
+---
+
 ### straight bounding rectangle
 
 ```Python
@@ -425,6 +553,8 @@ x,y,w,h = cv.boundingRect(contours[0])
 ```
 
 * 하나의 contour를 넘겨주면 됨.
+
+---
 
 ### rotated bounding rectangle
 
@@ -443,6 +573,10 @@ cv2.drawContours(tmp,[box],0,(0,0,255),2)
 
 * 위에서 얻어진 `rect`를 `cv2.boxPoints`를 통해 4개의 vertex를 얻어낼 수 있음.
 
+---
+
+---
+
 ## Minimum Enclosing Circle
 
 object를 감싸고 있는 원을 구할 수 있음.
@@ -460,57 +594,9 @@ plt.show()
 
 ![](../../img/ch02/minimum_enclosing_circle.png)
 
-## Fitting an Ellipse
+---
 
-object를 (대략) 감싸고 있는 타원을 구할 수 있음. (완전히 감싸지 않음.)
-
-```Python
-ellipse  = cv2.fitEllipse(contours[0])
-print(ellipse)
-tmp0 = tmp.copy()
-tmp0 = cv2.ellipse (tmp0,ellipse ,(0,255,0),2)
-plt.imshow(tmp0[...,::-1])
-plt.xticks([]),plt.yticks([])
-plt.show()
-```
-
-위의 코드에서 반환되는 `ellipse`는 다음의 정보를 가지는 tuple임.
-
-```Python
-(
-    (center_x, center_y),
-    (major_axis_length, minor_axis_length),
-    angle_between_x_and_major
-)
-```
-
-* `(center_x, center_y)` : 중점의 x,y coordinate
-* `(major_axis_length, minor_axis_length)` : ellipse의 major axis와 minor aixs의 length
-* `angle` : x-axis와 major axis의 사이각 (CW, degrees)
-
-위의 ellipse 정보로 타원을 그리는 `cv2.ellipse`에 대해 자세한 건 다음 URL을 참조 : [cv2.ellipse](../ch00/dip_0_02.md#drawing-ellipse)
-
-
-![](../../img/ch02/fitting_ellipse.png)
-
-## Fitting a Line
-
-Object에 맞추어 놓여진 line을 구함.
-
-```Python
-rows,cols = tmp.shape[:2]
-[vx,vy,x,y] = cv2.fitLine(contours[0], cv2.DIST_L2,0,0.01,0.01)
-lefty = int((-x*vy/vx) + y)
-righty = int(((cols-x)*vy/vx)+y)
-
-tmp0 = tmp.copy()
-cv2.line(tmp0,(cols-1,righty),(0,lefty),(0,255,0),2)
-plt.imshow(tmp0[...,::-1])
-plt.xticks([]),plt.yticks([])
-plt.show()
-```
-
-![](../../img/ch02/fitting_a_line.png)
+---
 
 ## References
 

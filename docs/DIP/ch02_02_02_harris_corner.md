@@ -5,16 +5,17 @@
 
 특정 point가 `corner`, `edge`인지 여부를 식별할 수 있는 방법 : 
 
-* `SIFT` Feature Detector 보다 성능이 떨어지나 간단한 경우에서는 많이 사용된다. 
-* 물론 가장 대중적인 방법은 `SIFT`이다 
-* scale에 대한 robust 측면에서 SIFT가 월등히 좋은 성능을 보임.
+* local feature detection의 기법으로 많이 애용됨: corner는 local feature로 사용하기 좋은 key point에 해당함.
+* `SIFT` Feature Detector 에서 사용된다. 
+* Gradient에 기반한 Structure Tensor를 사용하는 대표적인 Corner Detection알고리즘임.
+* scale에 대해 취약한 단점이 있어서 SIFT에서는 이를 보완하여 사용한다.
 
 하지만, Harris and Stephen이 제안한 방법은 
 
 * mathematical approach로서 
 * `SIFT` 를 포함한 여러 방법의 기반이 되어줌.
 
-Harris Corner Detector도 
+참고로 Harris Corner Detector도 Moravec의 SSD에 기반함.
 
 * Moravec이 제안한 Moravec Feature Point Detector (1977)에서 사용하고 있는 
 * `(Weighted) Sum of Squared Difference` (`SSD` 또는 Difference 대신 Error를 써서 `SSE` 라고도 함)를 사용함.
@@ -66,7 +67,7 @@ $$
 
 * 위 식은 Taylor series expansion에서 1차 미분까지만 사용하여 approximation을 수행함.
 
-이를 $E$에 대입하면 다음과 같은 approximation을 얻게 됨.
+이를 SSD $E$에 대입하면 다음과 같은 approximation을 얻게 됨.
 
 $$\begin{aligned}E(\Delta x,\Delta y) &= \sum_{(x,y) \in W} W(x,y) \left[ I(x+\Delta x, y+\Delta y)-I(x, y) \right]^2\\&\approx\sum_{(x,y) \in W} W(x,y)\left[ \left( \dfrac{\partial I(x,y)}{\partial x} \Delta x \right)^2 + \left( \dfrac{\partial I(x,y)}{\partial y} \Delta y \right)^2 +2 \dfrac{\partial I(x,y)}{\partial x}\dfrac{\partial I(x,y)}{\partial y} \Delta x \Delta y\right]\end{aligned}$$
 
@@ -111,11 +112,13 @@ $W$를 어떤 것을 사용하는냐에 따라 성능의 차이가 있음.
 
 ---
 
-## Covariance Matrix and Curvature
+## Structure Tensor and Curvature
 
 여기서, quadratic form의 
 
-* 가운데 matrix $H$는 Covariance Matrix (Covariance matrix 의 Approximation라고도 볼 수 있음) 이며,  
+* 가운데 matrix $H$를 가르켜 Structure Tensor라고 부름.
+    * PCA등의 Covariance Matrix 와 비슷.
+    * 뒤에 다룰 Hessian과도 비슷함.  
 * $H$는 항상 symmetric이므로 ***eigen decomposition이 가능 (정확히는 orthogonal diagonalization***) 함.
 
 eigen decomposition이나 orthogonal diagonalization 등의 좀 더 자세한 내용은 다음 URL 참고:  
@@ -124,21 +127,22 @@ eigen decomposition이나 orthogonal diagonalization 등의 좀 더 자세한 �
 
 > ***참고***
 >  
-> 가운데 covariance matrix $H$는 Auto-correlation matrix 또는 2nd moment matrix라고도 불림.  
+> 가운데 Structure Tensor $H$는 Auto-correlation matrix 또는 2nd moment matrix라고도 불림.  
 > $\frac{1}{2}I^2$의 Hessian의 approximation (Taylor expansion에서 2차항을 무시한 approximation)으로도 볼 수 있음.  
 >
 
 위의 $2 \times 2$ Covariance matrix $H$의 경우, 
 
 * diagonalization (or eigen decomposition)을 통해 
-* 2개의 eigen value와 서로 orthonormal한 eigen vector 2개를 얻을 수 있음. 
+* 2개의 eigen value와 서로 orthonormal한 eigenvector 2개를 얻을 수 있음. 
 
 $$H=Q\Lambda Q^{-1}=Q\Lambda Q^\top$$
 
 where
 
 * $Q$는 eigen vector들을 column으로 가지는 matrix. 
-    * covariance matrix가 symmetric이고 이를 orthogonal diagonalization 한 경우이므로 
+    * Structure Tensor가 항상 symmetric임.
+    * Symmetric matrix를 orthogonal diagonalization 할 경우,  
     * 각 column 에 해당하는 eigen vector들은 ***mutually orthogonal*** 임.
     * 때문에 $Q$는 [orthogonal matrix](https://dsaint31.tistory.com/392)임: $Q^{-1} = Q^\top$.
 * $\Lambda$는 eigen value들이 main diagonal에 위치하는 diagonal matrix임.
@@ -149,7 +153,7 @@ where
 * ellipse는 $E$에서 같은 값을 가지는 등고선이라고 볼 수 있으므로, 
     * 장축에 해당하는 방향 ($\lambda_\text{min}$에 대응)으로는 SSD의 변화가 크지 않고
     * 단축에 해당하는 방향 ($\lambda_\text{max}$에 대응)으로는 SSD의 변화가 큼.
-* $Q$와 $Q^\top$ 는 일종의 회전변환으로 SSE의 변화율이 최대인 축과 이에 직교하는 축으로 basis변환시키고, 이를 다시 원래 축으로 돌리는 역할을 수행함.
+* $Q$와 $Q^\top$ 는 일종의 *회전변환* 으로 SSE의 변화율이 최대인 축과 이에 직교하는 축으로 basis를 변환시키고, 이를 다시 원래 축으로 돌리는 역할을 수행함.
 
 다음 내용은 $H$의 diagonalization이 surface $E$에서의 horizontal slice에서의 ellipse와의 관계를 보여준다.
 
@@ -212,29 +216,25 @@ $E$는 SSD를 의미하며
 
 위 그림은 `Computer Vision with Python 3, Sauyrabh Kapur, Packt`에서 발췌한 것으로 위의 정리를 잘 나타내줌.
 
-Harris & Stephen Corner Detector 에서 Covariance Matrix를 사용하는 부분을,  
-Hessian을 사용하여 Corner 및 Edge 검출이 가능함.  
-(Hessian을 사용한 `Frangi Filter`는 edge detection에 초점을 두고 있음.)
-
-* Covariance Matrix 대신에 Hessian Matrix를 사용하여
-* corner 나 edge를 검출 가능함: Hessian Laplace Detector, SURF 등등.
-
-참고: [Hessian : Summary](https://dsaint31.tistory.com/318)
 
 > 타원에서 장축과 단축에 대해, 
 >   
-> covariance matrix 에 대한 eigenvalue에서 
+> Structure Tensor 에 대한 eigenvalue에서 
 > 
-> * 큰 값에 해당하는 축이 단축이고 2D 타원의 곡률이 작으나 ***SSD의 변화에 해당하는 곡률*** (=$E$의 곡률)은 큼.
-> * 작은 값에 해당하는 축이 장축이고 2D 타원의 곡률이 크지만 ***SSD의 변화에 해당하는 곡률*** (=$E$의 곡률)은 작음.
+> * 큰 값에 해당하는 축이 단축으로, 
+>     * E의 등고선형태 표현인 2D 타원의 곡률이 작으나 
+>     * ***SSD의 변화에 해당하는 곡률*** (=$E$의 곡률)은 큼.
+> * 작은 값에 해당하는 축이 장축이고 
+>     * E의 등고선형태 표현인 2D 타원의 곡률이 크지만 
+>     * ***SSD의 변화에 해당하는 곡률*** (=$E$의 곡률)은 작음.
 >
 > Hessian 도 eigenvalue를 통해 corner와 edge를 검출할 수 있으면, Edge Detection Response Function에서만 차이를 보임. 
 
 ---
 
-## Determinant와 Trace를 이용.
+## Corner Response Function: Determinant와 Trace를 이용.
 
-위의 Covariance Matrix의 `determinant`와 `trace`의 값을 이용하면 다음과 같은 수식을 얻을 수 있으며,  
+위의 Structure Tensor의 `determinant`와 `trace`의 값을 이용하면 다음과 같은 수식을 얻을 수 있으며,  
 이를 Harris corner operator라고 부름.  
 $\frac{1}{f}$를  parallel resistor라고도 부른다.(편의를 위해 $\lambda_0 \ge \lambda_1$를 가정. → $r \ge 1$)
 
@@ -309,9 +309,16 @@ where
 
 ---
 
-## Hessian
+## Hessian 으로 대체
 
-앞서 설명했던대로, Covariance Matrix 대신에 Hessian을 사용할 수도 있음.
+Harris & Stephen Corner Detector 에서 Structure Tensor를 사용하는 부분을,  
+Hessian로 대체해도 Corner 및 Edge 검출이 가능함.  
+(Hessian을 사용한 `Frangi Filter`는 edge detection에 초점을 두고 있음.)
+
+* Structure 대신에 Hessian Matrix를 사용하여
+* corner 나 edge를 검출 가능함: Hessian Laplace Detector, SURF 등등.
+
+참고: [Hessian: Summary](https://dsaint31.tistory.com/318)
 
 이 경우, Corner Response Function은 다음과 같음.
 
@@ -319,6 +326,9 @@ $$R_\text{Hessian} = det[\text{Hessian}] = I_{xx} I_{yy} - I_{xy}^2$$
 
 * $I_{xx}$는 x축으로 2차 미분한 것으로
 * Hessian 은 2nd derivative로 구성되는 것을 기억할 것.
+
+> SURF (Speed-Up Robust Feature)에서 Hessian을 이용함.  
+> SIFT (Scale Invariant Feature Transform)은 Structure Tensor 사용
 
 ---
 
