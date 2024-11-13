@@ -11,10 +11,10 @@ key point detection에서 특정 영역이 곡선인지 직선인지를 판별�
 * scale을 줄여서 작은 영역을 자세히 보는 작은 scale에서는 직선처럼 보일 수 있는 경우이다.
 
 <figure markdown>
-![](../../img/ch02/harris_corner_detection_imple.png){width="400" align="center"}
+![](../../img/ch02/harris_corner_detection.png){width="400" align="center"}
 </figure>
 
-> `scale`은 한 pixel이 담고 있는 region의 크기라고도 생각할 수 있다. 
+> `scale`은 ***한 pixel이 담고 있는 region의 크기*** 라고도 생각할 수 있다. 
 
 만약 한 image에서 커버하고 있는 region은 유지하면서 scale이 커질 경우, 한 pixel이 실제로 커버하고 있는 영역이 커지므로 전체 pixel의 수는 줄어들고 image가 blurring된다. 반대로 scale이 작아질 경우는 pixel의 수가 늘어나고 좀 더 고해상도 영상이 된다.
 
