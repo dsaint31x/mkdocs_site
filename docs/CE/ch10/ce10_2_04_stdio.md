@@ -1,79 +1,187 @@
-# Standard I/O Library
+# I/O Stream 과  Standard I/O Library
 
-## Standard I/O Library란?
+## 1. Stream 이란?
 
-다양한 OS에서 Input/Output(입출력)을 수행할 수 있도록 구현된 라이브러리.
+**스트림(stream)**이라는 개념은 데이터의 흐름을 의미하며, 이를 비트 또는 바이트의 연속으로 생각할 수 있음.
+
+* 종종 bit stream 또는 byte stream 이라고도 불림.
+
+***Programming*** 에서 Stream은 
+
+* 입출력(I/O) 대상(장치, 파일, 소켓 등)으로 데이터를 주고받는 과정을 나타내는 용어. 
+  
+Stream 은 I/O 작업에서 데이터가 어떻게 흐르는지를 이해하는 데 중요한 역할을 하며, 
+다양한 프로그래밍 언어에서 흔히 사용되는 개념임.
+
+* [stream에 대한 다른 글](https://ds31x.tistory.com/341)
+
+예를 들면, standard stream 으로 입력은 키보드, 출력은 모니터 장치에 데이터를 전달됨.
+
+Python에서 이는 `sys` 모듈의 `stdin`과 `stdout`으로 추상화되어 있음.
+
+다음 code snippet은 키보드로부터 입력을 `sys.stdin`으로부터 읽어내어 stream으로 처리하는 것을 보여줌:
+
+```python
+import sys
+data = []
+n = int(sys.stdin.readline()) # 1줄을 읽어들임.
+for i in range(n):
+    data.append(list(map(int,sys.stdin.readline().split())))
+```
+
+* 첫번째 라인에 행의 수를 keyboard로부터 입력받아 변수 `n`에 할당하고, 
+* 이후 공백문자로 구분된 integer들을 가지는 여러 행들을 앞서 입력한 숫자 `n` 만큼 입력해주면 
+* 최종적으로 2차원의 list인 `data` 가 만들어진다.
+
+> Python의 경우 일반적으로 보다 high level I/O인 `input`함수를 이용하지만,  
+> 위의 예에서는 low level I/O 인 file descriptor의 wrapper인 `sys.stdin` 을  
+> 이용한 stream 처리를 사용함.
+
+---
+
+---
+
+## 2. Standard I/O Library란?
+
+다양한 OS에서 Input/Output(입출력)을 수행할 수 있도록 구현된 High Level I/O 라이브러리.
+이 라이브러리는 프로그래머가 하드웨어와 직접 상호작용할 필요 없이 I/O 작업을 수행할 수 있도록 여러 함수를 제공함.  
+이러한 라이브러리 함수들은 ***여러 장치와 상호작용하는 복잡성을 추상화*** 하여 I/O 작업을 더 효율적이고 쉽게 구현할 수 있도록 해 줌.
 
 - 프로그래머는 프로그래밍 과정에서 **직접 입출력을 수행하는 코드를 작성하지 않는다.**
 - 보통 **입출력을 수행하는 Standard I/O 라이브러리의 함수들을 호출** 하여 입출력을 수행함.
-- link 단계에서 코드에서 사용된 이들 라이브러리 함수들이 연결되거나(static link), runtime에 shared library로 있는 이들 라이브러리 함수들을 이용(Dynamic link)하는 방식을 취함.
+    - link 단계에서 코드에서 사용된 이들 라이브러리 함수들이 연결되거나(static link), 
+    - runtime에 shared library로 있는 이들 라이브러리 함수들을 이용(Dynamic link)하는 방식을 취함.
 
 * [Library에 대한 정의](https://dsaint31.tistory.com/entry/Programming-Library-vs-Framework)
 
----
-
-## Low Level I/O : System Call
-
-모든 I/O 처리에서는 `File Descriptor`가 필요하다.  
-(즉, `system call`로 이루어진다는 애기임).  
-
-UNIX의 경우, 모든 입출력 디바이스(소켓 포함)을 file처럼 abstraction (추상화, 또는 가상화라고도 함)시켜 ^^file과 같은 방식으로 처리^^ 함. 
-
-* 해당 디바이스에 해당하는 File Descriptor (해당 resource에 대한 handler)를 open시켜 
-* 해당 디바이스를 사용하고 
-* 사용에 관련된 처리가 끝난 후 close 시켜 OS에게 해당 자원을 돌려주는 방식으로 프로그래밍이 이루어지게 된다.
-
-이는 결국 `system call`을 이용하는 방식으로 `open`, `write`, `read`, `close` 등은 Kernel이 제공하는 system call임.
-
-- 이를 ***저수준 입출력*** 이라 부르며 ^^byte 단위의 입출력^^ 을 수행한다.
+> Standard I/O Library는 High Level I/O 로써, 내부적으로는 OS의 Kernel에서 제공하는 Low Level I/O 를 사용함.
 
 ---
 
-## High Level I/O : Standard I/O Library
+---
 
-Standard I/O Library에서 제공하는 function들은
+## 3. Low Level I/O: System Call
 
-* **고수준 입출력** 으로 
-* 버퍼를 이용하여 한번에 file에서 읽어들이거나 쓸 수 있으며, 
-* 저수준의 system call함수들이 쓰는 file descriptor가 아닌 
-* ***file 구조체에 대한 pointer*** 를 제공(C의 경우)한다.  
+Low Level I/O는 file descriptor(파일 디스크립터)를 사용하여 입력과 출력을 관리하는 system call을 의미함.
 
-> 해당 구조체들(`handle`이라고 불림)은 저수준의 file descriptor 외에도 버퍼의 크기 등에 대한 정보도 가지고 있다. 
+UNIX와 같은 시스템에서는 모든 I/O 장치(소켓 포함)가 file로 추상화되어, 다양한 유형의 I/O를 일관되게 처리할 수 있음.
 
+* 각 I/O 장치는 file descriptor (resource를 식별하는 고유한 identifier)를 얻기 위해 열리고( **open** ),
+* 이 file descriptor 를 통해 장치를 사용하며,
+* 작업이 끝난 후에는 **닫기(close)** 를 통해 OS에 해당 리소스를 반환.
 
-일반적인 프로그래밍 언어에서 각자의 문법으로 제공하는 입출력함수들은 **대부분 고수준의 입출력함수 (user level buffering를 제공)로 생각해도 된다.**  
-물론 이들도 결국에는 저수준 입출력함수 (kernel이 제공하는 입출력함수)를 사용한다.
+> 여기서 `resource` 는 OS가 관리하는 file(파일), memory(메모리), network connection(네트워크 연결) 등과 같은 시스템 자원을 의미합니다.
 
-- 높은 수준의 system programming을 하지 않은 터라… 이 둘의 차이점을 정말 살려서 개발해본 적은 없었던 거 같다.
-    - library를 이용하는 경우를 library call이라고도 부르기도 하며,  ***API (Application Programming Interface)*** 를 이용한다고 지칭하기도 함.
-    - 일반적으로 library의 buffering은 system call 횟수를 지나치게 빈번하게 하지 않기 위한 용도로 제공된다.
-    - 엄밀하게 애기하면 kernel도 내부적으로는 kernel buffering이 된다. 
-      - 명쾌한 설명의 특징은 뭐든지 깊이 들어가면 틀린 부분이 있다고 보면 된다. 
-      - 정확히는 약간의 차이가 항상 있다.
-- AI관련 모델 개발이나 영상처리 등의 수준에선 그냥 그런 게 있다 정도만 알고 있어도 큰 문제는 없을 듯…
-- 당연히 저수준 입출력이 고수준 입출력보다 빠르다
-  - 내부적으로 편의 기능이 없으니…. 
-  - 하지만 리소스가 어찌 보면 넘쳐나는 환경에 있는 application 개발자들에게는 그리 와닿지 않는 장점일 수도 있다.
+일반적으로 사용되는 `system call`에는 `open`, `write`, `read`, `close` 등이 있음.
+
+* 이들은 Kernel 에 의해 직접관리되는 system call임.
+- 이를 사용하는 I/O 방식을 ***Low Level I/O (저수준 입출력)*** 이라 부름.
+- **byte 단위** 로 동작하며, 
+- 높은 제어 수준을 제공하지만, 
+- 이는 모든 세부 사항을 프로그래머가 직접 관리해야 함.
+
+> 높은 제어 수준을 제공하는 경우,  
+> 프로그래머가 구현 및 관리해야하는 내용이 많아지는 단점이 존재함.
 
 ---
 
-## 표준입출력: `stdin`,`stdout`, and `stderr`
+---
+
+## 4. High Level I/O: Standard I/O Library
+
+Standard I/O Library에서 제공하는 functions는 다음의 특징을 가짐:
+
+* **High Level I/O (고수준 입출력)** 을 제공함. 
+* buffered I/O 를 사용하여 한번에 file에서 읽어들이거나 쓸 수 있음. 
+* 저수준의 system call함수들이 file을 일괄적으로 읽거나 쓸 수 있어 효율성이 향상됨.
+* file descriptor 를 직접 다루는 대신, 이를 내부적으로 사용하는 고수준의 파일 객체 (or 이에 대한 포인터: C의 경우 `FILE*`)를 사용함.
+
+> 해당 고수준의 객체(`handle`이라고 불림)들은  
+> 
+> * 저수준의 file descriptor 을 내부에 가지고 있는 일종의 Wrapper로서 
+> * I/O를 위한 버퍼의 크기 등과 같은 추가 정보를 가짐. 
+
+---
+
+### 4-1. High Level I/O 와 Programming Language
+
+대부분의 프로그래밍 언어에서  
+
+* 각자의 문법으로 제공하는 입출력 함수들은 **대부분 고수준의 입출력함수** 로 구현되며, 
+* **user level buffering** 을 추가 제공한다.    
+
+**참고 사항**
+
+* high level I/O도 내부적으로는 저수준 입출력함수 (kernel이 제공하는 입출력함수)를 사용함.
+* high level I/O는 Library Call 또는 API (Application Programming Interface) 를 이용함.
+* 일반적으로 library call 등의 high level I/O에서는 buffering을 통해 system call 의 빈번한 실행을 방지하여 효율성을 높임.
+    - 엄밀하게 애기하면 kernel 에서 system call 도 내부적으로는 kernel buffering 을 사용함. 
+
+버퍼링의 관점에서 다음과 같이 구분됨.
+
+- High Level I/O는 user level buffering 을 지원하고,
+- Low Level I/O는 kernel level buffering 을 지원. 
+
+대부분의 개발자에게는 고수준 I/O가 더 사용하기 편리하고 효율적임.
+버퍼링은 일반적으로 High Level I/O의 특징으로 생각해도 됨(user level buffing 이 흔히 애기하는 buffering에 해당.)
+
+> Low Level I/O가 High Level I/O 보다 속도가 빠름.
+> 이는 편의 기능이 없다는 점에 대한 trade-off 라고 볼 수 있음.
+
+### 4-2. Python에서 Standard I/O Library
+
+Python에서 **표준 I/O 라이브러리**는 `sys` 모듈과 `io` 모듈로 구성됨.  
+
+* 이 모듈들은 파일과 스트림을 다루기 위한 다양한 함수와 클래스들을 제공 
+* `sys` 모듈:
+    * 표준 입출력(`stdin`, `stdout`, `stderr`)을 다룰 때 사용됨. 
+* `io` 모듈:  
+    * `io` 모듈은 파일 객체의 상위 수준 접근을 가능하게 해 줌.
+    * 다양한 버퍼링 옵션을 제공하여 고수준의 I/O 처리를 가능하게 해 줌.
+
+---
+
+---
+
+## 5. 표준 입력,출력,오류 스트림: `stdin`,`stdout`, and `stderr`
 
 모든 user application (혹은 사용자 프로그램)들은 입출력이 필요한데,  
-개발자가 특별히 입력과 출력을 위의 file descriptor (C언어에선 file pointer로 생각하면 편함)등으로 지정하지 않은 경우에는  
+개발자가 파일 디스크립터를 명시적으로 정의하지 않은 경우, 기본적으로 다음과 같이 지정됨:
 
-* 모니터가 표준출력(`stdout`)으로 지정되고 
-* 키보드가 표준입력(`stdin`)으로 지정됨.
+* `stdout` (표준 출력): 일반적으로 모니터.
+* `stdin` (표준 입력): 일반적으로 키보드.
+* `stderr` (표준 오류): 마찬가지로 모니터에 설정되지만, 버퍼링 측면에서 `stdout`과 차이가 있음. 
+    * `stderr`는 버퍼링이 되지 않아 즉시 출력해야 하는 오류 메시지에 적합함.
 
-> Python의 경우, `sys` 모듈의 `stdin` 과 `stdout`으로 지정되어 있고, C의 경우엔 `stdio` 라이브러리의 `stdin` 과 `stdout` 으로 접근가능함.
-> 
+예를 들어, 
 
-하나 더 있는 게, 표준에러인 `stderr` 임.  
-이는 프로그램에서의 에러 출력을 담당하며, `stdout`과 마찬가지로 모니터로 지정되어 있다. 차이는 내부에서 buffer를 사용하느냐 인데 `stderr`는 버퍼를 사용하지 않는다.
+* Python 에서는 이러한 스트림을 `sys` 모듈 (`sys.stdin`, `sys.stdout`, `sys.stderr`)을 통해 사용할 수 있고, 
+* C 에서는 `stdio` 라이브러리를 사용하여 접근할 수 있습니다.
 
-표준 입출력은 워낙 많이 사용하므로 이를 open하고 close하는 것이 프로그래밍에서 명시적으로 하는 경우는 거의 없다고 봐도 된다. 실제로 버퍼를 flush하는 정도까지 필요한 경우는 있지만…
 
-때문에 실제로 open으로 해당 리소스를 얻어오고 close로 닫는 과정은 file 입출력을 통해 접하는게 일반적이다. Python에서 간단한 text를 파일로 저장하는 과정에서 이를 확인할 수 있다.
+> `stdin`, `stdout`, `stderr` 는  
+> OS의 관점에서는 ***file descriptor*** 에 해당하며 `int`형 숫자로 구분됨:  
+> (`0:stdin`, `1:stdout`, `2:stderr`)
+> 하지만, Python과 같은 high level programming language에서는  
+> file object (or file handle) 로 제공됨: (이는 file descriptor를 래핑하고 있는 wrapper임.)
+
+표준 입출력은 워낙 많이 사용하므로 이를 open하고 close하는 것이 프로그래밍에서 명시적으로 하는 경우는 거의 없다고 봐도 된다. 실제로 버퍼를 flush하는 정도까지 필요한 경우는 가끔 있긴 하다.
+
+---
+
+---
+
+## 6. open and close.
+
+일반적인 file descriptor (or file handle)을 통한 I/O(입출력)는 
+
+* open으로 해당 file 리소스를 얻어오고, 
+* 이후 입출력을 수행한 후, close로 닫는 과정을 거침. 
+
+> 예외적인 경우는 `stdin`, `stdout`, `stderr` 와 같은 표준입출력 스트림로  
+> 이들은 따로 열고 닫는 과정이 없음: User Application이 시작할 때 자동으로 open되고, 종료되면 자동으로 close 됨.
+
+Python에서 간단한 문자열을 txt 파일로 저장하는 과정에서 이를 확인할 수 있다.
 
 ```python
 fd = open("test.txt", "w") # fd는 파일핸들러임.
@@ -81,7 +189,7 @@ fd.write("txt for test!\n")
 fd.close()
 ```
 
-open과 close가 항상 짝을 이루어져 수행되어야하는데, 생각보다 귀찮고 자주 잊어버리기 때문에, Python의 경우 `with`구문을 통한 처리가 일반적이다.  
+open과 close가 항상 짝을 이루어져 수행되어야하는데, 생각보다 귀찮고 자주 잊어버리기 때문에, Python의 경우 `with`구문을 통한 context manager 를 이용한 처리가 권장된다.    
 (`with` 블록에서 제어가 나가는 순간 자동으로 file이 close됨)
 
 ```python
@@ -89,30 +197,29 @@ with open("test.txt","w") as fd:
   fd.write("txt for test!\n")
 ```
 
+보다 자세한 File Handling은 다음을 참고할 것:  
+
+* [[Python] File Handling](https://ds31x.tistory.com/139)
+
 ---
 
-## Stream (or IO Stream)
+---
 
-`stream`은 흐름을 애기하며,  
+# 7. 요약: Low Level I/O와 High Level I/O
 
-* ^^입출력을 일종의 bit들의 흐름 (bit stream, byte stream, byte flow)으로 생각^^ 할 수 있기 때문에 
-* 프로그래밍에서 ***I/O 가 이루어지는 대상 (or 매체, 장치, 파일, socket 등)을 가르키는데 사용되는 용어*** 임. 
+**Low Level I/O:**
 
-즉, standard stream이라고 하면, 입력은 키보드이고 출력은 모니터가 될 것이다.
+* System Call(시스템 호출)을 사용하며 
+* 바이트 수준에서 동작하여 
+* I/O에 대한 직접적인 제어를 제공 
+* 더 많은 량의 코드가 필요.
 
-I/O와 함께 자주 나오는 용어이니 잊지 않는 게 좋다.  
-실제로 Python의 `sys.stdin`을 표준 입력 스트림이라고 지칭한다.
+**High Level I/O:** 
 
-Python에서 `sys.stdin`의 활용은 다음 코드를 보면 쉽게 이해가 될 거 같아 첨부한다.
+* 라이브러리 함수를 사용하고 
+* 버퍼링된 I/O를 제공하여 
+* 효율성을 유지하면서도 개발 과정을 단순화.
 
-```python
-import sys
-data = []
-n = int(sys.stdin.readline())
-for i in range(n):
-    data.append(list(map(int,sys.stdin.readline().split())))
-```
+> 저수준 I/O는 추상화가 없기 때문에 더 빠르지만, 오늘날 대부분의 애플리케이션에서는 사용의 편리성과 리소스 관리가 더 중요함.  
+> 일반적으로 Low Level I/O를 사용하여 얻어지는 속도에서의 장점은 대부분의 개발에서 그리 중요하지 않은 편임.
 
-첫번째 라인에 행의 수를 입력받고, 이후 공백문자로 구분된 integer들을 가지는 행을 입력해주면 2차원의 list가 만들어진다.
-
-* [stream에 대한 다른 글](https://ds31x.tistory.com/341)
