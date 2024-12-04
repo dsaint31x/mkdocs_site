@@ -17,6 +17,13 @@ Stream 은 I/O 작업에서 데이터가 어떻게 흐르는지를 이해하는 
 
 예를 들면, standard stream 으로 입력은 키보드, 출력은 모니터 장치에 데이터를 전달됨.
 
+<figure markdown>
+![standard stream](./img/standard_stream.png){width="400"}
+<figcaption>standard stream from wikipedia (default configuration)</figcaption>
+</figure markdown>  
+
+> pipe 또는 redirection 등을 통해 키보드나 모니터가 아닌 다른 process의 stdin과 stdout으로 연결지어질 수도 있음.
+
 Python에서 이는 `sys` 모듈의 `stdin`과 `stdout`으로 추상화되어 있음.
 
 다음 code snippet은 키보드로부터 입력을 `sys.stdin`으로부터 읽어내어 stream으로 처리하는 것을 보여줌:
@@ -24,7 +31,7 @@ Python에서 이는 `sys` 모듈의 `stdin`과 `stdout`으로 추상화되어 �
 ```python
 import sys
 data = []
-n = int(sys.stdin.readline()) # 1줄을 읽어들임.
+n = int(sys.stdin.readline()) # 1줄을 읽어들여서 이후 입력받을 row수를 설정.
 for i in range(n):
     data.append(list(map(int,sys.stdin.readline().split())))
 ```
