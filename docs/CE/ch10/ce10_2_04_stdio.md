@@ -137,7 +137,7 @@ Standard I/O Library에서 제공하는 functions는 다음의 특징을 가짐:
 
 ### 4-2. Python에서 Standard I/O Library
 
-Python에서 **표준 I/O 라이브러리**는 `sys` 모듈과 `io` 모듈로 구성됨.  
+Python에서 **표준 I/O 라이브러리** 는 `sys` 모듈과 `io` 모듈로 구성됨.  
 
 * 이 모듈들은 파일과 스트림을 다루기 위한 다양한 함수와 클래스들을 제공 
 * `sys` 모듈:
@@ -169,6 +169,7 @@ Python에서 **표준 I/O 라이브러리**는 `sys` 모듈과 `io` 모듈로 �
 > `stdin`, `stdout`, `stderr` 는  
 > OS의 관점에서는 ***file descriptor*** 에 해당하며 `int`형 숫자로 구분됨:  
 > (`0:stdin`, `1:stdout`, `2:stderr`)
+> 
 > 하지만, Python과 같은 high level programming language에서는  
 > file object (or file handle) 로 제공됨: (이는 file descriptor를 래핑하고 있는 wrapper임.)
 
@@ -191,7 +192,7 @@ Python에서 **표준 I/O 라이브러리**는 `sys` 모듈과 `io` 모듈로 �
 Python에서 간단한 문자열을 txt 파일로 저장하는 과정에서 이를 확인할 수 있다.
 
 ```python
-fd = open("test.txt", "w") # fd는 파일핸들러임.
+fd = open("test.txt", "w") # fd는 파일핸들임.
 fd.write("txt for test!\n")
 fd.close()
 ```

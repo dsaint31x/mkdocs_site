@@ -148,7 +148,7 @@ Object Detection과 Segmentation의 경우, single object 혹은 multiple object
 
 #### Semantic Segmentation vs. Instance Segmentation
 
-<figure markdwon>
+<figure markdown>
 ![](./img/segmentation_type.png){width=500}
 </figure>
 
