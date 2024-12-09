@@ -1,6 +1,24 @@
-# Computer Structure
+# Computer Architecture
 
-![](./img/computer_structure.png)
+## 1. Computer Architecture란?
+
+***Computer Architecture*** 는 컴퓨터 시스템의 Design과 구조 및 구성요소 또는 이를 다루는 분야를 의미함.
+
+* CPU 
+    * ALU, Control Unit, Register, Cache
+    * ISA (Instruction Set Architecture)
+* Memory
+* I/O Device 
+
+---
+
+---
+
+## 2. Architecture of a Simple Computer System
+
+![](./img/computer_structure.png){width="400"}
+
+> **DM** : Disk Memory. 보통은 storage라고 부름.
 
 * [Memory](./ce04_01_memory.md) *****
     * byte oriented addressing에 대한 이해. 

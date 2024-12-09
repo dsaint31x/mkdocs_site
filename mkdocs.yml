@@ -128,7 +128,7 @@ nav:
         - 'counter':         'CE/ch03_seq/ce03_01_0_4_counter.md'
         - 'register':        'CE/ch03_seq/ce03_01_0_5_register.md'
     - 'HW vs SW':  'CE/ch03_seq/ce03_05_hw_and_sw.md'
-    - 'ch04: Computer Structure':
+    - 'ch04: Computer Architecture (1)':
       - 'CE/ch04/ce04_00_intro_computer_structure.md'
       - "Memory (and Storage)":
         - 'memory summary':  'CE/ch03_seq/ce03_02_0_primary_secondary_memory.md'
@@ -159,7 +159,7 @@ nav:
         - "CE/ch04/ce04_54_multicore_system.md"
         - "CE/ch04/ce04_55_gpgpu_system.md"
         - "CE/ch04/ce04_56_parallel_programming.md"
-    - 'ch05: Computer Architecture':
+    - 'ch05: Computer Architecture (2)':
       - "CE/ch05/ch05_01_01.md"
       - "CE/ch05/ch05_02_01_function.md"
       - "CE/ch05/ch05_03_01.md"
