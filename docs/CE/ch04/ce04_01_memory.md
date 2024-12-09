@@ -6,12 +6,11 @@
 
 ***컴퓨터에서 bit들을 저장하는 장소를 `memory` (기억장치)라고 부른다.***
 
-> 넓은 의미에서의 memory는 storage (주로 block device)를 포함하기도 하나,  
-> 이 문서에서는 좁은 의미의 memory (보다 일반적인 용어)에 초점을 맞춘다.
+> 넓은 의미에서의 memory는 storage (주로 block device)를 포함하기도 함..
 
 ---
 
-## Memory Location and Address
+## 1. Memory Location and Address
 
 memory에 대한 접근은 `address`를 통해 이루어짐 (이를 Random Access라고 부름).
 
@@ -21,7 +20,7 @@ memory에 대한 접근은 `address`를 통해 이루어짐 (이를 Random Acces
 > 과거 일부 컴퓨터 시스템에서는 워드 지향 주소 지정(Word-Oriented Addressing)을 사용하여, 메모리 주소가 바이트가 아닌 워드(일반적으로 2바이트, 4바이트 또는 그 이상의 단위)를 가르키는 경우도 있었지만 오늘날에는 사용되지 않는다.
 
 <figure markdown>
-![](./img/memory_lane.jpeg)
+![](./img/memory_lane.jpeg){width="500"}
 </figure>
 
 위 그림에서 집들은 1byte의 같은 크기를 가지는 각각의 `memory location`을 의미한다.
@@ -35,7 +34,7 @@ Memory의 address를 지정할 때, `byte`들을 2개, 4개, 또는 8개를 묶�
 
 ---
 
-## Memory Address and OS
+## 2. Memory Address and OS
 
 64bit computer 인지 32bit computer 인지 구분은  
 실제로는 CPU 내의 **memory(기억장치)인 register의 크기로 결정** 됨. 
@@ -57,11 +56,11 @@ memory에 저장된 값을 **CPU가 접근** 하기 위해서는
 - 64bit computer가 제대로 동작하려면, HW 측면 외에도 SW 적으로도 64bit가 지원되어야 함.
 - 무엇보다 OS부터 64bit OS를 설치해야 함.
 
-> $2^64$ 은 16,777,216 TiB (Tebibytes, 2의 40승)의 어마어마한 수임.
+> $2^{64}$ 은 16,777,216 TiB (Tebibytes, 2의 40승)의 어마어마한 수임.
 
 ---
 
-## Nonaligned Access
+## 3. Nonaligned Access
 
 32bit Computer의 경우, Memory에서 32bit 단위 즉 **4개의 byte가 묶여서 읽을 수 있음** 
 (register의 크기에 맞추어 생각하자)
@@ -85,22 +84,26 @@ memory에 저장된 값을 **CPU가 접근** 하기 위해서는
 
 ---
 
-## price/performance ratio and Access time
+## 4. Memory Hierarchy: Price/Performance ratio and Access time
 
-`register`
-: 속도는 최고이나 가장 비싸고 많은 데이터 저장이 어려움. CPU 내부에 위치. ALU등이 바로 사용하는 작은 크기의 데이터를 담고 있음. (flip-flop으로 구성됨)
+`Register`
+: 속도는 최고이나 가장 비싸고 많은 데이터 저장이 어려움. CPU 내부에 위치. ALU등이 바로 사용하는 작은 크기의 데이터를 담고 있음.  
+(`flip-flop`으로 구성됨)
 
-`SRAM (Cache)`
-: register보단 느리나 충분한 속도를 가짐. register보단 동일 가격에 보다 많은 데이터를 저장할 수 있음. CPU 내부에 위치 (register보다는 거리가 멀리 있으며 거리순에 따라, l1, l2, l3등으로 나뉨)
+`SRAM (Cache, Static RAM)`
+: register보단 느리나 충분한 속도를 가짐. register보단 동일 가격에 보다 많은 데이터를 저장할 수 있음.  
+CPU 내부에 위치 (register보다는 거리가 멀리 있으며 거리순에 따라, L1, L2, L3등으로 나뉨)
 
-`DRAM` 
-: 주기억장치로 많이 사용됨. SRAM보다는 느리지만 가성비는 보다 나음. 보통 RAM이라고 하면 DRAM을 가르킴
+`DRAM (Dynamic RAM)` 
+: 주기억장치로 많이 사용됨. SRAM보다는 느리지만 가성비는 보다 나음.  
+보통 RAM이라고 하면 DRAM을 가르킴
 
-`HDD`
+`HDD (Hard Disk Drive)`
 : 보조기억장치의 대표격으로 속도는 매우 느리지만, 같은 비용에 매우 많은 데이터를 저장 가능함.
 
-`SSD` 
-: HDD를 대신하는 보조기억장치로 떠오르고 있음. HDD보다 빠른 ACCESS를 보이나 비용이 아직은 HDD보다 높음.
+`SSD (Solid State Drive)` 
+: HDD를 대신하는 보조기억장치로 떠오르고 있음.  
+NAND Flash Memory 이므로, HDD보다 빠른 ACCESS를 보이나 비용이 아직은 HDD보다 높음.
 
 <figure markdown>
 ![](./img/memory_types.jpeg){width="600"}
@@ -114,7 +117,8 @@ memory에 저장된 값을 **CPU가 접근** 하기 위해서는
 
 ---
 
-## References
+## 5. References
 
-* [The Secret Life of Programs, ch4](https://nostarch.com/foundationsofcomp)
+* [The Secret Life of Programs, Ch4](https://nostarch.com/foundationsofcomp)
+* [The Secret Life of Programs, Ch5: 메모리 계층과 성능](https://nostarch.com/foundationsofcomp)
 * [윌리의 Technical References](https://m.blog.naver.com/PostView.naver?isHttpsRedirect=true&blogId=techref&logNo=222246966805)
