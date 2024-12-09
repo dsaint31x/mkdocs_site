@@ -1,5 +1,7 @@
 # Operating System (운영체제)
 
+## 1. OS 란?
+
 * 다음 URL을 꼭 읽어볼 것: [OS란?](https://dsaint31.tistory.com/219)
 
 오케스트라의 지휘자처럼, ^^컴퓨터 시스템을 구성하고 있는 여러가지 자원(resource)^^ 에게 어떤 동작을 하도록 **지시하고 관리하는 역할** 을 하는 ***프로그램들의 집합***.
@@ -23,14 +25,14 @@
 
 ---
 
-## OS의 목적
+## 2. OS의 목적
 
 - **운영체제는 User Interface(사용자 인터페이스)를 제공 → 사용자가 컴퓨터의 H/W 지식 없이도 편리하게 시스템 사용케 함.**
 - **컴퓨터 시스템의 자원들을 효율적인 운영 (자원 스케쥴링 등등)**
 
 ---
 
-## OS가 제공하는 Services
+## 3. OS가 제공하는 Services
 
 1. **프로그램의 실행** : 사용자가 원하는 프로그램을 실행시킴.
 2. **입력/출력 동작 지원** : 사용자 프로그램이 데이터의 I/O를 수행할 수 있게 지원.
@@ -42,9 +44,9 @@
 
 ---
 
-## OS의 종류
+## 4. OS의 종류
 
-### 여러 OS들
+### 4-1. 여러 OS들
 
 * [Windows](./windows.md) **
 * [LINUX](./LINUX.md) **
@@ -53,9 +55,9 @@
 
 ---
 
-### 운영기법에 의한 종류
+### 4-2. 운영기법에 의한 종류
 
-#### 일괄 처리 (Batch Processing) 시스템
+#### 4-2-1. 일괄 처리 (Batch Processing) 시스템
 
 1. 한번에 하나의 프로그램(=[process](https://ds31x.tistory.com/152)) 만이 수행 된다.
 2. 운영체제는 항상 **메모리(=RAM)** 에 상주한다: [stored program computer](../CE/ch05/ch05_01_01.md)
@@ -65,27 +67,47 @@
 
 ---
 
-#### 다중 프로그래밍(Multi-programming) 시스템
+#### 4-2-2. 다중 프로그래밍(Multi-programming) 시스템
 
 CPU (당시엔 거의 core가 하나)의 idle time을 줄이기 위한 시스템.
 
-1. 여러 개의 프로그램(=[process](https://ds31x.tistory.com/152))을 동시에 메모리(=RAM)에 적재하고 
+1. 여러 개의 "프로그램(=process)"을 동시에 메모리(=RAM)에 적재하고 
 2. 그 중 하나의 프로그램이 수행하다가 I/O, 인터럽트 등에 의해 대기 상태가 되면 그 동안 다른 프로그램을 실행하는 방식이다.
 3. ***입출력과 프로그램의 실행을 병렬*** 로 할 수 있어, CPU 사용 효율이 증가한다.
-4. context changing 에 초점을 둔 시스템이라고 봐도 될 듯.
+4. 실행 중인 프로그램이 대기 상태가 되면, context switching 이 발생.
+    * 현재 실행중인 process context가 저장되고
+    * 실행될 process context로 교체됨
+    * context를 state라고도 부름. 
+
+참고: [process, thread 와 context switching 참고자료](https://ds31x.tistory.com/152)
+
+RAM에 여러 개의 Process의 영역이 할당된다. address를 지정하는 방법으로 다음의 2가지 방법이 사용됨.
+
+* Absolute Addressing + Index Register
+* Relative Addressing
+
+참고: [Index Register and Relative Addressing 에 대하여](../CE/ch05/ch05_05_01_idx_reg_rel_add.md)
 
 ---
 
-#### 시분할 (Time sharing) 시스템
+#### 4-2-3. 시분할 (Time Sharing) 시스여
 
-1. 다중 프로그래밍 시스템은 사용자와의 ***상호작용*** 을 제공하지 못 하였기 때문에, 등장한 시스템
-2. 다중 프로그래밍과 달리 ^^정해진 시간이 되면 무조건 다음 순서의 작업을 실행^^ 하는 방식
-3. 작업 교대 시간이 매우 짧아 프로그램이 실행되는 동안 사용자는 컴퓨터와 상호작용을 함
-4. 가상 메모리를 사용하여, 많은 메모리를 사용 할 수 있다.
+사용자와의 상호작용이 가능한 multi-programming system의 확장.
+
+1. 다중 프로그래밍 시스템은 사용자와의 ***상호작용*** 을 제공하지 못 하였기 때문에 등장한 시스템
+2. 다중 프로그래밍과 달리 ^^정해진 시간이 되면 무조건 다음 순서의 작업을 실행^^ 하는 방식: `Time Slice`기반 작업 교대.
+    * time slice(짧은 시간)동안만 각 작업이 실행되고,
+    * context switching 이 일어남. 
+3. 작업 교대 시간이 매우 짧아 사용자는 자신의 작업이 독립적으로 실행되는 것처럼 느낌.
+4. Virtual Memory (가상 메모리)를 사용하여, 원래의 물리적 메모리보다 더 많은 메모리를 사용 할 수 있음.
+
+![](./img/os_time_sharing.png){width="200"}
+
+참고: [Virtual Memory 란](../CE/ch05/ch05_07_01_virtual_memory.md)
 
 ---
 
-#### Multi-tasking System ***
+#### 4-2-4. Multi-tasking System ***
 
 1. 하나의 resource (=일반적으로 CPU)를 여러 process들이 공유
 2. 여러 ***tasks가 동시에 수행 되는 것처럼 느껴지게 (=concurrency) 하는 시스템***
@@ -108,7 +130,7 @@ CPU (당시엔 거의 core가 하나)의 idle time을 줄이기 위한 시스템
 
 ---
 
-#### 다중 처리 (Multi-processing) 시스템 ***
+#### 4-2-5. 다중 처리 (Multi-processing) 시스템 ***
 
 1. ***여러 개의 CPU*** 와 한 개의 주기억 장치로 여러 프로그램을 동시에 처리하는 시스템.
 2. 여러 process가 동시에 수행됨 (core수 만큼).
@@ -120,7 +142,7 @@ multi-processing은 `parallelism`을 구현한 것임.
 
 ---
 
-#### 실시간 처리 (Real Time) 시스템
+#### 4-2-6. 실시간 처리 (Real Time) 시스템
 
 1. 프로세서 작동이나 데이터 흐름에 ***엄격한 (처리 혹은 응답)시간 제약*** 이 있을 때 사용.
 2. 발생 data를 곧바로 바로 처리.
@@ -129,13 +151,13 @@ multi-processing은 `parallelism`을 구현한 것임.
 
 ---
 
-#### 다중 모드 시스템
+#### 4-2-7. 다중 모드 시스템
     
 일괄 처리 시스템 + 시분할 시스템 + 다중 처리 시스템 + 실시간 처리 시스템
 
 ---
 
-#### 분산 처리 시스템
+#### 4-2-8. 분산 처리 시스템
 
 1. 네트워크를 통해 통신하여 그 기능을 제공
 2. 여러 프로세서를 사용하지만, 밀결합(tightly-coupled) 구조가 아닌 ***소결합(loosely-coupled)*** 형태
