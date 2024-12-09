@@ -1,5 +1,6 @@
 # Virtual Memory
 
+## 1. Virtual Memory란?
 `MMU` 는 프로그램(or process)의 virtual memory를 실제 physical memory에 매핑(mapping)하는 역할을 수행함.  
 `MMU` can map a program’s virtual addresses to physical memory. 
 
@@ -12,13 +13,13 @@ Virtual Memory는
 * 실제 physical memory 의 크기 제한을 넘어
 * 다수의 프로그램들이 동시에 실해되도록 해줌.
 
-![](./img/virtual_memory.png)
+![](./img/virtual_memory.png){width="400"}
 
 ---
 
 ---
 
-## Demand Paging (요구페이징)
+## 2. Demand Paging (요구페이징)
 
 Virtual Memory Management를 위한 Method로서,
 
@@ -35,13 +36,13 @@ Demand Paging을 통해 Virtual memory에서는
 * 현재 필요하지 않은 메모리 페이지의 내용을 더 크지만 느린 대용량 저장 장치인 디스크로 이동 (swap out) 시키고 
 * 프로그램이 스왑 아웃된 메모리에 액세스하려고 하면, 운영 체제는 필요한 공간을 만들기 위해 필요한 작업을 수행한 후 요청된 페이지를 RAM으로 복사(swap in)를 수행함.
 
-![](./img/virtual_memory2.png)
+![](./img/virtual_memory2.png){width="400"}
 
 ---
 
 ---
 
-## Page Fault
+## 3. Page Fault
 
 Process가 실행하는 도중 필요한 page가 physical memory에 존재하지 않아,  
 disk로부터 해당 page를 swap in 해야 하는 경우를 가르킴.
@@ -57,7 +58,7 @@ Page Fault를 최소화해야 성능이 올라가며, Page Replacement 알고리
 
 ---
 
-## LRU (Least Recently Used) algorithm
+## 4. LRU (Least Recently Used) algorithm
 
 LRU 알고리즘은
 
