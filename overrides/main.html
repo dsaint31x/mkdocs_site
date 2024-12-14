@@ -3,19 +3,6 @@
 {% block extrahead %}
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3232161401562757"
      crossorigin="anonymous"></script>
-<!--script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
-<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script-->
-{% endblock %}
-
-
-{% block htmltitle %}
-<title>BME228</title>
-{% endblock %}
-
-
-{% block extra_scripts %}
-{{ super }}
-<div id="disqus_thread"></div>
 <script>
     var disqus_config = function () {
         this.page.url = "{{ page.canonical_url | e }}"; // 현재 페이지의 URL
@@ -28,4 +15,15 @@
         (d.head || d.body).appendChild(s);
     })();
 </script>
+{% endblock %}
+
+
+{% block htmltitle %}
+<title>BME!!</title>
+{% endblock %}
+
+
+{% block extra_scripts %}
+{{ super }}
+<div id="disqus_thread"></div>
 {% endblock %}
