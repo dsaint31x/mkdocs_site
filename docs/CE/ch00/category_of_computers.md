@@ -20,7 +20,7 @@
     * 금융권에서는 최근까지도 Mainframe기반인 경우가 많았음.
 * Minicomputer (midrange computer, 미니컴퓨터, 소형컴퓨터)
     * Mainframe과 비슷한 역할을 하되, 크기와 성능이 감소한 형태.
-    * 1964년 DEC가 개발한 PDP-8이 상업적으로 성공한 최초의 Minicomputer (12bit).
+    * 1964년 DEC가 개발한 PDP-8이 상업적으로 성공한 최초의 Minicomputer (12bit word).
     * 기업체, 학교, 연구소
 * Workstation 
     * PC규모에 minicomputer수준의 성능을 집약시키려는 시도.

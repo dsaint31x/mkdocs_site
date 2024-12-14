@@ -1,4 +1,5 @@
 site_name: BME228 
+site_url: https:/dsaitn31.me/mkdocs_site
 
 theme: 
   #name: 'readthedocs'
@@ -9,6 +10,7 @@ theme:
     - navigation.tabs
     - content.code.annotate
     - content.code.copy
+
 
 
 plugins:
@@ -60,6 +62,10 @@ markdown_extensions:
       custom_checkbox: true
   - pymdownx.tilde
   - tables
+  - meta
+
+extra:
+  disqus: dsaitn31-me
 
 # extra_javascript:
 #   - javascripts/mathjax.js

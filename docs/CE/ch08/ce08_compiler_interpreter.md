@@ -15,7 +15,7 @@
 
 `Java`도 compiler language라고 볼 수 있음 (단 `compile` 과정의 결과물인 `byte code`가 `Java VM`에서 동작한다).
 
-> [참고: Complier 의 종류](https://ds31x.tistory.com/187)
+> [참고: Compiler 의 종류](https://ds31x.tistory.com/187)
 
 ---
 
@@ -44,7 +44,7 @@ https://dsaint31.tistory.com/496)
 
 ## 비교
 
-| Compiler Language | Interpreter Lanugae |
+| Compiler Language | Interpreter Language |
 | :---: | :---: |
 |object code생성 | 일반적으로 object code만들지 않음 |
 | program단위로 translation이 이루어짐 | statement단위로 translation이 이루어짐 |

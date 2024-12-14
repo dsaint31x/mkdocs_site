@@ -83,12 +83,12 @@ De Morgan's Law를 통해, negative logic을 사용할 수 있다.
 | T       | F         | T    | | F           | T           |F          |
 | T       | T         | T    | | F           | F           |F          |
 
-왼쪽의 positive logic은 `OR` 연산의 결과이며, netative logic에서는 `AND`에 해당된다 (위의 DeMorgan's Law가 들어맞음.)
+왼쪽의 positive logic은 `OR` 연산의 결과이며, negative logic에서는 `AND`에 해당된다 (위의 DeMorgan's Law가 들어맞음.)
 
 
 > positive logic에서의 `OR`는 negative logic에서는 `AND`로 설명되어진다.
 
-postive logic(정논리)가 negative logic(부논리)간의 gate들의 관계를 보여준다.
+positive logic(정논리)가 negative logic(부논리)간의 gate들의 관계를 보여준다.
 
 ![](./img/negative_positive_logic.png){width="400"}
 

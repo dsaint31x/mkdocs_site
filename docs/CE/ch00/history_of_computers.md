@@ -139,7 +139,8 @@ memory(기억장치)에 컴퓨터의 instruction들과 data들을 함께 저장�
 > ***bottleneck 현상*** 이라는 단점을 가짐.  
 >  
 > 이를 분리시킨 구조인 **Harvard architecture** 도 존재함.  
-> 이 경우, program과 data에 동시에 접근이 가능하다는 장점을 가지지만, 분리된 bus와 memory가 필요하여 보다 복잡한 구성이 요구됨.  
+> 이 경우, program과 data에 동시에 접근이 가능하다는 장점을 가지지만,  
+> 분리된 bus와 memory가 필요하여 보다 복잡한 구성이 요구됨.  
 > 
 > 현대 컴퓨터에선 CPU 내부에선 Harvard architecture를 적용하고, 외부는 von Neumann architecture를 적용한 구조를 채택한 경우가 많음.
 
@@ -151,6 +152,8 @@ stored program architecture 이전에는
 * computer가 수행하는 task를 변경하려면, 
 * 물리적으로 전선을 연결하여 ***회로를 새로 구성*** 해야함 
 * (해당 컴퓨터의 H/W지식 없이는 task변경 자체가 불가능.)
+
+또한 최초의 상용 mainframe으로 간주되는 IBM701 (1952년)도 유명한 1세대 컴퓨터임.
 
 ---
 
@@ -185,10 +188,11 @@ stored program architecture 이전에는
     * magnetic core(자기코어, primary memory)
     * secondary memory : magnetic tape(자기테이프), magnetic disc(자기디스크) 등.
 * micro-second 단위의 연산속도.
-* `Operating System (OS)`  등장.
+* `Operating System (OS)`  등장: (Batch Processing System이 중심)
 * ^^batch processing(1950년대)^^ 이 주로 사용되었으나 ^^Multi-programming(1960년대)의 개념^^ 도 등장.
     * `Multi-programming`이란 I/O 처리로 인해 CPU연산이 필요하지 않은 경우,  
-    다른 프로그램에게 CPU를 사용할 수 있도록 해줌. (이를 위해 여러 프로그램이 main memory에서 동시에 상주함.)
+    다른 프로그램에게 CPU를 사용할 수 있도록 해줌.  
+    (이를 위해 여러 프로그램이 main memory에서 동시에 상주함.)
         * 이전의 방식(한 프로그램이 끝날 때까지 점유)은 Uni-programming (단일 프로그램)이라고 불림.
         * 고가의 컴퓨터를 효율적으로 사용하기 위한 기술이었고 이는 time-sharing system으로 이어짐.
     * `Batch processing`이란
@@ -202,7 +206,7 @@ stored program architecture 이전에는
 > ^^CPU의 idle time을 줄이기 위해 도입된 multi-programming^^ 과 달리,  
 > (multi-programming은 하나의 장비에서 여러 프로그램의 동시 수행을 목표로 하지 않음.)  
 > ^^`multi-tasking`은 하나의 resource를 여러 process들이 공유하는 개념으로  
-> ***동시에 수행*** 되는 것을 목표^^ 로 하고 있어서 ^^multi-programming의 논리적인 확장^^ 이라고 볼 수 있다.  
+> ***동시(concurrency)에 수행*** 되는 것을 목표^^ 로 하고 있어서 ^^multi-programming의 논리적인 확장^^ 이라고 볼 수 있다.  
 >  
 > 사실 resource에서 가장 중요한 것이 CPU 이기 때문에 어찌 보면 유사한 개념이지만,  
 > multitasking은 round-robin scheduling algorithm과 같은 ^^스케쥴링 알고리즘이 multi-programming에 보다 추가^^ 된 것이며  
@@ -225,7 +229,13 @@ stored program architecture 이전에는
 
 > `ENIAC`이 17,000개의 vacuum tube를 사용한 것에 비교하여 `TRADIC`은 ^^800개의 transistor를 사용하면서 1/15,000 수준의 전력을 소비^^ 했음.
 
-1960년 초반에 등장한 `키보드`와 `모니터`의 등장으로 기존의 `batch processing`에서 `interactive system`(1960년대)으로의 변화가 가능해짐.   
+---
+
+#### 오늘날의 I/O Devices
+
+1960년 초반에 등장한 `키보드`와 `모니터`의 등장으로  
+기존의 `batch processing`에서 `interactive system`(1960년대)으로의 변화가 가능해짐.   
+
 키보드와 모니터 등을 통해 사용자에게 작업이 진행되는 중간에 입력과 출력이 가능해졌다 (interaction). 
 
 ---
@@ -253,7 +263,7 @@ stored program architecture 이전에는
 
 2차 세계대전 이후  
 ^^핵무기 개발 경쟁^^ 으로 인해 탄생한 초기 `슈퍼컴퓨터`.  
-버클리 대학 부설 로렌스 연구소와 스페릴랜드사가 미 해군 연구개발센터에 1960년 개발 설치한 슈퍼컴퓨터 
+버클리 대학 부설 로렌스 연구소와 스페릴랜드사가 미 해군 연구개발센터에 1960년 개발 설치한 슈퍼컴퓨터  
 (참고로 개발 비용에 비해선 만족스러운 성능이 아니었다고 함.) 
 
 ---
@@ -264,15 +274,18 @@ stored program architecture 이전에는
 
 * Integrated Circuit (IC)가 주요 구성요소.
     * IC 사용은 보다 높은 신뢰성과 처리속도와 용량을 보유한 컴퓨터를 보다 작게 만들 수 있도록 해줌.
-* `UNIX` 의 등장(1960년대 후반) : 현대적인 OS 등장.
+* `UNIX` 의 등장(1960년대 후반) : ***현대적인 OS 등장*** .
     * `Time sharing system` (시분할 시스템)을 채택하여 여러 terminal을 지원하게 됨.
     * 최초로 `Multi-tasking` (다중작업) 및 다중사용자가 가능한 OS.
-    * ^^UNIX는 현대 OS의 기본 개념을 수립한 OS로 가치가 있음.^^
+    * ***^^UNIX는 현대 OS의 기본 개념을 수립한 OS로 가치가 있음.^^***
 * nano-second의 연산속도
 * 컴퓨터에 family (계열) 개념이 일반화되면서 기종간 호환성이 커짐.
 
-IBM 360 (1964), CDC 7600, UNIVAC1108(이 컴퓨터는 일부 문헌에서 2세대로도 기재되지만 IC의 개념으로 보면 3세대라 보는게 맞다고 생각됨) 등이 유명한 3세대 컴퓨터임.  
-또한 1964년의 ***BASIC을 기점으로 S/W 자체가 상용*** 으로 팔리는 제품으로 인정을 받기 시작.
+IBM 360 (1964), CDC 7600, UNIVAC1108  
+(이 컴퓨터는 일부 문헌에서 2세대로도 기재되지만 IC의 개념으로 보면 3세대라 보는게 맞다고 생각됨)  
+등이 유명한 3세대 컴퓨터로서 이 당시는 ***Mainframe의 시대*** 이기도 함.  
+
+또한 1964년의 ***BASIC을 기점으로 S/W 자체가 상용*** 제품으로 인정을 받기 시작.
 
 
 ---
@@ -282,38 +295,58 @@ IBM 360 (1964), CDC 7600, UNIVAC1108(이 컴퓨터는 일부 문헌에서 2세�
 1964년 다트머스 대학의 John Kemeny(존 케메니)와 Thomas Kurtz(토마스 커츠)가 개발.
 
 * 교육용으로 시작됨.
-* imperative language
+* imperative language (명령형 언어: How to do it에 초점을 둠)
 * interpreter 방식으로 시작되었으나, 이후 compiler도 도입됨.
 
-S/W 만으로 돈을 주고 사야하는 제품이 등장하기 시작.  
+S/W 단독으로 상용화가 이루어지기시작.  
 초창기에 가장 유명한 상용 S/W는 BASIC 인터프리터 (MS의 첫 제품)였음. (그 전까지는 computer를 사면 S/W는 Bundle로 제공되는게 일반적이었음)
 
 ### IBM 360
 
-1964년 IBM이 내놓은 ^^범용대형컴퓨터^^ (Mainframe).
+1964년 IBM이 내놓은 ^^범용대형컴퓨터^^ (`Mainframe`).
 
 ^^360은 360도를 의미^^ 하여, 해당 컴퓨터가 어느 특정한 분야가 아닌 모든 연구 및 산업 분야에서 사용가능한 범용을 강조하기 위해 붙여진 이름을 가짐.
 
 * 8bit에 해당하는 byte라는 개념과 byte단위의 memory address, word의 개념과 같이 오늘날 컴퓨터 기술에서 표준적으로 사용되는 여러 기술이 적용된 컴퓨터임.
 * ^^다중 사용자 접속^^ 을 제공했으며 많은 대학교와 연구소등에서 사용된 기념비적인 컴퓨터임.
 
+### PDP-8 
+
+1965년 Digital Equipment Corporation (DEC)에서 개발된 최초의 상업적으로 성공한 `Minicomputer`.
+
+* 컴퓨터의 소형화와 대중화를 이끈 기기로
+* 저렴하고 높은 성능으로 `Mainframe` 중심의 컴퓨팅에서 벗어나기 시작한 계기가 됨.
+* 이후 PC의 근간이 되는 Microcomputer로 발전에 큰 영향을 줌.
+
 ---
 
 #### CDC (Control Data Corporation) 7600
 
 1968년 CDC가 개발한 슈퍼컴퓨터. 
-진정한 슈퍼컴퓨터로 인정받은 컴퓨터로서 기존의 시스템보다 10배 이상 빠른 속도 (1 Mega-FLOPS)와 6배 이상의 메모리 등을 가진 컴퓨터로 알려짐.  
+진정한 슈퍼컴퓨터로 인정받은 컴퓨터로서  
+기존의 시스템(CDC 6600)보다 10배 이상 빠른 속도 (10 Mega-FLOPS)와 6배 이상의 메모리(약 480KB, 65,536 word) 등을 가진 컴퓨터로 알려짐.  
+
+* CDC 7600에서 1 word는 60 bits였음: 오늘날 word와 다름.
+* 고도로 최적화된 pipeline 및 병렬처리 활용.
+  
 이를 개발한 Seymour Cray는 오늘날 슈퍼컴퓨터의 아버지로 불림. 
+
+* 이후 Vector Processor를 기반으로 하는 Cray-1 을 개발.
 
 > 오늘날에는 PC의 CPU도 몇 백 Giga-FLOPS임. 
 
 ---
 
-### 정보처리 속도 단위
+### 정보처리 속도 단위: FLOPS
 
-`FLOPS (Floating-point Operation Per Second)`는 정보처리 속도 단위로 초당 부동소수점 연산 횟수를 의미함. Mega-, Giga- 등의 prefix가 사용된다. 다른 단위로는 IPS (Instruction Per Second)로 초당 명령어 횟수도 있음.
+`FLOPS (Floating-point Operation Per Second)`는  
+정보처리 속도 단위로 ***초당 부동소수점 연산 횟수*** 를 의미함.  
+Mega-, Giga- 등의 prefix와 함께 사용된다.  
+다른 단위로는 IPS (Instruction Per Second)로 ***초당 명령어 횟수*** 도 있음.
 
-> 인간의 경우 LIPS (Logical Inference Per Second)로 초당 논리적추론 횟수 를 적용할 수 있는데, 보통 ^^인간이 2 LIPS 정도^^ 가 가능하다. 참고로 1LIPS는 대략 100~1,000 개의 instruction으로 구성된다고 알려짐.
+> 인간의 경우  
+> LIPS (Logical Inference Per Second)로 ***초당 논리적추론 횟수*** 를 적용할 수 있는데,  
+> 보통 ^^인간이 2 LIPS 정도^^ 가 가능하다. 참고로 1LIPS는 대략 100~1,000 개의 instruction으로 구성된다고 알려짐.
 
 ---
 
@@ -323,16 +356,25 @@ S/W 만으로 돈을 주고 사야하는 제품이 등장하기 시작.
 
 * `LSI` (Large Scaled Integrated circuit)과 `VLSI` (Very Large Scaled Integrated circuit)이 사용된 컴퓨터
 * ^^오늘날의 컴퓨터가 4세대^^ 에 속한다. (혹자들은 5세대를 애기하기도 하지만...)
-* 오늘날 ^^CPU로 불리는 `Micro-processor`가 드디어 등장^^ 한 세대이며, 이를 통해 Personal Computer (PC)가 보급되기 시작한 세대이기도 함.
+* 오늘날 ^^CPU로 불리는 `Micro-processor`가 드디어 등장^^ 한 세대이며,  
+이를 통해 Personal Computer (PC)가 보급되기 시작한 세대이기도 함.
     * `Intel4004` (1981년. 최초의 Micro-processor, 4bit CPU)는 2,300개의 transistor로 구성되었고 초당 60,000개의 연산이 가능.
-* Internet의 등장으로 Network가 일반화된 세대이기도 하며, 휴대용 컴퓨터가 등장한 세대이기도 함.
+* Internet의 등장으로 Network가 일반화된 세대이기도 하며,  
+휴대용 컴퓨터가 등장한 세대이기도 함.
 
-> 일부 문헌에서는 VLSI를 이용하는 컴퓨터를 5세대라고 부르기도 하지만, VLSI가 1980년대 개발된 이후로 급격한 성능향상이 이루어져 VLSI와 ULSI (Ultra LSI)구분 자체가 무의미해지면서, VLSI라고 불리는 범위가 많이 변경된 현재에 이를 적용하기는 어려워보인다.  
-> 오늘날 사용되는 엄청난 집적도의 IC들도 그냥 VLSI로 불리고 있다. (과거 개념으로 보면, Ultra Super 등등의 수식어가 붙어야한다. 실제로 PC에 사용되는 i7 cpu가 100억 수준의 소자가 집적되어 있다).  
+> 일부 문헌에서는 ^^VLSI를 이용하는 컴퓨터를 5세대라고 부르기도 하지만^^ ,
+>  VLSI가 1980년대 개발된 이후로 급격한 성능향상이 이루어져 VLSI와 ULSI (Ultra LSI)구분 자체가 무의미해지면서, 
+> VLSI라고 불리는 범위가 많이 변경된 현재에 이를 적용하기는 어려워보인다.  
+> 오늘날 사용되는 엄청난 집적도의 IC들도 그냥 VLSI로 불리고 있다.  
+> (과거 개념으로 보면, Ultra Super 등등의 수식어가 붙어야 한다. 실제로 PC에 사용되는 i7 cpu가 100억 수준의 소자가 집적되어 있다).  
 > [IC 관련 자세한 것은 이 링크를 참고](../ch02_co/ce02_03_4_IC.md)  
+> 
 > 때문에 지적 능력을 가진 컴퓨터의 등장을 가르켜 5세대라고 불러야 한다는 의견이 대두되고 있다.  
 > 즉, 컴퓨터 자신이 학습을 하고 학습한 내용을 토대로 자신의 성능을 향상시키는 것이 가능해지는 컴퓨터가 대중화되는 시대를 5세대라고 해야한다는 의견인데...  
-> 2010년 이후 기계학습 (특히, 딥러닝)의 발전으로 일부 분야에서는 사람 이상의 성능을 스스로 학습하여 달성하는 컴퓨팅이 가능해지고 있음에도 4세대와의 명확한 차이를 구분짓기 쉽지 않다.   
+> 2010년 이후 기계학습 (특히, 딥러닝)의 발전으로  
+> 일부 분야에서는 사람 이상의 성능을 스스로 학습하여 달성하는 컴퓨팅이 가능해지고 있음에도  
+> 4세대와의 명확한 차이를 구분짓기 쉽지 않다.   
+
 앞서 애기한대로, 지나치게 엄격하고 세대를 나누는 건 의미가 없다.  
 ^^발전사를 기억하기 쉽게 하기위해 도입한 개념^^ 으로만 생각하자.
 
@@ -344,8 +386,9 @@ S/W 만으로 돈을 주고 사야하는 제품이 등장하기 시작.
 
 ![](./img/PC_apple1.png){width="400"}
 
-Apple2가 1977년 나오면서 PC가 본격적으로 보급되기 시작함.  
-상당수 문헌에서는 Apple2를 3세대 컴퓨터로 분류하기도 하며, 이후 등장한 IBM 5150과 Macintosh (최초의 GUI도입한 PC)를 4세대로 분류한다.
+Apple2가 1977년 나오면서 PC가 본격적으로 보급되기 시작함.
+
+참고로 상당수 문헌에서는 Apple2를 3세대 컴퓨터로 분류하기도 하며, 이후 등장한 IBM 5150과 Macintosh (최초의 GUI를 도입한 PC)를 4세대로 분류한다.
 
 ---
 
