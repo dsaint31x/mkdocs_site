@@ -10,8 +10,11 @@ theme:
     - navigation.tabs
     - content.code.annotate
     - content.code.copy
+    - comments
 
-
+extra:
+  disqus: 
+    shortname: dsaitn31-me
 
 plugins:
   #- info
@@ -64,8 +67,6 @@ markdown_extensions:
   - tables
   - meta
 
-extra:
-  disqus: dsaitn31-me
 
 # extra_javascript:
 #   - javascripts/mathjax.js
