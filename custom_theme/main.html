@@ -22,15 +22,17 @@
 
 {% block htmltitle %}
 <title>BME</title>
+<!-- custom_theme htmltitle -->
 {% endblock %}
 
 {% block content %}
 {{ super() }}
+<!-- custom_theme content -->
 <div id="disqus_thread"></div>
-<!-- kekeke dsaint31 -->
 {% endblock %}
 
 
 {% block extra_scripts %}
-{{ super }}
+{{ super() }}
+<!-- custom_theme extra_scripts -->
 {% endblock %}
