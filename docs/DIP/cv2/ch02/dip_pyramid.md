@@ -11,7 +11,8 @@ key point detection에서 특정 영역이 곡선인지 직선인지를 판별�
 * scale을 줄여서 작은 영역을 자세히 보는 작은 scale에서는 직선처럼 보일 수 있는 경우이다.
 
 <figure markdown>
-![](../../img/ch02/harris_corner_detection.png){width="400" align="center"}
+![](../../img/ch02/harris_limitation.png){width="400" align="center"}
+
 </figure>
 
 > `scale`은 ***한 pixel이 담고 있는 region의 크기*** 라고도 생각할 수 있다. 

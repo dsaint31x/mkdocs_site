@@ -23,7 +23,7 @@ plugins:
   - minify:
       minify_html: true
   - tags:
-      tag_file: tags.md
+  #    tag_file: tags.md
   #- glightbox
 
 markdown_extensions:
@@ -42,8 +42,8 @@ markdown_extensions:
   - pymdownx.caret
   - pymdownx.details
   - pymdownx.emoji:
-      emoji_generator: !!python/name:materialx.emoji.to_svg
-      emoji_index: !!python/name:materialx.emoji.twemoji
+      emoji_generator: !!python/name:material.emoji.to_svg
+      emoji_index: !!python/name:material.emoji.twemoji
   - pymdownx.highlight:
       anchor_linenums: true
   - pymdownx.inlinehilite

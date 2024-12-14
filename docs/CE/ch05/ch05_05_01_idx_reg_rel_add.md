@@ -15,7 +15,7 @@ Multi-programming System 및 Time Sharing System에서
 
 ---
 
-## 1. ***OS: Time Sharing System 의 동작 방식: 타이머 인터럽트와 프로세스 메모리 접근 방식**
+## 1. **OS: Time Sharing System 의 동작 방식: 타이머 인터럽트와 프로세스 메모리 접근 방식**
 
 Time Sharing OS 타이머를 이용해 사용자 프로그램을 짧은 시간 간격(time slicing)으로 실행되도록 스케줄링함.  
 
