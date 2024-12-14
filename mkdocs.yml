@@ -1,5 +1,5 @@
 site_name: BME228 
-site_url: https:/dsaitn31.me/mkdocs_site
+site_url: "https:/dsaitn31.me/mkdocs_site"
 
 theme: 
   #name: 'readthedocs'
