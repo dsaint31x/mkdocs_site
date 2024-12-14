@@ -39,6 +39,7 @@ Time Sharing OS 타이머를 이용해 사용자 프로그램을 짧은 시간 �
 
 참고: [Time Sharing OS 와 Multi-Programming OS에 대하여](../../OS/operating_system.md#4-2-2-다중-프로그래밍multi-programming-시스템)
 
+
 ---
 
 ---
