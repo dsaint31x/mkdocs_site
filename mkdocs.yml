@@ -10,11 +10,11 @@ theme:
     - navigation.tabs
     - content.code.annotate
     - content.code.copy
-    - comments
+    # - comments
 
 extra:
   disqus: 
-    shortname: dsaitn31-me
+    shortname: dsaint31-me
 
 plugins:
   #- info

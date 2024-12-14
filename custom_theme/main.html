@@ -5,27 +5,32 @@
      crossorigin="anonymous"></script>
 <!--script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
 <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script-->
+    <script>
+        var disqus_config = function () {
+            this.page.url = "{{ page.canonical_url | e }}"; // 현재 페이지의 URL
+            this.page.identifier = "{{ page.url | e }}"; // 고유 식별자
+        };
+        (function() {
+            var d = document, s = d.createElement('script');
+            s.src = 'https://dsaint31-me.disqus.com/embed.js'; // Disqus shortname
+            s.setAttribute('data-timestamp', +new Date());
+            (d.head || d.body).appendChild(s);
+        })();
+    </script>
 {% endblock %}
 
 
 {% block htmltitle %}
-<title>BME228</title>
+<title>BME</title>
+{% endblock %}
+
+{% block content %}
+{{ super }}
+<div id="disqus_thread"></div>
+<!-- dsaint31 -->
 {% endblock %}
 
 
 {% block extra_scripts %}
 {{ super }}
-<div id="disqus_thread"></div>
-<script>
-    var disqus_config = function () {
-        this.page.url = "{{ page.canonical_url | e }}"; // 현재 페이지의 URL
-        this.page.identifier = "{{ page.url | e }}"; // 고유 식별자
-    };
-    (function() {
-        var d = document, s = d.createElement('script');
-        s.src = 'https://dsaint31-me.disqus.com/embed.js'; // Disqus shortname
-        s.setAttribute('data-timestamp', +new Date());
-        (d.head || d.body).appendChild(s);
-    })();
-</script>
 {% endblock %}
