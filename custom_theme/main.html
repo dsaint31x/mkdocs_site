@@ -14,4 +14,13 @@
 
 {% block disqus %}
   <!-- Add custom comment system integration here -->
+  <div id="disqus_thread"></div>
+  <script>
+      (function() { // DISQUS 스크립트 삽입
+          var d = document, s = d.createElement('script');
+          s.src = 'https://dsaint31-me.disqus.com/embed.js';
+          s.setAttribute('data-timestamp', +new Date());
+          (d.head || d.body).appendChild(s);
+      })();
+  </script>
 {% endblock %}
