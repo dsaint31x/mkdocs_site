@@ -1,3 +1,7 @@
+---
+disqus: dsaint31-me
+---
+
 # What is a Computer?
 
 ## Computer와 Calculator의 가장 큰 차이점.
