@@ -87,7 +87,9 @@ Memory 의 용량이 커질수록 address의 길이가 길어지며,
 
 **상위, 하위로 나누는 것** 을 **matrix의 row와 column으로 생각** 할 수 있다. 
 
-* 특히 상위 Address (Row address)는 `Page`라고도 불림.
+* 특히 ***상위 Address (Row address)는 `Page`라고도 불림*** .
+
+> 숫자가 큰 address가 **상위 address** 임.
 
 일반적으로 같이 많이 쓰이는 데이터는  
 
@@ -108,6 +110,10 @@ Memory 의 용량이 커질수록 address의 길이가 길어지며,
     * 아니면 column에 대한 주소$A_2, A_3$로 쓰이는지가 구분이 됨.
 * strobe들에 의해 메모리의 속도(latency)가 결정됨. 
     * ^^일반적으로 Column Access Strobe(CAS)가 memory latency를 결정함^^ .
+ 
+> 참고: **Latency (지연시간)**
+>
+> 어떤 작업, 신호, 요청 등이 시작되고 완료되기까지의 시간적 지연 을 가리킴.
 
 ---
 
