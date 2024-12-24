@@ -148,9 +148,6 @@ nav:
         - 'Flash Memory':   'CE/ch03_seq/ce03_03_flash_ssd.md'
         - 'Address and Memory': "CE/ch04/ce04_01_memory.md"
         - "CE/ch04/ce04_02_byte_ordering.md"
-      - "I/O Device and Bus":
-        - 'Bus': "CE/ch04/ce04_03_io_bus.md"
-        - 'I/O Device': "CE/ch06/ce06_4_04_keyboard.md"
       - "CPU":
         - "CE/ch04/ce04_04_cpu.md"
         - "CE/ch04/ce04_04_01_alu.md"
@@ -158,6 +155,10 @@ nav:
         - "CE/ch04/ce04_22_fetch_execute.md"
         - "CE/ch04/ce04_31.md"
         - "CE/ch04/ce04_41.md"
+      - "I/O Device and Bus":
+        - 'Bus': "CE/ch04/ce04_03_io_bus.md"
+        - "I/O Control": "CE/ch04/ce04_03_01_io_control.md"
+        - 'I/O Device': "CE/ch06/ce06_4_04_keyboard.md"
       - "Parallel Computing":
         - "CE/ch04/ce04_50.md"
         - "CE/ch04/ce04_51.md"
