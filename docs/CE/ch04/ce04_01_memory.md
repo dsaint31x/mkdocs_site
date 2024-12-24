@@ -19,9 +19,8 @@ Memory에 대한 접근은 `Address`를 통해 이루어짐 (이를 Random Acces
 
 - Address가 다르면 Memory 내의 위치가 다름.
 
-<figure markdown>
-![](./img/memory_lane.jpeg){width="500"}
-</figure>
+![](./img/memory_lane.jpeg{style="display: block; margin: 0 auto; width:500px;"}
+
 
 위 그림에서 집들은 1byte의 같은 크기를 가지는 각각의 `memory location`을 의미한다.
 
@@ -95,9 +94,7 @@ memory에 저장된 값을 **CPU가 접근** 하기 위해서는
 * 아래 그림처럼 5,6,7,8의 byte address 를 차지하고 있는 경우에는
 * 2번의 access가 필요하게 되며, 이는 성능 저하로 이어짐.
 
-<figure markdown>
-![](./img/not_aligned_access.jpeg){width="600"}
-</figure>
+![](./img/not_aligned_access.jpeg){style="display: block; margin: 0 auto; width:500px;"}
 
 - 참고로 일반적으로 `int` type으로 수치 데이터를 다루는 것이 가장 빠름.
 - 하지만 실수형 데이터(real number)를 다룰 때는 `double`이나 `float` 중 에서 골라야 함(정수형보다는 느림.):
@@ -134,10 +131,9 @@ SRAM보다는 느리지만 가성비는 보다 나음.
 NAND Flash Memory 이므로,  
 HDD보다 빠른 ACCESS를 보이나 비용이 아직은 HDD보다 높음.
 
-<figure markdown>
-![](./img/memory_types.jpeg){width="600"}
+
+![](./img/memory_types.jpeg){style="display: block; margin: 0 auto; width:500px;"}
 <figcaption>ref. https://wisetrue.tistory.com/m/173 </figcaption> 
-</figure>
 
 - capacitance (용량)은 아래로 갈수록 커짐.
 - `throughout`은 `단위시간당 처리량(속도)`로 위로 갈수록 커짐.
