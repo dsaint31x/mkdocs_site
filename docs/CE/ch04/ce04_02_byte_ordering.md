@@ -4,6 +4,10 @@
 > 상대적으로 둥근 쪽(big end)과 날카로운 쪽(little end) 중  
 > 어느 쪽으로 깨는지에 따라 big endian과 little endian으로 나뉘어 대립하는 것에 유래됨.
 
+memory에서 byte 단위로 읽고 쓰여지는데, memory에 데이터를 저장할 때의 byte의 순서가 다음의 두 가지 종류가 있음.
+
+![](./img/endian.png){style="display: block; margin: 0 auto; width: 400px;"}
+
 ---
 
 ## 1. Little Endian
@@ -13,6 +17,9 @@
 ^^Word의 Most Significant Byte(MSB, 상위바이트)가 <span style="color:red;">가장 높은 주소(상위주소)에 저장</span>됨.^^
 
 Little endian에서 ***MSB(상위바이트)는 그림으로 표기시 가장 오른쪽에 위치*** 함.
+
+* 연산에서 유리함
+* 낮은 자리의 수가 메모리에서 낮은 주소에 있으므로 연산시 낮은 주소에서 높은 주소로 진행.
 
 ---
 
@@ -42,6 +49,8 @@ Word의 Most Significant Bytes(MSB, 상위바이트)는 가장 낮은 주소(시
 
 > 사실 Endian (or Byte Ordering)은 이기종간의 통신에서 중요성을 가짐.  
 > Intel CPU와 Network Byte Ordering이 다르므로 이를 주의할 것.
+
+* 네트워크 전송 이나 메모리의 값을 직접 읽어들일 때 직관적임.
 
 ### 2-1. Example
 
@@ -73,4 +82,10 @@ UNIX OS를 PDP-11 (big-endian)에서 IBM Series/1(little-endian)로 porting할 �
 `MSB` 는 보통 Most Significant Byte 보다 ***Most Significant Bit*** 로 더 많이 사용됨.
 
 이 글에서는 바이트 단위로 표시하려고 전자를 취함.
+
+---
+
+## References
+
+* [Embed Threads: What is Big-Endian and Little-Endian? Let’s Explain Computer Byte Order!](https://embedthreads.com/what-is-big-endian-and-little-endian-lets-explain-computer-byte-order/)
 
