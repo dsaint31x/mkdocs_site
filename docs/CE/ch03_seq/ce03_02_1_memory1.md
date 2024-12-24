@@ -5,9 +5,12 @@
 이 경우 어느 register에 저장할지를 지정해야 하고,  
 이를 다시 load할 때도 어느 register에서 load할지를 지정해야 함.  
 
+## Address
 > 이같은 필요성으로 `address`가 도입된다.  
 >
-> * `address`는 memory의 특정 위치를 가르키며 
+> `address`는
+>
+> * memory의 특정 위치를 가르키며 
 > * 실제 data가 memory의 어디에 저장되어있는지를 나타낸다.
 
 ---
