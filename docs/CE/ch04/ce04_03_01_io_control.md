@@ -23,7 +23,7 @@
 
 ### (1) Programmed I/O (PIO)
 
-![](./img/polling_io.png){style="display: block; margin: 0 auto; width: 400px;"}
+![](./img/polling_io.png){style="display: block; margin: 0 auto; width:500px;"}
 
 - **특징 (Characteristics)**:
 
@@ -71,7 +71,7 @@
 
 ### (2) Interrupt-Driven I/O
 
-![](./img/interrupted_io.png){style="display: block; margin: 0 auto; width: 400px;"}
+![](./img/interrupted_io.png){style="display: block; margin: 0 auto; width:500px;"}
 
 - **특징 (Characteristics)**:
     - 입출력 장치가 준비되면 CPU에 인터럽트(H/W Interrupt)를 보냄.
@@ -124,7 +124,7 @@ DMA 기능이 CPU 칩셋 또는 I/O 브릿지(예: Southbridge 또는 PCH)에 �
 
 #### **Details**:
 
-![](./img/DMA_IO.png){style="display: block; margin: 0 auto; width: 400px;"}
+![](./img/DMA_IO.png){style="display: block; margin: 0 auto; width:500px;"}
 
 - DMA Controller는 마치 I/O 장치처럼 레지스터를 포함하며, 아래와 같은 주요 레지스터를 가짐:
     - **버퍼 주소(Buffer Address)**: 데이터 전송의 시작 메모리 주소.
@@ -140,7 +140,7 @@ Channel I/O는 여러 개의 입출력 장치를 각각 channel로 독립적으�
 - I/O Channel마다 I/O Processor 가 존재: ALU 과 Control Unit을 가짐.
 - I/O 처리를 위한 고유의 mini-program을 I/O Processor가 돌림.
 
-![](./img/Channel_IO.png){style="display: block; margin: 0 auto; width: 400px;"}
+![](./img/Channel_IO.png){style="display: block; margin: 0 auto; width:500px;"}
 
 > DMA와 가장 큰 차이점은  
 > DMA의 경우, I/O Device에서 failure가 발생하는 경우에는 CPU가 개입해야함.  
