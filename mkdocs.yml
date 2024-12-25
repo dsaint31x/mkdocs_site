@@ -216,14 +216,20 @@ nav:
     - "OS/UNIX.md"
     - "OS/LINUX.md"
     - "OS/windows.md"
-    - "OS/file_folder_dir_cmd.md"
-    - "OS/file.md"
-    - "OS/folderNdirectory.md"
-    - "OS/path.md"
-    - "OS/file_system.md"
-    - "OS/disk_partition_volume.md"
-    - "OS/linux_cmds.md"
-    - "OS/windows_cmds.md"
+    - "Process":
+        - "OS/process_thread.md"
+        - "OS/ipc.md"
+    - "Memory":
+        - "../CE/ch05/ch05_06_01_mmu.md"
+    - "File System":
+        - "OS/file_system.md"
+        - "OS/disk_partition_volume.md"
+        - "OS/file_folder_dir_cmd.md"
+        - "OS/file.md"
+        - "OS/folderNdirectory.md"
+        - "OS/path.md"
+        - "OS/linux_cmds.md"
+        - "OS/windows_cmds.md"
   - "markdown and LaTeX":
     - "CE/markdown_latex/markdown.md"
     - "CE/markdown_latex/latex.md"

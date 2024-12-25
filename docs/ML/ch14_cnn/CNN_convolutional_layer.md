@@ -5,7 +5,7 @@ tags: [Convolution, Stride, CNN]
 
 # Convolutional Layer
 
-(Locality of Pixel Dependency 와 Stationarity of Statstics 에 기반한) **CNN의 주요 구성 요소.**
+(Locality of Pixel Dependency 와 Stationarity of Statistics 에 기반한) **CNN의 주요 구성 요소.**
 
 * CNN은 convolutional layer를 통해 feature(특징)을 추출함.
 * Convolutional layer의 출력인 feature map은 추출된 feature의 위치와 강도를 가지고 있음.
