@@ -3,3 +3,5 @@
 Following is a list of relevant tags:
 
 {{ tags }}
+
+[TAGS]
