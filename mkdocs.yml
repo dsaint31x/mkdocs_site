@@ -22,8 +22,7 @@ plugins:
       separator: '[\s\-,:!=\[\]()"`/]+|\.(?!\d)|&[lg]t;|(?!\b)(?=[A-Z][a-z])'
   - minify:
       minify_html: true
-  - tags:
-      tag_file: tags.md
+  - tags
   #- glightbox
 
 markdown_extensions:
