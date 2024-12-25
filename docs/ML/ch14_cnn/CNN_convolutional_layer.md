@@ -1,3 +1,8 @@
+---
+title: Convolution Layer
+tags: [Convolution, Stride, CNN]
+---
+
 # Convolutional Layer
 
 (Locality of Pixel Dependency 와 Stationarity of Statstics 에 기반한) **CNN의 주요 구성 요소.**
@@ -7,15 +12,14 @@
 
 > Plain CNN은 convolutional layer와 max (or average) pooling 이 기본 구성요소임.
 
-
-***
+---
 
 다음 그림은 convolution의 과정을 보여줌.  
 두 개의 kernel (filter라고 불림. width 와 height, 그리고 depth로 dimension이 결정됨)과 bias를 이용한  
 convolution을 수행하여 두 개의 feature map을 얻어냄.  
 ($7 \times 7 \times 3$ 이 입력으로 하여 $3 \times 3 \times 2$ 출력을 얻음) 
 
-![](../../DIP/img/etc/convolution_how.gif)
+![](../../DIP/img/etc/convolution_how.gif){style="display: block;margin: 0 auto;width=600px" }
 
 * 작은 크기 (3x3 or 5x5) 의 kernel (=filter 라고도 불림)을 사용
 	* 이전 layer의 일부 neurons만이 연결됨 (전체가 연결되는 dense와 다름)
@@ -31,12 +35,12 @@ convolution을 수행하여 두 개의 feature map을 얻어냄.
 	* intermediate layer에서는low level feature maps를 조합한 intermediate feature를 추출해 냄.
 	* higher layer에서는 task와 밀접하게 관련되며 이들 intermediate features를 조합하여 구성되는 high level feature를 추출해냄.
 
-<figure markdown>
-![](../img/ch00/dl_hiearchy_rep.png){width=600, align=center}
-</figure markdown>
+![](../img/ch00/dl_hiearchy_rep.png){style="display: block; margin: 0 auto;width:600px"}
 
 * 만약 input의 depth가 10인 경우, kernel의 depth도 10이 되는 게 일반적임. 
     * depth separated convolution 제외.
+
+---
 
 ---
 
@@ -51,6 +55,8 @@ Signal Processing에서는 Convolution과 Cross Correlation은 용도가 분명�
 
 ---
 
+---
+
 ## 주요 hyper-parameters
 
 ### kernel size
@@ -61,9 +67,7 @@ feature map의 **한 pixel의 값** 을 결정하는데 참여하는 input의 pi
 * kernel size가 클수록 parameters 의 수가 커짐.
 * 일반적으로 kernel size는 홀수이며, kernel의 정가운데 pixel의 위치를 anchor라고 부름.
 
-<figure markdown>
-![](./img/kernel.gif)
-</figure markdown>
+![](./img/kernel.gif){style="display: block; margin: 0 auto; width:600px"}
 
 > CNN에서 kernel의 weights는 Training을 통해 dataset으로부터 최적의 값들로 설정됨 (ML에서의 특징).  
 >
@@ -71,7 +75,7 @@ feature map의 **한 pixel의 값** 을 결정하는데 참여하는 input의 pi
 > * 사람이 kernel의 weight를 설정하는 것과 달리  
 > * DL에서는 Task에 적합한 Kernel의 weights를 dataset으로부터 구해냄.
 
-***
+---
 
 ### stride
 
@@ -80,9 +84,9 @@ convolution에서 sliding을시킬 때 건너뛰는 pixel의 수.
 * stride가 클수록 convolutional layer의 출력으로 나오는 feature map의 width와 height가 작게됨.
 * receptive field가 겹치지 않도록 조정하는게 일반적임.
 
-![](./img/Stride.png)
+![](./img/Stride.png){style="display: block; margin:0 auto; width:600px"}
 
-***
+---
 
 ### padding
 
@@ -106,8 +110,8 @@ Convolutional Layer는
 * batch size를 줄이거나 
 * stride를 크게 하는 등의 처리가 필요함.
 
-***
+---
 
-# 같이 읽어보면 좋은 자료들
+## 같이 읽어보면 좋은 자료들
 
-* [Convolution 이란?](../../DIP/cv2/etc/dip_convolution/) 
+* [Convolution 이란?](../../DIP/cv2/etc/dip_convolution.md) 

@@ -13,15 +13,13 @@
 
 다음 그림은 초창기 Teletypewriter 형태의 Keyboard 를 보여준다.
 
-<figure markdown>
-![](https://upload.wikimedia.org/wikipedia/commons/8/89/WACsOperateTeletype.jpg){width="300"}
+![](https://upload.wikimedia.org/wikipedia/commons/8/89/WACsOperateTeletype.jpg){style="display: block; margin:0 auto; width=300px"}
 <figcaption>Public Domain, <a href="https://commons.wikimedia.org/w/index.php?curid=225986">Link</a></figcaption>
-</figure>
 
 이를 통해 기존의 batch job형태가 아닌 컴퓨터와의 interaction 이 가능해지기 시작함.  
 이는 ***1970년대 초반 time-sharing computer (시분할 시스템)의 등장*** 과도 연관됨 (모니터는 대중화가 키보드에 비해선 좀 더 늦음).
 
-* **Note** : [Time Sharing System](../../OS/operating_system.md#시분할-time-sharing-시스템)
+* **Note** : [Time Sharing System](../../OS/operating_system.md#4-2-3-time-sharing)
 
 > 1960년 후반에 RV 자동차(Recreational Vehicle) 크기의 컴퓨터가 등장하면서  
 > 회사나 큰 부서에서 컴퓨터를 사용하기 시작함.  
@@ -31,12 +29,12 @@
 
 1963년도(2세대말)의 Teletype ASR-33 의 경우, 출력은 모니터가 아닌 ***종이에 인쇄되는 프린터*** 가 담당함. 
 
-<figure markdown>
-![](./img/ASR33_hardcopy_terminal.png){width="300"}
+![](./img/ASR33_hardcopy_terminal.png){stype="display:block; margin:0 auto;width:300px"}
 <figcaption>ASR33의 사진</figcaption>
-</figure>
 
 > `t`ele`ty`pewriter의 약어인 `tty`가 terminal을 의미하는 abbreviation임.
+
+---
 
 ---
 
@@ -50,6 +48,8 @@
 모니터는 결국, ***1976년 PC가 등장(4세대)*** 하면서 키보드와 함께 대표적인 input/output device로 자리잡게됨. 
 
 * 1980년대 초반 IBM이 컴퓨터 장비를 위한 CRT 모니터를 내놓고, 1984년에는 16칼라 모니터를 개발함.
+
+---
 
 ---
 

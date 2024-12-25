@@ -1,3 +1,7 @@
+---
+title: UNIX
+tags: [OS, UNIX, LINUX, History]]
+
 # UNIX
 
 1969년 Bell연구소의 Ken Thompson등이 PDP-7 시스템의 OS로서 개발된 것이 최초의 UNIX임.
@@ -10,11 +14,19 @@
 > UNIX도 Multics (Multiplexed Information and Computing Service)라는 시분할 운영체제에 기반을 두고 개발이 되었다.  
 > Multics는 상업용으로는 성공을 거두지 못하였기 때문 현대적 OS의 시작이라는 타이틀을 UNIX에게 넘겨준 면은 있지만, UNIX는 Multics없이는 개발될 수 없다고 단언할 수 있을 정도로 그 기반을 제공해준 OS로 가치를 인정받고 있음.
 
+---
+
+---
+
 ## 발전사
 
 다음의 URL을 참고.
 
 * 참고: [System V, BSD, 그리고 LINUX 와 MacOS](http://ds31x.tistory.com/134)
+
+---
+
+---
 
 ## 특징
 
@@ -24,7 +36,11 @@
 * interactive system (~time sharing system)이면서 multi-processing 및 multi-user system임.
 * 계층적인 Tree구조의 파일 시스템으로 구성됨.
 
-## 다른 os 들과의 관계.
+---
+
+---
+
+## 다른 OS 들과의 관계.
 
 1. **UNIX의 상용화 및 Linux의 등장**: 
     * 초기 UNIX는 여러 대학과 연구 기관에서 소스 코드 접근이 가능(모든 소스코드가 공개되어있었고 접근 가능했음)했고 사실상 무료로 이용가능한 매우 저가의 라이선스 형태로 배포되었으나, 
@@ -42,7 +58,7 @@
     * POSIX 표준을 일부 지원하는 서브시스템을 제공. 
     * Windows 10부터는 Windows Subsystem for Linux (WSL)을 도입하여 Linux 커널을 실행할 수 있는 환경을 제공하고 있으며, 이는 Windows 10의 20H1 업데이트부터는 WSL2로 발전하여 진짜 Linux 커널이 실행되도록 지원하고 있음.
 
-> 참고: [POSIX에 대하여.](../CE/ch15/ce15_2_4_portability/#portable-operating-system-interface-posix)
+> 참고: [POSIX에 대하여.](../CE/ch15/ce15_2_4_portability.md#portable-operating-system-interface-posix)
 
 결론적으로 LINUX와 Mac OS 등의 현대적 컴퓨터 OS의 기반이자 원형이 되어준 운영체제로 컴퓨터의 역사상 가장 중요한 위치를 차지하고 있는 것이 UNIX임.
 

@@ -125,7 +125,7 @@ AGP가 담당하던 그래픽카드를 위한 bus로까지 이용되고 있음.
 
 * PCI-E 는 `full duplex` 이므로 실제 데이터 대역폭은 위의 숫자에서 2를 곱하면 됨.
 
-참고: [Full Duplex(전이중) 란?](../ch06/ce06_2_01_history.md#통신-방식)
+참고: [Full Duplex(전이중) 란?](../ch06/ce06_2_01_history.md#-)
 
 ---
 

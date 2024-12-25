@@ -222,7 +222,7 @@ stored program architecture 이전에는
 > 
 > * [Difference Between Multiprogramming and Multitasking](https://www.tutorialspoint.com/difference-between-multiprogramming-and-multitasking)
 > * [Multi-tasking system](../../OS/operating_system.md#multi-tasking-system)
-> * [Multi-programming system](../../OS/operating_system.md#다중-프로그래밍multi-programming-시스템)
+> * [Multi-programming system](../../OS/operating_system.md#4-2-2-multi-programming)
 
 
 `TRADIC`, `TX-0` 등이 유명한 2세대 컴퓨터임.

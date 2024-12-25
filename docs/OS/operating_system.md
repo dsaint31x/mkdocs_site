@@ -106,7 +106,7 @@ RAM에 여러 개의 Process의 영역이 할당된다. address를 지정하는 
 
 ---
 
-#### 4-2-3. 시분할 (Time Sharing) 시스여
+#### 4-2-3. 시분할 (Time Sharing) 시스템
 
 사용자와의 상호작용이 가능한 multi-programming system의 확장.
 

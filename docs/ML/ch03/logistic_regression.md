@@ -1,3 +1,8 @@
+---
+title: Logistic Regression
+tags: [Logistic, Classification, Regression, MLEM]
+---
+
 # Logistic Regression
 
 Logistic Regression은  
@@ -33,7 +38,7 @@ Logistic Regression의 동작 순서는 다음과 같음.
 
 다음 그림은 Computational Graph 또는 Single Layer Perceptron (or `Dense` Layer)로 표현한 Logistic Regression임.
 
-![](./img/logistic_regression_ann.png){width="500"}
+![](./img/logistic_regression_ann.png){style="display: block; margin:0 auto;width=500"}
 
 다음은 Logistic Regression의 출력 $\hat{p}$의 수식이다.
 $$
@@ -47,6 +52,8 @@ $$
 * 0.5 이상일 경우 class 1에 속한다고 판정하고, 미만일 경우는 class 0에 속한다고 판정.
 
 [figure ori.](https://docs.google.com/presentation/d/1EG6nPMYbYjS4CcCVHSpMDOg7iwlzZLxahb0E9S2LkQg/edit#slide=id.g23bf78dd669_0_0)
+
+---
 
 ---
 
@@ -80,6 +87,8 @@ $i$번째 input $\textbf{x}^{(i)}$에 대응하는 label $y^{(i)}$는 `0` 또는
 
 이는 달리 말하면 binary classifier의 output은  
 ***class 1에 속할 확률*** 이라고 볼 수 있음을 의미한다.
+
+---
 
 ---
 
@@ -126,6 +135,8 @@ model의 parameters $\boldsymbol{\theta}$를 조정하기 위해서는
 
 $y$, $\hat{y}$의 probability distribution을 지정하는 Probability Mass Function을 알아야 함.
 
+
+---
 
 ---
 
@@ -200,6 +211,8 @@ $$\begin{aligned}\boldsymbol{\theta}&=\underset{\boldsymbol{\theta}}{\text{argma
 
 ---
 
+---
+
 ## Negative Log-Likelihood
 
 `MLE`는 ^^utility function을 사용하므로 최대화가 목표^^ 이므로,  
@@ -242,7 +255,7 @@ $$J(\boldsymbol{\theta}) = -\frac{1}{m} \sum_{i=1}^m \left[ y^{(i)}\log \left(\h
 
 > DL에서 binary classification에서 이용하는 cross-entropy 와 위의 Negative Log Likelihood 를 살펴보면 매우 유사함을 알 수 있음. 
 >  
-> [Cross Entropy란?](https://dsaint31.tistory.com/entry/Math-Cross-Entropy)
+> [Cross Entropy란?](https://dsaint31.tistory.com/290)
 
 참고로 위의 loss function은 linear regression (=Logistic activation이 없는 경우)과 달리 ***closed form solution이 알려져 있지 않음***. 
 
@@ -252,6 +265,8 @@ $$J(\boldsymbol{\theta}) = -\frac{1}{m} \sum_{i=1}^m \left[ y^{(i)}\log \left(\h
 하지만, 다행스럽게도 위의 loss function은 ***convex function*** 임.
 
 * Gradient Decent를 사용할 경우 global minimum에 해당하는 parameters를 항상 구할 수 있음을 의미함. 
+
+---
 
 ---
 
@@ -272,6 +287,8 @@ $$\dfrac{\partial}{\partial \theta_j}J(\boldsymbol{\theta})=\frac{1}{M}\sum_{i=1
 Logistic regression의 training이 이루어짐. 
 
 * [참고: Gradient Decent Method (GD)](https://dsaint31.tistory.com/633)
+
+---
 
 ---
 
@@ -313,9 +330,7 @@ loss function의 최대값 (기껏해야 1)도 제한되는 단점이 있음을
 * 큰 오차에서는 가급적 큰 loss를 가져야 함.
 * 때문에 `MSE`의 경우, 오차가 큰 초반 epoch 초반에 weight들이 최적의 값으로 빠르게 변화하지 못하는 단점을 추가적으로 가짐.
 
-<figure markdown>
-![](./img/nll_vs_mse.png){width="400" align="center"}
-</figure>
+![](./img/nll_vs_mse.png){style="display: block; margin:0 auto; width:400px"}
 
 때문에 binary classification task를 수행하는 ANN에서 `MSE`보다는 `cross-entropy`를 선호한다.
 
@@ -345,7 +360,7 @@ MSE 보다는 cross entropy가 보다 적합한 loss function임.
 
 Logistic regression의 Logistic function을 multi-class로 확장하면 Softmax function이 된다.
 
-* 증명 : [https://dsaint31.tistory.com/319](From Softmax to Logistic function)
+* 증명 : [From Softmax to Logistic function](https://dsaint31.tistory.com/319)
 
 > 이는 binary classification이 Logistic function을 activation으로 하던 것을 일반화하여  
 > multi-class classification의 경우  
@@ -370,6 +385,8 @@ NFLT (No Free Lunch Theorem)에 의해
 * 아닐 경우 더 나쁜 성능을 보일 수 밖에 없다.
 
 > 참고: [No Free Lunch Theorem (NFLT)](https://dsaint31.tistory.com/605)
+
+---
 
 ---
 
