@@ -1,3 +1,9 @@
+---
+tags:
+  - OS 
+  - Computer 
+---
+
 # Operating System (운영체제)
 
 ## 1. OS 란?
@@ -12,7 +18,7 @@
 - 응용프로그램들(Application, App)의 토대를 제공해주는 프로그램
 - "사용자, 응용프로그램들"과 "하드웨어" 사이의 중간 매개체 역할.
 
-![](./img/os.jpeg)
+![](./img/os.jpeg){style="display: block; margin: 0 auto; width: 500px"}
 
 > 간략하게 말하면,  
 > OS의 주요기능은  
@@ -25,10 +31,18 @@
 
 ---
 
+---
+
 ## 2. OS의 목적
 
 - **운영체제는 User Interface(사용자 인터페이스)를 제공 → 사용자가 컴퓨터의 H/W 지식 없이도 편리하게 시스템 사용케 함.**
-- **컴퓨터 시스템의 자원들을 효율적인 운영 (자원 스케쥴링 등등)**
+    - GUI 와 CLI 및 Shell: 컴퓨터 시스템을 사용할 수 있게 해주는 interface.
+    - POSIX 와 같은 system call: OS와 Application 간의 interface.
+    - High-Level API 등등.
+- **컴퓨터 시스템의 resources** 를 효율적인 운영 (resource scheduling 등등)
+    - Process와 Thread 관리. 
+    - Memory 관리.
+---
 
 ---
 
@@ -41,6 +55,8 @@
 5. **계정 관리** : 사용자들의 컴퓨터에 관한 기록을 저장하고, 이를 처리하여 자원의 활용 상태 파악등에 이용.
 6. **오류 탐지** : 항상 가능한 한 모든 오류의 상태를 탐지.
 7. **보호** : 사용자 정보를 보호할 수 있는 체제를 제공.
+
+---
 
 ---
 

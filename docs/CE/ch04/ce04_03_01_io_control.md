@@ -99,7 +99,7 @@
 
 DMA에서는 DMA Controller가 CPU의 관여없이 직접적으로 Memory에 접근함.
 
-DMA 기능이 CPU 칩셋 또는 I/O 브릿지(예: Southbridge 또는 PCH)에 통합되는게 일반적이나, 고성능 시스템은 특정 I/O H/W에 내장되기도 함.
+DMA 기능이 CPU 칩셋 또는 I/O 브릿지(예: South-bridge 또는 PCH)에 통합되는게 일반적이나, 고성능 시스템은 특정 I/O H/W에 내장되기도 함.
 
 - **특징 (Characteristics)**:
 
@@ -164,10 +164,10 @@ Channel I/O
   - **셀렉터 채널(Selector Channel)**:
       - 고속 장치를 담당하며, 입출력 명령을 하나씩 처리.
       - 예: 디스크와 같은 고속 장치.
-  - **멀티플렉서 채널(Multiplexor Channel)**:
+  - **멀티플렉서 채널(Multiplexer Channel)**:
       - 저속 장치(예: 키보드, 프린터)에서 여러 입출력 명령을 동시에 처리 가능.
       - 여러 장치를 순차적으로 서비스.
-  - **블록 멀티플렉서 채널(Block Multiplexor Channel)**:
+  - **블록 멀티플렉서 채널(Block Multiplexer Channel)**:
       - 여러 개의 명령어 집합을 받아 차례로 자동 처리.
       - 셀렉터 채널과 멀티플렉서 채널의 특성을 모두 가짐.
       - 입출력 중 하나의 장치만 집중적으로 처리하되, 다른 장치의 요청 사항은 저장 가능.
