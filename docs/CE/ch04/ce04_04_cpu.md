@@ -121,7 +121,7 @@ microcode로 구현된 traffic control은 다음과 같은 memory (주로 ROM)�
 * 각 마이크로연산은 CPU의 특정 하드웨어 기능을 제어하는 데 사용
 * Writable ROM등에 저장되며, 일종의 Firmware라고 볼 수 있음.
     * Firmware: 하드웨어를 제어하고 하드웨어와 소프트웨어 간의 인터페이스를 제공하는, 읽기 전용 메모리(ROM), 플래시 메모리, 혹은 이와 유사한 비휘발성 메모리에 저장된 소프트웨어.
-    * Firmware에 대한 자세한 참고자료: [Firmware란](../ch03_seq/ce03_05_hw_and_sw.md#Firmware)
+    * Firmware에 대한 자세한 참고자료: [Firmware란](../ch03_seq/ce03_05_hw_and_sw.md#firmware)
 
 
 
