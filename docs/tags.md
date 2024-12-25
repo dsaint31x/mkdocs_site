@@ -2,6 +2,9 @@
 
 Following is a list of relevant tags:
 
-{{ tags }}
+
+<!-- material/tags -->
+
+{{tags}}
 
 [TAGS]

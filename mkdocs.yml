@@ -10,6 +10,7 @@ theme:
     - navigation.tabs
     - content.code.annotate
     - content.code.copy
+    - tags
     # - comments
 
 extra:
@@ -18,11 +19,12 @@ extra:
 
 plugins:
   #- info
+  - tags:
+      tags_file: tags.md
   - search:
       separator: '[\s\-,:!=\[\]()"`/]+|\.(?!\d)|&[lg]t;|(?!\b)(?=[A-Z][a-z])'
   - minify:
       minify_html: true
-  - tags
   #- glightbox
 
 markdown_extensions:
@@ -380,6 +382,6 @@ nav:
   - "SS":
     - "z-Transform":
       - "SS/ch08/ch08_33_z_t_time_shift.md"
-  - Material Test:
+  - "Material Test":
     - code blk: test_code_blocks.md
-  - tags: tags.md
+  - "Tags": tags.md
