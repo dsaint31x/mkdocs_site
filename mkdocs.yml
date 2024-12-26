@@ -9,9 +9,10 @@ theme:
   codehilite:
     linenums: true
   features:
-    #- navigation.tabs
+    - navigation.tabs
     - content.code.annotate
     - content.code.copy
+    - navigation.footer
 
 extra:
   disqus: 
