@@ -7,7 +7,7 @@ tags: [time slice, index register]
 
 `Absolute Addressing`+`Index Register` 와 `Relative Addressing`은
 
-Multi-programming System 및 Time Sharing System에서  
+Multi-programming System 및 Time Sharing System 에서  
 
 * RAM에 적재된 여러 user program의 
 * 각각의 address를 읽어들이기 위한 기술임. 
@@ -60,21 +60,28 @@ Time Sharing OS 타이머를 이용해 사용자 프로그램을 짧은 시간 �
 
 Absolute Addressing(절대 주소 지정)은 명령어에 특정 메모리 주소를 직접 명시하는 방식임.
 
-* 그러나 사용자 프로그램이 메모리의 특정 주소에 고정되지 않고 실행된다면, 
+* 그러나 ***사용자 프로그램이 메모리의 특정 주소(예를 들어 0)에 고정되지 않고 실행*** 된다면, 
 * 이같은 절대 주소만으로는 유효한 메모리 접근이 어려워짐. 
-* 이를 해결하기 위해 **인덱스 레지스터(index register)**가 추가됨.
+* 이를 해결하기 위해 **인덱스 레지스터(index register)** 가 추가됨.
 
-**인덱스 레지스터의 역할**:
+#### **`Index Register`의 역할**:
 
-  인덱스 레지스터는 명령어에 명시된 주소에 값을 더해 **유효 주소(effective address)** 로 매핑을 가능하게 함.  
-  예를 들어,  
-  사용자가 프로그램이 메모리 주소 `0` 부터 사용한다는 가정 하에  
-  메모리 주소 `1000`부터 실행하도록 설계했다면,  
-  실제로는 `3000`번지에서 실행되어야 하고, 
-  이 경우, 인덱스 레지스터를 `2000`으로 설정함.
+`Index Register`는 
 
-  - 명령어: `LOAD A(Index Register)`
-  - 계산: `A + Index Register`
+* 명령어에 명시된 0 기준의 주소 (주소 0에서 시작된다고 가정하고 기재된 주소)에 
+* 프로그램의 실제 시작되는 주소값을 더해 
+* **유효 주소(effective address)** 로 매핑을 수행.  
+  
+예를 들어, 
+    사용자가 프로그램이 메모리 주소 `0` 부터 사용한다는 가정 하에  
+    메모리 주소 `1000`부터 실행하도록 설계했다면,  
+    실제 프로그램이 `2000`번지부터 할당되었다면,  
+    이 경우,`index Register`를 `2000`으로 설정하고  
+    여기에 `1000+2000=3000` 이라는 `Effective Address` 를 구함. .
+
+
+- 명령어: `LOAD A(Index Register)`
+- 계산: `A + Index Register`
 
 이같은 처리는 오늘날 컴퓨터에서는
 
@@ -85,16 +92,16 @@ Absolute Addressing(절대 주소 지정)은 명령어에 특정 메모리 주�
 
 ### **2-2. 상대 주소 지정(Relative Addressing)의 활용**
 
-상대 주소 지정은  
+`Relative Addressing` 은  
 
-* 명령어가 메모리의 **기준 주소(base address)** 를 기준으로 
-* ***오프셋(offset)을 계산*** 하여 메모리에 접근하는 방식임.
+* 명령어가 메모리의 **기준 주소(base address)**가 됨. 
+* 명령어를 기준으로 ***오프셋(offset)을 계산*** 하여 이를 통해 메모리에 접근임.
+
+기계어에서 이를 직접 계산하기는 거의 불가능하지만, 오늘날의 프로그래밍 툴에서는 이를 지원하고 있음.
+
+#### **Relative Addressing의 장점**:
+
+1. 프로그램이 메모리 어디에 로드되더라도 실행 명령어가 기준이므로 수정 없이 실행 가능.
+2. 프로세스 전환이 빈번한 멀티프로그래밍 환경에서 재배치(relocation) 작업이 자유로워짐.
 
 
-base address는 보통 프로그램 카운터(PC)나 베이스 레지스터(Base Register)에 저장됨.
-
-- **장점**:
-  1. 프로그램이 메모리 어디에 로드되더라도 ***기준 주소만 변경*** 하면 수정 없이 실행 가능.
-  2. 프로세스 전환이 빈번한 멀티프로그래밍 환경에서 재배치(relocation) 작업이 간단해짐.
-- **예제**:
-  기준 주소가 `1000`이고, 명령어가 `LOAD A`라면 `LOAD 1000 + A`로 계산됨.
