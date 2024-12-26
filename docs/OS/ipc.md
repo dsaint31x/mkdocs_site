@@ -37,7 +37,7 @@ Linux의 경우, System Call인 `sigaction` 과 `signal`을 통해
 
 Python을 이용하여 Signal Handler를 등록하는 예제는 다음과 같음.
 
-```Python
+```Python linenums="1"
 import signal
 import os
 import time
@@ -97,7 +97,7 @@ Process 입장에서는 자신에게 할당된 Memory 영역을 읽고 쓰는 �
 Python 등에서는 `multiprocessing` 모듈의 `shared_memory` 서브 모듈을 활용하여  
 프로세스 간에 메모리를 직접 공유할 수 있음.
 
-```Python
+```Python linenums="1"
 from multiprocessing import shared_memory, Process
 import numpy as np
 
@@ -170,7 +170,7 @@ IPC를 위한 방법 중 하나로, Processes가 서로 message를 주고 받아
 
 Python으로 socket을 이용한 예제는 다음과 같음:
 
-```Python
+```Python linenums="1"
 import socket
 
 def server_program():
