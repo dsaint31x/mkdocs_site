@@ -218,6 +218,7 @@ nav:
     - "OS/windows.md"
     - "Process":
         - "OS/process_thread.md"
+        - "OS/process_sched.md"
         - "OS/ipc.md"
     - "Memory":
         - "../CE/ch05/ch05_06_01_mmu.md"
