@@ -9,10 +9,10 @@ Process간에 통신이 필요함.
 
 ## Signal 이용.
 
-Signal 은 *** Kernel을 통해 비동기적인 event를 처리하기 위한 방법*** 이나, 
-Process 간 통신에도 제한적으로 사용이 가능함.
+Signal 은 ***Kernel을 통해 비동기적인 event를 처리하기 위한 방법*** 이나,  
+**Process 간 통신에도 제한적으로 사용이 가능함.**
 
-> Signal 은 Kernel을 경유하여 
+> Signal 은 Kernel을 경유하여  
 > 특정 Process에서 다른 Process로 보내질 수 있음.
 
 특정 Process에서 특정 Signal을 받을 경우,
@@ -24,11 +24,12 @@ Process 간 통신에도 제한적으로 사용이 가능함.
 3. 해당 Signal Handler가 종료하면 다시 이전의 실행을 재개하게 됨.
 
 이를 이용하여, 
+
 * 특정 Signal을 받을 경우 수행되는 Signal Handler를 
 * 재정의해두고, 해당 Process에 해당 Signal을 보내는 방식으로 
 * ***IPC를 제한적으로 구현*** 하게 됨.
 
-Linux의 경우, System Call인 `sigaction` 과 `signal`을 통해 
+Linux의 경우, System Call인 `sigaction` 과 `signal`을 통해  
 특정 Signal에 대한 처리를 구현할 수 있음.
 
 * 특정 Signal의 기본동작을 변경: `sigaction`
@@ -66,6 +67,10 @@ except KeyboardInterrupt:
 
 참고: [Signal 요약](https://ds31x.tistory.com/132)
 
+---
+
+---
+
 ## Shared Memory (공유메모리)
 
 OS 가 MMU (Memory Management Units)를 지원할 경우, 
@@ -76,8 +81,8 @@ OS 가 MMU (Memory Management Units)를 지원할 경우,
 
 > 다른 이름으로 Shared Memory는 Shared Page라고도 불림.
 
-Process 입장에서는 자신에게 할당된 Memory 영역을 읽고 쓰는 것과 
-같은 방식으로 다른 Process와 커뮤니케이션을 하는 것이기 때문에
+Process 입장에서는 자신에게 할당된 Memory 영역을 읽고 쓰는 것과   
+같은 방식으로 다른 Process와 커뮤니케이션을 하는 것이기 때문에   
 매우 효율적인 커뮤니케이션이 됨: 가장 빠른 IPC 방법임.
 
 * Kernel의 개입이 Signal을 이용하는 방식 등에 비해 거의 없음.
@@ -131,6 +136,10 @@ if __name__ == "__main__":
 ```
 
 참고: [Memory Management Units](https://dsaint31.me/mkdocs_site/CE/ch05/ch05_06_01_mmu/)
+
+---
+
+---
 
 ## Message Passing (메시지 전달)
 

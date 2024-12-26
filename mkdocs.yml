@@ -6,12 +6,12 @@ theme:
   name: 'material'
   logo: 'assets/MMMIL_logo.jpg'
   custom_dir: 'custom_theme/'
+  codehilite:
+    linenums: true
   features:
-    - navigation.tabs
+    #- navigation.tabs
     - content.code.annotate
     - content.code.copy
-    - tags
-    # - comments
 
 extra:
   disqus: 
