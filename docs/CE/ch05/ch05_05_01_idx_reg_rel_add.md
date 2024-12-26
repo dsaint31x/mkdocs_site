@@ -1,3 +1,8 @@
+---
+title: Index Register and Relative Addressing
+tags: [time slice, index register]
+---
+
 # Index Register와 Relative Addressing
 
 `Absolute Addressing`+`Index Register` 와 `Relative Addressing`은
@@ -17,10 +22,10 @@ Multi-programming System 및 Time Sharing System에서
 
 ## 1. **OS: Time Sharing System 의 동작 방식: 타이머 인터럽트와 프로세스 메모리 접근 방식**
 
-Time Sharing OS 타이머를 이용해 사용자 프로그램을 짧은 시간 간격(time slicing)으로 실행되도록 스케줄링함.  
+Time Sharing OS 타이머를 이용해 사용자 프로그램을 짧은 시간 간격(time slice)으로 실행되도록 스케줄링함.  
 
-* 이를 **타임 슬라이싱(time slicing)** 이라고 하며, 
-* 이는 실행 중이던 프로그램의 상태를 저장하고 다음 프로그램으로 전환하여 시스템 자원을 효율적으로 사용하고,
+* 이를 **타임 슬라이싱(`Time Slicing`)** 이라고 하며, 
+* 이는 실행 중이던 프로그램의 상태를 저장하고 다음 프로그램으로 전환(`Context Switch`)하여 시스템 자원을 효율적으로 사용하고,
 * 사용자와 프로세스의 상호작용을 가능하게 함.
   
 만약 하나의 프로그램의 데이터 만이 메모리에 적재될 경우, 
@@ -28,7 +33,7 @@ Time Sharing OS 타이머를 이용해 사용자 프로그램을 짧은 시간 �
 * 메모리에 실행할 프로그램의 데이터를 적재하고 복원하는 작업으로 인해
 * 많은 시간과 자원을 많이 소모되며 시스템이 너무 느려지게 됨.
 
-![](../../OS/img/os_time_sharing.png){width="200"}
+![](../../OS/img/os_time_sharing.png){style="display: block; margin:0 auto; width:200px"}
 
 즉, 이러한 문제를 해결하기 위해, 
 
@@ -37,7 +42,7 @@ Time Sharing OS 타이머를 이용해 사용자 프로그램을 짧은 시간 �
 
 > 즉, Time Sharing OS는 multi-programming OS의 확장임.
 
-참고: [Time Sharing OS 와 Multi-Programming OS에 대하여](../../OS/operating_system.md#4-2-2-다중-프로그래밍multi-programming-시스템)
+참고: [Time Sharing OS 와 Multi-Programming OS에 대하여](../../OS/operating_system.md#4-2-2-multi-programming)
 
 
 ---
