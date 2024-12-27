@@ -10,6 +10,12 @@ OS는 컴퓨터 시스템의 안정성과 보안을 유지하기 위해 System M
 * 이 두 모드는 각기 다른 작업을 수행하며, 
 * 시스템의 효율성과 안전성을 유지하는 데 핵심적인 역할을 함.
 
+> CPU가 실행하는 코드는 무조건 main memory에 적재되어야 하는데 (von Neumann Arch.). 
+> OS의 코드가 적재되는 영역은 `Kernel Space` (or `System Space`) 이고  
+> 사용자 프로그램의 코드는 `User Space` 에 적재됨.  
+> 모드에 따라 해당 영역의 코드를 실행을 시킬 수 있는지가 결정됨:  User Mode로는 System Space의 코드 실행이 불가함.
+
+
 ---
 
 ---
@@ -52,7 +58,7 @@ User Mode는 사용자 애플리케이션이 실행되는 제한된 환경임.
 
 System Mode는 OS의 핵심 기능 `Kernel`이 실행되는 모드.
 
-이 모드는 H/W를 직접 제어하거나 시스템 자원에 접근할 수 있는 **최고 수준의 권한(Privileged Access)**을 가짐.  
+이 모드는 H/W를 직접 제어하거나 시스템 자원에 접근할 수 있는 **최고 수준의 권한(Privileged Access)** 을 가짐.  
 이 모드에서는 CPU의 Flag Register 의 Supervisor Flag가 활성화(Set, ‘1‘) 되어 있음.
 
 ---
@@ -83,10 +89,10 @@ System Mode는 OS의 핵심 기능 `Kernel`이 실행되는 모드.
         * Kernel Space에 위치.
         * OS가 프로세스의 메모리 접근을 제어하기 위해 사용합니다.
 5. PCB의 위치 (Location of Process Control Block, PCB):
-    * 각 프로세스의 상태와 정보를 저장하는 **Process Control Block (PCB)**은 Kernel Space에 위치
+    * 각 프로세스의 상태와 정보를 저장하는 **Process Control Block (PCB)** 은 Kernel Space에 위치
     * 이는 시스템 자원을 안전하고 효율적으로 관리하기 위해서임.
 6. ISR의 위치 (Location of Interrupt Service Routine, ISR):
-    * 하드웨어 이벤트를 처리하는 **Interrupt Service Routine (ISR)**도 System Mode에서 실행.
+    * 하드웨어 이벤트를 처리하는 **Interrupt Service Routine (ISR)** 도 System Mode에서 실행.
     * 이로써 키보드 입력(Keyboard Input), 디스크 읽기/쓰기(Disk I/O) 같은 이벤트 처리도 Kernel Mode에서 이루어짐.
 
 ---
@@ -165,7 +171,7 @@ Trap: User Mode에서 System Mode로 전환
 
 1. 정의 (Definition):
     * 프로세스가 필요로 하는 메모리 페이지가 RAM에 없을 때 발생하는 Exceptoin.
-    * Fault의 대표적인 경우.
+    * `Fault`의 대표적인 경우.
 2. 작동 방식 (How It Works):
     * OS는 Page Fault 핸들러 (Kernel Space에 코드 존재)를 통해 
     * 필요한 데이터를 디스크에서 가져와 RAM에 로드한 후 프로세스를 재개.
@@ -182,7 +188,7 @@ OS는 User Mode와 System Mode라는 Dual Modes를 통해 안정성과 효율성
 * System Mode는 OS의 핵심 기능 Kernel을 수행하며, 하드웨어와 시스템 자원을 관리.
 * Trap은 두 모드 간의 전환을 가능하게 하여 프로세스가 OS의 기능을 안전하게 사용할 수 있도록 지원.
 
-Kernel Space
+**Kernel Space는**
 
 * OS의 커널 코드 위치
 * RAM의 상위 주소에 위치 (아주 초기에는 address 0 부터 시작하는 구조였으나 오늘날에는 상위주소 영역에 위치함.)
