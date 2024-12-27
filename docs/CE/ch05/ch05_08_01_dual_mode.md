@@ -15,6 +15,7 @@ OS는 컴퓨터 시스템의 안정성과 보안을 유지하기 위해 System M
 > 사용자 프로그램의 코드는 `User Space` 에 적재됨.  
 > 모드에 따라 해당 영역의 코드를 실행을 시킬 수 있는지가 결정됨:  User Mode로는 System Space의 코드 실행이 불가함.
 
+![](./img/dual_mode.jpeg){style="display:block; margin:0 auto; width:500px"}
 
 ---
 
