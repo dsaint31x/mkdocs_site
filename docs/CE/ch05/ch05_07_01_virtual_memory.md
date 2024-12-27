@@ -35,7 +35,7 @@ tags: [MMU, Virtual Memory, Physical Memory, Demand Paging, Swapping, Page Fault
 Virtual Memory Management를 위한 Method로서,
 
 * 프로세스를 Memory에 Load할 때, 
-* 프로세스의 전체 모든 Pages를 적재하지 않고, ***필요한 Page들만 메모리에 load*** 하고
+* 프로세스의 전체 모든 Pages를 적재하지 않고, **필요한 Page들만 메모리에 load** 하고
 * 나머지는 Disk에 저장하는 방식을 사용하여
 * 메모리를 절약하는 기법임.
 
