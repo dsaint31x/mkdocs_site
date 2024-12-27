@@ -10,7 +10,7 @@ OS는 컴퓨터 시스템의 안정성과 보안을 유지하기 위해 System M
 * 이 두 모드는 각기 다른 작업을 수행하며, 
 * 시스템의 효율성과 안전성을 유지하는 데 핵심적인 역할을 함.
 
-> CPU가 실행하는 코드는 무조건 main memory에 적재되어야 하는데 (von Neumann Arch.). 
+> CPU가 실행하는 코드는 무조건 main memory에 적재되어야 하는데 (von Neumann Arch.)  
 > OS의 코드가 적재되는 영역은 `Kernel Space` (or `System Space`) 이고  
 > 사용자 프로그램의 코드는 `User Space` 에 적재됨.  
 > 모드에 따라 해당 영역의 코드를 실행을 시킬 수 있는지가 결정됨:  User Mode로는 System Space의 코드 실행이 불가함.
