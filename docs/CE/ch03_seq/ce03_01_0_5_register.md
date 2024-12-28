@@ -37,7 +37,7 @@ tags: [Register, Flip-Flop, SRAM]
 
 ## Schematic Representation
 
-![8bit Register](img/register_8bit.png){style="display:block; margin:0 auto;width:300px"}
+![8bit Register](img/register_8bit.png){style="display:block; margin:0 auto;width:100px"}
 
-- `clock` : rising edge에 입력 `D`의 값이 `Q`에서 출력.
+- `clock` : Rising Edge에 입력 `D`의 값이 `Q`에서 출력.
 - `enable` : 해당 입력이 `Active` 여야 Register가 동작함(여기선 `1`이어야함.)
