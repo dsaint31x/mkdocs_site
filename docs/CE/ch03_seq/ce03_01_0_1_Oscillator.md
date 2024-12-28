@@ -4,10 +4,12 @@ tags: [oscillator, clock, synchronous, pulse, propagation delay]
 ---
 # Oscillator (발진자)
 
+## Oscillator
+
 일정시간에 맞춰 반복되는 ***주기적인 펄스(Pulse)를 발생*** 시켜  
 Computer 등에서 ***Time정보를 제공하는 역할*** 을 함.  
 
-![Oscillator](img/Quartz-Crystal-Oscillator.png){style="display:block; margin:0 auto; width:500px"}
+![Oscillator](img/Quartz-Crystal-Oscillator.png){style="display:block; margin:0 auto; width:300px"}
 
 CPU 등에서 **동작 클럭 (`Clock`)** 이 해당 CPU가 어떤 빠르기로 동작하는지를 나타내는데,  
 이같은 <u>동작 클럭을 제공하는 것이 바로 `Oscillator` </u>임.  
@@ -17,6 +19,8 @@ CPU 등에서 **동작 클럭 (`Clock`)** 이 해당 CPU가 어떤 빠르기로 
 * 이 같은 진동을 발생시키는 특성 때문에 Crystal 에 Feedback 회로를 연결하면 일정 시간 간격으로 반복되는 Pulse를 생성시킬 수 있음.
 
 > 이를 바탕으로 `Clock` Signal을 발생시키는 `Oscillator` 가 만들어진다.  
+
+---
 
 ---
 
@@ -38,6 +42,8 @@ CPU 등에서 **동작 클럭 (`Clock`)** 이 해당 CPU가 어떤 빠르기로 
 * 꽤나 Variation이 크기 때문에 
 * ***통계적인 측정치로 표시*** 되며 
 일정 Range(범위)에서 정상동작이 보장되는 특징을 가진다.  
+
+---
 
 ---
 

@@ -5,6 +5,8 @@ tags: [Latch, Flip-Flop, D Latch]
 
 # Latches (래치)
 
+## Latch란?
+
 > **걸쇠** 라는 뜻으로 ^^자물쇠^^ 의 의미를 가짐.  
 > 
 > **Gate를 조합** 하여 **1 Bit 의 정보를 기억** 하는 (걸어두는) 역할을 하는 회로를 의미함.
@@ -21,16 +23,18 @@ tags: [Latch, Flip-Flop, D Latch]
 
 라고 할 수 있음.
 
-`Latch`는 주로 **High 레벨에서 기억** 이 이루어지며,  
-`Flip-Flop`의 경우 주로 **Rising Edge에서 기억** 이 이루어지는 버전이 많이 사용됨. 
+> `Latch`는 주로 **High 레벨에서 기억** 이 이루어지며,  
+> `Flip-Flop`의 경우 주로 **Rising Edge에서 기억** 이 이루어지는 버전이 많이 사용됨. 
 
-***
+---
+
+---
 
 ## `OR` Latch
 
 ***Feedback 연결*** 과 `OR` gate를 이용하여 1 Bit의 정보를 기억한다는 점에서 ^^가장 간단한 Latch^^.
 
-![](./img/or_Latch.png){style="display: block; margin: 0 auto; width:400px"}
+![OR Latch](./img/or_latch.png){style="display: block; margin: 0 auto; width:400px"}
 
 * `A`(input)에 `1`이 입력되는 순간, 
 * 이후 출력 `Y`(output)는 `1`이 되어(Set) 계속 유지됨.
@@ -38,6 +42,10 @@ tags: [Latch, Flip-Flop, D Latch]
 > 하지만, ^^기억만 가능(정확히는 Set만)^^ 할 뿐, 다시 **Reset할 방법이 없음**.
 
 교과서에서만 주로 다루는 Latch 임.
+
+---
+
+---
 
 ## `AND`-`OR` Latch
 
@@ -47,7 +55,7 @@ tags: [Latch, Flip-Flop, D Latch]
 
 ***Reset 기능을 추가한 Latch***. 
 
-![](./img/and_or_latch.png){style="display: block; margin:0 auto;width:600px"}
+![AND-OR Latch](./img/and_or_latch.png){style="display: block; margin:0 auto;width:600px"}
 
 `OR` Latch에서 Reset이 되지 않는 단점을 보완한 것으로  
 **정보의 기억 및, 기억된 정보의 출력, 기억될 정보의 수정이 가능한 가장 간단한 memory** 임.
@@ -66,7 +74,7 @@ Gate간의 Propagation Delay 에 취약함.
 * 이름의 `S`와 `R`은 Set과 Reset을 줄인 말임.  
 
 
-![SR Latch](img/SR-Latch.png){style="display: block; margin: 0 auto; width:500px"}
+![SR Latch](img/SR-Latch.png){style="display: block; margin: 0 auto; width:300px"}
 
 | $\overline{\text{set}}$ | $\overline{\text{Reset}}$ | $Q$ | $\overline{Q}$ | |
 |:---:|:---:|:---:|:---:|:---:|
@@ -82,7 +90,7 @@ Gate간의 Propagation Delay 에 취약함.
 흔히 Latch라고 하면 `S-R Latch`를 가르킴.
 
 > 초기값 관련한 문제가 디지털 회로등에서 자주 제기된다.  
-> line{\text{set}}$과 $\overline{\text{Reset}}$이 동시에 activation되는 경우는 사용하지 않는다 (not intended for use).
+> $line{\text{set}}$과 $\overline{\text{Reset}}$이 동시에 activation되는 경우는 사용하지 않는다 (not intended for use).
 
 ***
 
@@ -93,7 +101,7 @@ Clock Signal을 입력받아서, ***특정 시점의 정보를 기억*** 하도�
 (특히 synchronization circuit에서) 
 이 Gated S-R Latch를 가르키는 경우가 많다.  
 
-![gated Latch](img/gated_latch.png){style="display: block; margin:0 auto; width:400px"}
+![Gated Latch](img/gated_latch.png){style="display: block; margin:0 auto; width:300px"}
 
 S-R Latch의 $\overline{\text{Reset}}$과 $\overline{\text{set}}$의  
 입력단 각각의 앞에 `OR`를 붙이고  
@@ -116,17 +124,17 @@ $\overline{\text{set}}$의 입력을 분리하여 받고 있으나,
 
 이를 반영하여 아래 그림과 같은 Latch를 ***D Latch*** 라고 부름.
 
-![D Latch](img/D-Latch.png){style="display: block; margin:0 auto;width:500px"}
+![D Latch](img/D-Latch.png){style="display: block; margin:0 auto;width:300px"}
 
 이 경우, 입력을 $D$라고 하면,  
 이 Latch는 해당 $D$의 1 Bit 정보를 $\overline{\text{gate}}$에 
 따라 지정된 시간만큼 기억하는 Memory로 동작하게 된다.
 
-![A Gated D Latch Timing Diagram](./img/gated_D_Latch_timing_diagram.png){style="display:block; margin: 0 auto; width:600px"}
+![A Gated D Latch Timing Diagram](./img/gated_D_latch_timing_diagram.png){style="display:block; margin: 0 auto; width:600px"}
 
 * $\overline{\text{gate}}$가 active인 경우 ($\overline{\text{gate}}=0$)에 $D$의 signal이 그대로 출력 $Q$에 전달됨.
 * 즉, $\overline{\text{gate}}$가 active이 상태에서 $D$의 상태가 변한다면 해당 변화가 그대로 출력 $Q$에 전달
-* $\overline(\text(gate))$ 가 inactive 인 경우, $D$의 상태는 무시됨.
+* $\overline{\text{gate}}$ 가 inactive 인 경우, $D$의 상태는 무시됨.
 
 Memory는 일정 기간동안 입력을 받기보다 ^^한 순간의 값을 기억하는게 유리^^ 한 경우가 많다. 
 
