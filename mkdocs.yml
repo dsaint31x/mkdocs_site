@@ -164,8 +164,8 @@ nav:
         - 'CE/ch03_seq/ce03_01_0_0_memory0.md'
         - 'CE/ch03_seq/ce03_01_0_1_Oscillator.md'
         - 'CE/ch03_seq/ce03_01_0_2_latch.md'
-        - 'flip-flop':       'CE/ch03_seq/ce03_01_0_3_flip_flop.md'
-        - 'counter':         'CE/ch03_seq/ce03_01_0_4_counter.md'
+        - 'CE/ch03_seq/ce03_01_0_3_flip_flop.md'
+        - 'CE/ch03_seq/ce03_01_0_4_counter.md'
         - 'register':        'CE/ch03_seq/ce03_01_0_5_register.md'
       - 'HW vs SW':  
         - 'HW vs SW': "CE/ch03_seq/ce03_05_hw_and_sw.md"
