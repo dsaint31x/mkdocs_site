@@ -83,7 +83,7 @@ Schematic Diagram (7474 or `DM74LS74`)은 다음과 같음.
 이들과 Propagation Delay를 반영한 Timing Diagram은 다음과 같음.
 
 
-![timing consideration](img/setup_hold_timing_diagram.png){style="display: block; margin:0 auto; width:500px"}
+![timing consideration](img/setup_hold_timing_diagram.png){style="display: block; margin:0 auto; width:200px"}
 
 
 * Latch보다는 입력을 받아들이는 시간이 짧지만, 
