@@ -49,14 +49,14 @@ Schematic Diagram (7474 or `DM74LS74`)은 다음과 같음.
 
 다음과 같은 데이터 시트를 이용하여 `Flip-Flop` 의 동작을 파악한다.
 
-![sheet](img/D_flip_flop_DM74LS74A.png){style="display: block; margin:0 auto; width:500px"}
+![sheet](img/D_flip_flop_DM74LS74A.png){style="display: block; margin:0 auto; width:200px"}
 
 * **참고: [D Filp-Flop 7474 의 동작 테이블에 대한 좀 더 자세한 설명](https://dsaint31.tistory.com/699)**
 
 `Gate`로 `D Flip-Flop` 의 구조를 보면 다음과 같음. (`S-R Latch` 3개를 이용함.)
 
 
-![Gate Design of D Flip-Flop](img/D_flip_flop_design.png){style="display:block; margin:0 auto; width:300px"}
+![Gate Design of D Flip-Flop](img/D_flip_flop_design.png){style="display:block; margin:0 auto; width:400px"}
 
 ---
 
@@ -83,7 +83,7 @@ Schematic Diagram (7474 or `DM74LS74`)은 다음과 같음.
 이들과 Propagation Delay를 반영한 Timing Diagram은 다음과 같음.
 
 
-![timing consideration](img/setup_hold_timing_diagram.png){style="display: block; margin:0 auto; width:200px"}
+![timing consideration](img/setup_hold_timing_diagram.png){style="display: block; margin:0 auto; width:500px"}
 
 
 * Latch보다는 입력을 받아들이는 시간이 짧지만, 
