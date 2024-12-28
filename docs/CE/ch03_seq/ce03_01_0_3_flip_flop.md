@@ -38,7 +38,7 @@ tags: []
 
 Schematic Diagram (7474 or `DM74LS74`)은 다음과 같음.
 
-![D flip-flop Schematic Diagram](img/D_flipflop_schematic.png){style="display: block; margin:0 auto; width:300px"}
+![D flip-flop Schematic Diagram](img/D_flipflop_schematic.png){style="display: block; margin:0 auto; width:150px"}
 
 
 - $D$ : input
@@ -49,7 +49,7 @@ Schematic Diagram (7474 or `DM74LS74`)은 다음과 같음.
 
 다음과 같은 데이터 시트를 이용하여 `Flip-Flop` 의 동작을 파악한다.
 
-![sheet](img/D_flip_flop_DM74LS74A.png){style="display: block; margin:0 auto; width:200px"}
+![sheet](img/D_flip_flop_DM74LS74A.png){style="display: block; margin:0 auto; width:400px"}
 
 * **참고: [D Filp-Flop 7474 의 동작 테이블에 대한 좀 더 자세한 설명](https://dsaint31.tistory.com/699)**
 
