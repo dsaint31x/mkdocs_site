@@ -114,7 +114,7 @@ extra_css:
 nav:
   - index: index.md
   - 'CE':
-    - 'ch00 : Introduction' : 
+    - "ch00: Introduction" : 
       - 'CE/ch00/computer.md'
       - 'CE/ch00/history_of_computers.md'
       - 'CE/ch00/category_of_computers.md'
