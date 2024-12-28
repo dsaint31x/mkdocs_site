@@ -1,6 +1,6 @@
 ---
 title: Overview
-tags:
+tags: []
 ---
 
 # 시간 및 기억소자들
@@ -14,14 +14,16 @@ Combinatorial Logic과 달리,
 Sequential Logic의 경우 
 
 * 과거의 출력값에도 영향을 받기 때문(feedback)에 **Memory Device가 필요** 
-* 현재의 input 이외의 <u>과거 상태 및 현재 상태 값들을 고려</u> 하여 출력이 결정되므로 
-* **time을 나타내는 device가 필요**.
+
+또한, 현재의 input 이외의 <u>과거 상태 및 현재 상태 값들을 고려</u> 하여 출력이 결정되므로 
+
+* **Time을 나타내는 Device가 필요**.
 
 ---
 
 ## Time Devices
 
-**Computer에서 <u>time(시간)을 나타내는 device</u>** 는 다음과 같음:
+**Computer에서 <u>Time(시간)을 나타내는 Device</u>** 는 다음과 같음:
 
 * `Oscillator` 
 * `Counter` 
