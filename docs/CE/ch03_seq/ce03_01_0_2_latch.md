@@ -65,6 +65,8 @@ Gate간의 Propagation Delay 에 취약함.
 
 ---
 
+---
+
 ## `S-R Latch` ***
 
 `AND`-`OR` Latch와 같은 역할을 하지만, 
@@ -72,7 +74,6 @@ Gate간의 Propagation Delay 에 취약함.
 * `NAND`나 `NOR`로 구현하여  
 * ***symmetric structure를 가지도록 구현*** 된 것이 특징이며, 
 * 이름의 `S`와 `R`은 Set과 Reset을 줄인 말임.  
-
 
 ![SR Latch](img/SR-Latch.png){style="display: block; margin: 0 auto; width:300px"}
 
@@ -92,7 +93,9 @@ Gate간의 Propagation Delay 에 취약함.
 > 초기값 관련한 문제가 디지털 회로등에서 자주 제기된다.  
 > $\overline{\text{set}}$과 $\overline{\text{Reset}}$이 동시에 activation되는 경우는 사용하지 않는다 (not intended for use).
 
-***
+---
+
+---
 
 ## Gated `S-R Latch`
 
@@ -108,9 +111,11 @@ S-R Latch의 $\overline{\text{Reset}}$과 $\overline{\text{set}}$의
 각 `OR`에서 $\overline{\text{Reset}}$과 $\overline{\text{set}}$의 입력을 받고,  
 동시에 각 `OR`은 clock이 입력될 동일 $\overline{\text{gate}}$ 입력을 받는 구조임.
 
-***
+---
 
-## `D Latch`
+---
+
+## `D Latch` ***
 
 위의 `S-R Latch` 구조에서 
 $\overline{\text{Reset}}$과 
