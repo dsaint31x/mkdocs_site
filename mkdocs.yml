@@ -114,14 +114,17 @@ extra_css:
 nav:
   - index: index.md
   - 'CE':
-    - 'ch00: Introduction' : 
-      - 'CE/ch00/computer.md'
-      - 'CE/ch00/history_of_computers.md'
-      - 'CE/ch00/category_of_computers.md'
-      - 'CE/ch00/component_of_computer.md'
+    - 'ch00: Introduction' :
+      - "Computer":
+        - 'CE/ch00/computer.md'
+        - 'CE/ch00/history_of_computers.md'
+        - 'CE/ch00/category_of_computers.md'
+      - "Components":  
+        - 'CE/ch00/component_of_computer.md'
     - 'ch01: Representation of Data':
-      - "CE/ch01/ch01_00_data_representation.md"
-      - "CE/ch01/ch01_01_information.md"
+      - "Data and Information":
+        - "CE/ch01/ch01_00_data_representation.md"
+        - "CE/ch01/ch01_01_information.md"
       - "Bits and Boolean Algebra":
         - "CE/ch01/ch01_10_bit.md"
         - "CE/ch01/ch01_11_msb_and_lsb.md"
