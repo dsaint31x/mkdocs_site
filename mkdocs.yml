@@ -206,6 +206,9 @@ nav:
       - "CE/ch05/ch05_06_01_mmu.md"
       - "CE/ch05/ch05_07_01_virtual_memory.md"
       - "CE/ch05/ch05_08_01_dual_mode.md"
+      - "CE/ch05/ch05_09_01_memory.md"
+      - "CE/ch05/ch05_10_01_coprocessor.md"
+      - "CE/ch05/ch05_11_01_program_execution.md"
     - 'ch06: Data Transfer and Network Communication':
       - "Data Transfer":
         - "IO Ports":         "CE/ch06/ce06_1_01_ioport.md"
