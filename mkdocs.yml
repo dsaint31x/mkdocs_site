@@ -161,7 +161,7 @@ nav:
         - 'CE/ch02_co/ce02_05_1_adder.md'
     - 'ch03: Sequential Logic and Memory':
       - 'time and memory':
-        - 'time and memory': 'CE/ch03_seq/ce03_01_0_0_memory0.md'
+        - 'CE/ch03_seq/ce03_01_0_0_memory0.md'
         - 'oscillator':      'CE/ch03_seq/ce03_01_0_1_Oscillator.md'
         - 'latch':           'CE/ch03_seq/ce03_01_0_2_latch.md'
         - 'flip-flop':       'CE/ch03_seq/ce03_01_0_3_flip_flop.md'
