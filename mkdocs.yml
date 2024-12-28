@@ -25,7 +25,7 @@ theme:
     # - navigation.instant.progress
     # - navigation.prune
     - navigation.sections
-    # - navigation.tabs
+    - navigation.tabs
     # - navigation.tabs.sticky
     - navigation.top
     - navigation.tracking
@@ -168,7 +168,7 @@ nav:
         - 'counter':         'CE/ch03_seq/ce03_01_0_4_counter.md'
         - 'register':        'CE/ch03_seq/ce03_01_0_5_register.md'
       - 'HW vs SW':  
-        - 'HW vs SW': CE/ch03_seq/ce03_05_hw_and_sw.md'
+        - 'HW vs SW': "CE/ch03_seq/ce03_05_hw_and_sw.md"
     # - 'ch04: Computer Architecture (1)':
     #   - "Archtecture":
     #     - 'CE/ch04/ce04_00_intro_computer_structure.md'
@@ -260,7 +260,7 @@ nav:
         - "OS/process_sched.md"
         - "OS/ipc.md"
     - "Memory":
-        - "../CE/ch05/ch05_06_01_mmu.md"
+        - "CE/ch05/ch05_06_01_mmu.md"
     - "File System":
         - "OS/file_system.md"
         - "OS/disk_partition_volume.md"
