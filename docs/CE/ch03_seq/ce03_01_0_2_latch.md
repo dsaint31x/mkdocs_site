@@ -90,7 +90,7 @@ Gate간의 Propagation Delay 에 취약함.
 흔히 Latch라고 하면 `S-R Latch`를 가르킴.
 
 > 초기값 관련한 문제가 디지털 회로등에서 자주 제기된다.  
-> $line{\text{set}}$과 $\overline{\text{Reset}}$이 동시에 activation되는 경우는 사용하지 않는다 (not intended for use).
+> $\overline{\text{set}}$과 $\overline{\text{Reset}}$이 동시에 activation되는 경우는 사용하지 않는다 (not intended for use).
 
 ***
 
