@@ -81,12 +81,15 @@ instruction 에 따라 데이터에 대해 산술 연산 (arithmetic operation, 
 
 ## Control Unit (CU, 제어장치)
 
+> Control Unit은 Instruction을 Fetch, Decoding하고,  
+> Processing Unit (ALU+Register)을 통해 Instruction을 실행시킴.
+
 CPU가 컴퓨터의 다른 구성 요소와 상호 작용하고 명령을 실행하는 데 필요한 모든 작업을 지시하고 조정하는 역할을 담당.
 
 * `CU`는 Instruction Decoding을 수행함: 
     * <u>`PC`(Program Counter)가 가르키는 Instruction을 메모리로부터 읽어들이는 `Fetch`를 수행</u>하고
     *  이 Fetched Instruction을 `Decoding`함.
-* Instruction Decoding에 따라 CPU의 다른 구성요소들에 지시를 내려 해당 Instruction을 `Execute`(수행)함.
+* Instruction Decoding에 따라 CPU의 다른 구성요소들(주로 `ALU`)에 지시를 내려 해당 Instruction을 `Execute`(수행)시킴.
     * CPU의 구성요소들인 `ALU`와 `Registers` 등에 신호를 보내어 실제 연산을 수행하도록 지시함.
     * 예를 들어, 산술 연산이 필요하다면 `ALU`에 해당 연산을 수행하도록 신호를 보냄.
 * `CU`는 Data가 ***CPU 내부*** 와 ***컴퓨터 시스템 전체*** 에서 어떻게 이동하는지를 관리함: 
