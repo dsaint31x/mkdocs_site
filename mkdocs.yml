@@ -144,14 +144,14 @@ nav:
     - 'ch02: Bits and Combinatorial Logic':
       - 'Building Hardware for Bits':
         - 'CE/ch02_co/ce02_03_0_HW4Bits.md'
-        - 'relay': 'CE/ch02_co/ce02_03_1_relay.md'
-        - 'vacuum tube': 'CE/ch02_co/ce02_03_2_vacuum_tube.md'
-        - 'transistor': 'CE/ch02_co/ce02_03_3_transistor.md'
-        - 'IC': 'CE/ch02_co/ce02_03_4_IC.md'
+        - 'CE/ch02_co/ce02_03_1_relay.md'
+        - 'CE/ch02_co/ce02_03_2_vacuum_tube.md'
+        - 'CE/ch02_co/ce02_03_3_transistor.md'
+        - 'CE/ch02_co/ce02_03_4_IC.md'
       - 'Gates':
         - 'Gate에 대해서': 'CE/ch02_co/ce02_04_0_gate.md'
         - 'Noise와 싸우기': 'CE/ch02_co/ce02_04_1_glitch.md'
-        - 'Propagation Delay': 'CE/ch02_co/ce02_04_3_propagation_delay.md'
+        - 'CE/ch02_co/ce02_04_3_propagation_delay.md'
         - 'CE/ch02_co/ce02_04_4_0_gate_outputs.md'
         - 'Totem-pole Output': 'CE/ch02_co/ce02_04_4_1_totem_pole_output.md'
         - 'Open-Collector Output': 'CE/ch02_co/ce02_04_4_2_open_collector.md'
