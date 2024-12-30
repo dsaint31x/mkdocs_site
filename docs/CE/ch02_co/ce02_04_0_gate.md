@@ -11,7 +11,7 @@ tags:
 
 > `Combinatorial Logic(조합논리) Circuit의 Boolean Function들을 구현한 H/W`.  
 >  
-> 보통 IC Chip으로 제공되지만,  
+> 보통 IC 로 구현되지만,  
 >
 > * ^^Transistor로 구현^^ 할 수도 있으며 
 > * ^^`FPGA`에서는 아예 `HDL`을 통해 programming 형태로 이용^^ 할 수 있도록 제공되기도 함.
@@ -57,7 +57,7 @@ Combinatorial Logic Circuit에 대한 이번 장에서는
 
 ## 관련 URLs
 
-* [From Transistor To Gate](https://dsaint31.tistory.com/696)
+* [From Transistor To Gate (ext)](https://dsaint31.tistory.com/696)
 * [Combinatorial Logic Circuit (ext)](https://dsaint31.tistory.com/entry/CI-Combinational-Circuit-or-Combinatonal-Logic-Circuit)
 * [Gates and Boolean Algebra (ext)](https://dsaint31.tistory.com/entry/CI-Logic-Gates)
 * [Noise Glitch, Schmitt Trigger and Differential signaling](ce02_04_1_glitch.md)
