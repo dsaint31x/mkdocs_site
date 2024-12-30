@@ -1,6 +1,6 @@
 ---
 title: Open-Collector
-tags: [Open-Collector,Open-Drain, Pull-Up Resistor
+tags: [Open-Collector,Open-Drain, Pull-Up Resistor]
 ---
 
 # Open-Collector (or Open-Drain) Output
@@ -19,7 +19,7 @@ tags: [Open-Collector,Open-Drain, Pull-Up Resistor
 
 ## Open-Collector Output
 
-![open-collector_output](imgs/open_collector_output_pullup_resistor.png)
+![open-collector_output](imgs/open_collector_output_pullup_resistor.png){style="display: block; margin: 0 auto; width:600px"}
 
 * 왼쪽에 보이는 2개의 경우가 `Pull-Up Resistor`가 없는 경우로 `1`을 출력하지 못함을 보여줌.
     * `Floating` (or `Hi-Z`) 상태에서 output을 오실로스코프의 probe로 찍을 경우, 

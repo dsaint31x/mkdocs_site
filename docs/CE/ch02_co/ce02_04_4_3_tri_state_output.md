@@ -1,6 +1,6 @@
 ---
 title: Tri-State Output
-tags: [Tri-State Output[
+tags: [Tri-State Output]
 ---
 
 # Tri-State Output
