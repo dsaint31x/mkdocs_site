@@ -1,23 +1,26 @@
 ---
+title: Gates
 tags:
-  - gate
-  - combinatorial
-  - boolean
-  - glitch
+  - Gate
+  - Combinatorial
+  - Boolean
+  - Glitch
 ---
 
 # Gates
 
-> `Combinatorial Logic(조합논리) Circuit의 boolean function들을 구현한 H/W`.  
+> `Combinatorial Logic(조합논리) Circuit의 Boolean Function들을 구현한 H/W`.  
 >  
-> 보통 IC chip으로 제공되지만,  
+> 보통 IC Chip으로 제공되지만,  
 >
 > * ^^Transistor로 구현^^ 할 수도 있으며 
-> * ^^FPGA에서는 아예 HDL을 통해 programming 형태로 이용^^ 할 수 있도록 제공되기도 함.
+> * ^^`FPGA`에서는 아예 `HDL`을 통해 programming 형태로 이용^^ 할 수 있도록 제공되기도 함.
 
-다음 URL은 transistor로 gate를 구현하는 간단한 예를 보여줌.
+다음 URL은 Transistor로 Gate를 구현하는 간단한 예를 보여줌.
 
 * [From Transistor To Gate](https://dsaint31.tistory.com/696)
+
+---
 
 ---
 
@@ -25,12 +28,14 @@ tags:
 
 Combinatorial Logic Circuit은 
 
-* 일종의 instantaneous system이며 
-* Boolean algebra의 logic function을 구현한 것
+* 일종의 Instantaneous System이며 
+* Boolean Algebra의 Logic Functions을 구현한 것
 
 임.
 
-> memory가 있는 Sequential Logic Circuit과 구분됨.
+> Memory가 있는 Sequential Logic Circuit과 구분됨.
+
+---
 
 ---
 
@@ -39,12 +44,14 @@ Combinatorial Logic Circuit은
 Combinatorial Logic Circuit에 대한 이번 장에서는
 
 * 전에 다룬 [Boolean algebra](../ch01/ch01_13_boolean_algebra.md)를 기반으로, 
-* Combinatorial logic을 구현할 때 고려해야하는 ^^noise에 대한 처리 방법^^ 과 
-* propagation delay, 
-* output 방식 등을 아주 간략히 다룬다. 
+* Combinatorial Logic을 구현할 때 고려해야하는 ^^Noise에 대한 처리 방법^^ 과 
+* Propagation Delay, 
+* Output 방식 등을 아주 간략히 다룬다. 
   
   
 `디지털회로` 나 `디지털회로실습`, 또는 Microprocessor 등에 대해 공부할 때 보다 자세히 다루게 되는 내용들을 대략적으로 소개하는 수준임.
+
+---
 
 ---
 
