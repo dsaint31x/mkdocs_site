@@ -20,7 +20,7 @@ Heater에 의해 ***Cathode가 충분한 온도에 도달*** 하면
 **Electron(엄밀히는 열전자)가 방출** 되고  
 이 열전자는 Vacuum Tube 내에서 **Anode로 전달됨** . 
 
-![vacuum_tube](imgs/vacuum_tube_diagram.png){style="display: block; margin:0 auto; width:200px"}
+![vacuum_tube](imgs/vacuum_tube_diagram.png){style="display: block; margin:0 auto; width:400px"}
 
 * `P` : Plate의 앞글자를 딴 것. Anode를 가르킴.
 * `K` : Cathode를 가르킴.

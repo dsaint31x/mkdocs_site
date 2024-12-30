@@ -72,12 +72,12 @@ Electromagnet (전자석)을 이용한 일종의 Switch(스위치)임.
 
 다음은 Schematic Diagram으로 Relay의 종류를 표시함.
 
-![relay_diagram](./imgs/relay_diagram.png){style="display: block; margin: 0 auto; width:500"}
+![relay_diagram](./imgs/relay_diagram.png){style="display: block; margin: 0 auto; width:400px"}
 
-* SPDT : Single-Pole Double-Throw ( 입력 1개, 출력 2개)
-* SPST : Single-Pole Single-Throw ( 입출력이 각각 1개.)
-* DPDT : Double-Pole Double-Throw ( 입력 2개, 각 입력당 출력 2개)
-* DPST : Double-Pole Single-Throw ( 입력 2개, 각 입력당 출력1개)
+* `SPDT` : Single-Pole Double-Throw ( 입력 1개, 출력 2개)
+* `SPST` : Single-Pole Single-Throw ( 입출력이 각각 1개.)
+* `DPDT` : Double-Pole Double-Throw ( 입력 2개, 각 입력당 출력 2개)
+* `DPST` : Double-Pole Single-Throw ( 입력 2개, 각 입력당 출력1개)
 
 ---
 
