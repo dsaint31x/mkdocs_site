@@ -101,17 +101,21 @@ Computer 가 다루는 data들은 computer의 내부 및 외부에서 다양한 
 
 ## 4. Operations
 
-Computer가 data를 처리하는 ***연산*** 을 가르킴.
+Computer가 Data를 처리하는 ***연산*** 을 가르킴.
 
-* computer가 수행하는 작업을 가르키는 instruction과 비슷하게 사용되지만,
+* Computer가 수행하는 작업을 가르키는 `Instruction`과 비슷하게 사용되지만,
 * <u>`operation`은 주로 숫자 또는 논리 연산을 의미</u>하고 
 * <u>`instruction`은 자료의 로딩, 복사 등의 컴퓨터가 수행하는 작업들의 기본 단위</u>를 의미하는 경우로 많이 사용됨.
 
-> Operation은 수학 등에서 정의되는 경우가 많음.  
-> 수학에서의 Operation이란  
+> `Operation`은 수학 등에서 정의되는 경우가 많음.  
+> 수학에서의 `Operation`이란  
 > 
 > * Empty set이 아닌 `set`에서 
 > * 2개의 element를 이용하여 제 3의 element를 만드는 것을 가르킴.
+>
+> 위는 algebraic operations 중 binary operation을 말한 것으로  
+> `Algebraic Operations`  란 특정 `set` 위에 정의된 연산으로, 그 연산의 결과가 다시 그 `set`의 원소가 되는 연산을 가리킴.
+
 
 ---
 
