@@ -1,23 +1,35 @@
 # Code for Number (Symbol)
 
+## Code 
+
 `Code`
 : 일상 생활에서 사용되는 **문자나 숫자** 를 컴퓨터가 인식하기 위해 **기호** 화한 것.
 
-컴퓨터에서 내부적으로 계산을 위해 사용하는 것 (number의 의미)은 ***이진수*** 와 ***2's complement*** 이다. 하지만, 컴퓨터가 인간이 사용하는 number를 표현하고 인식하기 위한 경우 사용되는 code들은 다음과 같음. 
+컴퓨터에서 내부적으로 계산을 위해 사용하는 것 (number의 의미)은 ***이진수*** 와 ***2's complement*** 이다. 하지만, 컴퓨터가 인간이 사용하는 number를 표현하고 인식하기 위한 경우 사용되는 Code들은 다음과 같음. 
 
-> 이들 `Code`들은 Number들의 symbol에 초점을 맞춘 것이라고 볼 수 있다. 마치 컴퓨터에서 영문자를 ASCII로 표현하는 것과 유사하다. 컴퓨터가 각 문자의 의미를 통한 이해는 natural language prcoessing으로 AI 등의 매우 중요한 분야이며 아직도 활발히 연구되고 있는 분야이다. 컴퓨터에서 영문자를 ASCII로 표현한 것은 1963년이지만, 컴퓨터가 문자의 의미를 이해하고 사람과 대화하는 기술은 2023년에도 ChatGPT 등의 매우 최신 기술에 해당한다. 
+> 이들 `Code`들은 Number들의 symbol에 초점을 맞춘 것이라고 볼 수 있다.  
+> 마치 컴퓨터에서 영문자를 ASCII로 표현하는 것과 유사하다.  
+> 컴퓨터가 각 문자의 의미를 통한 이해는 Natural Language Processing (`NPL`)으로  
+> AI 등의 매우 중요한 분야이며 활발히 연구되고 있는 분야이다.  
+> 컴퓨터에서 영문자를 `ASCII`로 표현한 것은 1963년이지만,  
+> 컴퓨터가 문자의 의미를 이해하고 사람과 대화하는 기술은 2023년에도 ChatGPT 등의 매우 최신 기술에 해당한다. 
 
 * Internal Representation : 계산이 효과적으로 이루어지는데 집중.
-* External Representation : 인간등에게 숫자를 보여지거나, 입력장치로부터 숫자(엄밀하게 숫자 기호)를 입력받을 때 사용됨.
+* External Representation : 인간 등에게 숫자를 보여지거나, 입력장치로부터 숫자(엄밀하게 숫자 기호)를 입력받을 때 사용됨.
 
-즉, 여기서 다르는 code들은 `external representation`이라고 보면 된다.
 
+> 여기서 다루는 다음의 숫자를 나타내는 `Code`들 (or Encoding 방식)은  
+> `External Representation`이라고 보면 된다.
+
+---
+
+---
 
 ## Binary Coded Decimal System
 
 10진수에서 ^^각 자리의 digit을 각각 16진수로 변경^^ 하고 각각의 16진수를 4bit의 binary로 변환하여 표현한 것.
 
-컴퓨터의 계산 결과를 인간에게 출력할 때는 10진수로 보여줘야 하며, 이 경우 활용되는 code임.
+컴퓨터의 계산 결과를 인간에게 출력할 때는 10진수로 보여줘야 하며, 이 경우 활용되는 Code임.
 
 * 8-4-2-1 코드라고도 불림.
 
@@ -30,7 +42,9 @@
 * 즉, 최종적으로 `0010 0011`로 표시된다.
 
 과거에 BCD를 사용하던 컴퓨터(2세대 컴퓨터들)도 있었지만, 현재 내부적으로 BCD를 쓰는 컴퓨터는 없음.
-단, encoding등에서 해당 개념을 많이 차용한 경우가 많다보니 어떻게 변환하는지 정도는 알고 있는게 도움이 됨.
+단, Encoding등에서 해당 개념을 많이 차용한 경우가 많다보니 어떻게 변환하는지 정도는 알고 있는게 도움이 됨.
+
+---
 
 ### 장단점
 
@@ -45,9 +59,11 @@
 
 ---
 
-### Extended Binary Coded Decimal Interchange (EBCDI) Code.
+---
 
-10진수(decimal)을 4bit로 표현하는 BCD code를 확장하여 8비트로 표현한다.  
+## Extended Binary Coded Decimal Interchange (EBCDI) Code.
+
+10진수(Decimal)을 4bit로 표현하는 BCD Code를 확장하여 8비트로 표현한다.  
 문자 기호에 대한 코드를 추가 등을 위해 8bit로 확장을 시킨 것으로 상위 4비트가 Zone을 나타내고, 하위 4비트는 앞서 본 BCD 이다. 
 
 * 일반적으로 Zone은 `1111`로 표현되며, 
@@ -66,16 +82,20 @@ EBCDIC는 문자 기호들에 대한 코드들도 포함시켰기 때문에 한 
 
 $+897_{10}$을 Packed BCD Code로 나타내면 `1000 1001 0111 1100`가 됨.
 
-> EBCDIC는 IBM이 제안한 방식이나 ASCII에 밀려서 현재는 컴퓨터 내부적으로는 이용되지 않는다 (연산용은 아니라는 애기임).  
-> 단, 숫자를 표현하는 code로서 BCD는 숫자를 display 또는 입력받을 때, 또는 통신으로 주고받는 등의 경우 등에 차용되어 사용되는 경우가 아직도 존재한다.
+> `EBCDIC`는 IBM이 제안한 방식이나 `ASCII`에 밀려서 현재는 컴퓨터 내부적으로는 이용되지 않는다 (연산용은 아니라는 애기임).  
+> 단, 숫자를 표현하는 Code로서 BCD는 숫자를 Display 또는 입력받을 때, 또는 통신으로 주고받는 등의 경우 등에 차용되어 사용되는 경우가 아직도 존재한다.
+
+---
 
 ---
 
 ## Excess-3 Code
 
-* BCD 코드는 2진수 표현에 가깝고 encoding에 용이하나, complement(보수)에 대한 계산 및 처리가 까다롭다는 단점을 가짐.
+* BCD 코드는 2진수 표현에 가깝고 Encoding에 용이하나, Complement(보수)에 대한 계산 및 처리가 까다롭다는 단점을 가짐.
 * 이를 보완하기 위해 BCD 코드에 +3을 한 것이 `Excess-3 Code` 임. 
-* 이는 9의 보수를 매우 쉽게 얻을 수 있음.(Self-complementing code) : 1's complement를 취하면 자동으로 9의 보수를 얻게 됨.
+* 이는 9의 보수를 매우 쉽게 얻을 수 있음.(Self-complementing Code): 1's complement를 취하면 자동으로 9의 보수를 얻게 됨.
+
+---
 
 ---
 
@@ -84,20 +104,26 @@ $+897_{10}$을 Packed BCD Code로 나타내면 `1000 1001 0111 1100`가 됨.
 * Gray코드는 0에서 9까지 순환적으로 변할 때, 각 과정마다 오직 한 비트만 변화됨. 
 * 때문에, Gray 코드를 사용하여 순환적으로 값이 입력되는 경우, 입력 도중의 에러나 오차를 쉽게 검출할 수 있으며, 변경할 bit가 적다는 장점을 가짐.
 * BCD 코드의 인접하는 비트를 `XOR` 연산하여 만들어짐 코드.
-* A/D변환, 입/출력 장치 등에 많이 사용됨.
-    * 2-bit Gray code의 경우, quadrature encoding라고 불리며, 2개의 센서만으로 모터의 회전축이 얼마나 회전했는지, 어느 방향으로 회전했는지, 더불어 회전 속도 등을 확인할 수 있어서 knob과 같은 장치 등에서 많이 사용된다 (제어에도 사용가능).
-    * 2개의 센서로 구성된 Quadrature encoder의 경우, 1/4096 회전을 감지할 수 있음 (1/4096 회전 resolution을 absolute position encoder로 만들려면 12개의 sensor가 필요: $2^{12}=2^2\times 1024=4096$)
+* A/D 변환, 입/출력 장치 등에 많이 사용됨.
+    * 2-bit Gray Code의 경우, Quadrature Encoding라고 불리며, 
+    * 2개의 센서만으로 모터의 회전축이 얼마나 회전했는지, 어느 방향으로 회전했는지, 더불어 회전 속도 등을 확인할 수 있어서 
+    * Knob과 같은 장치 등에서 많이 사용된다 (제어에도 사용가능).
+    * 2개의 센서로 구성된 Quadrature Encoder의 경우, 1/4096 회전을 감지할 수 있음 
+        * 1/4096 Rotation Resolution을 Absolute Position Encoder로 만들려면 12개의 sensor가 필요: 
+        * $2^{12}=2^2\times 1024=4096$)
 
-보다 자세한 건 다음 URL을 참고할 것 : [Gray Code and Quadrature](https://dsaint31.me/mkdocs_site/CE/ch06/ce06_1_06_graycode/)
+보다 자세한 건 다음 URL을 참고할 것 : [Gray Code and Quadrature](https://dsaint31.me/mkdocs_site/CE/ch06/ce06_1_06_grayCode/)
 
 ---
 
-## BCD, Express-3, and Gray code
+---
 
-다음 table은 숫자를 표현하는 3가지 code를 보여준다.
+## 비교: BCD, Express-3, and Gray Code
+
+다음 table은 숫자를 표현하는 3가지 Code를 보여준다.
 
 | Decimal | BCD | Express-3 | Gray |
-|:----:|:----:|:----:|:----:|
+|:---:|:---:|:---:|:---:|
 | 0 | 0000 | 0011 | 0000 |
 | 1 | 0001 | 0100 | 0001 |
 | 2 | 0010 | 0101 | 0011 |

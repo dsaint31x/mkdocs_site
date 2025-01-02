@@ -67,13 +67,13 @@ Analog Computer의 경우, 많은 분야에서 `Embedded Computer` 로 대체되
 (`Embedded Computer`는 Analog Data를 직접 처리하기 보다는 AD Converter를 통해 디지털로 변환해 처리하는 차이를 가짐).
 
 Analog Computer는 ^^Continuous Data (실제적으로 Analog Data)^^ 를 직접 다루며,  
-^^증폭회로^^ 및 저항, capacitor등의 다양한 전기적 요소로 구성됨.  
+^^증폭회로 (Op-Amp)^^ 및 저항, capacitor등의 다양한 전기적 요소로 구성됨.  
 아날로그인 연속적인 물리량을 직접 처리하여 결과를 산출하기 때문에 Digital Computer 보다  
 소량의 실제 데이터에 대한 빠른 처리가 요구되는 분야에 많이 이용됨.  
 디지털 컴퓨터에 비해 특정 분야에서 한정되어 활용되며, 자동차 엔진 제어 시스템, 의료 기기 등이 주로 사용되는 영역임.
  
 
-> Digital computer는 주로 사칙연산 과 논리회로를 사용하는 것과 차이를 가짐. 
+> Digital Computer는 주로 `arithmetic operations` 과 `logic operations`를 사용하는 것과 차이를 가짐. 
 
 Hybrid Computer는 아날로그와 디지털 컴퓨터의 기능을 결합하여 두 가지 유형의 장점을 모두 활용하는 시스템을 가리킴.
 
