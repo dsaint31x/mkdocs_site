@@ -1,28 +1,34 @@
+---
+title: Information
+tags: [Information, Bit, Entropy, Log, Random Variable]
+---
+
 # Information (정보)
 
-어떠한 목적이나 의도에 맞게 `data`를 ^^가공 처리한 것^^ 을 가르킨다.  
+어떠한 목적이나 의도에 맞게 `Data`를 ^^가공 처리한 것^^ 을 가르킨다.  
 
 > 간단하게는 `의미있는 Data`라고 생각할 수 있다.  
   
-하지만 이 설명은 일종의 정성적인 설명이고, `data`와의 비교로 설명한 것임. 
+하지만 이 설명은 일종의 정성적인 설명이고, `Data`와의 비교로 설명한 것임. 
 
 ---
 
 정량적인 부분을 도입한  
-`amount of information (정보량)`으로 설명하면 다음과 같다.  
+`Amount of Information (정보량)`으로 설명하면 다음과 같다.  
   
 > 정보량은  
-> `학습(어떤 사실을 알게된 경우)`의 결과로 인한  
-> `놀람의 양(degree of surprise)` 로 해석할 있다.
+> 
+> * `학습(어떤 사실을 알게된 경우)`의 결과로 인한  
+> * `놀람의 양(degree of surprise)` 로 해석할 있다.
 
-- 빈번하게 일어날 것 같지 않은 event (발생확률 $p$가 매우 작음)가 발생하는 경우 (=발생함을 알게 된 경우),  
-빈번하게 일어나는 event가 일어나는 경우보다 더 많은 information 을 획득.
-- 항상 발생하는 event가 발생 할 경우,  
-우리가 얻는 information의 양은 없음 (=0)
+- 빈번하게 일어날 것 같지 않은 Event (발생확률 $p$가 매우 작음)가 발생하는 경우 (=발생함을 알게 된 경우),  
+빈번하게 일어나는 Event가 일어나는 경우보다 더 많은 Information 을 획득.
+- 항상 발생하는 Event가 발생 할 경우,  
+우리가 얻는 Information의 양은 없음 (=0)
 
-위의 information의 개념을 적용한다면,  
-우리는 이제 특정 event가 발생할 경우 얻어지는 ^^정보량 $h(x)$^^ 이  
-해당 event 의 발생확률 $p(x)$에 의해 결정된다고 볼 수 있다.
+위의 Information의 개념을 적용한다면,  
+우리는 이제 특정 Event가 발생할 경우 얻어지는 ^^정보량 $h(x)$^^ 이  
+해당 Event 의 발생확률 $p(x)$에 의해 결정된다고 볼 수 있다.
 
 ---
 
@@ -30,7 +36,7 @@
 
 ## 1. 정보량 : bit
 
-어떤 Discrete random variable $x$ 에서  
+어떤 Discrete Random Variable $x$ 에서  
 해당 $x$ 의 값을 알게 되는 경우 얻게되는 정보량을  
 Shannon이 제안한 방식으로 정량화하면 다음과 같은 수식이 된다.
 
@@ -41,11 +47,15 @@ $$
 - $h(x)$ : 확률변수가 $x$ 값을 가질 때의 정보량
 - $p(x)$ : 확률변수가 $x$ 값을 가질 확률.
 
-확률변수가 가질 수 있는 값을  
-다양한 경우의 수를 가지는 경우보다,  
-0 또는 1을 가지는 경우로 한정하는 것이 가장 기본적이라고 볼 수 있다 (예: 특정 event의 발생 유무).
+> $\log$를 사용하여, $[0,1]$의 probability를 $[-\infty, 0]$으로 펼쳐주고,  
+> `negation` 으로 처리하여 quantity of information이 $[0,\infty]$ 의 범위에 존재하게 처리.
 
-이는 information을 다루는 컴퓨터가 기본적으로 이진수를 사용하는 것과도 연관된다.
+확률변수가 가질 수 있는 값은  
+
+* 다양한 경우의 수를 가지는 경우보다,  
+* `0` 또는 `1`을 가지는 경우로 한정 (binary)하는 것이 가장 기본적이라고 볼 수 있다 (예: 특정 event의 발생 유무).
+
+이는 Information을 다루는 컴퓨터가 기본적으로 이진수를 사용하는 것과도 연관된다.
 
 ---
 
@@ -76,6 +86,7 @@ $$
 - 확률변수가 절대 될 수 없는 값이 있을 경우, 해당 값의 발생확률이 $p(x)=0$이 되므로 이는 entropy 에 기여 없음.
 - 확률변수가 특정 상수로 고정될 경우, $p(x)=1$이기때문에 $\log_2p(x)=\log_21=0$이 되므로 entropy가 0이 됨.
 
+
 ---
 
 위의 경우는 discrete한 경우이며, continuous random variable의 경우는 다음과 같음.
@@ -94,19 +105,41 @@ Entropy는
 
 ---
 
-## 3. Entropy가 극대화 되는 경우는 언제인가?
+---
 
-Discrete random variable이 가질 수 있는 값들의 발생확률이 모두 같은 경우, 
-즉, 해당 확률변수가 **uniform probability distribution** 인 경우 **Entropy가 최대** 임.
+## 참고: Entropy가 극대화 되는 경우는 언제인가?
 
-Gaussian probability distribution을 따르는 **Continuous random variable** 의 경우, **해당 분포의 Variance, $\sigma^2$ 가 클 수록** **entropy가 증가** 함.
+Discrete random variable의 경우에는
 
-- **Gaussian probability distribution** 에서 variance가 무한대일 경우 entropy는 최대.
-- Variance가 무한대인 경우가 바로 **uniform probability distribution** 임.
+* 해당 변수가 가질 수 있는 값들의 발생확률이 모두 같은 경우, 
+* 즉, 해당 확률변수가 **Uniform Probability Distribution** 인 경우 **Entropy가 최대** 임.
 
-***Gaussian Distribution (Normal Distribution)***
+Gaussian probability distribution을 따르는 **Continuous random variable** 의 경우, 
+
+* **해당 분포의 Variance, $\sigma^2$ 가 클 수록** **entropy가 증가** 함.
+* **Gaussian probability distribution** 에서 variance가 무한대일 경우 entropy는 최대가 됨.
+
+> 참고로, Gaussian Probability Distribution에서  
+> Variance가 무한대인 경우가 
+> 바로 **uniform probability distribution** 임.
+
+---
+
+*** 참고: Gaussian Distribution (Normal Distribution)***
 
 $$
 p(x)=\frac{1}{\sqrt{2\pi\sigma^2}}\exp\left(-\frac{(x-\mu)^2}{2\sigma^2}\right)
 $$
 
+* $\sigma$ : standard deviation
+* $\mu$ : mean
+
+---
+
+---
+
+## 같이 보면 좋은 자료들
+
+* [Logarithmic Function](https://dsaint31.tistory.com/578)
+* [Random Variable](https://dsaint31.tistory.com/466)
+* [Entropy](https://dsaint31.tistory.com/291)

@@ -1,4 +1,11 @@
+---
+title: Bit
+tags: [Bit, Digit]
+---
+
 # Bit (Binary Digit)
+
+## Definition
 
 * `Binary` + `Digit` 로부터 만들어진 용어.
     * `Binary`란 ^^둘 중 하나의 값을 가지는 것^^ 을 의미한다 : `Bit is binary`임.
@@ -6,14 +13,21 @@
 
 > [Information](./ch01_01_information.md) 을 표현하는 **기본단위** 임.
 
-
 Bit는 흔히 `0` 과 `1` 중에 하나의 값을 가지지만, `0` 과 `1` 각각의 의미는 다를 수 있음.
 
-1. ^^Information 을 표현하는 기본단위^^ 이기 때문, 보다 ^^큰 비트에 해당하는 informatino이 정보량이 많다^^ 고 해석가능함
+1. ^^Information 을 표현하는 기본단위^^ 이기 때문, 보다 ^^큰 비트에 해당하는 information이 정보량이 많다^^ 고 해석가능함
 2. 처리가능한 bit가 큰 컴퓨터일수록 처리가능한 정보량이 큼.
 3. 처리가능하다는 애기는 표현할(represent) 수 있다는 의미 이기도 함.
 
+> 참고: `digit`
+>
+> [0,9] 의 개별 숫자를 의미하거나: The number 123 has three digits.  
+> 해부학적으로 finger, toe 를 의미: Humans have five digits on each hand. 
+
+
 --- 
+
+---
 
 ## 참고
 
