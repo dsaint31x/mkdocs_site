@@ -45,9 +45,9 @@ bit는 `0`,`1`의 값을 갖는 ^^information의 최소단위^^ 이기 때문에
     * 주소를 가르키는 pointer 변수의 크기라고 생각하면 쉽다.
 * 주로 **데이터의 입력, 처리, 저장 및 출력을 수행하는 기본 단위** 를 지칭한다.
 
-위의 word 정의에 따르면, word는 계속 커질 수 밖에 없기 때문에 prefix를 붙여 구분을 하는게 좋다.
+위의 word 정의에 따르면, word는 계속 커질 수 밖에 없기 때문에 prefix를 붙여 구분을 함.
 
-`Word`의 크기는 아키텍처나 OS등에 따라 차이가 심한 편이므로  
+`Word` 관련한 Data Types의 크기는 아키텍처나 OS등에 따라 차이가 심한 편이므로  
 개발 전에 반드시 확인을 해두는게 좋다.  
 다음은 대략적인 경향을 파악하기 위해 일반적인 경우를 소개한다.
 
@@ -59,9 +59,10 @@ bit는 `0`,`1`의 값을 갖는 ^^information의 최소단위^^ 이기 때문에
 
 ### x86 processor (intel, amd)
 
-* `half word` : 일반적으로 잘 사용되지 않음.
-* `word` : 2bytes
-* `double word` : 8bytes
+* `Half Word` : 일반적으로 잘 사용되지 않음.
+* `Word` : 2bytes
+* `Double Word` : 4bytes
+* `Quad Word` : 8bytes
 
 ### x64 Processor (Windows)
 * `Half Word` : 2bytes
