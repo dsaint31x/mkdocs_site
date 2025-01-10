@@ -11,6 +11,13 @@
 > HDD 에서 사용되는 방식도 과거 IDE의 경우 parallel방식 이었으나  
 > 현재는 SATA (Serial Advanced Technology Attachment)로 다 전환된 상태임.
 
+일반적으로 장거리 통신(cpu내에서의 통신 외에 거의 장거리라고 본다.) 및 고속으로 주변기기와 통신하는데에  Serial Communication  이 사용된다.
+
+종류는 동기화 여부에 따라 다음 2가지로 나뉨.
+
+* Synchronous Serial Communication 
+* Asynchronous Serial Communication 
+
 ---
 
 ---
@@ -26,16 +33,16 @@ serial communication이 주로 사용된다.
 
 최근 ***네트워크가 발전*** 하면서 
 
-* LAN (synchronous serial communication의 한 종류)에 연결된 장비들도 늘어나고 있지만, 
+* `LAN` (Local Area Network, Synchronous Serial Communication의 한 종류)에 연결된 장비들도 늘어나고 있지만, 
 * 통신망에 항상 연결되지 않은 경우를 고려해야하는 산업계의 경우, 
     * 사용하는 주요 방식은 아직도 RS-232, RS-422, RS-485 들과 같은
-    * Asynchronous serial communication이다. 
+    * **Asynchronous Serial Communication** 이다. 
     
 특히, `RS-232`는 1960년대에 개발되었지만 현재까지도 단거리 통신(특히, 컴퓨터와 장비간의 1:1연결을 위한)으로 매우 많이 사용되고 있다. 
 
 > 위의 RS-232, RS-422등은  
 > 
-> * 디지털 신호를 직렬전송하는 규약을 정의한 UART (Universal Asynchronous Receiver Transmitter)의 신호를 
+> * 디지털 신호를 직렬전송하는 규약을 정의한 `UART` (Universal Asynchronous Receiver Transmitter)의 신호를 
 > * **통신선로** 로 전송하기 위한 ***전기적인 신호 방식에 대한 규약*** 임.
 
 ---
@@ -94,6 +101,7 @@ RS-485는
 * 보다 많은 장비들이 연결되도록 만들어진 규격으로 
 * 기존 RS-422 규격을 따르는 device도 제어할 수 있다. 
 * 동일한 회선으로 32대의 장비들이 연결되어 통신할 수 있다는 장점을 지니고 확장성도 우수함. 
+* ***Differential Signaling*** 임.
 
 단, full-duplex를 지원하는 RS-232와 RS-422와 달리, RS-485는 half-duplex가 표준 결선방식으로 지원됨.
 
@@ -275,10 +283,10 @@ Serial communication에서는 각각의 bit가 ***정해진 시간으로 구별*
 ![rs232_pinout](img/RS232-Connector-Pinout.png)
 
 1번 `CD` : (DCE송신, DTE수신)
-: (Data) Carrier Detect`, `DCD`로 기재되기도 함.  
-DCE가 상대편 modem등에 전화선을 통해 접속이 이루어지면 상대편 modem이 carrier signal을 보내주는데,  
-이 신호를 왔음을 DCE가 DTE에 알려주는 신호선임.  
-***통신 라인이 설정됨을 의미***  
+: `(Data) Carrier Detect`, `DCD`로 기재되기도 함.  
+DCE(=Modem)가 상대편 Modem 등에 전화선을 통해 접속이 이루어지면, 상대편 Modem이 `Carrier Signal`을 보내주는데,  
+이 신호를 왔음을 DCE가 DTE(=컴퓨터)에 알려주는 신호선임.  
+***<u>통신 라인이 설정</u>됨을 의미***  
 (전화가 걸렸을 때 High, 끊어지면 Low. 끊기 위해서 Low로 설정하면 2초후 전화 끊김.). 
 
 2번 `RxD` : (DCE송신, DTE수신) ***
@@ -290,7 +298,7 @@ DCE가 상대편 modem등에 전화선을 통해 접속이 이루어지면 상�
 4번 `DTR` : (DCE수신, DTE송신)
 : Data Terminal Ready,  
 DTE가 DCE에게 데이터 송수신이 필요함을 알리는 신호선으로  
-***통신 포트를 초기화한 직후 이 신호가 출력됨.***
+***<u>통신 포트를 초기화한 직후</u> 이 신호가 출력됨.***
 
 5번 `GND` ***
 : 그라운드.
@@ -302,8 +310,10 @@ modem 등이 `DTR` 신호를 받고 상태 체크 후 통신할 준비가 되었
 
 7번 `RTS`/`RTR` : (DCE수신, DTE송신) 
 
-* `Request To Send (half-duplex)` : 컴퓨터 등의 DTE (Data Terminal Equipment)가 modem 등의 DCE (Data Communication Equipment)에게 데이터를 보내겠다고 알리는 신호선.
-* `Ready To Receive (full-duplex)` : DTE의 버퍼가 충분하여 DCE가 보내는 데이터를 받을 수 있음을 DCE에게 알림. 만일 버퍼가 다 차면, low로 설정하며, 이 경우 DCE는 상대편에게 데이터를 보내지 말라고 연락하는 방식으로 flow control용임. 
+* `Request To Send (half-duplex)` 
+: 컴퓨터 등의 DTE (Data Terminal Equipment)가 modem 등의 DCE (Data Communication Equipment)에게 데이터를 보내겠다고 알리는 신호선.
+* `Ready To Receive (full-duplex)` 
+: DTE의 버퍼가 충분하여 DCE가 보내는 데이터를 받을 수 있음을 DCE에게 알림. 만일 버퍼가 다 차면, low로 설정하며, 이 경우 DCE는 상대편에게 데이터를 보내지 말라고 연락하는 방식으로 flow control용임. 
 
 8번 `CTS` : (DCE송신, DTE수신) 
 
@@ -316,27 +326,29 @@ modem 등이 `DTR` 신호를 받고 상태 체크 후 통신할 준비가 되었
 
 ### RS-232 Cable
 
-컴퓨터(DTE)와 Modem(DCE)간의 전화선 연결 등으로 인해 사용되는 `CD`, `DTR`, `DSR`은 Null modem의 경우 의미가 없다. 
-때문에 연결을 아예 안하던지, 이 3개를 connector에서 서로 연결해버려서 (상대방과의 연결이 아닌 connector pin들을 묶는 것) 사용하는 경우도 있다.
+컴퓨터(DTE)와 Modem(DCE)간의 전화선 연결 등으로 인해 사용되는 `CD`, `DTR`, `DSR` 은 Null Modem의 경우 의미가 없다. 
+
+* 때문에 연결을 아예 안하던지, 
+* 이 3개를 connector에서 서로 연결해버려서 (상대방과의 연결이 아닌 connector pin들을 묶는 것) 사용한다.
 
 `RTS`와 `CTS`는 flow control에 관여하는 핀들인데,  
-RS-232의 경우 hardware적인 flow control을 하지 않는 경우가 많다.  
+<u>RS-232의 경우 hardware적인 flow control을 하지 않는 경우가 많다.</u>  
 때문에 역시 연결을 아예 안하던지, connector 상에서 서로 연결해버리는 경우도 많다.
 
 이를 반영하여 컴퓨터와 RS-232를 인터페이스로 제공하는 장비와 연결은 다음과 같음.
 
-![rs232_device_connection](img/rs232_cable_connection_1.png)
+![rs232_device_connection](img/rs232_cable_connection_1.png){style="display: block; margin:0 auto; width:500px"}
 
-하지만, Arduino 나 Raspberry 등에 연결하는 경우,  
-또는 단순한 장비와의 연결 connection은 다음과 같이 ***3개의 연결*** 이면 충분함 (Single ended and full duplex). 
+하지만, Arduino 나 Raspberry Pi등에 연결하는 경우,  
+또는 단순한 장비와의 연결 Connection은 다음과 같이 ***3개의 연결*** 이면 충분함 (Single ended and full duplex). 
 
-![rs232_simple_connection](img/rs232_simple_connection.png)
-
----
+![rs232_simple_connection](img/rs232_simple_connection.png){style="display: block; margin: 0 auto; width:300px"}
 
 ---
 
-# 다른 serial interface
+---
+
+## 다른 serial interface
 
 * SPI
 * I2C
