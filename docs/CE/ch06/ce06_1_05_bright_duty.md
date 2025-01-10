@@ -34,6 +34,6 @@ LED 등을 사용할 때, Brightness Adjustment가 필요하다면, Duty Cycle�
 (심지어 지나치게 Duty Cycle이 낮을 경우, 사람들이 깜빡이는 것을 느낄 수도 있음.)
 
 
-## References
+## **References**
 
 [Duty Cycle : wikipedia](https://ko.wikipedia.org/wiki/%EB%93%80%ED%8B%B0_%EC%82%AC%EC%9D%B4%ED%81%B4)
