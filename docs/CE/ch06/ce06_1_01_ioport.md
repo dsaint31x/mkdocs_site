@@ -23,8 +23,8 @@ tags: [Pin, Channel, Bitwise]
 > 저수준 언어(어셈블리)를 사용하는 경우,  
 > 보통 I/O 관련 register들의 주소(address)를 알고 있어야 했지만,  
 > 최근에 `C`를 이용하여 predefined된 변수 및 함수를 활용하여 읽고 쓰는 동작이 이루어진다.  
-> 각 register의 이름과 대응되는 port를 익히는 것이  
-> 해당 microprocessor system에 대한 공부에서 매우 큰 부분을 차지한다 (외워야 하는 부분이기도 하고...)
+> 각 register의 이름과 대응되는 Port (`Pin`)를 익히는 것이  
+> 해당 Microprocessor System에 대한 공부에서 매우 큰 부분을 차지한다 (외워야 하는 부분이기도 하고...)
 
 ---
 

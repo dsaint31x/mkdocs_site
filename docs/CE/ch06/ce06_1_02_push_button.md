@@ -10,7 +10,7 @@ Push button을 다음과 같이 Processor의 input pin에 연결하는 방식은
 
 ## 간단한 Push Button 사용 예.
 
-![button](img/simple_pushbutton.png)
+![button](img/simple_pushbutton.png){style="display: block; margin: 0 auto; width:400px"}
 
 * `R` :
     * `Pull-up Register`로 button이 눌러지지 않은 경우 `high`가 나오도록 pull-up을 시켜주는 resistor임.  
@@ -47,13 +47,14 @@ Processor의 특정 pin들은 `IRQ`로 동작하는데 이 경우,
  최근의 주변기기 Interface들은 ***IRQ 공유기능*** 등을 통해  
  IRQ 충돌 등을 방지하고 있다.
 
-Interrupt는 매우 중요한 개념이다.  
-Embedding system 분야 외에서도 병렬처리 등에서도 요구되는 개념이므로 정의를 꼭 기억해둬야 한다.  
+> `Interrupt`는 매우 중요한 개념이다.  
+> Embedding system 분야 외에서도 병렬처리 등에서도 요구되는 개념이므로 정의를 꼭 기억해둬야 한다.  
 
 Processor등이 어떤 동작을 수행하고 있는지에 상관없이  
-중요한 Event가 발생할 경우,  
-core (or processor)가 해당 event에 대한 처리를 해야만 한다면,  
-interrupt를 이용하여 처리하게 된다.  
+
+*  중요한 Event가 발생할 경우,  
+* Core (or Processor)가 해당 event에 대한 처리를 해야만 한다면,  
+* `Interrupt`를 이용하여 처리하게 된다.  
 
 즉, Event가 발생하면 `Interrupt`가 발생하여  
 processor에게 Event가 발생함을 알려준다.  
@@ -79,7 +80,7 @@ Push Button의 ***기계적 요소*** 로 인해
 
 일반 push button을 이용하고 S/W 적으로 처리하는 경우도 많다 (S/W는 쉽게 구현가능하고 무엇보다 싸다).
 
-![bouncing](img/bouncing.png)
+![bouncing](img/bouncing.png){style="display: block; margin:0 auto; width:400px"}
 
 * switch가 눌릴 경우, interrupt handler에서 일정시간 이후에 다시 switch의 상태를 확인하는 방식으로 제거 가능함. 
     * 이 경우 대기하는 일정시간 값 설정이 어려움.

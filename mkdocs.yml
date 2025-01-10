@@ -217,6 +217,7 @@ nav:
       - "CE/ch05/ch05_08_01_dual_mode.md"
     - 'ch06: Data Transfer and Network Communication':
       - "Data Transfer":
+        - "CE/ch06/ce06_0_10_port.md"
         - "IO Ports":         "CE/ch06/ce06_1_01_ioport.md"
         - "Push Btns":        "CE/ch06/ce06_1_02_push_button.md"
         - "FND":              "CE/ch06/ce06_1_03_fnd.md"
