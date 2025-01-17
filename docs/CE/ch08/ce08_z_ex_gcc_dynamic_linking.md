@@ -13,6 +13,9 @@ Dynamic Linking은 프로그램이 실행될 때 필요한 라이브러리 코�
 
 이 문서는 `gcc`를 사용하여 간단하게 동적라이브러리 파일을 만들고 이를 동적으로 연결하여 사용하는 실행파일을 작성 및 동작시켜보는 예제를 소개함.
 
+---
+
+
 ## 0. Pre-Requirements
 
 ### gcc (GNU Compiler Collection)
@@ -33,6 +36,9 @@ Dynamic Linking은 프로그램이 실행될 때 필요한 라이브러리 코�
 동적라이브러리 파일이 위치하는 path를 가지고 있는 Environment Variable 임. 기본적으로 해당 경로들에서 동적라이브러리를 찾음.
 
 > 이 문서에서는 단순한 예제이므로 같은 디렉토리에서 동적라이브러리 파일을 놓고 진행함.
+
+---
+
 
 ## 1. 실행파일 소스코드 컴파일.
 
@@ -58,6 +64,9 @@ gcc -c main.c -o main.o
 
 * `-o` 옵션에 지정된 이름의 object code 파일이 생성됨.
 
+
+---
+
 ## 2. 동적라이브러리 소스코드 컴파일.
 
 ```c linenums="1"
@@ -82,6 +91,9 @@ gcc -shared -fPIC -o libmylib.so mylib.c
 
 Linux 등의 경우, Shared Object 파일의 이름은 `lib`라는 접두사로 시작하고, `.so`라는 extension으로 끝나는게 관례임.
 
+
+---
+
 ## 3. 동적라이브러리 사용하는 실행파일 빌드.
 
 ```bash
@@ -97,18 +109,27 @@ gcc main.o -o myexecutable -L. -lmylib
     * 여기서 `lib`접두사와 `.so` 확장자는 빠짐.
     * 복수 개의 Shared Object 지정 가능함.
  
- ## 4. 실행하기.
 
- ```bash
- ❯ ./myexecutable
+---
+
+## 4. 실행하기.
+
+```bash
+❯ ./myexecutable
 Hello, World from Shared Library!
- ```
+```
+
+
+---
 
 ## 5. 참고.
 
 일반적으로 `.so`파일 하나당 하나의 소스코드가 존재함.
 
 여러 object 파일들을 묶어서 하나의 `.so` 파일로 만들 수 있지만 일반적이진 않음.
+
+
+---
 
 ## 참고자료
 

@@ -9,10 +9,13 @@ tags:
 
 # gcc: Static Linking
 
-여러 개의 소스 파일을 사용하여 정적 링크를 통해 하나의 실행 파일을 만드는 방법을 보여주는 문서임.
+여러 개의 소스 파일을 사용하여 정적 링크를 통해 하나의 실행 파일을 만드는 방법을 보여주는 문서임.  
+
+좀더 자세한 건 다음을 참고: [Dynamic Linking](../ch05/ch05_11_01_program_execution.md#4-dynamic-linking)
 
 > `gcc` (GNU Compiler Collection), `C` 언어를 이용함.
 
+---
 
 ## Step 1: 소스 파일 및 헤더 파일 작성
 
@@ -88,6 +91,9 @@ void print_hi(void);
 #endif
 ```
 
+---
+
+
 ## Step 2: 각 소스 파일을 오브젝트 파일로 컴파일
 
 ```sh
@@ -101,6 +107,9 @@ gcc -c lib2.c -o lib2.o
 * `-o`: Output Option
     * 생성된 오브젝트 파일의 이름을 지정.
 
+---
+
+
 ## Step 3: 오브젝트 파일을 하나의 실행 파일로 링크
 
 다음의 명령어는 static linking을 통해 모든 필요한 코드를 실행 파일에 포함시킴.  
@@ -112,6 +121,9 @@ gcc -o myexecutable main.o lib1.o lib2.o
 
 * `main.o`, `lib1.o`, `lib2.o` 를 하나의 실행 파일 `myexecutable`으로 합침. 
 * `-o` : 링크된 최종 실행 파일의 이름을 지정. 여기서는 `myexecutable`입니다.
+
+---
+
 
 ## 실행:
 
@@ -125,7 +137,11 @@ Hello from lib1!
 Hi from lib2!
 ```
 
+---
+
+
 ## 관련자료
 
 * [Dynamic Linking](./ce08_z_ex_gcc_dynamic_linking.md)
 * [Static Linking과 Dynamic Linking](../ch05/ch05_11_01_program_execution.md#4-dynamic-linking)
+* [실습동영상](https://youtu.be/GlpY0b1P-pY)
