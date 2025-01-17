@@ -114,21 +114,28 @@ OS와 Program Language에 맞춰 하드웨어 독립적 실행 환경을 사용�
 
 ## **4. Dynamic Linking** 
 
-- 프로그램 실행 시점에서 Shared Library 를 메모리에 로드하고 연결하는 과정.
+프로그램 실행 시점(동적)에서 프로그램이 필요한 Shared Library 를 메모리에 로드하고 연결(or 사용)하는 방식.
+
 - `Static Linking`
     - 컴파일 시점에 라이브러리를 프로그램에 포함시킴
     - Shared Library도 Static Linking으로 포함 가능하나 이 경우 다른 프로그램과 공유 불가. 
 - `Dynamic Linking` 
-    - 실행 중에 필요할 때만 해당 라이브러리를 로드해.
-    - Shared Library를 Dynamic Linking을 통해 여러 프로그램이 하나의 Shared Library를 공유.
-    - 동적 링크를 통해 프로그램 크기를 줄일 수 있음.
-    - 이는 라이브러리 업데이트 시 프로그램을 다시 컴파일할 필요가 없다는 장점도 제공.
+    - 실행 중에 필요할 때만 해당 라이브러리를 로드해 사용.
+        - OS는 실행파일 내에 포함된 동적라이브러리에 대한 참조를 찾음. 
+        - Dynamic Linker나 Loader가 해당 참조에 대응하는 동적라이브러리를 메모리로 로드. 
+        - 동적라이브러리 검색 위치는 `/lib`, `/usr/lib` 등의 표준 경로 또는 `LD_LIBRARY_PATH` 환경변수에 지정된 경로임 (`gcc`기준)
+        - 초기 실행의 경우, 동적라이브러리 로드로 인해 실행시간이 좀 더 늘어날 수 있음.
+    - 컴파일 단계에서는 동적라이브러리에 대한 참조만 포함하고 실제 라이브러리 코드가 없어도 됨.
+    - Shared Library를 Dynamic Linking을 통해 여러 프로그램이 하나의 Shared Library를 공유 
+        - 여러 프로그램 에 대한 메모리 점유량이 감소 가능.
+    - 동적 링크를 통해 프로그램 크기를 줄일 수 있음 (실행파일의 크기가 작음).
+    - 이는 라이브러리 업데이트 시 프로그램을 다시 컴파일할 필요가 없다는 장점도 제공 (유지보수 편함).
 
 Dynamic Loader (ld.so 등)가 Shared Library 를 찾아 적절히 메모리에 맵핑(mapping)하고, 필요한 기호(symbol)들을 연결시킴.
 
 프로그램은 런타임 동안만 라이브러리에 의존하며, 라이브러리의 코드는 프로그램과 독립적으로 존재.
 
-Dynamic Linking에서 Shared Library 코드가 메모리에 로드되면, 해당 영역은 Shared Memory 등을 통해 여러 프로세스에서 재사용.
+Dynamic Linking에서 Shared Library 코드가 메모리에 로드되면, 해당 영역은 Shared Memory 등을 통해 여러 프로세스에서 재사용 가능함.
 
 ---
 
