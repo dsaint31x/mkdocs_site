@@ -235,6 +235,10 @@ nav:
       - "CE/ch08/ce08_programming_language.md"
       - "CE/ch08/ce08_high_low_level_language.md"
       - "CE/ch08/ce08_compiler_interpreter.md"
+      - "Execution and Linking":
+        - "CE/ch05/ch05_11_01_program_execution.md"
+        - "CE/ch08/ce08_z_ex_gcc_static_linking.md"
+        - "CE/ch08/ce08_z_ex_gcc_dynamic_linking.md"
       - "CE/ch08/ce08_machine_code.md"
       - "CE/ch08/ce08_assembly_language.md"
       - "CE/ch08/ce08_pl_intro.md"

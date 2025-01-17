@@ -36,7 +36,7 @@ Dynamic Linking은 프로그램이 실행될 때 필요한 라이브러리 코�
 
 ## 1. 실행파일 소스코드 컴파일.
 
-```c
+```c linenums="1"
 // main.c
 #include <stdio.h>
 void print_hello(void);
@@ -60,7 +60,7 @@ gcc -c main.c -o main.o
 
 ## 2. 동적라이브러리 소스코드 컴파일.
 
-```c
+```c linenums="1"
 // mylib.c
 #include <stdio.h>
 

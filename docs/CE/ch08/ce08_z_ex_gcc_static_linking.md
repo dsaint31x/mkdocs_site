@@ -18,7 +18,7 @@ tags:
 
 `main.c` 파일은 프로그램의 entry point를 구현하고, 여러 object 파일의 함수를 호출함. 
 
-```c
+```c linenums="1"
 // main.c
 #include <stdio.h>
 #include "lib1.h" // lib1.h 헤더 파일을 포함
@@ -33,7 +33,7 @@ int main(void) {
 
 `lib1.c` 파일은 `print_hello` 함수를 정의함.
 
-```c
+```c linenums="1"
 #include <stdio.h>
 #include "lib1.h" // lib1.h 헤더 파일을 포함
 
@@ -44,7 +44,7 @@ void print_hello() {
 
 `lib2.c` 파일은 `print_hi` 함수를 정의.
 
-```c
+```c linenums="1"
 #include <stdio.h>
 #include "lib2.h" // lib2.h 헤더 파일을 포함
 
@@ -65,7 +65,7 @@ void print_hi() {
 * 이 함수를 사용하는 다른 C 파일에서 해당 함수가 무엇인지 알 수 있게 해주어 컴파일까지 가능하게 해 줌.
 * 이후 Linking 을 통해 구현코드가 합쳐져서 executable 파일이 됨.
 
-```c
+```c linenums="1"
 #ifndef LIB1_H
 #define LIB1_H
 
@@ -79,7 +79,7 @@ void print_hello(void);
 * 헤더 파일은 중복 포함 방지를 위해 `#ifndef`, `#define`, `#endif`를 사용함. 
 * 이를 ***Include Guard*** 라고 하며, 여러 번 include (포함)되는 문제를 방지.
 
-```c
+```c linenums="1"
 #ifndef LIB2_H
 #define LIB2_H
 
