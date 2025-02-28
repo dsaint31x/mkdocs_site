@@ -200,7 +200,7 @@ nav:
         - 'I/O Device': "CE/ch06/ce06_4_04_keyboard.md"
       - "Parallel Computing":
         - "CE/ch04/ce04_50.md"
-        - "CE/ch04/ce04_51.md"
+        - "CE/ch04/ce04_51_gpu_tpu.md"
         - "CE/ch04/ce04_52_cluster_system.md"
         - "CE/ch04/ce04_53_grid_system.md"
         - "CE/ch04/ce04_54_multicore_system.md"

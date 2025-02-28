@@ -34,6 +34,6 @@
     * [Instruction Execution](./ce04_22_fetch_execute.md): fetch와 execute 이해. ***
     * [Signal Traffic Control](./ce04_31.md): random logic과 microcode. * 
 * [RISC vs. CISC](./ce04_41.md): Instruction set을 통한 cpu 구분. *****
-* [GPU, NPU, and TPU](./ce04_51.md): AI시대의 core device, GPGPU. *****    
+* [GPU, NPU, and TPU](ce04_51_gpu_tpu.md): AI시대의 core device, GPGPU. *****    
 
 

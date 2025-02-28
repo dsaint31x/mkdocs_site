@@ -1,6 +1,6 @@
 # GPGPU System
 
-GPGPU 시스템은 그래픽 처리 장치(GPU)를 일반 목적의 병렬 컴퓨팅에 활용한 시스템임. 
+GPGPU 시스템은 그래픽 처리 장치([GPU](ce04_51_gpu_tpu.md#graphics-processing-units))를 일반 목적의 병렬 컴퓨팅에 활용한 시스템임. 
 
 Multi-processor system 또는 cluster system를 기반으로 다수의 GPGPU를 포함시켜 구성됨.  
 GPU는 수천 개의 작은 코어로 구성되어 있어 대규모 병렬 처리가 가능함.

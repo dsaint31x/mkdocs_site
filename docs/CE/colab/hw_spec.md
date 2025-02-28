@@ -69,7 +69,7 @@ GPU가속을 사용하면 다음의 사양도 확인 가능함.
 ```
 
 - GPU : K80 또는 T4(`Tesla T4`)  
-- TPU도 사용 가능 : [TPU참고](../ch04/ce04_51.md#tensor-processing-unit-tpu)
+- TPU도 사용 가능 : [TPU참고](../ch04/ce04_51_gpu_tpu.md#tensor-processing-unit-tpu)
 
 
 

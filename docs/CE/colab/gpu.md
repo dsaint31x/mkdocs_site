@@ -1,6 +1,6 @@
 # Colab: GPU 사용하기
 
-Colab에서는 주로 CUDA 기반의 GPU 가속을 지원
+Colab에서는 주로 CUDA 기반의 [GPU](../ch04/ce04_51_gpu_tpu.md#graphics-processing-units) 가속을 지원
 
 - 런타임 → 런타임 유형 변경 → 하드웨어 가속기를 GPU로 변경
 - 유의사항 – GPU는 최대 12시간 실행을 지원
@@ -8,10 +8,10 @@ Colab에서는 주로 CUDA 기반의 GPU 가속을 지원
 
 ![](./img/colab_GPU.png)
 
-> TPU (Tensor Processing Unit)은 GPU가 아닌 AI Accelerator로  
+> [TPU (Tensor Processing Unit)](../ch04/ce04_51_gpu_tpu.md#tensor-processing-unit-tpu)은 GPU가 아닌 AI Accelerator로  
 > 애당초 Tensor Processing을 위해 설계 구현된 ASIC (Application Specific Integrated Circuit).
 
-GPU가속을 사용하면 다음을 통해, GPU 사양과 상태도 확인 가능함.
+GPU 가속을 사용하면 다음을 통해, GPU 사양과 상태도 확인 가능함.
 
 ```
 !nvidia-smi

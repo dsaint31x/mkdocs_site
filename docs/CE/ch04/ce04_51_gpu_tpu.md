@@ -9,6 +9,9 @@
 
 ![](./img/CPU-vs-GPU-Architecture_W640.jpg){width="300"}
 
+> GPGPU의 경우 병렬화를 DLP(Data Level Parallelism) 와 TLP(Thread Level Parallelism)에 기반한 SIMT (Single Instruction Multiple Thread)로 구현.  
+> 참고자료: [Hardware Threading, Scalar / Vector Processor](https://ds31x.tistory.com/364)
+
 ---
 
 ---
