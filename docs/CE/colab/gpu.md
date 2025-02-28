@@ -55,7 +55,7 @@ if torch.backends.mps.is_available():
     devices.append("mps")
 devices.append("cpu")
 
-print(f"Avalable devices: {devices}")
+print(f"Available devices: {devices}")
 
 device = torch.device(devices[0])
 ```
