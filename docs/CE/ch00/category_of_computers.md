@@ -24,7 +24,7 @@ tags: [Super Computer, Mainframe, Minicomputer,Workstation, PC, Microcomputer, L
 * `Mainframe` (Big Iron, 대형컴퓨터)
     * 은행, 정부기관, 대학.
     * 금융권에서는 최근까지도 Mainframe기반인 경우가 많았음.
-    * 1954년 공개된 **IBM 704**를 최초의 Mainframe으로 본다 (Fotran이 이 IBM704에서 프로그래밍을 하기 위해 개발됨).
+    * 1052년 공개된 1세대 컴퓨터 [IBM-701](https://en.wikipedia.org/wiki/IBM_701)과 1954년 공개된 [**IBM-704**](https://ko.wikipedia.org/wiki/IBM_704)를 최초의 Mainframe으로 본다 ([Fortran](../ch08/ce08_pl_intro.md#Fortran)이 이 IBM-704에서 프로그래밍을 하기 위해 개발됨).
 * `Mini-Computer` (Midrange Computer, 미니컴퓨터, 소형컴퓨터)
     * Mainframe과 비슷한 역할을 하되, 크기와 성능이 감소한 형태.
     * 1964년 [DEC](https://ko.wikipedia.org/wiki/%EB%94%94%EC%A7%80%ED%84%B8_%EC%9D%B4%ED%81%85%EB%A8%BC%ED%8A%B8_%EC%BD%94%ED%8D%BC%EB%A0%88%EC%9D%B4%EC%85%98)가 개발한 [PDP-8](https://ko.wikipedia.org/wiki/PDP-8)이 **상업적으로 성공** 한 최초의 Minicomputer (12[bit](../ch01/ch01_10_bit.md#bit-binary-digit) [word](../ch01/ch01_12_otherunits.md#word)).

@@ -1,6 +1,6 @@
 ---
 title: History
-tags: []
+tags: [ENIAC, EDSAC, EDVAC, Apple2, PDP-8, , von-Neumann, stored-program-computer, havard-architecture, family, BASIC, LSI, VLSI, FLOPS, Super-computer, Microprocessor, mainframe, minicomputer, PC, 전기기계식, 전자식 ]
 ---
 
 # History of Computer
@@ -178,6 +178,7 @@ Memory(기억장치)에 컴퓨터의 Instruction들과 Data들을 함께 저장�
 * 물리적으로 전선을 연결하여 ***회로를 새로 구성*** 해야함 
 * 해당 컴퓨터의 H/W 지식 없이는 Task 변경 자체가 불가능.
 
+
 ---
 
 ### UNIVAC (UNIVersal Automatic Computer) **
@@ -198,7 +199,7 @@ Memory(기억장치)에 컴퓨터의 Instruction들과 Data들을 함께 저장�
 
 
 추가적으로  
-: 최초의 상용 `Mainframe`으로 간주되는 [IBM701 (1952년)](https://en.wikipedia.org/wiki/IBM_701)도 유명한 1세대 컴퓨터임.
+: 최초의 상용 `Mainframe`으로 간주되는 [IBM-701 (1952년)](https://en.wikipedia.org/wiki/IBM_701)와 [IBM-704 (1954)](https://ko.wikipedia.org/wiki/IBM_704)도 유명한 1세대 컴퓨터임.
 
 ---
 
@@ -304,16 +305,21 @@ Memory(기억장치)에 컴퓨터의 Instruction들과 Data들을 함께 저장�
 
 * Integrated Circuit (`IC`)가 주요 구성요소.
     * IC 사용은 보다 높은 신뢰성과 처리속도와 용량을 보유한 컴퓨터를 보다 작게 만들 수 있도록 해줌.
+* Mainframe의 시대
+    * IBM 360 시리즈 출시 이후 Mainframe이라는 용어가 일반화됨.
+    * 동시에 minicomputer(PDP-8)가 등장하기 시작함.
 * `UNIX` 의 등장(1960년대 후반) : ***현대적인 OS 등장*** .
+    * [PDP-7 컴퓨터 (1974, minicomputer)](https://ko.wikipedia.org/wiki/PDP-7)에서 `UNIX` 초기버전을 Assembly Language로 개발(Ken Thompson, **Dennis Ritchie**).
     * `Time Sharing System` (시분할 시스템)을 채택하여 여러 Terminal을 지원하게 됨.
     * 최초로 `Multi-Tasking` (다중작업 및) 다중사용자가 가능한 OS.
     * ***^^`UNIX`는 현대 OS의 기본 개념을 수립한 OS로 매우 큰 가치를 지님.^^***
 * Nano-Second의 연산속도
 * 컴퓨터에 `Family` (계열) 개념이 일반화되면서 기종간 호환성이 커짐.
 
-IBM 360 (1964), CDC 7600, UNIVAC1108  
-등이 유명한 3세대 컴퓨터로서 이 당시는 ***Mainframe의 시대*** 이기도 함.  
-(이들 컴퓨터는 일부 문헌에서 2세대로도 기재되지만 `IC`의 개념으로 보면 3세대라 보는게 맞다고 생각됨)  
+IBM 360 (1964), CDC 7600, UNIVAC1108 등
+
+* 유명한 3세대 컴퓨터로서 이 당시는 ***Mainframe의 시대*** 이기도 함.  
+* 이들 컴퓨터는 일부 문헌에서 2세대로도 기재되지만 `IC`의 개념으로 보면 3세대라 보는게 맞다고 생각됨. 
 
 또한 1964년의 ***`BASIC`을 기점으로 S/W 자체가 상용*** 제품으로 인정을 받기 시작.
 
