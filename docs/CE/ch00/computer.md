@@ -1,5 +1,6 @@
 ---
 disqus: dsaint31-me
+tags: [computer]
 ---
 
 # What is a Computer?
@@ -7,7 +8,7 @@ disqus: dsaint31-me
 ## Computer와 Calculator의 가장 큰 차이점.
 
 Computer는 Programming language를 이용하여 기존의 operation(명령어)들을 통해 새로운 operation들을 정의하고 이를 수행할 수 있다.
-동시에, 이렇게 새롭게 추가된 operation들을 또 기존의 opeation들과 함께 조합하여 새로운 operation을 만들 수 있다. 새로운 operation을 추가할 수 있다는 점이 calculator 와의 가장 중요한 차이이다.
+동시에, 이렇게 새롭게 추가된 operation들을 또 기존의 operation들과 함께 조합하여 새로운 operation을 만들 수 있다. 새로운 operation을 추가할 수 있다는 점이 calculator 와의 가장 중요한 차이이다.
 
 > The most important difference between a computer and an old-fashioned calculator is that ^^you can “teach” a computer new operations^^ by defining them in terms of old ones.  
 

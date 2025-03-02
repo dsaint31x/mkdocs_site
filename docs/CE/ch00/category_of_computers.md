@@ -24,9 +24,12 @@ tags: [Super Computer, Mainframe, Minicomputer,Workstation, PC, Microcomputer, L
 * `Mainframe` (Big Iron, 대형컴퓨터)
     * 은행, 정부기관, 대학.
     * 금융권에서는 최근까지도 Mainframe기반인 경우가 많았음.
+    * 1954년 공개된 **IBM 704**를 최초의 Mainframe으로 본다 (Fotran이 이 IBM704에서 프로그래밍을 하기 위해 개발됨).
 * `Mini-Computer` (Midrange Computer, 미니컴퓨터, 소형컴퓨터)
     * Mainframe과 비슷한 역할을 하되, 크기와 성능이 감소한 형태.
-    * 1964년 [DEC](https://ko.wikipedia.org/wiki/%EB%94%94%EC%A7%80%ED%84%B8_%EC%9D%B4%ED%81%85%EB%A8%BC%ED%8A%B8_%EC%BD%94%ED%8D%BC%EB%A0%88%EC%9D%B4%EC%85%98)가 개발한 [PDP-8](https://ko.wikipedia.org/wiki/PDP-8)이 상업적으로 성공한 최초의 Minicomputer (12[bit](../ch01/ch01_10_bit.md#bit-binary-digit) [word](../ch01/ch01_12_otherunits.md#word)).
+    * 1964년 [DEC](https://ko.wikipedia.org/wiki/%EB%94%94%EC%A7%80%ED%84%B8_%EC%9D%B4%ED%81%85%EB%A8%BC%ED%8A%B8_%EC%BD%94%ED%8D%BC%EB%A0%88%EC%9D%B4%EC%85%98)가 개발한 [PDP-8](https://ko.wikipedia.org/wiki/PDP-8)이 **상업적으로 성공** 한 최초의 Minicomputer (12[bit](../ch01/ch01_10_bit.md#bit-binary-digit) [word](../ch01/ch01_12_otherunits.md#word)).
+        * 참고로 1970년에 출시된 minicomputer인 PDP-11로 PDP-7의 UNIX 운영체제([Assembly Language](https://dsaint31.me/mkdocs_site/CE/ch08/ce08_assembly_language/)로 작성됨)를 [재작성( ***porting*** , 포팅)](https://dsaint31.me/mkdocs_site/CE/ch15/ce15_2_4_portability/)하기위해 만들어진 언어가 [`C` 언어](https://dsaint31.me/mkdocs_site/CE/ch08/ce08_pl_intro/#c)임.
+        * PDP-7도 minicomputer 이며, 1965년에 출시되었음 (PDP-8보다 늦음).
     * 기업체, 학교, 연구소
 * `Workstation` 
     * `PC` 규모에 Minicomputer 수준의 성능을 집약시키려는 시도.
@@ -38,7 +41,6 @@ tags: [Super Computer, Mainframe, Minicomputer,Workstation, PC, Microcomputer, L
         * `Laptop`
         * `Notebook`
         * `Palmtop` (Smart Phone에 의해 없어진 카테고리?)
-
 
 
 > `Micro-Processor` :  
@@ -58,13 +60,13 @@ tags: [Super Computer, Mainframe, Minicomputer,Workstation, PC, Microcomputer, L
 >
 > 오늘날에는  
 > 
-> * `PC`보다 좀더 성능이 낮으면서 
+> * `PC`보다 좀 더 성능이 낮으면서 
 > * 작은 규모의 programmable control이 필요한 경우 사용되는 
 > * 컴퓨터 시스템을 가리키는 경우에 많이 사용됨.  
 > 
 > 참고로, **Micro-Computer** 는 Embedded System이나 `Micro-Controller` 와도 자주 혼용됨.
 
-참고자료:
+## 참고자료:
 
 * [Micro Controller Unit (MCU) and Micro-computer](https://dsaint31.tistory.com/419)
 * [Machine Code와 Microcode의 차이점 비교 및 설명](https://ds31x.tistory.com/319)
