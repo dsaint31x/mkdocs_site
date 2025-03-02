@@ -25,7 +25,7 @@ tags: [data, information, operation, instruction ]
 
 다음과 같이 4단계로 나누어서 구분하기도 함: `DIKW` 
 
-![](../ch01/img/data_info2.jpg){style="display: block; margin: 0 auto; width:500px"}
+![](../ch01/img/dikw.svg){style="display: block; margin: 0 auto; width:700px"}
 
 * original : [~~정보의 진화단계 - 2025.2 링크 끊김~~](http://egloos.zum.com/yjhyjh/v/39721)
 
@@ -33,7 +33,12 @@ tags: [data, information, operation, instruction ]
 ### 참고: DIKW Pyramid
 ![](./img/DIKW_pyramid.png){style="display: block; margin: 0 auto; width:500px"}
 
-* [ref.](https://www.facebook.com/photo?fbid=305573416480146&set=a.302919646745523&locale=ko_KR)
+* [ref.](https://www.facebook.com/photo?fbid=305573416480146&set=a.302919646745523&locale=ko_KR): SK T-Brain's Facebook.
+* 정보의 진화 단계를 설명하는 DIKW 피라미드임. 
+* 인간은 데이터로부터 정보를 구성하는 과정을 자연스럽게 수행하며, 이 능력을 "지능" 이라고 정의함.
+* 컴퓨터가 이러한 지능을 갖게 하는 것이 곧 인공지능 연구의 목표라고 볼 수 있음.
+
+> "지능"에 대한 정의는 매우 여러가지이며, 위의 정의는 그 중 한가지임.
 
 ---
 하지만 많은 경우, data와 information은 구분하지않고 사용된다. 
@@ -48,16 +53,18 @@ tags: [data, information, operation, instruction ]
 
 Computer의 또다른 정의는 다음과 같다.  
 
-    **Computer**:  
+    **Computer** :  
     외부로부터 입력된 값을 받아들여 처리한 결과를  
     출력시키거나 장래에 사용하기 위해 보관하는 장치
 
 이를 줄여서 말하면 ***Data를 처리하여 information를 얻는 장치*** 라고 할 수 있다.
 
 > Computer의 다른 이름인  
-> Electronic Data Processing System(EDPS),  
-> Automatic Data Processing System(ADPS) 들이  
-> ***data processing에 초점*** 을 둔 경우이다.
+> 
+> * Electronic Data Processing System(EDPS),  
+> * Automatic Data Processing System(ADPS) 
+>  
+> 들은 ***data processing에 초점*** 을 둔 경우이다.
 
 ---
 
