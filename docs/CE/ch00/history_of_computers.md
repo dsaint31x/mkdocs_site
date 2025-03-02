@@ -18,17 +18,18 @@ tags: []
 ## 조상님들...
 
 `Atanasoff Berry Computer (ABC)`
-: 세계최초의 `전자식 컴퓨터`로 알려짐 (`ENIAC`은 최초의 전자디지털 컴퓨터): Vacuum Tube사용.  
-1937~1942년에 아이오와 주립대의 존 빈센트 아타나소프와 클리포드 베리가 개발한 컴퓨터로 복잡한 수학계산(선형방정식 풀이) 을 위해 설계된 Special Purpose Computer.  
-Plugboard (외장형 배선기반)를 통해 Programming이 가능한 `ENIAC` 과 달리 프로그래밍이 가능한 범용컴퓨터가 아니었음.
+: 세계최초의 `전자식 컴퓨터`로 알려짐 (`ENIAC`은 최초의 전자디지털 컴퓨터): [Vacuum Tube](../ch02_co/ce02_03_2_vacuum_tube.md)사용.  
+1937~1942년에 아이오와 주립대의 존 빈센트 아타나소프와 클리포드 베리가 개발한 컴퓨터로 **복잡한 수학계산(선형방정식 풀이)** 을 위해 설계된 Special Purpose Computer.  
+"[Plugboard (정식명칭: Control Panel)](https://ko.wikipedia.org/wiki/%ED%94%8C%EB%9F%AC%EA%B7%B8%ED%8C%90)를 통해 Programming이 가능한 `ENIAC`" 과 달리 프로그래밍이 가능한 [범용컴퓨터](./category_of_computers.md#사용목적에-따른-분류)가 아니었음.  
+때문에 ABC를 가리켜 컴퓨터가 아닌 특정 계산만이 가능한 고정된 전자장치라고 여기는 의견도 있음.
 
 `Colossus`
 : Alan Turing이 만든 bombe (에니그마를 해독하기 위한 전기기계식 컴퓨터?)와 그의 확률론적 방식에 영향을 받아,  
 Tommy Flowers 그룹이 설계하고 개발한 1943~1945년 개발된 컴퓨터.
 (이미테이션 게임이라는 영화를 보면 관련 이야기들이 나옴.)  
-2차세계대전(1939~1945) 중 독일군의 암호전신기인 Lorenz Cipher를 해독하기 위해 개발된 세계최초의 `프로그래밍(외장형)이 가능한 전자디지털 Computer`였음 (Plugboard이용).  
-(오늘날의 범용 컴퓨터와 거리가 먼 Special-Purpose Computer 이며, 최초의 범용 프로그래밍이 가능한 컴퓨터는 `ENIAC`으로 인정되고 있음.)
-^^군사기밀이었기 때문에 한참 후에 존재가 공개(1970년대)^^ 된 컴퓨터 (Vacuum tube를 사용했고, 스위치 및 플러그를 이용한 프로그래밍을 지원) 
+2차세계대전(1939~1945) 중 독일군의 암호전신기인 [Lorenz Cipher](https://ko.wikipedia.org/wiki/%EB%A1%9C%EB%A0%8C%EC%B8%A0_%EC%95%94%ED%98%B8%EA%B8%B0%EA%B3%84)를 해독하기 위해 개발된 세계최초의 `프로그래밍(외장형)이 가능한 전자디지털 Computer`였음 (Plugboard 이용).  
+(오늘날의 범용 컴퓨터와 거리가 먼 [Special-Purpose Computer](./category_of_computers.md#사용목적에-따른-분류) 이며, 최초의 범용 프로그래밍이 가능한 컴퓨터는 `ENIAC`으로 인정하는 의견이 다수임.)
+^^군사기밀이었기 때문에 한참 후에 존재가 공개(1970년대)^^ 된 컴퓨터 (Vacuum tube를 사용했고, 스위치 및 플러그(plugboard)를 이용한 프로그래밍을 지원) 
 
 `(Harvard) Mark I`
 : 세계최초의 `전기기계식 Computer`로 알려짐.  
@@ -42,6 +43,8 @@ Tommy Flowers 그룹이 설계하고 개발한 1943~1945년 개발된 컴퓨터.
 원폭 개발(맨해튼 프로젝트) 등에 사용됨. 
 
 > 전기 기계식 : `Relay`가 사용됨을 의미함.
+
+참고: [기계식, 전기식, 전자식 의 차이](https://ds31x.tistory.com/377)
 
 ---
 
@@ -81,7 +84,7 @@ S/W 라는 개념이 없다고 봐도 될정도로 S/W가 H/W에 강하게 의�
 
 * 미사일 탄도 계산을 위한 미분방정식을 풀기 위해서...
 * 100 여명의 수학자들이 모여 한 달동안 계산 을 대체하기 위해.
-* Decimal (십진수 체계) 를 사용. 
+* **Decimal (십진수 체계)** 를 사용. 
 
 <!--figure class="inline end" markdown>
 </figure-->
@@ -100,7 +103,10 @@ S/W 라는 개념이 없다고 봐도 될정도로 S/W가 H/W에 강하게 의�
 
 > 최초의 ***디지털 전자식*** : Vacuum Tube 를 이용함.
 >
-> 앞서 언급한 `Colossus` 를 최초의 디지털 전자식 컴퓨터로 인정해야하나, 군사적 목적으로 인해 공개가 늦어진 점과 범용 컴퓨터가 아니라는 점 때문에 ENIAC이 최초의 디지털 전자식 컴퓨터로 알려짐.
+> 앞서 언급한 `Colossus` 를 최초의 디지털 전자식 컴퓨터로 인정해야하나,  
+> 군사적 목적으로 인해 공개가 늦어진 점과  
+> `Colossus`가 범용 컴퓨터가 아니라는 점 때문에  
+> **`ENIAC`이 최초의 디지털 전자식 컴퓨터로 알려짐.**
 
 ---
 
@@ -111,12 +117,12 @@ S/W 라는 개념이 없다고 봐도 될정도로 S/W가 H/W에 강하게 의�
 영국의 윌킨스 그룹에서 
 
 * von Neumann의 `von Neumann Architecture`를 채택하여 개발.
-* 10진수를 기반으로 동작.
+* **10진수를 기반** 으로 동작.
 
 ### EDVAC (Electronic Discrete Variable Automatic Computer) **
 
 > 1952년 von Neumann이 제안한 `Stored Program Computer` (프로그램 내장형 컴퓨터) Architecture를 채택하여 개발된  
-> ***최초의 이진수(`Binary`) 기반 컴퓨터***.
+> ***최초의 이진수(`Binary`) 기반 컴퓨터*** (드디어 2진수).
 
 * ENIAC은 program이 내장되어 있지 않음. (수동 전화 교환기 와 같은 외양의 plugboard 이용. 배선 변경으로 컴퓨터 동작을 지시.)
 * EDVAC은 현재 디지털 컴퓨터들이 채택하고 있는 `Stored Program Computer` 개념과 ^^이진법 (binary) 을 실제 구현^^ 한 컴퓨터임.
@@ -137,10 +143,10 @@ S/W 라는 개념이 없다고 봐도 될정도로 S/W가 H/W에 강하게 의�
 
 흔히, 다음과 같은 세 부분으로 구성됨.
 
-* Data를 외부로부터 입력받고, 처리 결과를 외부에 표시하는 I/O Device (키보드, 모니터, 프린터 등등)
-* Data와 Program의 저장을 담당하는 Memory 
+* Data를 외부로부터 입력받고, 처리 결과를 외부에 표시하는 **I/O Device** (키보드, 모니터, 프린터 등등)
+* Data와 Program의 저장을 담당하는 **Memory** 
     * Storage를 포함.
-* Data를 Program에 따라 처리를 담당하는 CPU (`Control Unit`과 `ALU`등으로 구성됨.)
+* Data를 Program에 따라 처리를 담당하는 **CPU** (`Control Unit`과 `ALU`등으로 구성됨.)
 
 ![von Neumann Architecture](./img/von_Neumann_arch.png){ style="display: block; margin:0 auto; width:300px" }
 <figcaption>Stored program Architecture</figcaption>
@@ -161,7 +167,7 @@ Memory(기억장치)에 컴퓨터의 Instruction들과 Data들을 함께 저장�
 > 이 경우, Program과 Data에 동시에 접근이 가능하다는 장점을 가지지만,  
 > 분리된 Bus와 Memory가 필요하여, 보다 복잡한 구성이 요구됨.  
 > 
-> 현대 컴퓨터에선 CPU 내부에선 Harvard Architecture를 적용하고, 외부는 von Neumann Architecture를 적용하고 있음.
+> 현대 컴퓨터에선 **CPU 내부에선 Harvard Architecture를 적용하고, 외부는 von Neumann Architecture를 적용** 하고 있음.
 
 ^^`EDVAC` (or `EDSAC`) 이후, 이를 기점으로 `Software`라는 개념 (H/W의 영향을 보다 덜 받는 형태)이 등장함!^^
 
@@ -178,7 +184,7 @@ Memory(기억장치)에 컴퓨터의 Instruction들과 Data들을 함께 저장�
 
 1951년 개발된 ^^최초의 `상업용 컴퓨터`^^.
 
-* Magnetic Tape(자기테이프)를 보조기억장치로 도입함.
+* Magnetic Tape(자기테이프)를 secondary memory(보조기억장치)로 도입함.
 
 ![](./img/Univac_I_Census_dedication.jpg){style="display: block; margin: 0 auto; width:300px" }
 <figcaption>By U.S. Census Bureau employees - https://www.census.gov/history/, Public Domain, https://commons.wikimedia.org/w/index.php?curid=61118833</figcaption>
@@ -192,7 +198,7 @@ Memory(기억장치)에 컴퓨터의 Instruction들과 Data들을 함께 저장�
 
 
 추가적으로  
-: 최초의 상용 `Mainframe`으로 간주되는 IBM701 (1952년)도 유명한 1세대 컴퓨터임.
+: 최초의 상용 `Mainframe`으로 간주되는 [IBM701 (1952년)](https://en.wikipedia.org/wiki/IBM_701)도 유명한 1세대 컴퓨터임.
 
 ---
 
@@ -370,13 +376,13 @@ S/W 단독으로 상용화가 이루어지기시작.
 `FLOPS (FLoating-point Operation Per Second)`는  
 정보처리 속도 단위로 ***초당 부동소수점 연산 횟수*** 를 의미함.  
 
-`Mega-`, `Giga-` 등의 prefix와 함께 사용된다.  
+`Mega-`, `Giga-` 등의 [prefix](../ch01/ch01_14_prefix.md)와 함께 사용된다.  
 다른 단위로는 `IPS` (Instruction Per Second)로 ***초당 명령어 횟수*** 도 있음.
 
 > 인간의 경우  
 > `LIPS` (Logical Inference Per Second)로 ***초당 논리적추론 횟수*** 를 적용할 수 있는데,  
 > 보통 ^^인간이 2 LIPS 정도^^ 가 가능하다.  
-> 참고로 1LIPS는 대략 100~1,000 개의 Instruction으로 구성된다고 알려짐.
+> 참고로 1LIPS는 대략 100~1,000 개의 [Instruction](../ch01/ch01_00_data_representation.md#4-operations)으로 구성된다고 알려짐.
 
 ---
 
@@ -391,7 +397,7 @@ S/W 단독으로 상용화가 이루어지기시작.
 
 * 오늘날 ^^CPU로 불리는 `Micro-Processor`가 드디어 등장^^ 한 세대이며,  
 이를 통해 Personal Computer (PC)가 보급되기 시작한 세대이기도 함.
-    * `Intel4004` (1981년. 최초의 Micro-processor, 4bit CPU)는 
+    * [`Intel4004` (1971년. 최초의 Micro-processor, 4bit CPU)](https://dsaint31.tistory.com/417)는 
     * 2,300개의 Transistor로 구성되었고 초당 60,000개의 연산이 가능.
 * `Internet`의 등장으로 Network가 일반화된 세대이기도 하며,  
 휴대용 컴퓨터가 등장한 세대이기도 함.
@@ -429,6 +435,9 @@ Apple2가 1977년 나오면서 PC가 본격적으로 보급되기 시작함.
 > 참고로  
 > 상당수 문헌에서는 Apple2를 3세대 컴퓨터로 분류하기도 하며,  
 > 이후 등장한 IBM 5150과 Macintosh (최초의 GUI를 도입한 PC)를 4세대로 분류한다.
+
+* Microprocessor 의 등장(Intel4004, 1971) 이후로 microprocessor를 CPU로 한 경우를 대략 PC로 보는 의견이 보다 다수임. 
+* PC의 등장은 4세대라고 보는 견해가 다수임.
 
 ---
 

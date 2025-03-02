@@ -26,10 +26,10 @@ tags: [Super Computer, Mainframe, Minicomputer,Workstation, PC, Microcomputer, L
     * 금융권에서는 최근까지도 Mainframe기반인 경우가 많았음.
 * `Mini-Computer` (Midrange Computer, 미니컴퓨터, 소형컴퓨터)
     * Mainframe과 비슷한 역할을 하되, 크기와 성능이 감소한 형태.
-    * 1964년 DEC가 개발한 PDP-8이 상업적으로 성공한 최초의 Minicomputer (12bit word).
+    * 1964년 [DEC](https://ko.wikipedia.org/wiki/%EB%94%94%EC%A7%80%ED%84%B8_%EC%9D%B4%ED%81%85%EB%A8%BC%ED%8A%B8_%EC%BD%94%ED%8D%BC%EB%A0%88%EC%9D%B4%EC%85%98)가 개발한 [PDP-8](https://ko.wikipedia.org/wiki/PDP-8)이 상업적으로 성공한 최초의 Minicomputer (12[bit](../ch01/ch01_10_bit.md#bit-binary-digit) [word](../ch01/ch01_12_otherunits.md#word)).
     * 기업체, 학교, 연구소
 * `Workstation` 
-    * `PC` 규모에 Minicomputer수준의 성능을 집약시키려는 시도.
+    * `PC` 규모에 Minicomputer 수준의 성능을 집약시키려는 시도.
     * High-End PC의 발전에 따라 위치가 모호해짐.
 * `PC` (`Micro Computer`)
     * `Microprocessor`를 CPU로 사용하는 컴퓨터.
@@ -42,15 +42,32 @@ tags: [Super Computer, Mainframe, Minicomputer,Workstation, PC, Microcomputer, L
 
 
 > `Micro-Processor` :  
-> 좀 더 학술적으로 애기하면,  
-> 기계어 코드를 실행하기 위해 실행과정을 단계별로 나누어 처리를 위한 마이크로 코드를 작성하고,  
-> 이 마이크로 코드에 의해 단계적으로 처리하는 논리회로를 가리키나,  
+> 
+> * 학술적으로 애기하면,  
+> * 기계어 코드(machine code)를 실행하기 위해 
+> * 실행과정을 단계별로 나누어 처리를 위한 microcode(마이크로 코드)를 작성하고,  
+> * 이 마이크로 코드에 의해 단계적으로 처리하는 논리회로를 가리키나,  
 >
-> 단일 Chip에 CPU 의 기능을 통합한 것을 가리키는 용도로 더 많이 사용됨.
+> **단일 Chip에 CPU 의 기능을 통합한 것** 을 가리키는 용도로 더 많이 사용됨.
 >
-> `Micro Computer` 의 경우, `PC`의 CPU가 `Micro-Processor` 였기 때문에 초기 `PC`를 가리키는 용어로 많이 사용됨.  
-> 오늘날에는 `PC`보다 좀더 성능이 낮으면서 작은 규모의 programmable control이 필요한 경우 사용되는 컴퓨터 시스템을 가리키는 경우에 많이 사용됨.  
-> (Micro-Computer는 Embedded System이나 `Micro-Controller` 와도 자주 혼용됨.)
+> `Micro Computer` 의 경우, 
+>
+> * CPU가 `Micro-Processor` 였고, 
+> * PC로 사용되었기 때문에 
+> * 초기 `PC`를 가리키는 용어로 많이 사용됨.  
+>
+> 오늘날에는  
+> 
+> * `PC`보다 좀더 성능이 낮으면서 
+> * 작은 규모의 programmable control이 필요한 경우 사용되는 
+> * 컴퓨터 시스템을 가리키는 경우에 많이 사용됨.  
+> 
+> 참고로, **Micro-Computer** 는 Embedded System이나 `Micro-Controller` 와도 자주 혼용됨.
+
+참고자료:
+
+* [Micro Controller Unit (MCU) and Micro-computer](https://dsaint31.tistory.com/419)
+* [Machine Code와 Microcode의 차이점 비교 및 설명](https://ds31x.tistory.com/319)
 
 ---
 
@@ -58,7 +75,8 @@ tags: [Super Computer, Mainframe, Minicomputer,Workstation, PC, Microcomputer, L
 
 ## 취급 데이터에 따른 분류
 
-> 컴퓨터는 처리하는 데이터의 형태에 따라 디지털 컴퓨터, 아날로그 컴퓨터, 그리고 이 둘을 결합한 하이브리드 컴퓨터로 분류
+> 컴퓨터는 처리하는 데이터의 형태에 따라  
+> **디지털 컴퓨터**, **아날로그 컴퓨터**, 그리고 이 둘을 결합한 **하이브리드 컴퓨터** 로 분류
 
 오늘날 컴퓨터는 대부분 Digital Computer로 digital data를 다루지만,  
 Analog Data를 다루는 `Analog Computer` 와 이둘을 결합한 `Hybrid Computer`도 존재.
