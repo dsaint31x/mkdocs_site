@@ -17,6 +17,19 @@ tags: [ENIAC, EDSAC, EDVAC, Apple2, PDP-8, von-Neumann, stored-program-computer,
 
 ## 조상님들...
 
+### Mechanical Calculator
+
+![](./img/mechanical_calculator.png){style="display: block; margin: 0 auto; width=500"}
+
+* First mechanical calculator (Blaise Pascal): 1642 (addition, subtraction)
+* Leibniz calculator (Gottfried Leibniz) : 1671 (multiplication, division 을 추가.)
+
+19세기
+
+Babbage's [Difference Engine(차분기관)과 Analytical Engine(분석기관)](https://ds31x.tistory.com/383)
+
+### 0세대 컴퓨터.
+
 `Atanasoff Berry Computer (ABC)`
 : 세계최초의 `전자식 컴퓨터`로 알려짐 (`ENIAC`은 최초의 전자디지털 컴퓨터): [Vacuum Tube](../ch02_co/ce02_03_2_vacuum_tube.md)사용.  
 1937~1942년에 아이오와 주립대의 존 빈센트 아타나소프와 클리포드 베리가 개발한 컴퓨터로 **복잡한 수학계산(선형방정식 풀이)** 을 위해 설계된 Special Purpose Computer.  
@@ -26,7 +39,7 @@ tags: [ENIAC, EDSAC, EDVAC, Apple2, PDP-8, von-Neumann, stored-program-computer,
 `Colossus`
 : Alan Turing이 만든 bombe (에니그마를 해독하기 위한 전기기계식 컴퓨터?)와 그의 확률론적 방식에 영향을 받아,  
 Tommy Flowers 그룹이 설계하고 개발한 1943~1945년 개발된 컴퓨터.
-(이미테이션 게임이라는 영화를 보면 관련 이야기들이 나옴.)  
+(bombe는 이미테이션 게임이라는 영화를 보면 관련 이야기들이 나옴.)  
 2차세계대전(1939~1945) 중 독일군의 암호전신기인 [Lorenz Cipher](https://ko.wikipedia.org/wiki/%EB%A1%9C%EB%A0%8C%EC%B8%A0_%EC%95%94%ED%98%B8%EA%B8%B0%EA%B3%84)를 해독하기 위해 개발된 세계최초의 `프로그래밍(외장형)이 가능한 전자디지털 Computer`였음 (Plugboard 이용).  
 (오늘날의 범용 컴퓨터와 거리가 먼 [Special-Purpose Computer](./category_of_computers.md#사용목적에-따른-분류) 이며, 최초의 범용 프로그래밍이 가능한 컴퓨터는 `ENIAC`으로 인정하는 의견이 다수임.)
 ^^군사기밀이었기 때문에 한참 후에 존재가 공개(1970년대)^^ 된 컴퓨터 (Vacuum tube를 사용했고, 스위치 및 플러그(plugboard)를 이용한 프로그래밍을 지원) 
@@ -68,7 +81,7 @@ Tommy Flowers 그룹이 설계하고 개발한 1943~1945년 개발된 컴퓨터.
 
 과학 계산, 통계처리, 미사일 탄도 계산 등에 이용되었음.  
 S/W 라는 개념이 없다고 봐도 될정도로 S/W가 H/W에 강하게 의존하던 세대이다.  
-컴퓨터가 수행할 동작을 배선을 통해 만든 회로를 교체해야 하는 형태 (=`hard wired 방식`, plugboard사용)이다.
+컴퓨터가 수행할 동작을 배선을 통해 만든 회로를 교체해야 하는 형태 (=`hard wired 방식` 또는 plugboard 사용)이다.
 
 > `H/W` : 컴퓨터를 구성하는 물리적 기계장치.  
 > `S/W` : H/W를 운영하고 이용하기 위한 프로그램.
@@ -80,7 +93,7 @@ S/W 라는 개념이 없다고 봐도 될정도로 S/W가 H/W에 강하게 의�
 
 > 프로그래밍이 가능한 전자식 디지털 컴퓨터, 10진수 체계, Vacuum Tube (~`전자식`)
 
-1946년 개발된 일반적으로 알려진 ***최초의 전자 디지털 범용컴퓨터*** 로 알려진 컴퓨터.
+1946년 개발된 일반적으로 알려진 ***최초의 전자 디지털 범용컴퓨터***.
 
 * 미사일 탄도 계산을 위한 미분방정식을 풀기 위해서...
 * 100 여명의 수학자들이 모여 한 달동안 계산 을 대체하기 위해.
@@ -173,7 +186,7 @@ Memory(기억장치)에 컴퓨터의 Instruction들과 Data들을 함께 저장�
 
 `Stored Program` Architecture 이전에는 
 
-* Hard-Wired 방식으로 
+* Hard-Wired 방식 또는 Plugboard 방식으로 
 * Computer 가 수행하는 Task를 변경하려면, 
 * 물리적으로 전선을 연결하여 ***회로를 새로 구성*** 해야함 
 * 해당 컴퓨터의 H/W 지식 없이는 Task 변경 자체가 불가능.
