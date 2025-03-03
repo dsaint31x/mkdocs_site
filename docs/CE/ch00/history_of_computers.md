@@ -1,6 +1,6 @@
 ---
 title: History
-tags: [ENIAC, EDSAC, EDVAC, Apple2, PDP-8, , von-Neumann, stored-program-computer, Harvard-architecture, family, BASIC, LSI, VLSI, FLOPS, Super-computer, Microprocessor, mainframe, minicomputer, PC, 전기기계식, 전자식 ]
+tags: [ENIAC, EDSAC, EDVAC, Apple2, PDP-8, , von-Neumann, stored-program-computer, Harvard-architecture, family, BASIC, LSI, VLSI, FLOPS, Super-computer, Microprocessor, mainframe, minicomputer, PC ]
 ---
 
 # History of Computer
