@@ -50,4 +50,4 @@ This course teaches you
 
 ## 읽어보면 좋은 자료.
 
-* [Computer and Program](https://dsaint31.tistory.com/entry/CE-Computer-and-Program)
+* [Computer and Program - 정의](https://dsaint31.tistory.com/436)
