@@ -11,7 +11,7 @@
 
 ---
 
-## Fortran
+## FORTRAN
 
 `FOR`mula `TRAN`slation
 

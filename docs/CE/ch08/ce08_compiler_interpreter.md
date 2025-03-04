@@ -13,7 +13,7 @@
 
 대표적인 예로 `Fortran`, `Pascal`, `Cobol`, `Ada`, `C`, `C++` 등을 들 수 있음.
 
-`Java`도 compiler language라고 볼 수 있음 (단 `compile` 과정의 결과물인 `byte code`가 `Java VM`에서 동작한다).
+`Java`도 compiler language라고 볼 수 있음 (단 `compile` 과정의 결과물인 `bytecode`가 `Java VM`에서 동작한다).
 
 > [참고: Compiler 의 종류](https://ds31x.tistory.com/187)
 
@@ -32,7 +32,7 @@
 대표적인 예로 `Python`, PHP, ASP, Java Script, Perl 등을 들 수 있다.
 
 최근의 Interpreter language는 VM을 도입하여 고유의 유연성을 유지하면서 높은 성능을 얻고 있다.  
-이 경우, interpreter는 OS가 이해할 수 있는 언어로 변환이 아닌 VM이 이해할 수 있는 `byte code`로 변환을 수행함. 
+이 경우, interpreter는 OS가 이해할 수 있는 언어로 변환이 아닌 VM이 이해할 수 있는 `bytecode`로 변환을 수행함. 
 
 
 > 보다 자세한 건 다음 URL을 참고. [Python Interpreter and PVM (Python Virtual Machine)](
@@ -84,11 +84,11 @@ compiler의 결과물인 `object code`나 입력이 되는 `source code` 등의 
 인간이 사용하는 문자로 이루어진 code 임.  
 일반적으로 compiler나 interpreter의 도움 없이는 컴퓨터가 직접 읽고 수행하지 못한다.
 
-#### `Byte code (바이트코드)`
-: Byte code는 Virtual Machine이 인식하고 실행할 수 있는 중간 코드(intermediate code)로, 바이트 단위로 처리되기 때문에 `byte code`라고 불림. 
-: * 이는 플랫폼 독립적임, 
+#### `Bytecode (바이트코드)`
+: Bytecode는 Virtual Machine이 인식하고 실행할 수 있는 중간 코드(intermediate code)로, 바이트 단위로 처리되기 때문에 `bytecode`라고 불림: 붙여쓰는게 일반적임.
+: * 이는 플랫폼 독립적임. 
 * 예를 들어 Java에서는 .class 파일 형태로 생성되어 JVM에서 실행되고, Python에서는 .pyc 파일 형태로 생성되어 Python VM에서 실행됨.
-* [좀더 자세한 정리: `byte code`](https://ds31x.tistory.com/318)
+* [좀더 자세한 정리: `bytecode`](https://ds31x.tistory.com/318)
 
 #### `Binary code (바이너리코드, 이진코드)`
 : 실제 컴퓨터(정확히는 cpu)가 인식 및 수행할 수 있는 bit pattern.  

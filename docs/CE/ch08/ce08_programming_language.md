@@ -63,9 +63,12 @@ tags:
 
 #### 프로그래밍 작성 기법 별 구분 (paradigm)
 
-* 절차적 언어 (Procedural Language)
-* 객체지향 언어 (Object Oriented Language)
-* 함수형 언어 (Functional Language)
-* 선언적 언어 (Declarative Language)
+* 명령형 프로그래밍 언어 (Imperative Programming Language)
+    * 절차적 프로그래밍 언어 (Procedural Programming Language)
+        * 구조적 프로그래밍 언어 (Structured Programming Language) \*\*
+    * 객체지향 프로그래밍 언어 (Object Oriented Programming Language) \*\*\*
+* 선언적 프로그래밍 언어 (Declarative Programming Language)
+    * 논리형 프로그래밍 언어 (Logic Programming Language)
+    * 함수형 프로그래밍 언어 (Functional Programming Language) \*\*\*
 
-> 사실 가장 모호한 분류이기도 함: 최근 프로그래밍 언어들은 이들을 혼합된 형태임.
+> 사실 가장 모호한 분류이기도 함: 최근 프로그래밍 언어들은 이들을 다중으로 지원하는 형태임.
