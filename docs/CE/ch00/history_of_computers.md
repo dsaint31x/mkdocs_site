@@ -352,7 +352,7 @@ ENIAC의 개발 그룹의 핵심 멤버들(J. Mauchly 와 J.P. Eckert)이 설계
     * IBM 360 시리즈 출시 이후 Mainframe이라는 용어가 일반화됨.
     * 동시에 minicomputer(PDP-8)가 등장하기 시작함.
 * `UNIX` 의 등장(1960년대 후반) : ***현대적인 OS 등장*** .
-    * [PDP-7 컴퓨터 (1974, minicomputer)](https://ko.wikipedia.org/wiki/PDP-7)에서 `UNIX` 초기버전을 Assembly Language로 개발(Ken Thompson, **Dennis Ritchie**).
+    * [PDP-7 컴퓨터 (1964, minicomputer)](https://ko.wikipedia.org/wiki/PDP-7)에서 `UNIX` 초기버전을 Assembly Language로 개발(Ken Thompson, **Dennis Ritchie**).
     * `Time Sharing System` (시분할 시스템)을 채택하여 여러 Terminal을 지원하게 됨.
     * 최초로 `Multi-Tasking` (다중작업 및) 다중사용자가 가능한 OS.
     * ***^^`UNIX`는 현대 OS의 기본 개념을 수립한 OS로 매우 큰 가치를 지님.^^***
