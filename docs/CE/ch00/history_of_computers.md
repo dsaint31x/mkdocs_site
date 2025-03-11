@@ -28,6 +28,18 @@ tags: [ENIAC, EDSAC, EDVAC, Apple2, PDP-8, von-Neumann, stored-program-computer,
 
 Babbage's [Difference Engine(차분기관)과 Analytical Engine(분석기관)](https://ds31x.tistory.com/383)
 
+20세기
+
+Vannevar Bush's [Differential Analyzer (미분해석기)](https://ds31x.tistory.com/390)
+
+* Analog Mechanical Calculator.
+
+Claude Shannon's [A Symbolic Analysis of Relay and Switching Circuits (1939년)](https://ds31x.tistory.com/393)
+
+* Computer를 Switch의 조합으로 만들 수 있음: Digital Logic Circuit 의 등장.
+
+---
+
 ### 0세대 컴퓨터.
 
 `Z3`
@@ -169,7 +181,7 @@ S/W 라는 개념이 없다고 봐도 될정도로 S/W가 **H/W에 강하게 의
 `Stored Program Computer`라고 불리며,  
 현대 컴퓨터들이 대부분 채택하고 있는 구조.
 
-> Program(=Instructions)을 Data와 똑같이 메모리에 저장하여  
+> Program(=Set of Instructions)을 Data와 똑같이 메모리에 저장하여  
 > 소프트웨어 변경의 유연성을 제공하고,  
 > 다양한 작업을 수행할 수 있는 범용성을 갖춘 컴퓨터 구조
 
@@ -479,13 +491,13 @@ S/W 단독으로 상용화가 이루어지기시작.
 
 ![](./img/PC_apple1.png){style="display: block; margin:0 auto;width:400px"}
 
-Apple2가 1977년 나오면서 PC가 본격적으로 보급되기 시작함.
+[Apple2](https://ds31x.tistory.com/394)가 1977년 나오면서 PC가 본격적으로 보급되기 시작함.
 
 > 참고로  
 > 상당수 문헌에서는 Apple2를 3세대 컴퓨터로 분류하기도 하며,  
 > 이후 등장한 IBM 5150과 Macintosh (최초의 GUI를 도입한 PC)를 4세대로 분류한다.
 
-* Microprocessor 의 등장(Intel4004, 1971) 이후로 microprocessor를 CPU로 한 경우를 대략 PC로 보는 의견이 보다 다수임. 
+* [Microprocessor 의 등장(Intel4004, 1971)](https://dsaint31.tistory.com/417) 이후로 microprocessor를 CPU로 한 경우를 대략 PC로 보는 의견이 보다 다수임. 
 * PC의 등장은 4세대라고 보는 견해가 다수임.
 
 ---
