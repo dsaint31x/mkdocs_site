@@ -125,7 +125,7 @@ Gaussian probability distribution을 따르는 **Continuous random variable** �
 
 ---
 
-*** 참고: Gaussian Distribution (Normal Distribution)***
+## 참고: Gaussian Distribution (Normal Distribution)
 
 $$
 p(x)=\frac{1}{\sqrt{2\pi\sigma^2}}\exp\left(-\frac{(x-\mu)^2}{2\sigma^2}\right)

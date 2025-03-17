@@ -53,7 +53,7 @@ tags: [data, information, operation, instruction ]
 
 Computer의 또다른 정의는 다음과 같다.  
 
-    **Computer** :  
+    Computer :  
     외부로부터 입력된 값을 받아들여 처리한 결과를  
     출력시키거나 장래에 사용하기 위해 보관하는 장치
 
