@@ -25,7 +25,7 @@ tags: [data, information, operation, instruction ]
 
 다음과 같이 4단계로 나누어서 구분하기도 함: `DIKW` 
 
-![](../ch01/img/dikw.svg){style="display: block; margin: 0 auto; width:700px"}
+![](./img/dikw.svg){style="display: block; margin: 0 auto; width:700px"}
 
 * original : [~~정보의 진화단계 - 2025.2 링크 끊김~~](http://egloos.zum.com/yjhyjh/v/39721)
 
