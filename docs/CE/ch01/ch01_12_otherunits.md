@@ -73,7 +73,7 @@ bit는 `0`,`1`의 값을 갖는 ^^information의 최소단위^^ 이기 때문에
 ---
   
 ## `double word` 
-: `64bit 에 해당.  
+: 64bit 에 해당 (ARM기준).  
 현재의 computer는 64bit machine으로 원래 word의 정의에 따르면, 현재는 `double word`가 word임.   
 하지만 하위호환성 등에 대한 고려로, 이를 word라고 하진 않고 `double word`라고 지칭하는 게 일반적임.
 
