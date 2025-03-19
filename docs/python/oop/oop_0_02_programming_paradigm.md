@@ -9,6 +9,11 @@
 
 > 프로그래밍 패러다임은 정말 수도 없이 많다. 현재의 프로그래밍 언어들은 다양한 패러다임을 지원하고 있기 때문에 칼로 자르듯이 구분하기 쉽지 않다. C,C++과 Java, Python에 익숙한 사람의 관점에서 이해하고 있는 내용이라는 전제를 가지고 읽어보길 권한다. 이 내용은 Python이나 C++, Java, C를 공부하기 앞서 가지고 있으면 좋은 사전지식 정도, 그리고 OOP를 이해하기 위한 포석 정도로 여겨두면 좋을 거 같다.
 
+
+**참고** : [대표적인 Programming Paradigms 요약표](../../CE/ch08/ce08_programming_language.md#paradigm)
+
+---
+
 ## Non Structured Programming
 
 - Procedural Programming (순차적인 프로그래밍) 를 가르킴.
