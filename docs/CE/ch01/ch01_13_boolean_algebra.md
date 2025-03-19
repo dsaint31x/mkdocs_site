@@ -12,6 +12,9 @@ George Boole(1815-1864, 영국)이 고안한 logic을 다루는 algebra로
 
 > 즉, `bit`들을 이용한 Logical Operation들에 대한 규칙들을 정의하고 있다.
 
+* 참고로 boolean algebra의 연산들을 구현하고 있는 IC를 가리켜 (logic) gate라고 부름.
+* [logic gate란](https://dsaint31.tistory.com/406)
+
 ---
 
 ---
@@ -135,10 +138,10 @@ De Morgan's Law를 통해, `Negative Logic`을 사용할 수 있다.
 
 다음은 Positive Logic(정논리)와 Negative Logic(부논리)간의 Gate들의 관계를 보여준다.
 
-![](./img/negative_positive_logic.png){style="display: block; maring:0 auto;width:500px"}
+![](./img/negative_positive_logic.png){style="display: block; margin:0 auto;width:500px"}
 <figcaption>original : https://electronics.stackexchange.com/questions/53019/negative-logic-and-positive-logic-gates</figcaption>
 
-![](./img/negative_positive_logic1.png){style="display: block; maring:0 auto;width:400px"}
+![](./img/negative_positive_logic1.png){style="display: block; margin:0 auto;width:400px"}
 <figcaption>original : '디지털 논리회로 이해', 오창환 저, 한국학술정보(주)</figcaption>
 
 > 쉽게 생각해서, `AND` Gate의 등가는  
