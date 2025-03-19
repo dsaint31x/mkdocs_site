@@ -2,7 +2,7 @@
 
 Structured Programming은 Edsger wybe dijkstra (에츠허르 위베 데이스크라, 1930-2002)가 1968년 제안한 프로그래밍 패러다임이다. 
 
-OOP는 Alan curtis kay (앨런케이)의 small talk에서 시작된 것으로 알려져 있으며, 현재 가장 인기있는 프로그래밍 패러다임이다.
+OOP는 Alan curtis kay (앨런케이, 1940- )의 small talk(1976)로 대중화된 것으로 알려져 있으며, 현재 가장 인기있는 프로그래밍 패러다임 (Simula-67이 최초로 많이 인식됨)이다.
 
 ---
 
@@ -60,24 +60,29 @@ Object는 필요한 데이터와 function을 같이 묶어서 가지고 있음. 
 
 ## 프로그래밍 언어 분류.
 
-**구조적 프로그래밍 (Structured Programming)**
-
-- Pascal, **C**
-- 명령형 프로그래밍 (Imperative Programming).
-    - Fortran, Cobol, **C**, Aida
-- 선언형 프로그래밍 (Declarative Programming )
-    - SQL, Prolog
-- 함수형 프로그래밍 (Functional Programming)
-    - LISP
+* 명령형 프로그래밍 언어 (Imperative Programming Language)
+    * 절차적 프로그래밍 언어 (Procedural Programming Language)
+        * 구조적 프로그래밍 언어 (Structured Programming Language) \*\*
+    * 객체지향 프로그래밍 언어 (Object Oriented Programming Language) \*\*\*
+* 선언적 프로그래밍 언어 (Declarative Programming Language)
+    * 논리형 프로그래밍 언어 (Logic Programming Language)
+    * 함수형 프로그래밍 언어 (Functional Programming Language) \*\*\*
 
 ---
 
-**객체지향 프로그래밍 (OOP)**
+**객체지향언어 (Object-Oriented Language) vs. 객체기반 프로그래밍 (Object-Based Language)**
 
-- Java, C++
-- 객체기반 프로그래밍
-    - Java Script
+- OOL
+    - Java, C++ (OOP와 SOP의 혼합), Python, C#
+- OBL객체기반 프로그래밍
+    - Object 의 핵심 개념(Encapsulation, Inheritance, Polymorphism)을 제한적 지원.
+    - Class 나 Inheritance 등의 기능이 제한적인 경우 많음.
+    - Java Script (Inheritance보다 Prototype chain을 이용)
+    - VBScript
+---
 
-> 심지어 **Python** 은 fundamental data type이 없이 모든 것이 Object 인 언어이다. 
+**객체지향언어를 사용한다는 것이 OOP를 의미하진 않는다.**
+
+> 심지어 **Python** 은 fundamental data type(=primitive data type or unboxed data type)이 없이 모든 것이 Object 인 언어이다. 
 > 재미있는 것은 그럼에도 구조적으로 또는 순차적으로 프로그래밍하기가 쉽다는 점이며 엄격한 OOP를 적용하기가 쉽지않다는 점이다.
 > (Java는 반강제적으로 OOP를 따르게 하는 것과 차이가 있다.)
