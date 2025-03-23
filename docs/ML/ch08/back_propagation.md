@@ -72,15 +72,23 @@ Back propagation은 다음 2가지를 조합하여 ANN을 학습시킴.
 
 ## 참고: Computational Graph
 
-계산 과정을 그래프로 나타낸 것.  
+계산 과정을 그래프로 나타낸 것(구조).  
 
-- `node` : 연산 (operation)
-- `edge` : 데이터가 흘러들어가는 방향을 나타냄 (edge에 연산의 입출력값이 위치).
+- `node` : 주로, 연산 (operation) 및 변수 (variable)
+    - 엄밀히는 계산의 기본 단위를 나타낸다.
+    - `z = x + y`에서 `x`,`y`,`+`,`z`가 모두 node로 표시됨. 
+- `edge` : node 간의 데이터의 흐름 방향을 나타냄. 
+    - edge를 통해 연산의 입출력값이 결정됨.
+    - 즉, 계산의 순서와 의존성을 정의함.
 
 > ANN (특히 perceptron) 을 그래프로 그릴 때는 조금 다른 점을 주의하자.  
 >
-> * `node` : 변수의 값.
-> * `edge` : edge에 지정된 weight과의 곱.   
+> * `node` : 주로, 변수 (variable)로 vector의 component. 또는 operation.
+>     * 입력 벡터의 각 component나 출력 벡터의 각 component가 하나의 node차지.
+>     * 경우에 따라  aggregation 이나 activation function 등의 연산도 node로 표현됨.  
+> * `edge` : **edge에 지정된 weight과의 곱**. 계산그래프와의 차이.
+>     * edge 시작점에 input variable이, 끝점에 output variable(=input과 weight의 곱)이 위치.    
+>     * 단순히 데이터의 흐름 표시 외에 weight와의 곱과 activation  function을 거친 경우까지 표시하기도 함.
     
 **참고** : [Reverse-Mode Autodiff (Auto-Differentiation) 관련자료](./reverse_mode_autodiff.md) 
 
