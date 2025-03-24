@@ -3,7 +3,10 @@
 > 컴퓨터를 만드는데 필요한 ^^H/W에 대한 소개^^ 가 이루어짐.  
 
 **Bit를 위한 H/W** 란 일종의 ^^전기를 이용한 Switch^^ 라고도 볼 수 있음.  
-(Bit는 `0`과 `1`이고 이는 `Off/On` 을 나타낸다고 보면, off, on의 두 상태를 가지는 **Switch** 가 가장 기본적인 `Bit를 위한 H/W`가 됨.)  
+(Bit는 `0`과 `1`이고 이는 `Off/On` 을 나타낸다고 보면, off, on의 두 상태를 가지는 **Switch** 가 가장 기본적인 `Bit를 위한 H/W`가 됨.) 
+
+> 즉, switch를 통해 logic gate, 그리고 더 나아가 컴퓨터를 구성할 수 있음:
+> Claude Shannon's [A Symbolic Analysis of Relay and Switching Circuits, 1937](https://ds31x.tistory.com/393)
 
 이 장에서는
 

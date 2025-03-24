@@ -310,7 +310,7 @@ ENIAC의 개발 그룹의 핵심 멤버들(J. Mauchly 와 J.P. Eckert)이 설계
 > * [Multi-Programming System](../../OS/operating_system.md#4-2-2-multi-programming)
 
 
-`TRADIC`, `TX-0` 등이 유명한 2세대 컴퓨터임.
+`TRADIC`, `TX-0`, `IBM-1401` 등이 유명한 2세대 컴퓨터임.
 
 > `ENIAC`이 17,000개의 vacuum tube를 사용한 것에 비교하여  
 > `TRADIC`은 ^^800개의 transistor를 사용하면서 1/15,000 수준의 전력을 소비^^ 했음.
@@ -340,6 +340,13 @@ ENIAC의 개발 그룹의 핵심 멤버들(J. Mauchly 와 J.P. Eckert)이 설계
 
 1956년 MIT Lincoln 연구소의 Ken Olson과 Stan Olson (형제임), Harlan Anderson 이  
 미 해군의 후원으로 개발한 ***범용 Transistor 기반 컴퓨터*** .
+
+---
+
+### IBM-1401
+
+1959년 IBM이 개발한 트랜지스터 기반 상업용 컴퓨터 (참고로, 1세대의 IBM 700시리즈의 후속은 IBM 7000시리즈로 상업용보다는 과학계산, 연구, 엔지니어링 어플리케이션 용이었음.7000시리즈도 transistor기반의 2세대 컴퓨터임).  
+당시 가장 성공적인 2세대 컴퓨터 중 하나로, 내부적으로 [BCD(Binary-Coded Decimal) 코드](../ch01/code_for_numbers.md#binary-coded-decimal-system) 를 사용하여 데이터를 표현(internal representation)했음. 6비트 [BCDIC(Binary-Coded Decimal Interchange Code) 문자 집합](../ch01/code_for_numbers.md#extended-binary-coded-decimal-interchange-ebcdi-code)을 채택했으며, 가변 워드 길이 아키텍처를 특징으로 함. 전 세계적으로 약 12,000대 이상이 설치되어 비즈니스 데이터 처리 분야에서 널리 사용됨.
 
 ---
 

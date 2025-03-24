@@ -87,6 +87,8 @@ tags:
 
 CPU (당시엔 거의 core가 하나)의 idle time을 줄이기 위한 시스템.
 
+> 1960년대 초에 등장. CDC 6600, IBM-360 등이 대표적인 초기 시스템.
+
 1. 여러 개의 "프로그램(=process)"을 동시에 메모리(=RAM)에 적재하고 
 2. 그 중 하나의 프로그램이 수행하다가 I/O, 인터럽트 등에 의해 대기 상태가 되면 그 동안 다른 프로그램을 실행하는 방식이다.
 3. ***입출력과 프로그램의 실행을 병렬*** 로 할 수 있어, CPU 사용 효율이 증가한다.
@@ -110,12 +112,17 @@ RAM에 여러 개의 Process의 영역이 할당된다. address를 지정하는 
 
 사용자와의 상호작용이 가능한 multi-programming system의 확장.
 
+> 1960년대 중반 등장함: Multics 나 IBM-360이 대표적 초기 시스템.
+
 1. 다중 프로그래밍 시스템은 사용자와의 ***상호작용*** 을 제공하지 못 하였기 때문에 등장한 시스템
 2. 다중 프로그래밍과 달리 ^^정해진 시간이 되면 무조건 다음 순서의 작업을 실행^^ 하는 방식: `Time Slice`기반 작업 교대.
     * time slice(짧은 시간)동안만 각 작업이 실행되고,
     * context switching 이 일어남. 
 3. 작업 교대 시간이 매우 짧아 사용자는 자신의 작업이 독립적으로 실행되는 것처럼 느낌.
-4. Virtual Memory (가상 메모리)를 사용하여, 원래의 물리적 메모리보다 더 많은 메모리를 사용 할 수 있음.
+4. 초기 Time Sharing System 에서는 당시의 물리적 메모리보다 많은 메모리가 요구됨에 따라 Virtual Memory (가상 메모리)가 개발되어 사용됨.
+    * 일반적으로 Time Sharing System은 Multi-programming System과 마찬가지로 다중 사용자를 지원함.
+    * 보다 많은 다중사용자를 지원하고 보다 빈번한 context switching이 요구됨에 따라 Virtual Memory System이 개발되어 적용됨.
+    * 즉 시분할 시스템에서는 Virtual Memory를 적용하여, 원래의 물리적 메모리보다 더 많은 메모리를 사용 할 수 있음.
 
 ![](./img/os_time_sharing.png){width="200"}
 
@@ -124,6 +131,8 @@ RAM에 여러 개의 Process의 영역이 할당된다. address를 지정하는 
 ---
 
 #### 4-2-4. Multi-tasking System ***
+
+> 1960년대 중후반 등장. Multics 및 IBM-360에서 사용되고, UNIX로 이어짐.
 
 1. 하나의 resource (=일반적으로 CPU)를 여러 process들이 공유
 2. 여러 ***tasks가 동시에 수행 되는 것처럼 느껴지게 (=concurrency) 하는 시스템***

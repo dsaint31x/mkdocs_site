@@ -11,7 +11,7 @@ tags: [Transistor, Switch, CMOS]
 
 * Switch, *** 
 * 가변저항, 
-* 증폭기 (`Trasnfer` 의 의미에서 한 단자에서 다른 단자로 증폭하여 전달.)
+* 증폭기 (`Transfer`(전달) 의 의미에서 한 단자에서 다른 단자로 **증폭** 하여 전달.)
 
 로 사용된다.
 
@@ -24,6 +24,9 @@ tags: [Transistor, Switch, CMOS]
 
 `BJT`보다 `FET`가 보다 많이 사용되는 추세임. (원가의 측면 등에서도 `FET`가 훨씬 유리).
 
+> BJT는 작은 전류로 큰 전류를 제어하는 전류 제어 소자이고,  
+> FET는 작은 전압(gate에 가해짐)에 의한 electric field(전기장)으로 전류(source와 drain 사이)를 제어하는 전압 제어 소자임.  
+> 때문에 FET가 전력소비가 적고 집적도가 높음. BJT는 고주파 나 고전류에서 이용됨.
 
 FET에서도 `Metal Oxide Silicon FET`가 주로 많이 사용되고, `N-channel MOSFET` 과 `P-channel MOSFET` 중에서도 Carrier가 훨씬 ^^빠른 Electron을 사용^^ 하는 `N-channel MOSFET` 이 가장 많이 사용됨.  
 
