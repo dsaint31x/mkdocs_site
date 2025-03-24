@@ -1,0 +1,103 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500">
+  <!-- Background -->
+  <rect width="800" height="500" fill="#f8f9fa" />
+  
+  <!-- Title -->
+  <text x="400" y="40" font-family="Arial, sans-serif" font-size="24" font-weight="bold" text-anchor="middle" fill="#333333">Building Hardware for Bits (비트를 위한 하드웨어)</text>
+  <text x="400" y="70" font-family="Arial, sans-serif" font-size="16" text-anchor="middle" font-style="italic" fill="#666666">Evolution of Switch Technology for Representing 0 and 1</text>
+  
+  <!-- Timeline -->
+  <line x1="100" y1="380" x2="700" y2="380" stroke="#2c3e50" stroke-width="4" />
+  <text x="400" y="410" font-family="Arial, sans-serif" font-size="18" font-weight="bold" text-anchor="middle" fill="#2c3e50">Timeline</text>
+  
+  <!-- Time Points -->
+  <circle cx="150" cy="380" r="8" fill="#3498db" />
+  <text x="150" y="420" font-family="Arial, sans-serif" font-size="14" text-anchor="middle" fill="#333333">1830s</text>
+  
+  <circle cx="300" cy="380" r="8" fill="#3498db" />
+  <text x="300" y="420" font-family="Arial, sans-serif" font-size="14" text-anchor="middle" fill="#333333">1900s</text>
+  
+  <circle cx="450" cy="380" r="8" fill="#3498db" />
+  <text x="450" y="420" font-family="Arial, sans-serif" font-size="14" text-anchor="middle" fill="#333333">1950s</text>
+  
+  <circle cx="600" cy="380" r="8" fill="#3498db" />
+  <text x="600" y="420" font-family="Arial, sans-serif" font-size="14" text-anchor="middle" fill="#333333">1960s-Present</text>
+  
+  <!-- Relay -->
+  <rect x="100" y="130" width="100" height="160" rx="10" ry="10" fill="#d4e6f1" stroke="#3498db" stroke-width="2" />
+  <text x="150" y="155" font-family="Arial, sans-serif" font-size="18" font-weight="bold" text-anchor="middle" fill="#2980b9">Relay</text>
+  
+  <!-- Relay Symbol -->
+  <line x1="120" y1="190" x2="180" y2="190" stroke="#333333" stroke-width="2" />
+  <line x1="150" y1="190" x2="150" y2="210" stroke="#333333" stroke-width="2" />
+  <line x1="130" y1="210" x2="170" y2="210" stroke="#333333" stroke-width="2" />
+  <line x1="120" y1="230" x2="150" y2="230" stroke="#333333" stroke-width="2" stroke-dasharray="4" />
+  <line x1="150" y1="230" x2="180" y2="230" stroke="#333333" stroke-width="2" />
+  
+  <text x="150" y="265" font-family="Arial, sans-serif" font-size="12" text-anchor="middle" fill="#333333">물리적 스위치</text>
+  <text x="150" y="280" font-family="Arial, sans-serif" font-size="12" text-anchor="middle" fill="#333333">전기로 제어</text>
+  
+  <!-- Arrow 1 -->
+  <line x1="200" y1="210" x2="250" y2="210" stroke="#2c3e50" stroke-width="2" stroke-dasharray="5,3" />
+  <polygon points="245,205 255,210 245,215" fill="#2c3e50" />
+  
+  <!-- Vacuum Tube -->
+  <rect x="250" y="130" width="100" height="160" rx="10" ry="10" fill="#ebdef0" stroke="#8e44ad" stroke-width="2" />
+  <text x="300" y="150" font-family="Arial, sans-serif" font-size="16" font-weight="bold" text-anchor="middle" fill="#6c3483">Vacuum</text>
+  <text x="300" y="170" font-family="Arial, sans-serif" font-size="16" font-weight="bold" text-anchor="middle" fill="#6c3483">Tube</text>
+  
+  <!-- Vacuum Tube Symbol -->
+  <circle cx="300" cy="200" r="25" fill="none" stroke="#333333" stroke-width="2" />
+  <line x1="300" y1="175" x2="300" y2="225" stroke="#333333" stroke-width="2" />
+  <line x1="285" y1="185" x2="315" y2="185" stroke="#333333" stroke-width="2" />
+  <line x1="290" y1="215" x2="310" y2="215" stroke="#333333" stroke-width="2" />
+  
+  <text x="300" y="265" font-family="Arial, sans-serif" font-size="12" text-anchor="middle" fill="#333333">1세대 컴퓨터</text>
+  <text x="300" y="280" font-family="Arial, sans-serif" font-size="12" text-anchor="middle" fill="#333333">전자 스위치</text>
+  
+  <!-- Arrow 2 -->
+  <line x1="350" y1="210" x2="400" y2="210" stroke="#2c3e50" stroke-width="2" stroke-dasharray="5,3" />
+  <polygon points="395,205 405,210 395,215" fill="#2c3e50" />
+  
+  <!-- Transistor -->
+  <rect x="400" y="130" width="100" height="160" rx="10" ry="10" fill="#d5f5e3" stroke="#27ae60" stroke-width="2" />
+  <text x="450" y="155" font-family="Arial, sans-serif" font-size="18" font-weight="bold" text-anchor="middle" fill="#196f3d">Transistor</text>
+  
+  <!-- Transistor Symbol -->
+  <line x1="430" y1="180" x2="430" y2="220" stroke="#333333" stroke-width="2" />
+  <line x1="430" y1="200" x2="450" y2="200" stroke="#333333" stroke-width="2" />
+  <line x1="450" y1="180" x2="450" y2="220" stroke="#333333" stroke-width="2" />
+  <line x1="450" y1="180" x2="470" y2="180" stroke="#333333" stroke-width="2" />
+  <line x1="450" y1="220" x2="470" y2="220" stroke="#333333" stroke-width="2" />
+  
+  <text x="450" y="265" font-family="Arial, sans-serif" font-size="12" text-anchor="middle" fill="#333333">현대 전자공학의</text>
+  <text x="450" y="280" font-family="Arial, sans-serif" font-size="12" text-anchor="middle" fill="#333333">기반 소자</text>
+  
+  <!-- Arrow 3 -->
+  <line x1="500" y1="210" x2="550" y2="210" stroke="#2c3e50" stroke-width="2" stroke-dasharray="5,3" />
+  <polygon points="545,205 555,210 545,215" fill="#2c3e50" />
+  
+  <!-- Integrated Circuit -->
+  <rect x="550" y="130" width="100" height="160" rx="10" ry="10" fill="#fadbd8" stroke="#e74c3c" stroke-width="2" />
+  <text x="600" y="155" font-family="Arial, sans-serif" font-size="18" font-weight="bold" text-anchor="middle" fill="#c0392b">IC</text>
+  
+  <!-- IC Symbol -->
+  <rect x="570" y="180" width="60" height="40" fill="none" stroke="#333333" stroke-width="2" />
+  <line x1="570" y1="190" x2="560" y2="190" stroke="#333333" stroke-width="2" />
+  <line x1="570" y1="210" x2="560" y2="210" stroke="#333333" stroke-width="2" />
+  <line x1="630" y1="190" x2="640" y2="190" stroke="#333333" stroke-width="2" />
+  <line x1="630" y1="210" x2="640" y2="210" stroke="#333333" stroke-width="2" />
+  
+  <text x="600" y="240" font-family="Arial, sans-serif" font-size="12" text-anchor="middle" fill="#333333">Integrated Circuit</text>
+  <text x="600" y="255" font-family="Arial, sans-serif" font-size="12" text-anchor="middle" fill="#333333">현대 칩 (VLSI)</text>
+  <text x="600" y="270" font-family="Arial, sans-serif" font-size="12" text-anchor="middle" fill="#333333">대규모 집적회로</text>
+  <text x="600" y="285" font-family="Arial, sans-serif" font-size="12" text-anchor="middle" fill="#333333">수백만 트랜지스터</text>
+  
+  <!-- Claude Shannon Note -->
+  <rect x="100" y="450" width="600" height="30" rx="5" ry="5" fill="#f9e79f" stroke="#f1c40f" stroke-width="1" />
+  <text x="400" y="470" font-family="Arial, sans-serif" font-size="14" text-anchor="middle" fill="#333333">Claude Shannon's "A Symbolic Analysis of Relay and Switching Circuits", 1937</text>
+
+  <!-- Bit annotation -->
+  <rect x="320" y="100" width="160" height="25" rx="5" ry="5" fill="#f8f9fa" stroke="#2c3e50" stroke-width="1" />
+  <text x="400" y="117" font-family="Arial, sans-serif" font-size="14" text-anchor="middle" fill="#333333">Bit: 0 (Off) / 1 (On)</text>
+</svg>
