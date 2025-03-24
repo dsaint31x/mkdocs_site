@@ -8,6 +8,10 @@
 
 가장 널리 사용되는 방식은 **2's Complement** 이며, 앞의 방법들은 이를 이해하기 위한 stepping stone정도로 생각해도 된다.
 
+---
+
+---
+
 ## Sign and Magnitude
 
 가장 simple한 방법. 
@@ -18,6 +22,10 @@
 > 공학에서 magnitude는 크기, 양 등을 나타내며, 보통 0이상의 양수를 value로 가짐.
 
 `Sign and Magnitude`는 단점으로 `+0`과 `-0`의 표현이 각각 존재하게 된다. (같은 수이니 하나로 표현되어야 하는데 2개의 다른 표현형이 존재함.) 또한 logic operation으로 arithmetic operation을 구현하기 쉽지 않음.
+
+---
+
+---
 
 ## 1's Complement (1의 보수)
 
@@ -30,6 +38,9 @@ positive inteager표현에서 모든 bit에 `NOT`연산을 취함으로서 대�
 `Complement` (보수)란
 : 기준수 $A$를 정했을 때, 임의의 수 $m$에 대한 complement $m^\prime$은 $A$에서 $m$을 빼서 $m’$이 되는 수를 말함. (이진수의 경우, $A=1$이 됨.)
 
+---
+
+---
 
 ## 2's Complement ***
 
@@ -37,7 +48,11 @@ positive inteager표현에서 모든 bit에 `NOT`연산을 취함으로서 대�
 
 > `011` (=+3)을 예로 들면 1's complement인 `100`에 1을 더한 `101`이 바로 -3의 표현형이 된다.
 
-zero에 대한 표현형이 하나가 되며, artithmetaic operation을 구하기도 간단하다.
+zero에 대한 표현형이 하나가 되며, arithmetic operation을 구하기도 간단하다.
+4
+---
+
+---
 
 ## Complement에 의한 subtraction (뺄셈)
 
@@ -45,23 +60,33 @@ zero에 대한 표현형이 하나가 되며, artithmetaic operation을 구하�
 
 $$ x-m = x + (A-m) - A = x + m’ - A$$
 
-마지막 항의 $A$를 빼주는 동작을 고려하면, Complement $m’$를 이용하여 덧셈으로 뺄셈을 구현할 수 있음.
+마지막 항의 $A$를 빼주는 동작을 고려(아래 참조)하면, Complement $m’$를 이용하여 덧셈으로 뺄셈을 구현할 수 있음.
+
+---
   
-이는, MSB에서 carry out (=End around carry)가 발생할 경우에
+$A$를 빼주는 동작은 다음과 같이 처리됨:
+
+MSB에서 carry out (=End around carry)가 발생할 경우에
 
 `1's complement`
-: 해당 ^^MSB에서 carry out^^ 을 LSB에 더해주면 같은 효과임.
+: 해당 ^^MSB에서의 carry out^^ 을 LSB에 더해주면 같은 효과임.
 
 `2's complement`
-: 해당 ^^MSB에서 carry out^^ 을 그냥 빼주면 됨.
+: 해당 ^^MSB에서의 carry out^^ 을 그냥 무시하면 됨.
+
+---
 
 다음 예를 통해 확인해 보자.
 
 ![subtraction](img/complement_subtraction.png)
 
-* 상단의 경우, MSB에서 carry out이 없는 경우로 complement를 사용할 때 그냥 더해주면 됨.
-* 하단의 경우, MSB에서 carry out이 발생한 경우로 위에서 설명한대로 각각 처리하여 올바른 답이 나옴을 보여줌.
+* 상단의 경우, MSB에서의 carry out이 없는 경우로 complement를 사용할 때 그냥 더해주면 됨.
+* 하단의 경우, MSB에서의 carry out이 발생한 경우로 위에서 설명한대로 각각 처리하여 올바른 답이 나옴을 보여줌.
 * `Sign and Magnitude` 방식은 그냥 더해서는 안되므로 뺄셈을 위한 `별도의 처리기`가 필요함.
+
+---
+
+---
 
 ## Overflow Detection for 2's Complement.
 
@@ -75,6 +100,9 @@ MSB에서의 carry in과 carry out이 같을 경우는 overflow가 아니지만,
 * 왼쪽의 2개 경우는 overflow가 발생하지 않았으며, 결과가 제대로 나옴.
 * 오른쪽의 2개의 경우는 overflow가 발생함. MSB에서의 carry in(푸른색)과 carry out(붉은색)이 다름을 확인할 수 있다.
 
+---
+
+---
 
 ## Summary
 
