@@ -14,7 +14,7 @@ Quoted-printable encoding 방식은 다음과 같음.
 단, 다음의 추가 규칙이 있음.
 
 * `ASCII`에 있는 printable character들은 사실상 7bit이므로 그대로 전송된다.
-* 단, ^^공백문자에 해당하는 `TAB`, `SPACE`^^ 와 `QP Encoding`에서 특별히 사용하는 `=`는 예외로 각 ASCII코드값에 `=`를 붙여 전송한다. 
+* 단, ^^공백문자에 해당하는 `TAB`, `SPACE`^^ 와 `QP Encoding`에서 특별히 사용하는 `=`는 예외(아래 참조)로 하고, 나머지는 각 ASCII코드값에 `=`를 붙여 전송한다. 
     * `TAB` : `=09`
     * `SPACE` : `=20`
     * `=` : `=3D`
