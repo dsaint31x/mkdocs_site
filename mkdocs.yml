@@ -142,6 +142,7 @@ nav:
         - "CE/ch01/code_for_character.md"
         - "CE/ch01/Encoding_for_external_rep.md"
     - 'ch02: Bits and Combinatorial Logic':
+      - 'CE/ch02_co/ce02_00_0_title.md'
       - 'Building Hardware for Bits':
         - 'CE/ch02_co/ce02_03_0_HW4Bits.md'
         - 'CE/ch02_co/ce02_03_1_relay.md'
