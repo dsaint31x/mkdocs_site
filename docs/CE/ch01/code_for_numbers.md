@@ -112,7 +112,7 @@ $+897_{10}$을 Packed BCD Code로 나타내면 `1000 1001 0111 1100`가 됨.
         * 1/4096 Rotation Resolution을 Absolute Position Encoder로 만들려면 12개의 sensor가 필요: 
         * $2^{12}=2^2\times 1024=4096$)
 
-보다 자세한 건 다음 URL을 참고할 것 : [Gray Code and Quadrature](https://dsaint31.me/mkdocs_site/CE/ch06/ce06_1_06_grayCode/)
+보다 자세한 건 다음 URL을 참고할 것 : [Gray Code and Quadrature](../ch06/ce06_1_06_graycode.md)
 
 ---
 
