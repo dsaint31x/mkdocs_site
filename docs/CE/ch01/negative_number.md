@@ -29,7 +29,7 @@
 
 ## 1's Complement (1의 보수)
 
-positive inteager표현에서 모든 bit에 `NOT`연산을 취함으로서 대응되는 negative inteager를 구하는 방법.
+positive integer표현에서 모든 bit에 `NOT`연산을 취함으로서 대응되는 negative integer를 구하는 방법.
 
 > `011` (=+3)의 모든 bit에 `NOT`을 취하면, `100`이 되며 이를 -3으로 삼는 방법이다. MSB가 `1`이면 negative가 됨.
 
@@ -44,7 +44,7 @@ positive inteager표현에서 모든 bit에 `NOT`연산을 취함으로서 대�
 
 ## 2's Complement ***
 
-2's complement는 negative integer를 구할 때 우선 1's complment을 구하고 여기에 1을 더해준다.
+2's complement는 negative integer를 구할 때 우선 1's complement을 구하고 여기에 1을 더해준다.
 
 > `011` (=+3)을 예로 들면 1's complement인 `100`에 1을 더한 `101`이 바로 -3의 표현형이 된다.
 

@@ -65,7 +65,7 @@ ASCII 의 상세 구성은 다음과 같다.
 
 ![ASCII](img/ASCII.png)
 
-> `ASCII`는 이름에서 알 수 있듯이 ***Infromation INterachange*** 를 위해 만들어진 것이기 때문에, Control character의 상당수는 communication (통신)과 관련되어 있다. 현재는 이들 중 많은 경우가 사용되지 않는다.
+> `ASCII`는 이름에서 알 수 있듯이 ***Information Interchange*** 를 위해 만들어진 것이기 때문에, Control character의 상당수는 communication (통신)과 관련되어 있다. 현재는 이들 중 많은 경우가 사용되지 않는다.
 
 ---
 
