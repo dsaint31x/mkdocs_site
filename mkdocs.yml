@@ -170,6 +170,7 @@ nav:
       - 'HW vs SW':  
         - 'HW vs SW': "CE/ch03_seq/ce03_05_hw_and_sw.md"
     - 'ch04: Computer Architecture (1)':
+      - 'CE/ch04/ce04_00_00_title.md'
       - "Architecture":
         - 'CE/ch04/ce04_00_intro_computer_structure.md'
       - "Memory (and Storage)":
