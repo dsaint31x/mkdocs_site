@@ -21,6 +21,8 @@ SW는 뭐든지 수행가능한 CPU (or MPU)에서 동작하거나 아니면 해
 
 ---
 
+---
+
 ## Firmware
 
 이미 [ROM](./ce03_02_3_rom.md)에서 다루었듯이 초기의 ROM의 HW처럼 제조하고 나면 수정 및 변경이 불가했으나, 점점 ROM의 장점인 non-volatile은 유지하면서 자유롭게 수정가능하도록 만들어졌다는 것을 이미 우리는 알고 있다.  
@@ -37,6 +39,8 @@ BIOS등이 대표적인 예라고 할 수 있다.
 
 ---
 
+---
+
 ## Field Programmable Gate Array (FPGA)
 
 firmware 보다 더 강력한(?) 융합은 Filed Programmable Gate Array (FPGA) 라고 할 수 있다.  
@@ -50,25 +54,57 @@ IC가 gate들을 조합하여 구성되는 것을 이용하여, FPGA는 사용�
 
 FPGA는 firmware보다 한 발 더 나아간 ***수정이 가능한 Hardware*** 라고 할 수 있다. 
 
+---
+
 ### ASIC vs. FPGA
 
-반도체로 구현되는 다양한 IC들이 경우에는 대부분이 Application-Specific Integrated Circuit (ASIC)이라고 불리는 형태로 만들어진다.  
-마치 ROM처럼 제조할 때, 사용되는 분야에 맞게 전용 logic을 탑재한 IC이다. 해당 task를 수행하는데 가장 빠르고 효율적인 IC를 만들 수 있으며 high-volume production application의 경우 가장 낮은 개별단가가 가능한 방법이다. 하지만, low-volume production application이 주가 되는 산업분야 (항공우주, 군수 및 방위, 의료 등등)에서는 개별단가를 낮추기가 어렵다. 일단 ASIC은 design 에 들어가는 비용과 manufacture를 위한 초기 비용이 매우 높다. 한번 setup이 되고나서 생산을 하는데에는 비용이 낮지만 초기비용이 높고 이를 낮추기가 굉장히 어렵기 때문에 prototype application을 만들거나 low-volume production application에서 사용하기 쉽지 않다는 단점을 가진다.
+반도체로 구현되는 다양한 VLSI들의 경우, 많은 제품들이 Application-Specific Integrated Circuit (ASIC) 형태로 제작된다.
+ASIC은 마치 ROM처럼 제조 시점에서 특정 용도(or logic)에 맞게 회로가 고정된 전용 IC이며, 해당 task를 수행하는 데 가장 빠르고 효율적인 결과를 제공한다. 특히 **대량 생산(high-volume production)** 이 이루어지는 분야에서는 개별 단가가 매우 낮아지는 장점이 있다.
 
-* AP (Application Processor) : 대표적인 ASIC으로 휴대기기의 핵심 Processor임. 컴퓨터에서의 CPU와 같은 역할을 수행하면서 동시에 그래픽처리, 통신 등을 위한 기능도 수행함. 일종의 System on Chip 으로 작은 휴대기기의 공간에 많은 기능을 높은 집적도로 구현하기 위해 만들어진 ASIC임. 때문에 특정 용도(application)에 최적화된 Processor로 볼 수 있음.
-* CPU (Central Processing Unit) : PC등에서는 주로 MPU (Micro Processor Unit)가 CPU로 사용됨. 연산과 제어만을 담당하고 그래픽처리, 통신등은 처리하지 않음 (Accelerated Processing Unit의 경우, CPU+GPU로 최근 많은 CPU들이 그래픽처리도 포함하는 추세임). 대신 매우 높은 성능으로 연산 및 제어를 수행할 수 있게 만들어진다. 
-* MCU (Micro Controller Unit) : MPU와 매우 흡사하지만, 연산 능력이 상대적으로 낮고 대신 저렴한 경우가 일반적이다. MPU가 컴퓨터 PC에서 사용된다면, MCU는 자판기나 전기밥솥, 오디오기기 등에서 제어등을 위해 사용된다. MPU에 memory나 i/o 등이 좀더 추가되어 하나의 ic로 패키징된 경우임.
-* Micro-computer : IC 하나에 computer system을 집적시킨 SoC. AP (=보통 mobile AP를 가르킴)의 조상격으로 MCU에 시스템으로 필요한 기능 등을 추가하여 하나의 IC로 만든 것. 마이컴($\mu$-com or u-com)으로 표기되기도 함.
+그러나 low-volume production application이 주가 되는 산업 분야(예: 항공우주, 군수 및 방위, 의료 등)에서는 초기 설계 비용과 마스크 제작 비용이 매우 높기 때문에 개별 단가를 낮추기 어렵다. 이로 인해 초기 투자 비용이 크며, 프로토타입 개발이나 소량 생산에는 적합하지 않은 단점을 가진다.
+
+주요 IC 형태 및 ASIC 여부는 다음과 같음 (off-the-shelf 가 아니면 ASIC이라고 보면 됨):
+
+* AP (Application Processor):
+    * 대표적인 ASIC의 예로, 스마트폰과 같은 휴대기기의 핵심 프로세서 역할을 수행.
+    * CPU, GPU, 통신 모듈 등 다양한 기능을 하나의 칩에 집적한 System on Chip (SoC) 형태이며
+    * 특정 애플리케이션에 최적화된 설계를 통해 성능과 전력 효율을 높임.
+* CPU (Central Processing Unit):
+    * 범용 컴퓨팅에 사용되는 프로세서로, 일반적으로는 ASIC이 아님.
+    * PC에서 사용하는 Intel, AMD 등의 CPU는 범용 소프트웨어를 실행할 수 있도록 설계된 Standard IC
+    * 컴퓨터에서 연산과 제어만 담당함.
+    * 다만, 특정 목적에 맞춰 설계된 AI/서버용 CPU나 커스텀 설계된 CPU(예: Apple M 시리즈)는 ASIC의 범주에 포함될 수 있음.
+* MPU (Micro Processing Unit):
+    * CPU와 거의 동일한 개념으로, 연산과 제어 기능 중심의 범용 프로세서. 
+    * 일반적으로는 ASIC이 아닌 범용 IC로 분류된다.
+* MCU (Micro Controller Unit):
+    * MPU와 유사하지만 연산 성능은 낮고, 메모리와 입출력 기능(I/O)을 함께 내장한 저전력 범용 컨트롤러를 가리킴. 
+    * 자판기, 전기밥솥, 소형 가전 등에 사용됨.
+    * 일반적으로는 ASIC이 아니며, 다양한 임베디드 응용에 사용되는 Standard IC이다.
+    * 단, 고객 맞춤형 MCU는 ASIC 방식으로 구현되기도 함.
+* Micro-computer (μ-com 또는 u-com):
+    * IC 하나에 CPU, 메모리, I/O 등을 통합한 간단한 SoC 구조로, MCU보다 기능이 확장된 형태.
+    * 보통은 범용 마이크로컨트롤러처럼 사용되므로 ASIC은 아님.
+    * 하지만, 특정 용도에 최적화되어 설계되면 ASIC으로도 구현될 수 있음.
+    * 마이컴($\mu$-com or u-com)으로 표기되기도 함.
+
 
 [MPU, micro controller 요약](https://dsaint31.tistory.com/entry/CE-Micro-Controller-Unit-MCU-and-Micro-computer)
 
+> 참고:  
 > ASIC이 여러 사용처에서 공통적으로 사용되는 경우에는, 일종의 표준화된 제품으로 공급될 수 있으며 이를 Application-Specific Standard Product (ASSP) 라고도 부름. ASSP는 일종의 기성복(=유니폼처럼 특정 분야에서 입는)이고 ASIC은 완전맞춤복이라고 할 수 있음. 단 General purpose IC (GPIC)와 ASSP는 구별되는데 ASSP는 특정 용도나 분야에 한정되며, GPIC는 보다 다양한 용도, 기기, 분야에서 기성품(일반적인 기성복)으로 제공된다. 사실 ASSP와 ASIC은 기능적인 면과 기술적인 면에서 큰 차이가 없어서 ASIC으로 같이 불리며 비지니스 측면에서만 차이가 있다고 볼 수 있음.
 
 FPGA는 ASIC과 반대되는 특성을 가진다. design과 manufacture를 위한 초기 비용은 매우 낮지만, setup 이후의 생산 개별 단가는 ASIC보다 훨씬 높다. 하지만, 개별 제품이 고가이고 소량다품종이 요구되는 산업분야에선 ASIC보다 나은 선택이 된다. 실제 의료기기 및 항공우주 산업, 그리고 일부 방위산업 등에서는 FPGA가 빠르게 확산되고 있으며, 일부 ASIC의 분야마저 FPGA가 사용되고 있다.
 
+---
+
 ### FPGA의 가능성
 
 FPGA에서 가장 중요한 선두업체는 Xilinx와 Altera 인데, Altera는 Intel이 2015년 6월 인수를 했으며, AMD가 Xilinx를 2022년 2월 인수 완료했다. 실제로 FPGA의 개별단가도 기술의 발전으로 매우 낮아지고 있고 그 유연성이 CPU 업체들이 인수를 결정할 정도로 매우 중요하다는 반증이다. 요약하면 의료기기 및 지능형 컴퓨팅 등에서 FPGA의 중요성은 더욱 커질 것으로 보이며, 관련 시장 역시 더욱 넓어질 것이 분명하다. 
+
+> Intel은 현재 Altera를 판매하고 있는 중이다. 이는 FPGA의 가능성이 낮아서라기보다 Intel의 내부 사정이 매우 나쁜 상황에서 나온 결정이라고 보는게 맞다.
+
+---
 
 ### FPGA를 위한 Programming Language (Hardware description language)
 
@@ -84,8 +120,11 @@ FPGA에서 가장 중요한 선두업체는 Xilinx와 Altera 인데, Altera는 I
 `SystemC`
 : 앞서 두 언어와 마찬가지로 HW description language 중 하나이나, 좀 더 높은 수준의 abstraction을 제공하며 C++에 기본언어로 채택했다. 이는 좀더 개발자가 사용하기 쉽다는 뜻이며, 반대로는 HW 보다 사람에 친화적인 언어라고 볼 수 있다. 
 
+---
+
 ## 다른 자료들
 
+* [오늘날 VLSI의 종류](https://dsaint31.tistory.com/900)
 * 정보통신기술용어해설's [Verilog HDL](http://www.ktword.co.kr/test/view/view.php?m_temp1=6235)
 * technologyreview's [미·중 반도체 전쟁 새로운 국면 진입…EDA 수출 금지의 파장은?](https://www.technologyreview.kr/eda-software-us-china-chip-war/)
 * [디지털시스템 설계 및 실습](https://cms3.koreatech.ac.kr/sites/yjjang/down/dsys11/M01_VerilogHDL01.pdf)
