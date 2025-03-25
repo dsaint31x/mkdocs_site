@@ -14,7 +14,7 @@ tags:
 > 보통 IC 로 구현되지만,  
 >
 > * ^^Transistor로 구현^^ 할 수도 있으며 
-> * ^^`FPGA`에서는 아예 `HDL`을 통해 programming 형태로 이용^^ 할 수 있도록 제공되기도 함.
+> * ^^`FPGA`에서는 아예 `HDL`을 통해 programming 에서의 모듈(or library) 형태로 이용^^ 할 수 있도록 제공되기도 함.
 
 다음 URL은 Transistor로 Gate를 구현하는 간단한 예를 보여줌.
 
@@ -34,6 +34,8 @@ Combinatorial Logic Circuit은
 임.
 
 > Memory가 있는 Sequential Logic Circuit과 구분됨.
+
+참고: [Combinatorial Logic Circuit](https://dsaint31.tistory.com/405)
 
 ---
 
@@ -58,8 +60,8 @@ Combinatorial Logic Circuit에 대한 이번 장에서는
 ## 관련 URLs
 
 * [From Transistor To Gate (ext)](https://dsaint31.tistory.com/696)
-* [Combinatorial Logic Circuit (ext)](https://dsaint31.tistory.com/entry/CI-Combinational-Circuit-or-Combinatonal-Logic-Circuit)
-* [Gates and Boolean Algebra (ext)](https://dsaint31.tistory.com/entry/CI-Logic-Gates)
+* [Combinatorial Logic Circuit (ext)](https://dsaint31.tistory.com/405)
+* [Gates and Boolean Algebra (ext)](https://dsaint31.tistory.com/406)
 * [Noise Glitch, Schmitt Trigger and Differential signaling](ce02_04_1_glitch.md)
 * [Propagation Delay](ce02_04_3_propagation_delay.md)
 * [Gate Outputs](ce02_04_4_0_gate_outputs.md)

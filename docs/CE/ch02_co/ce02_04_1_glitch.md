@@ -40,6 +40,10 @@ Digital Circuit에서의 **`Glitch`** 는
 * 오른쪽에서 형광펜으로 강조된 부분이 서로 연관이 있는 곳을 연결하고 있음.
 * 짧은 순간 Threshold를 넘나드는 Input에서의 Noise가 Output에서의 Noise `Glitch`가 발생. 
 
+> 아래의 입력 부분은 시간에 따라, 위에서 아래로 진행되는 것을 그림.  
+> glitch가 있는 경우, threshold 주변에서의 값의 fluctuation 이  
+> 짧은 시간에서의 출력에서 0과 1의 변화 (Noise Glitch)를 만들어냄.  
+
 ---
 
 ---
