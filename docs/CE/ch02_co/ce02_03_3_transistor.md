@@ -15,6 +15,9 @@ tags: [Transistor, Switch, CMOS]
 
 로 사용된다.
 
+> 1947년 John Bardeen, Walter Brattain, William Shockley 들의 공동 개발된 Transistor는 1900~1940에 걸친 vacuum tube 시대를 끝내고 1950~1960년의 주요 소자로 사용됨 (IC가 개발되면서 주요소자의 자리를 넘겨줌.). 또한 발명자들에게 1953년 노벨물리학상의 영광을 가져다줌.
+
+
 ---
   
 기본적으로 배울 때에는 대표적인 Bi-Junction Transistor (`BJT`)와 Field Effect Transistor (`FET`)를 다룬다. 
@@ -101,7 +104,7 @@ FET에서도 `Metal Oxide Silicon FET`가 주로 많이 사용되고, `N-channel
 ***매우 낮은 전력소모*** 를 보이기 때문에,  
 컴퓨터의 `Basic Input/Output System` (BIOS)에서  
 **주변기기 정보를 저장** 하는데 사용되는 반도체기반 소자가  
-바로 CMOS이다. 
+바로 CMOS (또는 CMOS RAM이라고도 불림)이다. 
 
 때문에 `CMOS`와 `BIOS`가 엄연히 다른 것인데도  
 컴퓨터 사용자들 사이에서 마치 같은 용어인 것처럼 같이 사용하는 경우가 많다.

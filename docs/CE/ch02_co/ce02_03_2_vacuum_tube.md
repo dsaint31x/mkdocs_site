@@ -30,7 +30,7 @@ Heater에 의해 ***Cathode가 충분한 온도에 도달*** 하면
 ![vacuum_tube](imgs/vacuum_tube_diagram.jpeg){style="display: block; margin:0 auto; width:600px"}
 
 * `P` : Plate의 앞글자를 딴 것. Anode를 가르킴.
-* `K` : Cathode를 가르킴.
+* `K` : cathode를 가르킴.
 * `H` : Heater를 가르킴.
 * `G` : Grid를 가르킴.
 
@@ -48,7 +48,7 @@ Cathode에서 Anode로 흐르는 전류에 매우 큰 변화를 가져올 수 �
 
 위의 그림에서 input은 voltage의 변화이고,  output은 current 의 변화임. 
 
-> Grid에 Cathod보다 낮은 전압을 가할 경우, 일종의 장벽으로 동작하여 thermionic electron 을 밀어내어 Anode에 도달하는 것을 방해하게 됨. 충분히 낮은 전압을 가할 경우에는 진공관 내의 전류 흐름이 끊어지게 됨. 만약 Cathode와 같은 레벨의 전압이 가해질 경우에는 thermionic electron의 흐름을 방해하지 않게 된다. 즉, 일종의 switch 로서 triode 는 사용할 수 있음.
+> Grid에 Cathode보다 낮은 전압을 가할 경우, 일종의 장벽으로 동작하여 thermionic electron 을 밀어내어 Anode에 도달하는 것을 방해하게 됨. 충분히 낮은 전압을 가할 경우에는 진공관 내의 전류 흐름이 끊어지게 됨. 만약 Cathode와 같은 레벨의 전압이 가해질 경우에는 thermionic electron의 흐름을 방해하지 않게 된다. 즉, 일종의 switch 로서 triode 는 사용할 수 있음.
 
 ---
 

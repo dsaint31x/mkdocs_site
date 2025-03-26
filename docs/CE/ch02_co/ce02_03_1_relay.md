@@ -52,7 +52,7 @@ Electromagnet (전자석)을 이용한 일종의 Switch(스위치)임.
 ## 주 응용분야.
 
 * 초기 전기기계식 컴퓨터에서 `AND`, `OR`, `NOT` 등의 Gates를 구현하는데 사용됨.
-    * Claude Shannon 이 이론적 기반을 제공:[A Symbolic Analysis of Relay and Switching Circuits, 1997](https://ds31x.tistory.com/393(https://ds31x.tistory.com/393) 
+    * Claude Shannon 이 이론적 기반을 제공:[A Symbolic Analysis of Relay and Switching Circuits, 1937](https://ds31x.tistory.com/393) 
     * 1950 년 이전에 컴퓨터에서 사용됨: e.q. [1944년의 하바드 마크 I](https://ds31x.tistory.com/380), 1947년의 하바드 마크 II.
     * 일반 Switch와 달리, 
         * 전기로 on/off 를 제어할 수 있고 
