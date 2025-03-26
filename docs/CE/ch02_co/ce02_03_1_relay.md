@@ -52,13 +52,20 @@ Electromagnet (전자석)을 이용한 일종의 Switch(스위치)임.
 ## 주 응용분야.
 
 * 초기 전기기계식 컴퓨터에서 `AND`, `OR`, `NOT` 등의 Gates를 구현하는데 사용됨.
-    * 1950 년 이전에 컴퓨터에서 사용됨: e.q. 1947년의 하바드 마크 II.
-    * 일반 Switch와 달리, 전기로 on/off 를 제어할 수 있고 `NOT` 연산을 수행할 수 있는 `Inverter` 를 구현할 수 있음.
-    * `NOT` 연산은 Boolean Algebra 에서 `Functional Complete`가 되기 위해 반드시 필요함.
+    * Claude Shannon 이 이론적 기반을 제공:[A Symbolic Analysis of Relay and Switching Circuits, 1997](https://ds31x.tistory.com/393(https://ds31x.tistory.com/393) 
+    * 1950 년 이전에 컴퓨터에서 사용됨: e.q. [1944년의 하바드 마크 I](https://ds31x.tistory.com/380), 1947년의 하바드 마크 II.
+    * 일반 Switch와 달리, 
+        * 전기로 on/off 를 제어할 수 있고 
+        * `NOT` 연산을 수행할 수 있는 `Inverter` 를 쉽게 구현할 수 있음 (일반 switch로는 트랜지스터 와 저항 등의 외부회로 필요함).
+    * `NOT` 연산은 [Boolean Algebra](https://dsaint31.tistory.com/406) 에서 `Functional Complete`가 되기 위해 반드시 필요함.
+        * 불 대수(Boolean Algebra)에서 Functionally Complete하다는 말은, 어떤 논리 연산자 집합을 가지고 모든 불 논리식을 표현할 수 있다는 뜻.
+            * NAND
+            * NOR
+            * AND, NOT
+            * OR, NOT 
 * Single-Pole, 10-Throw `Stepper Relay` 등을 이용하여 (옛날) 전화기의 다이얼이 구현되기도 했음.
 * TV 등의 전원을 리모컨으로 켤 때도 내부에서 사용됨. 
     * 보통 전원을 켤 때 딸깍 소리가 ^^전자석에 의해 접점에 붙어 스위치가 켜지는 소리임^^.
-
 
 일반적인 Switch들과 달리 Relay는 `고전압, 고전류를 제어하는 Switch`로 활용되는 경우가 많다.  
   

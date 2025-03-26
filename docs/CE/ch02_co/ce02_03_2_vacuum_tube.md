@@ -10,6 +10,13 @@ Thermionic electron emission (열전자 방출)을 이용하여
 * ^^Amplifier (증폭기)^^ 및 
 * ^^Switch^^ 역할을 할 수 있는 Device.
 
+> 이론적으로 모든 금속을 가열하면 Thermionic electron emission이 가능하지만,  
+> 열전자가 발생하기전에 녹아버리는 경우가 많고, 이 경우 사용하기 어려움.
+> 때문에 텅스텐 과 같은 일부 금속만이 열전자 방출을 위한 cathode(음극)로 주로 사용됨.
+> 추가적으로,  
+> 전자를 방출하는 Vacuum Tube, X-ray Tube, CRT등에서 전자를 방출하는 극이 Cathode 임.
+> 전지에서는 충전시 환원이 일어나는 극을 가르킴(전자방출의 경우와 반대임.)
+
 ---
 
 ---

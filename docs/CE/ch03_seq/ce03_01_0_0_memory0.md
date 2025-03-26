@@ -5,9 +5,7 @@ tags: []
 
 # 시간 및 기억소자들
 
-<figure markdown>
-![](./img/time_n_memory_devices.png){width=500, align=center}
-</figure>
+![](./img/time_n_memory_devices.png){:style="display: block; margin: 0 auto; width:500px"}
 
 Combinatorial Logic과 달리,  
 
@@ -18,6 +16,8 @@ Sequential Logic의 경우
 또한, 현재의 input 이외의 <u>과거 상태 및 현재 상태 값들을 고려</u> 하여 출력이 결정되므로 
 
 * **Time을 나타내는 Device가 필요**.
+
+**참고:** [Sequential Logic Circuit (ext)](https://dsaint31.tistory.com/902)
 
 ---
 
@@ -46,7 +46,6 @@ Computer가 사용하는 **Memory Device** 는 단순히
 
 * `Latch`s **
 * `Flip-Flop`s ***
-* `Counter`s 
 * `Register`s ****
 * [Primary Memory and Secondary Memory](../ch04/ce04_01_memory.md) ***
 
