@@ -2,7 +2,7 @@
 
 ## 1. Stream 이란?
 
-**스트림(stream)** 이라는 개념은 데이터의 흐름을 의미하며, 이를 비트 또는 바이트의 연속으로 생각할 수 있음.
+**스트림(stream)** 이라는 개념은 데이터의 흐름을 의미하며, 이를 bit(비트) 또는 byte(바이트)의 연속으로 생각할 수 있음.
 
 * 종종 bit stream 또는 byte stream 이라고도 불림.
 
@@ -50,7 +50,8 @@ for i in range(n):
 
 ## 2. Standard I/O Library란?
 
-다양한 OS에서 Input/Output(입출력)을 수행할 수 있도록 구현된 High Level I/O 라이브러리.
+다양한 OS에서 일관되게 Input/Output(입출력)을 수행할 수 있도록 구현된 High Level I/O 라이브러리.
+
 이 라이브러리는 프로그래머가 하드웨어와 직접 상호작용할 필요 없이 I/O 작업을 수행할 수 있도록 여러 함수를 제공함.  
 이러한 라이브러리 함수들은 ***여러 장치와 상호작용하는 복잡성을 추상화*** 하여 I/O 작업을 더 효율적이고 쉽게 구현할 수 있도록 해 줌.
 
@@ -61,7 +62,8 @@ for i in range(n):
 
 * [Library에 대한 정의](https://dsaint31.tistory.com/entry/Programming-Library-vs-Framework)
 
-> Standard I/O Library는 High Level I/O 로써, 내부적으로는 OS의 Kernel에서 제공하는 Low Level I/O 를 사용함.
+> Standard I/O Library는 High Level I/O 로써,  
+> 내부적으로는 OS의 Kernel에서 제공하는 Low Level I/O 를 사용함.
 
 ---
 
@@ -69,22 +71,24 @@ for i in range(n):
 
 ## 3. Low Level I/O: System Call
 
-Low Level I/O는 file descriptor(파일 디스크립터)를 사용하여 입력과 출력을 관리하는 system call을 의미함.
+**Low Level I/O** 는 file descriptor(파일 디스크립터)를 직접 사용하여 입력과 출력을 관리하는 **system call** 을 의미함.
 
 UNIX와 같은 시스템에서는 모든 I/O 장치(소켓 포함)가 file로 추상화되어, 다양한 유형의 I/O를 일관되게 처리할 수 있음.
 
-* 각 I/O 장치는 file descriptor (resource를 식별하는 고유한 identifier)를 얻기 위해 열리고( **open** ),
+각 I/O 장치는 
+
+* file descriptor (resource를 식별하는 고유한 identifier)를 얻기 위해 열리고( **open** ),
 * 이 file descriptor 를 통해 장치를 사용하며,
 * 작업이 끝난 후에는 **닫기(close)** 를 통해 OS에 해당 리소스를 반환.
 
-> 여기서 `resource` 는 OS가 관리하는 file(파일), memory(메모리), network connection(네트워크 연결) 등과 같은 시스템 자원을 의미합니다.
+> 여기서 `resource` 는 OS가 관리하는 file(파일), memory(메모리), network connection(네트워크 연결) 등과 같은 **시스템 자원** 을 의미합니다.
 
 일반적으로 사용되는 `system call`에는 `open`, `write`, `read`, `close` 등이 있음.
 
-* 이들은 Kernel 에 의해 직접관리되는 system call임.
+* 이들은 Kernel 에 의해 직접 관리되는 system call임.
 - 이를 사용하는 I/O 방식을 ***Low Level I/O (저수준 입출력)*** 이라 부름.
 - **byte 단위** 로 동작하며, 
-- 높은 제어 수준을 제공하지만, 
+- 높은 수준의 제어를 제공하지만, 
 - 이는 모든 세부 사항을 프로그래머가 직접 관리해야 함.
 
 > 높은 제어 수준을 제공하는 경우,  
@@ -96,17 +100,26 @@ UNIX와 같은 시스템에서는 모든 I/O 장치(소켓 포함)가 file로 �
 
 ## 4. High Level I/O: Standard I/O Library
 
-Standard I/O Library에서 제공하는 functions는 다음의 특징을 가짐:
+고레벨 I/O인 **Standard I/O Library** 에서 제공하는 functions는 다음의 특징을 가짐:
 
 * **High Level I/O (고수준 입출력)** 을 제공함. 
 * buffered I/O 를 사용하여 한번에 file에서 읽어들이거나 쓸 수 있음. 
-* 저수준의 system call함수들이 file을 일괄적으로 읽거나 쓸 수 있어 효율성이 향상됨.
+* 저수준의 system call 함수로 file을 한번에 읽거나 쓸 수 있도록 buffer를 사용하여 효율성이 향상됨.
+    * System Call 함수를 통한 Low Level I/O는 실행될 때마다 매번 Kernel mode로 전환되어야 하므로 비용이 큼.
+    * Standard I/O Library는 내부적으로 버퍼를 사용하여 여러 작은 크기의 I/O 요청을 모아서 한번의 System Call 함수로 처리할 수 있음.
+    * 내부적으로 최적의 Block Size로 I/O를 수행하도록 최적화되어 있음.
 * file descriptor 를 직접 다루는 대신, 이를 내부적으로 사용하는 고수준의 파일 객체 (or 이에 대한 포인터: C의 경우 `FILE*`)를 사용함.
+    * OS 마다 System Call의 구현이 다를 수도 있지만, 
+    * Standard I/O Library는 모든 Platform에서 동일하게 동작하는 functions를 제공.  
 
 > 해당 고수준의 객체(`handle`이라고 불림)들은  
 > 
 > * 저수준의 file descriptor 을 내부에 가지고 있는 일종의 Wrapper로서 
 > * I/O를 위한 버퍼의 크기 등과 같은 추가 정보를 가짐. 
+>
+> 작은 크기의 데이터를 자주 읽거나 쓰는 경우에 High Level I/O가 효율적임.
+
+예로 C언어를 들면, `fread()`, `fwrite()`, `fprintf()`, `fscanf` 같은 Standard I/O Library의 함수들은 내부적으로 `read()`, `write()` 와 같은 Low Level I/O 인 System Call 을 사용함. 
 
 ---
 
@@ -114,14 +127,14 @@ Standard I/O Library에서 제공하는 functions는 다음의 특징을 가짐:
 
 대부분의 프로그래밍 언어에서  
 
-* 각자의 문법으로 제공하는 입출력 함수들은 **대부분 고수준의 입출력함수** 로 구현되며, 
+* 각자의 문법으로 제공하는 입출력 함수들은 **대부분 고수준의 입출력함수** 로서, 
 * **user level buffering** 을 추가 제공한다.    
 
 **참고 사항**
 
 * high level I/O도 내부적으로는 저수준 입출력함수 (kernel이 제공하는 입출력함수)를 사용함.
-* high level I/O는 Library Call 또는 API (Application Programming Interface) 를 이용함.
-* 일반적으로 library call 등의 high level I/O에서는 buffering을 통해 system call 의 빈번한 실행을 방지하여 효율성을 높임.
+* high level I/O는 Library Call 또는 API (Application Programming Interface) 로 제공됨.
+* 일반적으로 library call 등의 high level I/O에서는 앞서 살펴본대로buffering을 통해 system call 의 빈번한 실행을 방지하여 효율성을 높임.
     - 엄밀하게 애기하면 kernel 에서 system call 도 내부적으로는 kernel buffering 을 사용함. 
 
 버퍼링의 관점에서 다음과 같이 구분됨.
@@ -129,8 +142,8 @@ Standard I/O Library에서 제공하는 functions는 다음의 특징을 가짐:
 - High Level I/O는 user level buffering 을 지원하고,
 - Low Level I/O는 kernel level buffering 을 지원. 
 
-대부분의 개발자에게는 고수준 I/O가 더 사용하기 편리하고 효율적임.
-버퍼링은 일반적으로 High Level I/O의 특징으로 생각해도 됨(user level buffing 이 흔히 애기하는 buffering에 해당.)
+**대부분의 개발자에게는 고수준 I/O가 더 사용하기 편리하고 효율적임.**  
+Buffering은 일반적으로 High Level I/O의 특징으로 생각해도 됨(user level buffing 이 흔히 애기하는 buffering에 해당.)
 
 > Low Level I/O가 High Level I/O 보다 속도가 빠름.
 > 이는 편의 기능이 없다는 점에 대한 trade-off 라고 볼 수 있음.
@@ -173,7 +186,7 @@ Python에서 **표준 I/O 라이브러리** 는 `sys` 모듈과 `io` 모듈로 �
 > 하지만, Python과 같은 high level programming language에서는  
 > file object (or file handle) 로 제공됨: (이는 file descriptor를 래핑하고 있는 wrapper임.)
 
-표준 입출력은 워낙 많이 사용하므로 이를 open하고 close하는 것이 프로그래밍에서 명시적으로 하는 경우는 거의 없다고 봐도 된다. 실제로 버퍼를 flush하는 정도까지 필요한 경우는 가끔 있긴 하다.
+표준 입출력 스트림은 워낙 많이 사용되기 때문에 `stdin`, `stdout` 을 명시적으로 프로그래머 직접 open하고 close하는 경우는 거의 없다고 봐도 된다 (일반적인 file에 접근하기 위해서는 open과 close를 직접 프로그래머가 호출하여 처리하는 것과 비교됨). 실제로 버퍼를 flush하는 정도까지 필요한 경우는 가끔 있긴 하다.
 
 ---
 
