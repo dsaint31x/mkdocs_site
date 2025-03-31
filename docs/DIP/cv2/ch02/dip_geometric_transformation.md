@@ -66,7 +66,7 @@
 
 - *Function* to mapping on the vector space.
 - It specifies
-    - **homogeniety** and
+    - **homogeneity** and
     - **additivity**.
 - i.e.,
     - **Scaling (isotropic scaling 포함)**,
@@ -74,7 +74,7 @@
     - **Reflection**, and
     - **Rotation about the origin.**
 
-> Translation(이동)은 Homogeniety(동차성)을 만족하지 못함 → linear transformation이 아님. ← Homogeneous coordinate사용시 linearity를 가지게 되어 matrix곱만으로 처리 가능해짐.
+> Translation(이동)은 Homogeneity(동차성)을 만족하지 못함 → linear transformation이 아님. ← Homogeneous coordinate사용시 linearity를 가지게 되어 matrix곱만으로 처리 가능해짐.
 
 
 ### **Affine** transformation :
@@ -270,7 +270,7 @@ Check below example which rotates the image by 30 degree with respect
     #------------------------------------
     # getRotationMatrix2D
     # the rotation center is given by Tupple.
-    # (center.x cneter.y), rotation degree, scale
+    # (center.x center.y), rotation degree, scale
     M = cv2.getRotationMatrix2D((cols/2,rows/2),30,1)
     print(M)
     
@@ -324,7 +324,9 @@ By default, interpolation method used is `cv2.INTER_LINEAR` for all res
 Various interpolation algorithms are provided by OpenCv as follows;
 
 - `cv2.INTER_AREA`
-    - It is preferred for shrinking the image size.
+    - It is preferred for **shrinking the image size.**
+    - 작은 사이즈로 만들 경우, Moire Artifact가 발생하기 쉽기 때문에 `INTER_AREA`를 사용해야 한다.
+    - **참고:** [Moire 패턴이란?](https://dsaint31.tistory.com/822)
 - `cv2.INTER_LINEAR`
     - default algorithm.
     - It is commonly used for zooming.
@@ -394,7 +396,7 @@ Slicing an array is just taking the array values within particular index range.
     #cv2_imshow(cropped_img1)
     
     plt.figure(figsize=(12,12))
-    plt.subplot(121); plt.imshow(cropped_img0) # expects distored color
+    plt.subplot(121); plt.imshow(cropped_img0) # expects distorted color
     plt.subplot(122); plt.imshow(cropped_img1) # expects true color
     plt.show()
     
