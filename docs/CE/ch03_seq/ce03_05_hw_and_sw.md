@@ -70,25 +70,25 @@ ASIC은 마치 ROM처럼 제조 시점에서 특정 용도(or logic)에 맞게 �
 
 주요 IC 형태 및 ASIC 여부는 다음과 같음 (off-the-shelf 가 아니면 ASIC이라고 보면 됨):
 
-* AP (Application Processor):
+* **AP (Application Processor)** :
     * 대표적인 ASIC의 예로, 스마트폰과 같은 휴대기기의 핵심 프로세서 역할을 수행.
     * CPU, GPU, 통신 모듈 등 다양한 기능을 하나의 칩에 집적한 System on Chip (SoC) 형태이며
     * 특정 애플리케이션에 최적화된 설계를 통해 성능과 전력 효율을 높임.
-* CPU (Central Processing Unit):
-    * 범용 컴퓨팅에 사용되는 프로세서로, 일반적으로는 ASIC이 아님.
+* **CPU (Central Processing Unit)** :
+    * 범용 컴퓨팅에 사용되는 프로세서로, 일반적으로는 ASIC으로 보지 않는다.
     * PC에서 사용하는 Intel, AMD 등의 CPU는 범용 소프트웨어를 실행할 수 있도록 설계된 Standard IC
     * 컴퓨터에서 연산과 제어만 담당함.
-    * 다만, 특정 목적에 맞춰 설계된 AI/서버용 CPU나 커스텀 설계된 CPU(예: Apple M 시리즈)는 ASIC의 범주에 포함될 수 있음.
-* MPU (Micro Processing Unit):
+    * 다만, **특정 목적에 맞춰 설계** 된 AI/서버용 CPU나 커스텀 설계된 CPU(예: Apple M 시리즈)는 ASIC의 범주에 포함될 수 있음.
+* **MPU (Micro Processing Unit)** :
     * CPU와 거의 동일한 개념으로, 연산과 제어 기능 중심의 범용 프로세서. 
     * 일반적으로는 ASIC이 아닌 범용 IC로 분류된다.
-* MCU (Micro Controller Unit):
-    * MPU와 유사하지만 연산 성능은 낮고, 메모리와 입출력 기능(I/O)을 함께 내장한 저전력 범용 컨트롤러를 가리킴. 
+* **MCU (Micro Controller Unit)** :
+    * MPU와 유사하지만 **연산 성능은 낮고, 메모리와 입출력 기능(I/O)을 함께 내장** 한 저전력 범용 컨트롤러를 가리킴. 
     * 자판기, 전기밥솥, 소형 가전 등에 사용됨.
     * 일반적으로는 ASIC이 아니며, 다양한 임베디드 응용에 사용되는 Standard IC이다.
     * 단, 고객 맞춤형 MCU는 ASIC 방식으로 구현되기도 함.
-* Micro-computer (μ-com 또는 u-com):
-    * IC 하나에 CPU, 메모리, I/O 등을 통합한 간단한 SoC 구조로, MCU보다 기능이 확장된 형태.
+* **Micro-computer (μ-com 또는 u-com)** :
+    * IC 하나에 CPU, 메모리, I/O 등을 통합한 간단한 **SoC** 구조로, MCU보다 기능이 확장된 형태.
     * 보통은 범용 마이크로컨트롤러처럼 사용되므로 ASIC은 아님.
     * 하지만, 특정 용도에 최적화되어 설계되면 ASIC으로도 구현될 수 있음.
     * 마이컴($\mu$-com or u-com)으로 표기되기도 함.
