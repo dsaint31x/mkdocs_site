@@ -32,12 +32,11 @@ Kernel은 ***User program과 H/W resource 사이에서 이들을 연결*** 해�
 
 > User program은 ***Kernel이 제공하는 `system call interface`을 통해 computer의 physical resource를 사용*** 하게 됨.
 
+* Linux가 제공하는 `System call`은 CPU architecture에 따라 다르지만 대략 300개 이상임.
 * User programs와 Kernel 의 대화는 `system call`이라는 단일 인터페이스가 제공되는 것과 달리,
-     * Linux가 제공하는 `System call`은 CPU architecture에 따라 다르지만 대략 300개 이상임.
-     * `C`프로그래머의 경우 직접적으로 `system call`을 호출하지 않고, `C Standard Library`를 이용함.
-     * `C Standard Library`는 `System call`에 대한 ***Wrapper*** 기능을 제공하며 `glibc`나 `musl` 과 같은 다양한 implementation을 가짐. 
+    * `C`프로그래머의 경우 직접적으로 `system call`을 호출하지 않고, `C Standard Library`를 통해 우회적으로 호출함.
+    * `C Standard Library`는 `System call`에 대한 ***Wrapper*** 기능을 제공하며 `glibc`나 `musl` 과 같은 다양한 implementation을 가짐. 
 * H/W와 Kernel간의 interface는 일반적으로 다음과 같은 H/W별로 그룹화된 **개별 interface** 들의 모음으로 구성됨.
-
     * ***CPU Interface*** : Task Management 에 대응
     * ***Main Memory Interface*** : Memory Management에 대응
     * ***File System and Block Device Driver Interface*** : File System Management에 대응

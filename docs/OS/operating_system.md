@@ -140,6 +140,9 @@ RAM에 여러 개의 Process의 영역이 할당된다. address를 지정하는 
    * 용어적 측면에서 ***`concurrency`(동시성)*** 을 갖춘 시스템이 바로 multi-tasking system임.
 3. multi-programming의 논리적인 확장
 4. multi-programming에 time-sharing 의 개념이 보다 추가된 것으로 볼 수 있음.
+   * Time-sharing은 시간을 나누어 사용한다는 점을 강조하며, Multi-tasking은 concurrency를 구현한다는 점이 중요함.
+   * Time-sharing은 terminal 등을 통해 다중 사용자 시스템을 만들기 위해 등작했고, Multi-tasking은 같은 PC에서 동시에 여러 Application의 창을 띄운 상태로 작업하는 concurrency를 가능케하는 시스템을 의미함.
+   * Time-sharing은 사용자를 짧은 시간에 전환하는 개념에서 출발했다면, Multi-tasking은 task를 짧은 시간에 전환하는 개념에서 출발했다고 볼 수 있다: process가 전환되는 방식으로 이 둘 모두 구현가능함 - 초기 개념이 그렇다는 것이지 Time-sharing의 경우도 여러 process가 각자 짧은 시간동안 cpu를 쓰고 전환되는 방식임 (사용자 전환만을 하는 것이 아님에 유의). 
 
 > **Task란** : 매우 중요함!
 >
@@ -152,6 +155,9 @@ RAM에 여러 개의 Process의 영역이 할당된다. address를 지정하는 
 >
 > * Process는 OS가 관리하는 단위임.
 > * 보통 Task는 OS의 관리 단위가 아님.
+>
+> 여기서 설명한 Task는 **사용자 관점의 작업 단위** 임. 
+> OS 문헌에서 OS가 관리하는 실행단위(CPU자원을 virtualization한 경우)로 Task를 지칭할 때는 `task_struct` 를 가리키며, 이는 Process 또는 Thread로 구성된 것으로 OS가 스케쥴링하는 단위임.
 
 ---
 
