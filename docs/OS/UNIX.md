@@ -9,7 +9,7 @@ tags: [OS, UNIX, LINUX, History]]
 참고로, UNIX 라는 이름의 full name에 대해선 몇가지 의견만 있음: [참고자료](https://www.hanbit.co.kr/channel/category/category_view.html?cms_code=CMS7535176314) - 1970년 Brian Kernighan이 UNIX로 명명한 것으로 받아들여짐.
 
 이후, 다양한 H/W platform에 이식되어 여러 기관에서 사용됨. 
-(1972년 개발된 C언어로 1973년 PDP-7 용 UNIX가 C로 포팅됨; 개발작업은 PDP-11에서 이루어짐)
+(1972~1973년 개발된 C언어로 1973년 PDP-7 용 UNIX가 C로 포팅됨; 개발작업은 PDP-11에서 이루어짐)
 
 현재는 Linux와 Windows에 밀려서 서버 포함하여 실제로 사용되는 점유율은 점점 낮아지고 있다.  
 (슈퍼컴퓨터, 서버, PC 모두 분야에서 UNIX는 점점 보기 어려운게 현실임)
@@ -25,7 +25,7 @@ tags: [OS, UNIX, LINUX, History]]
 
 다음의 URL을 참고.
 
-* 참고: [System V, BSD, 그리고 LINUX 와 MacOS](http://ds31x.tistory.com/134)
+* 참고: [System V, BSD, 그리고 LINUX 와 MacOS (ext)](http://ds31x.tistory.com/134)
 
 ---
 

@@ -24,7 +24,7 @@ OS에서 Process Scheduling은 여러 Process가 CPU를 효율적으로 사용�
 Process Scheduling은 다음 두 가지 주요 Queue를 중심으로 이루어짐:
 
 - **Ready Queue**: 
-    - CPU 실행을 기다리는 Process들의 Process 제어 블록(PCB) 참조가 저장된 자료구조. 
+    - CPU 실행을 기다리는 Process들의 Process Control Block(PCB) 참조가 저장된 자료구조. 
     - OS는 Ready Queue에서 Scheduling 알고리즘(아래에 설명)에 따라 실행할 Process를 선택.
 - **I/O Wait Queue**: 
     - I/O 작업을 수행 중이거나 이를 기다리는 Process들이 대기하는 공간. 
@@ -74,7 +74,9 @@ Scheduling 알고리즘은 크게 Non-preemptive (비선점형)과 Preemptive (�
 
 ### 2-1. Non-Preemptive Scheduling
 
-Non-Premeptive(비선점형) Scheduling은 단순한 방법이기 때문에 특정 상황에서는 비효율적일 수 있음: `Starvation`(아사, 기아) 문제 발생하기 쉬움.
+* Non-Preemptive(비선점형) Scheduling은 단순한 방법이기 때문에 
+* 특정 상황에서는 비효율적일 수 있음: 
+    * `Starvation`(아사, 기아) 문제 발생하기 쉬움.
 
 #### 2-1-1. 주요 알고리즘
 
@@ -92,7 +94,7 @@ Non-Premeptive(비선점형) Scheduling은 단순한 방법이기 때문에 특�
 - **Multi-Level Queue Scheduling**
     - **구조**: 
         - Process를 특성에 따라 여러 Queue로 분류하며, 
-        - 각 Queue는 독립적인 Scheduling 알고리즘을 사용.\
+        - 각 Queue는 독립적인 Scheduling 알고리즘을 사용.
         - Queue 간의 이동은 없음.
     - **Queue 구성**:
         - Foreground Process Queue: 
@@ -123,7 +125,8 @@ Preemptive Scheduling은 Non-Preemptive Scheduling과 달리,
     - Ready Queue에서 남은 CPU Bust Time이 가장 짧은 Process를 선택.
     - I/O 중심 Process는 짧은 실행 시간을 자주 가지므로 대기 시간이 최소화됨.
 - **라운드 로빈 (Round Robin)**
-    - 모든 Process에 동일한 Time Slice(or 타임 퀀텀)을 부여하며, Time Slice가 만료되면 Ready Queue의 맨 뒤로 이동.
+    - 모든 Process에 동일한 Time Slice(or 타임 퀀텀)을 부여하며, 
+    - Time Slice가 만료되면 Ready Queue의 맨 뒤로 이동.
     - Time Slice 설정이 시스템 성능에 중요한 영향을 미침.
 - **Priority Based Preemptive Scheduling**
     - 더 높은 우선순위의 Process가 Ready Queue에 도착하면 
@@ -131,9 +134,12 @@ Preemptive Scheduling은 Non-Preemptive Scheduling과 달리,
 - **Multi-Level Feedback Queue Scheduling**
     - **동작 방식**:
         - Process를 여러 단계의 Ready Queue로 나누어 관리.
-        - 상위 Queue일수록 짧은 Time Slice을 부여하면서 우선 실행되는 구조임 (상호작용이 필요한 포어그라운드 프로세스) 
-        - CPU 사용 시간이 긴 Process는 점차 하위 Queue로 이동 (하위 Queue는 우선순위가 낮지만 time slice는 긴 편임. 주로 백그라운드 프로세스가 위치하게 됨).
-        - 처음에 상위 Queue에 들어가도 Time interrupt등으로 실행이 되고 나오면 점차 하위 Queue에 push 되는 구조임.
+        - 상위 Queue일수록 짧은 Time Slice을 부여하면서 우선 실행되는 구조임 
+            - 주로 상호작용이 필요한 foreground process가 상위 Queue에 위치.
+        - CPU 사용 시간이 긴 Process는 점차 하위 Queue로 이동 
+            - 하위 Queue는 우선순위가 낮지만 할당된 time slice는 긴 편임. 
+            - 하위 Queue에는 주로 백그라운드 프로세스가 위치하게 됨.
+        - 처음에 상위 Queue에 들어가 실행되고 점차 하위 Queue에 push 되는 구조임.
     - **특징**:
         - I/O 중심 프로세스는 상위 큐에서 높은 우선순위를 부여받아 빠르게 처리됨.
         - 대화형 프로세스는 짧은 Time Slice을 통해 응답 시간을 단축하여 사용자 경험을 개선.
@@ -144,19 +150,21 @@ Preemptive Scheduling은 Non-Preemptive Scheduling과 달리,
 
 ## 3. 실제 사용되는 Process Scheduling 구현물
 
-앞서 살펴본 알고리즘들이 단독으로 사용되지 않으며, 다양한 우선순위과 알고리즘이 합쳐져서 OS에서 사용됨.
+앞서 살펴본 알고리즘들이 단독으로는 사용되지 않으며,  
+다양한 우선순위과 알고리즘이 합쳐져서 OS에서 사용됨.
 
 대표적인 예가 바로 Linux의 선점형 `CFS`(Completely Fair Scheduler)로서  
-이는, **`vruntime`**을 기반으로 공정한 Process Scheduling을 구현함. 
+이는, **`vruntime`** 을 기반으로 공정한 Process Scheduling을 구현함. 
 
 ### 3-1 vruntime 개념
 
-- **가상 실행 시간**: Process의 실제 실행 시간을 가중치로 보정한 값.
-- **우선순위가 높은 Process**는 
-    - **낮은 가중치(`Nice value`)를 가져 vruntime 증가 속도가 느리며**, 
+- `vruntime`은 일종의 **가상 실행 시간**: Process의 실제 실행 시간을 가중치로 보정한 값.
+- **우선순위가 높은 Process** 는 
+    - **낮은 가중치(`Nice value`)를 가져 `vruntime` 증가 속도가 느리며**, 
+    - 실제 CPU 사용 시간에 비해 낮은 `vruntime` 값을 가짐.
     - 이를 통해 더 자주 CPU를 할당받을 수 있음.
 - I/O 중심 Process는 
-    - 그 자체로 CPU 사용 시간이 짧아 vruntime이 덜 증가함.
+    - 그 자체로 CPU 사용 시간이 짧아 `vruntime` 이 덜 증가함.
   
 ### 5.2 CFS 동작 방식
 
