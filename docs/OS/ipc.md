@@ -7,17 +7,29 @@ Process간에 통신이 필요함.
 
 크게 다음의 방식으로 수행됨.
 
+1. Signal 이용.
+2. Shared Memory 이용.
+3. Message Passing 이용.
+
+---
+
+---
+
 ## Signal 이용.
 
-Signal 은 ***Kernel을 통해 비동기적인 event를 처리하기 위한 방법*** 이나,  
-**Process 간 통신에도 제한적으로 사용이 가능함.**
+Signal 은 ***Kernel 이 Process에게 비동기적인 알림이나 warning 등을 보내기 위한 방법*** 이나, 
 
-> Signal 은 Kernel을 경유하여  
+* 엄밀히는 Kernel이 Process에게 비동기적인 event를 알리기위한 방법임.
+* 때문에 Kernel내부에서 Signal이 발생하여 Process에게 전달됨.
+* 주로 예외 상황 이나 알림에 이용됨.
+ 
+`kill()` 등의 System Call을 통해 특정 Process가 다른 Process에게 Kernel을 통해 Signal을 보내는 방식으로 **Process 간 통신에도 제한적으로 사용이 가능함.** : Light-weight IPC
+
+단점은 Signal을 통한 IPC는 **데이터를 전달할 수 없으며**, 단지 **Signal 번호만 전달** 하므로 제한점이 있음.
+> 즉, Signal 은 Kernel을 경유하여  
 > 특정 Process에서 다른 Process로 보내질 수 있음.
 
-특정 Process에서 특정 Signal을 받을 경우,
-
-현재 실행되고 있는 Process가 Signal을 받을 경우, 
+특정 Process에서 특정 Signal을 받을 경우 (=현재 실행되고 있는 Process가 Signal을 받을 경우,) 
 
 1. Interrupt가 발생한 것처럼 현재의 실행을 멈추고, 
 2. 해당 Signal을 처리하는 Signal Handler가 실행되며, 
@@ -28,6 +40,8 @@ Signal 은 ***Kernel을 통해 비동기적인 event를 처리하기 위한 방�
 * 특정 Signal을 받을 경우 수행되는 Signal Handler를 
 * 재정의해두고, 해당 Process에 해당 Signal을 보내는 방식으로 
 * ***IPC를 제한적으로 구현*** 하게 됨.
+
+---
 
 Linux의 경우, System Call인 `sigaction` 과 `signal`을 통해  
 특정 Signal에 대한 처리를 구현할 수 있음.
@@ -73,21 +87,22 @@ except KeyboardInterrupt:
 
 ## Shared Memory (공유메모리)
 
-OS 가 MMU (Memory Management Units)를 지원할 경우, 
-다수의 Process의 page table 에서  
-물리적으로 같은 RAM의 영역을 매핑할 경우,  
-해당 영역을 복수의 해당 Processes가 접근함으로서  
-효율적인 IPC가 가능해짐.
+OS 가 MMU (Memory Management Units)를 지원할 경우,  
+
+* 다수의 Process의 page table 에서  
+* 물리적으로 같은 RAM의 영역을 매핑할 경우,  
+* 해당 영역을 복수의 해당 Processes가 접근함으로서  
+* 효율적인 IPC가 가능해짐.
 
 > 다른 이름으로 Shared Memory는 Shared Page라고도 불림.
 
 Process 입장에서는 자신에게 할당된 Memory 영역을 읽고 쓰는 것과   
 같은 방식으로 다른 Process와 커뮤니케이션을 하는 것이기 때문에   
-매우 효율적인 커뮤니케이션이 됨: 가장 빠른 IPC 방법임.
+매우 효율적인 커뮤니케이션이 됨: ***가장 빠른 IPC 방법임***.
 
-* Kernel의 개입이 Signal을 이용하는 방식 등에 비해 거의 없음.
+* Kernel의 개입이 Signal을 이용하는 방식 등에 비해 거의 없다시피 함.
 * 직접적으로 메시지를 주고 받는 방식인 socket등을 이용하는 방삭보다 속도가 빠름.
-* race condition 으로 인해 data consistency 에 문제가 있을 수 있음.
+* 단, race condition 으로 인해 data consistency 등의 문제 발생 확률이 높음.
 
 이를 위해서 사용되는 세부 방식은 크게 다음과 같음.
 
@@ -143,7 +158,7 @@ if __name__ == "__main__":
 
 ## Message Passing (메시지 전달)
 
-IPC를 위한 방법 중 하나로, Processes가 서로 message를 주고 받아서 커뮤니케이션을 수행.
+IPC를 위한 방법 중 하나로, **Processes가 서로 message를 주고 받아서 커뮤니케이션을 수행.**
 
 가장 직접적인 의미에서의 IPC로서 다음의 특징을 가짐.
 
