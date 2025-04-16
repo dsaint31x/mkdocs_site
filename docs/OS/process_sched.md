@@ -5,13 +5,20 @@ tags: [Queue, Dispatcher, Preemptive, Non-Preemptive, Round Robin, FCFS, CFS, vr
 
 # Process Scheduling (or CPU Scheduling, Short-term Scheduling): OS 의 핵심 역할
 
-OS에서 Process Scheduling은 여러 Process가 CPU를 효율적으로 사용할 수 있도록 순서를 정해줌.
+OS에서 Process Scheduling은 **여러 Process가 CPU를 효율적으로 사용할 수 있도록 실행 순서를 정해줌**.
 
 이 문서에서는
 
 * Process Scheduling의 기본 구조 (Queues, Dispatcher) 와 
 * 주요 알고리즘, 그리고 
-* Linux의 CFS 알고리즘과 vruntime 개념을 다룸.
+* Linux의 CFS 알고리즘과 `vruntime` 개념을 다룸.
+
+H/W Resource에서 CPU가 가장 중요한 자원이라고 볼 수 있기 때문에, H/W Resource를 관리하는 OS의 입장에서 
+가장 중요한 역할이라고 볼 수 있음.
+
+> Process를 CPU에 할당을 관리하는 것을 ***Short-term Scheduling*** 이라고하고,  
+> Process를 Memory에 load하는 관리하는 것을 ***Long-term Scheduling*** 이라고 함. 
+> 둘 모두 OS에서 중요한 Scheduling임.
 
 ---
 
@@ -30,6 +37,8 @@ Process Scheduling은 다음 두 가지 주요 Queue를 중심으로 이루어�
     - I/O 작업을 수행 중이거나 이를 기다리는 Process들이 대기하는 공간. 
     - I/O 작업이 완료되면 해당 Process는 Ready Queue로 이동.
 
+---
+
 ### 1.2 Dispatcher 의 역할
 
 Process Scheduler 가 Ready Queue에서 Process를 선택하면, Dispatcher 가 이를 CPU에 실제로 할당함. 
@@ -42,7 +51,9 @@ Dispatcher 는 다음 작업을 수행:
 
 Dispatcher 의 역할은 Scheduling 알고리즘이 결정한 선택을 실행으로 옮기는 데 필수적임. 
 
-이 과정에서 Context Switch(문맥 교환) 이라는 오버헤드가 발생할 수 있음.
+이 과정에서 **Context Switch(문맥 교환)** 이라는 오버헤드가 발생할 수 있음.
+
+---
 
 ### 1.3 Scheduling 기준
 
@@ -76,13 +87,14 @@ Scheduling 알고리즘은 크게 Non-preemptive (비선점형)과 Preemptive (�
 
 * Non-Preemptive(비선점형) Scheduling은 단순한 방법이기 때문에 
 * 특정 상황에서는 비효율적일 수 있음: 
-    * `Starvation`(아사, 기아) 문제 발생하기 쉬움.
+    * `Starvation`(아사, 기아) 문제 발생하기 쉬움: 특히 FCFS방식에서 매우 실행시간이 긴 process가 있을 경우 심각한 결과를 초래.
+    * interactive task에 불리함.
 
 #### 2-1-1. 주요 알고리즘
 
 - **FCFS (First-Come, First-Served)**
     - Ready Queue에 도착한 순서대로 Process에 CPU를 할당.
-    - 구현이 단순하지만 긴 Process가 짧은 Process를 지연시키는 **`Convoy Effect` (호위효과)**가 발생할 수 있음.
+    - 구현이 단순하지만 긴 Process가 짧은 Process를 지연시키는 **`Convoy Effect` (호위효과)** 가 발생할 수 있음.
 - **SJF (Shortest Job First)**
     - Ready Queue에서 `CPU Bust Time` 이 가장 짧은 Process를 선택.
     - 평균 대기 시간을 줄이는 데 효과적 
@@ -90,8 +102,7 @@ Scheduling 알고리즘은 크게 Non-preemptive (비선점형)과 Preemptive (�
 - **Priority Based Non-Preemptive Scheduling**
     - 가장 높은 우선순위를 가진 Process를 선택.
     - 낮은 우선순위 Process는 무기한 대기 상태에 놓일 수 있음: `Starvation`.
-
-- **Multi-Level Queue Scheduling**
+- **Multi-Level Queue Scheduling** \*\*
     - **구조**: 
         - Process를 특성에 따라 여러 Queue로 분류하며, 
         - 각 Queue는 독립적인 Scheduling 알고리즘을 사용.
@@ -116,7 +127,7 @@ Scheduling 알고리즘은 크게 Non-preemptive (비선점형)과 Preemptive (�
 
 Preemptive Scheduling은 Non-Preemptive Scheduling과 달리, 
 
-* 실행 중인 프로세스를 강제로 중단하고 Ready Queue에 있는 다른 프로세스에 CPU를 할당할 수 있음. 
+* **실행 중인 프로세스를 OS가 강제로 중단** 하고 Ready Queue에 있는 다른 프로세스에 CPU를 할당할 수 있음. 
 * 이는 Ready Queue에 새로운 프로세스가 도착하거나 Time Slice가 만료되는 상황에서 작동
 
 #### 2-2-1. 주요 알고리즘
@@ -124,14 +135,14 @@ Preemptive Scheduling은 Non-Preemptive Scheduling과 달리,
 - **SRTF (Shortest Remaining Time First)**
     - Ready Queue에서 남은 CPU Bust Time이 가장 짧은 Process를 선택.
     - I/O 중심 Process는 짧은 실행 시간을 자주 가지므로 대기 시간이 최소화됨.
-- **라운드 로빈 (Round Robin)**
+- **라운드 로빈 (Round Robin)** \*\*
     - 모든 Process에 동일한 Time Slice(or 타임 퀀텀)을 부여하며, 
     - Time Slice가 만료되면 Ready Queue의 맨 뒤로 이동.
     - Time Slice 설정이 시스템 성능에 중요한 영향을 미침.
 - **Priority Based Preemptive Scheduling**
     - 더 높은 우선순위의 Process가 Ready Queue에 도착하면 
     - 실행 중인 Process를 중단하고 해당 새로운 Process를 선택.
-- **Multi-Level Feedback Queue Scheduling**
+- **Multi-Level Feedback Queue Scheduling** \*\*\*
     - **동작 방식**:
         - Process를 여러 단계의 Ready Queue로 나누어 관리.
         - 상위 Queue일수록 짧은 Time Slice을 부여하면서 우선 실행되는 구조임 
@@ -165,19 +176,21 @@ Preemptive Scheduling은 Non-Preemptive Scheduling과 달리,
     - 이를 통해 더 자주 CPU를 할당받을 수 있음.
 - I/O 중심 Process는 
     - 그 자체로 CPU 사용 시간이 짧아 `vruntime` 이 덜 증가함.
-  
-### 5.2 CFS 동작 방식
+
+---
+
+### 3.2 CFS 동작 방식
 
 - **레드-블랙 트리 (`RB Tree`)**: 
     - Ready Queue를 트리 구조로 구현하여 
-    - vruntime이 가장 작은 Process를 빠르게 선택.
+    - `vruntime`이 가장 작은 Process를 빠르게 선택.
 - **Context Switch(문맥 교환)**: 
-    - 실행 중인 Process의 vruntime이 증가하면 
+    - 실행 중인 Process의 `vruntime`이 증가하면 
     - 자연스럽게 다른 Process로 전환됨.
 - **nice 값 조정**: 
     - Process의 우선순위를 동적으로 제어. 
     - 시스템 성능을 최적화합니다.
-    - 낮은 `nice` 값(예: `-20`)은 높은 우선순위를 나타내며 낮은 가중치를 가지며 느리게 vruntime이 증가.
-    - 높은 `nice` 값(예: `+19`)은 낮은 우선순위를 나타내며 높은 가중치를 가지며 빠르게 vruntime이 증가.
+    - 낮은 `nice` 값(예: `-20`)은 높은 우선순위를 나타내며 낮은 가중치를 가지며 느리게 `vruntime`이 증가.
+    - 높은 `nice` 값(예: `+19`)은 낮은 우선순위를 나타내며 높은 가중치를 가지며 빠르게 `vruntime`이 증가.
 
 
