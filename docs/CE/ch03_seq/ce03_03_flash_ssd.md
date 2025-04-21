@@ -1,10 +1,15 @@
+---
+title: Flash Memory and SSD
+tags: [NAND Flash, NOR Flash, SSD, Wear Level]
+---
+
 # Flash Memory and SSD
 
 ## Flash Memory 란?
 
 `Flash Memory`는
 
-* Read 의 경우에는 `Random Access Memory (RAM)` 와 일부 (NOR Flash) 유사하게 동작하며,  
+* Read 의 경우에는 `Random Access Memory (RAM)` 와 유사 (NOR Flash의 경우)하게 동작하며,  
 * Write 의 경우에는 `Block Device` 와 비슷하게 동작하는 
 
 Secondary Memory Device.  
@@ -67,11 +72,11 @@ HDD 처럼 Flash memory를 사용하게 한 것.
 * 전원이 나가도 기억 유지: `Non-Volatile Memory`
     * ***DRAM 과 유사하게 bucket(=MOSFET+Floating Gate Transistor) 에 전자를 담아 기억하는 방식*** 
         * DRAM에서는 capacitor에 전자가 저장.
-        * Flash Memory에서는  Floating Gatge에 전자가 저장. 
+        * Flash Memory에서는  Floating Gate에 전자가 저장. 
     * 하지만, **DRAM과 달리 전자가 잘 새지 않음** (전원을 공급할 필요 없음. 10년 가량 기억 가능)
-    * 단, 기존 데이터가 기록된 상태에서 1에서 0로 직접 변경이 안 됨 (Cell별)
-        * 0에서 1은 전압변화로 전자를 방출시킴으로 쉽게 처리됨.
-        * 하지만 1에서 0 (=program 쓰기동작)은 전자를 셀에 주입하는 것이 불가능함. 
+    * 단, cell별 또는 page별로 0에서 1로 직접 변경이 안 됨 (한번 0으로 기재하면, 1로 변경이 안됨을 의미.)
+        * 1에서 0은 전압변화로 전자를 방출시킴으로 쉽게 처리됨 (1로 초기화 이후, 0으로 한번 쓰는 건 가능하다는 의미.).
+        * 하지만 0에서 1 (=program 쓰기동작)은 전자를 셀에 주입하는 것으로 불가능함. 
     * 때문에 기존 데이터를 다 지우고 (모조리 1로 초기화) 다시 쓰는 형태로 처리 됨 (`Erase Before Write`).
 * 읽기/쓰기 가능 횟수에 제한(=수명)이 있으며 전기적으로 여러 차례 가능함.
     * 데이터를 저장하는 Cell 하나당 쓰고 지우는 횟수의 한계가 존재함.
@@ -114,11 +119,11 @@ Random Access (Cell별 읽기)가 안된다는 단점이 있으나,
 Cell을 ***병렬로 연결한 방식*** 으로, `NAND` Flash에 비해 
 
 * Random Access를 통한 Read Time이 훨씬 (6-7배 정도) 빠르지만, 
-* Program (=Write)과 Erase가 Cell단위로 이루어지다보니 
-* 쓰기와 지우기에서 NAND에 비해 매우 느린 단점을 가짐.
+* Program (=Write)과 Erase가 Cell 단위로 이루어지다보니 
+* 쓰기와 지우기에서 NAND에 비해 매우 느린 단점을 가짐: 읽기 전용 장치로 사용하는게 유리.
 * 즉, 개별 Cell로 작업이 이루어지기 때문에 대용량의 데이터를 쓰거나 지우는 등의 경우 상대적으로 느리다는 단점을 가짐.
 
-Cell별로 Read가 이루어지다보니 Random Access가 가능하다라는 장점이 있으나,
+Cell별로 Read가 이루어지다보니 **Random Access가 가능** 하다라는 장점이 있으나,
 
 * Cell 마다 요구되는 회로로 인해 낮은 집적도와 용량당 높은 제조단가를 가지는 단점을 가짐.
 * 저장장치로는 `NAND` 방식에 밀린 상태.
@@ -141,13 +146,13 @@ AI 시대가 되면서 데이터 센터에서도 SSD를 사용하는 추세가 �
 * 주로 대용량 저장을 위한 NAND Flash로 구성됨.
 * Wear Leveling Processor를 통해, 전체 device의 읽기/쓰기의 수명을 연장하며 데이터 손실 및 오류 가능성을 줄임.
 
-> Flash Memory의 각 cell 은 일정 횟수의 프로그래밍 및 삭제 작업만이 가능함.  
+> Flash Memory의 각 Cell 은 일정 횟수의 프로그래밍 및 삭제 작업만이 가능함.  
 > 특정 횟수 이상 쓰기/지우기 가 이루어질 경우 수명이 종료되며,  
 > 이같은 읽고 쓰여진 정도를 ***Wear Level*** 이라고 부름.
 >
-> 데이터가 자주 업데이트되어 일부 cell이 지나치게 너무 빨리 수명이 종료될 경우  
+> 데이터가 자주 업데이트되어 일부 Cell (정확히는 block)이 지나치게 너무 빨리 수명이 종료될 경우  
 > 전체 SSD의 저장능력에 문제가 되므로    
-> Wear Level Processor는 모든 Cell의 Wear Level이 균일하게 되도록 도와줌.
+> Wear Level Processor는 모든 Cell (정확히는 block)의 Wear Level이 균일하게 되도록 도와줌.
 
 ---
 
