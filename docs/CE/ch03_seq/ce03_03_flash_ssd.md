@@ -9,8 +9,8 @@
 
 Secondary Memory Device.  
 
-> 읽기의 경우, RAM 과 같이 `Random Access` ( or 그와 유사한)  동작이 가능하며,  
-> 쓰기의 경우, Page 단위로 쓰이고 `Erase Before Write` 특성을 가지는  
+> 읽기의 경우, RAM 과 같이 `Random Access` ( or 그와 유사한 Page 단위로 읽기)  동작이 가능하며,  
+> 쓰기의 경우, Block (or Page) 단위로 쓰이고 `Erase Before Write` 특성을 가지는  
 > (ROM 과 같은) `Non-Volatile Memory` 임.
 > 
 > 널리 사용되고 있는 Secondary Memory Device 임.
@@ -46,23 +46,23 @@ HDD 처럼 Flash memory를 사용하게 한 것.
     * Quad-Level Cell(`QLC`) : 4bit/cell 저장 (=4BPC)
     * 참고0: ***BPC가 커질수록 read time이 커짐(=느려짐)*** 
     * 참고1: ***BPC가 커질수록 동시에 수명도 짧아짐.***
-* Cell을 직렬로 연결할지 병렬로 연결할지에 따라 `NAND Flash`와 `NOR Flash로 구성됨.
+* Cell을 직렬로 연결할지 병렬로 연결할지에 따라 `NAND Flash`와 `NOR Flash1`로 구성됨.
     * NAND Flash: 직렬연결. 높은 데이터 밀도와 고용량.
-    * NOR Flash: 병렬연결, 빠른 읽기(Random Access) 
+    * NOR Flash: 병렬연결, 빠른 읽기(Random Access 가능) 
 * 일부 RAM 과 유사한 읽기 동작.
-    * `NOR Flash` 의 경우, 1bit를 담고 있는 Cell 별로 읽기 가능.
-    *  주로 사용되는 `NAND Flash` 의 경우, Page 단위로 읽기를 지원.
+    * `NOR Flash` 의 경우, 1bit를 담고 있는 Cell 별로 읽기 가능(SLC라면).
+    *  주로 사용되는 `NAND Flash` 의 경우, ***Page 단위로 읽기*** 를 지원.
     * `Page`는 초기 512 bytes 였으나 현재는 4~16 KB 정도임.
 * 읽기 / 쓰기 / 지우기 단위
     * 읽기: 
         * NOR Flash에서는 Cell 별로 가능.
-        * NAND Flash에서는  Cell 들이 모인 Page가 기본 읽기 단위임.
+        * NAND Flash에서는 Cell 들이 모인 ***Page가 기본 읽기 단위*** 임.
     * 쓰기:
-        * 데이터가 쓰여 있지 않은 영역에 쓰기는 `Page`가 기본 단위.
-        * Flash는 데이터가 쓰여져 있을 경우, 지우고 나서만 쓸 수 있는 특징(`Erase Before Write`)으로 인해 `Block` 단위로 동작.
+        * 데이터가 쓰여 있지 않은 영역에 쓰기는 읽기처럼 `Page`가 기본 단위.
+        * Flash는 데이터가 쓰여져 있을 경우, ***지우고 나서만 쓸 수 있는 특징(`Erase Before Write`)*** 으로 인해 `Block` 단위로 동작.
         * 1개의 Block은 일반적으로 64, 128 또는 256 개의 Pages로 구성.
     * 지우기:
-        * Block 단위로 이루어짐.
+        * ***Block 단위*** 로 이루어짐.
     * 참고: [Memory : Page and Column 참고 내용](./ce03_02_1_memory1.md#address-register-row-and-column)
 * 전원이 나가도 기억 유지: `Non-Volatile Memory`
     * ***DRAM 과 유사하게 bucket(=MOSFET+Floating Gate Transistor) 에 전자를 담아 기억하는 방식*** 
@@ -73,7 +73,7 @@ HDD 처럼 Flash memory를 사용하게 한 것.
         * 0에서 1은 전압변화로 전자를 방출시킴으로 쉽게 처리됨.
         * 하지만 1에서 0 (=program 쓰기동작)은 전자를 셀에 주입하는 것이 불가능함. 
     * 때문에 기존 데이터를 다 지우고 (모조리 1로 초기화) 다시 쓰는 형태로 처리 됨 (`Erase Before Write`).
-* 읽기/쓰기 횟수가 있으나 전기적으로 여러 차례 가능함.
+* 읽기/쓰기 가능 횟수에 제한(=수명)이 있으며 전기적으로 여러 차례 가능함.
     * 데이터를 저장하는 Cell 하나당 쓰고 지우는 횟수의 한계가 존재함.
         * BPC가 높을수록 수명이 짧아짐.
         * 예를 들어, SLC의 경우 10만번 정도의 수명이고  TLC의 경우 1000번 정도의 수명임 (확률적임) 
