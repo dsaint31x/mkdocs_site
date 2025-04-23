@@ -1,5 +1,7 @@
 # Low level language vs. High level language
 
+![](./img/low_level_high_level.jpg){style="display: block; margin: 0 auto; width=400px"}
+
 ## Low-Level Language
 
 * 컴퓨터 H/W 내의 물리적 동작을 이해하고, 각 동작에 대응하는 명령어를 이용하여 프로그래밍.
