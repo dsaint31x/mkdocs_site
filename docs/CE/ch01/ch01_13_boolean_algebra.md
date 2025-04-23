@@ -5,7 +5,7 @@ tags: [Boolean Algebra, Gate, De Morgan's Law]
 
 # Boolean Algebra
 
-![](./img/boolean_algebra.jpeg){style="display:block; margin: 0 auto; width=500px"}
+![](./img/boolean_algebra.jpeg){style="display:block; margin: 0 auto; width=300px"}
 
 George Boole(1815-1864, 영국)이 고안한 logic을 다루는 algebra로  
 "True, False를 수학적인 영역으로 포함"시켜  
