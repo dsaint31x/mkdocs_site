@@ -1,5 +1,9 @@
 # Compiler Language and Interpreter Language
 
+![](./img/compiled_interpreted_lang.jpg){style="display:block; margin: 0 auto; width:500px"}
+
+compiled language 와 interpreted language라고도 불림.
+
 ## Compiler Language
 
 <figure markdown>
