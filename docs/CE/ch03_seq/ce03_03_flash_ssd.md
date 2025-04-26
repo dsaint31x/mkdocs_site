@@ -5,11 +5,15 @@ tags: [NAND Flash, NOR Flash, SSD, Wear Level]
 
 # Flash Memory and SSD
 
+![](./img/flash_memory.png){style="display: block; margin: 0 auto; width: 500px"}
+
+* ref. site (https://metar.tistory.com/entry/%EC%97%94%EC%A7%80%EB%8B%89%EC%97%90%EC%84%9C-%EB%B0%98%EB%8F%84%EC%B2%B48%EB%8C%80%EA%B3%B5%EC%A0%95%EC%9D%84-%EB%B0%B0%EC%9A%B0%EA%B3%A0-%EC%B7%A8%EC%97%85%ED%95%98%EC%9E%90-1%EC%A3%BC%EC%B0%A8-2%EC%9D%BC%EC%B0%A8)
+
 ## Flash Memory 란?
 
 `Flash Memory`는
 
-* Read 의 경우에는 `Random Access Memory (RAM)` 와 유사 (NOR Flash의 경우)하게 동작하며,  
+* Read 의 경우에는 `Random Access Memory (RAM)` 와 유사 (`NOR Flash`의 경우)하게 동작하며,  
 * Write 의 경우에는 `Block Device` 와 비슷하게 동작하는 
 
 Secondary Memory Device.  
@@ -20,6 +24,7 @@ Secondary Memory Device.
 > 
 > 널리 사용되고 있는 Secondary Memory Device 임.
 
+1980년대 초 도시바의 Fujio Masuoka 박사 연구팀이 개발한 것으로 알려지며, 기존의 EEPROM(Electrically Erasable Programmable Read-Only Memory)가 한 바이트 단위로 데이터를 지우는 것과 달리, block단위로 데이터를 지우는 속도가 섬광(Flash) 처럼 빠르다는 점을 강조하여 Flash Memory라는 이름이 붙음.
 
 ---
 
@@ -43,17 +48,17 @@ HDD 처럼 Flash memory를 사용하게 한 것.
 * 전기적으로 내용 변경 및 일괄 소거도 가능.
     * `EEPROM`의 일종.
     * 기존의 `EEPROM`은 Byte 단위로 읽기/쓰기/지우기 가 가능했음.
-    * Flash Memory는 Page, Block 단위로 처리됨   
+    * Flash Memory는 Page, Block 단위로 지우기가 처리됨 (쓰기 전에 지워야 함에 주의.)   
 * Cell이 저장할 수 있는 Bit의 크기에 따라 다음으로 구분.
-    * Single-Level Cell(`SLC`) : 1bit/cell 저장 (=1BPC)
+    * Single-Level Cell(`SLC`) : 1bit/cell 저장 (=1BPC), `NOR Flash`는 대부분 SLC임.
     * Multi-Level Cell(`MLC`) : 2bit/cell 저장 (=2BPC)
     * Triple-Level Cell(`TLC`) : 3bit/cell 저장 (=3BPC)
     * Quad-Level Cell(`QLC`) : 4bit/cell 저장 (=4BPC)
     * 참고0: ***BPC가 커질수록 read time이 커짐(=느려짐)*** 
     * 참고1: ***BPC가 커질수록 동시에 수명도 짧아짐.***
 * Cell을 직렬로 연결할지 병렬로 연결할지에 따라 `NAND Flash`와 `NOR Flash1`로 구성됨.
-    * NAND Flash: 직렬연결. 높은 데이터 밀도와 고용량.
-    * NOR Flash: 병렬연결, 빠른 읽기(Random Access 가능) 
+    * NAND Flash: 직렬연결. 높은 데이터 밀도와 고용량. 빠른 쓰기 속도!
+    * NOR Flash: 병렬연결, 빠른 읽기(Random Access 가능)이나 느린 쓰기 속도. 
 * 일부 RAM 과 유사한 읽기 동작.
     * `NOR Flash` 의 경우, 1bit를 담고 있는 Cell 별로 읽기 가능(SLC라면).
     *  주로 사용되는 `NAND Flash` 의 경우, ***Page 단위로 읽기*** 를 지원.
@@ -71,12 +76,12 @@ HDD 처럼 Flash memory를 사용하게 한 것.
     * 참고: [Memory : Page and Column 참고 내용](./ce03_02_1_memory1.md#address-register-row-and-column)
 * 전원이 나가도 기억 유지: `Non-Volatile Memory`
     * ***DRAM 과 유사하게 bucket(=MOSFET+Floating Gate Transistor) 에 전자를 담아 기억하는 방식*** 
-        * DRAM에서는 capacitor에 전자가 저장.
-        * Flash Memory에서는  Floating Gate에 전자가 저장. 
+        * DRAM에서는 capacitor에 전자가 저장: 1bit를 위해 transistor와 capacitor 가 하나씩 필요.
+        * Flash Memory에서는  Floating Gate (=transistor)에 전자가 저장. 
     * 하지만, **DRAM과 달리 전자가 잘 새지 않음** (전원을 공급할 필요 없음. 10년 가량 기억 가능)
-    * 단, cell별 또는 page별로 0에서 1로 직접 변경이 안 됨 (한번 0으로 기재하면, 1로 변경이 안됨을 의미.)
+    * 단, cell별 또는 page 별로 0에서 1로 직접 변경이 안 됨 (한번 0으로 기재하면, 1로 변경이 안됨을 의미.)
         * 1에서 0은 전압변화로 전자를 방출시킴으로 쉽게 처리됨 (1로 초기화 이후, 0으로 한번 쓰는 건 가능하다는 의미.).
-        * 하지만 0에서 1 (=program 쓰기동작)은 전자를 셀에 주입하는 것으로 불가능함. 
+        * 하지만 0에서 1 (=program 쓰기 동작)로 변경은 전자를 셀에 주입하는 것으로 불가능함. 
     * 때문에 기존 데이터를 다 지우고 (모조리 1로 초기화) 다시 쓰는 형태로 처리 됨 (`Erase Before Write`).
 * 읽기/쓰기 가능 횟수에 제한(=수명)이 있으며 전기적으로 여러 차례 가능함.
     * 데이터를 저장하는 Cell 하나당 쓰고 지우는 횟수의 한계가 존재함.
@@ -95,7 +100,7 @@ HDD 처럼 Flash memory를 사용하게 한 것.
 Cell을 ***직렬로 연결한 방식*** 으로 `NOR Flash`에 비교하여 
 
 * Read Time이 느린 단점을 가지나 (Page 단위로 읽어들임), 
-* Program(=Write)와 Erase Time이 각각 Page, Block 단위로 이루어짐에 따라 매우 빠름.
+* Program(=Write)와 Erase Time이 각각 Page, Block 단위로 이루어짐에 따라 매우 빠름 (빠른 쓰기/지우기 가능).
 
 Random Access (Cell별 읽기)가 안된다는 단점이 있으나,  
 
@@ -121,6 +126,7 @@ Cell을 ***병렬로 연결한 방식*** 으로, `NAND` Flash에 비해
 * Random Access를 통한 Read Time이 훨씬 (6-7배 정도) 빠르지만, 
 * Program (=Write)과 Erase가 Cell 단위로 이루어지다보니 
 * 쓰기와 지우기에서 NAND에 비해 매우 느린 단점을 가짐: 읽기 전용 장치로 사용하는게 유리.
+    * 전원이 커져도 보존되어야 하며 실행 속도(읽기 속도)가 빨라야 하는 code 저장에 유리.
 * 즉, 개별 Cell로 작업이 이루어지기 때문에 대용량의 데이터를 쓰거나 지우는 등의 경우 상대적으로 느리다는 단점을 가짐.
 
 Cell별로 Read가 이루어지다보니 **Random Access가 가능** 하다라는 장점이 있으나,
