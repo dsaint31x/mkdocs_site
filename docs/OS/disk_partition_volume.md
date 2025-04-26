@@ -4,7 +4,7 @@
 
 * [HDD, Partition, Volume, Drive and File System](https://ds31x.tistory.com/262)
 
-![](./disk_partition_volume.jpg){style="display: block; margin: 0 auto; width:400px"}
+![](./img/disk_partition_volume.jpg){style="display: block; margin: 0 auto; width:400px"}
 
 ***
 
