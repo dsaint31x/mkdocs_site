@@ -1,5 +1,7 @@
 # File System
 
+![](./img/file_system.jpg){style="display: block; margin: 0 auto; width:500px"}
+
 File system은 ***OS가 HDD나 SSD 등의 저장장치에 데이터를 저장하고 접근하는 방법을 정의*** 하는 "file과 디렉터리의 구조적 조직"임. 
 
 File system은 ***데이터를 관리*** 하고, ***저장공간을 효율적으로 사용*** 하며, ***사용자와 OS 사이의 인터페이스 역할을 수행*** 함.
