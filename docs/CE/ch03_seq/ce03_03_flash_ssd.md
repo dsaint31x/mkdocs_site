@@ -7,7 +7,7 @@ tags: [NAND Flash, NOR Flash, SSD, Wear Level]
 
 ![](./img/flash_memory.png){style="display: block; margin: 0 auto; width: 500px"}
 
-* ref. site (https://metar.tistory.com/entry/%EC%97%94%EC%A7%80%EB%8B%89%EC%97%90%EC%84%9C-%EB%B0%98%EB%8F%84%EC%B2%B48%EB%8C%80%EA%B3%B5%EC%A0%95%EC%9D%84-%EB%B0%B0%EC%9A%B0%EA%B3%A0-%EC%B7%A8%EC%97%85%ED%95%98%EC%9E%90-1%EC%A3%BC%EC%B0%A8-2%EC%9D%BC%EC%B0%A8)
+* [ref. site](https://metar.tistory.com/entry/%EC%97%94%EC%A7%80%EB%8B%89%EC%97%90%EC%84%9C-%EB%B0%98%EB%8F%84%EC%B2%B48%EB%8C%80%EA%B3%B5%EC%A0%95%EC%9D%84-%EB%B0%B0%EC%9A%B0%EA%B3%A0-%EC%B7%A8%EC%97%85%ED%95%98%EC%9E%90-1%EC%A3%BC%EC%B0%A8-2%EC%9D%BC%EC%B0%A8)
 
 ## Flash Memory 란?
 
