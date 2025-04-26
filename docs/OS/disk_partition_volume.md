@@ -1,10 +1,11 @@
 # Disk, Partition, and Volume
 
+![](./img/disk_partition_volume.jpg){style="display: block; margin: 0 auto; width:400px"}
+
 좀더 간략하게 살펴보려면, 다음 URL참고.
 
 * [HDD, Partition, Volume, Drive and File System](https://ds31x.tistory.com/262)
 
-![](./img/disk_partition_volume.jpg){style="display: block; margin: 0 auto; width:400px"}
 
 ***
 
