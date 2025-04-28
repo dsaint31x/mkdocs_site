@@ -26,12 +26,15 @@ OOP는 다양한 object들이 서로 상호작용(message passing을 통한)을 
 
 ## OOP에서의 SOLID 원칙
 
-OOP에서 S/W 를 더욱 유지보수 및 확장하기 쉽게 만들기 위해 제안된 다섯가지 원칙을 가르킴.  
+OOP에서 S/W 를 더욱 유지보수 및 확장하기 쉽게 만들기 위해 제안된 다섯가지 원칙을 가르킴. 
+
+![](https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2FAi6pJ%2FbtsNCBLiPU3%2FoOWVohvKpmKlicCWa35G10%2Fimg.png){style="display: block; margin:0 auto; width: 400px"}
+
 2000년대 초 Robert C. Martin("Uncle Bob")에 의해 정리된 다섯가지 원칙으로 각 원칙의 머리글자를 따서 SOLID라고 불림.
 
 - Single Responsibility Principle (SRP): 하나의 클래스는 하나의 책임만 가진다.
 - Open-Closed Principle (OCP): S/W의 entity는 확장에는 open, 변경에는 closed여야 한다 
-    - 기존 코드를 수정하지 않고 확장가능해야함).
+    - 기존 코드를 수정하지 않고 확장가능해야함.
 - Liskov Substitution Principle (LSP): 자식 클래스는 부모 클래스로 대체될 수 있어야 한다.
     - 1987년 Barbara Liskov 가 제안.
     - S가 T의 subclass(or subtype)이라면, 클래스 T의 객체를 사용하는 모든 부분에서 T 클래스의 객체를 S클래스의 객체로 치환해도 문제가 일어나선 안된다.
