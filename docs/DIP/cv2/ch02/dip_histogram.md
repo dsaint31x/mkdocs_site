@@ -12,8 +12,7 @@ image에서 histogram으로 변환은 ***비가역적 변환*** 임
 ![](../../img/ch02/histogram.jpg){width="400"}
 </figure>
 
-* [관련 gist URL](https://gist.github.com/dsaint31x/f2e0f5361cf917b067f71b60acf80d23)
-
+* [관련 gist URL](https://gist.github.com/dsaint31x/0b5bf63173c91f08732325c67bc33450)
 ---
 
 ---
