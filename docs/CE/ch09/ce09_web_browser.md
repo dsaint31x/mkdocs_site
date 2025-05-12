@@ -23,6 +23,9 @@ tags:
 > HTML5 등의 지원 등에 따라 기존의 OS에서 수행되던 많은 응용 프로그램이 웹 브라우저를 통해 수행되는 형태의 발전을 보이고 있음. → 웹 오피스 (Google Workspace 등등) 및 웹 OS
 , 구글 포토 : 사진 관리 설치형 어플리케이션을 대체, 구글 맵 : 지도 기반 설치형 어플리케이션 보다 우수. 
 
+---
+
+---
 
 ## Interpreter 또는 VM으로서의 Web browser
 
@@ -36,11 +39,54 @@ Web browser you use every day is
 * a ***`virtual machine`*** -- an abstract computer with an incredibly complicated instruction set implemented entirely in software.
 * one of ***`interpreters`***.
 
+---
+
 ### Engine (or Layout Engine, Rendering Engine)
 
 * HTML과 CSS, XML등으로 작성된 웹페이지를 읽어들여서 사람이 읽을 수 있는 문서로 표시해주는 웹 브라우저의 핵심기능을 담당하는 component를 지칭함.
-* Markup language등에 대한 일종의 interpreter라고 볼 수 잇음.
-* 최근의 web browser에는 프로그램 같이 사용자의 입력에 대한 반응 등을 하기 위해  자바스크립트 엔진 등이 추가되어 있음.
+* Markup language등에 대한 일종의 interpreter라고 볼 수 있음.
+* 최근의 web browser에는 프로그램 같이 사용자의 입력에 대한 반응 등을 하기 위해 JavaScript Engine(자바스크립트 엔진) 이 추가되어 있음.
+
+---
+
+### JavaScript Engine
+
+JavaScript 엔진은 오늘날 웹 브라우저의 핵심 구성 요소로, 
+
+* HTML과 CSS를 담당하는 Layout Engine과 함께 현대 웹 브라우저의 기반을 형성. 
+* JavaScript 코드를 해석하고 실행하는 이 시스템은 단순한 인터프리터를 넘어선 정교한 실행 환경임.
+
+[JavaScript Engine의 동작방식 등에 대한 참고 자료](https://ds31x.tistory.com/434)
+
+#### 주요 브라우저와 JavaScript 엔진
+
+각 주요 브라우저는 고유한 JavaScript Engine을 사용하거나 기존 Engine을 채택:
+
+* Chrome: Google의 **V8 엔진** 을 사용. 이 엔진은 뛰어난 성능으로 유명하며, Node.js에서도 사용됨.
+* Firefox: Mozilla의 **SpiderMonkey 엔진** 을 사용. 이는 최초의 JavaScript 엔진 중 하나로 계속 발전해옴.
+* Safari: Apple의 JavaScriptCore(별칭 **Nitro**) 엔진을 사용. 이 엔진은 ***WebKit 프레임워크의 일부로 iOS와 macOS 기기에서도 사용***.
+* Edge(현재 버전): 2020년 이후 Microsoft는 Edge 브라우저를 Chromium 기반으로 재구축했으며, 현재는 Google의 V8 엔진을 사용.
+    * Edge(레거시): 초기 버전의 Microsoft Edge는 **Chakra** 엔진을 사용했음.
+    * Internet Explorer: Microsoft의 **Chakra(JScript)** 엔진을 사용(현재는 지원 종료).
+* Opera: 2013년 이후 Chromium 기반으로 전환하여 V8 엔진을 사용.
+* Chromium: Google의 오픈소스 브라우저 프로젝트로, V8 JavaScript 엔진을 사용. 
+    * 많은 현대 브라우저(Chrome, Edge, Opera, Brave 등)가 Chromium을 기반으로 개발됨.
+
+---
+
+### Web Browser를 VM 관점으로 볼 때 JavaScript Engine의 역할.
+
+브라우저를 하나의 가상머신으로 볼 때, JavaScript 엔진은 다음과 같은 역할을 수행함:
+
+* 실행 환경: 브라우저 가상머신의 "프로세서" 역할을 담당하며 웹 애플리케이션 코드를 처리.
+    * 런타임 시스템: 코드 실행, 메모리 관리, 가비지 컬렉션을 총괄.
+* Bytecode Interpreter: 중간 표현인 bytecode를 실행하는 핵심 컴포넌트.
+* 최적화 컴파일러: 자주 사용되는 코드 패턴을 감지하고 최적화 (JIT 컴파일러 기술 포함)
+* 샌드박스 메커니즘: 보안 경계를 형성해 웹 코드가 시스템의 다른 부분에 접근하지 못하도록 제한.
+
+---
+
+---
 
 ## Web browser의 중요성.
 
