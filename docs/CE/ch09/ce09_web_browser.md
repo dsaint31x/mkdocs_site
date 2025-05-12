@@ -29,14 +29,20 @@ tags:
 
 ## Interpreter 또는 VM으로서의 Web browser
 
-달리 애기하면, web browser는 일종의 `interpreter` 라고 생각할 수 있다. 
+![](./webbrowser_vm.jpg){style="display: block; margin: 0 auto; width:350px"}
 
-Web browser는 매우 다양한 instruction set을 지원하며, 이들 사용하여 프로그래밍할 수 있는 다양한 프로그래밍언어를 지원한다. Web browser는 이들 다양한 프로그래밍언어(interpreter language)의 source code를 원격지 등에서 읽어들여서 이들을 해석하고 대응하는 instruction들의 집합을 수행하는 interpreter라고 볼 수 있다.  
+달리 애기하면, web browser는 일종의 `interpreter` 또는 `virtual machine`라고 생각할 수 있다. 
+
+Web browser는 매우 다양한 instruction set을 지원하며, 이들 사용하여 프로그래밍할 수 있는 다양한 프로그래밍언어를 지원한다. 
+
+* Web browser는 이들 다양한 프로그래밍언어(interpreter language)의 source code를 원격지 등에서 읽어들여서 
+* 이들을 해석하고 대응하는 instruction들의 집합을 수행하는 interpreter라고 볼 수 있다. 
+ 
 대부분의 Web browser는 해당 수행이 어떻게 이루어지는지를 developer console을 통해 확인할 수 있다.
 
 Web browser you use every day is
 
-* a ***`virtual machine`*** -- an abstract computer with an incredibly complicated instruction set implemented entirely in software.
+* a ***`virtual machine`*** -- an abstract computer with an incredibly complicated instruction set implemented entirely in software, and 
 * one of ***`interpreters`***.
 
 ---
@@ -58,7 +64,7 @@ JavaScript 엔진은 오늘날 웹 브라우저의 핵심 구성 요소로,
 
 [JavaScript Engine의 동작방식 등에 대한 참고 자료](https://ds31x.tistory.com/434)
 
-#### 주요 브라우저와 JavaScript 엔진
+#### 참고: 주요 브라우저와 JavaScript 엔진
 
 각 주요 브라우저는 고유한 JavaScript Engine을 사용하거나 기존 Engine을 채택:
 
