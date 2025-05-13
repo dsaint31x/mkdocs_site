@@ -19,8 +19,15 @@ Memory에 대한 접근은 `Address`를 통해 이루어짐 (이를 **Random Acc
 
 - Address가 다르면 Memory 내의 위치가 다름.
 
-![](./img/memory_lane.jpeg){style="display: block; margin: 0 auto; width:500px;"}
+> **정의: Random Access**  
+> 
+> * address 를 통해 
+> * 메모리의 물리적 위치와 상관없이 
+> * 동일한 시간 내에 어느 위치에 있는 데이터든 
+>
+> 직접 접근할 수 있는 특성을 가리킴.​​​​​​​​​​​​​​​​
 
+![](./img/memory_lane.jpeg){style="display: block; margin: 0 auto; width:500px;"}
 
 위 그림에서 집들은 1byte의 같은 크기를 가지는 각각의 `memory location`을 의미한다.
 
