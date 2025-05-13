@@ -17,7 +17,9 @@ Sequential Logic의 경우
 
 * **Time을 나타내는 Device가 필요**.
 
-**참고:** [Sequential Logic Circuit (ext)](https://dsaint31.tistory.com/902)
+**참고1:** [Sequential Logic Circuit (ext)](https://dsaint31.tistory.com/902)
+
+**참고2:** [Summary of Sequential Logic Circuit (ext)](https://dsaint31.tistory.com/910)
 
 ---
 
