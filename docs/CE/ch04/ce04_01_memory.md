@@ -15,11 +15,11 @@
 
 ## 1. Memory Location and Address
 
-Memory에 대한 접근은 `Address`를 통해 이루어짐 (이를 Random Access라고 부름).
+Memory에 대한 접근은 `Address`를 통해 이루어짐 (이를 **Random Access** 라고 부름).
 
 - Address가 다르면 Memory 내의 위치가 다름.
 
-![](./img/memory_lane.jpeg{style="display: block; margin: 0 auto; width:500px;"}
+![](./img/memory_lane.jpeg){style="display: block; margin: 0 auto; width:500px;"}
 
 
 위 그림에서 집들은 1byte의 같은 크기를 가지는 각각의 `memory location`을 의미한다.
