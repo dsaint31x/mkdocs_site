@@ -1,12 +1,19 @@
 # Convolution
 
-> 이 문서에서의 convolution은 digital image processing등에서의 convolution을 다루고 있음. 
+> 이 문서에서의 convolution은 digital image processing등에서의 convolution을 다루고 있음.  
+>
 > signal processing의 discrete convolution에 대한 건 다음 문서를 참고할 것:  
 > [Discrete Convolution](https://dsaint31.tistory.com/entry/SS-Discrete-Convolution-Linear-Discrete-Convolution), [Circular Convolution](https://dsaint31.tistory.com/entry/SS-Circular-Convolution)
 
-image filtering에서 spatial domain filtering은 주로 **filter** 또는 **kernel** 또는 **window** 라고 하는 행렬과 입력 영상의 Convolution으로 이루어짐.
+image filtering에서 spatial domain filtering은 주로 
 
-> Convolution은 기호 ⊗ or ∗ 등으로 표기되지만 통일된 기호는 없음.
+* **filter** 또는 
+* * **kernel** 또는 
+* **window** 라고 
+
+불리는 행렬(=impulse response)과 입력 영상의 ***Convolution*** 으로 이루어짐.
+
+> Convolution (합성곱)은 기호 ⊗ or ∗ 등으로 표기되지만 통일된 기호는 없음.
 
 * 어찌보면, spatial operation의 끝판왕이라고 봐도 됨.
 
@@ -26,7 +33,12 @@ where
 - $f(x,y)$ : original image
 - $g(x,y)$ : output image
 
-convolution은 cross-correlation과 달리 ^^교환법칙이 성립^^ 하며, impulse response(영상에선 point spread function)와 입력 신호를 이용하여 ***시스템의 response를 구하는 연산*** 임.
+convolution은 
+
+* cross-correlation과 달리 ^^교환법칙이 성립^^ 하며, 
+* impulse response(영상에선 point spread function)와 입력 신호를 이용하여 ***시스템의 response를 구하는 연산*** 임.
+
+Cross correlation은 매우 유사하지만, 두 신호의 유사도를 얻기 위해 사용됨.
 
 * cross-correlation과 달리 입력 함수 중 하나가 reflection이 이루어진다는 차이가 있음.
 * cross-correlation에 대한 보다 자세한 내용은 다음 url을 참고 : [Cross correlation](https://dsaint31.tistory.com/entry/SS-Cross-Correlation)
@@ -76,6 +88,12 @@ Kernel이 sliding을 통해 적용되어나가는데, `stride`는 어느 간격�
 
 * $5 \times 5$ 입력에 $2\times 2$ stide로 $3\times 3$ kernel로 Convolution.
 * 상단의 녹색 matrix가 출력임.
+
+---
+
+## PyTorch 의 `nn.Conv2D`를 이용한 convolution 활용
+
+[`nn.Conv2d`](https://gist.github.com/dsaint31x/9e6477a8b3d7f37c04ef5abdce4127a2)
 
 ---
 
