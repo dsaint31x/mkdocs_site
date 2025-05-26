@@ -3,7 +3,7 @@
 보다 많은 Bit를 기억하기 위해서는  
 `Register`들을 여러 개를 사용하게 됨
 
-> Memory는 
+> (Random Access) Memory는 
 > `A Big Pile of Registers` 
 > 에 기반함.
 
@@ -14,7 +14,7 @@
 * write 시 어느 register에 저장할지를 지정해야 하고,  
 * read 시  어느 register에서 data를 읽을지를 지정해야 함.  
 
-
+---
 
 ## Address
 
@@ -95,6 +95,12 @@ Memory의 경우 다음과 같은 2개의 BUS를 가짐.
 
 ## Address Register (Row and Column: Page)
 
+> 참고: Page 로 주소를 상하위로 나누는 것에 의해 RAM의 최대가능속도가 많은 영향을 받음.  
+>
+> 이 절을 보기 전에 다음 URL을 읽어보면 좀 더 쉽게 이해할 수 있음 :  
+> 
+> * [RAM의 구조와 속도 관련 표기법](https://ds31x.tistory.com/430)
+
 Memory 의 용량이 커질수록 Address의 길이가 길어지며,  
 이는 집적화에 큰 장애가 됨.  
 
@@ -148,4 +154,4 @@ Memory 의 용량이 커질수록 Address의 길이가 길어지며,
 
 ## 읽어볼 자료.
 
-* [Strobe와 Memory Latency관련하여 읽어보면 좋은 자료](http://m.enuri.com/knowcom/detail.jsp?kbno=35825&bbsname=guide&cateno=&page=1)
+* [Strobe와 Memory Latency관련하여 읽어보면 좋은 자료](https://ds31x.tistory.com/430)
