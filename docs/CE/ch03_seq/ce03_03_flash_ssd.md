@@ -24,15 +24,17 @@ Secondary Memory Device.
 > 
 > 널리 사용되고 있는 Secondary Memory Device 임.
 
-1980년대 초 도시바의 Fujio Masuoka 박사 연구팀이 개발한 것으로 알려지며, 기존의 EEPROM(Electrically Erasable Programmable Read-Only Memory)가 한 바이트 단위로 데이터를 지우는 것과 달리, block단위로 데이터를 지우는 속도가 섬광(Flash) 처럼 빠르다는 점을 강조하여 Flash Memory라는 이름이 붙음.
+1980년대 초 도시바의 Fujio Masuoka 박사 연구팀이 개발한 것으로 알려져 있음.  
+기존의 EEPROM(Electrically Erasable Programmable Read-Only Memory)가 한 바이트 단위로 데이터를 지우는 것과 달리,  
+**block 단위로 데이터를 지우는 속도** 가 섬광(Flash) 처럼 빠르다는 점을 강조하여 Flash Memory라는 이름이 붙음.
 
 ---
 
 ---
 
-## Solid State Disk (SSD) 란?
+## Solid State Drive (SSD) 란?
 
-`Solid State Disk (SSD)`는 
+`Solid State Drive (SSD)`는 
 
 * Flash memory를 Disk Drive 형태로 패키징하면서, 
 * `Wear Leveling Processor` 를 추가하여 
@@ -56,11 +58,17 @@ HDD 처럼 Flash memory를 사용하게 한 것.
     * Quad-Level Cell(`QLC`) : 4bit/cell 저장 (=4BPC)
     * 참고0: ***BPC가 커질수록 read time이 커짐(=느려짐)*** 
     * 참고1: ***BPC가 커질수록 동시에 수명도 짧아짐.***
-* Cell을 직렬로 연결할지 병렬로 연결할지에 따라 `NAND Flash`와 `NOR Flash1`로 구성됨.
-    * NAND Flash: 직렬연결. 높은 데이터 밀도와 고용량. 빠른 쓰기 속도!
-    * NOR Flash: 병렬연결, 빠른 읽기(Random Access 가능)이나 느린 쓰기 속도. 
-* 일부 RAM 과 유사한 읽기 동작.
-    * `NOR Flash` 의 경우, 1bit를 담고 있는 Cell 별로 읽기 가능(SLC라면).
+* Cell을 직렬로 연결할지 병렬로 연결할지에 따라 `NAND Flash`와 `NOR Flash`로 구성됨.
+    * NAND Flash: 
+        * 직렬연결. 
+        * 높은 데이터 밀도와 고용량. 
+        * 빠른 쓰기 속도!
+    * NOR Flash: 
+        * 병렬연결, 
+        * 빠른 읽기(Random Access 가능)이나 
+        * **느린 쓰기 속도**. 
+* 일부 RAM 과 유사한 읽기 동작: Random Access
+    * `NOR Flash` 의 경우, 1bit를 담고 있는 Cell 별로 읽기 가능 (`SLC`라면).
     *  주로 사용되는 `NAND Flash` 의 경우, ***Page 단위로 읽기*** 를 지원.
     * `Page`는 초기 512 bytes 였으나 현재는 4~16 KB 정도임.
 * 읽기 / 쓰기 / 지우기 단위
@@ -141,7 +149,7 @@ Cell별로 Read가 이루어지다보니 **Random Access가 가능** 하다라�
 
 ---
 
-## Solid State Disk (SSD)
+## Solid State Drive (SSD)
 
 SSD의 경우, 최근 HDD를 대체하고 있는 추세임.
 

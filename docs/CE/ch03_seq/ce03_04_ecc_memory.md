@@ -11,6 +11,8 @@
 
 > 단순히 오류를 검출하는 기능만을 가지는 경우보다 **오류 수정을 하는 기능** 까지 가지려면 ***보다 많은 bit를 사용해야 함.***
 
+* 참고: [Hamming Code](https://ds31x.tistory.com/438)
+
 ---
 
 # Checksum and CRC
