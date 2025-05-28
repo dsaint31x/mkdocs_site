@@ -26,7 +26,10 @@ OOP는 다양한 object들이 서로 상호작용(message passing을 통한)을 
 
 ## OOP에서의 SOLID 원칙
 
-OOP에서 S/W 를 더욱 유지보수 및 확장하기 쉽게 만들기 위해 제안된 다섯가지 원칙을 가르킴. 
+OOP에서 S/W 를 더욱 **유지보수** 및 **확장** 하기 쉽게 만들기 위해  
+제안된 다섯가지 원칙을 가르킴. 
+
+* 참고: [SOLID 원칙](https://ds31x.tistory.com/431)
 
 ![](https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2FAi6pJ%2FbtsNCBLiPU3%2FoOWVohvKpmKlicCWa35G10%2Fimg.png){style="display: block; margin:0 auto; width: 400px"}
 
