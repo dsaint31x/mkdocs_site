@@ -10,7 +10,8 @@ OOP는
 
 을 가르킴.
 
-> Program Paradigm 의 관점에서 Structured Programming과 함께 현재 가장 널리 사용되는 Program paradigm이다. 
+> Programming Paradigm 의 관점에서  
+> Structured Programming과 함께 현재 가장 널리 사용되는 Programming paradigm이다. 
 
 ## OOP Language가 되려면?
 
@@ -30,6 +31,8 @@ OOP에서 S/W 를 더욱 **유지보수** 및 **확장** 하기 쉽게 만들기
 제안된 다섯가지 원칙을 가르킴. 
 
 * 참고: [SOLID 원칙](https://ds31x.tistory.com/431)
+
+다음은 위의 참고 URL의 내용을 간략히 요약한 내용임.
 
 ![](https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2FAi6pJ%2FbtsNCBLiPU3%2FoOWVohvKpmKlicCWa35G10%2Fimg.png){style="display: block; margin:0 auto; width: 400px"}
 
