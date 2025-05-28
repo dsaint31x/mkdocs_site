@@ -98,8 +98,14 @@ CPU가 컴퓨터의 다른 구성 요소와 상호 작용하고 명령을 실행
         * `CU`는 Execute에서 필요한 Data를 위해 `Memory Access`를 제어하고,
         * 연산 결과 저장 (`Write Back`)을 위한 Data의 이동을 지시함.
 
-> instruction에 따라, memory와 ALU, I/O device에 제어 신호를 보내고 해당 장치들로부터 신호를 받아 다음 처리를 제어하는 장치
-> storage에서 main memory로 data를 load하는 명령어, main memory에서 storage로 data를 save하는 명령어, 특정 address로부터 instruction을 로딩하는 명령어 등에 따라 ***명령을 내리는 장치***.
+> **CU**는  
+> instruction에 따라, memory와 ALU, I/O device에 제어 신호를 보내고 해당 장치들로부터 신호를 받아 다음 처리를 제어하는 장치.
+>
+> CU는 다음의 명령어들을 fetch하고 decode 후 execute시키는 장치로 다른 구성요소들의 동작을 제어하는 장치임.
+> 
+> * storage에서 main memory로 data를 load하는 명령어, 
+> * main memory에서 storage로 data를 save하는 명령어, 
+> * 특정 address로부터 instruction을 로딩하는 명령어 등등
 
 요약하면,  
 
@@ -161,7 +167,6 @@ Microcode로 구현된 Traffic Control은 다음과 같은 Memory (주로 ROM, `
 주로 ***CPU 내에서 Data를 저장하고 있는 Memory를 가르킴.***  
 
 * 1 Bits 저장에 6개의 NAND (=3개의 D Flip-Flop) 사용.
-*  SRAM (Static RAM rlqks)
 
 가장 빠른 Memory이며, CPU 의 구성요소에 속함 (`Core`의 구성요소이기도).
 

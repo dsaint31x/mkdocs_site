@@ -5,7 +5,7 @@
 
 > (Random Access) Memory는 
 > `A Big Pile of Registers` 
-> 에 기반함.
+> 에 기반한다고 개념적으로 생각할 수 있음.
 
 하지만 단순히 여러 `Register`s 를 묶기만 해서는 안 됨.  
 
@@ -14,7 +14,6 @@
 * write 시 어느 register에 저장할지를 지정해야 하고,  
 * read 시  어느 register에서 data를 읽을지를 지정해야 함.  
 
----
 
 ## Address
 
