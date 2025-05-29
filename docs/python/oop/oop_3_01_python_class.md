@@ -9,7 +9,7 @@
 
 우리가 `Samp1` 이라는 class를 정의하고, `a`라는 이름의 variable을 `Samp1`의 instance로 할당한 경우는 다음과 같음.
 
-```python
+```python linenums="1"
 class Samp1:
     pass
 
@@ -18,7 +18,7 @@ a = Samp1()
 
 이 경우, `type` 클래스(=callable class)를 이용하여 다음과 같이 호출시 다음과 같은 결과를 얻을 수 있음.
 
-```python
+```python linenums="1"
 >>> type(a)
 <class '__main__.Samp1'>
 >>> type(Samp1)
@@ -54,7 +54,7 @@ Python이 모든 것이 `instance`이므로
 
 다음 코드를 수행해서 각 경우 데이터 형을 확인해보자.
 
-```python
+```python linenums="1"
 class Samp1:
     pass
 
@@ -102,7 +102,7 @@ class의 동적(dynamically)으로 attribute들을 추가하고 삭제할 수 �
 
 다음 코드를 보면, 동적으로 class에 attribute들을 추가하고 있다. `del`을 사용한다면 동적으로 제거도 된다.
 
-```Python
+```Python linenums="1"
 import types
 
 class MyClass에

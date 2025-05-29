@@ -49,6 +49,6 @@ OOP에서 S/W 를 더욱 **유지보수** 및 **확장** 하기 쉽게 만들기
     - Client는 자신이 사용하지 않는 Interface에 의존해선 안됨.
     - 위의 Client는 Interface를 사용하는 code나 class를 의미함.
     - 큰 인터페이스보다 구체적인 여러 인터페이스로 분리할 것을 강조.
-- Dependency Inversion Principle (DIP): 고수준의 모듈은 저수준의 모듈에 의존해선 안되며, abstraction (interface나 abstract base class)에만 의존해야 함.
+- Dependency Inversion Principle (DIP): 고수준의 모듈은 저수준의 모듈에 의존해선 안되며, 저수준의 모듈과 고수준 모듈 모두 abstraction (interface나 abstract base class)에만 의존해야 함.
     - abstraction은 구현 및 세부사항에 의존해선 안 됨
     - 세부 사항은 abstraction에 의존해야 함.
