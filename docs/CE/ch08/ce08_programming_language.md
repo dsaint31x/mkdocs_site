@@ -28,7 +28,7 @@ tags:
 >  
 > 여기서 조건문, 분기문, 반복문 등을 ***control structure*** 라고 부름.
 
-![](./img/programming_language.jpg){style="display: block; margin: 0 auto; width=600px"}
+![](./img/programming_language.jpg){style="display: block; margin: 0 auto; width=400px"}
 
 참고 : [Control structure](https://ds31x.blogspot.com/2023/07/basic-control-structures-and-control.html)
 
@@ -40,16 +40,24 @@ tags:
 
 #### 기계친화적인지 인간친화적인지에 따른 분류 : Abstraction 수준에 의한 분류
 
-* Low-level Language
-* High-level Language
+* Low-level Language (저급언어)
+* High-level Language (고급언어)
 
-> 분류 기준 중 가장 명확한 편이나, 개인적으로 기계친화적이라고 느껴지는 언어들도 고급언어라는 게 함정.
+> 분류 기준 중 가장 명확한 편이나, (개인적으로?) 기계친화적이라고 느껴지는 언어들도 고급언어라는 게 함정.
 >
-> Low-level language에서 abstraction 수준이 낮고, High-level language로 갈수록 abstraction 수준이 높음.
+> * Low-level language에서 abstraction 수준이 낮고, 
+> * High-level language로 갈수록 abstraction 수준이 높음.
 
-***참고:*** 
-    Abstraction은 복잡한 대상에 대해 핵심적인 개념이나 기능만을 드러내고, 세부적인 구현이나 수행에 필요하지 않은 요소들을 숨기거나 제거하여 해당 대상을 현재 수행하는 작업에서 쉽게 사용할 수 있도록 하는 것을 의미함.  
-    예를 들어, 우리가 자동차를 운전할 때, 핸들을 돌리거나 가속 페달을 밟는 것만으로 방향을 조정하고 속도를 제어할 수 있음. 하지만 내부적으로는 복잡한 엔진 작동, 기계적 연결, 전자 제어 등이 수행됨. 이처럼 사용자에게 복잡한 세부 사항을 숨기고, 필요한 기능만을 제공하는 것이 추상화임.
+***참고:***
+    Abstraction은 복잡한 대상에 대해 핵심적인 개념이나 기능만을 드러내고,  
+    세부적인 구현이나 수행에 필요하지 않은 요소들을 숨기거나 제거하여   
+    해당 대상을 현재 수행하는 작업에서 쉽게 사용할 수 있도록 하는 것을 의미함  
+    (Encapsulation에 의해 달성됨).  
+      
+    예를 들어, 우리가 자동차를 운전할 때,  
+    핸들을 돌리거나 가속 페달을 밟는 것만으로 방향을 조정하고 속도를 제어할 수 있음.  
+    하지만 내부적으로는 복잡한 엔진 작동, 기계적 연결, 전자 제어 등이 수행됨.  
+    이처럼 사용자에게 복잡한 세부 사항을 숨기고, 필요한 기능만을 추출하여 제공하는 것이 추상화임.
 
 ---
 
@@ -58,19 +66,29 @@ tags:
 * Compiler Language 
 * Interpreter Language (or Scripting Language)
 
-> interpreter language의 성능향상을 위한 JIT등의 기술들로 인해 구분이 모호해지고 있음. 우선 명시적인 compile과정이 없을 경우, interpreter language라고 생각해도 된다. 
-> 최근 scripting language는 general purpose programming language보다 특정 domain에 한정된 DSL(domain-specific language)들을 지칭하는 경우가 많아지면서 특정 task나 환경에 국한된 언어들(대부분이 interpreter방식)을 가르키는 데 쓰인다.
+> interpreter language의 성능향상을 위해 JIT 등의 기술들이 도입됨에 따라  
+> 이같은 구분이 모호해지고 있음.  
+> 우선 명시적인 compile과정이 없을 경우, interpreter language라고 생각해도 된다.  
+> 
+> 최근 scripting language는  
+> general purpose programming language보다  
+> 특정 domain에 한정된 DSL(domain-specific language)들을 지칭하는 경우가 많아지면서  
+> 특정 task나 환경에 국한된 언어들(이들 대부분이 interpreter방식임)을 가르키는 데 쓰인다.
 
 ---
 
 #### 프로그래밍 작성 기법 별 구분 (paradigm)
 
-* 명령형 프로그래밍 언어 (Imperative Programming Language)
+* 명령형 프로그래밍 언어 (Imperative Programming Language): 
     * 절차적 프로그래밍 언어 (Procedural Programming Language)
         * 구조적 프로그래밍 언어 (Structured Programming Language) \*\*
     * 객체지향 프로그래밍 언어 (Object Oriented Programming Language) \*\*\*
-* 선언적 프로그래밍 언어 (Declarative Programming Language)
-    * 논리형 프로그래밍 언어 (Logic Programming Language)
-    * 함수형 프로그래밍 언어 (Functional Programming Language) \*\*\*
+* 선언적 프로그래밍 언어 (Declarative Programming Language): SQL
+    * 논리형 프로그래밍 언어 (Logic Programming Language): Prolog
+    * 함수형 프로그래밍 언어 (Functional Programming Language): Haskell, Scala, Erlang \*\*\*
 
 > 사실 가장 모호한 분류이기도 함: 최근 프로그래밍 언어들은 이들을 다중으로 지원하는 형태임.
+
+Assembly Language, BASIC(초기), Fortran(초기) 처럼 function이나 module 등의 구조화를 하지 않은 경우를 순수한 imperative programming 이라고 할 수 있다.
+
+Imperative와 Declarative 의 차이는 [참고: Declarative Programming Language vs. Imperative Programming Language](../../python/oop/oop_0_02_0imperative_declarative.md)를 참고.

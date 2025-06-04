@@ -1,6 +1,6 @@
 # Low level language vs. High level language
 
-![](./img/low_level_high_level.jpg){style="display: block; margin: 0 auto; width=400px"}
+![](./img/low_level_high_level.jpg){style="display: block; margin: 0 auto; width=300px"}
 
 ## Low-Level Language
 
@@ -18,22 +18,23 @@ Machine language와 Assembly language가 대표적.
     * 자연어의 단어나 표현을 이용하여 ^^컴퓨터의 동작을 추상화^^
     * 한 표현으로 여러 기계어 코드의 동작을 지시할 수 있음.
 
-오늘날 프로그래밍언어라고 불리는 모든 것들이 다 high level language (고급언어)임.
+> 오늘날 ***프로그래밍언어*** 라고 불리는 모든 것들이 다 high level language (고급언어)임.
 
 ## Note : Abstraction (추상화)
 
-* 주어진 작업이나 객체를 속성들의 일부분을 가지고 필요한 만큼 묘사할 수 있는 방법을 지원하는 것
-* 필수적인 attribute(속성)들만으로 주어진 것을 묘사하므로 나머지 속성들은 은닉 또는 삭제됨
+* 주어진 작업이나 객체를 속성들의 필요한 일부분만을 가지고 묘사(필요한 속성만으로 묘사)할 수 있는 방법을 가리킴.
+* 필수적인 attribute(속성)들만으로 주어진 것을 묘사하므로 나머지 속성들은 은닉 또는 삭제됨 (Encapsulation, Data Hiding)
 
 #### 추상화의 범주
+
+대부분의 추상화는 객체의 상태와 행동을 대상으로 하며, 상태는 변수 등의 데이터로, 행동은 함수나 method로 추상화된다.
 
 * 자료 추상화(Data Abstraction)
     * 문자열, 수, tree와 같은 계산될 자료의 특성을 추상화
     * string, number, tree 등
 * 제어 추상화(Algorithm Abstraction)
-    * 실행 순서를 제어하는 특성을 추상화 : [`Control Structure`](https://ds31x.blogspot.com/2023/07/basic-control-structures-and-control.html)
+    * 실행 순서를 제어하는 특성을 추상화 : [`Control Structure`](https://ds31x.tistory.com/427)
         * 제어 추상화의 예 : 반복문, 조건문, 프로시저 호출 등
-        * Loop statements, Condition statements, Procedure call
-    * 여러 기계어를 모아 이해하기 쉬운 추상 구문으로 만드는 것.
+        * Loop statements, Condition statements, Procedure call 등등
+    * 여러 기계어를 모아 이해하기 쉬운 추상화된 statement(실행가능한 구문)으로 만드는 것.
     * 관련된 프로시저 그룹의 추상화(library, package등)
-
