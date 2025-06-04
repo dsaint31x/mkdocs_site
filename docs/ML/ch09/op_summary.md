@@ -28,22 +28,32 @@ Mini-batch GD
 : SGD의 local minimum에 빠지는 문제점을 momentum을 도입(이전 업데이트와 현재 gradient를 vector sum)하여 해결.
 
 [NAG(Nesterov Accelerated Gradient)](./op_nesterov.md) 
-: 우선 momentum으로 이동하고, 이동한 위치에서 gradient를 구해 이를 vector sum. 이 경우 Momentum에 비해 수렴위치인 minimum에서 요동치는 문제가 줄어들어 보다 안정화됨.
+: 우선 기존의 momentum 방향으로 미리 이동한 미래 위치에서 gradient를 계산하고,  
+해당 gradient와 기존 momentum 을 결합(gradient에 weighting 처리하여 vector sum)한 후  
+현재 위치에서 해당 결합 결과로 계산된 vector(velocity라고도 불림)로 이동.  
+이 경우 Momentum에 비해 수렴위치인 minimum에서 요동치는 문제가 줄어들어 보다 안정화됨.
 
 [Adagrad](./op_adagrad.md) 
-: 학습이 진행되면서 parameter들의 업데이트 정도가 각기 다른 점을 반영하여,  각 parameter의 이전 gradient들의 합(업데이트된 정도)을 구하여 이에 반비례하여 업데이트되는 방식으로 `adaptive learning rate`를 도입.
+: 학습이 진행되면서 parameter들의 업데이트되는 크기가 각기 다른 점을 반영하여,  
+각 parameter 의 이전 gradient들의 제곱합(누적 업데이트된 정도)을 구하여  
+이에 반비례하게 업데이트시키는 방식을 채택함: Adagrad는 `adaptive learning rate`를 도입한 대표적 알고리즘임.
 
 [RMSProp](./op_rmsprop.md)과 Adadelta 
-: Adagrad의 learning rate가 지나치게 이른 학습 단계에서 소실되는 문제를 gradient의 2차 moment를 기반으로 보완하여 안정적인 `adaptive learning rate`를 Deep Neural Network에서 사용가능하도록 해줌.
+: Adagrad의 learning rate가 지나치게 이른 학습 단계에서 소실되는 문제를 해결하기 위해  
+gradient의 2차 moment (exponential moving average)를 도입한 알고리즘.  
+RMSProp은 안정적인 `adaptive learning rate`를 제공하여 fine-tuning 등에서 많이 애용됨.
 
 [Adam](./op_adam.md) 
-: RMSProp에 momentum을 도입하여 RMSProp과 Momentum을 효과적으로 결합함.
+: RMSProp에 momentum을 도입하여 RMSProp과 Momentum을 효과적으로 결합함.  
 
 AdaMax 
-: Adam에서 adaptive learning rate를 감소시키는데 gradient의 square를 이용한 $L-2$ norm이 이용된 부분을 $l-\infty$ norm으로 대체하여 보다 안정적인 학습을 가능하게 함(안정성을 빼곤 일반적으로 Adam이 보다 나은 것으로 알려짐).
+: **Adam에서 adaptive learning rate 를 감소시키는데 적용된 gradient의 square를 이용한 L2-norm**  
+대신 L$\infty$-norm으로 대체하여 보다 안정적인 학습을 가능하게 함.  
+안정성 면에서는 우수하지만, 일반적으로 Adam이 보다 나은 것으로 알려져 있음.
 
 [NAdam](./op_nadam.md)
-: ADAM에 momentum대신에 NAG를 더해주어서 보다 빠른 수렴속도를 보이도록 개선.
+: ADAM에 momentum 대신에 NAG(Nesterov Accelerated Gradient)를 적용.  
+보다 빠른 수렴속도와 향상된 성능을 보이도록 개선됨.
 
 ---
 
