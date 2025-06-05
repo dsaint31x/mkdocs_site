@@ -1,6 +1,8 @@
 {
     "cSpell.words": [
         "abspath",
+        "Adadelta",
+        "Adagrad",
         "affinitiy",
         "Affinity",
         "Alvey",
@@ -59,6 +61,7 @@
         "imread",
         "imshow",
         "imwrite",
+        "infty",
         "ipynb",
         "itemset",
         "Kaggle",
@@ -90,6 +93,7 @@
         "nanocode",
         "ndarray",
         "ndim",
+        "Nesterov",
         "Neumann",
         "newaxis",
         "NFLT",

@@ -40,15 +40,21 @@ Mini-batch GD
 
 [RMSProp](./op_rmsprop.md)과 Adadelta 
 : Adagrad의 learning rate가 지나치게 이른 학습 단계에서 소실되는 문제를 해결하기 위해  
-gradient의 2차 moment (exponential moving average)를 도입한 알고리즘.  
-RMSProp은 안정적인 `adaptive learning rate`를 제공하여 fine-tuning 등에서 많이 애용됨.
+gradient의 square(2차 moment라고도 불림)의 exponential moving average를 도입한 알고리즘.  
+RMSProp은 안정적인 `adaptive learning rate`를 제공하여 fine-tuning 등에서 많이 애용됨.  
+
+Adadelta
+: RMSProp과 함께, Adagrad의 지나치게 빠른 learning ratio 감소를 해결하기 위해 제안된 방법.  
+가장 큰 특징은 learning rate($\eta$) 하이퍼파라미터를 명시적으로 사용하지 않는다는 점임.   
+즉, 전통적인 의미의 global learning rate를 제거하고 gradient의 변화량과 parameter 업데이트의 변화량 모두에 EMA를 적용하고,  
+이 두 값을 비율로 나누는 방식으로 step size를 자동으로 조절함.
 
 [Adam](./op_adam.md) 
 : RMSProp에 momentum을 도입하여 RMSProp과 Momentum을 효과적으로 결합함.  
 
 AdaMax 
 : **Adam에서 adaptive learning rate 를 감소시키는데 적용된 gradient의 square를 이용한 L2-norm**  
-대신 L$\infty$-norm으로 대체하여 보다 안정적인 학습을 가능하게 함.  
+대신 **L$\infty$-norm (=Max값)으로 대체** 하여 보다 안정적인 학습을 가능하게 함.  
 안정성 면에서는 우수하지만, 일반적으로 Adam이 보다 나은 것으로 알려져 있음.
 
 [NAdam](./op_nadam.md)
@@ -76,7 +82,7 @@ AdaMax
 * A visualization of a saddle point in the optimization landscape, where the curvature along different dimension has different signs (one dimension curves up and another down). 
     * `SGD`는 제대로 최소값으로 나가지 못하는 것을 확인할 수 있음.
         * ***고정된 learning rate를 사용하는 경우, local minima에 매우 취약함*** 을 알 수 있음.
-    * ***Adaptive Learning ratio계열*** 의 (`Adagrad``, `Adadelta`, `Rmsprop`) 알고리즘들은 효과적으로 학습이 이루어짐을 확인 가능함.
+    * ***Adaptive learning ratio계열*** 의 (`Adagrad``, `Adadelta`, `RMSprop`) 알고리즘들은 효과적으로 학습이 이루어짐을 확인 가능함.
 
 ---
 
