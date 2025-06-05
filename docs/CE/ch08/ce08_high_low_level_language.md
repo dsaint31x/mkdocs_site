@@ -1,6 +1,6 @@
 # Low level language vs. High level language
 
-![](./img/low_level_high_level.jpg){style="display: block; margin: 0 auto; width=300px"}
+![](./img/lll_hll.jpg){style="display: block; margin: 0 auto; width=300px"}
 
 ## Low-Level Language
 

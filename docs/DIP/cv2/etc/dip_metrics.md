@@ -17,13 +17,13 @@ metric (or distance function)의 정의는 다음과 같음 (수학적 정의).
 The requirements for a metric include being 
 
 1. non-negative : $d(x,y) \ge 0$, 
-2. identity of indiscernibles (식별불가능자의 동일성) : $d(x,x)=0$,
+2. identity of indiscernible (식별불가능자의 동일성) : $d(x,x)=0$,
 3. symmetric : $d(x,y)=d(y,x)$, and 
 4. satisfying the triangle inequality : $d(x,y) \le d(x,z)+d(z,y)$. 
 
 Additionally, a distance function should give a small distance for similar objects and a large distance for dissimilar objects.
 
-> distance function은 SSIM과 같이 similarity measures를 포함하는 경우도 있어서 metric보다 좀더 넓은 개념으로 취급되기도 하지만, **일반적** 으로는 metric과 같은 의미로 사용된다.  
+> distance function은 SSIM 과 같이 similarity measures를 포함하는 경우도 있어서 metric보다 좀더 넓은 개념으로 취급되기도 하지만, **일반적** 으로는 metric과 같은 의미로 사용된다.  
 Overall, the distinction between the terms "distance function" and "metric" is not always strictly observed, and the two terms are often used interchangeably in practice.
 
 ## difference 계열
@@ -42,7 +42,7 @@ where
 * $\textbf{y}$ : ideal image 
 * $y_i$ : ideal image에서 $i$번째 pixel의 값 (or vector).
 
-`np.mean(np.abs(img-ideal))`로 쉽게 구할 수 있으며, L-1 norm 의 경우처럼 outlier에 영향을 MSE에 비해 덜 받음.
+`np.mean(np.abs(img-ideal))`로 쉽게 구할 수 있으며, L1-norm 의 경우처럼 outlier에 영향을 MSE에 비해 덜 받음.
 
 ### Mean Squared Error (MSE) 
 
@@ -70,7 +70,7 @@ $$
 \text{RMSE}(\textbf{y},\hat{\textbf{y}})=\sqrt{\frac{1}{m}\sum^m_{i=1}\left(\hat{y}_i-y_i\right)^2}
 $$
 
-MSE가 squared로 인해 값이 커지는 문제를 square root를 이용하여 해결함. L-2 norm기반이기 때문에 미분 가능하다는 장점을 가지지만 L-1 norm에 기반한 MAE보다 outlier의 영향이 크다는 단점을 가지고 있음.
+MSE가 squared로 인해 값이 커지는 문제를 square root를 이용하여 해결함. L2-norm기반이기 때문에 미분 가능하다는 장점을 가지지만 L1-norm에 기반한 MAE보다 outlier의 영향이 크다는 단점을 가지고 있음.
 
 `np.sqrt( np.mean( (img-ideal)**2 ))`으로 구하거나 MSE를 구하고 sqrt만 추가해서 구함.
 

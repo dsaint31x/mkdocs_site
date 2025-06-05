@@ -1,9 +1,18 @@
+---
+title: Optimizers 
+tags: [Gradient, GD, Stochastic Gradient Descent, NAG, AdaGrad, RMSprop, Adam, Nadam, Momentum]
+---
+
 # Optimizers
 
-parameters의 수가 적은 단순한 모델들의 경우 Hessian 계열이 사용되기도 하나,  
+parameters의 수가 적은 단순한 모델들의 경우 Hessian 계열 (Newton's Method)이 사용되기도 하나,  
 ***Deep Neural Network에선 Gradient 계열 만이 사용됨.***
 
-* parameters의 수의 square에 비례하는 연산을 요구하는 Hessian 계열은 메모리 문제와 함께 너무 느린 학습속도로 인해 DNN 에 적합하지 않음.
+* parameters의 수의 square에 비례하는 연산을 요구하는 Hessian 계열은 
+* 메모리 문제와 함께 너무 느린 학습속도로 인해 DNN 에 적합하지 않음.
+
+> Adaptive learning rate 를 위해,  
+> 이차미분의 Hessian matrix 대신, Exponential Moving Average of gradient square 등이 사용됨.
 
 ---
 
@@ -38,7 +47,7 @@ Mini-batch GD
 각 parameter 의 이전 gradient들의 제곱합(누적 업데이트된 정도)을 구하여  
 이에 반비례하게 업데이트시키는 방식을 채택함: Adagrad는 `adaptive learning rate`를 도입한 대표적 알고리즘임.
 
-[RMSProp](./op_rmsprop.md)과 Adadelta 
+[RMSprop](./op_rmsprop.md)과 Adadelta 
 : Adagrad의 learning rate가 지나치게 이른 학습 단계에서 소실되는 문제를 해결하기 위해  
 gradient의 square(2차 moment라고도 불림)의 exponential moving average를 도입한 알고리즘.  
 RMSProp은 안정적인 `adaptive learning rate`를 제공하여 fine-tuning 등에서 많이 애용됨.  
@@ -82,7 +91,7 @@ AdaMax
 * A visualization of a saddle point in the optimization landscape, where the curvature along different dimension has different signs (one dimension curves up and another down). 
     * `SGD`는 제대로 최소값으로 나가지 못하는 것을 확인할 수 있음.
         * ***고정된 learning rate를 사용하는 경우, local minima에 매우 취약함*** 을 알 수 있음.
-    * ***Adaptive learning ratio계열*** 의 (`Adagrad``, `Adadelta`, `RMSprop`) 알고리즘들은 효과적으로 학습이 이루어짐을 확인 가능함.
+    * ***Adaptive learning ratio계열*** 의 (`Adagrad`, `Adadelta`, `RMSprop`) 알고리즘들은 효과적으로 학습이 이루어짐을 확인 가능함.
 
 ---
 

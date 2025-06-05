@@ -48,7 +48,7 @@ cv2.matchTemplate(
 
 ### `TM_SQDIFF`
 
-SQuared Difference로 difference vector의 squared L-2 norm을 사용. (Euclidean distance의 제곱)
+SQuared Difference로 difference vector의 squared L2-norm을 사용. (Euclidean distance의 제곱)
 
 $$R(x,y)= \sum _{x',y'} (T(x',y')-I(x+x',y+y'))^2$$
 
