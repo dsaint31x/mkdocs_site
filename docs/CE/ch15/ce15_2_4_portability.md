@@ -40,4 +40,4 @@ Windows를 제외한 OS들은 대부분이 `UNIX` 기반인 터라 ^^`POSIX` 인
 ## 참고하면 좋은 자료들.
 
 * [POSIX Abstractions in Modern Operating Systems: The Old, the New, and the Missing](https://roxanageambasu.github.io/publications/eurosys2016posix.pdf)
-* [POSIX.1-2017 관련 URL] (https://pubs.opengroup.org/onlinepubs/9699919799/)
+* [POSIX.1-2017 관련 URL](https://pubs.opengroup.org/onlinepubs/9699919799/)
