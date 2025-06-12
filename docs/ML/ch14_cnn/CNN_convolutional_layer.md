@@ -1,11 +1,11 @@
 ---
-title: Convolution Layer
+title: Convolutional Layer
 tags: [Convolution, Stride, CNN]
 ---
 
 # Convolutional Layer
 
-(Locality of Pixel Dependency 와 Stationarity of Statistics 에 기반한) **CNN의 주요 구성 요소.**
+(**Locality** of Pixel Dependency 와 **Stationarity of Statistics** 에 기반한) **CNN의 주요 구성 요소.**
 
 * CNN은 convolutional layer를 통해 feature(특징)을 추출함.
 * Convolutional layer의 출력인 feature map은 추출된 feature의 위치와 강도를 가지고 있음.
@@ -30,7 +30,7 @@ convolution을 수행하여 두 개의 feature map을 얻어냄.
 	    * feature vector는 특징을 1차원으로 나타낸 vector임.  
 	    * feature map은 특정 kernel에 대한 response를 feature 값으로 하여 2차원으로 배치한 map임.
 * 하나의 입력에 대해 여러 kernels를 적용하여 여러 feature map을 얻게 되며, 이들을 다시 입력으로 삼아 다른 여러 kernels를 적용하도록 계층으로 쌓음.
-	* 이같은 구조는 여러 feature maps로 구성된 hierarchy를 얻음.
+	* 이같은 구조는 여러 feature maps로 구성된 ***hierarchy*** 를 얻음.
 	* lower layer에서는 low level feature maps 를 얻음 (edge, corner, texture 등)
 	* intermediate layer에서는low level feature maps를 조합한 intermediate feature를 추출해 냄.
 	* higher layer에서는 task와 밀접하게 관련되며 이들 intermediate features를 조합하여 구성되는 high level feature를 추출해냄.
@@ -38,7 +38,7 @@ convolution을 수행하여 두 개의 feature map을 얻어냄.
 ![](../img/ch00/dl_hiearchy_rep.png){style="display: block; margin: 0 auto;width:600px"}
 
 * 만약 input의 depth가 10인 경우, kernel의 depth도 10이 되는 게 일반적임. 
-    * depth separated convolution 제외.
+    * depth separated convolution 및 depth-wise convlutoin의 경우는 제외.
 
 ---
 
@@ -46,8 +46,10 @@ convolution을 수행하여 두 개의 feature map을 얻어냄.
 
 ## Correlation과 Convolution.
 
-Signal Processing에서는 Convolution과 Cross Correlation은 용도가 분명히 다른 연산이지만,  
-***DL에서는 대부분의 Convolution은 Cross Correlation으로 구현*** 된다.
+Signal Processing에서는 
+
+* Convolution과 Cross Correlation은 용도가 분명히 다른 연산이지만,  
+* ***DL에서는 대부분의 Convolution은 Cross Correlation으로 구현*** 된다.
 
 **다음 URL 참고.**
 
@@ -71,7 +73,7 @@ feature map의 **한 pixel의 값** 을 결정하는데 참여하는 input의 pi
 
 > CNN에서 kernel의 weights는 Training을 통해 dataset으로부터 최적의 값들로 설정됨 (ML에서의 특징).  
 >
-> * Digital Image Processing 에서의 spatial filtering의 경우, 
+> * Digital Image Processing (DIP) 에서의 spatial filtering의 경우, 
 > * 사람이 kernel의 weight를 설정하는 것과 달리  
 > * DL에서는 Task에 적합한 Kernel의 weights를 dataset으로부터 구해냄.
 
@@ -92,7 +94,14 @@ convolution에서 sliding을시킬 때 건너뛰는 pixel의 수.
 
 convolution의 경우, padding하지 않는다면 출력이 입력보다 작은 크기(폭과 높이)가 되게 된다.
 
-이를 방지하기 위해, 입력을 padding하여 좀 더 큰 크기로 만들어서 convolution의 출력이 padding 전의 입력과 같은 크기가 되도록 처리하는 게 일반적임.
+참고로,  출력과 입력의 크기 관계는 다음과 같음:
+
+ $$\text{output} = \lfloor \frac{ \text{input}+2\text{padding} - \text{kernel_size} }{\text{stride} \rfloor +1$$ 
+
+이를 방지하기 위해, 
+
+* 입력을 padding하여 좀 더 큰 크기로 만들어서 
+* convolution의 출력이 padding 전의 입력과 같은 크기가 되도록 처리하는 게 일반적임.
 
 TensorFlow의 경우, `padding` 파라메터를 `same`으로 지정하면 zero-padding을 수행하여 입력과 같은 크기의 출력이 나오도록 할 수 있음.
 
@@ -110,8 +119,20 @@ Convolutional Layer는
 * batch size를 줄이거나 
 * stride를 크게 하는 등의 처리가 필요함.
 
+여러 형태의 convolution이 존재함:
+
+* depth-wise convolution: channel 별로 따로  convolution.
+* point-wise convolution: $1 \times 1$ convolution.
+* (depth) separable convolution : depth-wise conv. + point-wise conv.
+* dilated (atrous) convolution : atrous = with the holes. kernel에 hole 존재.
+* transposed convolution : 일종의 convolution 의 inverse 로 사용됨.
+
+![](./img/dilated_conv.jpg){stype="display: block;margin: 0 auto;width:400px"} 
+
 ---
 
 ## 같이 읽어보면 좋은 자료들
 
 * [Convolution 이란?](../../DIP/cv2/etc/dip_convolution.md) 
+* [여러 형태의 Convolution 소개](https://medium.com/data-science/types-of-convolutions-in-deep-learning-717013397f4d)
+* [transposed convolution](https://bme808.blogspot.com/2022/10/ml-transposed-convolution.html)
