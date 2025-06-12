@@ -124,10 +124,10 @@ Convolutional Layer는
 * depth-wise convolution: channel 별로 따로  convolution.
 * point-wise convolution: $1 \times 1$ convolution.
 * (depth) separable convolution : depth-wise conv. + point-wise conv.
-* dilated (atrous) convolution : atrous = with the holes. kernel에 hole 존재.
 * transposed convolution : 일종의 convolution 의 inverse 로 사용됨.
-
-![](./img/dilated_conv.jpg){stype="display: block;margin: 0 auto;width:400px"} 
+* dilated (atrous) convolution : atrous = with the holes. kernel에 hole 존재.
+  
+![](./img/dilated_conv.gif){style="display: block;margin: 0 auto;width:400px"} 
 
 ---
 
