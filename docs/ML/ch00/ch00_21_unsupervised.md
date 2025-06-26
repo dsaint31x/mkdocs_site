@@ -67,10 +67,12 @@ Dimensionality Reduction과 Representation Learning들과 매우 밀접하게 �
 
 ## Self-supervised Learning (of DL).
 
-`Unsupervised learning`의 경우, **dataset에 내재되어있는 feature를 추출하는 데 초점** 이 보다 쏠려있는 것과 비교하여  
+`Unsupervised learning` 은 **dataset에 내재되어있는 feature를 추출하는 데 초점** 이 보다 쏠려있음. 
+
+이와 달리  
 `Self-supervised learning`은 **자체적으로 labeling을 수행하고 난 다음에 일반적인 supervised learning으로 해결하는 task (= downstream task)를 수행** 하는 차이가 있다.
 
-
+* 참고: [Self-supervised Learning 에 대한 보다 자세한 자료](./ch00_24_selfsupervised_learning.md)
 
 즉, label이 전혀 없거나 일부 있는 데이터를 이용하는 부분(=pre-training)은 unsupervised learning(or semi-supervised learning)과 같으나, 최종 task는 사실상 supervised learning의 task인 경우가 대부분이다.
 

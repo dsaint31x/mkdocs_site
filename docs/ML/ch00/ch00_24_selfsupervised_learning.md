@@ -1,21 +1,27 @@
 # Self-supervised Learning
 
+Self-supervised Learning은 
+
+- label이 없는 대량의 data에서
+- 자체적으로 학습과제(pretext task라고 불림) 를 생성하여 해당 학습을 통해 의미 있는 representation을 학습한 후,
+- **main task에서 활용 가능한 labeled data가 매우 적은 상황에서도** 효과적으로 main task를 해결하는 기계학습 방법.
+
 ## 사용되는 경우
 
 Self-supervised Learning은 다음과 같은 상황에서 주로 사용됨.
 
 * label이 없는 데이터가 label이 있는 데이터보다 훨씬 많을 때
-* 원래 풀고자 하는 task(main task)를 위한 labelled dataset의 샘플 수가 모델을 훈련시키기에 부족할 때
+* 원래 풀고자 하는 task(main task)를 위한 labeled dataset의 샘플 수가 모델을 훈련시키기에 부족할 때
 
 ## 구성 단계
 
 Self-supervised Learning은 위와 같은 경우 다음의 단계로 모델을 훈련시킴.
 
-1. 수가 많은 Unlabelled dataset를 Labeled dataset으로 변경시킬 수 있는 사전 과제(pretext task)를 설정하고 이를 이용하여 모델을 훈련
+1. 수가 많은 Unlabeled dataset을 Labeled dataset으로 변경시킬 수 있는 사전 과제(pretext task, 보조과제라고도 불림)를 설정하고 이를 이용하여 모델을 훈련
     * 일종의 pre-training임.
-    * 원래 main task 관점에서는 label 이 없는 dataset이지만, pretext task 덕에 labelled dataset 이 되며
-    * 결국 supervised leanring 으로 학습이 가능해짐: pretext task 의 경우임을 주의할 것.
-2. 해당 모델을 main task에 맞게 미세 조정(fine-tuning) 수행 
+    * 원래 main task 관점에서는 label 이 없는 dataset이지만, pretext task 덕에 labeled dataset 이 되며
+    * 결국 supervised learning 으로 학습이 가능해짐: pretext task 의 경우임을 주의할 것.
+2. 해당 모델을 **main task에 맞게 미세 조정(fine-tuning)** 수행 
     * 모델의 출력단의 구조가 변경될 수도 있음.
     * 2번 과정에서는 main task에 맞게 label이 주어진 소수의 dataset을 사용함.
 
@@ -41,10 +47,10 @@ Self-supervised Learning의 장점:
 
 Self-supervised Learning은 
 
-* dataset의 관점에서 pretext task에 대한 훈련은 레이블 없는 데이터를 사용하므로, 일종의 unsuperivsed learning임.
-* 하지만 해당 학습 과정은 label을 생성하고 나서 수행되므로 지도 학습(supervised learning) 기법으로 진행됨.  
+* dataset의 관점에서 pretext task에 대한 훈련은 레이블 없는 데이터를 사용하므로, 일종의 unsuperivsed learning 이라고도 볼 수 있음.
+* 하지만 해당 학습 과정은 label을 생성하고 나서 수행되므로 **지도 학습(supervised learning) 기법으로 진행됨**.  
 * 더욱이, 최종 모델을 훈련시킬 때에도 labeled dataset을 사용하는 supervised learning 이 수행됨.)
-* 일종의 전이 학습(transfer learning)의 한 형태로 볼 수 있음.​​​​​​​​​​​​​​​​
+* 일종의 **전이 학습(transfer learning)의 한 형태**로 볼 수 있음.​​​​​​​​​​​​​​​​
 
 
 즉, self-supervised learning이 적용되는 task 는 사실상 supervised learning과 같음.
