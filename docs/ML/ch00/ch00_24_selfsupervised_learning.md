@@ -6,6 +6,10 @@ Self-supervised Learning은
 - 자체적으로 학습과제(pretext task라고 불림) 를 생성하여 해당 학습을 통해 의미 있는 representation을 학습한 후,
 - **main task에서 활용 가능한 labeled data가 매우 적은 상황에서도** 효과적으로 main task를 해결하는 기계학습 방법.
 
+![](./img/self_supervised_learning.png){style="display: block; margin: 0 auto; width:500px"}
+
+* ref. [source](https://openaccess.thecvf.com/content_cvpr_2018/papers/Noroozi_Boosting_Self-Supervised_Learning_CVPR_2018_paper.pdf)
+
 ## 사용되는 경우
 
 Self-supervised Learning은 다음과 같은 상황에서 주로 사용됨.
@@ -47,16 +51,16 @@ Self-supervised Learning의 장점:
 
 Self-supervised Learning은 
 
-* dataset의 관점에서 pretext task에 대한 훈련은 레이블 없는 데이터를 사용하므로, 일종의 unsuperivsed learning 이라고도 볼 수 있음.
+* dataset의 관점에서 pretext task에 대한 훈련은 레이블 없는 데이터를 사용하므로, 일종의 unsupervised learning 이라고도 볼 수 있음.
 * 하지만 해당 학습 과정은 label을 생성하고 나서 수행되므로 **지도 학습(supervised learning) 기법으로 진행됨**.  
 * 더욱이, 최종 모델을 훈련시킬 때에도 labeled dataset을 사용하는 supervised learning 이 수행됨.)
-* 일종의 **전이 학습(transfer learning)의 한 형태**로 볼 수 있음.​​​​​​​​​​​​​​​​
+* 일종의 **전이 학습(transfer learning)의 한 형태** 로 볼 수 있음.​​​​​​​​​​​​​​​​
 
 
 즉, self-supervised learning이 적용되는 task 는 사실상 supervised learning과 같음.
 
-> Unsupervised Learning의 task 가 주로 clustring, dimentionality reduciton, novelit (or outlier) detection 인 점을 주의할 것.  
-> Self supvised Laerning은 task의 관점에서 unsupervised learning과 차이를 보이고, 주어진 dataset 의 측면에서 supervised learning과 차이를 가짐.  
+> Unsupervised Learning의 task 가 주로 clustering, dimensionality reduction, novelty (or outlier) detection 인 점을 주의할 것.  
+> Self supervised Learning 은 task의 관점에서 unsupervised learning과 차이를 보이고, 주어진 dataset 의 측면에서 supervised learning과 차이를 가짐.  
 > 일종의 Knowledge Transfer의 한 종류라고도 할 수 있음. 
 
 ## 결론2
@@ -71,4 +75,4 @@ Self-supervised Learning은 ***Supervised Learning을 위한 Knowledge Transfer 
 Pretext task로 context prediction을 unsupervised learning으로 수행하고, 이를 knowledge transfer시켜 원래 task를 수행.
 
 * Doersch, Carl, Abhinav Gupta, and Alexei A. Efros. "Unsupervised visual representation learning by context prediction." Proceedings of the IEEE international conference on computer vision. 2015.
-
+* Mehdi Noroozi, Ananth Vinjimoor, Paolo Favaro, Hamed Pirsiavash. "Boosting Self-Supervised Learning via Knowledge Transfer". 2018
