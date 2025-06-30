@@ -3,7 +3,7 @@
 - 컴퓨터를 사용하기 위해 필요한 정보들이 담김.
 - 컴퓨터에서 사용되는 ***data 저장의 기본단위***
 
-![](./img/file_filesystem_os.png)
+![](./img/file_filesystem_os.png){style="display: block; margin: 0 auto; width: 400px"}
 
 ---
 
