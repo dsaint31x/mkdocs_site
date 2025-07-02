@@ -126,7 +126,7 @@ Kernel이 sliding을 통해 적용되어나가는데, `stride`는 어느 간격�
 Padding과 Stride, Kernel의 크기에 따른 출력의 크기는 다음과 같음:
 
 $$
-\text{output} = \lfloor \frac{ \text{input}+2\text{padding} - \text{kernel_size} }{\text{stride}} \rfloor +1
+\operatorname{output} = \left\lfloor \frac{\operatorname{input} + 2 \times \operatorname{padding} - \operatorname{kernel\_size}}{\operatorname{stride}} \right\rfloor + 1
 $$
 
 ---
