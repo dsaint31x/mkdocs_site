@@ -1,3 +1,8 @@
+---
+title: Convolution 
+tags: [convolution, filter, kernel,]
+---
+
 # Convolution
 
 > 이 문서에서의 convolution은 digital image processing등에서의 convolution을 다루고 있음.  
@@ -7,7 +12,7 @@
 > [Circular Convolution](https://dsaint31.tistory.com/393)
 >
 > Deep Learning의 Convolution Layer에 대한 보다 자세한 건 다음 문서를 참고할 것:  
-> [Convolution Layer](../../../../ML/Ch14_cnn/CNN_convolutional_layer)
+> [Convolution Layer](../../../../ML/ch14_cnn/CNN_convolutional_layer)
 
 image filtering에서 spatial domain filtering은 주로 
 
@@ -48,6 +53,12 @@ Cross correlation은 매우 유사하지만, 두 신호의 유사도를 얻기 �
 * cross-correlation에 대한 보다 자세한 내용은 다음 url을 참고 : [Cross correlation](https://dsaint31.tistory.com/entry/SS-Cross-Correlation)
 
 > 하지만, 이미지 처리에서는 대부분 kernel을 대칭적인 것을 사용하다 보니 cross-correlation과 차이가 없는 경우가 많고, 특히 ML(기계학습)이나 DL(딥러닝)에서 kernel이 이미 상하좌우로 flip하여 입력하면 된다는 가정 하에 convolution의 구현이 실제로는 cross-correlation인 경우가 대다수임.
+> 
+> 참고: [cross correlation](https://dsaint31.tistory.com/382)
+
+---
+
+---
 
 ## Kernel (or Filter, Mask, Window)
 
@@ -61,6 +72,9 @@ DL등에서 convolution layer은 위의 2D kernel이 아닌 3D kernel로 구성�
 - kernel의 width와 height를 통해 local receptive field의 크기가 결정됨. 
 - receptive field란 convolution의 결과로 나오는 feature map의 한 pixel(or voxel)의 값을 만드는데 관여한 input map(or image)의 영역을 의미함.
 
+---
+
+---
 
 ## Convolution 수행 방식
 
@@ -79,6 +93,8 @@ DL등에서 convolution layer은 위의 2D kernel이 아닌 3D kernel로 구성�
 * Kernel은 2 pixels의 `stride`를 사용하여 이동함.
 * 결과 영상의 depth $2$는 kernel (or filter)이 2개 (`W0`, `W1`) 사용됨을 의미함.
 
+---
+
 ### Stride
 
 Convolution을 수행할 때, `stride`는 일종의 sub-sampling factor로 동작함.
@@ -90,14 +106,45 @@ Kernel이 sliding을 통해 적용되어나가는데, `stride`는 어느 간격�
 
 ![](./img/no_padding_strides.gif)
 
-* $5 \times 5$ 입력에 $2\times 2$ stide로 $3\times 3$ kernel로 Convolution.
+* $5 \times 5$ 입력에 $2\times 2$ stride로 $3\times 3$ kernel로 Convolution.
 * 상단의 녹색 matrix가 출력임.
+
+---
+
+### Padding
+
+> convolution의 경우, padding하지 않는다면 출력이 입력보다 작은 크기(폭과 높이)가 되게 된다.
+
+* Convolution을 수행할 때, Padding이 없을 경우 주변부는 결과에 영향력이 줄어들게 된다.
+* Kernel이 제대로 놓여지기 어려운 위치가 주변부이기 때문임.
+* 때문에 Convolution을 하기 전에 영상에 Padding을 수행하는게 일반적임.
+
+---
+
+### 결과 영상 크기
+
+Padding과 Stride, Kernel의 크기에 따른 출력의 크기는 다음과 같음:
+
+$$
+\text{output} = \lfloor \frac{ \text{input}+2\text{padding} - \text{kernel_size} }{\text{stride}} \rfloor +1
+$$
+
+---
+
+---
+## Pillow 에서 convolution 활용
+
+[`PIL.ImageFilter`](https://ds31x.tistory.com/468)
+
+---
 
 ---
 
 ## PyTorch 의 `nn.Conv2D`를 이용한 convolution 활용
 
 [`nn.Conv2d`](https://gist.github.com/dsaint31x/9e6477a8b3d7f37c04ef5abdce4127a2)
+
+---
 
 ---
 
@@ -133,12 +180,12 @@ img = astro_noise.copy() # 아래 예는 poisson noise를 가함.
 print(img.dtype, img.shape)
 
 k_size = 10
-kernel = np.full((k_size,k_size),1./(k_size**2))
-blured = cv2.filter2D(img, -1, kernel)
-print(f'from {img.shape} to {blured.shape}')
+kernel  = np.full((k_size,k_size),1./(k_size**2))
+blurred = cv2.filter2D(img, -1, kernel)
+print(f'from {img.shape} to {blurred.shape}')
 
 plt.figure(figsize=(10,20))
-plt.imshow(np.concatenate((img,blured),axis=1))
+plt.imshow(np.concatenate((img,blurred),axis=1))
 plt.axis('off')
 plt.show()
 ```
@@ -146,6 +193,10 @@ plt.show()
 결과는 다음과 같음.
 
 ![](../../img/etc/box_filtered.png)
+
+---
+
+---
 
 ## References
 
