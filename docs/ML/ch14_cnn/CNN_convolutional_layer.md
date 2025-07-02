@@ -38,7 +38,7 @@ convolution을 수행하여 두 개의 feature map을 얻어냄.
 ![](../img/ch00/dl_hiearchy_rep.png){style="display: block; margin: 0 auto;width:600px"}
 
 * 만약 input의 depth가 10인 경우, kernel의 depth도 10이 되는 게 일반적임. 
-    * depth separated convolution 및 depth-wise convolutoin의 경우는 제외.
+    * depth separated convolution 및 depth-wise convolution의 경우는 제외.
 
 ---
 
@@ -97,7 +97,7 @@ convolution의 경우, padding하지 않는다면 출력이 입력보다 작은 
 참고로,  출력과 입력의 크기 관계는 다음과 같음:
 
  $$
- \text{output} = \lfloor \frac{ \text{input} +2 \text{padding} - \text{kernel_size} }{\text{stride}} \rfloor +1
+\operatorname{output} = \left\lfloor \frac{\operatorname{input} + 2 \times \operatorname{padding} - \operatorname{kernel\_size}}{\operatorname{stride}} \right\rfloor + 1
  $$ 
 
 이를 방지하기 위해, 
