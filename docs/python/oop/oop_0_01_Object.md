@@ -1,3 +1,8 @@
+---
+title: Object 란
+tags: [object]
+---
+
 # Object (객체) 란
 
 - 보거나 만질 수 있는 사물 (공간을 차지하고 있는 물질적인 사물)
@@ -10,6 +15,8 @@
 
 ### 참고: Python에서의 Object란?
 
+![](../img/python_object.jpeg){style="display: block; margin: 0 auto; width="300px"}
+
 다음의 속성을 가진 데이터 덩어리 (a chunk of data)를 가르킴.
 
 1. type: 해당 object가 무엇인지 또는 무엇을 할 수 있는지를 정의함.
@@ -17,7 +24,10 @@
 3. value: 앞서의 type에 의해 object가 가질 수 있는(또는 할당되는) value의 범위가 결정됨. 같은 bytes로 표현되더라도 type이 다르면 다른 value로 해석될 수 있음 (자연수 65와 upper case A의 경우를 예로 들 수 있음.)
 4. reference count: garbage collection등을 위해 해당 object가 얼마나 많은 곳에서 사용되는지를 count 함.
 
+reference count는 PVM의 Garbage Collection 에서 매우 중요한 역할을 수행함:
+
 * 참고자료: [Garbage Collection 이란](https://dsaint31.tistory.com/497)
+
 ---
 
 ## OOP란
