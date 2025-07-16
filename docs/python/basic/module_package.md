@@ -1,4 +1,11 @@
+---
+title: Module and Package
+tags: [module, package, ]
+---
+
 # Modules and Packages
+
+![](../img/python_module_package.png){style="display: block; margin: 0 auto; width:400px"}
 
 ## Module
 
