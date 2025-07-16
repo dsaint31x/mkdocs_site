@@ -1,4 +1,11 @@
-# Package Management : apt, yum, brew 등등
+---
+title: Package Management
+tags: [package, ]
+---
+
+# Package Management : `apt`, `yum`, `brew` 등등
+
+![](./img/package_manager.png){style="display: block; margin: 0 auto; width:400px"}
 
 SW들의 경우 다양한 기존 라이브러리에 의존할 수 밖에 없는데, 해당 라이브러리들도 계속해서 버전이 올라가기 때문에 이들 의존성을 관리해주는 건 쉬운 문제가 아님.
 
@@ -10,7 +17,7 @@ OS 차원에서 특정 SW를 다운로드 받아 설치할 때, 해당 SW의 의
 
 일반적으로 Package Management System (or SW)는 sw를 의존관계에 따라 Package로 묶어서 관리함으로서 SW와 의존관계가 있는 라이브러리들을 같이 설치해주고 관리한다.
 
-문제는 linux 배포판 마다, 그리고 OS마다 이같은 package management SW가 다르며 이들 간에는 호환되지 않는다. 더욱이 여러 프로그램이 서로 다른 버전을 요구하는 충돌도 자주 발생하는 문제다.
+문제는 Linux 배포판 마다, 그리고 OS마다 이같은 package management SW가 다르며 이들 간에는 호환되지 않는다. 더욱이 여러 프로그램이 서로 다른 버전을 요구하는 충돌도 자주 발생하는 문제다.
 
 `apt`, `yum`, `rpm`, `brew` 등이 유명한 package management sw 이며, 이들  중 하나 정도는 익숙하게 사용할 수 있는 게 좋다.
 
