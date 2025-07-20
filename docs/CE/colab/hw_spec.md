@@ -1,11 +1,12 @@
 # Colab이란
 
+![](./img/colab_definition.png){style="display: block; margin: 0 auto; width:500px"}
+
 Google Colaboratory = Google Drive + Jupyter Notebook
 
 - 구글 계정 전용의 가상 머신 지원 – GPU 및 TPU를 제공
 - Google drive 문서와 같이 링크만으로 접근 가능 :공동작업 가능
 
-![](./img/colab_definition.png)
 
 ## Jupyter Notebook
 
