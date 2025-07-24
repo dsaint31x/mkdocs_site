@@ -1,3 +1,8 @@
+---
+title: Colab 
+tags: [colab, jupyter, ipynb, notebook, ipython]
+---
+
 # Colab이란
 
 ![](./img/colab_definition.png){style="display: block; margin: 0 auto; width:500px"}
@@ -5,8 +10,11 @@
 Google Colaboratory = Google Drive + Jupyter Notebook
 
 - 구글 계정 전용의 가상 머신 지원 – GPU 및 TPU를 제공
-- Google drive 문서와 같이 링크만으로 접근 가능 :공동작업 가능
+- Google drive 문서와 같이 링크만으로 접근 가능: 공동작업 가능
 
+---
+
+---
 
 ## Jupyter Notebook
 
@@ -17,12 +25,19 @@ Google Colaboratory = Google Drive + Jupyter Notebook
 - Text block을 이용한 문서화 (Markdown)
 - 다양한 차트 및 그래프를 사용가능함.
 
+---
+
+---
 
 ## Colab 주 사용 언어 : Python
 
 - ML 연구 분야에 있어서 대체하기 어려운 프로그래밍 언어
 - Tensorflow, Pytorch 등의 딥러닝 프레임워크
 - Numpy, Jupyter Notebook, Matplotlib, Pandas, ...
+
+---
+
+---
 
 
 ## 사용가능시간.
@@ -33,6 +48,12 @@ Google Colaboratory = Google Drive + Jupyter Notebook
 - free로 사용하는 경우 2개의 notebook을 동시 사용 가능함.
 
 > 소스코드는 `.ipynd` 확장자로 구글 드라이브에 안전하게 보관됨. 사용할 데이터들도 Google Drive에 저장하고 이를 mount할 경우, 지속성을 가지고 작업가능.
+
+![.ipynb 파일에 대하여](https://ds31x.tistory.com/483)
+
+---
+
+---
 
 ## Sepc. (2023.3)
 
