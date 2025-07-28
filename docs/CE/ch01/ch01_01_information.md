@@ -3,6 +3,8 @@ title: Information
 tags: [Information, Bit, Entropy, Log, Random Variable]
 ---
 
+![](./img/entropy.png){style="display: block; margin: 0 auto; width=400px"}
+
 # Information (정보)
 
 어떠한 목적이나 의도에 맞게 `Data`를 ^^가공 처리한 것^^ 을 가르킨다.  
