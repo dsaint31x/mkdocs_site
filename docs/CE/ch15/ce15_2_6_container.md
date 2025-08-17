@@ -1,8 +1,13 @@
+---
+title: container and vm
+tags: [docker, container, virtual machine, vm, virtualization]
+---
+
 # Container and Virtual Machine
 
 ## Container
 
-`Container`는 On-premise 나 cloud 등의 다양한 환경에서 linux 및 windows application을 패키징하고 실행하기 위한 기술.
+`Container`는 On-premise 나 cloud 등의 다양한 환경에서 linux 및 windows application을 패키징하고 실행하기 위한 기술로 ***docker*** 가 대표적인 예임.
 
 `Container`는 application을 보다 쉽게 개발, 배포 및 관리할 수 있도록, application의 실행 환경을 ***격리된 경량의 환경(lightweight isolated environment)*** 을 제공함.
 
