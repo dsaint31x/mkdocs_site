@@ -1,4 +1,8 @@
-# Introduction
+---
+tags: [AI, ML, DL, Representation, Representative Learning]
+---
+
+# AI, ML and DL.
 
 ## AI 란
 
@@ -140,18 +144,30 @@ ML을 위해 제안된 다양한 기법들이 있으며 대략적으로 나누�
 
 ##  Representative Learning **
 
-입력에 대해 ***요구되는 출력(~expectation)*** 을   
-가능한 범위 내에서 정확하게 산출할 수 있는 ***approximation model*** 을 만들기 위해  
-(Task를 잘 수행하는데 필요한)  
-***유용한 representation (~embedding, feature vector)을 학습데이터를 기반으로 `학습`하여 산출*** 하는 것을 가르킴.
-
+* 정의
+    * 입력 데이터를 **특징 공간(feature space)**으로 변환하는 함수(=representation function)를 학습하는 과정.
+    * 목표는 원래의 raw data를 **작업(task)에 유용한 표현(embedding, feature vector)**으로 변환하는 것.
+* 핵심 포인트
+    * 단순히 "입력"과 "출력(expectation)"을 매핑하는 게 아니라,
+    * 출력을 잘 예측할 수 있는 형태의 중간 표현(representation)을 학습하는 데 중점.
+  
 > Generally speaking,  
 > a good representation is one that  
-> makes a subsequent learning task easier.
+> makes a subsequent learning task easier.  
+> 좋은 representation은 이후의 학습(분류, 회귀, 군집화 등)을 더 쉽게 해 줌.
+
+representation은 자동 학습(auto-learned) 되는 경우가 많으며, 사람이 직접 feature engineering을 하지 않아도 됨.
+
+**관련 기술:**
 
 * Manifold Learning : [manifold에 대한 참고자료](../ch07/manifold.md)
+    * 고차원 데이터가 저차원 매니폴드(manifold) 위에 놓여 있다고 가정하고, 
+    * 이를 저차원 표현으로 추출하는 기법. 
 * Auto-encoder
+    * 입력을 낮은 차원의 latent vector로 압축했다가 복원하는 구조를 통해 유용한 latent representation을 학습 
 * Deep Learning.
+    * Deep Neural Network을 통해 적절한 다단계 비선형 변환을 학습 및 수행.
+    * 저차원 feature에서 점점 추상적이고 task-specific한 representation을 자동 추출.
 
 ---
 
@@ -191,7 +207,7 @@ ML을 위해 제안된 다양한 기법들이 있으며 대략적으로 나누�
 >  
 > 하지만, 위에서 말한 알아서 최적의 representation을 여러 층으로 쌓인 non-linear activation function을 가지는 low layers를 통해 dataset으로부터 직접 얻어낸다는 점이 `DL`이 다른 `ML` 알고리즘과 비교할 수 없는 유용성을 가지게 해준 가장 큰 특징이다.  
 
-즉, 어떤 함수라도 근사할 수 있는 ANN ([UAT참고](http://ds31x.blogspot.com/))에 ***보다 효과적으로 학습되도록 hierarchical representative learning의 기능을 더한 것*** 이 바로 DL이라고 생각해도 크게 틀리지 않다.
+즉, 어떤 함수라도 근사할 수 있는 ANN ([UAT참고](https://ds31x.blogspot.com/2023/08/dl-universal-approximation-theorem-uat.html?view=classic))에 ***보다 효과적으로 학습되도록 hierarchical representative learning의 기능을 더한 것*** 이 바로 DL이라고 생각해도 크게 틀리지 않다.
 
 ---
 
