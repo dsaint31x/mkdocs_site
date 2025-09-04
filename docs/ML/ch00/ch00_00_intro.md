@@ -142,7 +142,7 @@ ML을 위해 제안된 다양한 기법들이 있으며 대략적으로 나누�
 
 ---
 
-##  Representative Learning **
+##  Representation Learning **
 
 * 정의
     * 입력 데이터를 **특징 공간(feature space)**으로 변환하는 함수(=representation function)를 학습하는 과정.
