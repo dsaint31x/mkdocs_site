@@ -134,9 +134,11 @@ ML을 위해 제안된 다양한 기법들이 있으며 대략적으로 나누�
 * ANN ( → Deep Learning)
 * Reinforcement Learning
 
-`Artificial Neural Network (ANN)`이 현재 가장 높은 성능을 보이는 ML기법의 하나인 ***Deep Learning*** 을 가르킨다 (정확히는 많은 layer로 구성된 ANN이 바로 Deep Learning임). 
+`Artificial Neural Network (ANN)`에 현재 가장 높은 성능을 보이는 ML기법의 하나인 ***Deep Learning*** 이 속함:
 
-* 적은 수의 layer로 구성된 ANN을 가르켜 perceptron이라고 부르며 이는 ML에 속함.
+* 매우 많은 layer로 구성된 구조의 ANN이 특별히 Deep Learning 이라고 부름. 
+* 입력 layer와 출력 layer를 제외한 hidden layer 의 수가 1개 이상인 경우에는 multi-layer perceptron (MLP)이라고 부름.
+* 입력 layer와 출력 layer로만 구성되어 hidden layer가 없는 경우, single-layer perceptron (SLP)임.
 
 ---
 
