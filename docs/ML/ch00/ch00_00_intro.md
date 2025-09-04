@@ -140,6 +140,8 @@ ML을 위해 제안된 다양한 기법들이 있으며 대략적으로 나누�
 * 입력 layer와 출력 layer를 제외한 hidden layer 의 수가 1개 이상인 경우에는 multi-layer perceptron (MLP)이라고 부름.
 * 입력 layer와 출력 layer로만 구성되어 hidden layer가 없는 경우, single-layer perceptron (SLP)임.
 
+[참고: perceptron](../ch08/dev_hist_ann.md#perceptron-의-등장)
+
 ---
 
 ---
