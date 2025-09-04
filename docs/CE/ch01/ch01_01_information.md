@@ -3,7 +3,6 @@ title: Information
 tags: [Information, Bit, Entropy, Log, Random Variable]
 ---
 
-![](./img/entropy.png){style="display: block; margin: 0 auto; width=400px"}
 
 # Information (정보)
 
@@ -11,7 +10,11 @@ tags: [Information, Bit, Entropy, Log, Random Variable]
 
 > 간단하게는 `의미있는 Data`라고 생각할 수 있다.  
   
-하지만 이 설명은 일종의 정성적인 설명이고, `Data`와의 비교로 설명한 것임. 
+하지만 이 설명은 일종의 정성적인 설명임: 단순히 `Data`와 차이를 설명한 것임. 
+
+다음과 같이 정량적으로 정보의 "양" (평균정보량, entropy)을 산출할 수도 있음.
+
+![](./img/entropy.png){style="display: block; margin: 0 auto; width=400px"}
 
 ---
 
