@@ -43,21 +43,21 @@ ML 또는 Data Mining으로 찾아낸 데이터들의 특성 또는 분포를 2�
 </figure>
 
 `Manifold Learning`
-: 학습 데이터들에 내재된 ^^manifold를 모델링(or extraction)^^ 하는 task를 가르킴.  
-Dimensionality Reduction과 Representation Learning들과 매우 밀접하게 연관되어 있다. 관점에 따라서는 `Dimensionality Reduction` 에 속하는 세부 분야라고도 볼 수 있다. 
+: 학습 데이터들에 내재된 ^^manifold를 모델링(or extraction)^^ 하는 task를 가르킴: [t-SNE](../ch07/tSNE.md) 가 대표적인 [Manifold Learning](../ch07/manifold.md)임. 
+Dimensionality Reduction과 [Representation Learning](./ch00_00_intro.md#representation-learning-)들과 매우 밀접하게 연관되어 있다. 관점에 따라서는 `Dimensionality Reduction` 에 속하는 세부 분야라고도 볼 수 있다. 
 
 ## 대표적인 알고리즘들
 
 * [k-Means, k-Medoids](https://dsaint31.me/mkdocs_site/ML/ch07/clustering/#k-means)
 * [Affinity Propagation Clustering](https://dsaint31.me/mkdocs_site/ML/ch07/clustering/#affinity-propagation-clustering)
 * [Density-Based Spatial Clustering of Applications with Noise (DBSCAN)](https://dsaint31.me/mkdocs_site/ML/ch07/clustering/#density-based-spatial-clustering-of-applications-with-noise-dbscan)
-* Hierarchical Cluster Analysis (HCA)
+* [Hierarchical Clustering](../ch07/clustering.md#hierarchical-clustering)
 * One-class SVM
 * Isolation Forest
 * [Principal Component Analysis (PCA)](../ch06/ml_pca.md)
 * Kernel PCA
 * Locally Linear Embedding (LLE)
-* t-Distributed Stochastic Neighbor Embedding (t-SNE)
+* [t-Distributed Stochastic Neighbor Embedding (t-SNE)](../ch07/tSNE.md)
 * Apriori (A Priori, Association Rule Learning)
 * ECLAT (Equivalence Class Clustering and Bottom-Up, Association Rule Learning)
 

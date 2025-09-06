@@ -46,10 +46,10 @@ AI는 매우 다양한 분야의 학문과 연계됨.
 Stuart Russell 및 Peter Norvig가 기재한 AI 연구의 선도적인 교과서 [Artificial Intelligence: A Modern Approach, 4th US ed.](http://aima.cs.berkeley.edu/)에서 제시한 
 AI가 ***기존의 컴퓨터 시스템과 구분되는  4가지 잠재적 목표*** (or 정의)는 다음과 같다(`합리성` 과 `사고 대 행동`의 기준으로 분류).
 
-* 인간처럼 사고(생각)하는 시스템
-* ***인간처럼 행동하는 시스템***
-* 합리적으로 사고(생각)하는 시스템
-* ***합리적으로 행동하는 시스템***
+* 인간처럼(human-like) 사고(생각, thinking)하는 시스템
+* ***인간처럼(human-like) 행동(acting)하는 시스템*** : Turing-test가 추구!
+* 합리적(rationally)으로 사고(생각, thinking)하는 시스템
+* ***합리적(rationally)으로 행동하는(acting) 시스템*** : 이상적 목표!
 
 현재 어떤 AI기술도 General AI(인간처럼 사고/행동)는 구현치 못했음. 하지만, Deep Learning을 통해 Computer Vision분야 등에서는 인간 이상의 성과를 보이는 Narrow AI (특정 작업에서 인간처럼 혹은 인간 이상으로 사고/행동)가 구현되기 시작했다. Narrow AI의 대표적인 분야는 다음과 같음.
 
@@ -194,7 +194,7 @@ representation은 자동 학습(auto-learned) 되는 경우가 많으며, 사람
 > 
 > 딥러닝은 세계를 중첩된 개념의 계층 구조로 표현하는 방법을 학습하여 각 개념을 더 단순한 개념과 관련하여 정의하고 더 추상적인 표현은 덜 추상적인 개념의 관점에서 계산함으로써 뛰어난 성능과 유연성을 달성하는 특별한 종류의 머신 러닝입니다.
 
-![http://www.cs.utoronto.ca/~rgrosse/cacm2011-cdbn.pdf](../img/ch00/dl_hiearchy_rep.png)
+![http://www.cs.utoronto.ca/~rgrosse/cacm2011-cdbn.pdf](../img/ch00/dl_hiearchy_rep.png){style="display: block; margin:0 auto; width=400"}
 
 * `DL`은 데이터로부터, 스스로 계층적인 representation을 추출해내는 능력을 가짐.
     * 이를 달리 말하면, DL은 non-linear dataset의 input vector들을 task에 맞추어진 linear separability를 가진 feature vector들로 transform해주는 일종의 function을 만들어 낸다. (+ dataset으로부터 알아서...)
@@ -205,7 +205,7 @@ representation은 자동 학습(auto-learned) 되는 경우가 많으며, 사람
 > 실제로 
 > 
 > * logistic regression과 동일한 동작을 ANN (정확히는 `SLP`+sigmoid activation)으로 구현 가능하고, 
-> * SVM은 hinge loss function과 Frobenius norm regularization을 사용하는 linear activation의 `SLP`라고 봐도 무방할 정도로 
+> * SVM은 hinge loss function과 [Frobenius norm](https://bme808.blogspot.com/2022/10/norm.html) regularization을 사용하는 linear activation의 `SLP`라고 봐도 무방할 정도로 
 > 
 > 다른 ML 알고리즘들과 ANN은 많은 부분에서 공통점을 가지고 있다. 즉, DL도 ML의 한 분야에 불과하다.
 >  
