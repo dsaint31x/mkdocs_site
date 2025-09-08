@@ -1,6 +1,7 @@
 ---
 title: Colab 
 tags: [colab, jupyter, ipynb, notebook, ipython]
+og_image: "img/colab_definition.png"
 ---
 
 # Colab이란
