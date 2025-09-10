@@ -12,7 +12,7 @@ Input data stream으로부터 점진적 학습(incremental learning) 가능한 �
 * ^^지속적으로 새 데이터를 공급^^ 받고 (launching 이후에도 지속적으로 training에 사용가능한 새 데이터가 공급됨), 
 * 해당 데이터들이 시기에 따라 ^^변화가 심한 경우^^ 에 사용되는 Learning이다.
 
-![](../img/ch00/online_learning.png){width="400"}
+![](../img/ch00/online_learning.png){style="display: block; margin: auto 0; width=400"}
 
 다량의 Data를 한번에 학습(batch learning)하기 보다는 mini-batch등의 작은 묶음으로 나누어서 model을 학습함.
 
@@ -27,3 +27,6 @@ Input data stream으로부터 점진적 학습(incremental learning) 가능하�
 > 일반적으로 batch learning의 경우엔 대부분 launching 전에 이루어지는 offline training이다.  
 > 이를 고려하면 online learning이라는 용어가 좀 더 쉽게 이해가 된다.  
 > 하지만, incremental learning이라는 용어의 동의어로 기억하는게 보다 나은 선택으로 보인다. 
+
+ 참고로, Online Learning이 아예 안되는 모델도 있음.  
+ 대표적인 예가 Decision Tree과 이에 기반한 Random Forest, Gradient Boosting 등과 Kernel SVM 임. 
