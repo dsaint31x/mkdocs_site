@@ -6,7 +6,7 @@
 * Action을 취한 후  
 * Reward를 받으면서  
 
-최상의 accumulated reward를 얻도록 action을 결정짓는 ***`Policy`을*** 학습하는 것 을 가르킴.
+최상의 accumulated reward를 얻도록 action을 결정짓는 ***`Policy`을*** 학습하는 것 을 가리킴.
 
 `Policy` 
 

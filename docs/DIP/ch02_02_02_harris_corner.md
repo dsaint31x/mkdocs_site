@@ -94,7 +94,7 @@ where
     * 수식으로는 다음이 성립: $\frac{\partial I}{\partial x}= \nabla_x I = I_x$
     * 해당 축에 대한 difference (차분)을 통해 얻어짐.
     * difference를 수행하기 전에 Gaussian Blurring을 하는 경우가 많고,
-    * 이 때의 $\sigma_d$를 가르켜 difference scale이라고 부름.
+    * 이 때의 $\sigma_d$를 가리켜 difference scale이라고 부름.
     * 미분을 차분으로 근사관련해서 다음을 참고: [미분과 차분](https://dsaint31.tistory.com/540) 
 * $W\circledast$ 는 window 내의 대응하는 weights 를 이용하는 weighted sum임.
     * Uniform인 경우가 가장 단순하지만, 성능은 좋지 못함 (Not Rotation Invariant).
@@ -116,7 +116,7 @@ $W$를 어떤 것을 사용하는냐에 따라 성능의 차이가 있음.
 
 여기서, quadratic form의 
 
-* 가운데 matrix $H$를 가르켜 Structure Tensor라고 부름.
+* 가운데 matrix $H$를 가리켜 Structure Tensor라고 부름.
     * PCA등의 Covariance Matrix 와 비슷.
     * 뒤에 다룰 Hessian과도 비슷함.  
 * $H$는 항상 symmetric이므로 ***eigen decomposition이 가능 (정확히는 orthogonal diagonalization***) 함.
@@ -167,7 +167,7 @@ where
 
 이들 중 
 
-* eigen vector 는 각각 $^{(1)}$curvature가 최대인 방향과 $^{(2)}$해당 방향에 직교한 방향을 가르키며, 
+* eigen vector 는 각각 $^{(1)}$curvature가 최대인 방향과 $^{(2)}$해당 방향에 직교한 방향을 가리키며, 
 * eigen value 는 이들 축(axis)에서 SSD의 curvature(곡률) 크기에 비례함.
 
 다음은 이를 잘 보여줌.

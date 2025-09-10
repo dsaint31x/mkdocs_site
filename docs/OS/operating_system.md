@@ -146,7 +146,7 @@ RAM에 여러 개의 Process의 영역이 할당된다. address를 지정하는 
 
 > **Task란** : 매우 중요함!
 >
-> OS에서 실행되는 Program의 instance를 가르키는 ***Process*** 와 비교할 때,  
+> OS에서 실행되는 Program의 instance를 가리키는 ***Process*** 와 비교할 때,  
 > <u>***Task*** 는 보다 일반적인 용어</u>임.  
 >
 > ***Task는 특정 목표를 달성하기 위해 수행되는 작업이나 활동을 의미*** 하며,  

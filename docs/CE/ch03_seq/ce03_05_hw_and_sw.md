@@ -31,7 +31,7 @@ S/W는 뭐든지 수행가능한 CPU (or MPU)에서 동작하거나 아니면 �
 
 * 참고: [ROM 에 대한 참고자료](./ce03_02_3_rom.md)
 
-이는 ***ROM에 저장된 S/W*** 를 가르키던 **firmware의 정의** 를 확장시키는 결과로 이어졌다. 
+이는 ***ROM에 저장된 S/W*** 를 가리키던 **firmware의 정의** 를 확장시키는 결과로 이어졌다. 
 
 `Firmware`
 : 원래 firmware는 ROM에 저장된 software를 의미하였다.  

@@ -38,7 +38,7 @@ class Warrior (Human): # is-a relationship
 
 ## `has-a` (= Embedded 이라고도 불림)
 
-**보통 object의 member 혹은 attribute로 구성되는 관계** 를 가르킨다. 
+**보통 object의 member 혹은 attribute로 구성되는 관계** 를 가리킨다. 
 
 * 한 object가 다른 object의 attribute로 속하게 되어 생성되는 관계임.
 *  Composition Relation 과 Aggregation Relation 으로 나뉨.

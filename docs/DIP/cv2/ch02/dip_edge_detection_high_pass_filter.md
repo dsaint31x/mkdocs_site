@@ -2,7 +2,7 @@
 
 ## High Pass Filter
 
-image의 spatial frequency domain에서 high frequency 영역을 통과시키는 필터를 가르킴.
+image의 spatial frequency domain에서 high frequency 영역을 통과시키는 필터를 가리킴.
 
 > Fourier transform을 이용하여 구현할 수도 있으나, spatial domain에서 convolution 연산을 통해서도 구현 가능함.
 
@@ -25,7 +25,7 @@ image의 spatial frequency domain에서 high frequency 영역을 통과시키는
 
 High pass filter 또는 gradient filter등을 이용함.
 
-- **Filter** 등을 통해 image의 주요 feature 중 하나인 **edge 검출** 하는 것을 가르킴.
+- **Filter** 등을 통해 image의 주요 feature 중 하나인 **edge 검출** 하는 것을 가리킴.
 - edge detection은 background와 foreground 를 분리(segmentation)하기 위해 필요한 가장 기본적 작업.
 - object recognization 에서도 기본이 되는 작업.
 - 즉, image recognization, image segmentation 의 기본이 됨.

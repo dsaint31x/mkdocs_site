@@ -7,7 +7,7 @@ Command Prompt는
 * PowerShell과 함께 Windows에서 사용되는 CLI(Command Line Interface)임.
 * Windows의 기본적인 명령어를 실행하고, 간단한 script (`.bat` 파일)를 실행하는데 사용됨.
 * Windows의 가장 기본적인 Command Line Interpreter(CLI)이며, PowerShell에 비해 제한된 기능을 가짐.
-    * `CLI` 는 Command Line Interface 또는 Command Line Interpreter를 가르킴.
+    * `CLI` 는 Command Line Interface 또는 Command Line Interpreter를 가리킴.
 
 ---
 

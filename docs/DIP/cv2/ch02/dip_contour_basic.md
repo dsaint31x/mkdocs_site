@@ -37,7 +37,7 @@
 Binary image에 한정할 경우, contours는 
 
 * 같은 intensity를 가지는 한 object의 
-* shape에 대한 boundary를 가르킨다.
+* shape에 대한 boundary를 가리킨다.
 
 ---
 
@@ -76,10 +76,10 @@ contours, hierarchy = cv2.findContours(
     - 각 element는 NumPy의 ndarray 객체임 (=Numpy array of (x,y) coordinates of boundary points of the object).
 - **hierarchy**(optional): contour 의 계층 정보 : Contour Hierarchy로 지칭됨. **Output**
     - 각 contour들은 다음 4개의 element로 구성된 array를 가짐(계층구조 파악을 위해)
-        - `Next` : 같은 level의 다음 contour를 가르킴.
-        - `Prev` : 같은 level의 그 전 contour를 가르킴.
-        - `FirstChild` : 아래 level(현 contour에 포함된 contour들)에서의 첫번째 contourn를 가르킴.
-        - `Parent` : 위 level(현 contour를 포함하고 있는 contour)를 가르킴.
+        - `Next` : 같은 level의 다음 contour를 가리킴.
+        - `Prev` : 같은 level의 그 전 contour를 가리킴.
+        - `FirstChild` : 아래 level(현 contour에 포함된 contour들)에서의 첫번째 contourn를 가리킴.
+        - `Parent` : 위 level(현 contour를 포함하고 있는 contour)를 가리킴.
     - `-1`  : 각 index들이 해당하는 경우를 가지지 않는 경우 `-1`을 가짐. (최상위 contour의 경우 , `Parent=-1` 가 됨.)
 - **offset**(optional): ROI 등으로 인해 이동한 컨투어 좌표의 오프셋. **Output**
 
@@ -137,7 +137,7 @@ contours, hierarchy = cv.findContours(
 
 앞서 애기했지만, OpenCV에서 Binary image에 한정하여 contours를 정의한다. 
 
-OpenCV에서 contours는 같은 intensity를 가지는 한 object의 shape에 대한 boundary를 가르키며, contour approximation method에 의해 boundary를 이루는 pixel들의 coordinate가 결정된다.
+OpenCV에서 contours는 같은 intensity를 가지는 한 object의 shape에 대한 boundary를 가리키며, contour approximation method에 의해 boundary를 이루는 pixel들의 coordinate가 결정된다.
 
 - `cv2.CHAIN_APPROX_NONE`:
     - contour를 구성하는 모든 pixel의 좌표 (x,y)들을 반환한다.
@@ -253,8 +253,8 @@ array([[[ 3, -1,  1, -1],
 ```
 
 - contour-0는 아래에 위치하고 가장 안쪽의 흰색 사각형 (contour-1과 contour-2로 표시된 hole을 2개 가짐)이며, hierarchy list에서 가장 먼저 위치한다.
-    - `Next`가 contour-3를 가르키고 있으며, `Prev`는 없으므로 첫번째 요소임.
-    - hierarchy-1에 속하므로 자식이 있을 수 있고, 실제 포함한 hole들중 하나인 contour-1을 `First Child`에서 가르키고 있다.
+    - `Next`가 contour-3를 가리키고 있으며, `Prev`는 없으므로 첫번째 요소임.
+    - hierarchy-1에 속하므로 자식이 있을 수 있고, 실제 포함한 hole들중 하나인 contour-1을 `First Child`에서 가리키고 있다.
     - `cv2.RETR_CCOMP`는 2개 level로 hierarchy를 운영하므로, contour-0는 `Parent=-1`이다. 즉, 내부의 hole등을 쉽게 파악하기 위한 방식으로 object간의 포함관계를 고려하지 않는다.
 - contour-7, contour-8과 같이 균일한 intensity로 구성된 경우는 hierarchy-1에 속하면서 자식이 없다.
 - contour-5, contour-6과 같이 일종의 boundary인 경우, 안쪽 경계에 해당하는 contour들을 하나의 child를 가진다. (자식이 하나임)

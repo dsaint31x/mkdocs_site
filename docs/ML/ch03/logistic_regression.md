@@ -233,7 +233,7 @@ $$\begin{aligned}\boldsymbol{\theta}&=\underset{\boldsymbol{\theta}}{\text{argma
 * 더해나가는게($\sum$) 편하므로 
 * $\log$를 취해주는 경우가 일반적임.
 
-이같은 방식을 가르켜 ***Negative Log Likelihood*** 라고 부름.
+이같은 방식을 가리켜 ***Negative Log Likelihood*** 라고 부름.
 
 * Negative : loss function으로 삼아 최소화 문제로 변경.
 * Log : $\prod$ 대신 $\sum$을 사용하기 위해.

@@ -37,7 +37,7 @@ George Boole(1815-1864, 영국)이 고안한 logic을 다루는 algebra로
 수학적 구조(mathematical structures)와 관계(relationships)를  
 연구하고 다양한 문제를 해결하는 학문.
 
-> 때문에 `algebra`는 ^^임의의 집합(e.g., vector set)^^ 과 해당 집합에 대한 ^^연산(e.g., vector sum, scalar multiple)을 정의^^ 하고 이를 묶은 것을 가르키기도 함. 이같은 대수적 구조의 예로 `linear algebra`의 vector space를 들 수 있음.
+> 때문에 `algebra`는 ^^임의의 집합(e.g., vector set)^^ 과 해당 집합에 대한 ^^연산(e.g., vector sum, scalar multiple)을 정의^^ 하고 이를 묶은 것을 가리키기도 함. 이같은 대수적 구조의 예로 `linear algebra`의 vector space를 들 수 있음.
 
 ---
 

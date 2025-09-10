@@ -24,7 +24,7 @@ ML에서 `model`이라는 용어는 다음 중 하나를 지칭하는데 사용�
 2. **fully specified model architecture** (e.g., Linear Regression with one input and one output)
 3. **the final trained model** : 학습 (or training)을 통해 얻은 결과물에 해당하며, prediction등의 inference에 사용되는 weight과 bias등이 설정된 결과물을 의미함. (e.g., Linear Regression with one input and one output, using $\theta_0=4.85$ and $\theta_1=4.91 \times 10^{-5}$).
 
-`model`이 가르키는 대상이 위와 같이 다양하기 때문에 
+`model`이 가리키는 대상이 위와 같이 다양하기 때문에 
 **Model selection** 이라는 용어도 다음과 같은 것들을 모두 포함하여 지칭한다. 
 
 - *the type of model* 을 고르는 것. (`CNN`으로 할지 `SVM`으로 한지 등등.)

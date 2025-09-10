@@ -90,15 +90,15 @@ format을 통해, os에서 사용가능한 volume이 됨.
 
 ### 참고: Scheme
 
-Scheme는 특정 목적을 달성하기 위한 조직적인 방법이나 체계 등을 가르킴. 컴퓨터 공학에서는 종종 
+Scheme는 특정 목적을 달성하기 위한 조직적인 방법이나 체계 등을 가리킴. 컴퓨터 공학에서는 종종 
 
 * 데이터의 구성
 * 프로토콜
 * 형식 또는 방법론
 
-을 가르키거나 설명하는데 사용됨.
+을 가리키거나 설명하는데 사용됨.
 
-Partition Scheme라고 하면, HDD나 storage를 조직화하는 방법으로 이는 컴퓨터에서 데이터를 저장하고 관리하기 위해 사용되는 구조적인 체계를 가르킴.
+Partition Scheme라고 하면, HDD나 storage를 조직화하는 방법으로 이는 컴퓨터에서 데이터를 저장하고 관리하기 위해 사용되는 구조적인 체계를 가리킴.
 
 **Primary Partition**
 
@@ -133,7 +133,7 @@ Partition Scheme라고 하면, HDD나 storage를 조직화하는 방법으로 �
 > * 하나 이상의 partition에 파일 시스템이 포맷되고 
 > * os에서 데이터를 접근할 수 있도록 만들어진 논리적인 저장 단위임.
 
-쉽게 말해서, ***Volume은 partition에 format을 통해 file system이 구성된 것을 가르킴.***
+쉽게 말해서, ***Volume은 partition에 format을 통해 file system이 구성된 것을 가리킴.***
 
 - 일반적으로 volume은 **드라이브 문자를 지정** 받아 ***Drive*** 가 됨.
 - Primary Disk 에선 하나의 partition이 하나의 volume이 되는게 일반적임.

@@ -58,7 +58,7 @@ Programming에서의 function은 SW (or program)에서 특정 동작을 수행�
 
 ### `built-in function`
 
-Programming language등이 기본적으로 제공하는 함수들을 가르킴.  
+Programming language등이 기본적으로 제공하는 함수들을 가리킴.  
 파일 입출력 등과 같이 많은 경우에 공통적으로 필요한 다양한 함수들이 built-in function으로 제공됨.
 
 Programming을 공부한다는 것은 상당 부분이 built-in function들을 올바르게 사용하는 것을 익히는 것이기도 함. (영어 공부에서 단어나 숙어 공부에 해당?)
@@ -135,7 +135,7 @@ float a = cube(3);
 
 ### Function call과 stack.
 
-프로그램이 수행될 때, function call이 이루어지면 function이 저장되어 있는 memory의 address로 PC가 가르킴에 따라 수행되는 주소의 분기(branching)가 이루어짐.
+프로그램이 수행될 때, function call이 이루어지면 function이 저장되어 있는 memory의 address로 PC가 가리킴에 따라 수행되는 주소의 분기(branching)가 이루어짐.
 
 function의 수행이 끝나면 function call이 이루어진 다음 주소로 돌아와야 하기 때문에 해당 address가 저장되어야 한다. 이 돌아올 address 및 function에서 사용할 local variables( parameters 포함)은 stack에 저장되게 된다.
 

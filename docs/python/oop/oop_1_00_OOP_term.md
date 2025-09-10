@@ -20,7 +20,7 @@ OOP 만의 개념이 아니며, 프로그래밍을 넘어서 공학적 문제 �
 OOP에선 Hierarchy (or inheritance) 를 통해 이루어진다.
 
 `Encapsulation`  \*\*\*
-: Object에서 ^^중요한 데이터와 세부적인 구현 방법에 대한 사항들을  capsule 로 싸는 형태^^ 로 취함으로 외부에서 직접 접근을 막고, 대신 외부에서 이들을 조작할 수 있는 방법인 interface만을 공개하는 기법을 가르킴.
+: Object에서 ^^중요한 데이터와 세부적인 구현 방법에 대한 사항들을  capsule 로 싸는 형태^^ 로 취함으로 외부에서 직접 접근을 막고, 대신 외부에서 이들을 조작할 수 있는 방법인 interface만을 공개하는 기법을 가리킴.
 
 `Inheritance` \*\*\*
 : OOP가 ***modularity (정확히는 Hierarchy)를 달성*** 하기 위한 기법.

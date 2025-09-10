@@ -77,7 +77,7 @@ print(f"c's type:{type(c)}")         # c's type:<class 'int'>
 print(f"int's type:{type(int)}")     # int's type:<class 'type'>
 ```
 
-> `literal`은 ^^데이터 값 자체를 나타내는 표현^^ 을 가르킨다.  
+> `literal`은 ^^데이터 값 자체를 나타내는 표현^^ 을 가리킨다.  
 > 
 > * [literal에 대한 자세한 참고 자료](https://dsaint31.tistory.com/462))
 

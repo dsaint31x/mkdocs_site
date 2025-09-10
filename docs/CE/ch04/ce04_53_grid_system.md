@@ -7,7 +7,7 @@ Grid Computing System 은 자원들은 독립적으로 관리되며, <u>서로 �
 * 다른 위치에 다른 OS가 설치된 독립적인 이기종 컴퓨터들과
 * 다양한 자원들이
 * ***WAN (Wide Area Network)을 통해 연결*** 되어 
-* 하나의 통합된 컴퓨팅 환경을 만드는 것을 가르킴.
+* 하나의 통합된 컴퓨팅 환경을 만드는 것을 가리킴.
 
 참고: [LAN vs. WAN](../ch06/ce06_2_01_history.md#lan-vs-wan)
 

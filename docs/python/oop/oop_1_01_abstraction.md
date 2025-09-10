@@ -44,10 +44,10 @@ Abstraction의 관점에서 그 결과물인 `model` 이란 세상의 실제적�
 ## Class vs. Instance
 
 - Class가 *실체화* 된 것. ← 프로그래밍에서 실체화란 메모리를 점유하고 사용가능해진 상태를 의미.
-- OOP에서는 **메모리에 하나의 변수(←class를 가르키는)로 생성된 것** 을 가르킴.
+- OOP에서는 **메모리에 하나의 변수(←class를 가리키는)로 생성된 것** 을 가리킴.
     - Class는 일종의 Type(타입) / Instance는 해당 Type의 변수
     - 한 Class에 대해 여러 Instance가 존재할 수 있음.
-- **좁은 뜻의 Object** 의 경우, 이 instance를 가르키기도 함.
+- **좁은 뜻의 Object** 의 경우, 이 instance를 가리키기도 함.
     - Object = Instance of Class
 
 > Instance는 Class가 실체(instance) 로 만들어진 것.  
@@ -68,7 +68,7 @@ Abstraction의 관점에서 그 결과물인 `model` 이란 세상의 실제적�
     * Operation 
 * 로 만들어내는 것임.
 
-일반적으로 이 Data와 Operation을 가르키는 용어는 다음과 같음.
+일반적으로 이 Data와 Operation을 가리키는 용어는 다음과 같음.
 
 **attribute**  
 : = data = **member variable** = state = field
@@ -83,14 +83,14 @@ Abstraction의 관점에서 그 결과물인 `model` 이란 세상의 실제적�
 
 ## Summary
 
-OOP에서 Abstraction은 대상이 되는 **Object 의 feature(특징)** 을 Data와 Operation 로 만들어내는 것을 가르킨다.
+OOP에서 Abstraction은 대상이 되는 **Object 의 feature(특징)** 을 Data와 Operation 로 만들어내는 것을 가리킨다.
 
 “머리카락”이 대상이 되는 Object
 
 * Data : Attribute = 머리카락 색
 * Operation : Behavior, Method = 자르기
 
-OOP에서 넓은 범위의 Object는 모든 것(현실 세계와 프로그래밍 세계 포함)을 가르키며, **Object의 특징** 은 abstraction을 통해 Class로 기술되며,Class는 Attribute와 Method로 구성되게 된다.
+OOP에서 넓은 범위의 Object는 모든 것(현실 세계와 프로그래밍 세계 포함)을 가리키며, **Object의 특징** 은 abstraction을 통해 Class로 기술되며,Class는 Attribute와 Method로 구성되게 된다.
 
 ---
 

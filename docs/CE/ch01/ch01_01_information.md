@@ -6,7 +6,7 @@ tags: [Information, Bit, Entropy, Log, Random Variable]
 
 # Information (정보)
 
-어떠한 목적이나 의도에 맞게 `Data`를 ^^가공 처리한 것^^ 을 가르킨다.  
+어떠한 목적이나 의도에 맞게 `Data`를 ^^가공 처리한 것^^ 을 가리킨다.  
 
 > 간단하게는 `의미있는 Data`라고 생각할 수 있다.  
   

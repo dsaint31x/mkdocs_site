@@ -12,7 +12,7 @@ tags: [module, package, ]
 쉽게 생각하면 **Python code 로 구성된 file** `.py`자체를 가리킨다.  
 
 * Module은 import될 때 각각 고유의 namespace를 가지므로, Module은 일종의 Namespace이기도 함.
-* Python에서 module은 확장자가 `.py`인 파일을 가르킴 ( python code를 내용으로 가지는 file ).
+* Python에서 module은 확장자가 `.py`인 파일을 가리킴 ( python code를 내용으로 가지는 file ).
 * **모든 `.py` file들은 python에서 module로서 사용가능함.**
 
 ***Python에서 Module은 code의 재사용을 위해 사용*** 되며,  
@@ -26,7 +26,7 @@ tags: [module, package, ]
 
 code의 재사용을 위해 
 Python은 이전에 구현했거나 다른 이가 구현한 `.py`파일의 이름으로  
-해당 module (`.py`를 가르킴)을  
+해당 module (`.py`를 가리킴)을  
 `import` statement를 사용하여 import한다.
 
 * `ds_cal.py` 라는 file에 있는 code를 사용하고 싶은 경우, `ds_cal` module을 import한다.
@@ -113,7 +113,7 @@ if __name__ == '__main__':
 
 `ds_cal.ds_addition(a, b)`에서 `.` (dot)은 일종의 ***operator*** 임.
 
-* `.`의 왼쪽에 있는 variable이 가르키는 object를 찾고,
+* `.`의 왼쪽에 있는 variable이 가리키는 object를 찾고,
 * 해당 object에서 `.`의 오른쪽에 있는 name에 해당하는 object(=attribute)를 찾아내어 접근함.
 
 위의 경우, `ds_cal`이라는 variable에 할당된 object에서 `ds_addition`이라는 `function` attribute를 call하게 됨.
@@ -192,7 +192,7 @@ print(math.pi)
 `pi`는 $\pi$ 의 값을 가져야하는데  
 이같은 reassignment는 많은 문제의 원인이 될 수 있다. 
 
-> 실제 module에 해당하는 file에서 수정이 일어나진 않고, 단순히 memory상에서 `math`의 namespace의 `pi`라는 이름이 가르키는 object가 바뀐 것이므로 해당 Python interpreter의 session에서만 `72`라는 값을 의미하게 되고, 다른 `math` 모듈을 사용하는 session에서는 문제가 없다.
+> 실제 module에 해당하는 file에서 수정이 일어나진 않고, 단순히 memory상에서 `math`의 namespace의 `pi`라는 이름이 가리키는 object가 바뀐 것이므로 해당 Python interpreter의 session에서만 `72`라는 값을 의미하게 되고, 다른 `math` 모듈을 사용하는 session에서는 문제가 없다.
 
 Python에서는 이처럼 고정되어야 하는 상수를 `freeze`할 수가 없다는 단점을 가지고 있음.
 
@@ -215,7 +215,7 @@ import ds_cal as dc
 * `import ds_cal`로 import한 경우 `ds_cal.ds_addition(a, b)`.
 * `import ds_cal as dc`로 Alias를 `dc`로 지정한 경우 `dc.ds_addition(a, b)` 로 접근 가능함.
 
-> Python 에서 가장 유명한 alias 중 하나는 NumPy 를 가르키는 `np`임.  
+> Python 에서 가장 유명한 alias 중 하나는 NumPy 를 가리키는 `np`임.  
 > NumPy를 사용하는 경우, `import numpy as np` 가 가장 많이 사용됨.  
 > 다른 하나는 `matplotlib.pyplot`의 Alias인 `plt`임.  
 > `pyplot`을 사용하는 경우, `import matplotlib.pyplot as plt` 가 가장 많이 애용됨. 
@@ -399,7 +399,7 @@ if __name__ == '__main__':
 
 ## Summary
 
-* Module은 **하나의 `.py`파일** 로 묶여있는 `variable`, `function` 그리고 `class`등의 object의 Collection을 가르킴:
+* Module은 **하나의 `.py`파일** 로 묶여있는 `variable`, `function` 그리고 `class`등의 object의 Collection을 가리킴:
     *  **흔히 `.py` 파일 하나를 module이라고 부른다.**
     * Module은 고유의 Namespace를 가지며, 관련있는 object들을 묶어서 재사용이 가능하도록 해줌.
 * Package는 **관련이 있는 module들을 가지고 있는 subdirectory** 에 해당:

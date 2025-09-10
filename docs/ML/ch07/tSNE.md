@@ -110,7 +110,7 @@ $Y$에서의 similarity $P$를 구하는데 t-distribution 이 사용된 이유�
 이는 t-distribution을 변환된 $Y$에서의 similarity에서 사용함으로서 low dimensional space로 Mapping되면서 high similarity의 pair들은 서로 서로 가까워지고 low similarity의 경우는 멀어지게 됨을 의미한다.
 
 > **참고**  
-> high similarity인 경우와 low similarity인 경우에서 Pair를 이루는 sample간의 거리의 차이가 많이날수록 좋다. 이 차이가 크지 않을 경우를 가르켜 crowding problem이라고 부름. 
+> high similarity인 경우와 low similarity인 경우에서 Pair를 이루는 sample간의 거리의 차이가 많이날수록 좋다. 이 차이가 크지 않을 경우를 가리켜 crowding problem이라고 부름. 
 
 ## Example
 
@@ -128,7 +128,7 @@ $Y$에서의 similarity $P$를 구하는데 t-distribution 이 사용된 이유�
 * `learning rate` : 10~1000 정도에서 적절한 값을 찾아야 한다. 너무 크면 학습이 제대로 안되고, 너무 작으면 iteration수가 커야 제대로된 결과를 얻을 수 있다. 기본값은 200.0 이다.
 * `n_iter` : 최대 iteration 수로 `learning rate`에 따라 적절한 값이 바뀐다. 기본으로 1000이 주어져 있으며 250이 최소값이다.
 * `n_iter_without_progress` : 학습이 converge했는지를 판단하는 기준. 기본값은 300으로, 이는 300 iteration 동안 loss 가 거의 변화가 없을 경우 학습을 중지한다는 애기임. 앞서 애기한 250 iteration이후 적용된다. scikit-learn의 tSNE는 50 단위로 체크를 하기 때문에 이 parameter에 할당하는 값은 50의 배수여야만 한다.
-* `init` : 초기 상태를 구하는 방법을 가르킴. `PCA`가 사용되는게 기본임.
+* `init` : 초기 상태를 구하는 방법을 가리킴. `PCA`가 사용되는게 기본임.
 
 
 ## References

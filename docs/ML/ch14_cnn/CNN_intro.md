@@ -75,7 +75,7 @@ image 공간상에서 주변의 pixel에 해당하는 node들만을 고려하면
 ## Stationarity of Statistics
 
 > `stationarity of statistics`는  
-> data의 통계적 특성이 time이나 location에 따라 변하지 않는 경우를 가르킨다  
+> data의 통계적 특성이 time이나 location에 따라 변하지 않는 경우를 가리킨다  
 > (신호처리에서 다루는 Time Invariant or Shift Invariant system이 대표적인 예!). 
 
 image도 `stationarity of statistics`를 만족하는 데이터의 일종으로 볼 수 있다.

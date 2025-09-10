@@ -22,7 +22,7 @@ inheritance를 통해
 
 상속에 따라 attribute(특성)을 공유하게 됨. ← 재사용성이 높아짐.
 
-* attributes는 Python의 용어로서 class가 가지고 있는 methods와 variables를 가르킴.
+* attributes는 Python의 용어로서 class가 가지고 있는 methods와 variables를 가리킴.
 
 > Python이나 Java는 모든 class에서 가져야할 attributes를 Object 라는 클래스에 구현하고 이를 상속받는 구조를 취함으로서 재사용성을 극대화하고 구현코드를 최소화함.
 

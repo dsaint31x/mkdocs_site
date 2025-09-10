@@ -24,7 +24,7 @@ ANN의 연결방식에서 input에서 output으로 연결이 하나의 방향으
 Feed-forward network에 해당하는 instantaneous system과 대조되는 것이 바로 ***dynamic system (memory system, state machine)*** 으로 이같은 systems에서는 ***feedback connection이 존재*** 한다.  
 ANN에서 feedback connection이 있는 구조를 `Recurrent Neural Network` (`RNN`)라고 칭함.
 
-* feedback connection은 system이나 subsystem에서의 ***output을 앞단이나 자신의 input으로 사용되도록 연결*** 된 것을 가르킴.
+* feedback connection은 system이나 subsystem에서의 ***output을 앞단이나 자신의 input으로 사용되도록 연결*** 된 것을 가리킴.
     * feedback connection이 있는 경우, network는 일종의 loop를 이루게 됨.
 * dynamic system은 feedback connection을 통해 과거의 output이 현재의 output에 영향을 주도록 구현됨.
     * dynamic system은 과거의 input과 output에 대한 기억에 해당하는 `state`를 가지고 있으며, ***state와 input`에 의해 output이 결정*** 된다.

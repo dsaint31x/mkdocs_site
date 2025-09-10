@@ -126,7 +126,7 @@ RS-232는 워낙 많이 사용되다 보니, bluetooth 등의 방식으로 무�
 
 ## UART (Universal Asynchronous Receiver Transmitter)
 
-> ***`Serial`로 장비 간에 비동기로 데이터를 전송하는 IC*** 를 가르키며,  
+> ***`Serial`로 장비 간에 비동기로 데이터를 전송하는 IC*** 를 가리키며,  
 > TTL Level (Transistor-Transistor Logic Level, 주로 5V)로 데이터가 전송된다.  
 > 
 > 대표적 제품으로 MAX232 가 있으나,  
@@ -137,7 +137,7 @@ RS-232는 워낙 많이 사용되다 보니, bluetooth 등의 방식으로 무�
 > (전압 차이 때문에 UART 에 RS-232를 직접 연결하면 큰일난다.)
 
 * USART (Universal Synchronous/Asynchronous Receiver Transmitter) 과 같은 다른 대체자들도 있으나  
-> ***대부분 직렬통신이라고 하면 `UART`를 가르킴*** .
+> ***대부분 직렬통신이라고 하면 `UART`를 가리킴*** .
 
 다음 그림은 UART에서 7bit 길이의 특정 데이터들을 여러 Baud rate로 보내는 방식을 파형으로 나타낸 것임. 
 
@@ -273,7 +273,7 @@ Serial communication에서는 각각의 bit가 ***정해진 시간으로 구별*
 
 * Data Circuit-terminating Equipment 라고도 불림.
 * 네트워크 쪽에 위치하는 장비로 통신 네트워크에 연결되는 장비.
-* modem 이나 network interface card등을 가르킴.
+* modem 이나 network interface card등을 가리킴.
 * DTE 와의 데이터 전송 동기화를 위한 clock을 제공.
 
 ---

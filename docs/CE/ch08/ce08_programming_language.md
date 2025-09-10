@@ -73,7 +73,7 @@ tags:
 > 최근 scripting language는  
 > general purpose programming language보다  
 > 특정 domain에 한정된 DSL(domain-specific language)들을 지칭하는 경우가 많아지면서  
-> 특정 task나 환경에 국한된 언어들(이들 대부분이 interpreter방식임)을 가르키는 데 쓰인다.
+> 특정 task나 환경에 국한된 언어들(이들 대부분이 interpreter방식임)을 가리키는 데 쓰인다.
 
 ---
 

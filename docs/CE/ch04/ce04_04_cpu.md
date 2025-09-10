@@ -46,7 +46,7 @@ tags: [CPU, Core, ALU, Control Unit, Registers, MCU, MPU, Coprocessor, Processor
 * `디바이스의 중심이 되는 것을 CPU`라고 부르고, 
 * ^^보조적 역할의 processor는 `Co-Processor`라고 부름^^ (그래픽카드가 일종의 `Co-Processor`).
 
-> 참고로 Microprocessor를 CPU로 하는 PC를 가르켜 Micro-Computer 라고 부르는 경우도 있음.
+> 참고로 Microprocessor를 CPU로 하는 PC를 가리켜 Micro-Computer 라고 부르는 경우도 있음.
 
 ---
 
@@ -87,7 +87,7 @@ instruction 에 따라 데이터에 대해 산술 연산 (arithmetic operation, 
 CPU가 컴퓨터의 다른 구성 요소와 상호 작용하고 명령을 실행하는 데 필요한 모든 작업을 지시하고 조정하는 역할을 담당.
 
 * `CU`는 Instruction Decoding을 수행함: 
-    * <u>`PC`(Program Counter)가 가르키는 Instruction을 메모리로부터 읽어들이는 `Fetch`를 수행</u>하고
+    * <u>`PC`(Program Counter)가 가리키는 Instruction을 메모리로부터 읽어들이는 `Fetch`를 수행</u>하고
     *  이 Fetched Instruction을 `Decoding`함.
 * Instruction Decoding에 따라 CPU의 다른 구성요소들(주로 `ALU`)에 지시를 내려 해당 Instruction을 `Execute`(수행)시킴.
     * CPU의 구성요소들인 `ALU`와 `Registers` 등에 신호를 보내어 실제 연산을 수행하도록 지시함.
@@ -111,7 +111,7 @@ CPU가 컴퓨터의 다른 구성 요소와 상호 작용하고 명령을 실행
 
 ***Control Unit은 Instruction을 `Fetch`하고 `Decode`하며, 이를 `Execute` 및 `Writeback`하기 위해 필요한 제어신호를 보내는 Device:*** (이 정의를 개인적으로 가장 좋아함)
 
-* Program Counter가 가르키는 Address에서 수행할 Instruction를 `Fetch`하고,
+* Program Counter가 가리키는 Address에서 수행할 Instruction를 `Fetch`하고,
 * `Fetch`된 Instruction을 `Decode`하여 `Execute` (실행) 및 `Memory Access`를 수행하고 그 결과가 올바로 저장(`Writeback`)되도록 제어신호를 보내고.
 * 실제적으로 `ALU`에게 필요한 연산과 데이터를 제공하고 결과값을 올바른 메모리 장소로 보내는 일들을 담당.
 
@@ -164,7 +164,7 @@ Microcode로 구현된 Traffic Control은 다음과 같은 Memory (주로 ROM, `
 
 ## Register
 
-주로 ***CPU 내에서 Data를 저장하고 있는 Memory를 가르킴.***  
+주로 ***CPU 내에서 Data를 저장하고 있는 Memory를 가리킴.***  
 
 * 1 Bits 저장에 6개의 NAND (=3개의 D Flip-Flop) 사용.
 
@@ -175,7 +175,7 @@ Microcode로 구현된 Traffic Control은 다음과 같은 Memory (주로 ROM, `
 * `Condition Code Register (CCR)`:
     * `O`: overflow, `U`: underflow, `S`: sign flag, `C`: carry flag
     * `I`: interrupt flag, `SU`: supervisor flag
-* `Program Counter (PC)`: ***다음 수행할 Instruction이 저장된 메모리 Address*** 를 가르킴.
+* `Program Counter (PC)`: ***다음 수행할 Instruction이 저장된 메모리 Address*** 를 가리킴.
 * `Instruction Register (IR)`: Memory로부터 Fetch된 Instruction을 저장하고 있는 Register
     * `Control Unit` 이 해석하여, ALU에게 연산을 시키거나 다른 부품에 제어신호를 보냄. 
 * `Accumulator` : `ALU`의 Operation의 Result가 저장되는 Register.

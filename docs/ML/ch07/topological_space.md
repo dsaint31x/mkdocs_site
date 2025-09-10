@@ -25,7 +25,7 @@
 * $\mathbb{R}^3$를 비롯해서 ambient space(어떤 주변공간)에 embedded(속한, 포함된)한 두 공간이 서로 (고무판을 늘이고 줄이듯이) 연속적으로 변환시킬 수 있다면 이 둘을 isotopic하다고 정의함.  
 ![](../img/ch07/Mug_and_Torus_morph.gif){align=center}
 
-> isotopic이란, 한 공간 안에서 homeomorphic을 보존하면서 한 쪽에서 다른 한 쪽으로 변형을 할 수 있는 것을 가르킴. homeomorphic보다 엄격한 조건을 가짐. 
+> isotopic이란, 한 공간 안에서 homeomorphic을 보존하면서 한 쪽에서 다른 한 쪽으로 변형을 할 수 있는 것을 가리킴. homeomorphic보다 엄격한 조건을 가짐. 
 
 정리하자면, ^^topology는 기본적으로 topological space의 성질을 나타내는 것^^ 이므로 ambient space(주변 공간)에 어떻게 embedded되어져있는지와
  isotopy만을 보고 "topology가 같은 공간"을 다르다고 착각해서는 안됨. 

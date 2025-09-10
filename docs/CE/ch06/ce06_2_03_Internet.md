@@ -1,6 +1,6 @@
 # Internet
 
-Internet은 Network 의 Network를 가르키며, 기존의 WAN들을 전세계적으로 연결한 것이 Internet임.
+Internet은 Network 의 Network를 가리키며, 기존의 WAN들을 전세계적으로 연결한 것이 Internet임.
 
 > Internet is not actually a physical network; it’s **a set of layered protocols**.
 
@@ -92,7 +92,7 @@ Domain : 인터넷에 연결된 컴퓨터를 ***사람이 쉽게 기억하고 �
 
 ## Firewall (방화벽)
 
-컴퓨터 네트워크에서 해커나 크래커, 또는 바이러스 등이 네트워크 내부에 침입하지 못하도록 하는 보안 장비 또는 SW를 가르킴.
+컴퓨터 네트워크에서 해커나 크래커, 또는 바이러스 등이 네트워크 내부에 침입하지 못하도록 하는 보안 장비 또는 SW를 가리킴.
 
 * 일반적으로 네트워크 구성에서 가장 윗단에 배치되어(컴퓨터-스위치-라우터-방화벽 순), 네트워크 내외에 걸쳐 데이터나 사용자의 이동 패턴을 분석한 후 사전에 지정한 보안 정책(rule)에 따라 처리
 

@@ -29,7 +29,7 @@ Local Feature는 "원본 영상"의 `key-point`(특징점)들에서 계산되어
 
 * `key-point` (특징점) : "원본 영상"에서 local feature에 해당하는 위치. 해당 점을 중심으로 작은 ***region*** (or ***patch***, cell, block)이 설정되며, 이 region에 속하는 pixels을 이용하여 feature descriptor가 계산된다.
 * (local feature) `descriptor` : ***key-point가 속한 patch의 local feature를 표현하고 있는 객체.*** 주로 vector (real number or binary)로 표현되기 때문에 `feature vector`라고도 불린다. Local Feature의 실제적인 값에 해당하기 때문에 feature descriptor를 계산하는 알고리즘의 이름으로 local feature를 부른다.  
-즉, HOG descriptor라고 하면, HOG 알고리즘으로 얻은 local feature를 가르킨다.
+즉, HOG descriptor라고 하면, HOG 알고리즘으로 얻은 local feature를 가리킨다.
 
 > 초기에 개발된 알고리즘들은 corner 나 blob을 단순히 detection하는 것들 위주였음.   
 > 이 경우 ***key-point만을 detect*** 하여 원본에서의 locational information과 size 를 계산할 뿐 이를 바탕으로 ***feature descriptor로 encoding하지 않음***.  
@@ -136,7 +136,7 @@ standard deviation등에 사용되는 $\sigma$로 보통 표기됨
 * local feature을 위한 key-point 에 적합한 순서는 corner, Blob > edge >>>> Textureless region (질감 없이 균일한 영역) 순이다.
 
 > `Blob`  
-> Binary Large Object 의 준말로서, regions of interest points를 지칭하는 용어. Image region들 중에 주변(surrounding)보다 intensity가 매우 크거나 작은 것들을 가르킴.
+> Binary Large Object 의 준말로서, regions of interest points를 지칭하는 용어. Image region들 중에 주변(surrounding)보다 intensity가 매우 크거나 작은 것들을 가리킴.
 
 corner, edge, blob 등은 일반적으로 Simple Image Processing Operation 등을 통해 추출됨.
 
@@ -174,7 +174,7 @@ Edge를 만드는 요인은 다음과 같음.
 
 ## Corner
 
-Corner는 contour(윤곽)의 junction(교차점)을 가르킴. 즉, 여러 edge들이 만나서 모이는 점으로 match에서 가장 좋은 local feature로 사용됨.
+Corner는 contour(윤곽)의 junction(교차점)을 가리킴. 즉, 여러 edge들이 만나서 모이는 점으로 match에서 가장 좋은 local feature로 사용됨.
 
 효과적으로 Corner를 찾아주는 고전적인 기법으로 Harris Corner Detection이 있는데 여기서 Corner와 Edge를 잘 구분해준다.
 
@@ -182,7 +182,7 @@ Corner는 contour(윤곽)의 junction(교차점)을 가르킴. 즉, 여러 edge�
 
 ## Blob
 
-Blob 은 **Binary Large Object** 의 줄임말로, ^^같은 성질을 가지는 픽셀들이 연결되어 어느 정도 이상의 size(크기)를 가지는 region^^ 을 가르킨다.
+Blob 은 **Binary Large Object** 의 줄임말로, ^^같은 성질을 가지는 픽셀들이 연결되어 어느 정도 이상의 size(크기)를 가지는 region^^ 을 가리킨다.
 
 > Image regions that are either brighter or darker than the surrounding.
 

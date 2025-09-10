@@ -21,7 +21,7 @@
 
 > `Address`는
 >
-> * Memory의 특정 위치를 가르키며 
+> * Memory의 특정 위치를 가리키며 
 > * 대상 Data가 Memory의 어디에 저장되어있는지를 나타냄.
 
 ---
@@ -66,7 +66,7 @@ General Purpose I/O는 Chip에서 제공하는 Pin의 수가 한정되어 있기
 `BUS`는 
 
 * 1 Bit의 개별 Signal 대신에 
-* ***연관된 Signal들을 묶어서 처리하는 것*** 을 가르킴.
+* ***연관된 Signal들을 묶어서 처리하는 것*** 을 가리킴.
 
 Memory의 경우 다음과 같은 2개의 BUS를 가짐. 
 
@@ -124,7 +124,7 @@ Memory 의 용량이 커질수록 Address의 길이가 길어지며,
 
 ![memory_with_address_register](img/memory_with_adress_register.png){style="display: block; margin: 0 auto; width:500px;"}
 
-* `Strobe`는 **Parallel Connection에서 신호를 구분하기 위해 사용하는 신호** 를 가르킴
+* `Strobe`는 **Parallel Connection에서 신호를 구분하기 위해 사용하는 신호** 를 가리킴
     * Memory에선 
     * Column Address Strobe (CAS)와 
     * Row Address Strobe (RAS)가 있음.

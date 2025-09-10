@@ -193,7 +193,7 @@ CLI S/W 에서 사용자와의 I/O는 사용자가 Terminal을 통해 User appli
 Low Level I/O의 경우, Kernel Level에서의 buffering을 사용함.  
 
 * Kernel Level Buffering은 I/O에서의 일반적인 버퍼링이라고 불리지 않음을 주의할 것.
-* ***일반적인 buffering은 User Level Buffering*** 을 가르키기 때문에  
+* ***일반적인 buffering은 User Level Buffering*** 을 가리키기 때문에  
 * High Level I/O가 보통 버퍼링을 제공한다고 할 때의 buffer는 User Level Buffering임.
 
 > terminal은 

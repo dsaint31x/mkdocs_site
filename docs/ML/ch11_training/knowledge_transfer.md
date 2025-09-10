@@ -117,7 +117,7 @@ labeled data가 충분하지 않은 경우 사용되는 방법으로 ***labeled 
 
 BERT나 GPT의 경우, 문장에서 일부 단어를 지우고 이를 예측하도록 훈련시키거나 일정길이의 문장을 주고 이후 나타날 단어를 예측하도록 훈련시킨 모델을 pre-trained network로 활용하였는데, 이같은 방법들이 바로 Auxiliary Task를 통해 pre-trained network를 얻어낸 실제 사례라고 할 수 있음.
 
-이를 가르켜 self-supervised learning이라고도 함.
+이를 가리켜 self-supervised learning이라고도 함.
 
 ### References
 

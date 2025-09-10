@@ -7,7 +7,7 @@ Cluster System 은
 * 여러 대의 같은 OS가 설치된 독립적인 컴퓨터(노드)들과
 * 동일한 파일 시스템을 
 * ***고속의 LAN (Local Area Network)으로 연결*** 하여 
-* 하나의 통합된 컴퓨팅 환경을 만드는 것을 가르킴.
+* 하나의 통합된 컴퓨팅 환경을 만드는 것을 가리킴.
 
 참고: [LAN vs. WAN](../ch06/ce06_2_01_history.md#lan-vs-wan)
 

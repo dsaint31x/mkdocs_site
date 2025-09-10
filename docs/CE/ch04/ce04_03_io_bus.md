@@ -32,10 +32,10 @@
     - Address Bus : CPU가 메모리나 I/O 기기의 주소 지정.
     - Control Bus : CPU가 데이터 전송 시 제어 관련 신호나 자신의 상태 정보를 알리는데 이용
 - Internal Bus(내부버스)
-    - CPU 내에서 register들 연결하는 bus만을 가르키는 경우도 있으나.
-    - 최근엔 memory나 video card 등의 기본적으로 내장된 component간의 통신을 지원하는 bus를 가르키는 경우가 보다 많음.
+    - CPU 내에서 register들 연결하는 bus만을 가리키는 경우도 있으나.
+    - 최근엔 memory나 video card 등의 기본적으로 내장된 component간의 통신을 지원하는 bus를 가리키는 경우가 보다 많음.
 - External Bus 
-    - 외부버스, CPU와 Peripherals간의 데이터 전송을 하는 bus를 가르킴.
+    - 외부버스, CPU와 Peripherals간의 데이터 전송을 하는 bus를 가리킴.
     - Expansions (확장버스, 다른 기능을 지원하는 장치를 연결할 때 많이 사용됨.)
     - slot 형태 (or port)라 “확장슬롯“이라고도 불림.
 
@@ -106,7 +106,7 @@ GPU카드 전용버스
 
 > 1 lane (`x1`) 이 기본 단위.
 > 
-> * `x1`는 1개 lane 임을 가르키며, 
+> * `x1`는 1개 lane 임을 가리키며, 
 > * `x` 뒤에 숫자를 표기하여 몇 개의 lane이 할당되었는지를 의미함.
 
 초기엔 PCI 의 한계를 극복하고자 개발이 되었으나,  

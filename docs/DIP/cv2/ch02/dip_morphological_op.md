@@ -14,9 +14,9 @@ DIP에서는
 * noise(작은 크기의) 제거, 
 * 구멍 메우기, 
 * 연결이 끊어진 선(line)을 이어주기, 
-* boundary 추출 등에서 이용되는 ***shape(형태)에 기반한 연산*** 을 가르킴.
+* boundary 추출 등에서 이용되는 ***shape(형태)에 기반한 연산*** 을 가리킴.
 
-간략히 정리하면  영상처리(or Computer vision)에서 다음의 연산들을 가르킴.
+간략히 정리하면  영상처리(or Computer vision)에서 다음의 연산들을 가리킴.
 
 - Object의 **모양(Structure, shape)을 분석** 하는데 사용되는 연산.
 - Object의 **모양을 원하는 형태로 변경** 하는데 사용되는 연산.
@@ -31,7 +31,7 @@ DIP에서는
 
 ## 영상처리에서 Morphology
 
-^^“Binary image와 gray scale image의 ***기하학적 구조*** 를 분석 처리하는 기법”^^ 을 가르킴.
+^^“Binary image와 gray scale image의 ***기하학적 구조*** 를 분석 처리하는 기법”^^ 을 가리킴.
 
 - Binary image : 기하학적 구조가 바뀜.
 - Gray scale image : 직접적으로는 pixel의 값이 변경되면서 ***전체 영상내 object의 모양 및 구조*** 가 변경됨.

@@ -1,8 +1,15 @@
+---
+tags: [semisupervised, greedy layerwise learning]
+---
+
 # Semi-supervised Learning
 
-전체 학습에 사용되는 dataset에서 ^^Label을 가진 data sample들이 일부인 경우^^ 를 가르킴.
+전체 학습에 사용되는 dataset에서 ^^Label을 가진 data sample들이 일부인 경우^^ 를 가리킴.
 
-![](../img/ch00/semisupervised_learning.png){width="400"}
+![](../img/ch00/semisupervised_learning.png){style="display: block; margin: 0 auto;width:400"}
+
+* unlabeled data들 덕분에 X표시를 삼각형으로 판정내릴 수 있음.
+* 만약 labeled data만 사용한 경우라면, 네모로 판정하기 쉬움.
 
 ^^Google의 Photo 서비스가 예^^ 로 들 수 있는데, 해당 서비스의 모델은 자신의 사진이라고 일부 알려준 것을 바탕으로 학습을 하여 classification등을 수행한다. 
 
@@ -20,4 +27,7 @@ Hinton 교수님은
 
 방식으로 DBN을 학습시킴.
 
-^^DBN은 Deep Neural Network가 학습 가능함을 보인 최초의 `ANN`^^ 으로 가치를 가진다 (이같은 방식을 `Greedy Layer-wise Learning`이라 부르며, 오늘날 end-to-end learning이 주류로 자리잡으면서 많이 사용되진 않음.)
+^^DBN은 Deep Neural Network가 학습 가능함을 보인 최초의 `ANN`^^ 으로 가치를 가진다.
+
+* 이같은 방식을 `Greedy Layer-wise Learning`이라 부름.
+* `Greedy Layer-wise Learning`은 오늘날 end-to-end learning이 주류로 자리잡으면서 많이 사용되진 않음.

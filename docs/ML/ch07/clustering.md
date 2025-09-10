@@ -226,7 +226,7 @@ Ref.: [Brendan J. Frey et al., “Clustering by Passing Messages Between Data Po
 
 각 데이터 샘플들이 서로에게 메시지를 보내면서 일종의 투표를 수행하여 자신의 대표가 될 수 있는 데이터 샘플을 선택하여, 선택된 데이터 샘플을 중심으로 하여 다양한 크기의 cluster 가 생성되는 기법.
 
-> `affinity` 란 일반적으로 특정 data sample이 자신이 속한 cluster에 속해있는 것이 얼마나 적절한지를 정량화하는 지표를 가르킴.  
+> `affinity` 란 일반적으로 특정 data sample이 자신이 속한 cluster에 속해있는 것이 얼마나 적절한지를 정량화하는 지표를 가리킴.  
 
 단점은 계산 복잡도로 $O(N^2T)$를 가짐. 여기서 $N$은 샘플 수, $T$는 알고리즘 반복 횟수이다. 공간복잡도는 $O(N^2)$​​​​이다. 매우 복잡도가 높기 때문에 작은 데이터에서 그 사용이 제한된다.
 
@@ -334,7 +334,7 @@ $$a_{kk}=\sum_{i^\prime ne k}\max(0,r_{i^\prime k})$$
 `Preference`
 : 각 data point들이 얼마다 exemplar로 선택될 가능성이 높은지를 지정하는 것으로, 높은 값을 부여할수록 더 많은 data point들이 exemplar가 되어서 그 결과 작은 클러스터가 더 많이 생기게 됩니다. 반대로 preference가 작을수록, 적은 수의 사이즈가 큰 클러스터가 만들어지는 경향이 있습니다.
 
-> Preference는 위의 수식에서 Similarity Matrix의 main diagonal $s_{kk}$을 가르키고 있음.
+> Preference는 위의 수식에서 Similarity Matrix의 main diagonal $s_{kk}$을 가리키고 있음.
 
 **Damping factor** $\lambda$
 : 반복되는 Responsibility Matrix와 Availability Matrix의 업데이트에서  

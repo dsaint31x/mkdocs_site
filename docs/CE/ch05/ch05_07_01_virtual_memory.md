@@ -61,7 +61,7 @@ Demand Paging을 통해 Virtual Memory에서는
 ## **3. Page Fault**
 
 Process가 실행하는 도중 필요한 Page가 Physical Memory에 존재하지 않아,  
-Disk로부터 해당 Page를 Swap-In 해야 하는 경우를 가르킴.
+Disk로부터 해당 Page를 Swap-In 해야 하는 경우를 가리킴.
 
 * `Page Fault`는 `Fault` Interrupt를 발생시켜서 
 * 필요한 Page를 Swap-In 시키는 작업을 시작시킴.

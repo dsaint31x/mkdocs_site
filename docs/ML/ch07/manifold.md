@@ -3,7 +3,7 @@
 ML에서 manifold란,  
 
 * ^^고차원 공간에 내재된 저차원 공간(subspace)^^ 으로 
-* 실제 ^^dataset의 data points를 대부분 포함(아닌 경우도 해당 subspace근처에 data points가 존재)하고 있는 것^^ 을 가르킴. 
+* 실제 ^^dataset의 data points를 대부분 포함(아닌 경우도 해당 subspace근처에 data points가 존재)하고 있는 것^^ 을 가리킴. 
 
 > (위상)수학적으로는 보다 엄격한 정의가 있으나...  
 > DL이나 ML을 하는 입장에서는 이 정도면 충분할 듯.
@@ -36,8 +36,8 @@ ML에서 manifold란,
 <figcaption> `homeomorphic` 이면서 `연속적인 변화` 로 만들어지므로 `isotopic`임</figcaption>  
 </figure>
 
-* `homeomorphic` 이란 "위상동형"이라고 번역되며, topology가 동일한 topology space를 가르킴.
-* 이웃을 정의하는 규칙 (=`topology`)이 동일한 topology spaces를 가르켜 `homeomorphic`하다고 한다.
+* `homeomorphic` 이란 "위상동형"이라고 번역되며, topology가 동일한 topology space를 가리킴.
+* 이웃을 정의하는 규칙 (=`topology`)이 동일한 topology spaces를 가리켜 `homeomorphic`하다고 한다.
 
 > 엄밀하게 애기하면,  
 > **`topology`는 어떤 space에서 `open-set이란 어떤 것인지 규정` 하는 방법**   

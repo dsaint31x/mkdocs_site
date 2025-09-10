@@ -15,7 +15,7 @@ Thermionic electron emission (열전자 방출)을 이용하여
 > 때문에 텅스텐 과 같은 일부 금속만이 열전자 방출을 위한 cathode(음극)로 주로 사용됨.
 > 추가적으로,  
 > 전자를 방출하는 Vacuum Tube, X-ray Tube, CRT등에서 전자를 방출하는 극이 Cathode 임.
-> 전지에서는 충전시 환원이 일어나는 극을 가르킴(전자방출의 경우와 반대임.)
+> 전지에서는 충전시 환원이 일어나는 극을 가리킴 (전자방출의 경우와 반대임.)
 
 ---
 
@@ -29,10 +29,10 @@ Heater에 의해 ***Cathode가 충분한 온도에 도달*** 하면
 
 ![vacuum_tube](imgs/vacuum_tube_diagram.jpeg){style="display: block; margin:0 auto; width:600px"}
 
-* `P` : Plate의 앞글자를 딴 것. Anode를 가르킴.
-* `K` : cathode를 가르킴.
-* `H` : Heater를 가르킴.
-* `G` : Grid를 가르킴.
+* `P` : Plate의 앞글자를 딴 것. Anode를 가리킴.
+* `K` : cathode를 가리킴.
+* `H` : Heater를 가리킴.
+* `G` : Grid를 가리킴.
 
 ### Diode 
 

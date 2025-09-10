@@ -13,7 +13,7 @@
 OOP는 **instance 간에 message를 주고받아 프로그램이 실행** 됨.
 
 - 일반적으로 Object는 ***받을 수 있는 message에 대해서만 노출*** 됨.
-    - Interface가 바로 받을 수 있는 message(or 공개된 method)를 가르킴.
+    - Interface가 바로 받을 수 있는 message(or 공개된 method)를 가리킴.
 - 이를 통해 `Data hiding` 이 이루어짐 (← OOP에서 직접 data (or `member variable`)를 access하는 것을 지양함.)
 
 ## 예제

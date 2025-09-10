@@ -6,7 +6,7 @@
 
 ## 특징
 
-OOP Language 라고 불리는 경우 다음의 세가지 특성을 지원하는 언어를 가르킴.
+OOP Language 라고 불리는 경우 다음의 세가지 특성을 지원하는 언어를 가리킴.
 
 - Encapsulation
 - Inheritance

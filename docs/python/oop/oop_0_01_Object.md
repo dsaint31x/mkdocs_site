@@ -7,7 +7,7 @@ tags: [object]
 
 - 보거나 만질 수 있는 사물 (공간을 차지하고 있는 물질적인 사물)
 - OOP에선 **Concept(개념)** 도 **Object** 임.
-- Application(응용프로그램)에서, 명확한 한계와 의미를 가지고 있는 ***사물*** 이나 ***개념***, 혹은 이것들의 ***Abstraction(추상화)*** 를 가르킴.
+- Application(응용프로그램)에서, 명확한 한계와 의미를 가지고 있는 ***사물*** 이나 ***개념***, 혹은 이것들의 ***Abstraction(추상화)*** 를 가리킴.
 
 > OOP 에서는 하나의 소프트웨어 시스템을 여러 개의 Object (객체)로 구성된 것으로 봄.
 
@@ -17,7 +17,7 @@ tags: [object]
 
 ![](../img/python_object.jpeg){style="display: block; margin: 0 auto; width="300px"}
 
-다음의 속성을 가진 데이터 덩어리 (a chunk of data)를 가르킴.
+다음의 속성을 가진 데이터 덩어리 (a chunk of data)를 가리킴.
 
 1. type: 해당 object가 무엇인지 또는 무엇을 할 수 있는지를 정의함.
 2. id: 다른 objects과 구분되는 unique id를 가짐. (이게 같을 경우 동일 object)
@@ -37,7 +37,7 @@ Object Oriented Programming 의 약자로
 * **Object 에 기반** 하여,
 * **Object 를 이용** 하고 **Object 를 만들고(정의 및 구현), Object 를 조합** 하여 **프로그래밍** 하는 Program paradigm의 하나.
 
-을 가르킴.
+을 가리킴.
 
 ---
 

@@ -71,7 +71,7 @@ Word의 Most Significant Bytes(MSB, 상위바이트)는 가장 낮은 주소(시
 
 UNIX OS를 PDP-11 (big-endian)에서 IBM Series/1(little-endian)로 porting할 때 byte ordering에 문제가 발생한 사건에서 유래된 용어. 
 
-> byte ordering과 관련된 문제를 가르키는 용어.
+> byte ordering과 관련된 문제를 가리키는 용어.
 
 해당 사건은 영문은 한 글자가 1byte로 `unix` 를 출력하는 프로그램이 byte ordering이 잘못되어 `nuxi` 라고 출력한 것임 (word가 2byte라 두 글자가 한 워드임.)
 

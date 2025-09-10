@@ -252,7 +252,7 @@ Global thresholding 에서 가장 많이 사용하는 방법임.
 
 > 아쉽지만, Global threshold를 찾는 것으로 adaptive thresholding에선 사용하기 어렵다.
 
-Otsu thresholding은 bimodal image (histogram의 2개의 peak를 가지는 경우를 가르킴)에 가장 적절한 threshold를 찾아준다.
+Otsu thresholding은 bimodal image (histogram의 2개의 peak를 가지는 경우를 가리킴)에 가장 적절한 threshold를 찾아준다.
 
 Otsu algorithm은 2개의 class로 나눌 때, 
 

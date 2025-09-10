@@ -16,7 +16,7 @@
 
 ## Non Structured Programming
 
-- Procedural Programming (순차적인 프로그래밍) 를 가르킴.
+- Procedural Programming (순차적인 프로그래밍) 를 가리킴.
 - 초기 paradigm : 사실 paradigm이라기 보다 다른 paradigm이 나오면서 항상 이렇게 프로그래밍하면 안된다 라고 애기하는 대상으로 더 많이 기억됨.
 - `goto`문 등으로 인한 프로그램의 해석이 쉽지 않고 ***재사용성** 등이 매우 떨어짐.*
     - 변호를 한다면... 초기에는 재사용을 고려할 필요가 없던 시절에 사용된 방식임.

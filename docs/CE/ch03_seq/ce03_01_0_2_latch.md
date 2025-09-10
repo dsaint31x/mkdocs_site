@@ -11,7 +11,7 @@ tags: [Latch, Flip-Flop, D Latch]
 > 
 > **Gate를 조합** 하여 **1 Bit 의 정보를 기억** 하는 (걸어두는) 역할을 하는 회로를 의미함.
 
-주로 `S-R Latch` (Set-Reset Latch)를 가르키며, 
+주로 `S-R Latch` (Set-Reset Latch)를 가리키며, 
 
 * 실제 ***1 Bit 의 정보를 기억*** 하는데 많이 사용되는 `Flip-Flop`을 이해하는 과정으로 배우게 됨. 
 * 이 Flip-Flop은 “CPU가 명령어와 데이터를 기억하는데 사용하는 `Register`”로 확장되게 됨 
@@ -88,7 +88,7 @@ Gate간의 Propagation Delay 에 취약함.
 * 위 그림은 `NAND`로 구현한 예만 보여줌.
 *  “디지털회로” 등의 과목에서 `NOR`등으로 만드는 버전도 다루게 될 것임.
 
-흔히 Latch라고 하면 `S-R Latch`를 가르킴.
+흔히 Latch라고 하면 `S-R Latch`를 가리킴.
 
 > 초기값 관련한 문제가 디지털 회로등에서 자주 제기된다.  
 > $\overline{\text{set}}$과 $\overline{\text{Reset}}$이 동시에 activation되는 경우는 사용하지 않는다 (not intended for use).
@@ -102,7 +102,7 @@ Gate간의 Propagation Delay 에 취약함.
 Clock Signal을 입력받아서, ***특정 시점의 정보를 기억*** 하도록 `S-R Latch`를 확장한 것이며,  
 개념적인 `S-R Latch`가 아닌 실제 회로 등에서 애기하는 `Latch`는 
 (특히 synchronization circuit에서) 
-이 Gated S-R Latch를 가르키는 경우가 많다.  
+이 Gated S-R Latch를 가리키는 경우가 많다.  
 
 ![Gated Latch](img/gated_latch.png){style="display: block; margin:0 auto; width:300px"}
 

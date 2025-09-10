@@ -8,7 +8,7 @@ OOP는
 * **Object 에 기반** 하여,
 * **Object 를 이용** 하고 **Object 를 만들고(정의 및 구현), Object 를 조합** 하여 **프로그래밍** 하는 Program paradigm의 하나.
 
-을 가르킴.
+을 가리킴.
 
 > Programming Paradigm 의 관점에서  
 > Structured Programming과 함께 현재 가장 널리 사용되는 Programming paradigm이다. 
@@ -28,7 +28,7 @@ OOP는 다양한 object들이 서로 상호작용(message passing을 통한)을 
 ## OOP에서의 SOLID 원칙
 
 OOP에서 S/W 를 더욱 **유지보수** 및 **확장** 하기 쉽게 만들기 위해  
-제안된 다섯가지 원칙을 가르킴. 
+제안된 다섯가지 원칙을 가리킴. 
 
 * 참고: [SOLID 원칙](https://ds31x.tistory.com/431)
 

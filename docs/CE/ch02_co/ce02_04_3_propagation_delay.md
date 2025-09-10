@@ -7,7 +7,7 @@ tags: [Propagation Delay, Ripple-Carry, Gate]
 
 ## Definition
 
-**Gate 등에서 Input이 Output에 영향을 미치기까지 걸리는 시간** 을 가르킴.  
+**Gate 등에서 Input이 Output에 영향을 미치기까지 걸리는 시간** 을 가리킴.  
 (이상적인 회로 설계와 실제 구현 간의 가장 큰 간극에 해당함.)
 
 > Propagation delay (전파지연)에 대한 간단한 설명이 있는 URL.

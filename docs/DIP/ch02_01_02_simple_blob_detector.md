@@ -29,7 +29,7 @@ keypoint 중 blob을 이용한 방식들 중 대표적인 구현물이 다음 �
 
 대표적인 Keypoint Detection에 사용되는 class이다.
 
-> Blob 은 **Binary Large Object** 의 줄임말로, ^^같은 성질을 가지는 픽셀들이 연결되어있는 어느 정도 크기의 region^^ 을 가르킨다.
+> Blob 은 **Binary Large Object** 의 줄임말로, ^^같은 성질을 가지는 픽셀들이 연결되어있는 어느 정도 크기의 region^^ 을 가리킨다.
 
 `skimage`의 경우, LOG, DOG와 같은 알고리즘 별로 따로 blob detector가 구현된 것과 달리 opencv는 여러 기준들을 한번에 처리하는 형태로 `SimpleBlobDetector`를 제공한다.
 

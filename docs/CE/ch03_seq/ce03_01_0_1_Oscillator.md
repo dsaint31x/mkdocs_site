@@ -26,7 +26,7 @@ CPU 등에서 **동작 클럭 (`Clock`)** 이 해당 CPU가 어떤 빠르기로 
 
 ## Clock 
 
-> Computer나 Circuit의 동작 pace를 가르킴. 
+> Computer나 Circuit의 동작 pace를 가리킴. 
 
 단위를 보통 `Hz`로 표기되며 초당 몇번의 Pulse signal이 반복되는지로 빠르기를 나타낸다.  
 
@@ -49,8 +49,8 @@ CPU 등에서 **동작 클럭 (`Clock`)** 이 해당 CPU가 어떤 빠르기로 
 
 ## 더 살펴보기
 
-* `Pulse` Signal은 신호처리나 디지털 회로 등에서 자주 보게 되는 Signal 중 하나임. 
-* 여러 종류가 있으나 일반적으로 `Rectangular Pulse` 를 주로 가르키며 `구형파` 라고도 불림.
+* [`Pulse` Signal](https://dsaint31.tistory.com/554)은 신호처리나 디지털 회로 등에서 자주 보게 되는 Signal 중 하나임. 
+* 여러 종류가 있으나 일반적으로 `Rectangular Pulse` 를 주로 가리키며 `구형파` 라고도 불림.
 
 
 참고자료 : wikipedia's [Pulse](https://en.wikipedia.org/wiki/Pulse_(signal_processing))

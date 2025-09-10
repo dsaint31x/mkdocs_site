@@ -85,7 +85,7 @@ memory에 저장된 값을 **CPU가 접근** 하기 위해서는
 때문에 보다 효과적인 데이터 읽기를 위해, 
 
 * 데이터를 Memory에서 특정 기준에 맞춰 정렬시켜 저장시키는데
-* 이를 가르켜 ***Memory Alignment*** 라고 부른다.  
+* 이를 가리켜 ***Memory Alignment*** 라고 부른다.  
 
 예를 들어, 
  4바이트의 `int` 타입의 데이터는 Memory에서  
@@ -127,7 +127,7 @@ L3는 core 밖에 위치.
 `DRAM (Dynamic RAM)` 
 : 주기억장치로 많이 사용됨.  
 SRAM보다는 느리지만 가성비는 보다 나음.  
-보통 RAM이라고 하면 DRAM을 가르킴
+보통 RAM이라고 하면 DRAM을 가리킴
 
 `HDD (Hard Disk Drive)`
 : 보조기억장치의 대표격으로  

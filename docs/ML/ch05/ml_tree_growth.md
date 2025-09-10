@@ -9,7 +9,7 @@ Decision Tree나 Boosting의 weak learner로 사용되는 Decision Stumps에서 
 
 ## Level-wise Growth
 
-BFS (Breadth First Search) 처럼 Root에 인접한 node들부터 분할시키는 방식을 가르킴.
+BFS (Breadth First Search) 처럼 Root에 인접한 node들부터 분할시키는 방식을 가리킴.
 
 * Tree가 균형있는 모양으로 확장됨.
 

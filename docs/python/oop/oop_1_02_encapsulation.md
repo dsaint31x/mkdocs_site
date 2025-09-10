@@ -1,6 +1,6 @@
 # Encapsulation (and Data Hiding)
 
-Encapsulation (캡슐화)는 Object에서 중요한 데이터와 세부적인 구현 방법에 대한 사항들을 숨기고, 대신 외부에서 이들을 조작할 수 있는 방법인 interface만을 공개하여 해당 interface로만 내부의 데이터 및 세부적 구현이 수행되도록 **abstraction** 하는 기법을 가르킨다.
+Encapsulation (캡슐화)는 Object에서 중요한 데이터와 세부적인 구현 방법에 대한 사항들을 숨기고, 대신 외부에서 이들을 조작할 수 있는 방법인 interface만을 공개하여 해당 interface로만 내부의 데이터 및 세부적 구현이 수행되도록 **abstraction** 하는 기법을 가리킨다.
 
 > 엄격하게, encapsulation을 고려해서 Abstraction이 이루어질 경우, 해당 Object의 data에 직접 접근이 불가하다.
 

@@ -1,6 +1,6 @@
 # Machine Learning (ML)이란?
 
-간단하게 말하면, ^^data로부터 computer가 학습(learning)을 하도록 프로그래밍하는 과학분야 또는 기술^^ 을 가르키는 용어임.
+간단하게 말하면, ^^data로부터 computer가 학습(learning)을 하도록 프로그래밍하는 과학분야 또는 기술^^ 을 가리키는 용어임.
 
 좀 더 풀어서 애기하면, 
 

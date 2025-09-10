@@ -97,7 +97,7 @@ ANN에서는 이를 edge에 weight을 할당하여 강화될수록 weight가 커
 
 ![](./img/single_layer_perceptron.png)
 
-> 일반적으로 `perceptron`이라고 하면 `SLP`를 가르킨다. Scikit-Learn에서 `sklearn.linear_model.Perceptron`으로 제공되고 있다.  
+> 일반적으로 `perceptron`이라고 하면 `SLP`를 가리킨다. Scikit-Learn에서 `sklearn.linear_model.Perceptron`으로 제공되고 있다.  
 > package 명에서도 알 수 있듯이 Perceptron은 linear model에 불과하다.
 
 다음은 Perceptron에서 node $i$와 $j$를 잇는 weight $w_{i,j}$의 update가 어떻게 이루어지는지를 보여주는 식으로 Gradient Descent와 매우 유사함을 알 수 있다.

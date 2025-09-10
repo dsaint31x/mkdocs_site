@@ -48,7 +48,7 @@ Google Colaboratory = Google Drive + Jupyter Notebook
 - Shutdown 전에 창을 끄고 다시 켜도 런타임은 유지
 - free로 사용하는 경우 2개의 notebook을 동시 사용 가능함.
 
-> 소스코드는 `.ipynd` 확장자로 구글 드라이브에 안전하게 보관됨. 사용할 데이터들도 Google Drive에 저장하고 이를 mount할 경우, 지속성을 가지고 작업가능.
+> 소스코드는 `.ipynb` 확장자로 구글 드라이브에 안전하게 보관됨. 사용할 데이터들도 Google Drive에 저장하고 이를 mount할 경우, 지속성을 가지고 작업가능.
 
 ![.ipynb 파일에 대하여](https://ds31x.tistory.com/483)
 
@@ -56,7 +56,7 @@ Google Colaboratory = Google Drive + Jupyter Notebook
 
 ---
 
-## Sepc. (2023.3)
+## Spec. (2023.3)
 
 ```
 !cat /etc/issue.net

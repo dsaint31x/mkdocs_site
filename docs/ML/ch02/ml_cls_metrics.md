@@ -337,7 +337,7 @@ MNIST 데이터 (0-9까지의 숫자 데이터)에서 class 5에 대한 분류�
 
 > 참고로, Multi-class Classification 또는 Detection과 같은 Task 에서  
 > Mean Average Precision (mAP)을 metric으로 많이 사용하는데,  
-> <u>mAP는 각 클래스별로 Average Precision을 구하고, 이들의 평균을 구한 것</u> 을 가르킴.   
+> <u>mAP는 각 클래스별로 Average Precision을 구하고, 이들의 평균을 구한 것</u> 을 가리킴.   
 
 
 ---
@@ -391,7 +391,7 @@ Recall (=True Positive Rate)과 달리, 분모는 실제 negative인 모든 samp
 
 ### Area under the Curve (AUC)
 
-ROC Curve에서 curve 아래의 area(면적)을 가르키며, 1에 가까울수록 ideal한 model임.
+ROC Curve에서 curve 아래의 area(면적)을 가리키며, 1에 가까울수록 ideal한 model임.
 
 ---
 

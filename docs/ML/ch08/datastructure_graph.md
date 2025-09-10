@@ -19,7 +19,7 @@ Network (object들의 연결관계)를 나타내는 자료구조의 일종으로
 
 ### `adjacent node`
 
-: neighbors라고도 불리며, 특정 node에 edge로 직접 연결된 node들을 가르킴.
+: neighbors라고도 불리며, 특정 node에 edge로 직접 연결된 node들을 가리킴.
 
 ### `degree of node`
 
@@ -31,11 +31,11 @@ Network (object들의 연결관계)를 나타내는 자료구조의 일종으로
 
 ### `path`
 
-: graph 내에서 특정 node 2개를 연결하는 edge들과 node들을 가르킴. 즉, a라는 node에서 출발하여 b라는 node에 도착하기까지 거쳐가는 node와 edge로 구성된다. terminal node들이 같더라도 여러 path가 있을 수 있다.
+: graph 내에서 특정 node 2개를 연결하는 edge들과 node들을 가리킴. 즉, a라는 node에서 출발하여 b라는 node에 도착하기까지 거쳐가는 node와 edge로 구성된다. terminal node들이 같더라도 여러 path가 있을 수 있다.
 
 ### `simple path`
 
-: path 중에 반복되는 node가 없는 경우의 path를 가르킴.
+: path 중에 반복되는 node가 없는 경우의 path를 가리킴.
 
 ### `Euler path`
 
@@ -74,7 +74,7 @@ edge에 방향성이 있서 한방향으로 이동이 가능. 화살표로 그�
 edge에 길이 또는 가중치라고 불리는 숫자값이 할당된 graph. 대부분 network를 모델링하는 경우 weighted graph가 사용된다.
 
 ### Cycle
-simple path 중 terminal node가 동일한 경우를 가르킴. 또는 해당 simple path가 존재하는 graph를 지칭.
+simple path 중 terminal node가 동일한 경우를 가리킴. 또는 해당 simple path가 존재하는 graph를 지칭.
 
 ### Acyclic
 cycle이 없는 graph를 지칭.
