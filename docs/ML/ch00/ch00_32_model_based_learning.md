@@ -6,27 +6,36 @@
 > 
 > **Inductive (귀납적) Learning** 이라고도 불림.
 
-![](../img/ch00/model_based_learning.png){style="display: block; margin: 0 auto;width:400"}
+![](../img/ch00/model_based_learning.png){style="display: block; margin: 0 auto; width:350px"}
 
 * 위 그림에서 학습의 결과로 만들어진 model은 바로 검은색 dash line이 된다.
-* 새로 주어진 data point x는 dash line에 의해 삼각형으로 prediction된다.
-* 만일 model이 만들어지지 않는 instance based learning이라면, 사각형으로 prediction될 것이다. (`k=3`인 k-NN이라면)
+* 새로 주어진 data point *x* 는 dash line에 의해 삼각형으로 prediction된다.
+* 만일 model이 만들어지지 않는 [instance based learning](./ch00_31_instance_based_learning.md)이라면, 사각형으로 prediction될 것이다. (`k=3`인 k-NN이라면)
 
 즉, 데이터 자체를 그대로 저장하지 않고, 모델을 통해 일반화 하여 표현!!
 
-> `Model`이라는 용어는 ML에서 일종의 input이 들어가면 output이 나오는 ***function*** 을 가리키는데 많이 사용된다.  
-> 실제로는 특정 dataset에서 ***data와 label간의 관계를 approximation하고 있는 것*** 을 `model`이라고 많이 지칭한다.  
-> 이같은 관계는 일종의 mapping, transformation이라고 생각할 수 있고 이는 function의 형태로 나타낼 수 있기 때문에 model을 function이라고 생각해도 supervised learning에선 큰 무리가 없다.  
->
-> 또한 ML에서 model은 해당 approximation을 만들어내는 algorithm (or method)를 가리키기도 한다.  
-> Artificial Neural Network에서는 layer들이 구성된 architecture를 model이라고도 부르기 때문에 context에 맞춰서 그 의미를 파악하는게 중요하다.
 
+> **참고: 머신러닝에서 model 이란?**
+> 
+> * 입력을 받아 출력을 내는 함수(function)
+> * 특정 데이터셋에서 data instance와 label (or target) 간 관계를 근사(approximation)하는 대상
+>     * 관계를 매핑(mapping) 또는 변환(transformation)으로 이해
+>     * 이는 function 형태로 표현 가능
+>     * 특히, supervised learning에서는 model을 function으로 간주해도 큰 문제 없음.
+> 
+> ML에서 model은 다음과 같은 또 다른 의미를 가지기도 함.
+> 
+> * features와 label간의 approximation 를 생성하는 알고리즘(algorithm) 또는 방법(method)
+> * 인공 신경망(Artificial Neural Network)에서 층(layer)들이 쌓인 아키텍처(architecture)
+> 
 
-보통 다음과 같은 순서로 진행됨.
+Model Based Learning은 보통 다음과 같은 순서로 진행됨.
 
 1. Data 분석
 2. 해당 Training data에 적절할 model을 선택.
 3. 해당 model을 training dataset으로 학습 (cost func.최소화시키는 optimization)
 4. 이후 inference 수행 (새로운 data point들에 대한 prediction)
 
-ML에서 대부분의 경우는 model based learning이다.
+[간단한 실습용 ipynb](https://gist.github.com/dsaint31x/8048847863cf09145b192247742d0207)
+
+ML에서 대부분의 경우는 model based learning 임.
