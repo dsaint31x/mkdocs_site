@@ -1,8 +1,17 @@
+---
+tags: [hotkeys, shortcuts, colab]
+---
+
 # Colab : Hotkeys
+
+![](./img/colab_hotkeys.jpeg)
+
+
+맥은 `Ctrl` 대신 `Cmd` 사용
 
 - 대부분의 작업은 단축키로 실행 가능
 - 단축키 설정 가능
-- 단축키 설정화면 – `Ctrl+M H`
+- 단축키 설정화면 – `Ctrl+M H` (`Cmd+M H`)
 
 ## 유용한 Hot keys.
 
@@ -13,8 +22,6 @@
 - `Alt + Enter` : 해당 셀을 실행하고 셀을 삽입한 후 커서를 삽입한 셀로 이동시킨다. (다음 작업 공간이 없을 때)
 
 ### 셀 삽입 / 삭제 관련 단축키
-
-맥은 Ctrl 대신 Command 사용
 
 - `Ctrl + M A` : 코드 셀을 위에 삽입
 - `Ctrl + M B` : 코드 셀을 아래 삽입

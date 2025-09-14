@@ -41,7 +41,7 @@ tags: [docker, container, virtual machine, vm, virtualization]
 > * 이는 보안적인 측면에서 보다 강력한 격리를 제공하나 Container보다 훨씬 무거워지고 실행속도도 느림. 
 > * `Container`에 비해 더 많은 시스템 리소스가 필요.
 
-![](./img/container_vs_vm.png)
+![](./img/container_vs_vm.png){style="display: block; margin: 0 auto; width=500px"}
 
 > Cloud Computing의 경우, Physical system 위에 Virtual Machine들이 존재하고, 해당 VM들 위에서 Container들이 동작하는 방식이 전통적인 방식임. 
 > EC2 등의 서비스는 사용자가 VM을 임대받아 그 위에 conainer를 실행하는 방식으로 생각할 수 있음.  

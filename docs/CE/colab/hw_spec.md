@@ -50,7 +50,7 @@ Google Colaboratory = Google Drive + Jupyter Notebook
 
 > 소스코드는 `.ipynb` 확장자로 구글 드라이브에 안전하게 보관됨. 사용할 데이터들도 Google Drive에 저장하고 이를 mount할 경우, 지속성을 가지고 작업가능.
 
-![.ipynb 파일에 대하여](https://ds31x.tistory.com/483)
+참고: [.ipynb 파일에 대하여](https://ds31x.tistory.com/483)
 
 ---
 
