@@ -26,6 +26,8 @@ Additionally, a distance function should give a small distance for similar objec
 > distance function은 SSIM 과 같이 similarity measures를 포함하는 경우도 있어서 metric보다 좀더 넓은 개념으로 취급되기도 하지만, **일반적** 으로는 metric과 같은 의미로 사용된다.  
 Overall, the distinction between the terms "distance function" and "metric" is not always strictly observed, and the two terms are often used interchangeably in practice.
 
+![](./img/distance_funcs.png){style="display:block; margin:0 auto; width=400px"}
+
 ## difference 계열
 
 ### Mean Absolute Difference (MAD, or Mean Absolute Error, MAE)
@@ -36,7 +38,7 @@ $$
 
 where
 
-* $m$ : # of pixels
+* $m$ : # of pixels (하나의 pixel이 한 sample instance라고 생각할 수 있음.)
 * $\hat{\textbf{y}}$ : current image (ideal image와 비교하고자하는 image)
 * $\hat{y}_i$ : current image에서 $i$번째 pixel의 값.
 * $\textbf{y}$ : ideal image 
