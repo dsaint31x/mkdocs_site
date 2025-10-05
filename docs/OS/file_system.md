@@ -33,13 +33,16 @@ file system은 일반적으로 다음과 같은 작업을 지원합니다:
 ## 대표적인 file system의 예:
 
 1. **NTFS (New Technology File System)**
-: Windows에서 주로 사용되며, 큰 file 크기와 복잡한 보안 옵션을 지원.
+: Windows에서 주로 사용되며, 큰 file 크기와 복잡한 보안 옵션을 지원. macOS에선 third party SW가 있어야 쓰기가 가능(읽기만 됨).iOS에선 읽기만 가능. 최신 Linux 배포판에선 읽고 쓰는데에 문제 없음.
 
 2. **FAT32 (File Allocation Table 32)**
 : 호환성이 높아 많은 휴대용 장치와 게임 콘솔에서 사용됨. 그러나 4GB 이상의 file을 지원하지 않는 제한이 있음.
 
-3. **ext4 (Fourth Extended Filesystem)**
-: Linux에서 널리 사용되며, 높은 수준의 데이터 무결성과 대용량 저장소를 지원.
+3. **exFAT (Extended File Allocation Table)**
+: 외장하드 포맷으로는 최고임. Windows, macOS, Linux 모두에서 읽고 쓰기 가능함.
 
-4. **APFS (Apple File System)**
-: apple의 최신 운영 체제에서 사용되며, 최적화된 공간 할당과 빠른 성능을 제공.
+4. **ext4 (Fourth Extended Filesystem)**
+: Linux에서 널리 사용되며, 높은 수준의 데이터 무결성과 대용량 저장소를 지원. Linux에서만 거의 사용됨.
+
+5. **APFS (Apple File System)**
+: apple의 최신 운영 체제에서 사용되며, 최적화된 공간 할당과 빠른 성능을 제공. Windows, Linux 에서는 제한적인 읽기만 가능(사실상 macOS/iOS 전용).
