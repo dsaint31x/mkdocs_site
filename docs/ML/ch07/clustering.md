@@ -10,7 +10,7 @@ feature space에서 가까운(=유사한) sample들을 모아 하나의 cluster�
 > 비슷한 data points(sample)를 묶어서 하나의 cluster (군집, group)에 할당하여 분류하는 task임.  
 > classification과의 차이는 label의 유무임.
 
-Dimensionality Reduction과 함께, Unsupervised Learning의 대표적인 Task임.
+Dimensionality Reduction과 함께, **Unsupervised Learning의 대표적인 Task임**.
 
 > 일부 문헌에서는  
 > unsupervised learning의 tasks에서  
@@ -20,7 +20,9 @@ Dimensionality Reduction과 함께, Unsupervised Learning의 대표적인 Task�
 Clustering은 크게 두가지 종류로 나뉨 (cluster를 무엇으로 정의하고 있느냐에 따라 구별된다).
 
 * Hierarchical Clustering
-    * 계층적으로 cluster를 나타냄 (cluster와 cluster가 묶여서 상위 cluster를 생성하는 방식) : `agglomerative clustering`
+    * 계층적으로 cluster를 나타냄 (cluster와 cluster가 묶여서 상위 cluster를 생성하는 방식)
+    * 주로 `agglomerative clustering`(bottom-up)이 대세임!
+    * top-down으로 동작하는 `divisive clustering` 도 있으나 상대적으로 덜 사용됨.
 * Non-hierarchical Clustering
     * 특정 centroid(중심점)의 주변에 가까이 모여있는 것을 cluster라고 정의 : `k-means`
     * continuous regions of high density (data points가 밀집되어 있는 연속된 영역)을 cluster라고 정의 : `DBSCAN`
@@ -76,12 +78,12 @@ Clustering은 크게 두가지 종류로 나뉨 (cluster를 무엇으로 정의�
 ### 개선 사항.
 
 * 효과적인 거리 계산 : Triangle Inequality를 이용하여,거리 계산에 요구되는 계산량을 감소시킴
-    * Charles Elkan et al., 2003
+    * Charles Elkan, 2003
     * [Using the Triangle Inequality to Accelerate k-means](https://cdn.aaai.org/ICML/2003/ICML03-022.pdf)
 * K-Means++ : 초기 centroids의 분포를 효과적으로 수행(초기 centroids가 서로 가급적 멀리 떨어지도록 할당)하여 최적이 아닌 solution으로 converge할 확률을 낮춤
-    * David Arthur, 2006
+    * David Arthur and Sergei Vassilvitskii, 2007
     * [k-means++: The Advantages of Careful Seeding.](https://theory.stanford.edu/~sergei/papers/kMeansPP-soda.pdf)
-* MiniBatchKMeans : 각 iteration에서 전체 dataset을 사용하지 않고 minibatch를 이용하여 3-4배의 수렴속도 향상을 가져옴. 단 원래의 방식보다 inertia가 조금 떨어지는 것으로 알려짐.
+* MiniBatchKMeans : 각 iteration에서 전체 dataset을 사용하지 않고 mini-batch를 이용하여 3-4배의 수렴속도 향상을 가져옴. 단 원래의 방식보다 inertia (=within-cluster SSE)가 좀 더 크게 나올 수 있음(클수로 안 좋음).
     * Davide Sculley, 2010
     * abstract [Web-Scale k-means Clustering](https://dl.acm.org/doi/abs/10.1145/1772690.1772862)
     * [scikit-learn docs.](https://scikit-learn.org/stable/auto_examples/cluster/plot_mini_batch_kmeans.html#sphx-glr-auto-examples-cluster-plot-mini-batch-kmeans-py)  
@@ -151,7 +153,9 @@ Clustering은 크게 두가지 종류로 나뉨 (cluster를 무엇으로 정의�
 가장 가까운 data point끼리 묶어나가(linkage)는 방식  
 혹은 가장 멀리 떨어진 data point를 분리시켜나가는 방식으로 수행됨.
 
-다음 2가지로 나뉨.
+![](./img/Hierarchical-clustering-steps.png){style="display: block;margin: 0 auto;width: 400"}
+
+방식에 따라, 크게 다음 2가지로 나뉨.
 
 * agglomerative clustering (병합적 군집 or 상향식 군집)
 * divisive clustering (분할적 군집 or 하향식 군집)
@@ -161,26 +165,34 @@ Clustering은 크게 두가지 종류로 나뉨 (cluster를 무엇으로 정의�
 > 
 > * agglomerate: 뭉치다. 집합체.
 > * agglomeration: 집합, 응집.
-  
 
-### 동작 방식
+---  
+
+### 동작 방식 (agglomerative hierarchical clustering)
 
 * 모든 data points를 묶어가면서 ***Dendrogram*** 을 하단에서 상단으로 만들어나가게 됨. 
-* 모든 data points가 한 cluster로 묶이면 (=Dendrogram의 root) 과정이 끝나고, 
+* 모든 data points가 한 cluster로 묶이면 (=Dendrogram의 root가 만들어짐) 과정이 끝나고, 
 * Dendrogram의 vertical axis에서 적절한 수준에서 잘라서 cluster의 수를 조절함
     * 상단, 즉 root에 가까운 곳에서 cutting이 발생시 cluster의 수가 적고, 
     * leaf nodes에 가까운 곳에서 cutting이 발생시 cluster의 수가 많음).
-* 일반적인 Non-hierarchical clustering과 달리, clusters의 수 $K$를 미리 정할 필요가 없음.
+* 일반적인 Non-hierarchical clustering과 달리,**clusters의 수 $K$를 미리 정할 필요가 없음.**
 
 참고자료 : [Dendrogram이란](https://ds31x.blogspot.com/2023/08/ml-dendrogram.html) 
 
-> 전체 데이터를 살필 필요가 없는 greedy algorithm!
+> 위의 dendrogram 기반의 hierarchical clustering은 전체 데이터를 살필 필요가 없는 **greedy algorithm임!**  
+>
+> * agglomerative clustering의 경우 주로 greedy algorithm임.
+> * divisive clustering의 경우 보다 global objective minimization을 사용 가능하기 때문에 greedy가 아닌 경우도 있음: `bisecting K-means` 등.
+
+---
 
 ### 특징.
 
-* 다양한 shape의 clusters 를 가지는 dataset에서도 효과적
-* cluster를 생성할 때 각각의 connection 등에 대한 많은 정보를 가지고 있는 cluster tree (binary tree로 dendrogram으로 시각화 가능)를 생성.
-* 다양한 pair-wise distance function 을 사용가능함. 
+* **다양한 shape의 clusters 를 가지는 dataset에서도 효과적**
+* cluster를 생성할 때 "각각의 connection 등에 대한 많은 정보"를 가지고 있는 **cluster tree** (binary tree로 dendrogram으로 시각화 가능)를 생성.
+* 다양한 pair-wise distance functions를 사용한 linkage 가 가능함. 
+
+---
 
 ### Types of Linkages
 
@@ -370,7 +382,7 @@ $$
 ***Density Based Clustering*** 의 대표적 알고리즘.  
 ( **K-Means** 와 함께 non-hierarchical clustering의 대표.)
 
-**일정한 수준의 밀도를 유지** 하는 data points의 무리가 chain처럼 연결되어 있으면 cluster로 판정 (cluster = continuous regions of high density)하기 때문에 noise나 outlier에 매우 robust한 성능을 보임.
+**일정한 수준의 밀도를 유지** 하는 data points의 무리가 chain처럼 연결되어 있으면 cluster로 판정(cluster = continuous regions of high density)하기 때문에 noise나 outlier에 매우 robust한 성능을 보임.
 
 > DBSCAN 은 cluster들이 “density가 낮은 구역들”에 의해 각각 분리되어 있다고 가정함.
 
@@ -412,9 +424,11 @@ current_cluster_label <- 1
 5. 연결된 `core point`들은 하나의 cluster를 이룸.
 6. 모든 `border point`들은 하나의 cluster에 속해야 함. (여러 cluster에 걸쳐있을 경우, 반복과정 중 먼저 할당된 cluster에 속하도록 처리.)
 
+---
+
 ### DBSCAN: Eps 및 MinPts 결정
 
-최적의 `MinPts`를 구하는 방법은 알려진 것이 없음. 때문에 CV등을 통해 최적의 값을 찾아야 함.
+최적의 `MinPts`를 구하는 방법은 알려진 것이 없음. 때문에 Cross validation(CV) 등을 통해 최적의 값을 찾아야 함.
 
 `Eps` $\epsilon$ 의 경우에는 다음의 $k$-dist Graph를 이용하여 급격히 증가하는 점에서의 distance로 정한다. (여기서 $k$는 `MinPts`임)
 
