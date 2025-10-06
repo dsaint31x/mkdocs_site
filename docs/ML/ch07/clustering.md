@@ -382,9 +382,9 @@ $$
 ***Density Based Clustering*** 의 대표적 알고리즘.  
 ( **K-Means** 와 함께 non-hierarchical clustering의 대표.)
 
-**일정한 수준의 밀도를 유지** 하는 data points의 무리가 chain처럼 연결되어 있으면 cluster로 판정(cluster = continuous regions of high density)하기 때문에 noise나 outlier에 매우 robust한 성능을 보임.
+**일정한 수준의 밀도를 유지** 하는 data points의 무리가 chain처럼 연결되어 있으면, cluster로 판정(cluster = continuous regions of high density)하기 때문에 noise나 outlier에 매우 robust한 성능을 보임.
 
-> DBSCAN 은 cluster들이 “density가 낮은 구역들”에 의해 각각 분리되어 있다고 가정함.
+> DBSCAN 은 ***cluster들이 “density가 낮은 구역들”에 의해 각각 분리되어 있다고 가정함***.
 
 즉, noise와 outlier에 강하고 (noise point로 지정되면 아예 cluster에서 빼버림) 다양한 shape(모양)과 size(크기)의 cluster들을 처리할 수 있는 장점을 가짐.
 
@@ -402,19 +402,21 @@ $$
 
 ### Algorithm
 
+다음의 pseudo code는 DBSCAN의 "Density Expansion" 단계를 설명함:
+
 ```C
 current_cluster_label <- 1
-     for all core points do
-            if the core point has no cluster label then
-                current_cluster_label <- current_cluster_label+1
-                Label the current core point with cluster label current_cluster_label
-           end if
-           for all points in the Eps-neighborhood, except i-th point itself do
-                  if the point does not have a cluster label then
-                      Label the point with cluster label current_cluster_label
-                  end if
-           end for
-       end for
+for all core points do
+    if the core point has no cluster label then
+       current_cluster_label <- current_cluster_label+1
+       Label the current core point with cluster label current_cluster_label
+    end if
+    for all points in the Eps-neighborhood, except i-th point itself do
+       if the point does not have a cluster label then
+           Label the point with cluster label current_cluster_label
+       end if
+    end for
+end for
 ```
 
 1. hyper-parameter로 `Eps`(=$\epsilon$)와 `MinPts`가 주어짐.
