@@ -388,13 +388,18 @@ $$
 
 즉, noise와 outlier에 강하고 (noise point로 지정되면 아예 cluster에서 빼버림) 다양한 shape(모양)과 size(크기)의 cluster들을 처리할 수 있는 장점을 가짐.
 
+**필수 용어:**
+
 * Density : 지정된 반경($\epsilon$) 내의 데이터 포인트의 갯수
 * `Core point` : 해당 점을 중심으로 $\epsilon$ 내에 존재하는 데이터 포인트의 갯수가 지정된 Density (=`MinPts`)를 초과하는 경우 Core point라고 부름.
+* `Border point` : 해당 점을 중심으로 $\epsilon$ 내에 존재하는 데이터 포인트의 갯수가 지정된 Density (=`MinPts`)보다 적지만, Core point와의 거리가 $\epsilon$ 이내인 경우.
+* `Noise point` : Core point도 아니고, Border point도 아닌 데이터 포인트.
+
+**연결 분류:**
+
 * Direct Density Reachable (`DDR`) : $\textbf{x}$ 가 core point $\textbf{c}$와의 거리가 $\epsilon$ 이내라면 DDR이라고 칭함.
 * Density Reachable (`DR`) : DDR point들로 구성된 chain으로 연결된 경우 DR이라고 칭함.
 * Density Connected (`DC`) : $\textbf{x}$ 와 $\textbf{y}$ 가 DR이고 $\textbf{y}$ 와 $\textbf{q}$ 가 DR이면 $\textbf{x}$와 $\textbf{q}$ 는 DC라고 칭함.  
-* `Border point` : 해당 점을 중심으로 $\epsilon$ 내에 존재하는 데이터 포인트의 갯수가 지정된 Density (=`MinPts`)보다 적지만, Core point와의 거리가 $\epsilon$ 이내인 경우.
-* `Noise point` : Core point도 아니고, Border point도 아닌 데이터 포인트.
 
 <figure markdown>
 ![](./img/DBSCAN_minPts%3D4.png){width="00"}
