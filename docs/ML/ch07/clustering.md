@@ -490,13 +490,15 @@ end for
 
 #### `Cluster Cohesion` (군집 응집도)  
 
-: cluster 내에서 속한 sample들이 서로 얼마나 밀접한 관련이 있는지를 within sum of square error (WSSE, WSS)로 측정.  
+: cluster 내에서 속한 sample들이 서로 얼마나 밀접한 관련이 있는지를 within sum of squared error (WSSE, WSS)로 측정.  
   
 $$\text{WSSE}=\sum_{i}\sum_{\textbf{x} \in C_i} (\textbf{x}-\textbf{c}^\text{center}_i)^2$$
 
+> `KMeans` 객체에서 `intertia_`에 저장됨.
+
 #### `Cluster Separation` (군집 분리도)  
 
-: 한 cluster 가 다른 cluster 들과 얼마나 잘 구별되는지를 between sum of square error (BSSE, BSS)로 측정.  
+: 한 cluster 가 다른 cluster 들과 얼마나 잘 구별되는지를 between sum of squared error (BSSE, BSS)로 측정.  
   
 $$\text{BSSE}=\sum_{i}\sum_{j\ne i} \text{Size}(C_i) (\textbf{c}^\text{center}_i-\textbf{c}^\text{center}_j)^2$$  
 
