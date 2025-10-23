@@ -163,7 +163,7 @@ Accuracy와 달리, Precision과 Recall은 class별로 구해지기 때문에,
 $$
 \begin{aligned}
 \bf{Precision}(\bf{macro}) &= \frac{\bf{Precision}(\bf{cls_A})+\bf{Precision}(\bf{cls_B})+ \dots +\bf{Precision}(\bf{cls_N})}{N} \\
-&= \frac{\sum_{i=\text{A}}^\text{N} \bf{Precision}(\bf{cls_i})}{N}
+&= \displaystyle \frac{\sum_i \bf{Precision}(\bf{cls_i})}{N}
 \end{aligned}
 $$
 
@@ -171,7 +171,8 @@ $$
 $$
 \begin{aligned}
 \bf{Recall}(\bf{macro}) &= \frac{\bf{Recall}(\bf{cls_A})+\bf{Recall}(\bf{cls_B})+ \dots +\bf{Recall}(\bf{cls_N})}{N} \\
-&= \frac{ \sum_{i=\text{A}}^\text{N} \bf{Recall}(\bf{cls_i})}{N}
+&= \displaystyle \frac{ \sum_i \bf{Recall}(\bf{cls_i})}{N}
+\end{aligned}
 $$
 
 
@@ -201,14 +202,14 @@ $$
 
 $$
 \begin{aligned}
-\bf{Precision} &= \frac{TP(\bf{cls_A})+ \dots +TP(\bf{cls_N})}{TP(\bf{cls_A})+ \dots +TP(\bf{cls_N})+ FP(\bf{cls_A})+ \dots +FP(\bf{cls_N})}
+\bf{Precision} &= \frac{TP(\bf{cls_A})+ \dots +TP(\bf{cls_N})}{TP(\bf{cls_A})+ \dots +TP(\bf{cls_N})+ FP(\bf{cls_A})+ \dots +FP(\bf{cls_N})} \\
 &= \frac{ \sum_i TP(\bf{cls}_i)}{\sum_i (TP(\bf{cls}_i)) + FP(\bf{cls}_i)}
 \end{aligned}
 $$
 
 $$
 \begin{aligned}
-\bf{Recall} = \frac{TP(\bf{cls_A})+ \dots +TP(\bf{cls_N})}{TP(\bf{cls_A})+ \dots +TP(\bf{cls_N})+ FN(\bf{cls_A})+ \dots +FN(\bf{cls_N})}
+\bf{Recall} = \frac{TP(\bf{cls_A})+ \dots +TP(\bf{cls_N})}{TP(\bf{cls_A})+ \dots +TP(\bf{cls_N})+ FN(\bf{cls_A})+ \dots +FN(\bf{cls_N})} \\
 &= \frac{ \sum_i TP(\bf{cls}_i)}{\sum_i (TP(\bf{cls}_i)) + FN(\bf{cls}_i)}
 \end{aligned}
 $$
@@ -395,7 +396,7 @@ $$
 * 분자는 Label이 negative인데 positive로 predict한 sample의 수임.
 * 즉, FPR이 작을수록 좋은 모델(negative label에 대한 성능이 우수)임.
 
-Recall (=True Positive Rate)과 달리, 분모는 실제 negative인 모든 sample 수이며, 분자는 positive 잘못 판정한 sample 수임.
+Recall (=True Positive Rate)과 달리, 분모는 실제 negative인 모든 sample 수이며, 분자는 positive로 잘못 판정한 sample 수임.
 
 > FPR은 1-TNR (=1-specificity)에 해당한다.  
 > 
@@ -428,10 +429,14 @@ ROC Curve에서 curve 아래의 area(면적)을 가리키며, 1에 가까울수�
 </figure>
 
 > PR Curve는 Positive Label에 더 집중하여, **Positive Label을 정확히 예측하는지의 성능** 을 잘 보여줌.  
-> ROC Curve는 FPR(False Positive Rate)를 고려하기 때문에 **Negative Label을 정확히 예측** 하는지도 중시하기 때문에 
-> PR Curve 보다 모델의 균형잡힌 성능을 보여주게 된다.  
-> 문제는 Positive Label이 상대적으로 매우 적을 경우, False Positive가 약간 늘어나도 FPR의 변화량이 적기 때문에.  
-> 이 경우 ROC Curve는 모델의 성능을 PR curve보다 지나치게 좋게 보여주는 경향이 심하다는 문제점을 가짐. 
+> 
+> * ROC Curve는 FPR(False Positive Rate)를 고려하기 때문에 **Negative Label을 정확히 예측** 하는지도 중시하기 때문에 
+> * ROC Curve는 PR Curve 보다 **모델의 균형잡힌 성능** 을 보여주게 된다.  
+> 
+> 문제는 Positive Label이 상대적으로 매우 적을 경우, 
+> 
+> * ROC Curve는 False Positive가 약간 늘어나도 FPR의 변화량이 적기 때문에.  
+> * 이 경우 ROC Curve는 모델의 성능을 PR curve보다 지나치게 좋게 보여주는 경향이 심하다는 문제점을 가짐. 
 
 ---
 
