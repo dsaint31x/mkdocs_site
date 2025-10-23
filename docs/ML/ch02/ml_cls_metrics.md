@@ -94,7 +94,7 @@ model에 대해 하나의 값만이 구해지는 Accuracy와 달리, **Precision
 * 때문에 이를 각 class에서의 precision들을 average 하여 대표값을 구해야 함.
 * 이를 average하는 방식에 따라 3~4가지 종류가 존재함 (아래 참조). 
 
-$$\textbf{Precision}(\textbf{cls_A}) = \frac{TP(\textbf{cls_A})}{TP(\textbf{cls_A})+FP(\textbf{cls_A})}$$
+$$\textbf{Precision}(\textbf{cls}_A) = \frac{TP(\textbf{cls}_A)}{TP(\textbf{cls}_A)+FP(\textbf{cls}_A)}$$
 
 
 * $TP(\textbf{cls_A})$ : Label과 Predict 모두 class A인 sample들의 수.
@@ -128,7 +128,7 @@ Recall도 precision과 마찬가지로 class별로 다음과 같이 구해진다
 
 
 $$
-\textbf{Recall}(\textbf{cls_A}) = \frac{TP(\textbf{cls_A})}{TP(\textbf{cls_A})+FN(\textbf{cls_A})}
+\textbf{Recall}(\textbf{cls}_A) = \frac{TP(\textbf{cls}_A)}{TP(\textbf{cls}_A)+FN(\textbf{cls}_A)}
 $$
 
 앞서 말한대로, ***Recall과 Precision은 trade-off 관계*** 이다. 
@@ -162,16 +162,16 @@ Accuracy와 달리, Precision과 Recall은 class별로 구해지기 때문에,
 
 $$
 \begin{aligned}
-\textbf{Precision}(\textbf{macro}) &= \frac{\textbf{Precision}(\textbf{cls_A})+\textbf{Precision}(\textbf{cls_B})+ \dots +\textbf{Precision}(\textbf{cls_N})}{N} \\
-&= \displaystyle \frac{\sum_i \textbf{Precision}(\textbf{cls_i})}{N}
+\textbf{Precision}(\textbf{macro}) &= \frac{\textbf{Precision}(\textbf{cls}_A)+\textbf{Precision}(\textbf{cls}_B)+ \dots +\textbf{Precision}(\textbf{cls}_N)}{N} \\
+&= \displaystyle \frac{\sum_i \textbf{Precision}(\textbf{cls}_i)}{N}
 \end{aligned}
 $$
 
 
 $$
 \begin{aligned}
-\textbf{Recall}(\textbf{macro}) &= \frac{\textbf{Recall}(\textbf{cls_A})+\textbf{Recall}(\textbf{cls_B})+ \dots +\textbf{Recall}(\textbf{cls_N})}{N} \\
-&= \displaystyle \frac{ \sum_i \textbf{Recall}(\textbf{cls_i})}{N}
+\textbf{Recall}(\textbf{macro}) &= \frac{\textbf{Recall}(\textbf{cls}_A)+\textbf{Recall}(\textbf{cls}_B)+ \dots +\textbf{Recall}(\textbf{cls}_N)}{N} \\
+&= \displaystyle \frac{ \sum_i \textbf{Recall}(\textbf{cls}_i)}{N}
 \end{aligned}
 $$
 
@@ -202,14 +202,14 @@ $$
 
 $$
 \begin{aligned}
-\textbf{Precision} &= \frac{TP(\textbf{cls_A})+ \dots +TP(\textbf{cls_N})}{TP(\textbf{cls_A})+ \dots +TP(\textbf{cls_N})+ FP(\textbf{cls_A})+ \dots +FP(\textbf{cls_N})} \\
+\textbf{Precision} &= \frac{TP(\textbf{cls}_A)+ \dots +TP(\textbf{cls}_N)}{TP(\textbf{cls}_A)+ \dots +TP(\textbf{cls}_N)+ FP(\textbf{cls}_A)+ \dots +FP(\textbf{cls}_N)} \\
 &= \frac{ \sum_i TP(\textbf{cls}_i)}{\sum_i (TP(\textbf{cls}_i)) + \sum_i FP(\textbf{cls}_i)}
 \end{aligned}
 $$
 
 $$
 \begin{aligned}
-\textbf{Recall} &= \frac{TP(\textbf{cls_A})+ \dots +TP(\textbf{cls_N})}{TP(\textbf{cls_A})+ \dots +TP(\textbf{cls_N})+ FN(\textbf{cls_A})+ \dots +FN(\textbf{cls_N})} \\
+\textbf{Recall} &= \frac{TP(\textbf{cls}_A)+ \dots +TP(\textbf{cls}_N)}{TP(\textbf{cls}_A)+ \dots +TP(\textbf{cls}_N)+ FN(\textbf{cls}_A)+ \dots +FN(\textbf{cls}_N)} \\
 &= \frac{ \sum_i TP(\textbf{cls}_i)}{\sum_i (TP(\textbf{cls}_i)) + \sum_i FN(\textbf{cls}_i)}
 \end{aligned}
 $$
