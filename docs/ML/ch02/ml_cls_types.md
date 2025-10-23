@@ -1,4 +1,10 @@
+---
+tags: [binary-classification, multiclass, multilabel, multioutput, OvO, OvR]
+---
+
 # Types of Classification
+
+![](./img/classification_type.png){style="display: block; margin: 0 auto; width:300px"}
 
 ## Binary Classification
 
@@ -58,3 +64,7 @@ Multioutput-Multiclass classification은 줄여서
 
 * Multioutput classification (가장 많이 사용됨) 
 * 또는 Multitask Classification 이라고도 불림.
+
+---
+
+참고자료: [Classification 과 관련 metrics 에 대한 소개](https://ds31x.tistory.com/307)
