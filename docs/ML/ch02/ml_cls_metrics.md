@@ -162,7 +162,7 @@ Accuracy와 달리, Precision과 Recall은 class별로 구해지기 때문에,
 
 $$
 \begin{aligned}
-\textbf{Precision}(\textbf{macro}) &= \frac{\textbf{Precision}(\textbf{cls}_A)+\textbf{Precision}(\textbf{cls}_B)+ \dots +\textbf{Precision}(\textbf{cls}_N)}{N} \\
+\textbf{Precision} &= \frac{\textbf{Precision}(\textbf{cls}_A)+\textbf{Precision}(\textbf{cls}_B)+ \dots +\textbf{Precision}(\textbf{cls}_N)}{N} \\
 &= \displaystyle \frac{\sum_i \textbf{Precision}(\textbf{cls}_i)}{N}
 \end{aligned}
 $$
@@ -170,7 +170,7 @@ $$
 
 $$
 \begin{aligned}
-\textbf{Recall}(\textbf{macro}) &= \frac{\textbf{Recall}(\textbf{cls}_A)+\textbf{Recall}(\textbf{cls}_B)+ \dots +\textbf{Recall}(\textbf{cls}_N)}{N} \\
+\textbf{Recall} &= \frac{\textbf{Recall}(\textbf{cls}_A)+\textbf{Recall}(\textbf{cls}_B)+ \dots +\textbf{Recall}(\textbf{cls}_N)}{N} \\
 &= \displaystyle \frac{ \sum_i \textbf{Recall}(\textbf{cls}_i)}{N}
 \end{aligned}
 $$
@@ -234,16 +234,16 @@ $$
 식은 다음과 같음.
 
 $$
-\textbf{Precision} = \frac{M(\textbf{cls_A})\textbf{Precision}(\textbf{cls_A})+ \dots +M(\textbf{cls_N})\textbf{Precision}(\textbf{cls_N})}{M(\textbf{total})}
+\textbf{Precision} = \frac{M(\textbf{cls}_A)\textbf{Precision}(\textbf{cls}_A)+ \dots +M(\textbf{cls}_N)\textbf{Precision}(\textbf{cls}_N)}{M(\textbf{total})}
 $$
 
 
 $$
-\textbf{Recall} = \frac{M(\textbf{cls_A})\textbf{Recall}(\textbf{cls_A})+ \dots +M(\textbf{cls_N})\textbf{Recall}(\textbf{cls_N})}{M(\textbf{total})}
+\textbf{Recall} = \frac{M(\textbf{cls}_A)\textbf{Recall}(\textbf{cls}_A)+ \dots +M(\textbf{cls}_N)\textbf{Recall}(\textbf{cls}_N)}{M(\textbf{total})}
 $$
 
 * $M(\textbf{total})$ : number of total samples
-* $M(\textbf{cls_A})$ : number of samples of class A
+* $M(\textbf{cls}_A)$ : number of samples of class A
 
 > sample (or support) 수가 많은 클래스를 잘 맞히는 모델에게 유리한 metric.  
 > Imbalanced classes 의 경우 모델의 성능을 과대평가하는 경향이 있음.
