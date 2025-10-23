@@ -498,21 +498,31 @@ $$\text{WSSE}=\sum_{i}\sum_{\textbf{x} \in C_i} (\textbf{x}-\textbf{c}^\text{cen
 
 #### `Cluster Separation` (군집 분리도)  
 
-: 한 cluster 가 다른 cluster 들과 얼마나 잘 구별되는지를 between sum of squared error (BSSE, BSS)로 측정.  
+: 한 cluster 가 다른 cluster 들과 얼마나 잘 구별되는지를 Between-cluster Sum of Squares (BSS)로 측정.  
   
-$$\text{BSSE}=\sum_{i}\sum_{j\ne i} \text{Size}(C_i) (\textbf{c}^\text{center}_i-\textbf{c}^\text{center}_j)^2$$  
+$$\begin{aligned}
+\text{BSS}&=\sum_{i} \text{Size}(C_i) (\textbf{c}^\text{center}_i-\textbf{c}^\text{center}_\text{global})^2\\
+&=\sum_\textbf{x} (\textbf{x}-\textbf{c}^\text{center}_\text{global})^2 - \text{WSS} \\
+&= \text{TSS} - \text{WSS}
+\end{aligned}$$  
 
-: where $\text{Size}(C_i)$는 cluster $C_i$의 크기로 보통 속한 샘플의 수를 사용함.
+: where 
+
+* $\text{Size}(C_i)$는 cluster $C_i$의 크기로 보통 속한 샘플의 수를 사용함.
+* $\textbf{c}^\text{center}_\text{global}$ 는 전체 데이터의 전역 평균임.
+
+
+> `KMeans` 객체에서 BSS는 `intertia_` 와 TSS를 이용하여 따로 구해야 함..
+
+#### `Silhouette Coefficient` (실루엣 계수)  
+
+: cohesion과 separation을 조합한 silhouette function을 모든 data point에서 개별로 구하고 이들의 평균을 구하여 하나의 숫자로 cluster가 잘되었는지를 나타냄.  
 
 <figure markdown>
 ![](./img/graph_based_view_of_cluster_cohension_separation.png){width="500" align="center"}
 </figure>
 
 : * original : ZZFJILL's [Notes of Cluster Analysis](https://zzfjill.wordpress.com/2020/02/09/notes-of-cluster-analysis/)
-
-#### `Silhouette Coefficient` (실루엣 계수)  
-
-: cohesion과 separation을 조합한 silhouette function을 모든 data point에서 개별로 구하고 이들의 평균을 구하여 하나의 숫자로 cluster가 잘되었는지를 나타냄.  
   
 $$\text{SC}=\frac{1}{M}\sum^M_{i=1}s(\textbf{x}_i)$$
 
@@ -525,6 +535,8 @@ $$\text{SC}=\frac{1}{M}\sum^M_{i=1}s(\textbf{x}_i)$$
 <figure markdown>
 ![](./img/silhouette_coef.jpeg){width="500" align="center"}
 </figure>
+
+scikit-learn에선 `from sklearn.metrics.silhouette_score(X, kmeans.labels_)` 함수로 계산 가능함.
 
 : * origin : Santhana et al., [Best Clustering Configuration Metrics: Towards Multiagent Based Clustering](https://www.researchgate.net/figure/Derivation-of-the-Overall-Silhouette-Coefficient-OverallSil_fig1_221570710)
 
@@ -544,11 +556,13 @@ $$
         * $\bar{d}_i$ : $i$th cluster에 대한 중심과 해당 cluster 에 속한 데이터 포인트 간의 평균 거리 = cohesion
         * $d_{ij}$ : $i$th cluster와 $j$th cluster의 중심거리 = separation
 
+: * $k$ : number of clusters
+
 : 예) 3개의 cluster 인 경우,
 
 : * $D_{ij}$ 는 $D_{12},D_{13},D_{23}$ 과 같이 3개가 구해짐.
-* $D_i$는 $D_1=\max \left\{ D_{12},D_{13} \right\}$, $D_2=\max \left\{ D_{23} \right\}$ 과 같이 2개가 구해짐.
-* $k=2$ 이며, $DBI=\text{mean}[D_1, D_2]$임.
+* $D_i$는 $D_1=\max \left\{ D_{12},D_{13} \right\}$, $D_2=\max \left\{ D_{23}, D_{21} \right\}$, $D_3=\max \left\{ D_{13}, D_{23} \right\}$ 과 같이 3개가 구해짐.
+* $k=3$ 이며, $DBI=\text{mean}[D_1, D_2, D_3]$임.
 
 #### `Dunn Index`
 
