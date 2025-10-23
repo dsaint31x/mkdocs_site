@@ -51,11 +51,11 @@ binary classifier의 경우, confusion matrix는 다음과 같음.
 
 Prediction에서 Ground True값인 label을 정확하게 맞춘 확률을 의미함.
 
-$$\bf{Accuracy} = \frac{\bf{Correct\_Predictions}}{\bf{All\_Predictions}}$$
+$$\textbf{Accuracy} = \frac{\textbf{Correct\_Predictions}}{\textbf{All\_Predictions}}$$
 
 Binary classification으로 말한다면
 
-$$\bf{Accuracy} = \frac{TP+TN}{TP+FP+TN+FN}$$
+$$\textbf{Accuracy} = \frac{TP+TN}{TP+FP+TN+FN}$$
 
 * $TP$ : True Positive (실제로 Label이 Positive인데 Positive라고 predict한 갯수)
 * $TN$ : True Negative (실제로 Label이 Negative인데 Negative라고 predict한 갯수)
@@ -94,11 +94,11 @@ model에 대해 하나의 값만이 구해지는 Accuracy와 달리, **Precision
 * 때문에 이를 각 class에서의 precision들을 average 하여 대표값을 구해야 함.
 * 이를 average하는 방식에 따라 3~4가지 종류가 존재함 (아래 참조). 
 
-$$\bf{Precision}(\bf{cls_A}) = \frac{TP(\bf{cls_A})}{TP(\bf{cls_A})+FP(\bf{cls_A})}$$
+$$\textbf{Precision}(\textbf{cls_A}) = \frac{TP(\textbf{cls_A})}{TP(\textbf{cls_A})+FP(\textbf{cls_A})}$$
 
 
-* $TP(\bf{cls_A})$ : Label과 Predict 모두 class A인 sample들의 수.
-* $FP(\bf{cls_A})$ : Predict는 class A였으나 Label이 class A가 아닌 sample들의 수.
+* $TP(\textbf{cls_A})$ : Label과 Predict 모두 class A인 sample들의 수.
+* $FP(\textbf{cls_A})$ : Predict는 class A였으나 Label이 class A가 아닌 sample들의 수.
 
 Precision을 올리는 쉬운 방법은 "정말 확실하게 해당 class A인 경우에만 class A로 판정"하는 것임.  
 즉, 판정시 사용하는 threshold를 매우 높게 잡으면 precision은 올라간다.
@@ -128,7 +128,7 @@ Recall도 precision과 마찬가지로 class별로 다음과 같이 구해진다
 
 
 $$
-\bf{Recall}(\bf{cls_A}) = \frac{TP(\bf{cls_A})}{TP(\bf{cls_A})+FN(\bf{cls_A})}
+\textbf{Recall}(\textbf{cls_A}) = \frac{TP(\textbf{cls_A})}{TP(\textbf{cls_A})+FN(\textbf{cls_A})}
 $$
 
 앞서 말한대로, ***Recall과 Precision은 trade-off 관계*** 이다. 
@@ -162,16 +162,16 @@ Accuracy와 달리, Precision과 Recall은 class별로 구해지기 때문에,
 
 $$
 \begin{aligned}
-\bf{Precision}(\bf{macro}) &= \frac{\bf{Precision}(\bf{cls_A})+\bf{Precision}(\bf{cls_B})+ \dots +\bf{Precision}(\bf{cls_N})}{N} \\
-&= \displaystyle \frac{\sum_i \bf{Precision}(\bf{cls_i})}{N}
+\textbf{Precision}(\textbf{macro}) &= \frac{\textbf{Precision}(\textbf{cls_A})+\textbf{Precision}(\textbf{cls_B})+ \dots +\textbf{Precision}(\textbf{cls_N})}{N} \\
+&= \displaystyle \frac{\sum_i \textbf{Precision}(\textbf{cls_i})}{N}
 \end{aligned}
 $$
 
 
 $$
 \begin{aligned}
-\bf{Recall}(\bf{macro}) &= \frac{\bf{Recall}(\bf{cls_A})+\bf{Recall}(\bf{cls_B})+ \dots +\bf{Recall}(\bf{cls_N})}{N} \\
-&= \displaystyle \frac{ \sum_i \bf{Recall}(\bf{cls_i})}{N}
+\textbf{Recall}(\textbf{macro}) &= \frac{\textbf{Recall}(\textbf{cls_A})+\textbf{Recall}(\textbf{cls_B})+ \dots +\textbf{Recall}(\textbf{cls_N})}{N} \\
+&= \displaystyle \frac{ \sum_i \textbf{Recall}(\textbf{cls_i})}{N}
 \end{aligned}
 $$
 
@@ -196,21 +196,21 @@ $$
 >
 > * 한 클래스에서 어떤 데이터 샘플이 FP 이면, 다른 클래스에서 FN 이 된다: `FP의 합 = FN의 합`
 > * TN을 사용하지 않는다: Multi-class classification의 경우 TN의 정의가 모호하여 TN=0 인 것처럼 간주됨.
-> * `전체 샘플의 수 = TP의 합 + FP의 합 + FN의 합` 이 성립.
+> * `전체 샘플의 수 = TP의 합 + FP의 합 = TP의 합 + FN의 합` 이 성립.
 
 식은 다음과 같음.
 
 $$
 \begin{aligned}
-\bf{Precision} &= \frac{TP(\bf{cls_A})+ \dots +TP(\bf{cls_N})}{TP(\bf{cls_A})+ \dots +TP(\bf{cls_N})+ FP(\bf{cls_A})+ \dots +FP(\bf{cls_N})} \\
-&= \frac{ \sum_i TP(\bf{cls}_i)}{\sum_i (TP(\bf{cls}_i)) + FP(\bf{cls}_i)}
+\textbf{Precision} &= \frac{TP(\textbf{cls_A})+ \dots +TP(\textbf{cls_N})}{TP(\textbf{cls_A})+ \dots +TP(\textbf{cls_N})+ FP(\textbf{cls_A})+ \dots +FP(\textbf{cls_N})} \\
+&= \frac{ \sum_i TP(\textbf{cls}_i)}{\sum_i (TP(\textbf{cls}_i)) + \sum_i FP(\textbf{cls}_i)}
 \end{aligned}
 $$
 
 $$
 \begin{aligned}
-\bf{Recall} = \frac{TP(\bf{cls_A})+ \dots +TP(\bf{cls_N})}{TP(\bf{cls_A})+ \dots +TP(\bf{cls_N})+ FN(\bf{cls_A})+ \dots +FN(\bf{cls_N})} \\
-&= \frac{ \sum_i TP(\bf{cls}_i)}{\sum_i (TP(\bf{cls}_i)) + FN(\bf{cls}_i)}
+\textbf{Recall} &= \frac{TP(\textbf{cls_A})+ \dots +TP(\textbf{cls_N})}{TP(\textbf{cls_A})+ \dots +TP(\textbf{cls_N})+ FN(\textbf{cls_A})+ \dots +FN(\textbf{cls_N})} \\
+&= \frac{ \sum_i TP(\textbf{cls}_i)}{\sum_i (TP(\textbf{cls}_i)) + \sum_i FN(\textbf{cls}_i)}
 \end{aligned}
 $$
 
@@ -234,16 +234,16 @@ $$
 식은 다음과 같음.
 
 $$
-\bf{Precision} = \frac{M(\bf{cls_A})\bf{Precision}(\bf{cls_A})+ \dots +M(\bf{cls_N})\bf{Precision}(\bf{cls_N})}{M(\bf{total})}
+\textbf{Precision} = \frac{M(\textbf{cls_A})\textbf{Precision}(\textbf{cls_A})+ \dots +M(\textbf{cls_N})\textbf{Precision}(\textbf{cls_N})}{M(\textbf{total})}
 $$
 
 
 $$
-\bf{Recall} = \frac{M(\bf{cls_A})\bf{Recall}(\bf{cls_A})+ \dots +M(\bf{cls_N})\bf{Recall}(\bf{cls_N})}{M(\bf{total})}
+\textbf{Recall} = \frac{M(\textbf{cls_A})\textbf{Recall}(\textbf{cls_A})+ \dots +M(\textbf{cls_N})\textbf{Recall}(\textbf{cls_N})}{M(\textbf{total})}
 $$
 
-* $M(\bf{total})$ : number of total samples
-* $M(\bf{cls_A})$ : number of samples of class A
+* $M(\textbf{total})$ : number of total samples
+* $M(\textbf{cls_A})$ : number of samples of class A
 
 > sample (or support) 수가 많은 클래스를 잘 맞히는 모델에게 유리한 metric.  
 > Imbalanced classes 의 경우 모델의 성능을 과대평가하는 경향이 있음.
@@ -389,7 +389,7 @@ graph가 Left-top (High recall and Low FPR)에 가까울수록 높은 성능의 
 `fall out` 이라고도 불리며, 모델의 negative label에 대한 성능을 나타냄.
 
 $$
-\bf{FPR}=\frac{FP}{FP+TN}= 1-\frac{TN}{FP+TN} = 1-\bf{specificity}
+\textbf{FPR}=\frac{FP}{FP+TN}= 1-\frac{TN}{FP+TN} = 1-\textbf{specificity}
 $$
 
 * Label이 Negative인 sample의 수가 분모이며 
@@ -449,7 +449,7 @@ Precision과 Recall을 동시에 반영하는 measure로 많이 사용됨.
 Precision과 Recall의 Harmonic mean으로 수식은 다음과 같음.
 
 $$
-\begin{aligned}F_{\beta}=F&=\frac{1}{\alpha\frac{1}{\bf{precision}}+(1-\alpha)\frac{1}{\bf{recall}}}\\ &=\frac{(\beta^2+1)\bf{precision}\times\bf{recall}}{\beta^2\bf{precision}+\bf{recall}}\end{aligned}
+\begin{aligned}F_{\beta}=F&=\frac{1}{\alpha\frac{1}{\textbf{precision}}+(1-\alpha)\frac{1}{\textbf{recall}}}\\ &=\frac{(\beta^2+1)\textbf{precision}\times\textbf{recall}}{\beta^2\textbf{precision}+\textbf{recall}}\end{aligned}
 $$
 
 * Precision과 Recall이 모두 중요할 경우 $\beta=1$
