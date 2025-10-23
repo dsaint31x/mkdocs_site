@@ -97,8 +97,8 @@ model에 대해 하나의 값만이 구해지는 Accuracy와 달리, **Precision
 $$\textbf{Precision}(\textbf{cls}_A) = \frac{TP(\textbf{cls}_A)}{TP(\textbf{cls}_A)+FP(\textbf{cls}_A)}$$
 
 
-* $TP(\textbf{cls_A})$ : Label과 Predict 모두 class A인 sample들의 수.
-* $FP(\textbf{cls_A})$ : Predict는 class A였으나 Label이 class A가 아닌 sample들의 수.
+* $TP(\textbf{cls}_A)$ : Label과 Predict 모두 class A인 sample들의 수.
+* $FP(\textbf{cls}_A)$ : Predict는 class A였으나 Label이 class A가 아닌 sample들의 수.
 
 Precision을 올리는 쉬운 방법은 "정말 확실하게 해당 class A인 경우에만 class A로 판정"하는 것임.  
 즉, 판정시 사용하는 threshold를 매우 높게 잡으면 precision은 올라간다.
