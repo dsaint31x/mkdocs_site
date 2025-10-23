@@ -1,3 +1,7 @@
+---
+tags: [confusion matrix, accuracy, precision, macro, micro, weighted, mAP, ROC, PR, AUC, F2, F-score, recall, sensitivity]
+---
+
 # Performance Measures for Classifiers
 
 ## Confusion matrix
@@ -157,12 +161,17 @@ Accuracy와 달리, Precision과 Recall은 class별로 구해지기 때문에,
 아래의 식을 보면, 각 클래스의 값에 동일한 weight을 준다.
 
 $$
-\bf{Precision}(\bf{macro}) = \frac{\bf{Precision}(\bf{cls_A})+\bf{Precision}(\bf{cls_B})+ \dots +\bf{Precision}(\bf{cls_N})}{N}
+\begin{aligned}
+\bf{Precision}(\bf{macro}) &= \frac{\bf{Precision}(\bf{cls_A})+\bf{Precision}(\bf{cls_B})+ \dots +\bf{Precision}(\bf{cls_N})}{N} \\
+&= \frac{\sum_{i=\text{A}}^\text{N} \bf{Precision}(\bf{cls_i})}{N}
+\end{aligned}
 $$
 
 
 $$
-\bf{Recall}(\bf{macro}) = \frac{\bf{Recall}(\bf{cls_A})+\bf{Recall}(\bf{cls_B})+ \dots +\bf{Recall}(\bf{cls_N})}{N}
+\begin{aligned}
+\bf{Recall}(\bf{macro}) &= \frac{\bf{Recall}(\bf{cls_A})+\bf{Recall}(\bf{cls_B})+ \dots +\bf{Recall}(\bf{cls_N})}{N} \\
+&= \frac{ \sum_{i=\text{A}}^\text{N} \bf{Recall}(\bf{cls_i})}{N}
 $$
 
 
@@ -191,20 +200,26 @@ $$
 식은 다음과 같음.
 
 $$
-\bf{Precision} = \frac{TP(\bf{cls_A})+ \dots +TP(\bf{cls_N})}{TP(\bf{cls_A})+ \dots +TP(\bf{cls_N})+ FP(\bf{cls_A})+ \dots +FP(\bf{cls_N})}
+\begin{aligned}
+\bf{Precision} &= \frac{TP(\bf{cls_A})+ \dots +TP(\bf{cls_N})}{TP(\bf{cls_A})+ \dots +TP(\bf{cls_N})+ FP(\bf{cls_A})+ \dots +FP(\bf{cls_N})}
+&= \frac{ \sum_i TP(\bf{cls}_i)}{\sum_i (TP(\bf{cls}_i)) + FP(\bf{cls}_i)}
+\end{aligned}
 $$
 
 $$
+\begin{aligned}
 \bf{Recall} = \frac{TP(\bf{cls_A})+ \dots +TP(\bf{cls_N})}{TP(\bf{cls_A})+ \dots +TP(\bf{cls_N})+ FN(\bf{cls_A})+ \dots +FN(\bf{cls_N})}
+&= \frac{ \sum_i TP(\bf{cls}_i)}{\sum_i (TP(\bf{cls}_i)) + FN(\bf{cls}_i)}
+\end{aligned}
 $$
 
-> Multi-class classification 의 경우  
+> Multi-class classification 의 경우,  
 > Imbalanced classes의 경우에 대해 Micro Average와 Macro Average가 큰 차이를 보이며,  
 > Weighted Average는 그 사이에 존재 (경우에 따라 차이는 있으나 Micro와 weighted가 좀더 비슷함).
 >   
-> Macro average는 Accuracy와 동일하기 때문에  
+> ***Micro average는 Accuracy와 동일*** 하기 때문에  
 > scikit-learn 등에서 제공하는 함수들에서  
-> Macro Average와 Weighted Average만을 기본으로 제공하고 Micro avg.는 제공하지 않음.  
+> Macro Average와 Weighted Average 만을 기본으로 제공하고 Micro avg.는 제공하지 않음.  
 
 ---
 
@@ -218,18 +233,18 @@ $$
 식은 다음과 같음.
 
 $$
-\bf{Precision}(\bf{weighted}) = \frac{M(\bf{cls_A})\bf{Precision}(\bf{cls_A})+ \dots +M(\bf{cls_N})\bf{Precision}(\bf{cls_N})}{M(\bf{total})}
+\bf{Precision} = \frac{M(\bf{cls_A})\bf{Precision}(\bf{cls_A})+ \dots +M(\bf{cls_N})\bf{Precision}(\bf{cls_N})}{M(\bf{total})}
 $$
 
 
 $$
-\bf{Recall}(\bf{weighted}) = \frac{M(\bf{cls_A})\bf{Recall}(\bf{cls_A})+ \dots +M(\bf{cls_N})\bf{Recall}(\bf{cls_N})}{M(\bf{total})}
+\bf{Recall} = \frac{M(\bf{cls_A})\bf{Recall}(\bf{cls_A})+ \dots +M(\bf{cls_N})\bf{Recall}(\bf{cls_N})}{M(\bf{total})}
 $$
 
 * $M(\bf{total})$ : number of total samples
 * $M(\bf{cls_A})$ : number of samples of class A
 
-> sample (or support) 수가 많은 클래스를 잘 맞히는 모델에게 가장 유리한 metric.  
+> sample (or support) 수가 많은 클래스를 잘 맞히는 모델에게 유리한 metric.  
 > Imbalanced classes 의 경우 모델의 성능을 과대평가하는 경향이 있음.
 
 ---
@@ -304,7 +319,7 @@ Multiclass classification에서도 계산 가능함.
 * 오른쪽 상단은 recall과 precision이 둘다 높은 경우이기 때문에 curve가 오른쪽 상단에 가깝게 그려질수록 우수한 performance의 모델임.
 
 <figure markdown>
-![](./img/PR_curve.png){width="600" align="center"}
+![](./img/PR_curve.png){width="400" align="center"}
 </figure>
 
 위의 PR Curve에서 보이듯이 precision이 높아지면 recall이 낮아지고, recall이 높아지면 precision이 떨어진다.
@@ -312,7 +327,7 @@ Multiclass classification에서도 계산 가능함.
 이를 threshold를 x축으로 하여 precision과 recall을 각각 그리면 다음과 같음.
 
 <figure markdown>
-![](./img/PR_threshold.png){width="600" align="center"}
+![](./img/PR_threshold.png){width="400" align="center"}
 </figure>
 
 * 위의 graph에서 threshold가 극도로 높아지면 precision이 출렁거리는 것을 확인할 수 있음.
@@ -321,7 +336,7 @@ Multiclass classification에서도 계산 가능함.
 MNIST 데이터 (0-9까지의 숫자 데이터)에서 class 5에 대한 분류기에 대해 12개 샘플로 테스트한 결과가 다음과 같다고 가정하자.
 
 <figure markdown>
-![](./img/PR_tradeoff.png)
+![](./img/PR_tradeoff.png){style="display: block; margin: 0 auto;width: 400px"}
 </figure>
 
 * Threshold에 따라 precision과 recall이 어떻게 변하는지를 간략하게 보여줌.
@@ -336,7 +351,7 @@ MNIST 데이터 (0-9까지의 숫자 데이터)에서 class 5에 대한 분류�
 * y-axis가 Precision 인 경우.
 
 > 참고로, Multi-class Classification 또는 Detection과 같은 Task 에서  
-> Mean Average Precision (mAP)을 metric으로 많이 사용하는데,  
+> Mean Average Precision ( ***mAP*** )을 metric으로 많이 사용하는데,  
 > <u>mAP는 각 클래스별로 Average Precision을 구하고, 이들의 평균을 구한 것</u> 을 가리킴.   
 
 
@@ -358,7 +373,7 @@ ROC는 `False Positive Rate` (=`FPR` or `fall-out`) 에 대해 `Recall` (=`True 
 OvR 또는 OvO 를 이용하여 Multi-class classification에서도 그릴 수는 있으나  
 ***주로 binary classification에서 사용*** 됨.
 
-Multi-class의 경우의 ROC Curve는 다음 URL을 참고할 것.
+Multi-class의 경우의 ROC Curve는 다음 URL을 참고할 것.  
 [Multi-class Receiver Operating Characteristic (ROC)](https://scikit-learn.org/stable/auto_examples/model_selection/plot_roc.html)
 
 PR-Curve와 유사한 형태이나  
@@ -401,7 +416,7 @@ ROC Curve에서 curve 아래의 area(면적)을 가리키며, 1에 가까울수�
 
 다음과 같은 경우, PR-Curve가 ROC-Curve 보다 선호된다.
 
-* Label이 Positive인 sample이 적은 경우 (데이터 불균형이 심한 경우) 또는  
+* label이 positive 인 sample이 상대적으로 매우 적은 경우 또는  
 * false positive 를 false negative 보다 중요하게 생각할 때
 
 > 위의 경우, ROC-Curve의 경우보다 PR-Curve는 ***보다 AP(개념상 AUC)가 낮게 나와서 성능의 차이를 보다 잘 보여준다*** .
@@ -409,12 +424,14 @@ ROC Curve에서 curve 아래의 area(면적)을 가리키며, 1에 가까울수�
 다음 그림은 MNIST에서 5와 5가 아닌 경우를 분류하는 binary classification을 수행하는 동일 모델에 대해 ROC-Curve와 PR-Curve를 그린 것임.
 
 <figure markdown>
-![](./img/PR_vs_ROC.png)
+![](./img/PR_vs_ROC.png){style="display:block; margin:0 auto; width="600px"}
 </figure>
 
-> PR Curve는 Positive Label에 더 집중하여, Positive Label을 정확히 에측하는지의 성능을 잘 보여줌.  
-> ROC Curve는 FPR(False Positive Rate)를 고려하기 때문에 Negative Label을 정확히 예측하는지도 중시하기 때문에 모델의 균형잡힌 성능을 보여주게 된다.  
-> 문제는 Positive Label이 상대적으로 매우 적을 경우, FPR이 낮게 유지되기 때문에 이 경우 ROC Curve는 모델의 성능을 PR curve보다 지나치게 좋게 보여주는 경향이 심하다는 문제점을 가짐. 
+> PR Curve는 Positive Label에 더 집중하여, **Positive Label을 정확히 예측하는지의 성능** 을 잘 보여줌.  
+> ROC Curve는 FPR(False Positive Rate)를 고려하기 때문에 **Negative Label을 정확히 예측** 하는지도 중시하기 때문에 
+> PR Curve 보다 모델의 균형잡힌 성능을 보여주게 된다.  
+> 문제는 Positive Label이 상대적으로 매우 적을 경우, False Positive가 약간 늘어나도 FPR의 변화량이 적기 때문에.  
+> 이 경우 ROC Curve는 모델의 성능을 PR curve보다 지나치게 좋게 보여주는 경향이 심하다는 문제점을 가짐. 
 
 ---
 
