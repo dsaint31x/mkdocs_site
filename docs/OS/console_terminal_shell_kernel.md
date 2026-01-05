@@ -81,7 +81,8 @@ Some ^^popular terminal applications^^ include
 * 위 그림에서 `system call`은 OS가 제공하는 서비스들에 User application이 접근하게 해주는 interface임.
 
 아래 그림은 좀 더 shell의 관점에서 자세히 그린 그림임:
-![](./img/shell_ibm.gif){width="300"}
+
+![](./img/shell_ibm.gif){width="600"}
 
 > `Shell`은 `CLI`를 주로 사용하기 때문에, 다음 두 가지의 동작방식을 가짐.
 >
