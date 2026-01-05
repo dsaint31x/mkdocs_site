@@ -197,7 +197,7 @@ chmod go-rwx target_path
 
 - `target_path`에 대해 그룹과 그외 사용자 들의 모든 권한을 제거.
 
-보다 자세한 건 다음 url참고 : [`chmod`` 사용법](https://recipes4dev.tistory.com/175)
+보다 자세한 건 다음 url참고 : [`chmod` 사용법](https://recipes4dev.tistory.com/175)
 
 ---
 
@@ -243,6 +243,8 @@ ifconfig
 
 `grep` : Global Regular Expression Print의 abbreviation.
 
+* [`grep`에 대한 좀 더 자세한 자료](https://ds31x.tistory.com/580)
+
 ```bash
 grep [option] pattern [file]
 ```
@@ -258,6 +260,8 @@ grep [option] pattern [file]
 ### find : 파일 검색.
 
 `find` : 지정된 디렉토리 트리 내에서 파일을 검색.
+
+* [`find`에 대한 좀 더 자세한 자료](https://ds31x.tistory.com/259)
 
 ```bash
 find [path] [exrpression]
