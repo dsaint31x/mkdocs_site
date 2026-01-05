@@ -60,11 +60,13 @@ Some ^^popular terminal applications^^ include
 
 ## Shell
 
-> `사용자`와 ***`OS`의 `kernel`*** 사이에 위치하고,  
->
-> * 사용자가 입력한 command들을 해석하여 
-> * OS(정확히는 `kernel`)로 전달하여 실행시키고 
-> * 그 결과를 사용자에게 다시 보여주는 역할을 담당한다.
+> `사용자`와 ***`OS`의 `kernel`*** 사이에 위치하고, 
+> 
+> * 사용자의 입력을 해석(parse) 하여
+> * external commands인 경우 프로세스를 생성하도록 요청하여 해당 프로그램을 실행하며
+> * 그 과정에서 시스템 콜(system call: fork, exec) 을 통해 `kernel`의 서비스를 사용하고
+> * builtin (내부 명령어)인 경우 자신의 프로세스에서 직접 처리하여 
+> * 프로그램의 실행한 결과를 표준 출력으로 받아 terminal을 통해 사용자에게 표시
 >  
 > ^^`Terminal` 내부에서 동작^^ 하며, `CLI` 를 사용하는 게 일반적임.
 > 
@@ -76,7 +78,7 @@ Some ^^popular terminal applications^^ include
 
 * 위 그림에서 `system call`은 OS가 제공하는 서비스들에 User application이 접근하게 해주는 interface임.
 
-> `Shell`은 `CLI`를 주로 사용하기 때문에, 다음 두가지의 동작방식을 가짐.
+> `Shell`은 `CLI`를 주로 사용하기 때문에, 다음 두 가지의 동작방식을 가짐.
 >
 > * `Interactive mode` (REPL)
 > * `Scripting mode` (batch processing)
