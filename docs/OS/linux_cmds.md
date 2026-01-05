@@ -257,6 +257,8 @@ grep [option] pattern [file]
     * `-v` : 패턴과 일치하지 않는 라인을 출력 (invert mathc).
     * `-n` : 일치하는 line의 번호를 함께 출력.
 
+---
+
 ### find : 파일 검색.
 
 `find` : 지정된 디렉토리 트리 내에서 파일을 검색.
@@ -273,5 +275,7 @@ find [path] [exrpression]
     * `-type type` : 파일 유형으로 검색 (`f`: 일반 파일, `d`: 디렉토리). 
     * `-exec command {} \;` : 검색된 파일에 대해 command를 실행. 
     * `-print` : 검색된 파일의 경로를 출력 (기본 동작).
+
+---
 
 ---
