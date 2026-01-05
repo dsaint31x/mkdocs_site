@@ -58,7 +58,7 @@ Debian 계열(Debian, Mint, Ubuntu 등)과 Redhat (Redhat, Fedora, CentOS)계열
 > 개인적으로 Debian계열을 선호하지만, 상업용으로는 보다 Redhat 계열 (특히 CentOS)이 좀 더 많이 사용되는 것으로 보인다.  
 > 참고로, 기계학습이나 데이터 사이언스 계열에서는 Ubuntu 가 가장 많이 사용되는 추세임.
 
-* [Distribution과 Kernel의 요약자료](http://ds31x.tistory.com/131))
+* [Distribution과 Kernel의 요약자료](http://ds31x.tistory.com/131)
 
 ---
 
