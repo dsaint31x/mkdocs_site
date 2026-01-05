@@ -39,7 +39,7 @@ The ***console*** allows system administrators to
 
 오늘날 Terminal은 Command Line Interface(`CLI`)를 제공하는 S/W로 `shell`이 구동되는 wrapper S/W라고 보면 된다.
 
-**참고** : [CLI, GUI와 Terminal](../CE/ch10/ce10_2_01_cli_terminal.md)
+**참고** : [CLI, GUI 와 Terminal](../CE/ch10/ce10_2_01_cli_terminal.md)
 
 A ***software application*** that allows users to ^^interact with a computer system^^ through a `command-line interface`. 
 
@@ -78,6 +78,9 @@ Some ^^popular terminal applications^^ include
 
 * 위 그림에서 `system call`은 OS가 제공하는 서비스들에 User application이 접근하게 해주는 interface임.
 
+아래 그림은 좀 더 shell의 관점에서 자세히 그린 그림임:
+![](./img/shell_ibm.gif){width="300"}
+
 > `Shell`은 `CLI`를 주로 사용하기 때문에, 다음 두 가지의 동작방식을 가짐.
 >
 > * `Interactive mode` (REPL)
@@ -99,7 +102,7 @@ The `shell` allows users to ***interact with the computer system*** by
 
 * `Bourne Shell` (`sh`)
 * `Bash` (`bash`, Bourne Again Shell), 
-* `Zsh` (주로 mac) 
+* `Zsh` (주로 macOS) 
 * `PowerShell` (for Window).
 
 Korn Shell (`ksh`) 과 C Shell (`csh`)도 있으나 `bash`나 `zsh`에 비해 인기가 떨어짐. 
@@ -111,3 +114,5 @@ Korn Shell (`ksh`) 과 C Shell (`csh`)도 있으나 `bash`나 `zsh`에 비해 �
 * tty의 용어 유래 등의 역사를 살펴보려면 다음 URL을 참고하라: [Keyboard와 Terminal의 역사](https://dsaint31.me/mkdocs_site/CE/ch06/ce06_4_04_keyboard/#keyboard)
 
 * [bash에 대한 간략한 소개](https://ds31x.tistory.com/48)
+
+* [shell 중 bash, zsh, cmd.exe, powershell 을 다룬 글 (간단한 명령어 소개)](https://ds31x.tistory.com/page/Shell-%EC%9A%94%EC%95%BD-%EC%A0%95%EB%A6%AC-bash-%EA%B8%B0%EC%A4%80)
