@@ -7,7 +7,7 @@ tags:
 
 # Operating System (운영체제)
 
-![](./img/os_arch.png){style="display:block; margin:0 auto; width: 300px"}
+![](./img/os_arch.png){style="display:block; margin:0 auto; width: 500px"}
 
 ## 1. OS 란?
 
