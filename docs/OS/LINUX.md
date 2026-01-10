@@ -88,7 +88,7 @@ Linux 비지니스 및 엔터프라이즈 시장에서 매우 큰 위치를 차�
 : 2002년 최초 출시(RHEL2.1) 이후 가장 상업적으로 성공한 Linux distro라고 할 수 있음. RHEL은 LTS (5년의 full support phase + 5년의 maintenance support = 10년 지원)를 제공하며 유료구독을 통해 기술지원과 보안업데이트를 지원함.
 
 ***CentOS***
-: RHEL 의 무료버전으로 RHEL과 100% binary compatibility를 목표로 한 distro. 보통 RHEL이 나온 후 시간을 두고 배포되어 안정화된 버전으로 유명했음. 하지만 2020년 12월 Red Hat이 개발 중단을 선언하고 CentOS Stream으로 전환하면서 REPL의 다음 버전을 미리 경험하는 distro로 성격이 바뀜 (엄청난 논란이 있었던 사건.).
+: RHEL 의 무료버전으로 RHEL과 100% binary compatibility를 목표로 한 distro. 보통 RHEL이 나온 후 시간을 두고 배포되어 안정화된 버전으로 유명했음. 하지만 2020년 12월 Red Hat이 개발 중단을 선언하고 CentOS Stream으로 전환하면서 RHEL의 다음 버전을 미리 경험하는 distro로 성격이 바뀜 (엄청난 논란이 있었던 사건.).
 
 > CentOS의 종료는 다른 무료 서버 OS에 대한 필요성을 크게 부각시켰고, Rocky Linux나 AlmaLinux 등이 강력한 대안으로 떠오름.
 

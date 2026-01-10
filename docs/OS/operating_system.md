@@ -1,4 +1,5 @@
 ---
+title: OS
 tags:
   - OS 
   - Computer 
@@ -15,7 +16,7 @@ tags:
 사용자 측면에서 ***컴퓨터의 하드웨어에 대한 지식 없이도 컴퓨터시스템을 쉽게 사용 가능*** 케 해주고 시스템 측면에선 ***컴퓨터 시스템의 성능을 최대 한도로 향상*** 시키는 프로그램.
 
 - 컴퓨터의 하드웨어 ***관리***
-- 응용프로그램들(Application, App)의 토대를 제공해주는 프로그램
+- 응용프로그램들(`Application`, `App`)의 토대를 제공해주는 프로그램
 - "사용자, 응용프로그램들"과 "하드웨어" 사이의 중간 매개체 역할.
 
 ![](./img/os.jpeg){style="display: block; margin: 0 auto; width: 500px"}
@@ -24,8 +25,8 @@ tags:
 > OS의 주요기능은  
 > 
 > * 컴퓨터의 다양한 H/W를 abstraction(virtual resource로 추상화: [Kernel참고](./kernel.md#hw-resource-management))하고,
-> * 이들을 사용자 및 응용프로그램들이 접근가능하도록 [API](https://dsaint31.tistory.com/503)를 제공하는 것(사실 Kernel이 이를 담당)임.  
-> * 이 API를 이용하는 programming으로 다양한 응용프로그램(Application or App)이 컴퓨터에서 추상화된 H/W를 사용할 수 있음.
+> * 이들을 사용자 및 응용프로그램들이 접근가능하도록 [API](https://dsaint31.tistory.com/503)를 제공하는 것(사실 [Kernel](./kernel.md)이 이를 담당)임.  
+> * 이 API를 이용하는 programming으로 다양한 응용프로그램(`Application` or `App`)이 컴퓨터에서 추상화된 H/W를 사용할 수 있음.
 > 
 > 참고로, OS가 제공해야하는 서비스를 위한 표준 API로 가장 유명한 표준안은 [POSIX](../CE/ch15/ce15_2_4_portability.md#portable-operating-system-interface-posix)임.
 
@@ -65,9 +66,9 @@ tags:
 ### 4-1. 여러 OS들
 
 * [Windows](./windows.md) **
-* [LINUX](./LINUX.md) **
+* [GNU/Linux](./LINUX.md) **
 * [UNIX](./UNIX.md)
-* mac OS **
+* macOS **
 
 ---
 
@@ -87,13 +88,13 @@ tags:
 
 CPU (당시엔 거의 core가 하나)의 idle time을 줄이기 위한 시스템.
 
-> 1960년대 초에 등장. CDC 6600, IBM-360 등이 대표적인 초기 시스템.
+> 1960년대 초에 등장. CDC 6600, [IBM-360](../CE/ch00/history_of_computers.md#ibm-360) 등이 대표적인 초기 시스템.
 
 1. 여러 개의 "프로그램(=process)"을 동시에 메모리(=RAM)에 적재하고 
 2. 그 중 하나의 프로그램이 수행하다가 I/O, 인터럽트 등에 의해 대기 상태가 되면 그 동안 다른 프로그램을 실행하는 방식이다.
 3. ***입출력과 프로그램의 실행을 병렬*** 로 할 수 있어, CPU 사용 효율이 증가한다.
 4. 실행 중인 프로그램이 대기 상태가 되면, context switching 이 발생.
-    * 현재 실행중인 process context가 저장되고
+    * 현재 실행 중인 process context가 저장되고
     * 실행될 process context로 교체됨
     * context를 state라고도 부름. 
 
@@ -112,7 +113,7 @@ RAM에 여러 개의 Process의 영역이 할당된다. address를 지정하는 
 
 사용자와의 상호작용이 가능한 multi-programming system의 확장.
 
-> 1960년대 중반 등장함: Multics 나 IBM-360이 대표적 초기 시스템.
+> 1960년대 중반 등장함: Multics 나 [IBM-360](../CE/ch00/history_of_computers.md#ibm-360)이 대표적 초기 시스템.
 
 1. 다중 프로그래밍 시스템은 사용자와의 ***상호작용*** 을 제공하지 못 하였기 때문에 등장한 시스템
 2. 다중 프로그래밍과 달리 ^^정해진 시간이 되면 무조건 다음 순서의 작업을 실행^^ 하는 방식: `Time Slice`기반 작업 교대.
@@ -132,7 +133,7 @@ RAM에 여러 개의 Process의 영역이 할당된다. address를 지정하는 
 
 #### 4-2-4. Multi-tasking System ***
 
-> 1960년대 중후반 등장. Multics 및 IBM-360에서 사용되고, UNIX로 이어짐.
+> 1960년대 중후반 등장. Multics 및 [IBM-360](../CE/ch00/history_of_computers.md#ibm-360)에서 사용되고, UNIX로 이어짐.
 
 1. 하나의 resource (=일반적으로 CPU)를 여러 process들이 공유
 2. 여러 ***tasks가 동시에 수행 되는 것처럼 느껴지게 (=concurrency) 하는 시스템***

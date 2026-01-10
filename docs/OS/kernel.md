@@ -1,3 +1,8 @@
+---
+title: Kernel
+tags: [OS, Kernel, User Space]
+---
+
 # Kernel
 
 운영체제 중 항상 메모리에 올라가 있는 **운영체제의 핵심 부분**
@@ -5,6 +10,8 @@
 * `H/W(하드웨어)`와 `User program` (or application, app) 사이에서 
 * `User program` (or application) 수행에 필요한 여러 ^^서비스를 제공하기 위한 **인터페이스를 제공**^^
 * **컴퓨터 H/W (CPU, Memory)의 resource(자원)들을 관리**
+
+좀 더 간략한 요약자료는 다음을 참고:[Kernel이란?](https://ds31x.tistory.com/131#%EC%B0%B8%EA%B3%A0-kernel%EC%9D%B4%EB%9E%80?)
 
 다음 그림은 Linux Architecture로 Kernel이 OS에서 어디에 위치하는지를 보여준다.
 
@@ -28,7 +35,9 @@
 Kernel은 ***User program과 H/W resource 사이에서 이들을 연결*** 해주는 역할을 수행함.
 
 * User program은 `system call`을 통해 kernel에 필요한 H/W resource의 사용을 요청하며, 
-* Kernel은 이를 받아 해당 `H/W resource`에게 해당하는 명령을 전달하여 작업을 수행하고, 그 결과를 user program에 반환해줌.
+* Kernel은 이를 받아 해당 `H/W resource`에게 해당하는 명령을 전달하여 작업을 수행하고, 그 결과를 `system call`을 통해 user program에 반환해줌.
+
+![](./img/kerenl_syscal.png){style="display:block; margin: 0 auto; width:500px"}
 
 > User program은 ***Kernel이 제공하는 `system call interface`을 통해 computer의 physical resource를 사용*** 하게 됨.
 
@@ -36,10 +45,10 @@ Kernel은 ***User program과 H/W resource 사이에서 이들을 연결*** 해�
 * User programs와 Kernel 의 대화는 `system call`이라는 단일 인터페이스가 제공되는 것과 달리,
     * `C`프로그래머의 경우 직접적으로 `system call`을 호출하지 않고, `C Standard Library`를 통해 우회적으로 호출함.
     * `C Standard Library`는 `System call`에 대한 ***Wrapper*** 기능을 제공하며 `glibc`나 `musl` 과 같은 다양한 implementation을 가짐. 
-* H/W와 Kernel간의 interface는 일반적으로 다음과 같은 H/W별로 그룹화된 **개별 interface** 들의 모음으로 구성됨.
+* H/W와 Kernel간의 interface는 일반적으로 다음과 같은 <u>H/W별로 그룹화된 **개별 interface** 들의 모음</u> 으로 구성됨.
     * ***CPU Interface*** : Task Management 에 대응
     * ***Main Memory Interface*** : Memory Management에 대응
-    * ***File System and Block Device Driver Interface*** : File System Management에 대응
+    * ***File System and Block Device Interface (and Driver)*** : File System Management에 대응
     * ***Network Interface (and Driver)*** : Network Management에 대응
     * ***Device Driver Interface*** (=키보드, 터미널, H/W interrupts 등) : Device Driver Management, Interrupt Handling 등에 대응
 
