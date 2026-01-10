@@ -1,5 +1,5 @@
 ---
-title: Linux Commands
+title: 명령어 (GNU/Linux)
 tags: [OS, Linux, Bash, CLI, Shell]
 ---
 
