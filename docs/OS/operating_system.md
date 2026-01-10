@@ -7,6 +7,8 @@ tags:
 
 # Operating System (운영체제)
 
+![](./img/os_arch.png){style="display:block; margin:0 auto; width: 300px"}
+
 ## 1. OS 란?
 
 * 다음 URL을 꼭 읽어볼 것: [OS란?](https://dsaint31.tistory.com/219)
