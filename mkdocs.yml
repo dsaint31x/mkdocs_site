@@ -53,6 +53,7 @@ plugins:
       separator: '[\s\-,:!=\[\]()"`/]+|\.(?!\d)|&[lg]t;|(?!\b)(?=[A-Z][a-z])'
   - minify:
       minify_html: true
+  - open-in-new-tab
   #- glightbox
 
 markdown_extensions:
