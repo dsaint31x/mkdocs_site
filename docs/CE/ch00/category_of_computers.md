@@ -49,6 +49,7 @@ tags: [Super Computer, Mainframe, Mini-computer,Workstation, PC, Microcomputer, 
 ### 참고: `Micro-Processor` :  
 
 학술적(?)으로 이야기하면,  
+
 * 기계어 코드(machine code)를 실행하기 위해 
 * 실행과정을 단계별로 나누어 처리를 위한 microcode(마이크로 코드)를 작성하고,  
 * 이 마이크로 코드에 의해 단계적으로 처리하는 논리회로를 가리키나,  
