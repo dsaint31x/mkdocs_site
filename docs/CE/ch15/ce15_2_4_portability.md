@@ -1,4 +1,12 @@
-# Portability (이식성)
+---
+title: Potability and POSIX
+tags: [portability, POSIX, porting, CRT]
+---
+
+# Portability (이식성):W
+
+
+![](./img/portability_posix.png){style="display: block; margin: 0 auto; width:500px"}
 
 처음 개발된 H/W 및 S/W 환경 외에서 실행이 가능한지를 나타내는 특성.
 
