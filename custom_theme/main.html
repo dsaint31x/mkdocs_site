@@ -27,11 +27,28 @@
 {% endblock %}
 
 {% block content %}
-{{ super() }}
-<!-- custom_theme content -->
-<hr/>
-<hr/>
-<div id="disqus_thread"></div>
+    {{ super() }}
+    <!-- custom_theme content -->
+    {# page meta로 제어: comments: false면 숨김 #}
+    {% if page.meta.comments != false %}
+    <hr>
+    <div class="giscus"></div>
+    <script src="https://giscus.app/client.js"
+            data-repo="username/repo"
+            data-repo-id="R_kgDOIu-aCA"
+            data-category="General"
+            data-category-id="DIC_kwDOIu-aCM4C0_Vc"
+            data-mapping="pathname"
+            data-strict="0"
+            data-reactions-enabled="1"
+            data-emit-metadata="0"
+            data-input-position="bottom"
+            data-theme="preferred_color_scheme"
+            data-lang="ko"
+            crossorigin="anonymous"
+            async>
+    </script>
+    {% endif %} 
 {% endblock %}
 
 

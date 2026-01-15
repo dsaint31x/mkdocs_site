@@ -38,9 +38,9 @@ theme:
     # - content.code.copy
     # - navigation.footer
 
-extra:
-  disqus: 
-    shortname: dsaint31-me
+# extra:
+#   disqus: 
+#     shortname: dsaint31-me
 
 plugins:
   #- info
