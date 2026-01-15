@@ -62,7 +62,7 @@ Claude Shannon's [A Symbolic Analysis of Relay and Switching Circuits (1939년)]
 : Alan Turing이 만든 bombe (에니그마를 해독하기 위한 전기기계식 컴퓨터?)와 그의 확률론적 방식에 영향을 받아,  
 Tommy Flowers 그룹이 설계하고 개발한 1943~1945년 개발된 컴퓨터.
 (bombe는 이미테이션 게임이라는 영화를 보면 관련 이야기들이 나옴.)  
-2차세계대전(1939~1945) 중 독일군의 암호전신기인 [Lorenz Cipher](https://ko.wikipedia.org/wiki/%EB%A1%9C%EB%A0%8C%EC%B8%A0_%EC%95%94%ED%98%B8%EA%B8%B0%EA%B3%84)를 해독하기 위해 개발된 세계 최초의 `프로그래밍(외장형)이 가능한 전자 디지털 Computer`였음 (Plug-board 이용).  
+2차세계대전(1939~1945) 중 독일군의 암호전신기인 [Lorenz Cipher](https://ko.wikipedia.org/wiki/%EB%A1%9C%EB%A0%8C%EC%B8%A0_%EC%95%94%ED%98%B8%EA%B8%B0%EA%B3%84)를 해독하기 위해 개발된 초기 `프로그래밍 (외장형) 이 가능한 전자 디지털 Computer`였음 (Plug-board 이용한 터라 범용 stored program이라고 보긴 어려움).  
 (오늘날의 범용 컴퓨터와 거리가 먼 [Special-Purpose Computer](./category_of_computers.md#사용목적에-따른-분류) 이며, 최초의 범용 프로그래밍이 가능한 컴퓨터는 `ENIAC`으로 인정하는 의견이 다수임.)
 ^^군사기밀이었기 때문에 한참 후 존재가 공개(1970년대)^^ 된 컴퓨터 (Vacuum tube를 사용했고, 스위치 및 plug-board를 이용한 프로그래밍을 지원)  
 [The Colossus에 대하여](https://ds31x.tistory.com/379) 
@@ -151,7 +151,8 @@ S/W 라는 개념이 없다고 봐도 될 정도로 S/W가 **H/W에 강하게 �
 
 ### EDSAC (Electronic Delay Storage Automatic Calculator) **
 
-> 1949년 개발된 (실용적인) ^^최초의 Stored Program Computer.^^
+> 1949년 개발된 (실용적인) ^^초기 Stored Program Computer.^^
+ 
 
 [EDSAC에 대하여](https://ds31x.tistory.com/384#edsac-electronic-delay-storage-automatic-calculator)
 
@@ -171,7 +172,7 @@ S/W 라는 개념이 없다고 봐도 될 정도로 S/W가 **H/W에 강하게 �
 
 [EDSAC에 대하여](https://ds31x.tistory.com/384#edvac-electronic-discrete-variable-automatic-computer)
 
-* ENIAC은 program이 내장되어 있지 않음. (수동 전화 교환기와 같은 외양의 plugboard 이용. 배선 변경으로 컴퓨터 동작을 지시.)
+* ENIAC은 program 이 내장되어 있지 않음. (수동 전화 교환기와 같은 외양의 plugboard 이용. 배선 변경으로 컴퓨터 동작을 지시.)
 * EDVAC은 현재 디지털 컴퓨터들이 채택하고 있는 `Stored Program Computer` 개념과 ^^이진법(binary)을 실제 구현^^ 한 컴퓨터임.
 * 그 유명한 `John von Neumann`이 컨설팅을 담당.
 

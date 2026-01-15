@@ -42,29 +42,36 @@ tags: [Super Computer, Mainframe, Mini-computer,Workstation, PC, Microcomputer, 
         * `Notebook`
         * `Palmtop` (Smart Phone에 의해 없어진 카테고리?)
 
+---
 
-> `Micro-Processor` :  
-> 
-> * 학술적으로 이야기하면,  
-> * 기계어 코드(machine code)를 실행하기 위해 
-> * 실행과정을 단계별로 나누어 처리를 위한 microcode(마이크로 코드)를 작성하고,  
-> * 이 마이크로 코드에 의해 단계적으로 처리하는 논리회로를 가리키나,  
->
+### 참고: `Micro-Processor` :  
+
+학술적(?)으로 이야기하면,  
+* 기계어 코드(machine code)를 실행하기 위해 
+* 실행과정을 단계별로 나누어 처리를 위한 microcode(마이크로 코드)를 작성하고,  
+* 이 마이크로 코드에 의해 단계적으로 처리하는 논리회로를 가리키나,  
+
 > **단일 Chip에 CPU 의 기능을 통합한 것** 을 가리키는 용도로 더 많이 사용됨.
->
-> `Micro Computer` 의 경우, 
->
-> * CPU가 `Micro-Processor` 였고, 
-> * PC로 사용되었기 때문에 
-> * 초기 `PC`를 가리키는 용어로 많이 사용됨.  
->
-> 오늘날에는  
-> 
-> * `PC`보다 좀 더 성능이 낮으면서 
-> * 작은 규모의 programmable control이 필요한 경우 사용되는 
-> * 컴퓨터 시스템을 가리키는 경우에 많이 사용됨.  
-> 
+
+---
+
+### 참고: `Micro Computer` 의 경우, 
+
+CPU가 `Micro-Processor` 였고,  
+PC로 사용되었기 때문에  
+초기 `PC`를 가리키는 용어로 많이 사용됨.  
+
+오늘날에는  
+
+* `PC`보다 좀 더 성능이 낮으면서 
+* 작은 규모의 programmable control이 필요한 경우 사용되는 
+* 컴퓨터 시스템을 가리키는 경우에 많이 사용됨.  
+ 
 > 참고로, **Micro-Computer** 는 Embedded System이나 `Micro-Controller` 와도 자주 혼용됨.
+
+---
+
+---
 
 ## 참고자료:
 
