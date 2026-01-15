@@ -5,6 +5,8 @@ tags: [Process, Thread]
 
 # OS: Process and Thread
 
+![](./img/process_thread.png){style="display: block; margin: 0 auto;width:500px"}
+
 > 운영체제(OS)가 제공하는 추상화에서  
 > **프로세스(Process)** 와 **스레드(Thread)** 는  
 > OS가 CPU와 메모리 자원을 관리하고,  

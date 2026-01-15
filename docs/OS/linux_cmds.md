@@ -1,17 +1,26 @@
+---
+title: 명령어 (GNU/Linux)
+tags: [OS, Linux, Bash, CLI, Shell]
+---
+
 # 명령어 (Linux)
 
-이 문서는 Linux의 bash(Bourne Again SHell)에서 사용되는 기본적인 명령어를 소개합니다.
+이 문서는 Linux의 bash(Bourne Again SHell)에서 사용되는 기본적인 명령어를 소개.
 
 Bash는
 
 * Linux의 Terminal과 사용되는 Shell임.
 * Linux의 기본적인 명령어를 실행하고, 간단한 스크립트 (`.sh` 파일)를 실행하는데 사용됨.
 * Linux의 가장 기본적인 Shell 중 하나로, 가장 널리 사용됨.
-    * `CLI`는 Command Line Interface 또는 Command Line Interpreter를 가리킵니다.
+    * `CLI`는 Command Line Interface 또는 Command Line Interpreter를 가리킴.
 
-***
+> 여기서 다룬 기본적인 명령어들은 `zsh`에서도 사용가능함.
 
-***
+[참고: bash의 기본 명령어 튜토리얼](https://ds31x.tistory.com/274)
+
+---
+
+---
 
 ## 1. File 관련
 
@@ -51,7 +60,7 @@ cat target
 ```
 
 - text 파일의 내용 또는 환경변수의 내용을 출력 (text 출력에 사용됨)
-- text 파일간의 결합에도 이용됨.
+- text 파일 간의 결합에도 이용됨.
 
 좀 더 자세한 내용은 다음 URL을 참고 : [파일 내용확인하기: cat, bat, less, more, head, tail](https://ds31x.tistory.com/110)
 
@@ -133,7 +142,7 @@ mkdir [option] directory_path
 - directory를 생성.
 - Option
     
-    `-p` : 하위 directory를 계층적으로 생성할 때 중간 단계의 directory가 없으면 자동으로 중간 단계 directory를 생성하면서 전체 directory를 생산한다.
+    `-p` : 하위 directory를 계층적으로 생성할 때 중간 단계의 directory가 없으면 자동으로 중간 단계 directory를 생성하면서 전체 directory를 생성한다.
     
 ---
 
@@ -146,7 +155,7 @@ rmdir [option] directory_path
 - directory를 삭제
 - Options
     
-    `-p` : `--parent`로도 쓰임. 지정한 데릭터리를 삭제한 뒤, 그 directory의 부모 directory가 빈 directory일 경우 부모 directory도 자동으로 삭제.
+    `-p` : `--parent`로도 쓰임. 지정한 directory를 삭제한 뒤, 그 directory의 부모 directory가 빈 directory일 경우 부모 directory도 자동으로 삭제.
 
 ---
 
@@ -188,7 +197,7 @@ chmod go-rwx target_path
 
 - `target_path`에 대해 그룹과 그외 사용자 들의 모든 권한을 제거.
 
-보다 자세한 건 다음 url참고 : [`chmod`` 사용법](https://recipes4dev.tistory.com/175)
+보다 자세한 건 다음 url참고 : [`chmod` 사용법](https://recipes4dev.tistory.com/175)
 
 ---
 
@@ -234,11 +243,39 @@ ifconfig
 
 `grep` : Global Regular Expression Print의 abbreviation.
 
+* [`grep`에 대한 좀 더 자세한 자료](https://ds31x.tistory.com/580)
+
 ```bash
-grep pattern
+grep [option] pattern [file]
 ```
 
-- 입력에서의 특정 문자열 패턴(pattern)을 검색.
+- 입력(stdin 또는 path로 주어진 파일)에서의 특정 문자열 패턴(pattern)을 검색.
 - `pattern` 이 Regular Expression (정규표현식)임.
+- Option
+    * `-i` : 대소문자를 구분하지 않음:
+    * `-r` : 하위 디렉토리까지 재귀적으로 검색.
+    * `-v` : 패턴과 일치하지 않는 라인을 출력 (invert mathc).
+    * `-n` : 일치하는 line의 번호를 함께 출력.
+
+---
+
+### find : 파일 검색.
+
+`find` : 지정된 디렉토리 트리 내에서 파일을 검색.
+
+* [`find`에 대한 좀 더 자세한 자료](https://ds31x.tistory.com/259)
+
+```bash
+find [path] [exrpression]
+```
+
+- 파일의 이름, 속성, 시간 등을 기준으로 파일을 검색.
+- Option (Expression) 
+    * `-name pattern` : 파일 이름이 pattern과 일치하는 파일을 검색.
+    * `-type type` : 파일 유형으로 검색 (`f`: 일반 파일, `d`: 디렉토리). 
+    * `-exec command {} \;` : 검색된 파일에 대해 command를 실행. 
+    * `-print` : 검색된 파일의 경로를 출력 (기본 동작).
+
+---
 
 ---

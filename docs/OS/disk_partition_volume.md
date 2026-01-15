@@ -96,29 +96,36 @@ Scheme는 특정 목적을 달성하기 위한 조직적인 방법이나 체계 
 * 프로토콜
 * 형식 또는 방법론
 
-을 가리키거나 설명하는데 사용됨.
+을 가리키거나 설명하는데 사용됨: **방식** 이라고 부르면 될 듯.
+
+**Schema**는 추상적인 개념이 강하고, **Scheme** 보다 구체적임.
 
 Partition Scheme라고 하면, HDD나 storage를 조직화하는 방법으로 이는 컴퓨터에서 데이터를 저장하고 관리하기 위해 사용되는 구조적인 체계를 가리킴.
 
 **Primary Partition**
 
-- `MBR`(Master Boot Record) 스키마.
+- `MBR`(Master Boot Record) 파티션 스키마.
     - 기본 디스크에 최대 4개의 primary partition까지 만들 수 있으며, 이 primary partition에 OS를 설치할 수 있음.
-- `GPT`(Globally Unique Identifier Partition Table, GUID Partition Table) 스키마.
+- `GPT`(Globally Unique Identifier Partition Table, GUID Partition Table) 파티션 스키마.
     - 기본디스크에 최대 128개까지 partition을 만들 수 있음.
     - 주의할 점은 `GPT`에선 extended partition의 개념이 없음.
     - 일반 BIOS가 아닌 Extensible Firmware Interface(EFI)가 지원하는 스키마.
 
 **Extended Partition**
 
-- `MBR` 스키마에서 HDD를 논리적으로 나누는 데 사용되는 특별한 partition으로 `MBR`스키마에서 primary partition을 4개만 가지는 단점을 보완하기 위해 도입됨.
+`MBR` 에 대한 애기로 더 이상 알 필요가 없을 듯.
+
+- `MBR` 파티션 스키마에서 HDD를 논리적으로 나누는 데 사용되는 특별한 partition으로 
+* `MBR`스키마에서 primary partition을 4개만 가지는 단점을 보완하기 위해 도입됨.
 - MBR은 4개의 파티션 중에 하나를 Extended Partition으로 명기하고, 
 - Extended Partition 내의 각 logical partition은 EBR(Extended Boot REcord)로 시작되며 EBR을 통해 해당 logical partition의 위치, 크기 및 다음 EBR로의 link 정보를 포함하고 있음.
 - 즉, 하나의 Extended Partition 내부에 여러 개의 logical partition을 가질 수 있음. 
 
 **Logical Partition**
 
-- MBR 스키마에서 사용됨.
+`MBR` 에 대한 애기로 더 이상 알 필요가 없을 듯.
+
+- MBR 파티션 스키마에서 사용됨.
 - 기본디스크 내의 extended partition 내에 만들 수 있는 partition.
 - EBR 로 시작되며, 각 logical partition들이 이 EBR을 통해 서로 순차적으로 연결되어 있기 때문에 logical partition에서 데이터를 찾기 위해서는 여러 EBR을 거쳐야 하는 성능저하가 있음.
 
@@ -151,16 +158,27 @@ Partition Scheme라고 하면, HDD나 storage를 조직화하는 방법으로 �
 
 ## Drive
 
-* OS가 데이터를 쓰고 읽을 수 있는 상태가 된 Volume.
-* OS에 ***mounting이 이루어진 volume*** 로, windows의 경우엔 드라이브 문자가 할당됨.
+* Winodws OS가 데이터를 쓰고 읽을 수 있는 상태가 된 Volume.
+* OS에 ***mounting이 이루어진 volume*** 로, 드라이브 문자가 할당됨.
+
+사실 위의 내용은 Windows 에서의 관점임.
+
+Drive는 하나의 엄밀한 개념이 아니라,
+
+* “ 하드웨어 관점의 block device”와
+* “운영체제 관점에서 OS가 노출한 논리 저장 단위”라는
+
+함께 지칭하는 관용적 표현 
+
 
 ### Mounting이란?
 
 OS 가 Storage Device(HW) 또는 특정 Partition에 적용된 File System을 인식하고 접근할 수 있게 하는 과정.
 
 * Volume 연결: Volume을 "OS의 파일 시스템 트리의 특정 지점에 연결" 하여 사용자 및 시스템이 데이터를 저장하거나 접근할 수 있도록 함.
-* Mount Point 사용: OS 는 Mount Point라는 특정 디렉토리 (UNIX계열) 또는 드라이브 문자를 사용(Windows)하여 Mounting를 수행.
+* **Mount Point** 사용: OS 는 Mount Point라는 특정 디렉토리 (UNIX계열) 또는 드라이브 문자를 사용(Windows)하여 Mounting를 수행.
     * 예시: Linux에서는 `/mnt` 또는 `/media` 디렉토리가 자주 사용되는 mount point.
+    * Linux에선 drive라는 용어를 kernel이 관리하는 block device를 가리키는 데 사용.
 * 접근성 확보: Volume이 마운트되면, 해당 Mount Point를 통해 Drive 내의 파일과 디렉토리에 접근 가능.
 
 즉, mounting은 데이터에 접근하고 관리하는 데 필수적이며, file system의 활성화와 데이터의 안전한 읽기/쓰기를 가능하게 함.
