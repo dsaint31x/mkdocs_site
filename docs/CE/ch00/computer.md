@@ -9,7 +9,7 @@ tags: [computer, calculator, program]
 
 ![](./img/computer_program_calculator.png){style="display: block; margin: 0 auto; width: 500px"}
 
-[Computer and Program - 정의]](https://dsaint31.tistory.com/436)
+[Computer and Program - 정의](https://dsaint31.tistory.com/436)
 
 ## Computer와 Calculator의 가장 큰 차이점.
 
