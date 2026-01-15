@@ -16,8 +16,6 @@ theme:
     # - content.footnote.tooltips
     # - content.tabs.link
     - content.tooltips
-    - content.external-links
-    - content.external-links.indicator
     # - header.autohide
     # - navigation.expand
     - navigation.footer
