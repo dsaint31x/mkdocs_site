@@ -183,7 +183,7 @@ S/W 라는 개념이 없다고 봐도 될 정도로 S/W가 **H/W에 강하게 �
 
 ### 중요: The von Neumann Architecture ***
 
-`Stored Program Computer`라고 불리며,  
+[`Stored Program Computer`](../ch05/ch05_01_01.md#computer-architecture)라고 불리며,  
 현대 컴퓨터들이 대부분 채택하고 있는 구조.
 
 > Program(=Set of Instructions)을 Data와 똑같이 메모리에 저장하여  
@@ -220,7 +220,7 @@ Stored Program Architecture는
 > von Neumann architecture 에서는 동일하기 때문에  
 > ***Bottleneck 현상*** 이라는 단점을 가짐.  
 >  
-> 이를 분리시킨 구조인 **Harvard Architecture** 도 존재함.  
+> 이를 분리시킨 구조인 [**Harvard Architecture**](../ch05/ch05_01_01.md#computer-architecture) 도 존재함.  
 > 이 경우, Program과 Data에 동시에 접근이 가능하다는 장점을 가지지만,  
 > 분리된 Bus와 Memory가 필요하여, 보다 복잡한 구성이 요구됨.  
 > 
