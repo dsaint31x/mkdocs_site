@@ -23,9 +23,17 @@ Python과 같은 interpreter 언어나, Java와 같이 virtual machine에서 동
 
 여러 컴퓨터 Vender들의 OS의 구현물 사이의 portability를 확보하기 위해 IEEE가 제정한 OS용 service들을 위한 공통(or 표준) API가 바로 `POSIX`임.
 
-* ^^kernel에 대한 `C` language interface^^ 인 ***system call 등을 정의*** 하고 있음.  
+* POSIX는 유저 공간에서 사용되는 **OS가 제공해야하는 `C` API** 를 정의한 것임.
+    * 해당 `C` API (=OS API라고 불림)는 내부적으로 kernel 의 System call을 사용하여 구현됨.
+    * 여기에 더불어 Shell 도 정의하여 CLI 환경도 표준화 함.
+    * 다른 프로그래밍 언어들은 POSIX API를 직접 쓰지 않고, C Runtime이 구현한 POSIX API를 C [ABI](https://dsaint31.tistory.com/503#Application%20Binary%20Interface%20(ABI)-1-3)를 통해 호출한다. 
 * `POSIX` 가 만들어지던 당시 거의 모든 OS가 `UNIX`를 기반으로하고 있었기 때문에 ^^`POSIX`는 UNIX based OS간의 portability를 위한 것^^ 으로도 볼 수 있음.
 * `POSIX` 자체는 `UNIX` 기반이라고 봐도 무방함.
+
+POSIX는 OS API 로서 C Runtime 을 통해 C로 만들어진 프로그램(User space에 동작하는 일반 app)이 사용하게 됨.
+CRT와 POSIX, System call간의 관계는 다음을 참고할 것.
+
+* [CRT, POSIX, System call, ABI 에 대하여](https://ds31x.tistory.com/605)
 
 `POSIX`는 일종의 표준 API로 ***Portability가 높은 UNIX application S/W*** 를 만들기 위한 것임.  
 하지만 Windows OS도 내부에서 POSIX를 일부 지원하고 있음.  
