@@ -15,6 +15,8 @@ tags: [Super Computer, Mainframe, Mini-computer,Workstation, PC, Microcomputer, 
 
 ---
 
+![](./img/computer_classification.png){style="display: block; margin: 0 auto; width:500px"}
+
 ## 처리능력에 따른 분류. ***
 
 아래로 갈수록 크기와 성능이 떨어진다.
