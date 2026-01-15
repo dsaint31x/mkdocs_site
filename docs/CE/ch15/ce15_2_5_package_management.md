@@ -35,3 +35,4 @@ programming 에서도 이같은 ***의존성 library 충돌*** 은 항상 귀찮
 
 * [conda란?](https://ds31x.blogspot.com/2023/07/env-conda-anaconda-and-miniconda.html)
 * [apt와 dpkg](https://dsaint31.tistory.com/454)
+* [Summary: Package Manager](https://ds31x.tistory.com/335)
