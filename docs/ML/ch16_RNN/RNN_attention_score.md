@@ -1,20 +1,27 @@
 # Attention Score (or Alignment)
 
-> 2014년 RNN의 `encoder-decoder` network에 도입이 되었으나, 2017년 이후 RNN 구조를 버리고 attention에 집중한 **Transformer**의 core로 사용되고 있다. **Transformer** 의 기본 구성요소라고도 할 수 있음.
+> 2014년 RNN의 `encoder-decoder` network에 도입이 되었으나,  
+> 2017년 이후 RNN 구조를 버리고 attention에 집중한 **Transformer** 의 core로 사용되고 있다.  
+> **Transformer** 의 핵심 구성요소 라고도 할 수 있음.
 
-Attention score는 attention function이라고도 불리며,  
-Attention mechanism에서 `query`, `key`, `value` 에서 `query`와 `key`의 ***similarity*** 를 의미.
+Attention score는 attention function 을 통해 얻어지며,  
+Attention mechanism에서 `query`, `key`, `value` 에서 `query`와 `key`의 ***similarity (or compatibility)*** 를 의미.
 
-> 특정 `query`에 대해 모든 `key`들의 Attention score들로 구성된 vector $\textbf{e}$에 `softmax` 함수를 취해서 attention distribution (아래그림 참고)을 구함.  
-> 이 attention distribution은 일종의 확률분포(다 더하면 1.0)이며 `value` vector와 함께 weighted sum, ***attention*** 을 구하는데 사용된다.  
+> 특정 `query` (or 특정 timestep의 Decoder Hidden State)에 대해  
+> 모든 `key`들 (or Encdoer의 모든 Hidden States)의 Attention score (관련성/유사성 기반) 들로 구성된 vector $\textbf{e}$에  
+> `softmax` 함수를 취해서 attention distribution (아래그림 참고)을 구함.    
+> 이 attention distribution은 일종의 확률분포(다 더하면 1.0)이며  
+> 이를 `value` vector (or Encoder의 모든 hidden states) 의 weight로 삼아 
+> weighted sum을 구하면 이 결과가 바로 **attention output (or context vector)** 임.   
 >  
-> ![](../img/ch16_RNN/encoder_decoder_w_attention.png)
+> ![](../img/ch16_RNN/encoder_decoder_w_attention.png)  
+> * Attention Vector : attention으로 계산된 context vector와 현재 decoder hidden state를 concatenation(결합)한, 실제 출력 단어 예측에 사용되는 decoder 측 representation
 
 Attention score는 input에서 어디에 집중을 해야하는지를 나타내는 지표이다.
 
 ## Attention score의 등장.
 
-`seq2seq` 구조에 대해, 2014년 Graves, Wayne, Danihelka 가 attention (=content-based attention)을 도입함.
+`seq2seq` 구조에 2014년 Graves, Wayne, Danihelka 가 attention (= content-based attention )을 도입함.
 
 이 Content-based Attention을 위해서 
 
@@ -32,12 +39,16 @@ Decoder의 time-step $j$에서
 
 `query`, `key`로 일반화하여 애기한다면, 
 
-* Decoder state $\textbf{s}_{j-1}$이 `query`.
-* Encoder state $\textbf{h}_i$가 `key`.
+* Decoder state $\textbf{s}_{j-1}$이 `query` (=Detector의 현 timestep의 hidden state).
+* Encoder state $\textbf{h}_i$가 `key` (=Encoder의 각 timestep의 hidden state).
 
 Grave et al. 의 논문에서 Decoder state와 Encoder state는 같은 dimension 크기를 가짐.
 
 > Grave et al. 에서 `value`는 `key`와 동일.
+
+참고로 self attention의 경우, 
+
+`key`, `query`, `value`가 모두 한 sequence에 속하여 해당 sequence에서 개별 token이 다른 token에 얼마나 관심있게 집중해야 하는지를 attention weight으로 구하고 이를 반영하여 각 token의 embedding이 수정됨.
 
 ---
 
@@ -54,7 +65,8 @@ Grave et al.이 제안한 것을 포함하여 다음과 같은 여러 attention 
 |[Vaswani et al., 2017](http://papers.nips.cc/paper/7181-attention-is-all-you-need.pdf)|scaled dot-product attention *|$f(\textbf{s},\textbf{h})= \frac{\textbf{s}\cdot \textbf{h}}{\sqrt{n}}$ | $n$ 은 encoder state $\textbf{h}$의 dimension임.<br/> inner product를 사용하므로, $\textbf{s}$와 $\textbf{h}$의 차원이 같음.| 
 
 * dot product approach가 additive approach보다 좀 더 나은 것으로 알려져있고 (Luong et al., 2015), 때문에 dot product approach가 보다 널리 사용됨.
-    * 사실 transformer를 소개한, Vaswani et al. (2017)에서 제안된 scaled dot-product attention이 가장 많이 사용된다 (keras에서 `keras.layers.Attention`으로 구현됨.)
+    * 사실 transformer를 소개한, Vaswani et al. (2017)에서 제안된 **scaled dot-product attention**이 가장 많이 사용된다 (keras에서 `keras.layers.Attention`으로 구현됨.)
+    * 이 것이 Attenion is All You Need 라는 Transformer를 제안한 논문에서 사용한 방식.
 * decoder's hidden state에 접근하기 보다는 decoder의 output을 사용하는 형태로 구현하는 경우가 보다 쉽고 고속화등에서 유리한 점이 있기 때문에 많이 사용됨(성능도 나쁘지 않음).
 * decoder의 output을 사용할 경우, Luong et al.이 제안한대로 attention layout의 출력을 softmax를 activation으로 가지며 decoder의 최종 output을 내놓는 `dense`의 입력으로 직접 사용함.
 
