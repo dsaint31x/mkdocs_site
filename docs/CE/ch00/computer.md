@@ -1,11 +1,19 @@
 ---
-disqus: dsaint31-me
-tags: [computer]
+title: What is a Computer?
+tags: [computer, calculator, program]
 ---
 
 # What is a Computer?
 
+## Computer 란?
+
+![](./img/computer_program_calculator.png){style="display: block; margin: 0 auto; width: 500px"}
+
+[Computer and Program - 정의](https://dsaint31.tistory.com/436)
+
 ## Computer와 Calculator의 가장 큰 차이점.
+
+**단순한 계산도구 vs. Universal Machine (범용기계))**
 
 Computer는 Programming language를 이용하여 기존의 operation(명령어)들을 통해 새로운 operation들을 정의하고 이를 수행할 수 있다.
 동시에, 이렇게 새롭게 추가된 operation들을 또 기존의 operation들과 함께 조합하여 새로운 operation을 만들 수 있다. 새로운 operation을 추가할 수 있다는 점이 calculator 와의 가장 중요한 차이이다.
@@ -47,7 +55,3 @@ This course teaches you
 * ***the necessary prerequisites***. 
 
 > In this lecture, keep in mind that many of the explanations are simplified and not entirely accurate in every detail. Including every detail would create distracting complexity, so perfect accuracy has been sacrificed in favor of clarity.
-
-## 읽어보면 좋은 자료.
-
-* [Computer and Program - 정의](https://dsaint31.tistory.com/436)

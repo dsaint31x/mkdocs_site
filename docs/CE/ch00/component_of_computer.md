@@ -41,10 +41,15 @@ H/W를 운용하고 이용하기 위한 program(프로그램).
 
 크게 System SW와 Application으로 나누어진다.
 
-* [**System S/W**](../../OS/kernel.md#os에서의-역할)
-    * 컴퓨터와 사용자의 중간에서 컴퓨터 시스템을 효율적으로 운영할 수 있도록 도와주는 S/W
-    * 사용자가 컴퓨터 H/W에 대한 이해없이도 컴퓨터를 유용하게 사용할 수 있도록 컴퓨터의 작동 자체를 다룸.
-    * [OS](../../OS/operating_system.md) 가 대표적인 System S/W이며, compiler, linker, loader등도 System S/W임.
+* [**System S/W**](../../OS/kernel.md#os)
+    * System Software는 하드웨어와 응용프로그램 사이에 존재하며, 다음을 가리킴: 
+        * 실행 환경
+        * 개발·실행 인프라를 제공하는 소프트웨어
+    * [OS](../../OS/operating_system.md) 가 대표적인 System S/W임. 
+        * 컴퓨터와 사용자의 중간에서 컴퓨터 시스템을 효율적으로 운영할 수 있도록 도와주는 S/W
+        * 사용자가 컴퓨터 H/W에 대한 이해없이도 컴퓨터를 유용하게 사용할 수 있도록 컴퓨터의 작동 자체를 다룸.
+    * S/W 개발 및 실행 인프라 제공하는 대표적인 System S/W들은 다음과 같음:
+        * compiler, linker, loader.
 * **Application**
     * 특정한 용도에 맞게 활용하기 위해 만들어진 S/W (응용프로그램)
     * 사용자가 <u>컴퓨터를 사용하는 용도를 직접적으로 만족시켜주기 위한 프로그램</u>.

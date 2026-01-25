@@ -38,9 +38,9 @@ theme:
     # - content.code.copy
     # - navigation.footer
 
-extra:
-  disqus: 
-    shortname: dsaint31-me
+# extra:
+#   disqus: 
+#     shortname: dsaint31-me
 
 plugins:
   #- info
@@ -51,6 +51,7 @@ plugins:
       separator: '[\s\-,:!=\[\]()"`/]+|\.(?!\d)|&[lg]t;|(?!\b)(?=[A-Z][a-z])'
   - minify:
       minify_html: true
+  - open-in-new-tab
   #- glightbox
 
 markdown_extensions:
@@ -117,10 +118,9 @@ nav:
     - 'ch00: Introduction' :
       - "Computer":
         - 'CE/ch00/computer.md'
-        - 'CE/ch00/history_of_computers.md'
         - 'CE/ch00/category_of_computers.md'
-      - "Components":  
         - 'CE/ch00/component_of_computer.md'
+        - 'CE/ch00/history_of_computers.md'
     - 'ch01: Representation of Data':
       - "Data and Information":
         - "CE/ch01/ch01_00_data_representation.md"

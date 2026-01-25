@@ -2,9 +2,10 @@
 
 ML에서 manifold란,  
 
-* ^^고차원 공간에 내재된 저차원 공간(subspace)^^ 으로 
-* 실제 ^^dataset의 data points를 대부분 포함(아닌 경우도 해당 subspace근처에 data points가 존재)하고 있는 것^^ 을 가리킴. 
+* ^^고차원 공간에 내재된 저차원 구조(해당 구조가 선형일 경우 subspace, 비선형일 경우 manifold라 불림)^^ 로 
+* 실제 ^^dataset의 data points를 대부분 포함(아닌 경우도 해당 subspace근처에 data points가 존재)하고 있는 것^^ 을 가리킴.
 
+> manifold는 주로 비선형인 경우를 지칭하나, subspace가 linearity를 만족하는 특별한 manifold라고도 볼 수 있음.  
 > (위상)수학적으로는 보다 엄격한 정의가 있으나...  
 > DL이나 ML을 하는 입장에서는 이 정도면 충분할 듯.
 
@@ -36,8 +37,11 @@ ML에서 manifold란,
 <figcaption> `homeomorphic` 이면서 `연속적인 변화` 로 만들어지므로 `isotopic`임</figcaption>  
 </figure>
 
-* `homeomorphic` 이란 "위상동형"이라고 번역되며, topology가 동일한 topology space를 가리킴.
-* 이웃을 정의하는 규칙 (=`topology`)이 동일한 topology spaces를 가리켜 `homeomorphic`하다고 한다.
+* homeomorphic(위상동형) 이란, 
+    * 두 공간의 topology(열린집합 구조) 가 서로 일대일로 대응하여 동일한 형태를 갖는 경우를 말한다.
+    * 즉, 토폴로지가 동일한(topologically equivalent) 두 topological space를 가리켜 homeomorphic하다고 한다.
+* 보다 구체적으로, topology는 어떤 공간에서 “어떤 집합들을 open set으로 볼지”를 규정하는 규칙이며,
+    * 이에 따라 어떤 점을 중심으로 한 neighborhood(이웃)이 어떻게 정의되는지를 결정한다.
 
 > 엄밀하게 애기하면,  
 > **`topology`는 어떤 space에서 `open-set이란 어떤 것인지 규정` 하는 방법**   
@@ -45,12 +49,13 @@ ML에서 manifold란,
 > `topological space`란 **`topology`가 주어져 있는 집합** 을 의미함.  
 > 
 > * `open-set`은 일반적으로 ^^특정 data point의 neighbors^^ 를 의미 (open-set은 neighbor를 abstraction!)하며  
-> * ***neighbor를 정의하는 방법*** (=`topology`)이 주어지고 topology가 같은 경우, 같은 manifold를 가진다고 생각할 수 있다.  
+> * ***neighbor를 정의하는 방법*** 이 topology라고 생각하면 된다.  
 
 **Open set이란**
-: empty set과 open set의 전체집합도 open set임.  
-즉, open set 을 Union시켜도 open set 임.  
-유한한 갯수의 open set을 intersection시켜도 open set임.
+: 특정 점의 neighborhood(이웃) 를 추상화한 개념으로 다음을 만족함  
+: * empty set과 open set의 전체집합도 open set임.  
+: * 즉, open set 을 Union시켜도 open set 임.  
+: * 유한한 갯수의 open set을 intersection시켜도 open set임.
 
 보다 자세한 건 다음 ULR을 참고: 
 [Topological Space](topological_space.md)
