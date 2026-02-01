@@ -406,6 +406,7 @@ nav:
       - "ML/ch09/op_rmsprop.md"
       - "ML/ch09/op_adam.md"
       - "ML/ch09/op_nadam.md"
+      - "ML/ch09/op_adamw.md"
     - "Transfer Learning":
       - "ML/ch11_training/knowledge_transfer.md"
     - "Hyperparameter Tuning":

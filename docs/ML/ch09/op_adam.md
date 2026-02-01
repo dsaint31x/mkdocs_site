@@ -5,10 +5,10 @@ tags: [optimizer, rmsprop, momentum, adam, gradient ]
 
 # ADAptive Momentum Estimation (Adam)
 
-**Adaptive Moment Estimation (Adam)**은 다음이 결합된 Gradient 기반 최적화 알고리즘이다.
+**Adaptive Moment Estimation (Adam)** 은 다음이 결합된 Gradient 기반 최적화 알고리즘이다.
 
-* [`RMSProp`](./op_rmsprop.md) 의 **적응적 학습률(adaptive learning rate)**과
-* [`Momentum`](./op_momentum.md) 기법의 **업데이트 방향 누적(momentum-based update)**을
+* [`RMSProp`](./op_rmsprop.md) 의 **적응적 학습률(adaptive learning rate)** 과
+* [`Momentum`](./op_momentum.md) 기법의 **업데이트 방향 누적(momentum-based update)** 을
 
 Adam은 다양한 변형(variants)을 가지며,
 현대 딥러닝에서 **가장 널리 사용되는 optimizer** 중 하나이다.
@@ -17,7 +17,7 @@ Adam은 다양한 변형(variants)을 가지며,
 
 ## Adam 알고리즘 개요
 
-Adam은 **1차 모멘트(1st moment)**와 **2차 모멘트(2nd moment)**를 동시에 추정하여,
+Adam은 **1st moment** 와 **2nd moment** 를 동시에 추정하여,
 모델 파라미터 업데이트 시
 
 * gradient 방향의 안정성 확보 (`Momentum`)
@@ -34,41 +34,46 @@ Adam은 **1차 모멘트(1st moment)**와 **2차 모멘트(2nd moment)**를 동�
 
 $t$번째 iteration에서 Adam의 업데이트는 다음과 같이 정의된다.
 
-1. **1차 모멘트 추정 (Momentum)**
-   $$
-   \mathbf{m}*t \leftarrow \beta_1 \mathbf{m}*{t-1} + (1-\beta_1)\nabla_\theta J(\theta)
-   $$
+1.**1차 모멘트 추정 (Momentum)**
 
-2. **2차 모멘트 추정 (RMSProp)**
-   $$
-   \mathbf{s}*t \leftarrow \beta_2 \mathbf{s}*{t-1} + (1-\beta_2)\left(\nabla_\theta J(\theta)\otimes\nabla_\theta J(\theta)\right)
-   $$
+$$
+\mathbf{m}*t \leftarrow \beta_1 \mathbf{m}*{t-1} + (1-\beta_1)\nabla_\theta J(\theta)
+$$
 
-3. **1차 모멘트 bias correction**
-   $$
-   \hat{\mathbf{m}}_t \leftarrow \frac{\mathbf{m}_t}{1-\beta_1^t}
-   $$
+2.**2차 모멘트 추정 (RMSProp)**
 
-4. **2차 모멘트 bias correction**
-   $$
-   \hat{\mathbf{s}}_t \leftarrow \frac{\mathbf{s}_t}{1-\beta_2^t}
-   $$
+$$
+\mathbf{s}*t \leftarrow \beta_2 \mathbf{s}*{t-1} + (1-\beta_2)\left(\nabla_\theta J(\theta)\otimes\nabla_\theta J(\theta)\right)
+$$
 
-5. **parameters 업데이트**
-   $$
-   \theta \leftarrow \theta - \eta \frac{\hat{\mathbf{m}}_t}{\sqrt{\hat{\mathbf{s}}_t}+\epsilon}
-   $$
+3.**1차 모멘트 bias correction**
+
+$$
+\hat{\mathbf{m}}_t \leftarrow \frac{\mathbf{m}_t}{1-\beta_1^t}
+$$
+
+4.**2차 모멘트 bias correction**
+
+$$
+\hat{\mathbf{s}}_t \leftarrow \frac{\mathbf{s}_t}{1-\beta_2^t}
+$$
+
+5.**parameters 업데이트**
+
+$$
+\theta \leftarrow \theta - \eta \frac{\hat{\mathbf{m}}_t}{\sqrt{\hat{\mathbf{s}}_t}+\epsilon}
+$$
 
 
 ### 각 단계에 대한 해설
 
-**1번과 2번, 5번 단계**는 Adam이 `Momentum`과 `RMSProp`를 결합한 알고리즘임을 명확히 보여줌.
+**1번과 2번, 5번 단계** 는 Adam이 `Momentum`과 `RMSProp`를 결합한 알고리즘임을 명확히 보여줌.
 
 * $t$는 iteration number이며, $t=1$부터 시작한다.
 
 #### 1차 모멘트 (Momentum)
 
-* 1번 식은 gradient의 **방향 정보**를 누적하여 반영한다.
+* 1번 식은 gradient의 **방향 정보** 를 누적하여 반영.
 * 이는 `Momentum` 기법과 동일한 목적을 가지며,
   gradient의 **지수 이동 평균(Exponentially Moving Average, EMA)**을 사용.
 * 여기서 $\beta_1$은 Momentum에서의 감쇠 계수 $\gamma$에 대응.
@@ -76,6 +81,7 @@ $t$번째 iteration에서 Adam의 업데이트는 다음과 같이 정의된다.
   상수배 차이만 있을 뿐, 본질적으로 동일한 방향 누적 효과를 가짐.
 
 Momentum의 누적합 표현과 비교하면
+
 $$
 \gamma = \frac{\beta_1}{1-\beta_1}
 $$
@@ -132,14 +138,14 @@ optimizer = torch.optim.Adam(
 ### 주요 파라미터 설명
 
 * `lr`
-  * 학습률(learning rate)
-  * Keras의 `learning_rate`와 동일
+    * 학습률(learning rate)
+    * Keras의 `learning_rate`와 동일
 * `betas=(beta_1, beta_2)`
-  * 1차 모멘트와 2차 모멘트의 EMA 계수
-  * Keras의 `beta_1`, `beta_2`에 각각 대응
+    * 1차 모멘트와 2차 모멘트의 EMA 계수
+    * Keras의 `beta_1`, `beta_2`에 각각 대응
 * `eps`
-  * 분모가 0에 가까워지는 것을 방지하기 위한 작은 상수
-  * Adam 수식의 $\epsilon$에 해당
+    * 분모가 0에 가까워지는 것을 방지하기 위한 작은 상수
+    * `Adam` 수식의 $\epsilon$에 해당
 
 ## Hugging Face Transformers에서의 구현
 
@@ -196,14 +202,15 @@ trainer = Trainer(
 ### 참고: Adam vs. AdamW (정리)
 
 * **PyTorch의 `Adam`**
-  * 전통적인 Adam 알고리즘 구현
-  * weight decay가 L2 regularization 형태로 결합됨
+    * 전통적인 Adam 알고리즘 구현
+    * weight decay가 L2 regularization 형태로 결합됨
 * **Hugging Face의 기본 `AdamW`**
-  * **weight decay** 를 **gradient 업데이트와 분리** (decoupled) 
-  * "loss function에 더해지는 L2 regularization" 과 달리 weight decay를 분리하여 적용 (직접 parameters를 감쇠시킴) 
+    * **weight decay** 를 **gradient 업데이트와 분리** (decoupled) 
+    * "loss function에 더해지는 L2 regularization" 과 달리 weight decay를 분리하여 적용 (직접 parameters를 감쇠시킴) 
   * **Transformer 계열 모델에서 일반적으로 더 안정적인 성능 제공**
 
 따라서,
+
 * 단순 실험이나 직접 학습 루프 작성 시에는 `torch.optim.Adam` 을 사용할 수 있으나, 
 * Hugging Face `Trainer` 기반 학습에서는 기본 설정의 `AdamW` 를 사용하는 것이 일반적인 선택이다.
 

@@ -1,6 +1,6 @@
 ---
 title: AdamW Optimizer
-tags: [optimizer, rmsprop, momentum, adam, gradient, moment, momentum, weight-decay ]
+tags: [optimizer, rmsprop, momentum, adam, adamw, gradient, moment, momentum, weight-decay ]
 ---
 
 # AdamW
@@ -264,7 +264,7 @@ AdamW:
 * L2 regularization: loss에 항을 추가
 * Weight decay: 파라미터를 직접 감쇠
 
-AdamW는 **weight decay의 의미를 정확히 구현한 방식**이다.
+AdamW는 **weight decay의 의미를 정확히 구현한 방식** 임.
 
 ### Q2. 왜 bias나 LayerNorm에는 weight decay를 적용하지 않는가?
 
@@ -272,10 +272,10 @@ AdamW는 **weight decay의 의미를 정확히 구현한 방식**이다.
 * 크기를 줄이면 표현력이 직접적으로 손상됨
 * 일반화와 거의 무관
 
-그래서 실무에서는:
+그래서 다음이 성립:
 
-* weight 행렬 → decay 적용
-* bias / LayerNorm → decay 제외
+* `weight` 행렬 : decay 적용
+* `bias` / `LayerNorm` : decay 제외
 
 ### Q3. Weight decay는 일반화에 어떤 영향을 주는가?
 
@@ -283,7 +283,7 @@ AdamW는 **weight decay의 의미를 정확히 구현한 방식**이다.
 * 결정 경계를 단순화
 * 입력 변화에 대한 민감도 감소
 
-즉,
+즉, 다음이 성립:
 
 > weight decay는
 > **최적화를 돕는 기법이 아니라,
@@ -331,8 +331,8 @@ optimizer = torch.optim.AdamW(
 
 * `lr` : learning rate
 * `betas` :
-  * $\beta_1$ : 1차 moment EMA
-  * $\beta_2$ :  2차 moment EMA
+    * $\beta_1$ : 1차 moment EMA
+    * $\beta_2$ :  2차 moment EMA
 * `weight_decay` : **decoupled weight decay 계수**
 
 > 여기서 `weight_decay` 는  
@@ -415,11 +415,11 @@ HF Trainer는 내부적으로 대략 다음을 수행:
 * Learning rate scheduler:
     * linear / cosine / warmup 등
 
-즉, **직접 `AdamW`를 쓰는 것과 동일한 결과**입니다.
+즉, **직접 `AdamW`를 쓰는 것과 동일한 결과**.
 
 ### 7.4. Hugging Face에서 커스텀 Optimizer 쓰기
 
-Trainer를 쓰되 optimizer를 직접 지정할 수도 있습니다.
+Trainer를 쓰되 `optimizer`를 직접 지정할 수도 있음.
 
 ```python
 optimizer = torch.optim.AdamW(
@@ -472,7 +472,7 @@ $$
 ### 7. 체크리스트
 
 * `AdamW` 쓸 때
-  * `weight_decay` ≠ 0 확인
+    * `weight_decay` ≠ 0 확인
 * `bias` / `LayerNorm` decay 제외
 * ***learning rate warmup*** 함께 사용 (HF 기본)
 * `Adam` 대신 `AdamW` 인지 확인 (특히 옛 코드)
@@ -481,9 +481,9 @@ $$
 
 * **PyTorch `AdamW`**와 **HF `AdamW`는 동일**
 * HF `Trainer`는
-  * `AdamW`
-  * parameter grouping
-  * `scheduler`
+    * `AdamW`
+    * parameter grouping
+    * `scheduler`
     를 자동으로 처리
 * AdamW의 핵심은
-  * **moment 추정과 weight decay의 분리**
+    * **moment 추정과 weight decay의 분리**
