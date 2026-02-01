@@ -26,7 +26,7 @@ $$
 * gradient 를 매순간 일부 샘플로 구함: 안정적인 gradient의 방향을 구하기 어려움.
 * 현재 iteration에 적절한 learning ratio를 구할 수 없음 (고정)
 
-이 한계를 해결하기 위해 **크게 두 종류의 개선책들**이 등장.
+이 한계를 해결하기 위해 **크게 두 종류의 개선책들** 이 등장.
 
 1. 방향을 안정화하는 방법 : `Momentum`
 2. 적절한 learning ratio (~step size)를 찾는 방법: [`Adagrad`](./op_adagrad.md), [`RMSProp`](./op_rmsprop.md)
@@ -88,7 +88,7 @@ $$
 m_t \approx \mathbb{E}[g_t]
 $$
 
-이를 **[지수 이동 평균(EMA)](https://dsaint31.tistory.com/860)**으로 계산.
+이를 **[지수 이동 평균(EMA)](https://dsaint31.tistory.com/860)** 으로 계산.
 
 $$
 m_t = \beta_1 m_{t-1} + (1-\beta_1) g_t
@@ -281,7 +281,7 @@ AdamW는 **weight decay의 의미를 정확히 구현한 방식** 임.
 
 ---
 
-***Q3. Weight decay는 일반화에 어떤 영향을 주는가?**
+**Q3. Weight decay는 일반화에 어떤 영향을 주는가?**
 
 * 파라미터 크기를 억제
 * 결정 경계를 단순화

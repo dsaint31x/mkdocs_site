@@ -3,7 +3,7 @@ title: Adam Optimizer
 tags: [optimizer, rmsprop, momentum, adam, gradient ]
 ---
 
-# ADAptive Momentum Estimation (Adam)
+# ADAptive Moment Estimation (Adam)
 
 **Adaptive Moment Estimation (Adam)** 은 다음이 결합된 Gradient 기반 최적화 알고리즘이다.
 
@@ -37,31 +37,31 @@ $t$번째 iteration에서 Adam의 업데이트는 다음과 같이 정의된다.
 1.**1차 모멘트 추정 (Momentum)**
 
 $$
-\mathbf{m}*t \leftarrow \beta_1 \mathbf{m}*{t-1} + (1-\beta_1)\nabla_\theta J(\theta)
+\mathbf{m}_t = \beta_1 \mathbf{m}_{t-1} + (1-\beta_1)\nabla_\theta J(\theta)
 $$
 
 2.**2차 모멘트 추정 (RMSProp)**
 
 $$
-\mathbf{s}*t \leftarrow \beta_2 \mathbf{s}*{t-1} + (1-\beta_2)\left(\nabla_\theta J(\theta)\otimes\nabla_\theta J(\theta)\right)
+\mathbf{s}_t = \beta_2 \mathbf{s}_{t-1} + (1-\beta_2)\left(\nabla_\theta J(\theta)\otimes\nabla_\theta J(\theta)\right)
 $$
 
 3.**1차 모멘트 bias correction**
 
 $$
-\hat{\mathbf{m}}_t \leftarrow \frac{\mathbf{m}_t}{1-\beta_1^t}
+\hat{\mathbf{m}}_t = \frac{\mathbf{m}_t}{1-\beta_1^t}
 $$
 
 4.**2차 모멘트 bias correction**
 
 $$
-\hat{\mathbf{s}}_t \leftarrow \frac{\mathbf{s}_t}{1-\beta_2^t}
+\hat{\mathbf{s}}_t = \frac{\mathbf{s}_t}{1-\beta_2^t}
 $$
 
 5.**parameters 업데이트**
 
 $$
-\theta \leftarrow \theta - \eta \frac{\hat{\mathbf{m}}_t}{\sqrt{\hat{\mathbf{s}}_t}+\epsilon}
+\theta_{t+1} = \theta_{t} - \eta \frac{\hat{\mathbf{m}}_t}{\sqrt{\hat{\mathbf{s}}_t}+\epsilon}
 $$
 
 
@@ -75,7 +75,7 @@ $$
 
 * 1번 식은 gradient의 **방향 정보** 를 누적하여 반영.
 * 이는 `Momentum` 기법과 동일한 목적을 가지며,
-  gradient의 **지수 이동 평균(Exponentially Moving Average, EMA)**을 사용.
+  gradient의 **지수 이동 평균(Exponentially Moving Average, EMA)** 을 사용.
 * 여기서 $\beta_1$은 Momentum에서의 감쇠 계수 $\gamma$에 대응.
 * 즉, exponentially decaying sum과 exponentially decaying average는  
   상수배 차이만 있을 뿐, 본질적으로 동일한 방향 누적 효과를 가짐.
@@ -108,7 +108,7 @@ $$
     * 후반 단계에서는 원래의 모멘트 추정값에 기반한 안정적인 업데이트가 이루어짐.
 
 이와 같이 Adam은
-**방향 안정성(`Momentum`)**과 **스케일 적응성(`RMSProp`)**을 동시에 확보하여,
+**방향 안정성(`Momentum`)** 과 **스케일 적응성(`RMSProp`)** 을 동시에 확보하여,
 다양한 문제에서 강건하고 효율적인 최적화 성능을 제공.
 
 ## References
