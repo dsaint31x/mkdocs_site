@@ -122,7 +122,8 @@ $$v_t = \beta_2 v_{t-1} + (1-\beta_2) g_t^2$$
 
 parameter 별 adaptive learning rate 제공
 
-> 지금까지 gradient의 변화량을 적용했던 Adagrad의 경우 매우 불안정했던 단점을 가짐. 
+> 지금까지 gradient의 변화량을 적용했던 Adagrad의 경우 매우 불안정했던 단점을 가짐.  
+>    
 > 이를 개선하기 위해 RMSProp에선  
 > gradient 벡터에서 특정 parameter에 해당하는 방향이 크다는 건  
 > 해당 parameter가 많이 변화를 했다고 생각하고  
