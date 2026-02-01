@@ -8,7 +8,7 @@
 
 ---
 
-## Feedforward Network vs. RNN
+## Feed-forward Network vs. RNN
 
 ANN은 일종의 node들을 edge로 연결한 *일종의 system* 이라고 볼 수 있다. 
 
@@ -46,7 +46,21 @@ ANN에서 feedback connection이 있는 구조를 `Recurrent Neural Network` (`R
 * $\textbf{h}$는 hidden state라고 불려지며 **일종의 memory** 라고 볼 수 있음.
 * feedback connection을 통해 과거의 $\textbf{h}$와 현재의 input $\textbf{x}$에 의해 현재의 state가 결정됨.
 * hidden state로부터 output이 나오는 부분은 위그림은 단순히 $W$로 표현했으나 이는 `RNN`에서 고정된 것이 아님. 단순한 dense layer를 사용할 수도 있으나 보다 복잡하게 구성될수도 있음.
-* hidden state라고 불리는 이유는 output만으로 나오지 않는 경우 i/o 단에서는 보이지 않기 때문임.
+* hidden state라고 불리는 이유는 output으로 그대로 나오지 않는 경우(위 그림에선 `W` 와 곱해짐)가 대부분이라, I/O 만으로는 확인할 수 없기 때문임.
+
+이를 수식적으로 표현하면 다음과 같음.
+
+$$ 
+\textbf{h}_t = f(U \textbf{x}_t + W \textbf{h}_{t-1} + \textbf{b})\\ 
+\textbf{y}_t = g(V \textbf{h}_t + \textbf{c})
+$$
+
+* 위 그림에서는 bias 에 해당하는 $\textbf{b}, \textbf{c}$는 빠져 있음.
+* $f(...)$ : non-linear activation function, (`tanh`, `ReLU` 등)
+* $g(...)$ : non-linear output function, (`softmax`, `sigmoid` 등)
+* $W, V, U$: parameters (=weight matrix)
+* $\textbf{c}, \textbf{b}$: bias vector
+  
 
 > `RNN` 의 구조적 특징은 feedback connection을 가지고 있다는 것임.  
 > 이 feedback connection을 통해, 과거의 input들을 기억(?)하고 있는 ***state*** 를 가짐.

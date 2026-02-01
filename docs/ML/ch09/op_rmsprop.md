@@ -17,11 +17,26 @@
 수식은 다음과 같음.
 
 $$
-\textbf{s}_{t+1} = \rho \textbf{s}_{t}+(1-\rho)\nabla_\theta J(\boldsymbol{\theta}_{t}) \otimes \nabla_\theta J(\boldsymbol{\theta}_{t}) \\
-\boldsymbol{\theta}_{t+1} = \boldsymbol{\theta}_{t} - \eta \nabla_\theta J(\boldsymbol{\theta}_{t}) \oslash \sqrt {\textbf{s}+\epsilon}$$
+\begin{aligned}
+s_{t+1}
+&= \beta\, s_t
+  + (1-\beta)\,
+    \bigl(\nabla_\theta J(\theta_t)
+    \;\otimes\;
+    \nabla_\theta J(\theta_t)\bigr), \\
+\theta_{t+1}
+&= \theta_t
+  - \eta\;
+    \nabla_\theta J(\theta_t)
+    \;\oslash\;
+    \bigl(\sqrt{s_{t+1}} + \varepsilon\bigr).
+\end{aligned}
+$$
 
-* Exponential Decaying Factor인 $\rho$ (forgetting factor, decaying factor, smoothing factor)는 `0.9`를 기본값으로 가지며, 일종의 hyperparameter로 0.9~0.999의 값을 취함.
-* $\frac{1}{1-\rho}$의 gradient들에 대한 평균으로 근사하기도 함. (즉 $\rho$가 클 수록 오래전의 gradient들을 고려하여 누적시켜 learning rate를 감소시킴)
+* Exponential Decaying Factor인 $\beta$ (forgetting factor, decaying factor, smoothing factor)는 `0.9`를 기본값으로 가지며, 일종의 hyperparameter로 0.9~0.999의 값을 취함.
+* $\frac{1}{1-\beta}$의 gradient들에 대한 평균으로 근사하기도 함. (즉 $\beta$가 클 수록 오래전의 gradient들을 고려하여 누적시켜 learning rate를 감소시킴)
+* $\otimes$는 element-wise multiplication (Hadamard product) 임.
+* $\oslash$는 element-wise division (Hadamard division)임.
 
 
 ## Pseudo code
