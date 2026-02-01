@@ -50,9 +50,9 @@ $$ \begin{aligned}v_t &= \beta v_{t-1} + (1-\beta) g_t \\
 
 여기서:
 
-* $v_t$ 는 velocity 로 parameters 가 최적화 되기 위한 방향을 의미!
-* $g_t$ 는 gradient 로 가속도 처럼 현재 parameter가 최적화되기 위해 변해야하는 방향을 가리키는 벡터.
-* $\beta$ 는 일종의 관성의 정도로 gradient 가 얼마나 반영될지를 결정함
+* $v_t$ 는 velocity 로 parameters 가 최적화 되기 위한 방향 과 크기를 가진 벡터를 의미: 이를 통해 parameter vector 가 변경됨.
+* $g_t$ 는 gradient 로 가속도 처럼 현재 parameter vector가 최적화되기 위해 변해야하는 방향을 가리키는 벡터.
+* $\beta$ 는 일종의 관성의 정도로 현재의 gradient 를 velocity에 반영할지를 결정함
 
 > Momentum SGD는  
 > **의도적으로 운동량 모델을 이용하여  
@@ -61,7 +61,7 @@ $$ \begin{aligned}v_t &= \beta v_{t-1} + (1-\beta) g_t \\
 
 #### 1.2.2 moment: 통계적 모멘트
 
-통계에서 moment는 **분포의 요약 통계량**.
+통계에서 [moment](https://dsaint31.tistory.com/256)는 **확률분포의 요약 통계량**.
 
 확률변수 $X$에 대해:
 
@@ -76,13 +76,12 @@ $$ \begin{aligned}v_t &= \beta v_{t-1} + (1-\beta) g_t \\
 * Adam은 momentum을 "그대로 쓰는" 알고리즘이 아니라,
 * **1st moment와 2nd moment를 adaptive 하게  추정하는 알고리즘** 이다.
 
-1st moment는 EMA를 통한 Momentum 알고리즘을 효과를 가져오고, 
-
-2nd moment는 현재 parameters의 크기를 통해 adaptive step size 를 결정하게 함.
+1st moment는 EMA를 통한 Momentum 알고리즘의 효과를 가져오고,  
+2nd moment는 지금까지 적용된 parameter 각각의 변화의 정도를 고려하여 adaptive하게 각 parameter에 적용되는 step size 를 결정하게 함.
 
 #### 1.3.1. 1차 모멘트: gradient 평균 추정
 
-Adam의 1차 모멘트는 다음을 추정하는 것임:
+Adam의 1st moment 는 다음을 추정하는 것임:
 
 $$
 m_t \approx \mathbb{E}[g_t]
@@ -96,12 +95,12 @@ $$
 
 이 의미는 결국, 
 
-* gradient의 평균적 방향을 의미함(Momentum처럼 과거 gradient의 방향을 고려)
+* 지금까지의 여러 iteration에서의 gradient의 평균(EMA)적 방향을 의미함(Momentum처럼 과거 gradients의 방향을 고려)
 * 결국 수식 상 **[Momentum SGD](./op_momentum.md)의 velocity 업데이트와 형태가 동일** 해짐.
 
 #### 1.3.2. 2차 모멘트: gradient 에너지 추정
 
-Adam의 2차 모멘트는 다음을 추정한다.
+Adam의 2nd moment는 다음을 추정한다.
 
 $$v_t \approx \mathbb{E}[g_t^2]$$
 
@@ -111,24 +110,22 @@ $$v_t = \beta_2 v_{t-1} + (1-\beta_2) g_t^2$$
 
 이 의미는 다음과 같음:
 
-* gradient 크기의 평균 제곱. (gradient 벡터의 길이의 제곱)
-* 분산 의 개념이라기 보다는 gradient의 **크기(scale)** 로 
-* adaptive step size를 결정하는 단서로 작용 
+* gradient 크기의 평균 제곱. (gradient 벡터의 제곱)
+* gradient 벡터에서의 각 요소별로 제곱을 하여 각 요소(~parameter별 축)에서의 **크기(scale)** 를 구함. 
+* 이들을 EMA로 처리하면 지금까지 parameter에 대해 가해진 변화량을 가늠할 수 있기 때문에 Parameter별로 다른 adaptive step size 들을 결정하는데 사용 가능. 
 
-이를 다음과 같이 적용한다 (RMSProp의 아이디어)
+이를 다음과 같이 적용한다 (`RMSProp`의 아이디어)
 
-* gradient 벡터의 크기가 큰 parameter(벡터의 컴포넌트로 특정 axis라고 볼 수 있음): step size 감소
-* gradient 벡터의 크기가 작은 parameter : 변화될 step size 증가
+* gradient 벡터에서 제곱한 요소가 큰 축에 해당하는 parameter: step size 감소
+* gradient 벡터에서 제곱한 요소가 작은 축에 해당하는 parameter : 변화될 step size 증가
 
 parameter 별 adaptive learning rate 제공
 
 > 지금까지 gradient의 변화량을 적용했던 Adagrad의 경우 매우 불안정했던 단점을 가짐.  
 >    
 > 이를 개선하기 위해 RMSProp에선  
-> gradient 벡터에서 특정 parameter에 해당하는 방향이 크다는 건  
-> 해당 parameter가 많이 변화를 했다고 생각하고  
-> 해당 축에 대한 갱신 크기에 해당하는 step size를 adaptive하게 줄임.
-> 이를 Adam도 채택.
+> gradient 벡터의 2nd moment에 대해 EMA를 통해 대처함.
+> 이를 `Adam`도 채택.
 
 #### 1.3.3. Adam 업데이트의 구조적 해석
 
@@ -142,7 +139,7 @@ $$
 \hat{v}_t = \frac{v_t}{1-\beta_2^t}
 $$
 
-최종 업데이트는 다음과 같다.
+최종 업데이트는 다음과 같음:
 
 $$
 \theta_{t+1} =  \theta_t - \eta \frac{\hat{m}_t}{\sqrt{\hat{v}_t} + \epsilon}
@@ -151,17 +148,17 @@ $$
 * 분자 $\hat{m}_t$: **어디로 가야 하는가 (방향)**
 * 분모 $\sqrt{\hat{v}_t}$: **얼마나 조심해서 가야 하는가 (step size)**
 
-> Adam은
-> **방향은 1차 moment**,
-> **step size는 2차 moment** 로 제어한다.
+> Adam은  
+> **방향은 1차 moment**,  
+> **step size는 2차 moment** 로 제어.
 
 ### 2. Weight Decay
 
 #### 2.1. 정의
 
-**Weight decay는 파라미터의 크기(norm)를 현재 크기에 따라 일정 비율로 지속적으로 줄이는 Regularization의 한 기법** 임.
+**Weight decay는 파라미터의 크기를 현재 크기에 따라 일정 비율로 지속적으로 줄이는 L2-Regularization 을 구현하는 기법** 임.
 
-Model의 over-fitting을 막고 general performance 를 향상시키기 위해 모델의 parameter가 지나치게 커지지 않게 해주는 방법을 Regularization 이라고 하는데, Weight decay는 이 Regularization 을 구현하는 방법임.
+Model의 over-fitting을 막고 general performance 를 향상시키기 위해 모델의 parameter가 지나치게 커지지 않게 해주는 방법을 Regularization 이라고 하는데, Weight decay는 이 중 L2 Regularization 을 구현하는 방법임.
 
 #### 2.2. L2 regularization과의 관계
 
@@ -184,7 +181,7 @@ $$
 
 * 매 step마다 parameter 가 일정 비율로 감소함.
 
-즉, SGD에선 L2 regularization이나 **weight decay** 는 동일하다.
+즉, [SGD](https://dsaint31.tistory.com/633)에선 L2 regularization이나 **weight decay** 는 동일하다.
 
 > AdamW 이전의 대부분이 Adam variants들은 weight decay를 L2 regularization처럼 loss에 parameter의 L2-norm 을 더하는 형태를 채택함.
 
@@ -211,7 +208,7 @@ $$
 
 AdamW의 핵심 아이디어는 다음과 같음:
 
-* moment 기반 최적화와 Regularization은 서로 다른 역할이다.
+* **"moment 기반 최적화"** 와 **"L2-Regularization"**은 서로 다른 역할임.
 * 그러므로 분리하여 `Adam` step과 `Weight decay` step으로 나눈다.
 
 ### 2.1. Adam step (moment 기반 최적화)
@@ -259,13 +256,13 @@ $$
 
 **Q1. L2 regularization과 weight decay는 완전히 같은가?**
 
-**SGD에서는 사실상 동일함.**
-**Adam 같은 adaptive optimizer에서는 달라짐.**
+**`SGD`에서는 사실상 동일함.**
+**`Adam` 같은 adaptive optimizer에서는 달라짐.**
 
 * L2 regularization: loss에 항을 추가
 * Weight decay: 파라미터를 직접 감쇠
 
-AdamW는 **weight decay의 의미를 정확히 구현한 방식** 임.
+AdamW는 **weight decay를 통해 L2 regularization의 원래 동작을 non-adaptive optimizer와 같이 정확히 구현한 방식** 임.
 
 ---
 
@@ -273,7 +270,7 @@ AdamW는 **weight decay의 의미를 정확히 구현한 방식** 임.
 
 * `bias`와 `LayerNorm` 파라미터는 **스케일을 조정하는 역할**
 * 크기를 줄이면 표현력이 직접적으로 손상됨
-* 일반화와 거의 무관
+* 일반화(or Generalization Performance)와 거의 무관
 
 그래서 다음이 성립:
 
@@ -300,9 +297,9 @@ AdamW는 **weight decay의 의미를 정확히 구현한 방식** 임.
 
 ## 5. 요약 (1)
 
-* `Adam`은 gradient의 통계적 모멘트를 추정하는 알고리즘이고,
+* `Adam`은 gradient의 adaptive moment 를 추정하는 알고리즘이고,
 * `AdamW`는 여기에 `weight decay`를 분리하여
-* `regularization`의 의미를 회복한 variant임.
+* `L2 regularization`의 의미를 회복한 variant임.
 
 ---
 
@@ -384,11 +381,11 @@ from transformers import Trainer, TrainingArguments
 training_args = TrainingArguments(
     output_dir="./results",
     learning_rate=5e-5,
-    weight_decay=0.01,
-    per_device_train_batch_size=16,
+    weight_decay=0.01, # AdamW의 기본 decoupled weight decay 는 0.0 으로 꺼진상태.
+    per_device_train_batch_size=8,
     num_train_epochs=3,
-    logging_steps=100,
-    save_steps=1000,
+    logging_steps=500,
+    save_steps=500,
 )
 
 trainer = Trainer(
@@ -450,13 +447,13 @@ trainer = Trainer(
 
 PyTorch와 HF에서 실제로 수행되는 update는 개념적으로 다음과 같음:
 
-1.Adam step (moment 기반)
+**1.Adam step (moment 기반)**
 
 $$   
 \theta_t' = \theta_t - \eta \frac{\hat{m}_t}{\sqrt{\hat{v}_t} + \epsilon}
 $$
 
-2.Weight decay step (decoupled)
+**2.Weight decay step (decoupled)**
 
 $$
 \theta_{t+1} = \theta_t' - \eta \lambda \theta
@@ -480,6 +477,11 @@ $$
     * `weight_decay` ≠ 0 확인
 * `bias` / `LayerNorm` decay 제외
 * ***learning rate warmup*** 함께 사용 (HF 기본)
+    * `Adam` 계열은 2nd moment 추정이 초반에 안정이 잘 안됨.
+    * 때문에 극초반에는 작은 `lr`로 출발하고 
+    * 2nd moment 가 안정되면 점진적으로 증가하다가,
+    * parameters가 최적화에 가까워지면 step size가 줄어들어야 함.
+    * 때문에 `learning rate warmup`과 궁합이 좋음.
 * `Adam` 대신 `AdamW` 인지 확인 (특히 옛 코드)
 
 ---
