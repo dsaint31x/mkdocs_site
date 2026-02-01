@@ -74,7 +74,7 @@ $$ \begin{aligned}v_t &= \beta v_{t-1} + (1-\beta) g_t \\
 [Adam](./op_adam.md)은 이름 그대로 **Adaptive Moment Estimation** 즉,
 
 * Adam은 momentum을 "그대로 쓰는" 알고리즘이 아니라,
-* **1st moment와 2nd moment를 adaptive 하게  추정하는 알고리즘**이다.
+* **1st moment와 2nd moment를 adaptive 하게  추정하는 알고리즘** 이다.
 
 1st moment는 EMA를 통한 Momentum 알고리즘을 효과를 가져오고, 
 
@@ -97,7 +97,7 @@ $$
 이 의미는 결국, 
 
 * gradient의 평균적 방향을 의미함(Momentum처럼 과거 gradient의 방향을 고려)
-* 결국 수식 상 **[Momentum SGD](./op_momentum.md)의 velocity 업데이트와 형태가 동일**해짐.
+* 결국 수식 상 **[Momentum SGD](./op_momentum.md)의 velocity 업데이트와 형태가 동일** 해짐.
 
 #### 1.3.2. 2차 모멘트: gradient 에너지 추정
 
@@ -148,11 +148,11 @@ $$
 $$
 
 * 분자 $\hat{m}_t$: **어디로 가야 하는가 (방향)**
-* 분모 $\sqrt{\hat{v}_t}$: **얼마나 조심해서 가야 하는가 (보폭)**
+* 분모 $\sqrt{\hat{v}_t}$: **얼마나 조심해서 가야 하는가 (step size)**
 
 > Adam은
 > **방향은 1차 moment**,
-> **보폭은 2차 moment**로 제어한다.
+> **step size는 2차 moment** 로 제어한다.
 
 ### 2. Weight Decay
 
@@ -187,7 +187,7 @@ $$
 
 > AdamW 이전의 대부분이 Adam variants들은 weight decay를 L2 regularization처럼 loss에 parameter의 L2-norm 을 더하는 형태를 채택함.
 
-#### 2.3. Adam에서 weight decay가 문제가 되는 이유
+#### 2.3. Adam에서 Weight decay가 문제가 되는 이유
 
 Adam에서 위 gradient를 그대로 사용하면,
 
@@ -206,14 +206,14 @@ $$
 * regularization이 원하는 단순한 "크기 억제" 가 아닌, "gradient vector" 가 가리키는 방향 자체에 대한 왜곡이 일어나는 셈임.
 
 
-## 3. AdamW: Regularization 을 분리
+## 2. AdamW: Regularization 을 분리
 
 AdamW의 핵심 아이디어는 다음과 같음:
 
 * moment 기반 최적화와 Regularization은 서로 다른 역할이다.
 * 그러므로 분리하여 `Adam` step과 `Weight decay` step으로 나눈다.
 
-### 3.1. Adam step (moment 기반 최적화)
+### 2.1. Adam step (moment 기반 최적화)
 
 $$
 \theta_t' = \theta_t - \eta \frac{\hat{m}_t}{\sqrt{\hat{v}_t} + \epsilon}
@@ -222,7 +222,7 @@ $$
 * 순수하게 loss 감소만 담당
 * moment 추정 그대로 유지
 
-### 3.2 Weight decay step 
+### 2.2 Weight decay step 
 
 $$
 \theta_{t+1} = \theta_t' - \eta \lambda \theta_t
@@ -231,20 +231,20 @@ $$
 * adaptive scaling과 완전히 독립
 * 파라미터 크기에 직접 일관되게 적용
 
-### 3.3. 결합 표현
+### 2.3. 최종 수식
 
 $$
 \theta_{t+1} =  \theta_t - \eta \frac{\hat{m}_t}{\sqrt{\hat{v}_t} + \epsilon} - \eta \lambda \theta_t
 $$
 
-## 4.  AdamW의 개념적 위치
+## 3. AdamW의 개념적 위치
 
-Adam:
+`Adam`:
 
 * gradient 분포의 moment 추정
 * optimization dynamics 설계
 
-AdamW:
+`AdamW`:
 
 * moment 기반 최적화 유지
 * regularization  분리
@@ -254,9 +254,9 @@ AdamW:
 ---
 
 
-## 5. Notes
+## 4. Notes
 
-### Q1. L2 regularization과 weight decay는 완전히 같은가?
+**Q1. L2 regularization과 weight decay는 완전히 같은가?**
 
 **SGD에서는 사실상 동일함.**
 **Adam 같은 adaptive optimizer에서는 달라짐.**
@@ -266,7 +266,9 @@ AdamW:
 
 AdamW는 **weight decay의 의미를 정확히 구현한 방식** 임.
 
-### Q2. 왜 bias나 LayerNorm에는 weight decay를 적용하지 않는가?
+---
+
+**Q2. 왜 bias나 LayerNorm에는 weight decay를 적용하지 않는가?**
 
 * `bias`와 `LayerNorm` 파라미터는 **스케일을 조정하는 역할**
 * 크기를 줄이면 표현력이 직접적으로 손상됨
@@ -277,7 +279,9 @@ AdamW는 **weight decay의 의미를 정확히 구현한 방식** 임.
 * `weight` 행렬 : decay 적용
 * `bias` / `LayerNorm` : decay 제외
 
-### Q3. Weight decay는 일반화에 어떤 영향을 주는가?
+---
+
+***Q3. Weight decay는 일반화에 어떤 영향을 주는가?**
 
 * 파라미터 크기를 억제
 * 결정 경계를 단순화
@@ -293,7 +297,7 @@ AdamW는 **weight decay의 의미를 정확히 구현한 방식** 임.
 
 ---
 
-## 6. Summary
+## 5. 요약 (1)
 
 * `Adam`은 gradient의 통계적 모멘트를 추정하는 알고리즘이고,
 * `AdamW`는 여기에 `weight decay`를 분리하여
@@ -303,7 +307,7 @@ AdamW는 **weight decay의 의미를 정확히 구현한 방식** 임.
 
 ---
 
-## 7. Hugging Face 및 PyTorch 에서 사용하기.
+## 6. HF 및 PyTorch 에서 사용.
 
 * **PyTorch**:
     * `torch.optim.AdamW` 를 직접 사용
@@ -313,9 +317,9 @@ AdamW는 **weight decay의 의미를 정확히 구현한 방식** 임.
 
 > 둘 다 **동일한 AdamW (decoupled weight decay)** 임.
 
-### 7.2. PyTorch에서 AdamW 사용법 (기본)
+### 6.2. PyTorch 사용법
 
-#### 7.2.1 기본형
+#### 6.2.1 기본형
 
 ```python
 import torch
@@ -339,7 +343,7 @@ optimizer = torch.optim.AdamW(
 > gradient에 섞이지 않고 **파라미터 감쇠로 직접 적용** 됨.
 
 
-#### 7.2.2 중요한 실무 포인트 (`bias` / `LayerNorm` 제외)
+#### 6.2.2 중요 포인트 (`bias` / `LayerNorm` 제외)
 
 Transformer 계열에서는 보통 다음과 같이 사용됨:
 
@@ -369,9 +373,9 @@ optimizer = torch.optim.AdamW(
 
 > 이 방법이 **HF 공식 레시피** 임.
 
-### 7.3. Hugging Face Transformers에서 AdamW 사용법
+### 6.3. HF 에서 AdamW 사용법
 
-#### 7.3.1 Trainer 사용 (가장 흔한 방식)
+#### 6.3.1 Trainer 사용 (권장)
 
 ```python
 from transformers import Trainer, TrainingArguments
@@ -404,7 +408,7 @@ trainer.train()
 
 > **대부분의 HF 파인튜닝은 이걸로 충분**.
 
-#### 7.3.2 Trainer 내부에서 실제로 일어나는 일 (개념)
+#### 6.3.2 Trainer 내부 동작.
 
 HF Trainer는 내부적으로 대략 다음을 수행:
 
@@ -417,7 +421,7 @@ HF Trainer는 내부적으로 대략 다음을 수행:
 
 즉, **직접 `AdamW`를 쓰는 것과 동일한 결과**.
 
-### 7.4. Hugging Face에서 커스텀 Optimizer 쓰기
+### 6.4. HF에서 Custom Optimizer 쓰기
 
 Trainer를 쓰되 `optimizer`를 직접 지정할 수도 있음.
 
@@ -439,19 +443,19 @@ trainer = Trainer(
 * `scheduler`를 직접 쓰고 싶다면 `(optimizer, scheduler)` 형태로 전달
 * 연구용, 실험용으로 자주 사용
 
-### 7.5. AdamW 수식 관점에서 HF / PyTorch의 구현
+### 6.5. HF / PyTorch의 구현
 
 > 앞서 살펴본 내용과 같음: 코드만 보는 경우를 위해 다시 반복.
 
 PyTorch와 HF에서 실제로 수행되는 update는 개념적으로 다음과 같음:
 
-#### 1.Adam step (moment 기반)
+1.Adam step (moment 기반)
 
 $$   
 \theta_t' = \theta_t - \eta \frac{\hat{m}_t}{\sqrt{\hat{v}_t} + \epsilon}
 $$
 
-#### 2.Weight decay step (decoupled)
+2.Weight decay step (decoupled)
 
 $$
 \theta_{t+1} = \theta_t' - \eta \lambda \theta
@@ -460,7 +464,7 @@ $$
 * 구현에서는 보통 $\theta_t'$ 기준으로 `decay`를 적용하지만,
 * 차이는 $\mathcal{O}(\eta^2)$  이므로 거의 차이 없음.
 
-### 6. 언제 PyTorch 직접, 언제 HF Trainer를 쓰나
+### 6.6. PyTorch vs. HF
 
 | 상황                  | 추천                      |
 | :---:  | :---: |
@@ -469,7 +473,7 @@ $$
 | 논문 재현               | PyTorch 직접              |
 | 대규모 분산 학습          | HF `Trainer` + `Accelerate` |
 
-### 7. 체크리스트
+### 6.7. 체크리스트
 
 * `AdamW` 쓸 때
     * `weight_decay` ≠ 0 확인
@@ -477,9 +481,13 @@ $$
 * ***learning rate warmup*** 함께 사용 (HF 기본)
 * `Adam` 대신 `AdamW` 인지 확인 (특히 옛 코드)
 
-## 마지막 요약
+---
 
-* **PyTorch `AdamW`**와 **HF `AdamW`는 동일**
+---
+
+## 요약 (2)
+
+* **PyTorch `AdamW`** 와 **HF `AdamW`는 동일**
 * HF `Trainer`는
     * `AdamW`
     * parameter grouping
