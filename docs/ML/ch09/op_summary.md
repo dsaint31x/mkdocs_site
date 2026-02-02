@@ -6,10 +6,12 @@ tags: [Gradient, GD, Stochastic Gradient Descent, NAG, AdaGrad, RMSprop, Adam, N
 # Optimizers
 
 Optimizer는 
+
 * 주어진 손실 함수(loss function)를 최소화하기 위해
 * 모델의 parameters를 어떤 규칙에 따라 업데이트할지를 정의하는 알고리즘
 
 parameters의 수가 적은 단순한 모델들의 경우 
+
 * 2차 미분 정보를 활용하는 Hessian 계열 (Newton's Method)이 사용(이론적으로는 보다 빠른 수렴을 제공)되기도 하나,
 * ***Deep Neural Network에선 Gradient 계열 만이 사용됨.***
    * parameters의 수의 square에 비례하는 연산을 요구하는 Hessian 계열은
@@ -38,65 +40,65 @@ parameters의 수가 적은 단순한 모델들의 경우
     * Batch GD의 느린 업데이트 문제를 해결함.
     * 업데이트 분산이 크고 noisy하나 빠른 탐색이 가능함.
 * [Mini-batch GD](https://dsaint31.tistory.com/860) : 1980s
-   * Batch GD와 SGD의 중간형.
-   * 여러 샘플을 묶은 mini-batch 단위로 업데이트 수행.
-   * 현재 DL 의 사실상 표준 방식.
+    * Batch GD와 SGD의 중간형.
+    * 여러 샘플을 묶은 mini-batch 단위로 업데이트 수행.
+    * 현재 DL 의 사실상 표준 방식.
 * [Momentum](op_momentum.md) : 1986 (Rumelhart et al.) 
-   * 이전 업데이트 방향을 누적하여 현재 gradient에 반영.
-   * 업데이트 방향의 안정화
-   * saddle point에서의 탈출 가속
-   * ravine(협곡, 골짜기) 구조에서 fluctuation 감소.
+    * 이전 업데이트 방향을 누적하여 현재 gradient에 반영.
+    * 업데이트 방향의 안정화
+    * saddle point에서의 탈출 가속
+    * ravine(협곡, 골짜기) 구조에서 fluctuation 감소.
 * [Nesterov Accelerated Gradient(NAG)](./op_nesterov.md) : 1983 (Nesterov)
-   * 수학적 최적화 이론(Convex Optimization)에서는 Momentum보다 먼저 등장했으나,
-   * DL 에서는 Momentum이 먼저 도입됨(Rumelhart 라는 이름이...)
-   * 이후 Momentum의 개선형으로 재해석되어 DL등에서 도입됨 배경을 가짐.
-   * Momentum 방향으로 미리 이동한 미래 위치에서 gradient를 계산.
-   * 해당 gradient와 기존 momentum을 결합하여 현재 위치에서 업데이트 수행.
-   * [Momentum](op_momentum.md) 대비 수렴 근처에서의 요동이 줄어들며 안정성이 향상됨: Convex optimization 이론에서 보다 강한 수렴 보장을 가짐.
+    * 수학적 최적화 이론(Convex Optimization)에서는 Momentum보다 먼저 등장했으나,
+    * DL 에서는 Momentum이 먼저 도입됨(Rumelhart 라는 이름이...)
+    * 이후 Momentum의 개선형으로 재해석되어 DL등에서 도입됨 배경을 가짐.
+    * Momentum 방향으로 미리 이동한 미래 위치에서 gradient를 계산.
+    * 해당 gradient와 기존 momentum을 결합하여 현재 위치에서 업데이트 수행.
+    * [Momentum](op_momentum.md) 대비 수렴 근처에서의 요동이 줄어들며 안정성이 향상됨: Convex optimization 이론에서 보다 강한 수렴 보장을 가짐.
 * [Adagrad](./op_adagrad.md) : 2011
-   * 학습이 진행되면서 parameter들의 업데이트되는 크기가 각기 다른 점을 반영하여,
-   * 각 parameter별로 과거 gradient 제곱합을 누적하여 업데이트가 크게 일어난 parameter일수록 learning rate를 감소시킴.
-   * Adaptive learning rate를 최초로 본격 도입한 알고리즘.
-   * Sparse feature 에는 강하나, **learning rate 가 지나치게 빠르게 감소** 하는 단점 존재.
+    * 학습이 진행되면서 parameter들의 업데이트되는 크기가 각기 다른 점을 반영하여,
+    * 각 parameter별로 과거 gradient 제곱합을 누적하여 업데이트가 크게 일어난 parameter일수록 learning rate를 감소시킴.
+    * Adaptive learning rate를 최초로 본격 도입한 알고리즘.
+    * Sparse feature 에는 강하나, **learning rate 가 지나치게 빠르게 감소** 하는 단점 존재.
 * [RMSprop](./op_rmsprop.md) : 2012 (Hinton's Lecture note)
-   * Adagrad의 learning rate가 지나치게 이른 학습 단계에서 소실되는 문제 (누적합 방식의 문제)를 해결하기 위해
-   * "gradient의 square"(2nd moment)의 exponential moving average 으로 누접합 을 대체한 알고리즘.  
-   * Parameter-wise step scaling (~adaptive learning rate) 를 통해 보다 안정적인 lr을 제공.
-   * fine-tuning 등에서 많이 애용됨.  
+    * Adagrad의 learning rate가 지나치게 이른 학습 단계에서 소실되는 문제 (누적합 방식의 문제)를 해결하기 위해
+    * "gradient의 square"(2nd moment)의 exponential moving average 으로 누접합 을 대체한 알고리즘.  
+    * Parameter-wise step scaling (~adaptive learning rate) 를 통해 보다 안정적인 lr을 제공.
+    * fine-tuning 등에서 많이 애용됨.  
 * Adadelta : 2012
-   * RMSProp과 함께, Adagrad의 지나치게 빠른 learning ratio 감소를 해결하기 위해 제안된 방법.
-   * 가장 큰 특징은 global learning rate($\eta$) 하이퍼파라미터를 명시적으로 사용하지 않는다는 점임.
-   * 즉, 전통적인 의미의 global learning rate를 대신하여
-   * gradient의 변화량과 parameter 업데이트의 변화량 모두에 EMA를 적용하고,
-   * 이 두 값을 비율로 사용하여 step size를 자동으로 조절함.
-   * Learning rate를 제거했다기보다는 내부 메커니즘으로 대체한 방식.
+    * RMSProp과 함께, Adagrad의 지나치게 빠른 learning ratio 감소를 해결하기 위해 제안된 방법.
+    * 가장 큰 특징은 global learning rate($\eta$) 하이퍼파라미터를 명시적으로 사용하지 않는다는 점임.
+    * 즉, 전통적인 의미의 global learning rate를 대신하여
+    * gradient의 변화량과 parameter 업데이트의 변화량 모두에 EMA를 적용하고,
+    * 이 두 값을 비율로 사용하여 step size를 자동으로 조절함.
+    * Learning rate를 제거했다기보다는 내부 메커니즘으로 대체한 방식.
 * [Adam](./op_adam.md) : 2014
-   * [Momentum](./op_momentum.md)(=gradient's 1st moment)과 [RMSProp](./op_rmsprop.md)(=gradient's 2nd moment)를 결합한 알고리즘.
-      * 1차 moment: gradient의 방향 안정화
-      * 2차 moment: gradient 크기(scale) 추정
-   * 동시에 Bias correction을 도입하여 초기 학습 불안정성 완화.
-   * Parameter-wise adaptive learning rate 제공.
-   * 현대 딥러닝에서 가장 널리 사용되는 optimizer 중 하나 (사실 이의 variant인 [AdamW](./op_adamw.md) 가 가장 널리 사용되는 Optimizer) 
+    * [Momentum](./op_momentum.md)(=gradient's 1st moment)과 [RMSProp](./op_rmsprop.md)(=gradient's 2nd moment)를 결합한 알고리즘.
+        * 1차 moment: gradient의 방향 안정화
+        * 2차 moment: gradient 크기(scale) 추정
+    * 동시에 Bias correction을 도입하여 초기 학습 불안정성 완화.
+    * Parameter-wise adaptive learning rate 제공.
+    * 현대 딥러닝에서 가장 널리 사용되는 optimizer 중 하나 (사실 이의 variant인 [AdamW](./op_adamw.md) 가 가장 널리 사용되는 Optimizer) 
 * AdaMax : 2014
-   * **[Adam](./op_adam.md)에서 사용된 gradient의 square를 이용한 L2-norm** 대신
-   * **L$\infty$-norm (=Max값)으로 대체** 하여 보다 안정적인 학습을 가능하게 함.
-   * Extreme gradient 상황에서 수치적 안정성이 높음.
-   * 일반적으로 [Adam](./op_adam.md)이 보다 많이 사용됨.
+    * **[Adam](./op_adam.md)에서 사용된 gradient의 square를 이용한 L2-norm** 대신
+    * **L$\infty$-norm (=Max값)으로 대체** 하여 보다 안정적인 학습을 가능하게 함.
+    * Extreme gradient 상황에서 수치적 안정성이 높음.
+    * 일반적으로 [Adam](./op_adam.md)이 보다 많이 사용됨.
 * [NAdam](./op_nadam.md) : 2016
-   * [Adam](./op_adam.md) 에서 사용된 momentum 대신에
-   * [NAG](./op_nesterov.md)를 적용.
-   * 일부 문제에서 더 빠른 수렴속도와 향상된 성능을 보임.
+    * [Adam](./op_adam.md) 에서 사용된 momentum 대신에
+    * [NAG](./op_nesterov.md)를 적용.
+    * 일부 문제에서 더 빠른 수렴속도와 향상된 성능을 보임.
 * **[AdamW (Adam with Decoupled Weight Decay)](./op_adamw.md) - 2017 (Loshchilov & Hutter)** **
-   * Adam의 구조적 결함을 수정한 매우 중요한 변형: 정규화 해석을 바로잡은 결정적 개선
-   * 기존 Adam의 문제점:
-      * L2 regularization이 gradient 기반 업데이트에 섞여 들어가
-      * adaptive learning rate와 weight decay가 결합되어 의도한 정규화 효과가 왜곡됨
-   * AdamW의 핵심 아이디어:
-      * Weight decay를 gradient 업데이트와 완전히 분리(decoupled)
-      * Parameter 업데이트 이후에 별도로 decay 적용
-   * 정규화 효과가 이론적으로 명확해짐
-      * 일반화 성능 향상
-      * 현재 Transformer 계열 및 HuggingFace Trainer의 기본 optimizer  
+    * Adam의 구조적 결함을 수정한 매우 중요한 변형: 정규화 해석을 바로잡은 결정적 개선
+    * 기존 Adam의 문제점:
+        * L2 regularization이 gradient 기반 업데이트에 섞여 들어가
+        * adaptive learning rate와 weight decay가 결합되어 의도한 정규화 효과가 왜곡됨
+    * AdamW의 핵심 아이디어:
+        * Weight decay를 gradient 업데이트와 완전히 분리(decoupled)
+        * Parameter 업데이트 이후에 별도로 decay 적용
+    * 정규화 효과가 이론적으로 명확해짐
+        * 일반화 성능 향상
+        * 현재 Transformer 계열 및 HuggingFace Trainer의 기본 optimizer  
 
 ---
 
