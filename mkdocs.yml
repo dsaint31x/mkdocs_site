@@ -82,7 +82,6 @@ markdown_extensions:
       anchor_linenums: true
       line_spans: __span
       pygments_lang_class: true
-      anchor_linenums: true
   - pymdownx.inlinehilite
   - pymdownx.keys
   - pymdownx.magiclink:
@@ -335,90 +334,92 @@ nav:
       - "DIP/ch02_02_02_harris_corner.md"
       - "DIP/ch02_03_03_hog.md"
   - ML:
-    - Introduction:
-      - "ML/ch00/ch00_00_intro.md"
-      - "ML/ch00/ch00_01_dartmouth_ai.md"
-      - "ML/ch00/ch00_01_what_is_ml.md"          
-      - "ML/ch00/ch00_11_why_use_ml.md"
-      - "ML/ch00/ch00_12_type_of_ml.md"
-      - "ML/ch00/ch00_20_supervised.md"
-      - "ML/ch00/ch00_21_unsupervised.md"
-      - "ML/ch00/ch00_22_semisupervised.md"
-      - "ML/ch00/ch00_24_selfsupervised_learning.md"
-      - "ML/ch00/ch00_23_reinforcement_learning.md"
-      - "ML/ch00/ch00_24_feature_attribute.md"
-      - "ML/ch00/ch00_31_instance_based_learning.md"
-      - "ML/ch00/ch00_32_model_based_learning.md"
-      - "ML/ch00/ch00_33_what_is_model.md"
-      - "ML/ch00/ch00_41_online_learning.md"
-      - "ML/ch00/ch00_42_batch_learning.md"
-      - "ML/ch00/ch00_50.md"
-    - 'Colab':
-      - "CE/colab/hw_spec.md"
-      - "CE/colab/cells.md"
-      - "CE/colab/hotkeys.md"
-      - "CE/colab/gpu.md"
-    - "Ex: End_to_End Learning":
-      - "ML/ch01/ch01_41.md"
-      - "ML/ch01/ch01_51.md"
-      - "ML/ch01/ch01_52.md"
-    - 'Linear Regression and Logistic Regression':
-      - "ML/ch03/logistic_regression.md"
-    - Classification:
-      - "ML/ch02/ml_cls_types.md"
-      - "ML/ch02/ml_cls_metrics.md"
-    - 'Optimizers':
-      - "ML/ch09/op_summary.md"
-      - "ML/ch09/op_momentum.md"
-      - "ML/ch09/op_nesterov.md"
-      - "ML/ch09/op_adagrad.md"
-      - "ML/ch09/op_rmsprop.md"
-      - "ML/ch09/op_adam.md"
-      - "ML/ch09/op_nadam.md"
-      - "ML/ch09/op_adamw.md"
-    - 'Ensemble Learning':
-      - "ML/ch05/ml_ensemble.md"
-      - "ML/ch05/ml_stacking.md"
-    - 'Dimensionality Reduction':
-      - "ML/ch06/ml_pca.md"
-      - "ML/ch06/ml_mds.md"
-    - "Unsupervised Learning":
-      - "ML/ch07/clustering.md"
-      - "ML/ch07/manifold.md"
-      - "ML/ch07/topological_space.md"
-      - "ML/ch07/tSNE.md"
-    - "Deep Learning (simple)":
-      - "ML/ch08/dev_hist_ann.md"
-      - "ML/ch08/back_propagation.md"
-      - "ML/ch08/reverse_mode_autodiff.md"
-      - "ML/ch08/datastructure_graph.md"
-      - "ML/ch09/sol_gv_ge.md"
-      - "ML/ch09/weight_initializations.md"
-      - "ML/ch09/act_relu.md"
-      - "ML/ch09/act_elu.md"
-      - "ML/ch09/act_silu.md"
-      - "ML/ch09/batch_normalization.md"
-      - 'Transfer Learning': "ML/ch11_training/knowledge_transfer.md"
-    - 'Hyperparameter Tuning':
-      - "ML/ch08/keras_tuner.md"
-      - "ML/ch08/dl_hyperparameters.md"
-  - 'DL Architectures':
-    - 'CNN':
-      - "ML/ch14_cnn/CNN_intro.md"
-      - "ML/ch14_cnn/CNN_convolutional_layer.md"
-      - "ML/ch14_cnn/CNN_pooling_layer.md"
-      - "ML/ch14_cnn/LeNet-5.md"
-      - "ML/ch14_cnn/alexnet.md"
-      - "ML/ch14_cnn/vgg.md"
-      - "ML/ch14_cnn/resnet.md"
-    - 'RNN':
-      - "ML/ch16_RNN/RNN_intro.md"
-      - "ML/ch16_RNN/RNN_memory_cell.md"
-      - "ML/ch16_RNN/RNN_topologies.md"
-      - "ML/ch16_RNN/RNN_Bahdanau_attention.md"
-      - "ML/ch16_RNN/RNN_attention_score.md"
-    - 'GAN':
-      - "ML/ch17_GM/GAN_intro.md"
+    - "ML: Basic":
+      - Introduction:
+        - "ML/ch00/ch00_00_intro.md"
+        - "ML/ch00/ch00_01_dartmouth_ai.md"
+        - "ML/ch00/ch00_01_what_is_ml.md"          
+        - "ML/ch00/ch00_11_why_use_ml.md"
+        - "ML/ch00/ch00_12_type_of_ml.md"
+        - "ML/ch00/ch00_20_supervised.md"
+        - "ML/ch00/ch00_21_unsupervised.md"
+        - "ML/ch00/ch00_22_semisupervised.md"
+        - "ML/ch00/ch00_24_selfsupervised_learning.md"
+        - "ML/ch00/ch00_23_reinforcement_learning.md"
+        - "ML/ch00/ch00_24_feature_attribute.md"
+        - "ML/ch00/ch00_31_instance_based_learning.md"
+        - "ML/ch00/ch00_32_model_based_learning.md"
+        - "ML/ch00/ch00_33_what_is_model.md"
+        - "ML/ch00/ch00_41_online_learning.md"
+        - "ML/ch00/ch00_42_batch_learning.md"
+        - "ML/ch00/ch00_50.md"
+      - 'Colab':
+        - "CE/colab/hw_spec.md"
+        - "CE/colab/cells.md"
+        - "CE/colab/hotkeys.md"
+        - "CE/colab/gpu.md"
+      - "Ex: End_to_End Learning":
+        - "ML/ch01/ch01_41.md"
+        - "ML/ch01/ch01_51.md"
+        - "ML/ch01/ch01_52.md"
+      - 'Linear Regression and Logistic Regression':
+        - "ML/ch03/logistic_regression.md"
+      - Classification:
+        - "ML/ch02/ml_cls_types.md"
+        - "ML/ch02/ml_cls_metrics.md"
+      - 'Optimizers':
+        - "ML/ch09/op_summary.md"
+        - "ML/ch09/op_momentum.md"
+        - "ML/ch09/op_nesterov.md"
+        - "ML/ch09/op_adagrad.md"
+        - "ML/ch09/op_rmsprop.md"
+        - "ML/ch09/op_adam.md"
+        - "ML/ch09/op_nadam.md"
+        - "ML/ch09/op_adamw.md"
+      - 'Ensemble Learning':
+        - "ML/ch05/ml_ensemble.md"
+        - "ML/ch05/ml_stacking.md"
+      - 'Dimensionality Reduction':
+        - "ML/ch06/ml_pca.md"
+        - "ML/ch06/ml_mds.md"
+      - "Unsupervised Learning":
+        - "ML/ch07/clustering.md"
+        - "ML/ch07/manifold.md"
+        - "ML/ch07/topological_space.md"
+        - "ML/ch07/tSNE.md"
+    - "DL":
+      - "Deep Learning (simple)":
+        - "ML/ch08/dev_hist_ann.md"
+        - "ML/ch08/back_propagation.md"
+        - "ML/ch08/reverse_mode_autodiff.md"
+        - "ML/ch08/datastructure_graph.md"
+        - "ML/ch09/sol_gv_ge.md"
+        - "ML/ch09/weight_initializations.md"
+        - "ML/ch09/act_relu.md"
+        - "ML/ch09/act_elu.md"
+        - "ML/ch09/act_silu.md"
+        - "ML/ch09/batch_normalization.md"
+        - 'Transfer Learning': "ML/ch11_training/knowledge_transfer.md"
+      - 'Hyperparameter Tuning':
+        - "ML/ch08/keras_tuner.md"
+        - "ML/ch08/dl_hyperparameters.md"
+    - 'DL Architectures':
+      - 'CNN':
+        - "ML/ch14_cnn/CNN_intro.md"
+        - "ML/ch14_cnn/CNN_convolutional_layer.md"
+        - "ML/ch14_cnn/CNN_pooling_layer.md"
+        - "ML/ch14_cnn/LeNet-5.md"
+        - "ML/ch14_cnn/alexnet.md"
+        - "ML/ch14_cnn/vgg.md"
+        - "ML/ch14_cnn/resnet.md"
+      - 'RNN':
+        - "ML/ch16_RNN/RNN_intro.md"
+        - "ML/ch16_RNN/RNN_memory_cell.md"
+        - "ML/ch16_RNN/RNN_topologies.md"
+        - "ML/ch16_RNN/RNN_Bahdanau_attention.md"
+        - "ML/ch16_RNN/RNN_attention_score.md"
+      - 'GAN':
+        - "ML/ch17_GM/GAN_intro.md"
   - "SS":
     - "z-Transform":
       - "SS/ch08/ch08_33_z_t_time_shift.md"
