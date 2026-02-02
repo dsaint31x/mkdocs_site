@@ -17,6 +17,7 @@ theme:
     # - content.tabs.link
     - content.tooltips
     # - header.autohide
+    - navigation.tabs
     - navigation.sections
     # - navigation.expand
     - navigation.indexes
@@ -25,7 +26,6 @@ theme:
     # - navigation.instant.prefetch
     # - navigation.instant.progress
     # - navigation.prune
-    # - navigation.tabs
     # - navigation.tabs.sticky
     - navigation.top
     - navigation.tracking
@@ -50,8 +50,9 @@ edit_uri: edit/main/docs
 plugins:
   #- info
   - blog
-  - tags:
-      tags_file: tags.md
+  - material/tags
+  # - tags:
+  #     tags_file: tags.md
   - search:
       separator: '[\s\-,:!=\[\]()"`/]+|\.(?!\d)|&[lg]t;|(?!\b)(?=[A-Z][a-z])'
   - minify:
