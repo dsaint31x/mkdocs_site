@@ -1,6 +1,6 @@
 ---
 title: AdamW Optimizer
-tags: [optimizer, rmsprop, momentum, adam, adamw, gradient, moment, momentum, weight-decay, transformer ]
+tags: [optimizer, adam, adamw, gradient, moment, weight-decay, transformer ]
 ---
 
 # AdamW
