@@ -1,0 +1,69 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500">
+  <!-- Background -->
+  <rect width="800" height="500" fill="#f8f9fa" />
+  
+  <!-- Title -->
+  <text x="400" y="40" font-family="Arial, sans-serif" font-size="24" font-weight="bold" text-anchor="middle" fill="#333333">Computer Architecture (컴퓨터 구조)</text>
+  
+  <!-- Main Computer Box -->
+  <rect x="50" y="70" width="600" height="380" rx="10" ry="10" fill="#e6f2ff" stroke="#2c3e50" stroke-width="3" />
+  
+  <!-- CPU Section -->
+  <rect x="80" y="100" width="320" height="300" rx="8" ry="8" fill="#d4e6f1" stroke="#3498db" stroke-width="2" />
+  <text x="240" y="125" font-family="Arial, sans-serif" font-size="20" font-weight="bold" text-anchor="middle" fill="#2980b9">CPU</text>
+  
+  <!-- ALU -->
+  <rect x="100" y="140" width="130" height="70" rx="5" ry="5" fill="#ffffff" stroke="#3498db" stroke-width="1.5" />
+  <text x="165" y="180" font-family="Arial, sans-serif" font-size="16" text-anchor="middle" fill="#333333">ALU</text>
+  
+  <!-- Control Unit -->
+  <rect x="100" y="220" width="130" height="70" rx="5" ry="5" fill="#ffffff" stroke="#3498db" stroke-width="1.5" />
+  <text x="165" y="260" font-family="Arial, sans-serif" font-size="16" text-anchor="middle" fill="#333333">Control Unit</text>
+  
+  <!-- Registers -->
+  <rect x="100" y="300" width="130" height="70" rx="5" ry="5" fill="#ffffff" stroke="#3498db" stroke-width="1.5" />
+  <text x="165" y="340" font-family="Arial, sans-serif" font-size="16" text-anchor="middle" fill="#333333">Registers</text>
+  
+  <!-- Cache -->
+  <rect x="250" y="140" width="130" height="70" rx="5" ry="5" fill="#ffffff" stroke="#3498db" stroke-width="1.5" />
+  <text x="315" y="180" font-family="Arial, sans-serif" font-size="16" text-anchor="middle" fill="#333333">Cache</text>
+  
+  <!-- ISA -->
+  <rect x="250" y="220" width="130" height="150" rx="5" ry="5" fill="#ffffff" stroke="#3498db" stroke-width="1.5" />
+  <text x="315" y="260" font-family="Arial, sans-serif" font-size="16" text-anchor="middle" fill="#333333">ISA</text>
+  <text x="315" y="285" font-family="Arial, sans-serif" font-size="12" text-anchor="middle" fill="#333333">(Instruction Set</text>
+  <text x="315" y="305" font-family="Arial, sans-serif" font-size="12" text-anchor="middle" fill="#333333">Architecture)</text>
+  
+  <!-- Memory Section -->
+  <rect x="420" y="100" width="150" height="180" rx="8" ry="8" fill="#ebdef0" stroke="#8e44ad" stroke-width="2" />
+  <text x="495" y="125" font-family="Arial, sans-serif" font-size="20" font-weight="bold" text-anchor="middle" fill="#6c3483">Memory</text>
+  
+  <!-- Memory Components -->
+  <rect x="440" y="140" width="110" height="40" rx="5" ry="5" fill="#ffffff" stroke="#8e44ad" stroke-width="1.5" />
+  <text x="495" y="165" font-family="Arial, sans-serif" font-size="14" text-anchor="middle" fill="#333333">RAM</text>
+  
+  <rect x="440" y="190" width="110" height="40" rx="5" ry="5" fill="#ffffff" stroke="#8e44ad" stroke-width="1.5" />
+  <text x="495" y="215" font-family="Arial, sans-serif" font-size="14" text-anchor="middle" fill="#333333">ROM</text>
+  
+  <rect x="440" y="240" width="110" height="40" rx="5" ry="5" fill="#ffffff" stroke="#8e44ad" stroke-width="1.5" />
+  <text x="495" y="265" font-family="Arial, sans-serif" font-size="14" text-anchor="middle" fill="#333333">Storage</text>
+  
+  <!-- I/O Section -->
+  <rect x="420" y="290" width="200" height="140" rx="8" ry="8" fill="#d5f5e3" stroke="#27ae60" stroke-width="2" />
+  <text x="520" y="315" font-family="Arial, sans-serif" font-size="20" font-weight="bold" text-anchor="middle" fill="#196f3d">I/O Devices</text>
+  
+  <!-- I/O Components -->
+  <rect x="440" y="330" width="70" height="80" rx="5" ry="5" fill="#ffffff" stroke="#27ae60" stroke-width="1.5" />
+  <text x="475" y="375" font-family="Arial, sans-serif" font-size="14" text-anchor="middle" fill="#333333">Input</text>
+  
+  <rect x="530" y="330" width="70" height="80" rx="5" ry="5" fill="#ffffff" stroke="#27ae60" stroke-width="1.5" />
+  <text x="565" y="375" font-family="Arial, sans-serif" font-size="14" text-anchor="middle" fill="#333333">Output</text>
+  
+
+  
+  <!-- Connection Lines -->
+  <!-- CPU to Memory -->
+  <line x1="400" y1="170" x2="420" y2="170" stroke="#333333" stroke-width="2" />
+  <!-- CPU to I/O -->
+  <line x1="400" y1="360" x2="420" y2="360" stroke="#333333" stroke-width="2" />
+</svg>

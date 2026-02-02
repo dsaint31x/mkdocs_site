@@ -1,0 +1,83 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 920 250">
+  <!-- 데이터 박스 -->
+  <rect x="30" y="20" width="170" height="220" fill="#4682B4" rx="5" ry="5"/>
+  <rect x="30" y="20" width="170" height="40" fill="#5C8DB6" rx="5" ry="5"/>
+  <text x="115" y="45" font-family="Arial" font-size="16" fill="white" text-anchor="middle" font-weight="bold">데이터 (Data)</text>
+  
+  <text x="115" y="75" font-family="Arial" font-size="14" fill="white" text-anchor="middle">Raw Data</text>
+  <line x1="50" y1="85" x2="180" y2="85" stroke="white" stroke-width="1"/>
+  
+  <text x="115" y="110" font-family="Arial" font-size="12" fill="white" text-anchor="middle">삼성전자 주가: 72,000원</text>
+  <text x="115" y="135" font-family="Arial" font-size="12" fill="white" text-anchor="middle">거래량: 287만주</text>
+  <text x="115" y="160" font-family="Arial" font-size="12" fill="white" text-anchor="middle">전일 대비: -1.2%</text>
+  <text x="115" y="185" font-family="Arial" font-size="12" fill="white" text-anchor="middle">PER: 12.4</text>
+  <text x="115" y="210" font-family="Arial" font-size="12" fill="white" text-anchor="middle">52주 최고가: 85,000원</text>
+  
+  <!-- 화살표 1 -->
+  <polygon points="210,130 240,130 240,120 260,135 240,150 240,140 210,140" fill="#4682B4"/>
+  
+  <!-- 정보 박스 -->
+  <rect x="270" y="20" width="170" height="220" fill="#4682B4" rx="5" ry="5"/>
+  <rect x="270" y="20" width="170" height="40" fill="#5C8DB6" rx="5" ry="5"/>
+  <text x="355" y="45" font-family="Arial" font-size="16" fill="white" text-anchor="middle" font-weight="bold">정보 (Information)</text>
+  
+  <text x="355" y="75" font-family="Arial" font-size="14" fill="white" text-anchor="middle">유의미하게 가공된</text>
+  <text x="355" y="95" font-family="Arial" font-size="14" fill="white" text-anchor="middle">2차 Data</text>
+  <line x1="290" y1="105" x2="420" y2="105" stroke="white" stroke-width="1"/>
+  
+  <text x="355" y="130" font-family="Arial" font-size="12" fill="white" text-anchor="middle">최근 3개월 평균 주가 대비</text>
+  <text x="355" y="150" font-family="Arial" font-size="12" fill="white" text-anchor="middle">5% 저평가됨</text>
+  <text x="355" y="175" font-family="Arial" font-size="12" fill="white" text-anchor="middle">동종업계 평균 PER: 15.7</text>
+  <text x="355" y="195" font-family="Arial" font-size="12" fill="white" text-anchor="middle">(업계 대비 저평가)</text>
+  <text x="355" y="215" font-family="Arial" font-size="12" fill="white" text-anchor="middle">52주 최고가 대비 15% 하락</text>
+  
+  <!-- 화살표 2 -->
+  <polygon points="450,130 480,130 480,120 500,135 480,150 480,140 450,140" fill="#4682B4"/>
+  
+  <!-- 지식 박스 -->
+  <rect x="510" y="20" width="170" height="220" fill="#4682B4" rx="5" ry="5"/>
+  <rect x="510" y="20" width="170" height="40" fill="#5C8DB6" rx="5" ry="5"/>
+  <text x="595" y="45" font-family="Arial" font-size="16" fill="white" text-anchor="middle" font-weight="bold">지식 (Knowledge)</text>
+  
+  <text x="595" y="75" font-family="Arial" font-size="14" fill="white" text-anchor="middle">정보의 이용(How)에</text>
+  <text x="595" y="95" font-family="Arial" font-size="14" fill="white" text-anchor="middle">대한 노하우</text>
+  <line x1="530" y1="105" x2="660" y2="105" stroke="white" stroke-width="1"/>
+  
+  <text x="595" y="130" font-family="Arial" font-size="12" fill="white" text-anchor="middle">PER이 업계 평균보다 20% 이상</text>
+  <text x="595" y="150" font-family="Arial" font-size="12" fill="white" text-anchor="middle">낮고, 기술적 지표가 하락세를</text>
+  <text x="595" y="170" font-family="Arial" font-size="12" fill="white" text-anchor="middle">벗어나면 매수 신호로</text>
+  <text x="595" y="190" font-family="Arial" font-size="12" fill="white" text-anchor="middle">해석할 수 있다.</text>
+  <text x="595" y="210" font-family="Arial" font-size="12" fill="white" text-anchor="middle">52주 최고가 대비 15% 이상</text>
+  <text x="595" y="230" font-family="Arial" font-size="12" fill="white" text-anchor="middle">하락은 매수 기회일 수 있다</text>
+  
+  <!-- 화살표 3 -->
+  <polygon points="690,130 720,130 720,120 740,135 720,150 720,140 690,140" fill="#4682B4"/>
+  
+  <!-- 지혜 박스 -->
+  <rect x="750" y="20" width="170" height="220" fill="#4682B4" rx="5" ry="5"/>
+  <rect x="750" y="20" width="170" height="40" fill="#5C8DB6" rx="5" ry="5"/>
+  <text x="835" y="45" font-family="Arial" font-size="16" fill="white" text-anchor="middle" font-weight="bold">지혜 (Wisdom)</text>
+  
+  <text x="835" y="75" font-family="Arial" font-size="14" fill="white" text-anchor="middle">지식을 응용하는</text>
+  <text x="835" y="95" font-family="Arial" font-size="14" fill="white" text-anchor="middle">창의적 아이디어</text>
+  <line x1="770" y1="105" x2="900" y2="105" stroke="white" stroke-width="1"/>
+  
+  <text x="835" y="130" font-family="Arial" font-size="12" fill="white" text-anchor="middle">시장 공포 심리가 극대화된</text>
+  <text x="835" y="150" font-family="Arial" font-size="12" fill="white" text-anchor="middle">순간에 역발상 투자하여</text>
+  <text x="835" y="170" font-family="Arial" font-size="12" fill="white" text-anchor="middle">장기적 성장 가치를 확보하는</text>
+  <text x="835" y="190" font-family="Arial" font-size="12" fill="white" text-anchor="middle">전략 수립</text>
+  <text x="835" y="210" font-family="Arial" font-size="12" fill="white" text-anchor="middle">감정보다 데이터 기반으로</text>
+  <text x="835" y="230" font-family="Arial" font-size="12" fill="white" text-anchor="middle">투자 결정을 내리는 지혜</text>
+  
+  <!-- 하단 설명 텍스트 -->
+  <text x="115" y="246" font-family="Arial" font-size="12" fill="#333" text-anchor="middle">원시 측정값</text>
+  <text x="355" y="246" font-family="Arial" font-size="12" fill="#333" text-anchor="middle">의미 있는 패턴</text>
+  <text x="595" y="246" font-family="Arial" font-size="12" fill="#333" text-anchor="middle">정보 활용 방법</text>
+  <text x="835" y="246" font-family="Arial" font-size="12" fill="#333" text-anchor="middle">통찰력과 전략적 판단</text>
+  
+  <!-- 하단 원 -->
+  <circle cx="115" y="252" r="5" fill="#70A870"/>
+  <circle cx="355" y="252" r="5" fill="#70A870"/>
+  <circle cx="595" y="252" r="5" fill="#70A870"/>
+  <circle cx="835" y="252" r="5" fill="#70A870"/>
+</svg>
