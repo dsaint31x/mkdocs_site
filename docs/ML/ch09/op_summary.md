@@ -18,7 +18,7 @@ parameters의 수가 적은 단순한 모델들의 경우
    * **메모리 문제** 와 함께 **너무 느린 학습 속도 (~계산량)** 로 인해 DNN 에 적합하지 않음.
 
 > Adaptive learning rate 를 위해,  
-> 이차미분의 Hessian matrix 대신,
+> 이차미분의 Hessian matrix 대신,  
 > [Exponential Moving Average](https://dsaint31.tistory.com/860) of "gradient square (=2nd moment)" 등이 사용됨.
 
 ---
