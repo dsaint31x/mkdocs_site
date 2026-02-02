@@ -1,6 +1,6 @@
 ---
 title: Convolution 
-tags: [convolution, filter, kernel,]
+tags: [convolution, filter, kernel]
 ---
 
 # Convolution
