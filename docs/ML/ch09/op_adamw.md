@@ -7,6 +7,17 @@ tags: [optimizer, rmsprop, momentum, adam, adamw, gradient, moment, momentum, we
 
 Adam with decoupled Weight Decay 는 Transformer 학습에서 가장 널리 사용되는 optimizer 임.
 
+* 기존 Adam의 구조적 문제점 개선:
+   * L2 regularization이 gradient 기반 업데이트에 섞여 들어가
+   * adaptive learning rate와 weight decay가 결합되어 의도한 정규화 효과가 왜곡됨
+* AdamW의 핵심 아이디어:
+   * Weight decay를 gradient 업데이트와 완전히 분리(decoupled)
+   * Parameter 업데이트 이후에 별도로 decay 적용
+* 결과:
+   * 정규화 효과가 이론적으로 명확해짐
+   * 일반화 성능 향상
+   * 현재 Transformer 계열 및 HuggingFace Trainer의 기본 optimizer
+
 > moment, momentum, 그리고 weight decay의 정확한 이해 필요
 
 ## 1. Adam 의 등장
@@ -43,7 +54,7 @@ $$
 * 방향성과 관성을 가진 물리량
 * **$m$ 이나 $v$가 크면 쉽게 바뀌지 않는다 (관성)**
 
-이를 optimization 에 도입한 것이 **Momentum SGD (줄여서 Momentum)** :
+이를 optimization 에 도입한 것이 [**Momentum SGD (줄여서 Momentum)**](./op_momentum.md) :
 
 $$ \begin{aligned}v_t &= \beta v_{t-1} + (1-\beta) g_t \\ 
 \theta_{t+1} &= \theta_t - \eta v_t \end{aligned}$$
@@ -54,7 +65,7 @@ $$ \begin{aligned}v_t &= \beta v_{t-1} + (1-\beta) g_t \\
 * $g_t$ 는 gradient 로 가속도 처럼 현재 parameter vector가 최적화되기 위해 변해야하는 방향을 가리키는 벡터.
 * $\beta$ 는 일종의 관성의 정도로 현재의 gradient 를 velocity에 반영할지를 결정함
 
-> Momentum SGD는  
+> [Momentum SGD](./op_momentum.md)는  
 > **의도적으로 운동량 모델을 이용하여  
 > Loss를 높이(height)라고 생각해서  
 > 중력에 의해 낮은 지점으로 내려오는 방법을 최적화라고 생각하여 구현한 방식**
