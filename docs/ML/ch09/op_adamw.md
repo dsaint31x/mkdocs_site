@@ -1,11 +1,11 @@
 ---
 title: AdamW Optimizer
-tags: [optimizer, rmsprop, momentum, adam, adamw, gradient, moment, momentum, weight-decay ]
+tags: [optimizer, rmsprop, momentum, adam, adamw, gradient, moment, momentum, weight-decay, transformer ]
 ---
 
 # AdamW
 
-Adam with decoupled Weight Decay 는 Transformer 학습에서 가장 널리 사용되는 optimizer 임.
+**Adam with decoupled Weight Decay** 는 Transformer 학습에서 가장 널리 사용되는 optimizer 임:
 
 * 기존 Adam의 구조적 문제점 개선:
    * L2 regularization이 gradient 기반 업데이트에 섞여 들어가
