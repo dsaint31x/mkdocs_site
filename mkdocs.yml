@@ -122,168 +122,149 @@ nav:
   - Home: index.md
   - Tags: tags.md
   - 'CE':
-      - 'ch00: Introduction' :
-          - "Computer":
-              - 'CE/ch00/computer.md'
-              - 'CE/ch00/category_of_computers.md'
-              - 'CE/ch00/component_of_computer.md'
-              - 'CE/ch00/history_of_computers.md'
-      - 'ch01: Representation of Data':
-          - "Data and Information":
-              - "CE/ch01/ch01_00_data_representation.md"
-              - "CE/ch01/ch01_01_information.md"
-          - "Bits and Boolean Algebra":
-              - "CE/ch01/ch01_10_bit.md"
-              - "CE/ch01/ch01_11_msb_and_lsb.md"
-              - "CE/ch01/ch01_12_otherunits.md"
-              - "CE/ch01/ch01_13_boolean_algebra.md"
-              - "CE/ch01/ch01_14_prefix.md"
-          - "Bits and Number":
-              - "CE/ch01/numeral_system.md"
-              - "CE/ch01/positive_number.md"
-              - "CE/ch01/negative_number.md"
-              - "CE/ch01/overflow_underflow.md"
-              - "CE/ch01/real_number.md"
-              - "CE/ch01/code_for_numbers.md"
-          - "Bits and Character":
-              - "CE/ch01/code_for_character.md"
-              - "CE/ch01/Encoding_for_external_rep.md"
-      - 'ch02: Bits and Combinatorial Logic':
-        - 'CE/ch02_co/ce02_00_0_title.md'
-        - 'Building Hardware for Bits':
-          - 'CE/ch02_co/ce02_03_0_HW4Bits.md'
-          - 'CE/ch02_co/ce02_03_1_relay.md'
-          - 'CE/ch02_co/ce02_03_2_vacuum_tube.md'
-          - 'CE/ch02_co/ce02_03_3_transistor.md'
-          - 'CE/ch02_co/ce02_03_4_IC.md'
-        - 'Gates':
-          - 'Gate에 대해서': 'CE/ch02_co/ce02_04_0_gate.md'
-          - 'Noise와 싸우기': 'CE/ch02_co/ce02_04_1_glitch.md'
-          - 'CE/ch02_co/ce02_04_3_propagation_delay.md'
-          - 'CE/ch02_co/ce02_04_4_0_gate_outputs.md'
-          - 'Totem-pole Output': 'CE/ch02_co/ce02_04_4_1_totem_pole_output.md'
-          - 'Open-Collector Output': 'CE/ch02_co/ce02_04_4_2_open_collector.md'
-          - 'Tri-State Output': 'CE/ch02_co/ce02_04_4_3_tri_state_output.md'
-        - 'Adder, Encoder, and Mux': 
-          - 'CE/ch02_co/ce02_05_0_adder_encoder_demux.md'
-          - 'CE/ch02_co/ce02_05_1_adder.md'
-      - 'ch03: Sequential Logic and Memory':
-        - 'time and memory':
-          - 'CE/ch03_seq/ce03_01_0_0_memory0.md'
-          - 'CE/ch03_seq/ce03_01_0_1_Oscillator.md'
-          - 'CE/ch03_seq/ce03_01_0_2_latch.md'
-          - 'CE/ch03_seq/ce03_01_0_3_flip_flop.md'
-          - 'CE/ch03_seq/ce03_01_0_4_counter.md'
-          - 'CE/ch03_seq/ce03_01_0_5_register.md'
-        - 'HW vs SW':  
-          - 'HW vs SW': "CE/ch03_seq/ce03_05_hw_and_sw.md"
-      - 'ch04: Computer Architecture (1)':
-        - 'CE/ch04/ce04_00_00_title.md'
-        - "Architecture":
-          - 'CE/ch04/ce04_00_intro_computer_structure.md'
-        - "Memory (and Storage)":
-          - 'memory summary':  
-            - 'CE/ch03_seq/ce03_02_0_primary_secondary_memory.md'
-          - 'RAM and ROM':
-            - 'memory 기초':  'CE/ch03_seq/ce03_02_1_memory1.md'
-            - 'RAM':          'CE/ch03_seq/ce03_02_2_RAM.md'
-            - 'ECC Memory':   'CE/ch03_seq/ce03_04_ecc_memory.md'
-            - 'ROM':          'CE/ch03_seq/ce03_02_3_rom.md'
-          - 'Block Device':   
-            - 'CE/ch03_seq/ce03_02_block_device.md'
-          - 'Flash Memory':   
-            - 'CE/ch03_seq/ce03_03_flash_ssd.md'
-          - 'Address and Memory': 
-            - "CE/ch04/ce04_01_memory.md"
-          - "CE/ch04/ce04_02_byte_ordering.md"
-        - "CPU":
-          - "CE/ch04/ce04_04_cpu.md"
-          - "CE/ch04/ce04_04_01_alu.md"
-          - "CE/ch04/ce04_11.md"
-          - "CE/ch04/ce04_22_fetch_execute.md"
-          - "CE/ch04/ce04_31.md"
-          - "CE/ch04/ce04_41.md"
-        - "I/O Device and Bus":
-          - 'Bus': "CE/ch04/ce04_03_io_bus.md"
-          - "I/O Control": "CE/ch04/ce04_03_01_io_control.md"
-          - 'I/O Device': "CE/ch06/ce06_4_04_keyboard.md"
-        - "Parallel Computing":
-          - "CE/ch04/ce04_50.md"
-          - "CE/ch04/ce04_51_gpu_tpu.md"
-          - "CE/ch04/ce04_52_cluster_system.md"
-          - "CE/ch04/ce04_53_grid_system.md"
-          - "CE/ch04/ce04_54_multicore_system.md"
-          - "CE/ch04/ce04_55_gpgpu_system.md"
-          - "CE/ch04/ce04_56_parallel_programming.md"
-      - 'ch05: Computer Architecture (2)':
-        - "CE/ch05/ch05_01_01.md"
-        - "CE/ch05/ch05_02_01_function.md"
-        - "CE/ch05/ch05_03_01.md"
-        - "CE/ch05/ch05_04_02_interrupt.md"
-        - "CE/ch05/ch05_05_01_idx_reg_rel_add.md"
-        - "CE/ch05/ch05_06_01_mmu.md"
-        - "CE/ch05/ch05_07_01_virtual_memory.md"
-        - "CE/ch05/ch05_08_01_dual_mode.md"
-      - 'ch06: Data Transfer and Network Communication':
-        - "Data Transfer":
-          - "CE/ch06/ce06_0_10_port.md"
-          - "IO Ports":         "CE/ch06/ce06_1_01_ioport.md"
-          - "Push Btns":        "CE/ch06/ce06_1_02_push_button.md"
-          - "FND":              "CE/ch06/ce06_1_03_fnd.md"
-          - "IO Mux":           "CE/ch06/ce06_1_04_multiplexing_posts.md"
-          - "Duty Cycle":       "CE/ch06/ce06_1_05_bright_duty.md"
-          - "Gray Code":        "CE/ch06/ce06_1_06_graycode.md"
-          - "Parallel Transfer": "CE/ch06/ce06_1_07_parallel_com.md"
-          - "Serial Transfer":  "CE/ch06/ce06_1_08_serial_com.md"
-          - "USB":              "CE/ch06/ce06_1_09_usb.md"
-        - "Network and Communication":
-          - "The History of Data Communication Network":  "CE/ch06/ce06_2_01_history.md"
-          - "Ethernet, Router, Switch and so on":         "CE/ch06/ce06_2_02_Ethernet_Router_Switch.md"
-          - "Internet and Related Protocols":             "CE/ch06/ce06_2_03_Internet.md"
-      - 'ch08 Programming Language and Language Processing':
-        - "CE/ch08/ce08_programming_language.md"
-        - "CE/ch08/ce08_high_low_level_language.md"
-        - "CE/ch08/ce08_compiler_interpreter.md"
-        - "Execution and Linking":
-          - "CE/ch05/ch05_11_01_program_execution.md"
-          - "CE/ch08/ce08_z_ex_gcc_static_linking.md"
-          - "CE/ch08/ce08_z_ex_gcc_dynamic_linking.md"
-        - "CE/ch08/ce08_machine_code.md"
-        - "CE/ch08/ce08_assembly_language.md"
-        - "CE/ch08/ce08_pl_intro.md"
-      - 'ch09':
-        - "CE/ch09/ce09_web_browser.md"
-      - 'ch10':
-        - "Concepts for Programming":
-          - "Command Line Interface": "CE/ch10/ce10_2_01_cli_terminal.md"
-          - "Standard I/O Library"  : "CE/ch10/ce10_2_04_stdio.md"
-      - '작성중':
-        - "CE/ch15/ce15_2_4_portability.md"
-        - "CE/ch15/ce15_2_5_package_management.md"
-        - "CE/ch15/ce15_2_6_container.md"
-  - "OS":
+    - 'ch00: Introduction' :
+      - 'CE/ch00/computer.md'
+      - 'CE/ch00/category_of_computers.md'
+      - 'CE/ch00/component_of_computer.md'
+      - 'CE/ch00/history_of_computers.md'
+    - 'ch01: Representation of Data':
+      - "CE/ch01/ch01_00_data_representation.md"
+      - "CE/ch01/ch01_01_information.md"
+      - "CE/ch01/ch01_10_bit.md"
+      - "CE/ch01/ch01_11_msb_and_lsb.md"
+      - "CE/ch01/ch01_12_otherunits.md"
+      - "CE/ch01/ch01_13_boolean_algebra.md"
+      - "CE/ch01/ch01_14_prefix.md"
+      - "CE/ch01/numeral_system.md"
+      - "CE/ch01/positive_number.md"
+      - "CE/ch01/negative_number.md"
+      - "CE/ch01/overflow_underflow.md"
+      - "CE/ch01/real_number.md"
+      - "CE/ch01/code_for_numbers.md"
+      - "CE/ch01/code_for_character.md"
+      - "CE/ch01/Encoding_for_external_rep.md"
+    - 'ch02: Bits and Combinatorial Logic':
+      - 'CE/ch02_co/ce02_00_0_title.md'
+      - 'CE/ch02_co/ce02_03_0_HW4Bits.md'
+      - 'CE/ch02_co/ce02_03_1_relay.md'
+      - 'CE/ch02_co/ce02_03_2_vacuum_tube.md'
+      - 'CE/ch02_co/ce02_03_3_transistor.md'
+      - 'CE/ch02_co/ce02_03_4_IC.md'
+      - 'Gate에 대해서': 'CE/ch02_co/ce02_04_0_gate.md'
+      - 'Noise와 싸우기': 'CE/ch02_co/ce02_04_1_glitch.md'
+      - 'CE/ch02_co/ce02_04_3_propagation_delay.md'
+      - 'CE/ch02_co/ce02_04_4_0_gate_outputs.md'
+      - 'Totem-pole Output': 'CE/ch02_co/ce02_04_4_1_totem_pole_output.md'
+      - 'Open-Collector Output': 'CE/ch02_co/ce02_04_4_2_open_collector.md'
+      - 'Tri-State Output': 'CE/ch02_co/ce02_04_4_3_tri_state_output.md'
+      - 'CE/ch02_co/ce02_05_0_adder_encoder_demux.md'
+      - 'CE/ch02_co/ce02_05_1_adder.md'
+    - 'ch03: Sequential Logic and Memory':
+      - 'CE/ch03_seq/ce03_01_0_0_memory0.md'
+      - 'CE/ch03_seq/ce03_01_0_1_Oscillator.md'
+      - 'CE/ch03_seq/ce03_01_0_2_latch.md'
+      - 'CE/ch03_seq/ce03_01_0_3_flip_flop.md'
+      - 'CE/ch03_seq/ce03_01_0_4_counter.md'
+      - 'CE/ch03_seq/ce03_01_0_5_register.md'
+      - 'HW vs SW': "CE/ch03_seq/ce03_05_hw_and_sw.md"
+    - 'ch04: Computer Architecture (1)':
+      - 'CE/ch04/ce04_00_00_title.md'
+      - 'CE/ch04/ce04_00_intro_computer_structure.md'
+      - 'memory summary': 'CE/ch03_seq/ce03_02_0_primary_secondary_memory.md'
+      - 'memory 기초':  'CE/ch03_seq/ce03_02_1_memory1.md'
+      - 'RAM':          'CE/ch03_seq/ce03_02_2_RAM.md'
+      - 'ECC Memory':   'CE/ch03_seq/ce03_04_ecc_memory.md'
+      - 'ROM':          'CE/ch03_seq/ce03_02_3_rom.md'
+      - 'Block Device': 'CE/ch03_seq/ce03_02_block_device.md'
+      - 'Flash Memory': 'CE/ch03_seq/ce03_03_flash_ssd.md'
+      - 'Address and Memory': "CE/ch04/ce04_01_memory.md"
+      - "CE/ch04/ce04_02_byte_ordering.md"
+    - "CPU":
+      - "CE/ch04/ce04_04_cpu.md"
+      - "CE/ch04/ce04_04_01_alu.md"
+      - "CE/ch04/ce04_11.md"
+      - "CE/ch04/ce04_22_fetch_execute.md"
+      - "CE/ch04/ce04_31.md"
+      - "CE/ch04/ce04_41.md"
+    - "I/O Device and Bus":
+      - 'Bus': "CE/ch04/ce04_03_io_bus.md"
+      - "I/O Control": "CE/ch04/ce04_03_01_io_control.md"
+      - 'I/O Device': "CE/ch06/ce06_4_04_keyboard.md"
+    - "Parallel Computing":
+      - "CE/ch04/ce04_50.md"
+      - "CE/ch04/ce04_51_gpu_tpu.md"
+      - "CE/ch04/ce04_52_cluster_system.md"
+      - "CE/ch04/ce04_53_grid_system.md"
+      - "CE/ch04/ce04_54_multicore_system.md"
+      - "CE/ch04/ce04_55_gpgpu_system.md"
+      - "CE/ch04/ce04_56_parallel_programming.md"
+    - 'ch05: Computer Architecture (2)':
+      - "CE/ch05/ch05_01_01.md"
+      - "CE/ch05/ch05_02_01_function.md"
+      - "CE/ch05/ch05_03_01.md"
+      - "CE/ch05/ch05_04_02_interrupt.md"
+      - "CE/ch05/ch05_05_01_idx_reg_rel_add.md"
+      - "CE/ch05/ch05_06_01_mmu.md"
+      - "CE/ch05/ch05_07_01_virtual_memory.md"
+      - "CE/ch05/ch05_08_01_dual_mode.md"
+    - "Data Transfer":
+      - "CE/ch06/ce06_0_10_port.md"
+      - "IO Ports":         "CE/ch06/ce06_1_01_ioport.md"
+      - "Push Btns":        "CE/ch06/ce06_1_02_push_button.md"
+      - "FND":              "CE/ch06/ce06_1_03_fnd.md"
+      - "IO Mux":           "CE/ch06/ce06_1_04_multiplexing_posts.md"
+      - "Duty Cycle":       "CE/ch06/ce06_1_05_bright_duty.md"
+      - "Gray Code":        "CE/ch06/ce06_1_06_graycode.md"
+      - "Parallel Transfer": "CE/ch06/ce06_1_07_parallel_com.md"
+      - "Serial Transfer":  "CE/ch06/ce06_1_08_serial_com.md"
+      - "USB":              "CE/ch06/ce06_1_09_usb.md"
+    - "Network and Communication":
+      - "The History of Data Communication Network":  "CE/ch06/ce06_2_01_history.md"
+      - "Ethernet, Router, Switch and so on":         "CE/ch06/ce06_2_02_Ethernet_Router_Switch.md"
+      - "Internet and Related Protocols":             "CE/ch06/ce06_2_03_Internet.md"
+    - 'ch08 Programming Language and Language Processing':
+      - "CE/ch08/ce08_programming_language.md"
+      - "CE/ch08/ce08_high_low_level_language.md"
+      - "CE/ch08/ce08_compiler_interpreter.md"
+      - "CE/ch05/ch05_11_01_program_execution.md"
+      - "CE/ch08/ce08_z_ex_gcc_static_linking.md"
+      - "CE/ch08/ce08_z_ex_gcc_dynamic_linking.md"
+      - "CE/ch08/ce08_machine_code.md"
+      - "CE/ch08/ce08_assembly_language.md"
+      - "CE/ch08/ce08_pl_intro.md"
+    - 'ch09':
+      - "CE/ch09/ce09_web_browser.md"
+    - 'ch10':
+      - "Command Line Interface": "CE/ch10/ce10_2_01_cli_terminal.md"
+      - "Standard I/O Library"  : "CE/ch10/ce10_2_04_stdio.md"
+    - '작성중':
+      - "CE/ch15/ce15_2_4_portability.md"
+      - "CE/ch15/ce15_2_5_package_management.md"
+      - "CE/ch15/ce15_2_6_container.md"
+  - "OS": 
     - "OS/os_title.md"
-    - "OS/operating_system.md"
-    - "OS/kernel.md"
-    - "OS/console_terminal_shell_kernel.md"
-    - "OS/UNIX.md"
-    - "OS/LINUX.md"
-    - "OS/windows.md"
+    - "basic":
+      - "OS/operating_system.md"
+      - "OS/kernel.md"
+      - "OS/console_terminal_shell_kernel.md"
+      - "OS/UNIX.md"
+      - "OS/LINUX.md"
+      - "OS/windows.md"
     - "Process":
-        - "OS/process_thread.md"
-        - "OS/process_sched.md"
-        - "OS/ipc.md"
+      - "OS/process_thread.md"
+      - "OS/process_sched.md"
+      - "OS/ipc.md"
     - "Memory":
-        - "CE/ch05/ch05_06_01_mmu.md"
+      - "CE/ch05/ch05_06_01_mmu.md"
     - "File System":
-        - "OS/file_system.md"
-        - "OS/disk_partition_volume.md"
-        - "OS/file_folder_dir_cmd.md"
-        - "OS/file.md"
-        - "OS/folderNdirectory.md"
-        - "OS/path.md"
-        - "OS/linux_cmds.md"
-        - "OS/windows_cmds.md"
+      - "OS/file_system.md"
+      - "OS/disk_partition_volume.md"
+      - "OS/file_folder_dir_cmd.md"
+      - "OS/file.md"
+      - "OS/folderNdirectory.md"
+      - "OS/path.md"
+      - "OS/linux_cmds.md"
+      - "OS/windows_cmds.md"
   - "markdown and LaTeX":
     - "CE/markdown_latex/markdown.md"
     - "CE/markdown_latex/latex.md"
@@ -356,98 +337,97 @@ nav:
         - "DIP/ch02_02_02_harris_corner.md"
       - "DIP/ch02_03_03_hog.md"
   - ML:
-      - Introduction:
-          - ML이란: 
-              - "ML/ch00/ch00_00_intro.md"
-              - "ML/ch00/ch00_01_dartmouth_ai.md"
-              - "ML/ch00/ch00_01_what_is_ml.md"          
-              - "ML/ch00/ch00_11_why_use_ml.md"
-          - 종류:
-              - "ML/ch00/ch00_12_type_of_ml.md"
-              - "ML/ch00/ch00_20_supervised.md"
-              - "ML/ch00/ch00_21_unsupervised.md"
-              - "ML/ch00/ch00_22_semisupervised.md"
-              - "ML/ch00/ch00_24_selfsupervised_learning.md"
-              - "ML/ch00/ch00_23_reinforcement_learning.md"
-              - "ML/ch00/ch00_24_feature_attribute.md"
-              - "ML/ch00/ch00_31_instance_based_learning.md"
-              - "ML/ch00/ch00_32_model_based_learning.md"
-              - "ML/ch00/ch00_33_what_is_model.md"
-              - "ML/ch00/ch00_41_online_learning.md"
-              - "ML/ch00/ch00_42_batch_learning.md"
-          - "ML/ch00/ch00_50.md"
-      - "Ex: End_to_End Learning":
-          - ex:
-              - "ML/ch01/ch01_41.md"
-              - "ML/ch01/ch01_51.md"
-              - "ML/ch01/ch01_52.md"
-      - Basic:
-          - 'Linear Regression and Logistic Regression':
-              - "ML/ch03/logistic_regression.md"
-          - Classification:
-              - "ML/ch02/ml_cls_types.md"
-              - "ML/ch02/ml_cls_metrics.md"
-          - 'Optimizers':
-              - "ML/ch09/op_summary.md"
-              - "ML/ch09/op_momentum.md"
-              - "ML/ch09/op_nesterov.md"
-              - "ML/ch09/op_adagrad.md"
-              - "ML/ch09/op_rmsprop.md"
-              - "ML/ch09/op_adam.md"
-              - "ML/ch09/op_nadam.md"
-              - "ML/ch09/op_adamw.md"
-      - 'Ensemble Learning':
-          - "ML/ch05/ml_ensemble.md"
-          - "ML/ch05/ml_stacking.md"
-      - 'Dimensionality Reduction':
-          - "ML/ch06/ml_pca.md"
-          - "ML/ch06/ml_mds.md"
-      - "Unsupervised Learning":
-          - "ML/ch07/clustering.md"
-          - "ML/ch07/manifold.md"
-          - "ML/ch07/topological_space.md"
-          - "ML/ch07/tSNE.md"
-      - "Deep Learning (simple)":
-          - basic:
-              - "ML/ch08/dev_hist_ann.md"
-              - "ML/ch08/back_propagation.md"
-              - "ML/ch08/reverse_mode_autodiff.md"
-              - "ML/ch08/datastructure_graph.md"
-              - "ML/ch09/sol_gv_ge.md"
-              - "ML/ch09/weight_initializations.md"
-              - "ML/ch09/act_relu.md"
-              - "ML/ch09/act_elu.md"
-              - "ML/ch09/act_silu.md"
-              - "ML/ch09/batch_normalization.md"
-              - 'Transfer Learning':
-                  - "ML/ch11_training/knowledge_transfer.md"
-      - 'Hyperparameter Tuning':
-          - "ML/ch08/keras_tuner.md"
-          - "ML/ch08/dl_hyperparameters.md"
-      - 'DL Architectures':
-          - 'CNN':
-              - "ML/ch14_cnn/CNN_intro.md"
-              - "ML/ch14_cnn/CNN_convolutional_layer.md"
-              - "ML/ch14_cnn/CNN_pooling_layer.md"
-              - "ML/ch14_cnn/LeNet-5.md"
-              - "ML/ch14_cnn/alexnet.md"
-              - "ML/ch14_cnn/vgg.md"
-              - "ML/ch14_cnn/resnet.md"
-          - 'RNN':
-              - "ML/ch16_RNN/RNN_intro.md"
-              - "ML/ch16_RNN/RNN_memory_cell.md"
-              - "ML/ch16_RNN/RNN_topologies.md"
-              - "ML/ch16_RNN/RNN_Bahdanau_attention.md"
-              - "ML/ch16_RNN/RNN_attention_score.md"
-          - 'GAN':
-              - "ML/ch17_GM/GAN_intro.md"
+    - Introduction:
+      - ML이란: 
+        - "ML/ch00/ch00_00_intro.md"
+        - "ML/ch00/ch00_01_dartmouth_ai.md"
+        - "ML/ch00/ch00_01_what_is_ml.md"          
+        - "ML/ch00/ch00_11_why_use_ml.md"
+      - 종류:
+        - "ML/ch00/ch00_12_type_of_ml.md"
+        - "ML/ch00/ch00_20_supervised.md"
+        - "ML/ch00/ch00_21_unsupervised.md"
+        - "ML/ch00/ch00_22_semisupervised.md"
+        - "ML/ch00/ch00_24_selfsupervised_learning.md"
+        - "ML/ch00/ch00_23_reinforcement_learning.md"
+        - "ML/ch00/ch00_24_feature_attribute.md"
+        - "ML/ch00/ch00_31_instance_based_learning.md"
+        - "ML/ch00/ch00_32_model_based_learning.md"
+        - "ML/ch00/ch00_33_what_is_model.md"
+        - "ML/ch00/ch00_41_online_learning.md"
+        - "ML/ch00/ch00_42_batch_learning.md"
+      - "ML/ch00/ch00_50.md"
+    - "Ex: End_to_End Learning":
       - 'Colab':
-          - "CE/colab/hw_spec.md"
-          - "CE/colab/cells.md"
-          - "CE/colab/hotkeys.md"
-          - "CE/colab/gpu.md"
+        - "CE/colab/hw_spec.md"
+        - "CE/colab/cells.md"
+        - "CE/colab/hotkeys.md"
+        - "CE/colab/gpu.md"
+      - ex:
+        - "ML/ch01/ch01_41.md"
+        - "ML/ch01/ch01_51.md"
+        - "ML/ch01/ch01_52.md"
+    - Basic:
+      - 'Linear Regression and Logistic Regression':
+        - "ML/ch03/logistic_regression.md"
+      - Classification:
+        - "ML/ch02/ml_cls_types.md"
+        - "ML/ch02/ml_cls_metrics.md"
+      - 'Optimizers':
+        - "ML/ch09/op_summary.md"
+        - "ML/ch09/op_momentum.md"
+        - "ML/ch09/op_nesterov.md"
+        - "ML/ch09/op_adagrad.md"
+        - "ML/ch09/op_rmsprop.md"
+        - "ML/ch09/op_adam.md"
+        - "ML/ch09/op_nadam.md"
+        - "ML/ch09/op_adamw.md"
+      - 'Ensemble Learning':
+        - "ML/ch05/ml_ensemble.md"
+        - "ML/ch05/ml_stacking.md"
+      - 'Dimensionality Reduction':
+        - "ML/ch06/ml_pca.md"
+        - "ML/ch06/ml_mds.md"
+      - "Unsupervised Learning":
+        - "ML/ch07/clustering.md"
+        - "ML/ch07/manifold.md"
+        - "ML/ch07/topological_space.md"
+        - "ML/ch07/tSNE.md"
+    - "Deep Learning (simple)":
+      - basic:
+        - "ML/ch08/dev_hist_ann.md"
+        - "ML/ch08/back_propagation.md"
+        - "ML/ch08/reverse_mode_autodiff.md"
+        - "ML/ch08/datastructure_graph.md"
+        - "ML/ch09/sol_gv_ge.md"
+        - "ML/ch09/weight_initializations.md"
+        - "ML/ch09/act_relu.md"
+        - "ML/ch09/act_elu.md"
+        - "ML/ch09/act_silu.md"
+        - "ML/ch09/batch_normalization.md"
+        - 'Transfer Learning': "ML/ch11_training/knowledge_transfer.md"
+      - 'Hyperparameter Tuning':
+        - "ML/ch08/keras_tuner.md"
+        - "ML/ch08/dl_hyperparameters.md"
+    - 'DL Architectures':
+      - 'CNN':
+        - "ML/ch14_cnn/CNN_intro.md"
+        - "ML/ch14_cnn/CNN_convolutional_layer.md"
+        - "ML/ch14_cnn/CNN_pooling_layer.md"
+        - "ML/ch14_cnn/LeNet-5.md"
+        - "ML/ch14_cnn/alexnet.md"
+        - "ML/ch14_cnn/vgg.md"
+        - "ML/ch14_cnn/resnet.md"
+      - 'RNN':
+        - "ML/ch16_RNN/RNN_intro.md"
+        - "ML/ch16_RNN/RNN_memory_cell.md"
+        - "ML/ch16_RNN/RNN_topologies.md"
+        - "ML/ch16_RNN/RNN_Bahdanau_attention.md"
+        - "ML/ch16_RNN/RNN_attention_score.md"
+      - 'GAN':
+        - "ML/ch17_GM/GAN_intro.md"
   - "SS":
-      - "z-Transform":
-          - "SS/ch08/ch08_33_z_t_time_shift.md"
+    - "z-Transform":
+      - "SS/ch08/ch08_33_z_t_time_shift.md"
   - "Material Test":
-      - code blk: test_code_blocks.md
+    - code blk: test_code_blocks.md
