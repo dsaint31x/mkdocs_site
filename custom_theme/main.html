@@ -24,18 +24,10 @@
 {% block htmltitle %}
 <title>BME</title>
 <!-- custom_theme htmltitle -->
-<p align="right">
-    <a href="{{ site.blame }}/{{ thisName }}.md" target="_blank">blame 보기</a>
-    / <a href="{{ site.edit }}/{{ thisName }}.md">편집하기</a>
-</p>
 
 {% endblock %}
 
 {% block content %}
-<p align="right">
-    <a href="{{ site.blame }}/{{ thisName }}.md" target="_blank">blame 보기0</a>
-    / <a href="{{ site.edit }}/{{ thisName }}.md">편집하기0</a>
-</p>
     {{ super() }}
     <!-- custom_theme content -->
     {# page meta로 제어: comments: false면 숨김 #}
