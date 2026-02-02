@@ -12,7 +12,7 @@ tags: [convolution, filter, kernel,]
 > [Circular Convolution](https://dsaint31.tistory.com/393)
 >
 > Deep Learning의 Convolution Layer에 대한 보다 자세한 건 다음 문서를 참고할 것:  
-> [Convolution Layer](../../../ML/ch14_cnn/CNN_convolutional_layer)
+> [Convolution Layer](../../../ML/ch14_cnn/CNN_convolutional_layer.md)
 
 image filtering에서 spatial domain filtering은 주로 
 
