@@ -163,15 +163,17 @@ $$
 > **방향은 1차 moment**,  
 > **step size는 2차 moment** 로 제어.
 
-### 2. Weight Decay
+## 2. Weight Decay
 
-#### 2.1. 정의
+### 2.1. 정의
 
 **Weight decay는 파라미터의 크기를 현재 크기에 따라 일정 비율로 지속적으로 줄이는 L2-Regularization 을 구현하는 기법** 임.
 
-Model의 over-fitting을 막고 general performance 를 향상시키기 위해 모델의 parameter가 지나치게 커지지 않게 해주는 방법을 Regularization 이라고 하는데, Weight decay는 이 중 L2 Regularization 을 구현하는 방법임.
+Model의 over-fitting을 막고 general performance 를 향상시키기 위해  
+모델의 parameter가 지나치게 커지지 않게 해주는 방법을 Regularization 이라고 하는데,  
+Weight decay는 이 중 L2 Regularization 을 구현하는 방법임.
 
-#### 2.2. L2 regularization과의 관계
+### 2.2. L2 regularization과의 관계
 
 가장 전통적인 Regularization인 L2 regularization 은 loss에 다음 항을 추가하는 것임:
 
@@ -192,11 +194,15 @@ $$
 
 * 매 step마다 parameter 가 일정 비율로 감소함.
 
-즉, [SGD](https://dsaint31.tistory.com/633)에선 L2 regularization이나 **weight decay** 는 동일하다.
+즉,  
+[SGD](https://dsaint31.tistory.com/633)에선  
+L2 regularization 의 결과가 바로 **weight decay** 임.
 
-> AdamW 이전의 대부분이 Adam variants들은 weight decay를 L2 regularization처럼 loss에 parameter의 L2-norm 을 더하는 형태를 채택함.
+> AdamW 이전의 대부분의 Adam variants들은  
+> L2 regularization 을  
+> loss에 parameters 의 L2-norm 을 더하는 형태 로 채택함.
 
-#### 2.3. Adam에서 Weight decay가 문제가 되는 이유
+### 2.3. Adam에서 Weight decay가 문제가 되는 이유
 
 Adam에서 위 gradient를 그대로 사용하면,
 
@@ -215,14 +221,14 @@ $$
 * regularization이 원하는 단순한 "크기 억제" 가 아닌, "gradient vector" 가 가리키는 방향 자체에 대한 왜곡이 일어나는 셈임.
 
 
-## 2. AdamW: Regularization 을 분리
+## 3. AdamW: Regularization 을 분리
 
 AdamW의 핵심 아이디어는 다음과 같음:
 
 * **"moment 기반 최적화"** 와 **"L2-Regularization"** 은 서로 다른 역할임.
 * 그러므로 분리하여 `Adam` step과 `Weight decay` step으로 나눈다.
 
-### 2.1. Adam step (moment 기반 최적화)
+### 3.1. Adam step (moment 기반 최적화)
 
 $$
 \theta_t' = \theta_t - \eta \frac{\hat{m}_t}{\sqrt{\hat{v}_t} + \epsilon}
@@ -231,7 +237,7 @@ $$
 * 순수하게 loss 감소만 담당
 * moment 추정 그대로 유지
 
-### 2.2 Weight decay step 
+### 3.2 Weight decay step 
 
 $$
 \theta_{t+1} = \theta_t' - \eta \lambda \theta_t
@@ -240,13 +246,13 @@ $$
 * adaptive scaling과 완전히 독립
 * 파라미터 크기에 직접 일관되게 적용
 
-### 2.3. 최종 수식
+### 3.3. 최종 수식
 
 $$
 \theta_{t+1} =  \theta_t - \eta \frac{\hat{m}_t}{\sqrt{\hat{v}_t} + \epsilon} - \eta \lambda \theta_t
 $$
 
-## 3. AdamW의 개념적 위치
+## 4. AdamW의 개념적 위치
 
 `Adam`:
 
@@ -263,7 +269,7 @@ $$
 ---
 
 
-## 4. Notes
+## 5. Notes
 
 **Q1. L2 regularization과 weight decay는 완전히 같은가?**
 
@@ -306,7 +312,7 @@ AdamW는 **weight decay를 통해 L2 regularization의 원래 동작을 non-adap
 
 ---
 
-## 5. 요약 (1)
+## 6. 요약 (1)
 
 * `Adam`은 gradient의 adaptive moment 를 추정하는 알고리즘이고,
 * `AdamW`는 여기에 `weight decay`를 분리하여
@@ -316,7 +322,7 @@ AdamW는 **weight decay를 통해 L2 regularization의 원래 동작을 non-adap
 
 ---
 
-## 6. HF 및 PyTorch 에서 사용.
+## 7. HF 및 PyTorch 에서 사용.
 
 * **PyTorch**:
     * `torch.optim.AdamW` 를 직접 사용
@@ -326,9 +332,9 @@ AdamW는 **weight decay를 통해 L2 regularization의 원래 동작을 non-adap
 
 > 둘 다 **동일한 AdamW (decoupled weight decay)** 임.
 
-### 6.2. PyTorch 사용법
+### 7.1. PyTorch 사용법
 
-#### 6.2.1 기본형
+#### 7.1.1 기본형
 
 ```python
 import torch
@@ -352,7 +358,7 @@ optimizer = torch.optim.AdamW(
 > gradient에 섞이지 않고 **파라미터 감쇠로 직접 적용** 됨.
 
 
-#### 6.2.2 중요 포인트 (`bias` / `LayerNorm` 제외)
+#### 7.1.2 중요 포인트 (`bias` / `LayerNorm` 제외)
 
 Transformer 계열에서는 보통 다음과 같이 사용됨:
 
@@ -382,9 +388,9 @@ optimizer = torch.optim.AdamW(
 
 > 이 방법이 **HF 공식 레시피** 임.
 
-### 6.3. HF 에서 AdamW 사용법
+### 7.2. HF 에서 AdamW 사용법
 
-#### 6.3.1 Trainer 사용 (권장)
+#### 7.2.1 Trainer 사용 (권장)
 
 ```python
 from transformers import Trainer, TrainingArguments
@@ -417,7 +423,7 @@ trainer.train()
 
 > **대부분의 HF 파인튜닝은 이걸로 충분**.
 
-#### 6.3.2 Trainer 내부 동작.
+#### 7.2.2 Trainer 내부 동작.
 
 HF Trainer는 내부적으로 대략 다음을 수행:
 
@@ -430,7 +436,7 @@ HF Trainer는 내부적으로 대략 다음을 수행:
 
 즉, **직접 `AdamW`를 쓰는 것과 동일한 결과**.
 
-### 6.4. HF에서 Custom Optimizer 쓰기
+### 7.3. HF에서 Custom Optimizer 쓰기
 
 Trainer를 쓰되 `optimizer`를 직접 지정할 수도 있음.
 
@@ -452,7 +458,7 @@ trainer = Trainer(
 * `scheduler`를 직접 쓰고 싶다면 `(optimizer, scheduler)` 형태로 전달
 * 연구용, 실험용으로 자주 사용
 
-### 6.5. HF / PyTorch의 구현
+### 7.4. HF / PyTorch의 구현
 
 > 앞서 살펴본 내용과 같음: 코드만 보는 경우를 위해 다시 반복.
 
@@ -473,7 +479,7 @@ $$
 * 구현에서는 보통 $\theta_t'$ 기준으로 `decay`를 적용하지만,
 * 차이는 $\mathcal{O}(\eta^2)$  이므로 거의 차이 없음.
 
-### 6.6. PyTorch vs. HF
+### 7.5. PyTorch vs. HF
 
 | 상황                  | 추천                      |
 | :---:  | :---: |
@@ -482,7 +488,7 @@ $$
 | 논문 재현               | PyTorch 직접              |
 | 대규모 분산 학습          | HF `Trainer` + `Accelerate` |
 
-### 6.7. 체크리스트
+### 7.7. 체크리스트
 
 * `AdamW` 쓸 때
     * `weight_decay` ≠ 0 확인
