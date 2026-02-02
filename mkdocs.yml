@@ -119,7 +119,8 @@ extra_css:
   - https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.7/katex.min.css
 
 nav:
-  - index: index.md
+  - Home: index.md
+  - Tags: tags.md
   - 'CE':
     - 'ch00: Introduction' :
       - "Computer":
