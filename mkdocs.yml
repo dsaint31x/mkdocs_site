@@ -41,12 +41,10 @@ theme:
 # extra:
 #   disqus: 
 #     shortname: dsaint31-me
+
 repo_url: https://github.com/dsaint31x/mkdocs_site
 repo_name: dsaint31x/mkdocs_site
-
-extra:
-  edit_base: https://github.com/dsaint31x/mkdocs_site/edit/main/docs
-  blame_base: https://github.com/dsaint31x/mkdocs_site/blame/main/docs
+edit_uri: edit/main/docs
 
 
 plugins:
