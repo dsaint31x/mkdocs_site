@@ -8,15 +8,15 @@ tags: [optimizer, adam, adamw, gradient, moment, weight-decay, transformer ]
 **Adam with decoupled Weight Decay** 는 Transformer 학습에서 가장 널리 사용되는 optimizer 임:
 
 * 기존 Adam의 구조적 문제점 개선:
-   * L2 regularization이 gradient 기반 업데이트에 섞여 들어가
-   * adaptive learning rate와 weight decay가 결합되어 의도한 정규화 효과가 왜곡됨
+    * L2 regularization이 gradient 기반 업데이트에 섞여 들어가
+    * adaptive learning rate와 weight decay가 결합되어 의도한 정규화 효과가 왜곡됨
 * AdamW의 핵심 아이디어:
-   * Weight decay를 gradient 업데이트와 완전히 분리(decoupled)
-   * Parameter 업데이트 이후에 별도로 decay 적용
+    * Weight decay를 gradient 업데이트와 완전히 분리(decoupled)
+    * Parameter 업데이트 이후에 별도로 decay 적용
 * 결과:
-   * 정규화 효과가 이론적으로 명확해짐
-   * 일반화 성능 향상
-   * 현재 Transformer 계열 및 HuggingFace Trainer의 기본 optimizer
+    * 정규화 효과가 이론적으로 명확해짐
+    * 일반화 성능 향상
+    * 현재 Transformer 계열 및 HuggingFace Trainer의 기본 optimizer
 
 > moment, momentum, 그리고 weight decay의 정확한 이해 필요
 
@@ -85,7 +85,7 @@ $$ \begin{aligned}v_t &= \beta v_{t-1} + (1-\beta) g_t \\
 [Adam](./op_adam.md)은 이름 그대로 **Adaptive Moment Estimation** 즉,
 
 * Adam은 momentum을 "그대로 쓰는" 알고리즘이 아니라,
-* **1st moment와 2nd moment를 adaptive 하게  추정하는 알고리즘** 이다.
+* **1st moment와 2nd moment를 adaptive 하게 추정하는 알고리즘** 이다.
 
 1st moment는 EMA를 통한 Momentum 알고리즘의 효과를 가져오고,  
 2nd moment는 지금까지 적용된 parameter 각각의 변화의 정도를 고려하여 adaptive하게 각 parameter에 적용되는 step size 를 결정하게 함.
@@ -219,7 +219,7 @@ $$
 
 AdamW의 핵심 아이디어는 다음과 같음:
 
-* **"moment 기반 최적화"** 와 **"L2-Regularization"**은 서로 다른 역할임.
+* **"moment 기반 최적화"** 와 **"L2-Regularization"** 은 서로 다른 역할임.
 * 그러므로 분리하여 `Adam` step과 `Weight decay` step으로 나눈다.
 
 ### 2.1. Adam step (moment 기반 최적화)
