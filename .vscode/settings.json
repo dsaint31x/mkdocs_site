@@ -103,6 +103,8 @@
         "polylines",
         "PSTN",
         "pyplot",
+        "pyqt",
+        "pyside",
         "RGBA",
         "RMSE",
         "roied",
@@ -140,5 +142,8 @@
         "xticks",
         "ylabel",
         "yticks"
-    ]
+    ],
+    "python-envs.defaultEnvManager": "ms-python.python:conda",
+    "python-envs.defaultPackageManager": "ms-python.python:conda",
+    "python-envs.pythonProjects": []
 }
