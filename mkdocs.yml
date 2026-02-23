@@ -293,6 +293,7 @@ nav:
     - "python/basic/module_package.md"
   - "PySide":
     - "ch00":
+      - "python/pyside/ch00_s00_pyqt_pyside.md"
       - "python/pyside/ch00_s01_user_interface.md"
       - "python/pyside/ch00_s02_good_ui.md"
       - "python/pyside/ch00_s03_0_empty_window_ps.md"
