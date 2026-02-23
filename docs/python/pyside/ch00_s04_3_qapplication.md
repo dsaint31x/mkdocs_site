@@ -1,6 +1,6 @@
 ---
 title: QApplication
-tags: [pyside6, pyqt6, qapplication, event-loop, gui]
+tags: [pyside6, pyqt6, QApplication, event-loop, gui]
 ---
 
 # QApplication

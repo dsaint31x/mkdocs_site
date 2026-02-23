@@ -3,6 +3,8 @@ title: QtWidgets Module Overview
 tags: [pyside6, pyqt6, qtwidgets, qwidget, qapplication, qlabel]
 ---
 
+# QtWidgets Module Overview
+
 ## 0. `QtWidgets` module 이란
 
 Desktop-style의 GUI를 위한 다양한 **widget class** 들을 제공하는 ***module(모듈)*** 이다.
@@ -11,7 +13,7 @@ Desktop-style의 GUI를 위한 다양한 **widget class** 들을 제공하는 **
 
 해당 모듈에서 가장 많이 이용되는 **classes** 로는 다음이 있음.
 
-#### 0-0. `QWidget` : Qt 에서 비어있는 기본 widget 을 위한 Class. 
+### 0-0. `QWidget` : Qt 에서 비어있는 기본 widget 을 위한 Class. 
 
   * 일반적으로 관련있는 Widgets를 포함하여 묶어주는 **container** 로 많이 사용됨.
   * GUI Components (=widgets) 이 공유하는 기본 기능들을 가지고 있음.
@@ -20,7 +22,7 @@ GUI의 기본 구성요소인 [Widget](https://wikidocs.net/189238)을 추상화
 
 > 참고 : [추상화(abstraction) 란](https://dsaint31.me/mkdocs_site/python/oop/oop_1_01_abstraction/#abstraction-class-and-instance)
 
-#### 0-1. `QApplication` : Qt 의 GUI application을 추상화하고 있는 class
+### 0-1. `QApplication` : Qt 의 GUI application을 추상화하고 있는 class
 
   * 이 class의 **instance** 가 GUI application에 해당함.
   * 해당 application의 **interaction** 을 처리하는 **event loop** 를 유지함.
@@ -36,7 +38,7 @@ from PySide6.QtWidgets import QApplication, QWidget, QLabel
 
 ## 1. 예제에서 사용된 Class들
 
-#### 1-0. `QWidget` Class
+### 1-0. `QWidget` Class
 
 앞서 `QtWidgets` 모듈에서 언급했듯이, <u>GUI의 다양한 component</u>를 PySide와 PyQt에서는 ***widget*** 이라고 부른다.
 
@@ -66,7 +68,7 @@ Setter와 Getter개념이 생소하다면 다음 문서를 참고하라 : [OOP: 
 
 ---
 
-#### 1-1. `QApplication` Class
+### 1-1. `QApplication` Class
 
 Qt 의 GUI application을 추상화하고 있는 class.  
 
@@ -83,7 +85,7 @@ PySide 또는 PyQt로 GUI 프로그램을 만들 때,
 
 ---
 
-#### 참고: Qt (Main) Event Loop
+### 참고: Qt (Main) Event Loop
 
 Qt GUI application의 GUI 창에서 이루어지는 ***OS와 사용자와의 interaction(상호작용)이 처리되는 event loop***.
 
@@ -93,14 +95,14 @@ Qt GUI application의 GUI 창에서 이루어지는 ***OS와 사용자와의 int
     * 해당 Queue에서 이를 하나씩 꺼내어 
     * 해당 **event** 의 **type** 을 인식하고 이에 따라 처리함.
 
-***Qt event loop***는 
+***Qt event loop*** 는 
 
 * `QApplication`의 **instance** 에서 `exec` **method** 호출을 통해 시작되고, 
 * ***main window가 종료될 때 종료됨***.
 
 ---
 
-#### 1-2. `QLabel` Class
+### 1-2. `QLabel` Class
 
 Qt GUI application에서 
 
