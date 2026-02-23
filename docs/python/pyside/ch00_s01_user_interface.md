@@ -14,7 +14,6 @@ Interface는 2개 이상의 hardware device나 software 사이에 위치하는 *
 
 Machine Interface는 **인간의 직접적인 개입 없이** 기계(machine)와 기계, 또는 시스템과 시스템 간의 상호 작용을 매개하는 인터페이스를 의미한다. 이는 주로 자동화된 시스템이나 데이터 통신에서 중요하게 다루어진다.
 
-User interface가 사용자의 편의성과 직관성을 최우선으로 고려한다면, machine interface는 기계 간 통신의 **정확성**, **효율성**, 그리고 **표준화**를 핵심으로 한다.
 User interface가 사용자의 편의성과 직관성을 최우선으로 고려한다면, machine interface는 기계 간 통신의 **정확성**, **효율성**, 그리고 **표준화** 를 핵심으로 한다.
 
 대표적인 예는 다음과 같다.

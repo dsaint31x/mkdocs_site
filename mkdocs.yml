@@ -291,6 +291,18 @@ nav:
       - "Python의 Encapsulation": "python/oop/oop_3_02_python_encapsulation.md"
   - "Python":
     - "python/basic/module_package.md"
+  - "PySide":
+    - "ch00":
+      - "python/pyside/ch00_s01_user_interface.md"
+      - "python/pyside/ch00_s02_good_ui.md"
+      - "python/pyside/ch00_s03_0_empty_window_ps.md"
+      - "python/pyside/ch00_s03_1_empty_window_ps_detail.md"
+      - "python/pyside/ch00_s03_2_main_modules_summary.md"
+    - "ch01":
+      - "python/pyside/ch00_s04_0_window_and_dialog.md"
+      - "python/pyside/ch00_s04_1_qmainwindow.md"
+      - "python/pyside/ch00_s04_2_qdialog.md"
+      - "python/pyside/ch00_s04_3_qapllication.md"
   - "DIP":
     - "OpenCV: Gui Features in OpenCV":
       - "DIP/cv2/ch00/dip_0_00.md"

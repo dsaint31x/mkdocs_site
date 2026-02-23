@@ -5,7 +5,7 @@ tags: [pyside6, pyqt6, qtwidgets, qwidget, qapplication, qlabel]
 
 ## 0. `QtWidgets` module 이란
 
-Desktop-style의 GUI를 위한 다양한 **widget class**들을 제공하는 ***module(모듈)***이다.
+Desktop-style의 GUI를 위한 다양한 **widget class** 들을 제공하는 ***module(모듈)*** 이다.
 
 `QtGui`와 `QtCore`와 함께 가장 많이 사용되는 3대 module임.
 
@@ -22,8 +22,8 @@ GUI의 기본 구성요소인 [Widget](https://wikidocs.net/189238)을 추상화
 
 #### 0-1. `QApplication` : Qt 의 GUI application을 추상화하고 있는 class
 
-  * 이 class의 **instance**가 GUI application에 해당함.
-  * 해당 application의 **interaction**을 처리하는 **event loop**를 유지함.
+  * 이 class의 **instance** 가 GUI application에 해당함.
+  * 해당 application의 **interaction** 을 처리하는 **event loop** 를 유지함.
 
 제공되는 대표적인 widgets 중 다음 3가지가 `empty_window_ps.py` 예제에 사용되었다.
 
@@ -38,17 +38,17 @@ from PySide6.QtWidgets import QApplication, QWidget, QLabel
 
 #### 1-0. `QWidget` Class
 
-앞서 `QtWidgets` 모듈에서 언급했듯이, <u>GUI의 다양한 component</u>를 PySide와 PyQt에서는 ***widget***이라고 부른다.
+앞서 `QtWidgets` 모듈에서 언급했듯이, <u>GUI의 다양한 component</u>를 PySide와 PyQt에서는 ***widget*** 이라고 부른다.
 
-* Widgets가 공통적으로 가져야 하는 기능을 `QWidget` class에 **abstraction(추상화)**시켜 놓았다.
-* 즉, widget의 **abstraction**이라고 생각하면 된다.
+* Widgets가 공통적으로 가져야 하는 기능을 `QWidget` class에 **abstraction(추상화)** 시켜 놓았다.
+* 즉, widget의 **abstraction** 이라고 생각하면 된다.
 
 `QWidget`은 widget에게 요구되는 다양한 기능들을 구현하고 있으며, 앞서 `empty_window_ps.py` 예제에서 사용된 것들은 다음과 같다.
 
 - `show()` :  
-	해당 widget의 **instance**를 화면에 보이게 하는 **method**.
+	해당 widget의 **instance** 를 화면에 보이게 하는 **method**.
 - `setGeometry(left_x, left_y, width, height)` :  
-	해당 widget의 **instance**의 위치와 크기를 설정하는 **method**.
+	해당 widget의 **instance** 의 위치와 크기를 설정하는 **method**.
 - `setWindowTitle("title_str")` :  
 	해당 widget의 윈도우의 **title bar** text(문자열)를 설정하는 **method**.
 - `close()` :  
@@ -56,10 +56,10 @@ from PySide6.QtWidgets import QApplication, QWidget, QLabel
 
 > PyQt에서 `xxx`라는 이름의 **attribute**에 대해  
 >  
->  * 설정하는 ***setter*** method들은 `setXxx(...)`라는 이름(`set` 다음에 **upper case**)을 가지고, 
->  * ***getter***들은 **lower case** 그대로 사용하여 `xxx()`의 이름을 가진다.
+>  * 설정하는 ***setter*** method들은 `setXxx(...)`라는 이름(`set` 다음에 **upper case**) 을 가지고, 
+>  * ***getter*** 들은 **lower case** 그대로 사용하여 `xxx()`의 이름을 가진다.
 >    
-> `QWidget`의 `geometry`는 **setter**가 `setGeometry`, **getter**가 `geometry`라는 이름으로 주어져 있다.
+> `QWidget`의 `geometry`는 **setter** 가 `setGeometry`, **getter** 가 `geometry`라는 이름으로 주어져 있다.
 > 
 
 Setter와 Getter개념이 생소하다면 다음 문서를 참고하라 : [OOP: Setter and Getter](https://dsaint31.me/mkdocs_site/python/oop/ds_setter_and_getter/)
@@ -72,8 +72,8 @@ Qt 의 GUI application을 추상화하고 있는 class.
 
 PySide 또는 PyQt로 GUI 프로그램을 만들 때, 
 
-* 오직 하나의 `QApplication` **instance**만 생성되어야 하며, 
-* 해당 **instance**의 `exec()` **method** 호출을 통해 해당 GUI application의 오직 하나뿐인 `Qt (Main) Event Loop`가 수행된다. 
+* 오직 하나의 `QApplication` **instance** 만 생성되어야 하며, 
+* 해당 **instance** 의 `exec()` **method** 호출을 통해 해당 GUI application의 오직 하나뿐인 `Qt (Main) Event Loop`가 수행된다. 
 
 즉, `QApplication` class는 
 
@@ -87,15 +87,15 @@ PySide 또는 PyQt로 GUI 프로그램을 만들 때,
 
 Qt GUI application의 GUI 창에서 이루어지는 ***OS와 사용자와의 interaction(상호작용)이 처리되는 event loop***.
 
-* 사용자의 버튼 클릭 등의 **interaction**은 해당하는 **event**를 생성시키고 
-* 이 **event**는 ***event queue***에 집어넣어지는데,
-* 해당 Qt GUI application에 대응하는 `QApplication` **instance**에 <u>오직 하나 존재하는 ***event loop***</u>가 
+* 사용자의 버튼 클릭 등의 **interaction** 은 해당하는 **event** 를 생성시키고 
+* 이 **event** 는 ***event queue*** 에 집어넣어지는데,
+* 해당 Qt GUI application에 대응하는 `QApplication` **instance** 에 <u>오직 하나 존재하는 ***event loop***</u>가 
     * 해당 Queue에서 이를 하나씩 꺼내어 
-    * 해당 **event**의 **type**을 인식하고 이에 따라 처리함.
+    * 해당 **event** 의 **type** 을 인식하고 이에 따라 처리함.
 
 ***Qt event loop***는 
 
-* `QApplication`의 **instance**에서 `exec` **method** 호출을 통해 시작되고, 
+* `QApplication`의 **instance** 에서 `exec` **method** 호출을 통해 시작되고, 
 * ***main window가 종료될 때 종료됨***.
 
 ---
@@ -107,11 +107,11 @@ Qt GUI application에서
 * <u>내용이 변하지 않는 text 문자열</u> (주로 single line)을 보여주거나, 
 * <u>내용이 변하지 않는(=고정된) image</u>를 보여주는 widget.  
 
-`QLabel`의 **instance**들은
+`QLabel`의 **instance** 들은
 
 - 사용자와 상호작용을 하지 않지만, GUI를 구성하는 데 매우 많이 사용됨.
-- 생성자에서 부모 widget의 **instance**를 넘겨주어 사용되거나, 
-- **Argument** 없이 생성자를 호출하고 이후에 **container**나 **layout manager** 등에 추가되는 방식으로 사용된다.
+- 생성자에서 부모 widget의 **instance** 를 넘겨주어 사용되거나, 
+- **Argument** 없이 생성자를 호출하고 이후에 **container** 나 **layout manager** 등에 추가되는 방식으로 사용된다.
 
 ---
 
