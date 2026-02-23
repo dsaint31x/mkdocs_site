@@ -36,45 +36,64 @@ tags: [pyside6, pyqt6, qdialog, dialog, modal, modeless, custom-dialog]
 * `"QDialog Title"`이라는 제목을 가진 빈 대화상자가 모달(Modal)로 열린다.
 
 ```Python
-import sys
-from PySide6.QtWidgets import (
-    QApplication,
-    QDialog,
-    QDialogButtonBox,
-    QVBoxLayout, QLabel,
-    QMainWindow,
-    QPushButton,
-)
+# -*- coding: utf-8 -*-
+#
+# first_dlg.py
+#
+# Description: QDialog를 생성하고 실행하는 가장 기본적인 방법을 보여주는 예제.
+#              특히 'modeless' 방식인 open() 메서드 사용법을 다룸.
+# Author: dsaint31
+# Date: 2024-02-23
+#
 
-class MW(QMainWindow): 
+import sys
+
+# Qt 바인딩 선택 로직 (PySide6/PyQt6 호환성)
+try:
+    from PySide6.QtWidgets import (QApplication, QDialog, QMainWindow, QPushButton)
+except ImportError:
+    try:
+        from PyQt6.QtWidgets import (QApplication, QDialog, QMainWindow, QPushButton)
+    except ImportError:
+        print("Python을 위한 Qt 바인딩 라이브러리가 없습니다.")
+        sys.exit(1)
+
+# 메인 윈도우 class 정의
+class MW(QMainWindow):
     def __init__(self):
+        """ 생성자(Constructor) """
         super().__init__()
         self.setWindowTitle("QDialog Ex.")
 
+        # 버튼을 누르면 대화상자를 열도록 설정
         button = QPushButton("Press it for a Dialog")
         button.clicked.connect(self.button_clicked)
-
         self.setCentralWidget(button)
 
     def button_clicked(self, s):
+        """ 버튼 클릭 시 호출되는 슬롯 """
         print("click", s)
-        dlg = QDialog(self) 
-        dlg.setWindowTitle("QDialog Title") 
+        
+        # QDialog의 기본 인스턴스를 생성. 부모를 self(MW)로 지정.
+        dlg = QDialog(self)
+        dlg.setWindowTitle("QDialog Title")
+        
+        
+        # Modal 방식 대화상자 코드 (이 예제에서는 사용되지 않음)
         dlg.exec()
         
-        # -------------
-        # for custom dlg
-        # dlg = CustomDlg(self)
-        # if dlg.exec(): # Modal Dialog
-        #     print('ok')
-        # else:
-        #     print("cancel")
+        # 다음은 open()을 사용하여 대화상자를 'Modeless' 형태로 실행
+        # Modeless: 이 대화상자가 열려 있어도 부모 윈도우(MW)를 계속 사용할 수 있음
+        #           코드 실행을 멈추지 않음.
+        # dlg.open()
 
+# Main script로 동작하는 루틴 구현
 if __name__ == "__main__":
     app = QApplication(sys.argv)
     window = MW()
     window.show()
-    app.exec()
+    # sys.exit()를 사용하여 application을 안전하게 종료
+    sys.exit(app.exec())
 ```
 
 * Modal dialog에 대한 예제이므로,
@@ -101,26 +120,27 @@ if __name__ == "__main__":
 * **ok** 와 **cancel** 버튼을 가짐.
 
 ```Python
-class CustomDlg(QDialog): 
+# QDialog를 상속받아 사용자 정의 대화상자 class를 정의
+class CustomDlg(QDialog):
     def __init__(self, parent=None):
+        """ 생성자(Constructor) """
         super().__init__(parent)
-        
+
         self.setWindowTitle('Hello, QDialog')
-        
-        buttons = QDialogButtonBox.Ok | QDialogButtonBox.Cancel
-        # buttons에 해당하는 button 객체
-        self.button_box = QDialogButtonBox(buttons) 
-        
-        # QDialog의 메서드를 slot으로
-        self.button_box.accepted.connect(self.accept) 
-        # QDialog의 메서드를 slot으로
-        self.button_box.rejected.connect(self.reject)    
-                
+
+        # QDialogButtonBox를 사용하여 표준 버튼 (OK, Cancel)을 생성
+        buttons = QDialogButtonBox.StandardButton.Ok | QDialogButtonBox.StandardButton.Cancel
+        self.button_box = QDialogButtonBox(buttons)
+        # button_box의 accepted 시그널을 QDialog의 내장 슬롯인 accept에 연결
+        self.button_box.accepted.connect(self.accept)
+        # button_box의 rejected 시그널을 QDialog의 내장 슬롯인 reject에 연결
+        self.button_box.rejected.connect(self.reject)
+
+        # 대화상자 내부 레이아웃 설정
         self.layout = QVBoxLayout()
         message = QLabel('Is something ok?')
         self.layout.addWidget(message)
-        # QDialogButtonBox 객체 추가.
-        self.layout.addWidget(self.button_box) 
+        self.layout.addWidget(self.button_box)
         self.setLayout(self.layout)
 ```
 
