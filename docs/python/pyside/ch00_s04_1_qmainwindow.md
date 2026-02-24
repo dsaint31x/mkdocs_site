@@ -39,10 +39,17 @@ def initialize_ui(self):
     self.setWindowTitle("Title of Main Window")
 
     # 아이콘 이미지 경로 설정
-    # __file__은 현재 스크립트의 경로입니다. os.path.abspath로 절대경로를 만들고,
-    # os.path.dirname으로 디렉토리 경로를 추출하여 'img/pyqt_logo.png' 경로를 조합.
-    icon_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'img/pyqt_logo.png')
-    # 아이콘 파일이 실제로 존재하는지 확인하여, 있을 경우에만 아이콘을 설정(에러 방지).
+    # __file__은 현재 스크립트의 경로임.
+    # (pyinstaller 로 패키징 시 사용불가)
+    # os.path.abspath로 절대경로를 만들고,
+    # os.path.dirname으로 디렉토리 경로를 추출하여
+    # 'img/pyqt_logo.png' 경로를 조합.
+    icon_path = os.path.join(
+        os.path.dirname(os.path.abspath(__file__)),
+        'img/pyqt_logo.png'
+    )
+    # 아이콘 파일이 실제로 존재하는지 확인하여,
+    # 있을 경우에만 아이콘을 설정(에러 방지).
     if os.path.exists(icon_path):
         self.setWindowIcon(QIcon(icon_path))
 
@@ -57,15 +64,15 @@ def initialize_ui(self):
     * `setFixedSize(QSize(400,500))` 을 통해, 창의 크기를 고정시킬 수도 있음 : 
         * Windows와 Linux에서는 고정되지만, 
         * MacOS에서는 전체 크기로 만드는 기능까지 막을 수는 없음.
-	  * `QSize` 는 `width` 와 `height` parameter 순으로 생성되며 ***크기를 추상화하고 있는 class임***. 
+    * `QSize` 는 `width` 와 `height` parameter 순으로 생성되며 ***크기를 추상화하고 있는 class임***. 
         * 기본으로 pixel 수로 지정되며, 
         * `QtCore` 모듈에 속함.
-	  * `setMaximuSize(400,500)` 를 통해 Main Window instance(창)의 ***최대 크기를 설정*** 할 수 있음.
-	  * 사실 이 세가지의 size 관련 메서드들은 모든 widget에서 제공한다.  
+    * `setMaximuSize(400,500)` 를 통해 Main Window instance(창)의 ***최대 크기를 설정*** 할 수 있음.
+    * 사실 이 세가지의 size 관련 메서드들은 모든 widget에서 제공한다.  
 * Main window의 instance `self`의 메서드 `setWindowTitle(“Title of Main Window”)`를 통해, 창의 title을 설정할 수 있음. 
 * Main window의 instance `self`의 메서드 `setWindowIcon()`를 통해 application icon이 설정된 경우, main window의 상단 왼쪽에 할당된 icon이 보임.
-     * `QIcon`은 `QtGui` 모듈에서 제공하는 Class임. 
-     * Linux나 MacOS에선 보이지 않음.
+    * `QIcon`은 `QtGui` 모듈에서 제공하는 Class임. 
+    * Linux나 MacOS에선 보이지 않음.
 
 
 ## Central Widget 설정.
@@ -93,7 +100,7 @@ def initialize_ui(self):
 	  * ***Main Window*** instance (보통 `self`)의 `setCentralWidget()`메서드에 
 	  * 4번에서 생성한 ***Container*** 를 argument로 넘겨줌.
 
-> Container로는 많은 경우 `QWidget` 객체가 사용됨.  
+> 많은 경우 Container로는 `QWidget` 객체가 사용됨.  
 
 ```python
 """메인 윈도우의 Central Widget을 생성 및 설정"""
