@@ -107,7 +107,7 @@ if __name__ == '__main__':
         print(PySide6.__version__)
         print(PySide6.QtCore.__version__)
     # PyQt 사용 시 PyQt6(Qt) 버전 정보 출력
-    if PYQT:
+    elif PYQT:
         print(PyQt6.QtCore.qVersion())
     # PySide6나 PyQt6 모두 사용 불가능할 경우 메시지 출력 후 종료
     else: 
