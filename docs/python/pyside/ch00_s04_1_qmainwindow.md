@@ -198,10 +198,17 @@ class MW(QMainWindow):
         self.setWindowTitle("Title of Main Window")
 
         # 아이콘 이미지 경로 설정
-        # __file__은 현재 스크립트의 경로입니다. os.path.abspath로 절대경로를 만들고,
-        # os.path.dirname으로 디렉토리 경로를 추출하여 'img/pyqt_logo.png' 경로를 조합.
-        icon_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'img/pyqt_logo.png')
-        # 아이콘 파일이 실제로 존재하는지 확인하여, 있을 경우에만 아이콘을 설정(에러 방지).
+        # __file__은 현재 스크립트의 경로임
+        # (pyinstaller로 실행파일 만들시 동작X).
+        # os.path.abspath 로 절대경로를 만들고,
+        # os.path.dirname 으로 디렉토리 경로를 추출하여
+        # 'img/pyqt_logo.png' 경로를 조합.
+        icon_path = os.path.join(
+            os.path.dirname(os.path.abspath(__file__)),
+            'img/pyqt_logo.png'
+        )
+        # 아이콘 파일이 실제로 존재하는지 확인하여,
+        # 있을 경우에만 아이콘을 설정(에러 방지).
         if os.path.exists(icon_path):
             self.setWindowIcon(QIcon(icon_path))
 
