@@ -3,7 +3,7 @@ title: Empty Window Example
 tags: [pyside6, pyqt6, QWidget, QApplication, QLabel, basic-structure]
 ---
 
-아주 간단한 예제를 라인별로 살펴봄으로써  
+간단한 예제 코드를 라인별로 살펴봄으로써  
 `PySide` 또는 `PyQt`에서 프로그래밍을 어떻게 하는지 전체적인 순서를 파악해보자.
 
 우선 다음과 같이 단순한 **window(창)** 하나로 구성된 **GUI application** 이다.
@@ -132,7 +132,7 @@ if __name__ == '__main__':
 
 ## Import 부분
 
-* `import` statement를 통해, 필요한 **library** 와 **module** 을 가져온다. 
+* `import` statement를 통해, 필요한 **library** 들과 **module** 들을 가져온다. 
 * `PySide6`를 우선적으로 사용하도록 되어있고, 없을 경우엔 `PyQt6`를 사용함. 
 * 위의 예제처럼 <u>가급적 특정 모듈에서 가져올 것들을 명시적으로 지정</u>하여 가져오는 게 좋은 습관이다. 
 * `from PyQt6.QtWidgets import *`와 같이 특정 모듈에서 모두 가져오는 방식(*Global Import* 이라고 불림)은 피하는 게 좋다.
@@ -142,7 +142,7 @@ if __name__ == '__main__':
 ## Class 구현 부분
 
 * `MW` class는 `QWidget`를 상속한 **subclass** 이며, 위 예제의 ***main window*** (main window에 대한 정확한 개념은 QMainWindow에서 다룬다)에 해당한다.  
-    * 이 class의 **instance** 인 `window`는 *사용자가 GUI program에서 보게 되는 <u>window(창)</u>*에 해당한다. 
+    * 이 class의 **instance** 인 `window`는 *사용자가 GUI program에서 보게 되는 <u>window(창)</u>* 에 해당한다. 
     * 이는 위의 예제 코드로 만드는 GUI 프로그램에서 **최상위 instance** (해당 instance를 포함하고 있는 instance가 없음)이며, **GUI에서 사용되는 다른 모든 components를 직/간접적으로 포함** 하고 있다.
     * <u>`QWidget`의 초기화 루틴 수행</u>을 위해 **생성자(constructor) `__init__()`에서 `super().__init__()`를 수행** 한다.
     * `super()`는 부모 클래스(=super class)의 ***proxy object를 반환*** 해 줌: 이 예제에서는 `MW` class의 부모 클래스인 `QWidget`에 대한 객체를 반환해준다.
@@ -154,7 +154,7 @@ if __name__ == '__main__':
       * <u>이 때의 `self`는 `MW` class에서 사용된 것</u>이므로 `MW` class의 instance인 `window`를 가리킨다. 
 
 * PyQt에서 모든 widget은 ***부모-자식 관계*** 를 가지게 된다. 
-    * 이 예제에서, *유일하게 부모가 없는 widget은 main window*이며, 이 window를 제외한 모든 widget은 각각 부모 widget을 가지고 있다: 부모가 없는 widget을 Qt에서는 **window** 라고 부름. 
+    * 이 예제에서, *유일하게 부모가 없는 widget은 main window* 이며, 이 window를 제외한 모든 widget은 각각 부모 widget을 가지고 있다: 부모가 없는 widget을 Qt에서는 **window** 라고 부름. 
     * 만약 부모 widget 객체가 application 동작 중에 제거되면, 해당 widget 객체의 자식 widget들도 제거된다. 그리고 자식 widget들은 부모 widget의 영역 내에서 배치되어 보이게 된다.
     * 위의 예제에서 `MW` class의 `window`가 제거되어 화면에서 사라지게 처리되면, 자식인 `QLabel`의 instance도 화면에서 사라진다.
 
@@ -168,7 +168,7 @@ if __name__ == '__main__':
 
 * `MW` class의 `initialize_ui()` method에서 호출된 `self.setGeometry(200, 100, 400, 200)`은 ***일종의 setter*** 로 main window인 `MW` class의 instance인 `window`의 창(window)이 모니터 화면의 어디에 어느 정도 크기로 보여질지를 설정한다. 
     * `x position, y position, width, height` 순으로 **arguments** 가 넘겨진다.
-* `MW` class의 `initialize_ui()` method에서 호출된 `self.setWindowTitle("Main Window in PyQt")`은 ***일종의 setter*** 로 main window의 **title bar(타이틀 바)** 에 보여질 text를 설정한다.
+* `MW` class의 `initialize_ui()` method에서 호출된 `self.setWindowTitle("Main Window in PyQt")`은 ***일종의 setter*** 로 main window의 **title bar(타이틀 바)**  에 보여질 text를 설정한다.
 * `MW` class의 `initialize_ui()` method에서 호출된 `self.show()`를 통해 해당 `initialize_ui()`를 호출한 instance가 화면에 보여지게 된다. 
     * GUI를 다 그리고 나서 호출되며, 실제 화면을 사용자가 보게 해준다.
     * 일반적으로 **부모가 없는 widget** 은 `show()` method가 호출되지 않으면 보이지 않음(invisible).
