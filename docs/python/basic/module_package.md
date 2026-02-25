@@ -50,7 +50,7 @@ Python에서는 이미 standard library로
 >
 > * `module`을 import할 때, 해당 `module`을 읽어와야하는데 이 경우 ***Module Search Path*** 를 참고하여 python은 module을 읽어들임.  
 > * ***Module Search Path*** 에 기재된 path들에서 `module`의 이름을 기준으로 `module`을 읽어들임 (가장 먼저 위치한 path의 `module`에 우선권이 있음).  
-> * 기본적으로 현재 작업 디렉토리가 포함되므로 이를 이용하여 `module`에 대해 익히고, 다른 path의 `module`들을 사용하기 위해 ***Module Search Path*** 를 수정하는 방법은 다음 URL을 살펴본다: [Module Search Path and sys.path](https://dsaint31.tistory.com/entry/Python-Module-Search-Path-and-syspath).
+> * 기본적으로 현재 작업 디렉토리가 포함되므로 이를 이용하여 `module`에 대해 익히고, 다른 path의 `module`들을 사용하기 위해 ***Module Search Path*** 를 수정하는 방법은 다음 URL을 살펴본다: [Module Search Path and sys.path](https://dsaint31.tistory.com/528).
 
 ---
 
@@ -59,8 +59,10 @@ Python에서는 이미 standard library로
 * 흔히, import가 되는 `.py` 파일을 `module`이라고 부르고  
 * python interpreter에게 수행되기 위해 인자로 넘겨지는 `.py` 파일은 **main program** 혹은 **main script** 라고 불린다.
 
-> 참고로 `__name__` 은 `.py`파일 즉 `module` 내에서 Python interpreter가 해당 `module`에 할당한 이름, 즉 자기자신의 `module name`을 값으로 가지는 global variable임.  
+> 참고로 `__name__` 은 `.py`파일에 할당한 이름임.  
+> Python interpreter가 해당 `module`에 할당한 이름으로 자기자신의 `module name`을 값으로 가지는 global variable 이다.  
 > 해당 main script로 동작하는 경우엔 `__main__`이라는 문자열을 값으로 가짐.
+> * 보다 자세한 건 다음을 참고: [__name__ : Special string variable](https://ds31x.tistory.com/129)
 
 ---
 
@@ -109,7 +111,7 @@ if __name__ == '__main__':
 
 ---
 
-#### `.` operator
+#### Dot `.` operator
 
 `ds_cal.ds_addition(a, b)`에서 `.` (dot)은 일종의 ***operator*** 임.
 
@@ -155,10 +157,10 @@ import echo # 최초로 import될 때만 수행되므로 아무 일 이어나지
 
 `if __name__ == '__main__':` 로 시작하는 code block이  
 main script에서만 수행되는 부분이 된다.  
-`__name__` 이 main script로 동작하는 경우에 `__main__` 문자열을 값으로 가짐.
+이전에 살펴본 대로 `__name__` 이 main script로 동작하는 경우에 `__main__` 문자열을 값으로 가짐.
 
-> `__name__` variable은 해당 module의 name에 해당하는 문자열을 값으로 가지는 특별한 variable임.  
-> ^^`__`로 시작하고 끝나는 object는 Python 언어에서 특별하게 사용되는 object로서 Python 언어에서 정의하고 있는 대상임을 나타내는데 사용^^ 된다.
+> `__`로 시작하고 끝나는 object는 Python 언어에서 특별하게 사용되는 object로서 Python 언어에서 정의하고 있는 대상임을 나타내는데 사용된다:  
+> 이를 dunder (double underscore를 줄인 말)라고도 지칭함.
 
 다시 한번 강조하지만,  
 
@@ -169,7 +171,7 @@ main script에서만 수행되는 부분이 된다.
 이를 위해서는 `importlib` 모듈의 `reload(모듈명)` function을 이용해야 한다.  
 자세한 사용법은 다음 URL을 참고하라.  
 
-* [모듈 변경사항 동적으로 반영하기: `importlib.reload`](https://dsaint31.tistory.com/entry/Python-importlibreload-module-%EC%9E%AC%EC%A0%81%EC%9E%AC)
+* [https://dsaint31.tistory.com/entry/Python-importlibreload-module-%EC%9E%AC%EC%A0%81%EC%9E%AC](https://dsaint31.tistory.com/527)
 
 ---
 
@@ -412,6 +414,10 @@ if __name__ == '__main__':
 ---
 
 ---
+
+## 같이 보면 좋은 자료
+
+* [[Python] Module, Package and Library (+ Framework)](https://ds31x.tistory.com/198)
 
 ## References
 
