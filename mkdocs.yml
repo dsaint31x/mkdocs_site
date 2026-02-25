@@ -300,10 +300,11 @@ nav:
         - "python/pyside/ch00_s03_1_empty_window_ps_detail.md"
         - "python/pyside/ch00_s03_2_main_modules_summary.md"
       - "ch01":
-        - "python/pyside/ch00_s04_0_window_and_dialog.md"
-        - "python/pyside/ch00_s04_1_qmainwindow.md"
-        - "python/pyside/ch00_s04_2_qdialog.md"
-        - "python/pyside/ch00_s04_3_qapplication.md"
+        - "python/pyside/ch01_0_intro.md"
+        - "python/pyside/ch01_s04_0_window_and_dialog.md"
+        - "python/pyside/ch01_s04_1_qmainwindow.md"
+        - "python/pyside/ch01_s04_2_qdialog.md"
+        - "python/pyside/ch01_s04_3_qapplication.md"
   - "DIP":
     - "OpenCV: Gui Features in OpenCV":
       - "DIP/cv2/ch00/dip_0_00.md"
