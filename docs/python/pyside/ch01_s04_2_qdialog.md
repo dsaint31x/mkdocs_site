@@ -79,7 +79,7 @@ class MW(QMainWindow):
         dlg.setWindowTitle("QDialog Title")
         
         
-        # Modal 방식 대화상자 코드 (이 예제에서는 사용되지 않음)
+        # Modal 방식 대화상자 코드
         dlg.exec()
         
         # 다음은 open()을 사용하여 대화상자를 'Modeless' 형태로 실행
@@ -109,7 +109,7 @@ if __name__ == "__main__":
 
 ---
 
-## 예제2: Custom Dialog
+## 예제 2: Custom Dialog
 
 다음은 `QDialog`를 상속하여 Custom Dialog를 만드는 예제임.
 
