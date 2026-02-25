@@ -11,7 +11,7 @@ tags: [pyside6, pyqt6, qdialog, dialog, modal, modeless, custom-dialog]
 ***`QDialog`***  
 : PySide와 PyQt에서 사용되는 ***대화상자(Dialog Box)를 추상화*** 하여 <u>dialog에 필요한 표준 기능들을 미리 구현하고 있는 클래스</u>이다.
 
-* **Modal**과 **Modeless** (or Non-modal) Dialog를 만드는 데 사용된다.
+* **Modal** 과 **Modeless** (or Non-modal) Dialog를 만드는 데 사용된다.
     * **Modal Dialog**: `exec()` 메서드를 사용하여 실행한다. 사용자가 창을 닫기 전까지 다른 창과 상호작용할 수 없다.
     * **Modeless Dialog**: `show()` 메서드를 사용하여 실행한다. (`open()` 메서드는 Window-modal로 동작). 창이 열려 있어도 다른 창과 상호작용할 수 있다.
 * 사실 `QDialog`를 직접 인스턴스화하여 사용하는 경우는 드물며, 주로 **Subclassing** 하여 다양한 button, text, field, label을 추가한 **Custom Dialog** 를 만드는 데 이용된다.
