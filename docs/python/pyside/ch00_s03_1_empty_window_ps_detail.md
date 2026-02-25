@@ -56,7 +56,7 @@ from PySide6.QtWidgets import QApplication, QWidget, QLabel
 - `close()` :  
 	해당 widget의 윈도우를 닫음.
 
-> PyQt에서 `xxx`라는 이름의 **attribute**에 대해  
+> PyQt에서 `xxx`라는 이름의 **attribute** 에 대해  
 >  
 >  * 설정하는 ***setter*** method들은 `setXxx(...)`라는 이름(`set` 다음에 **upper case**) 을 가지고, 
 >  * ***getter*** 들은 **lower case** 그대로 사용하여 `xxx()`의 이름을 가진다.
@@ -70,7 +70,9 @@ Setter와 Getter개념이 생소하다면 다음 문서를 참고하라 : [OOP: 
 
 ### 1-1. `QApplication` Class
 
-Qt 의 GUI application을 추상화하고 있는 class.  
+Qt 의 GUI application을 추상화하고 있는 class. 
+
+> 좀 더 정확히 말한다면 GUI application의 [runtime context](https://ds31x.tistory.com/621#5.-runtime-context)를 관리하며, 애플리케이션의 제어 흐름을 처리하는 event loop를 구동시키는 클래스임.
 
 PySide 또는 PyQt로 GUI 프로그램을 만들 때, 
 
