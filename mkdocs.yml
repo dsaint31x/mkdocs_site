@@ -290,6 +290,7 @@ nav:
       - "Python의 Class (차이점)": "python/oop/oop_3_01_python_class.md"
       - "Python의 Encapsulation": "python/oop/oop_3_02_python_encapsulation.md"
   - "Python":
+    - "python/basic/zip.md"
     - "python/basic/module_package.md"
     - "PySide":
       - "ch00":
