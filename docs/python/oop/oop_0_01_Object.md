@@ -1,6 +1,6 @@
 ---
 title: Object 란
-tags: [object]
+tags: [object, oop, python, abstraction, simula-67]
 ---
 
 # Object (객체) 란
@@ -15,14 +15,14 @@ tags: [object]
 
 ### 참고: Python에서의 Object란?
 
-![](../img/python_object.jpeg){style="display: block; margin: 0 auto; width="300px"}
+![](../img/python_object.jpeg){style="display: block; margin: 0 auto; width=300"}
 
 다음의 속성을 가진 데이터 덩어리 (a chunk of data)를 가리킴.
 
-1. type: 해당 object가 무엇인지 또는 무엇을 할 수 있는지를 정의함.
-2. id: 다른 objects과 구분되는 unique id를 가짐. (이게 같을 경우 동일 object)
-3. value: 앞서의 type에 의해 object가 가질 수 있는(또는 할당되는) value의 범위가 결정됨. 같은 bytes로 표현되더라도 type이 다르면 다른 value로 해석될 수 있음 (자연수 65와 upper case A의 경우를 예로 들 수 있음.)
-4. reference count: garbage collection등을 위해 해당 object가 얼마나 많은 곳에서 사용되는지를 count 함.
+1. **type**: 해당 object가 무엇인지 또는 무엇을 할 수 있는지를 정의함.
+2. **id**: 다른 objects과 구분되는 unique id를 가짐. (이게 같을 경우 동일 object)
+3. **value**: 앞서의 type에 의해 object가 가질 수 있는(또는 할당되는) value의 범위가 결정됨. 같은 bytes로 표현되더라도 type이 다르면 다른 value로 해석될 수 있음 (자연수 65와 upper case A의 경우를 예로 들 수 있음.)
+4. **reference count**: garbage collection등을 위해 해당 object가 얼마나 많은 곳에서 사용되는지를 count 함.
 
 reference count는 PVM의 Garbage Collection 에서 매우 중요한 역할을 수행함:
 
@@ -43,16 +43,17 @@ Object Oriented Programming 의 약자로
 
 ## Simulation 과 OOP
 
-최초의 OOP 언어인 **"Simula67"** 은 Simulation을 위해 만들어진 언어임.
+최초의 OOP 언어인 **"Simula-67"** 은 Simulation을 위해 만들어진 언어임.
 
 * Class, Object 등의 개념 자체가, 실세계를 어떻게 묘사할지 (=simulation) 에서 출발했다는 애기임.
 
-달리 말하면, **OOP** 라는 것은 현실세계를 어떻게 프로그래밍으로 시뮬레이션 할지의 관점 으로 진행된다고 할 수 있음.
+달리 말하면, 
+**OOP** 라는 것은 현실세계를 어떻게 프로그래밍으로 시뮬레이션 할지의 관점 으로 진행된다고 할 수 있음.
 
-> OOP의 원조로 가장 대중적으로 인정받는 프로그래밍 언어는 ***Smalltalk-76*** 이지만, 이는 ***Simula-67*** 에 많은 영향을 받음. 이를 반영하여 위에서는 최초의 OOP 언어로 Simular-67을 선택했다. (누가 최초냐는 항상 논쟁거리다. 하늘 아래 완벽한 새 것이 없는 터라..)
+> OOP의 원조로 가장 대중적으로 인정받는 프로그래밍 언어는 ***Smalltalk-76*** 이지만, 이는 ***Simula-67*** 에 많은 영향을 받음. 
+> 이를 반영하여 최초의 OOP 언어로 Simula-67을 선택했다. (누가 최초냐는 항상 논쟁거리다. 하늘 아래 완벽한 새 것이 없는 터라..)
 >
 
 ---
 
 Object를 이해했으니, 이제 Programming Paradigm의 개념을 살펴보자.
-

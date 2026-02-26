@@ -1,3 +1,8 @@
+---
+title: Compiler vs Interpreter
+tags: [compiler, interpreter, java, python, c, c++, javascript, bytecode, machine-code]
+---
+
 # Compiler Language and Interpreter Language
 
 ![](./img/compiled_interpreted_lang.jpg){style="display:block; margin: 0 auto; width:500px"}
@@ -33,7 +38,7 @@ compiled language 와 interpreted language라고도 불림.
     * compile 과정 없이 라인 (정확히는 `statement`) 단위의 execution(실행)이 가능하므로 개발 단계에서 적은 양의 수정에 대한 결과를 쉽게 확인 가능 (이는 source code전체를 가지고 출발하는 compiler와 차이점).
     * 대화식 프로그래밍이 가능하여 교육용으로 적합.
 
-대표적인 예로 `Python`, PHP, ASP, Java Script, Perl 등을 들 수 있다.
+대표적인 예로 `Python`, `PHP`, `Ruby`, `JavaScript`, `Perl` 등을 들 수 있다.
 
 최근의 Interpreter language는 VM을 도입하여 고유의 유연성을 유지하면서 높은 성능을 얻고 있다.  
 이 경우, interpreter는 OS가 이해할 수 있는 언어로 변환이 아닌 VM이 이해할 수 있는 `bytecode`로 변환을 수행함. 
@@ -41,6 +46,10 @@ compiled language 와 interpreted language라고도 불림.
 
 > 보다 자세한 건 다음 URL을 참고. [Python Interpreter and PVM (Python Virtual Machine)](
 https://dsaint31.tistory.com/496)
+
+
+위에서 다룬 모든 프로그래밍 언어는 high level programming language임.  
+대표적인 high level programming language 등은 다음을 참고: [High Level Programming Language](ce08_high_low_level_language.md)
 
 ---
 
@@ -50,12 +59,12 @@ https://dsaint31.tistory.com/496)
 
 | Compiler Language | Interpreter Language |
 | :---: | :---: |
-|object code생성 | 일반적으로 object code만들지 않음 |
-| program단위로 translation이 이루어짐 | statement단위로 translation이 이루어짐 |
-| translation에 많은 시간이 필요. | translation 속도가 빠름 |
-| execution 속도가 빠름 | execution 속도가 느린 편 |
-| executable code로 변환된 이후에는 compiler 필요없음 | 원칙대로는 interpreter가 수행을 위해 필요함|
-| 결과물이 OS(or 플랫폼) 종속적인 경우 많음(VM에서 동작하는 Java는 예외)| 결과물(?)이 OS 독립적인 경우가 많음(interpreter만 제공된다면)|
+| Object code 생성 | 일반적으로 Object code 만들지 않음 |
+| Program 단위로 translation이 이루어짐 | Statement 단위로 translation이 이루어짐 |
+| Translation에 많은 시간이 필요 | Translation 속도가 빠름 (시작이 빠름) |
+| Execution 속도가 빠름 | Execution 속도가 느린 편 |
+| Executable code로 변환된 이후에는 compiler 필요 없음 | 원칙대로는 interpreter가 수행을 위해 필요함 |
+| 결과물이 OS(or 플랫폼) 종속적인 경우 많음 (VM에서 동작하는 Java는 예외)| Source code가 OS 독립적인 경우가 많음 (Interpreter만 제공된다면) |
 
 ---
 
@@ -74,14 +83,17 @@ https://dsaint31.tistory.com/496)
 
 ## 관련 용어 정리.
 
-compiler의 결과물인 `object code`나 입력이 되는 `source code` 등의 용어를 간략히 정리한다.
+Compiler의 결과물인 `object code`나 입력이 되는 `source code` 등의 용어를 간략히 정리한다.
 
 #### `Object code (목적코드)`
-: object module(목적파일)이라고도 불리며, `compiler`가 ^^source code로부터 compile을 수행하여 생성한 code^^ 혹은 파일을 의미함. 
-: * `machine language`나 intermediate language (register transfer language,RTL)와 같은 ^^binary code^^ 이며, 
-* **`linker`등을 통해 여러 다른 object code와 연결되어 executable code가 된다 (linking)**. 
+: Object module(목적파일)이라고도 불리며, `compiler`가 ^^source code로부터 compile을 수행하여 생성한 code^^ 혹은 파일을 의미함. 
+: * `machine language`나 intermediate language (register transfer language, RTL)와 같은 ^^binary code^^ 이며, 
+* **`linker` 등을 통해 여러 다른 object code와 연결되어 executable code가 된다 (linking)**. 
 * 일반적으로 executable인 binary code를 machine code 라고 보기 때문에 완벽한 기계어는 아니라고 보는 경우가 많다 
 * 내부에서 cpu가 읽어들이는 logical address를 사용하고 있으며, loader에 의해 loading이 된 이후 실제 physical address로 변경됨.
+:   
+: 좀 더 자세한 내용은 다음을 참고: [object file (elf의 일종)](../ch05/ch05_11_01_program_execution.md#1-2-object-file-elf의-일종)
+
 
 #### `Source code (원시코드)`
 : programming language로 작성된 text(텍스트)로서  
@@ -105,6 +117,7 @@ compiler의 결과물인 `object code`나 입력이 되는 `source code` 등의 
 : Programming language라기보다는 cpu가 직접 이해하고 실행할 수 있는 operation code들, 즉 instruction set을 의미함.  
 : * 때문에 instruction set architecture (ISA)에 따라 달라짐.  
 * 이들은 0과 1로 이루어진 binary code들이며 cpu가 읽고 수행이 가능함.
+* 참고: [Machine code](./ce08_machine_code.md)
 
 #### `Microcode (마이크로코드)`
 : `Microcode`는 CPU 내부에서 `machine code`의 명령어를 실행하기 위해 필요한 더 저수준의 제어 신호를 생성하는 code.  
@@ -112,4 +125,4 @@ compiler의 결과물인 `object code`나 입력이 되는 `source code` 등의 
 * 복잡한 `machine code`의 명령어를 더 간단한 hardware code 로 분해함.  
 * `Microcode`는 hardware에 내장되거나 firmware 형태로 제공됨.
 
-[Machine code vs. Microcode](https://ds31x.tistory.com/319)
+> 참고자료: [Machine code vs. Microcode](https://ds31x.tistory.com/319)

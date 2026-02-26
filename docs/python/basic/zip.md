@@ -83,6 +83,7 @@ Alice 90
 Bob 85
 Charlie 100
 ```
+
 * zip이 `(name, score)` 튜플을 하나씩 만듦
 * `for`문이 그것을 풀어서 사용
 
