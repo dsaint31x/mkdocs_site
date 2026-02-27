@@ -62,7 +62,7 @@ single time-step의 input에 대해 sequence output이 나오는 network임.
 
 실제 구현할 때는 아래 그림처럼 각 RNN cell에서 마지막 출력 외에는 무시하는 형태로 구현됨.
 
-![seq2vec](../img/ch16_RNN/seq_2_vec.png)
+![seq2vec](../img/ch16_RNN/seq_2_vec.png){style="display: block; margin: auto 0; width:400"}
 
 ---
 
@@ -105,7 +105,7 @@ input sequence를 전체를 입력받아서 encoding을 수행하여 represent(=
 > 아래 그림처럼 input seq.가 있는 곳에선 output이 없고,
 > output이 있는 곳에선 input이 없는 형태로 그려지기도 함.  
 >
-> ![encoder_decoder_network](../img/ch16_RNN/encoder_decoder_network.png)
+> ![encoder_decoder_network](../img/ch16_RNN/encoder_decoder_network.png){style="display: block; margin: auto 0; width:400"}
 >  
 > 이경우 `many-to-one`과 `one-to-many`가 연결된 것으로도 볼 수 있다.
 
