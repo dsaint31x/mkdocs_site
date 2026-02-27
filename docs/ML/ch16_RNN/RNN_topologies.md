@@ -68,31 +68,54 @@ single time-step의 input에 대해 sequence output이 나오는 network임.
 
 ## many to many (encoder-decoder)
 
-`sequence-to-sequence` 의 일종이지만, `encoder-decoder`로 더 많이 불림  
+`sequence-to-sequence` 의 일종이지만,  
+`encoder-decoder`로 더 많이 불림  
 (`seq2seq`로 불림).
 
 
-> 사실 `seq2seq` 은 일종의 task의 형태로 sequence 데이터가 들어가서 sequence 출력이 나옴을 의미함.  
-> `encoder-decoder` 는 모델의 구조를 가리키는 용어임.
-> (CNN을 encoder로 하고 transformer를 decoder로 하는 방식은 `seq2seq`가 아니나 `encoder-decoder` 구조임)
+> 사실 `seq2seq` 은 일종의 task의 형태로
+> **sequence 데이터가 들어가서 sequence 출력이 나옴** 을 의미함.  
+> `encoder-decoder` 는 모델의 구조를 가리키는 용어임.  
 >
-> 이 두 용어 가 "seq2seq model" = "encoder-decoder RNN" 으로 흔히 사용되고 있으나, 위의 차이는 기억을 할 것.
-> `Sequence To Sequence Learning with Neural Networks (Sutskever et al. 2014) 논문이 워낙 유명해지면서 이 둘을 같게 사용하는 경우가 매우 많아짐.
+> * CNN을 encoder로 하고
+> * transformer를 decoder로 하는 방식은
+> * `seq2seq`가 아니나 `encoder-decoder` 구조임)
+>
+> 이 **두 용어** 가
+> "seq2seq model" = "encoder-decoder RNN" 으로 흔히 사용되고 있으나,
+> 위의 차이는 기억을 할 것.
+> 
+> `Sequence To Sequence Learning with Neural Networks (Sutskever et al. 2014) 논문이 워낙 유명해지면서
+> 이 둘을 같게 사용하는 경우가 매우 많아짐.
 
-이 문서의 맨 위에 있는 이미지에서 input sequence (3 time-steps)들이 존재하는 부분은 encoder라고 볼 수 있고, 이후 오른쪽의 output sequence가 있는 부분을 decoder라고 볼 수 있음.
+이 문서의 맨 위에 있는 이미지에서  
+input sequence (3 time-steps)들이 존재하는 부분은 encoder라고 볼 수 있고,  
+이후 오른쪽의 output sequence가 있는 부분을 decoder라고 볼 수 있음.
 
-* 이렇게 겹쳐지지 않고, 아예 분리되는 형태로 더 많이 사용됨 (아래 그림 참고).
+* 이렇게 겹쳐지지 않고, 아예 분리되는 형태로 더 많이 사용됨
+* 아래 그림 참고.
 
-input sequence를 전체를 입력받아서 encoding을 수행하여 represent(=`context vector`)를 얻고 이를 기반으로 decoding을 하여 output sequence를 얻는 형태로 2017년 transformer가 등장하기 전까지 machine translation 분야 등에서 인기있던 topology였음.
+input sequence를 전체를 입력받아서 encoding을 수행하여 represent(=`context vector`)를 얻고  
+이를 기반으로 decoding을 하여 output sequence를 얻는 형태로  
+2017년 transformer가 등장하기 전까지 machine translation 분야 등에서 인기있던 topology였음.
 
 
-> 위의 그림과 같이 encoder와 decoder가 연결된 가운데에서 input과 output이 같이 존재하는 형태로 그려지기도 하지만, 아래 그림처럼 input seq.가 있는 곳에선 output이 없고, output이 있는 곳에선 input이 없는 형태로 그려지기도 함.  
+> 위의 그림과 같이
+> encoder와 decoder가 연결된 가운데에서 input과 output이 같이 존재하는 형태로 그려지기도 하지만,
+> 아래 그림처럼 input seq.가 있는 곳에선 output이 없고,
+> output이 있는 곳에선 input이 없는 형태로 그려지기도 함.  
 >
 > ![encoder_decoder_network](../img/ch16_RNN/encoder_decoder_network.png)
 >  
 > 이경우 `many-to-one`과 `one-to-many`가 연결된 것으로도 볼 수 있다.
 
-문제는 `encoder`에서 `decoder`로 마지막 hidden state만을 넘겨주다보니, 전제 input sequence의 정보가 하나의 hidden state에 담겨야 하기 때문에 input/output sequence가 길어질 수록 decoder 시작 부분에 입력되는 hidden state의 정보가 손실되기 쉬움 (information bottleneck이라고 불림).
+문제는 
+
+* `encoder`에서 `decoder`로 마지막 hidden state만을 넘겨주다보니,
+* 전제 input sequence의 정보가 **하나의 hidden state** 에 담겨야 하기 때문에
+* input/output sequence가 길어질수록
+* decoder 시작 부분에 입력되는 hidden state의 정보가 손실되기 쉬움
+* (**information bottleneck** 이라고 불림).
 
 다음 그림에서 오른쪽 상단의 연결구조가 전통적인 encoder-decoder RNN 구조임.
 
