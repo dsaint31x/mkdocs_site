@@ -72,7 +72,7 @@ Grave et al.이 제안한 것을 포함하여 다음과 같은 여러 attention 
 |[Vaswani et al., 2017](http://papers.nips.cc/paper/7181-attention-is-all-you-need.pdf)|scaled dot-product attention *|$f(\textbf{s},\textbf{h})= \frac{\textbf{s}\cdot \textbf{h}}{\sqrt{n}}$ | $n$ 은 encoder state $\textbf{h}$의 dimension임.<br/> inner product를 사용하므로, $\textbf{s}$와 $\textbf{h}$의 차원이 같음.| 
 
 * dot product approach가 additive approach보다 좀 더 나은 것으로 알려져있고 (Luong et al., 2015), 때문에 dot product approach가 보다 널리 사용됨.
-    * 사실 transformer를 소개한, Vaswani et al. (2017)에서 제안된 **scaled dot-product attention**이 가장 많이 사용된다 (keras에서 `keras.layers.Attention`으로 구현됨.)
+    * 사실 transformer를 소개한, Vaswani et al. (2017)에서 제안된 **scaled dot-product attention** 이 가장 많이 사용된다 (keras에서 `keras.layers.Attention`으로 구현됨.)
     * 이 것이 Attenion is All You Need 라는 Transformer를 제안한 논문에서 사용한 방식.
 * decoder's hidden state에 접근하기 보다는 decoder의 output을 사용하는 형태로 구현하는 경우가 보다 쉽고 고속화등에서 유리한 점이 있기 때문에 많이 사용됨(성능도 나쁘지 않음).
 * decoder의 output을 사용할 경우, Luong et al.이 제안한대로 attention layout의 출력을 softmax를 activation으로 가지며 decoder의 최종 output을 내놓는 `dense`의 입력으로 직접 사용함.
