@@ -7,15 +7,22 @@
 Attention score는 attention function 을 통해 얻어지며,  
 Attention mechanism에서 `query`, `key`, `value` 에서 `query`와 `key`의 ***similarity (or compatibility)*** 를 의미.
 
-> 특정 `query` (or 특정 timestep의 Decoder Hidden State)에 대해  
-> 모든 `key`들 (or Encdoer의 모든 Hidden States)의 Attention score (관련성/유사성 기반) 들로 구성된 vector $\textbf{e}$에  
+> 특정 `query` (or 특정 timestep의 Decoder Hidden State)에 대해
+> 
+> * 모든 `key`들 (or Encdoer의 모든 Hidden States)의 Attention score (관련성/유사성 기반) 들로
+> * 구성된 **vector $\textbf{e}$** 에
+>  
 > `softmax` 함수를 취해서 attention distribution (아래그림 참고)을 구함.    
-> 이 attention distribution은 일종의 확률분포(다 더하면 1.0)이며  
+> 이 **attention distribution은 일종의 확률분포(다 더하면 1.0)** 이며  
 > 이를 `value` vector (or Encoder의 모든 hidden states) 의 weight로 삼아 
 > weighted sum을 구하면 이 결과가 바로 **attention output (or context vector)** 임.   
 >  
 > ![](../img/ch16_RNN/encoder_decoder_w_attention.png)  
-> * Attention Vector : attention으로 계산된 context vector와 현재 decoder hidden state를 concatenation(결합)한, 실제 출력 단어 예측에 사용되는 decoder 측 representation
+>
+> * **Attention Vector** :
+>     * attention으로 계산된 context vector와
+>     * 현재 decoder hidden state를 concatenation(결합)한,
+>     * 실제 출력 단어 예측에 사용되는 decoder 측 representation.
 
 Attention score는 input에서 어디에 집중을 해야하는지를 나타내는 지표이다.
 
@@ -29,7 +36,7 @@ Decoder의 time-step $j$에서
 
 * Decoder state $\textbf{s}_{j-1}$ 과
 * Encoder state $\textbf{h}_i$ 의
-* similarity 가 계산된다.
+* Similarity 가 계산된다.
 
 해당 계산은 모든 Decoder state들에 대해 이루어짐.
 
