@@ -12,7 +12,7 @@ tags:
 
 # Internet
 
-Internet은 Network 의 Network를 가리키며, 기존의 WAN들을 전세계적으로 연결한 것이 Internet임.
+Internet은 Network 의 [Network](https://ds31x.github.io/wiki/network/)를 가리키며, 기존의 WAN들을 전세계적으로 연결한 것이 Internet임.
 
 > Internet is not actually a physical network; it’s **a set of layered protocols**.
 
