@@ -93,22 +93,40 @@ PC로 사용되었기 때문에
 오늘날 컴퓨터는 대부분 Digital Computer로 digital data를 다루지만,  
 Analog Data를 다루는 `Analog Computer` 와 이 둘을 결합한 `Hybrid Computer`도 존재.
 
-Analog Computer의 경우, 많은 분야에서 `Embedded Computer` 로 대체되었음.  
-(`Embedded Computer`는 Analog Data를 직접 처리하기 보다는 AD Converter를 통해 디지털로 변환해 처리하는 차이를 가짐).
+> 사실, 이같은 분류는 정말 고전적인 분류체계임.  
+> 오늘날은 사실상 디지털 컴퓨터가 대세라고 볼 수 있음)
+
+### Analog Computer
+
+Analog Computer의 경우, 많은 분야에서 `Embedded Digital Computer` 로 대체되었음.  
+(`Embedded Digital Computer`는 Analog Data를 직접 처리하기 보다는 AD Converter를 통해 디지털로 변환해 처리하는 차이를 가짐).
 
 Analog Computer는 ^^Continuous Data (실제적으로 Analog Data)^^ 를 직접 다루며,  
 ^^증폭회로 (Op-Amp)^^ 및 저항, capacitor등의 다양한 전기적 요소로 구성됨.  
 아날로그인 연속적인 물리량을 직접 처리하여 결과를 산출하기 때문에 Digital Computer 보다  
-소량의 실제 데이터에 대한 빠른 처리가 요구되는 분야에 많이 이용됨.  
-디지털 컴퓨터에 비해 특정 분야에서 한정되어 활용되며, 자동차 엔진 제어 시스템, 의료 기기 등이 주로 사용되는 영역임.
- 
+
+소량의 실제 연속 데이터(=아날로그 데이터)에 대한 실시간 처리가 요구되는 분야에 많이 이용되었음.
+
+과거에는 자동차 제어, 항공 시뮬레이터 등에서 아날로그 컴퓨터가 활용되었으나,
+현재는 대부분 디지털 임베디드 시스템으로 대체된 상태임.
 
 > Analog Computer와 달리  
 > Digital Computer는 주로 `arithmetic operations` 과 `logic operations`를 사용. 
+
+### Hybrid Computer
 
 Hybrid Computer는 아날로그와 디지털 컴퓨터의 기능을 결합하여 두 가지 유형의 장점을 모두 활용하는 시스템을 가리킴.
 
 * 아날로그 구성 요소는 미분 방정식과 복잡한 시뮬레이션을 실시간으로 처리하는 데 사용되며, 
 * 디지털 구성 요소는 논리 연산과 데이터 저장을 담당
 
-일반적으로 컴퓨터는 Digital Computer 를 가리키는 경우가 많음.
+하지만 이 역시 디지털 컴퓨터로 거의 대체됨.
+
+### 오늘날의 컴퓨터: 디지털 컴퓨터
+
+오늘날 순수 아날로그 컴퓨터 제어 방식은 거의 사용되지 않음:
+
+현대 시스템은 다음과 같이 구성됨:
+	•	센서 → AD Converter → MCU/CPU → 제어 알고리즘 → DA Converter
+
+때문에 오늘날 컴퓨터는 Digital Computer 를 가리키는 경우가 대다수임.
