@@ -1,3 +1,21 @@
+---
+title: "Network 00 - History of Data Communication"
+description: "데이터 통신의 역사와 네트워크의 기본 개념 정리: ARPANET, UUCP, USENet, LAN/WAN, Switching, Protocol, 통신 방식 등"
+tags: 
+  - Data Communication
+  - ARPANET
+  - UUCP
+  - USENet
+  - LAN
+  - WAN
+  - Protocol
+  - TCP/IP
+  - OSI
+  - Switching
+  - Modem
+  - History of Internet
+---
+
 # Network 00
 
 ## History of Data Communication
@@ -19,12 +37,12 @@
     - ALOHA (Additive Links Online Hawaii Area) 시스템 (`packet-switched radio network`) 등장.
     - 1970년에 시작된 이 시스템은 ***무선 데이터 통신*** 의 기초를 마련함.
 - **1973년**:
-    - Ethernet 개발됨.
+    - [Ethernet](https://dsaint31.tistory.com/438) 개발됨.
     - Ethernet은 ALOHA 시스템에서 영감을 받아 개발되었으며, LAN의 표준으로 자리잡음.
 - **1979년**:
     - Bell 연구소에서 `UNIX-to-UNIX copy (UUCP)` 시스템 등장.
     - UNIX 기반 컴퓨터들이 데이터를 주고받고 프로그램을 원격으로 수행시킬 수 있게 되었고,
-    - 이 `UUCP`를 기반으로 일종의 **메시지 교환 시스템** 인 [USENet](http://commres.net/wiki/usenet)이 1980년에 생성됨.
+    - 이 `UUCP`를 기반으로 일종의 **메시지 교환 시스템** 인 [USENet](https://ds31x.tistory.com/624)이 1980년에 생성됨.
     - USENet은 민간 주도의 완전히 분산된 메시지 교환 시스템이었음.
 - **1990년대**:
     - Internet(Inter+Net)이라는 용어가 일반화되며, Internet을 인프라로 삼아 WWW(월드 와이드 웹) 서비스가 본격적으로 시작됨.
@@ -56,8 +74,8 @@
 
 ***규모*** 에 따른 분류.
 
-> Local Area Network (LAN)은 작은 영역의 network를 가리키며,  
-> Wide Area Network (WAN)은 중대형 영역의 network를 가리킴. 
+> Local Area Network (**LAN**)은 작은 영역의 network를 가리키며,  
+> Wide Area Network (**WAN**)은 중대형 영역의 network를 가리킴. 
 
 흔히, 
 
@@ -70,13 +88,16 @@
 
 ## Protocols
 
-> set of rules. '약속', '규약', '협약' 등을 의미하는 단어로 상호간 원활한 교류, 소통, 통신을 위해  서로 동일하게 어떠한 설정/규칙을 정한 것을 가리킴.
+> set of rules.
+> **'약속', '규약', '협약' 등을 의미하는 단어** 로
+> 상호간 원활한 교류, 소통, 통신을 위해
+> 서로 동일하게 어떠한 설정/규칙을 정한 것을 가리킴.
 
-* 통신을 원하는 두 개체 간에 무엇을, 어떻게, 언제 통신할 것인가를 서로 약속하여 통신상의 오류를 피하도록 하기 위한  통신 규약임. 
+* 통신을 원하는 두 개체 간에 무엇을, 어떻게, 언제 통신할 것인가를 서로 약속하여 통신상의 오류를 피하도록 하기 위한 통신 규약임. 
 * protocol이 없다면, 정보를 보내는 컴퓨터는 16비트 패킷으로 데이터를 보내고, 정보를 받는 컴퓨터는 32비트 패킷의 데이터를 수신 기대하여 통신이 아예 안되는 상황 등이 벌어질 수도 있음. 
-* 가장 유명한 프로토콜은 **개방형 상호 접속 시스템**(`Open Systems Interconnection/OSI`) 임.
-* 사실 OSI는 컴퓨터들 사이의 네트워크 통신을 위한 일종의 가이드 라인이라고도 볼 수 있음. 
-* 인터넷 프로토콜 가운데 가장 중요한 것으로 `TCP/IP`, `HTTP`, `FTP` 등이 있음.
+* 가장 유명한 프로토콜은 [**개방형 상호 접속 시스템**(`Open Systems Interconnection/OSI`)](https://ds31x.github.io/wiki/network/osi_7layer/) 임.
+* 사실 [OSI](https://ds31x.github.io/wiki/network/osi_7layer/)는 컴퓨터들 사이의 네트워크 통신을 위한 일종의 가이드 라인이라고도 볼 수 있음. 
+* 인터넷 프로토콜 가운데 가장 중요한 것으로 [`TCP/IP`](https://ds31x.github.io/wiki/network/tcp_ip/), `HTTP`, `FTP` 등이 있음.
 
 ---
 
@@ -92,12 +113,12 @@
 
 `Half Duplex` : 반이중 통신.
 
-: DTE 2대가 시간적으로 교대로 데이터를 교환하는 방식으로  
+: DTE 2대가 **시간적으로 교대로 데이터를 교환** 하는 방식으로  
 순간적으로는 데이터가 한 방향으로만 흐르지만,  
 해당 통신이 끝나면 다음번에는 송수신 방향이 바뀌어 데이터가 전송될 수 있는 통신 방식임.  
-워키토키 등에서 over로 자신의 말을 끝내면, 다른 이가 송신을 시작할 수 있는 형태가 `Half duplex`임.
+워키토키 등에서 **over** 로 자신의 말을 끝내면, 다른 이가 송신을 시작할 수 있는 형태가 `Half duplex`임.
 
 `Full Duplex` : 전이중 통신
 
-: 연결된 2대의 DTE가 동시에 송수신을 다 할 수 있는 통신 방식  
+: 연결된 2대의 DTE가 **동시에 송수신** 을 다 할 수 있는 통신 방식  
 (전화가 가장 쉬운 예) 
