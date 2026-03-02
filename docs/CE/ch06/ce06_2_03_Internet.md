@@ -93,7 +93,7 @@ Browser의 주요 기능은 다음과 같음.
  
 오늘날의 웹브라우저는 단순히 Web서비스에서의 클라이언트라기보다는 일종의 VM으로 여겨지기도 함: 
 
-* 다음을 참고: [VM으로서의 Web Browser](/CE/ch09/ce09_web_browser/)
+* 다음을 참고: [VM으로서의 Web Browser](/mkdocs_site/CE/ch09/ce09_web_browser/)
 
 ---
 
