@@ -90,6 +90,10 @@ Browser의 주요 기능은 다음과 같음.
 > Browser 내부에는 Rendering Engine이 존재하며,  
 > 이는 HTML을 DOM(Document Object Model) 구조로 변환하고  
 > 화면에 시각적으로 표현함.
+ 
+오늘날의 웹브라우저는 단순히 Web서비스에서의 클라이언트라기보다는 일종의 VM으로 여겨지기도 함: 
+
+* 다음을 참고: [VM으로서의 Web Browser](../ch09/ce09_web_browser/)
 
 ---
 
