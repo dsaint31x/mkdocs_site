@@ -10,7 +10,7 @@ tags:
   - Firewall
 --- 
 
-![](./img/IMG_3592.png){style="display: block; margin: 0 auto; width:400"}
+![](./img/internet_www.png){style="display: block; margin: 0 auto; width:400"}
 
 # Internet
 
