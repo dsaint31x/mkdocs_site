@@ -121,11 +121,20 @@ nav:
   - Home: index.md
   - Tags: tags.md
   - 'CE':
-    - 'ch00: Introduction' :
-      - 'CE/ch00/computer.md'
-      - 'CE/ch00/category_of_computers.md'
-      - 'CE/ch00/component_of_computer.md'
-      - 'CE/ch00/history_of_computers.md'
+    - "Basic":
+      - 'ch00: Introduction' :
+        - 'CE/ch00/computer.md'
+        - 'CE/ch00/category_of_computers.md'
+        - 'CE/ch00/component_of_computer.md'
+        - 'CE/ch00/history_of_computers.md'
+      - "ch01: Network and Internet":
+        - "The History of Data Communication Network":  "CE/ch06/ce06_2_01_history.md"
+        - "Ethernet, Router, Switch and so on":         "CE/ch06/ce06_2_02_Ethernet_Router_Switch.md"
+        - "Internet and Related Protocols":             "CE/ch06/ce06_2_03_Internet.md"
+        - "Web Browser": "CE/ch09/ce09_web_browser.md"
+      - "ch02: CLI and Standard I/O":
+        - "Command Line Interface": "CE/ch10/ce10_2_01_cli_terminal.md"
+        - "Standard I/O Library"  : "CE/ch10/ce10_2_04_stdio.md"  
     - 'ch01: Representation of Data':
       - "CE/ch01/ch01_00_data_representation.md"
       - "CE/ch01/ch01_01_information.md"
@@ -217,10 +226,6 @@ nav:
       - "Parallel Transfer": "CE/ch06/ce06_1_07_parallel_com.md"
       - "Serial Transfer":  "CE/ch06/ce06_1_08_serial_com.md"
       - "USB":              "CE/ch06/ce06_1_09_usb.md"
-    - "Network and Communication":
-      - "The History of Data Communication Network":  "CE/ch06/ce06_2_01_history.md"
-      - "Ethernet, Router, Switch and so on":         "CE/ch06/ce06_2_02_Ethernet_Router_Switch.md"
-      - "Internet and Related Protocols":             "CE/ch06/ce06_2_03_Internet.md"
     - 'ch08 Programming Language and Language Processing':
       - "CE/ch08/ce08_programming_language.md"
       - "CE/ch08/ce08_high_low_level_language.md"
@@ -231,11 +236,6 @@ nav:
       - "CE/ch08/ce08_machine_code.md"
       - "CE/ch08/ce08_assembly_language.md"
       - "CE/ch08/ce08_pl_intro.md"
-    - 'ch09':
-      - "CE/ch09/ce09_web_browser.md"
-    - 'ch10':
-      - "Command Line Interface": "CE/ch10/ce10_2_01_cli_terminal.md"
-      - "Standard I/O Library"  : "CE/ch10/ce10_2_04_stdio.md"
     - '작성중':
       - "CE/ch15/ce15_2_4_portability.md"
       - "CE/ch15/ce15_2_5_package_management.md"
