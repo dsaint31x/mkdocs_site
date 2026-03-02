@@ -13,15 +13,18 @@ tags:
 * 매우 다양한 instruction set을 지원하며 이들을 조합하여 새로운 기능을 추가할 수 있는 일종의 Virtual Machine 
 * 또는 Software로만 구현된 Abstract Computer 라고 할 수 있다.
 
-> Calculator와 Computer의 정의의 차이를 한 번 다시 생각해봐라.
+> [Calculator와 Computer의 정의의 차이](https://dsaint31.tistory.com/436) 를 한 번 다시 생각해봐라.
 
 일반적으로 애기한다면,
 
 * 인터넷 망에서 정보를 검색하는데 사용되는 응용 프로그램.
 * 인터넷에서 문자, 영상, 음향 등 다양한 형태로 저장되어 있는 정보를 찾아 접근, 열람할 수 있도록 해 주는 SW
 
-> HTML5 등의 지원 등에 따라 기존의 OS에서 수행되던 많은 응용 프로그램이 웹 브라우저를 통해 수행되는 형태의 발전을 보이고 있음. → 웹 오피스 (Google Workspace 등등) 및 웹 OS
-, 구글 포토 : 사진 관리 설치형 어플리케이션을 대체, 구글 맵 : 지도 기반 설치형 어플리케이션 보다 우수. 
+> HTML5 등의 지원 등에 따라 기존의 OS에서 수행되던 많은 응용 프로그램이 웹 브라우저를 통해 수행되는 형태의 발전을 보이고 있음:
+>
+> * 웹 오피스 (Google Workspace 등등)
+> * 구글 포토 : 사진 관리 설치형 어플리케이션을 대체
+> * 구글 맵 : 지도 기반 설치형 어플리케이션 보다 우수. 
 
 ---
 
@@ -62,16 +65,16 @@ JavaScript 엔진은 오늘날 웹 브라우저의 핵심 구성 요소로,
 * HTML과 CSS를 담당하는 Layout Engine과 함께 현대 웹 브라우저의 기반을 형성. 
 * JavaScript 코드를 해석하고 실행하는 이 시스템은 단순한 인터프리터를 넘어선 정교한 실행 환경임.
 
-[JavaScript Engine의 동작방식 등에 대한 참고 자료](https://ds31x.tistory.com/434)
+참고 자료: [JavaScript Engine의 동작방식](https://ds31x.tistory.com/434)
 
-#### 참고: 주요 브라우저와 JavaScript 엔진
+#### **참고: 주요 브라우저와 JavaScript 엔진**
 
 각 주요 브라우저는 고유한 JavaScript Engine을 사용하거나 기존 Engine을 채택:
 
 * Chrome: Google의 **V8 엔진** 을 사용. 이 엔진은 뛰어난 성능으로 유명하며, Node.js에서도 사용됨.
 * Firefox: Mozilla의 **SpiderMonkey 엔진** 을 사용. 이는 최초의 JavaScript 엔진 중 하나로 계속 발전해옴.
 * Safari: Apple의 JavaScriptCore(별칭 **Nitro**) 엔진을 사용. 이 엔진은 ***WebKit 프레임워크의 일부로 iOS와 macOS 기기에서도 사용***.
-* Edge(현재 버전): 2020년 이후 Microsoft는 Edge 브라우저를 Chromium 기반으로 재구축했으며, 현재는 Google의 V8 엔진을 사용.
+* Edge(현재 버전): 2020년 이후 Microsoft는 Edge 브라우저를 Chromium 기반으로 재구축했기 때문에 현재는 Google의 V8 엔진을 사용.
     * Edge(레거시): 초기 버전의 Microsoft Edge는 **Chakra** 엔진을 사용했음.
     * Internet Explorer: Microsoft의 **Chakra(JScript)** 엔진을 사용(현재는 지원 종료).
 * Opera: 2013년 이후 Chromium 기반으로 전환하여 V8 엔진을 사용.
