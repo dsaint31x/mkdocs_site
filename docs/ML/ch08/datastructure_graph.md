@@ -12,7 +12,8 @@ Network (object들의 연결관계)를 나타내는 자료구조의 일종으로
 ## Terminology
 
 ### `node` 
-: vertex라고도 불리며, network에서 특정 위치, object, 상태 등을 의미한다. circle로 표현되는 경우가 일반적.
+: vertex라고도 불리며, network에서 특정 위치, object, 상태 등을 의미한다.  
+circle로 표현되는 경우가 일반적.
 
 ### `edge`
 : connection, branch, link 등으로 불리며, `node` 사이를 연결하는 line을 의미함. 
@@ -23,15 +24,19 @@ Network (object들의 연결관계)를 나타내는 자료구조의 일종으로
 
 ### `degree of node`
 
-: 특정 node의 property 중 하나로, 인접한 node (adjacent node)의 수를 의미함. 주로 undirected graph에서 정의되며, directed graph에서는 in-degree, out-degree로 구분된다.
+: 특정 node의 property 중 하나로, 인접한 node (adjacent node)의 수를 의미함.  
+주로 undirected graph에서 정의되며, directed graph에서는 in-degree, out-degree로 구분된다.
 
 ### `degree of graph`
 
-: graph의 property 중 하나로, 포함된 모든 node의 degree 를 합친 수 (edge 의 갯수에 2배에 해당).
+: graph의 property 중 하나로, 포함된 모든 node의 degree 를 합친 수  
+(edge 의 갯수에 2배에 해당).
 
 ### `path`
 
-: graph 내에서 특정 node 2개를 연결하는 edge들과 node들을 가리킴. 즉, a라는 node에서 출발하여 b라는 node에 도착하기까지 거쳐가는 node와 edge로 구성된다. terminal node들이 같더라도 여러 path가 있을 수 있다.
+: graph 내에서 특정 node 2개를 연결하는 edge들과 node들을 가리킴.  
+즉, a라는 node에서 출발하여 b라는 node에 도착하기까지 거쳐가는 node와 edge로 구성된다.  
+terminal node들이 같더라도 여러 path가 있을 수 있다.
 
 ### `simple path`
 
@@ -39,7 +44,8 @@ Network (object들의 연결관계)를 나타내는 자료구조의 일종으로
 
 ### `Euler path`
 
-: graph의 모든 edge를 한 번씩만 통과하여 처음 node로 되돌아오는 경로. 한붓그리기 문제라고도 불림.
+: graph의 모든 edge를 한 번씩만 통과하여 처음 node로 되돌아오는 경로.  
+한붓그리기 문제라고도 불림.
 
 ### `cycle`
 
@@ -65,19 +71,28 @@ geodesic distance라고도 불림.
 
 ### Undirected Graph
 
-edge에 방향성이 없어서 양방향으로 이동이 가능함. A,B node를 연결하는 `(A,B)`와 `(B,A)` edge가 같음.
+* edge에 방향성이 없어서 양방향으로 이동이 가능함.
+* `A`,`B` node를 연결하는 `(A,B)`와 `(B,A)` edge가 같음.
 
 ### Directed Graph
-edge에 방향성이 있서 한방향으로 이동이 가능. 화살표로 그래짐.  A에서 B방향으로 연결된 edge `<A,B>`와 B에서 A방향으로 연결된 edge `<B,A>`가 구분된다. (undirected에서는 `()`를 directed에서는 `<>`를 사용하는 경우가 많음)
+
+* edge에 방향성이 있서 **한 방향** 으로 이동이 가능: 화살표로 그려짐.
+* `A`에서 `B` 방향으로 연결된 edge `<A,B>`와 `B`에서 `A` 방향으로 연결된 edge `<B,A>`가 구분된다.
+* undirected에서는 `()`를 directed에서는 `<>`를 사용하는 경우가 많음.
 
 ### Weighted Graph
-edge에 길이 또는 가중치라고 불리는 숫자값이 할당된 graph. 대부분 network를 모델링하는 경우 weighted graph가 사용된다.
+
+* edge에 **길이** 또는 **가중치** 라고 불리는 숫자값이 할당된 graph.
+* 대부분 network를 모델링하는 경우 weighted graph가 사용된다.
 
 ### Cycle
-simple path 중 terminal node가 동일한 경우를 가리킴. 또는 해당 simple path가 존재하는 graph를 지칭.
+
+* simple path 중 terminal node가 동일한 경우를 가리킴.
+* 또는 해당 simple path가 존재하는 graph를 지칭.
 
 ### Acyclic
-cycle이 없는 graph를 지칭.
+
+* cycle이 없는 graph를 지칭.
 
 ---
 
