@@ -2,15 +2,33 @@
 
 ## History of Data Communication
 
-- **1844년**: Electrical Telegraphy (전신) 등장. Morse code를 이용하여 미국 볼티모어와 워싱턴 D.C. 사이에 연락이 이루어짐.
+- **1844년**:
+    - Electrical Telegraphy (전신) 등장.
+    - Morse code를 이용하여 미국 볼티모어와 워싱턴 D.C. 사이에 연락이 이루어짐.
 - **1876년**: 알렉산더 그레이엄 벨의 전화기 발명.
-- **1950년대 후반**: 냉전시대의 군사용 방어시스템의 일부로 모뎀과 전화선을 사용한 데이터 통신이 시작됨. 특히, 1958년에는 modem(모뎀)이 개발되어 군사 목적으로 사용됨.
-- **1960년대**: 중앙 컴퓨터를 중심으로 데이터 통신(ring 형태)이 발전함. 이 시기에는 주로 대형 컴퓨터 시스템에서 데이터를 전송하기 위해 전화선을 사용했으며, LAN(Local Area Network)의 개념이 점차 발전하기 시작함.
-- **1960년대 후반**: `packet-switched WAN`인 ARPANet (Advanced Research Projects Agency Network) 등장. 이 ARPANet은 이후 ***internet*** 으로 진화함.
-- **1970년대**: ALOHA (Additive Links Online Hawaii Area) 시스템 (`packet-switched radio network`) 등장. 1970년에 시작된 이 시스템은 ***무선 데이터 통신*** 의 기초를 마련함.
-- **1973년**: Ethernet 개발됨. Ethernet은 ALOHA 시스템에서 영감을 받아 개발되었으며, LAN의 표준으로 자리잡음.
-- **1979년**: Bell 연구소에서 `UNIX-to-UNIX copy (UUCP)` 시스템 등장. UNIX 기반 컴퓨터들이 데이터를 주고받고 프로그램을 원격으로 수행시킬 수 있게 되며, `UUCP`를 기반으로 일종의 메시지 시스템인 [USENet](http://commres.net/wiki/usenet)이 1980년에 생성됨.
-- **1990년대**: Internet(Inter+Net)이라는 용어가 일반화되며, WWW(월드 와이드 웹) 서비스가 본격적으로 시작됨. 인터넷은 전 세계의 네트워크(WAN)를 연결한 네트워크의 네트워크를 의미함.
+- **1950년대 후반**:
+    - 냉전시대의 군사용 방어시스템의 일부로 모뎀과 전화선을 사용한 데이터 통신이 시작됨.
+    - 특히, 1958년에는 modem(모뎀, MOdulator/DEModulator)이 개발되어 군사 목적으로 사용됨.
+- **1960년대**:
+    - 중앙 컴퓨터를 중심으로 데이터 통신(ring 형태)이 발전함.
+    - 이 시기에는 주로 대형 컴퓨터 시스템에서 데이터를 전송하기 위해 전화선을 사용했으며, LAN(Local Area Network)의 개념이 점차 발전하기 시작함.
+- **1960년대 후반**:
+    - `packet-switched WAN`인 ARPANet (Advanced Research Projects Agency NETwork, 1969년  미국방부 DARPA가 구축) 등장.
+    - 이 ARPANet은 이후 ***internet*** 으로 진화함: TCP/IP 기반의 packet network.
+- **1970년대**:
+    - ALOHA (Additive Links Online Hawaii Area) 시스템 (`packet-switched radio network`) 등장.
+    - 1970년에 시작된 이 시스템은 ***무선 데이터 통신*** 의 기초를 마련함.
+- **1973년**:
+    - Ethernet 개발됨.
+    - Ethernet은 ALOHA 시스템에서 영감을 받아 개발되었으며, LAN의 표준으로 자리잡음.
+- **1979년**:
+    - Bell 연구소에서 `UNIX-to-UNIX copy (UUCP)` 시스템 등장.
+    - UNIX 기반 컴퓨터들이 데이터를 주고받고 프로그램을 원격으로 수행시킬 수 있게 되었고,
+    - 이 `UUCP`를 기반으로 일종의 **메시지 교환 시스템** 인 [USENet](http://commres.net/wiki/usenet)이 1980년에 생성됨.
+    - USENet은 민간 주도의 완전히 분산된 메시지 교환 시스템이었음.
+- **1990년대**:
+    - Internet(Inter+Net)이라는 용어가 일반화되며, Internet을 인프라로 삼아 WWW(월드 와이드 웹) 서비스가 본격적으로 시작됨.
+    - 인터넷은 전 세계의 네트워크(WAN)를 연결한 네트워크의 네트워크를 의미함.
 
 > `Modem` (MOdulator/DEModulator)  
 > 컴퓨터는 디지털 신호를 사용하기 때문에  
