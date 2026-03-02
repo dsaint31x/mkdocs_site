@@ -56,6 +56,8 @@ Web browser you use every day is
 * Markup language등에 대한 일종의 interpreter라고 볼 수 있음.
 * 최근의 web browser에는 프로그램 같이 사용자의 입력에 대한 반응 등을 하기 위해 JavaScript Engine(자바스크립트 엔진) 이 추가되어 있음.
 
+[참고: engine이란](https://ds31x.tistory.com/434#engine%EC%9D%B4%EB%9E%80?)
+
 ---
 
 ### JavaScript Engine
