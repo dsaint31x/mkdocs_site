@@ -16,9 +16,9 @@ tags:
   - History of Internet
 ---
 
-# Network 00
-
 ![](./img/network00.png){style="display: block; margin: 0 auto; width:500"}
+
+# Network 00
 
 ## History of Data Communication
 
@@ -53,7 +53,7 @@ tags:
 > `Modem` (MOdulator/DEModulator)  
 > 컴퓨터는 디지털 신호를 사용하기 때문에  
 > 아날로그 방식의 전화선(PSTN) 등을 이용하여 통신하기 위해서  
-> 변복조가 필요함.  
+> [변/복조](https://ds31x.tistory.com/625#%EC%BB%B4%ED%93%A8%ED%84%B0-%EB%84%A4%ED%8A%B8%EC%9B%8C%ED%81%AC-%ED%86%B5%EC%8B%A0)가 필요함.  
 > 
 > 이를 수행해주는 device가 바로 modem임.
 
