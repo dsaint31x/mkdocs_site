@@ -18,6 +18,8 @@ tags:
 
 # Network 00
 
+![](./img/network00.png){style="display: block; margin: 0 auto; width:500"}
+
 ## History of Data Communication
 
 - **1844년**:
