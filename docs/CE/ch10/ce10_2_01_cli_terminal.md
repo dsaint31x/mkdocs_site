@@ -1,7 +1,8 @@
 # Command Line Interface (CLI)
 
-이 문서에서는 `CLI`에 대한 소개와 이를 수행해주는 `Terminal`을 살펴본다. 
+## 1. 시작하기
 
+이 문서에서는 `CLI`에 대한 소개와 이를 수행해주는 `Terminal`을 살펴본다. 
 
 그리고 이들을 통한 `I/O가 이루어지는 과정`을 간략히 설명한다.  
 Terminal을 통한 CLI방식으로 I/O가 이루어지는 과정을 살펴보면서, I/O `Interrupt`와 `Context switching`에 대한 개념을 소개하며, OS가 제공하는 I/O를 위한 `system call`의 개념과 이를 이용하는 `표준 입출력 라이브러리`에 대한 개념도 간략히 살펴본다. 
@@ -12,20 +13,20 @@ Terminal을 통한 CLI방식으로 I/O가 이루어지는 과정을 살펴보면
 
 ---
 
-## 1. Command Line Interface (CLI) 란?
+## 2. Command Line Interface (CLI) 란?
 
 > 키보드를 이용하여 terminal을 통해 computer와 대화하는 방식.  
 
 흔히 interactive 방식과 scripting 방식 두가지로 동작함.
 
-### 1-1. Interactive 방식 (or 대화식 모드)
+### 2-1. Interactive 방식 (or 대화식 모드)
 
 키보드로 command(명령)을 typing하여 입력하고, computer도 terminal 등에 문자를 출력하여 응답하는 Interactive 방식임.  
 (실제로 컴퓨터 초기에는 typewriter처럼 컴퓨터가 종이에 출력을 해줌.)
 
 > REPL (Run-Evaluation-Print, Loop의 약어) 모드라고도 불림.
 
-### 1-2. Scripting 방식 (or Shell Scripting방식)
+### 2-2. Scripting 방식 (or Shell Scripting방식)
 
 OS의 shell이 해석하여 실행할 수 있는 instructions을 특수한 종류의 파일(shell script 파일)로 실행되는 순서대로 기재해놓고,  
 해당 파일을 실행하여 일련의 instructions들을 한번에 실행하는 방식.
