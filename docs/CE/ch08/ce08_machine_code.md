@@ -16,7 +16,7 @@
 > 당시의 플러그보드와 스위치로 명령어를 입력하는 방식은,  
 > 프로그램의 논리와 데이터를 물리적인 하드웨어 설정으로 표현한 것으로, 이는 기계어 프로그래밍의 초기 형태로 볼 수 있음.
 
-하지만 1950년대에 machine code 의 mnemonic 인 assembly language가 개발 (1949년 EDSAC에서 최초로 사용되었다고 알려짐)되면서 사람이 직접 기계어로 프로그램하는 경우는 사리지게 됨.
+하지만 1950년대에 machine code 의 [mnemonic](https://medium.com/hexlant/mnemonic-%EC%9D%B4%EB%9E%80-7fb48106bd77) 인 assembly language가 개발 (1949년 EDSAC에서 최초로 사용되었다고 알려짐)되면서 사람이 직접 기계어로 프로그램하는 경우는 사리지게 됨.
 
 Machine code는
 
