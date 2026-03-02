@@ -10,6 +10,8 @@ tags:
   - Firewall
 --- 
 
+![](./img/internet.png){style="display: block; margin: 0 auto; width:500"}
+
 # Internet
 
 Internet은 Network 의 [Network](https://ds31x.github.io/wiki/network/)를 가리키며, 기존의 WAN들을 전세계적으로 연결한 것이 Internet임.
@@ -39,8 +41,9 @@ World Wide Web은 인터넷 위에서 동작하는 ***하이퍼텍스트 기반 
 > 사용자는 링크를 통해 문서를 탐색하며 정보를 획득함.
 
 주의한 점은 
-Web은 인터넷 그 자체가 아니라,
-인터넷 위에서 동작하는 하나의 응용 계층 서비스이라는 것임.
+
+* Web은 인터넷 그 자체가 아니라,
+* 인터넷 위에서 동작하는 하나의 응용 계층 서비스이라는 것임.
 
 > 참고로 최초의 [웹브라우저](#Web-Browser) 이름도 World Wide Web 이었음: 1990년 Tim Berners-Lee가 개발.
 > 이후 정보 시스템 과 이름이 겹치는 혼돈을 피하기 위해 Nexus로 이름이 변경됨.
@@ -160,11 +163,11 @@ email 전송 protocol. 기본적으로 25번 포트 사용.
 
 `FTP`
 : * 파일 전송을 위해 사용하는 protocol. (TCP/IP 위에 정의)
-    - binary mode와 ASCII mode가 있음 (txt파일 다운로드 제외하곤 binary mode사용)
-    - Anonymous FTP의 경우, account없이 사용하는 경우이며 이 경우 ID는 `Anonymous`, 패스워드는 자신의 e-mail을 쓰는게 일반적.
-* 앞선 `http`를 사용하는 웹 페이지에서도 파일을 다운로드할 수 있지만, 대량의 파일을 다운로드하기에는 아무래도 불편하고 느리다. 
-* ftp 프로토콜은 원격의 컴퓨터에 접속하여 파일만 빠르게 업로드/다운로드할 수 있도록 한다.
-* 대표적 sw : [https://filezilla-project.org/](https://filezilla-project.org/)
+:     - binary mode와 ASCII mode가 있음 (txt파일 다운로드 제외하곤 binary mode사용)
+:     - Anonymous FTP의 경우, account없이 사용하는 경우이며 이 경우 ID는 `Anonymous`, 패스워드는 자신의 e-mail을 쓰는게 일반적.
+: * 앞선 `http`를 사용하는 웹 페이지에서도 파일을 다운로드할 수 있지만, 대량의 파일을 다운로드하기에는 아무래도 불편하고 느리다. 
+: * ftp 프로토콜은 원격의 컴퓨터에 접속하여 파일만 빠르게 업로드/다운로드할 수 있도록 한다.
+: * 대표적 sw : [https://filezilla-project.org/](https://filezilla-project.org/)
 
 ---
 
