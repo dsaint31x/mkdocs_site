@@ -28,7 +28,7 @@ tags:
 >  
 > 여기서 조건문, 분기문, 반복문 등을 ***control structure*** 라고 부름.
 
-![](./img/programming_language.jpg){style="display: block; margin: 0 auto; width=400px"}
+![](./img/programming_language.jpg){style="display: block; margin: 0 auto; width:400"}
 
 참고 : [Control structure](https://ds31x.blogspot.com/2023/07/basic-control-structures-and-control.html)
 
@@ -81,14 +81,20 @@ tags:
 
 * 명령형 프로그래밍 언어 (Imperative Programming Language): 
     * 절차적 프로그래밍 언어 (Procedural Programming Language)
-        * 구조적 프로그래밍 언어 (Structured Programming Language) \*\*
-    * 객체지향 프로그래밍 언어 (Object Oriented Programming Language) \*\*\*
+        * 구조적 프로그래밍 언어 (Structured Programming Language): procedural을 개선! \*\*
+    * 객체지향 프로그래밍 언어 (Object Oriented Programming Language): 일부 declarative요소도 포함가능 \*\*\*
 * 선언적 프로그래밍 언어 (Declarative Programming Language): SQL
     * 논리형 프로그래밍 언어 (Logic Programming Language): Prolog
-    * 함수형 프로그래밍 언어 (Functional Programming Language): Haskell, Scala, Erlang \*\*\*
+    * 함수형 프로그래밍 언어 (Functional Programming Language): Haskell, Erlang, Scala \*\*\*
 
 > 사실 가장 모호한 분류이기도 함: 최근 프로그래밍 언어들은 이들을 다중으로 지원하는 형태임.
+>
+> 예를 들어, Scala의 경우 multi-paradigm language로 Functional 을 지원하나 OOP나 imperative code도 작성 가능함.
 
-Assembly Language, BASIC(초기), Fortran(초기) 처럼 function이나 module 등의 구조화를 하지 않은 경우를 순수한 imperative programming 이라고 할 수 있다.
+Assembly Language, BASIC(초기), Fortran(초기) 등은 imperative programming 이라고 봄:
 
-Imperative와 Declarative 의 차이는 [참고: Declarative Programming Language vs. Imperative Programming Language](../../python/oop/oop_0_02_0imperative_declarative.md)를 참고.
+* 상태 변경
+* 명령 순차 실행
+* 메모리 갱신
+
+보다 자세한 Imperative (명령형)와 Declarative (선언형) 의 차이는 [참고: Declarative Programming Language vs. Imperative Programming Language](../../python/oop/oop_0_02_0imperative_declarative.md)를 참고.
