@@ -1,6 +1,6 @@
 ---
 title: What is a Computer?
-tags: [computer, calculator, program]
+tags: [computer, calculator, program, machine, vm]
 ---
 
 ![](./img/what_is_a_computer.png){style="display: block; margin: 0 auto; width:500"}
