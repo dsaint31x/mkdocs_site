@@ -16,15 +16,23 @@ tags:
 
 > 다른 관점으로 Programming Language를 말한다면,  
 > 
-> * 메모리에서 데이터를 관리하기 위해 변수를 선언하고 값을 할당하는 등의 기능(`변수선언 및 할당`)과  
-> * 데이터의 값에 대한 `조건`문 및 해당 조건문의 결과에 따른 `분기`할 수 있는 기능을 제공하고,  
-> * 특정 조건등에 따른 `반복`문 기능 등을 제공해야 한다.  
+> * 메모리에서 데이터를 관리하기 위해 변수를 선언하고 값을 할당할 수 있는 기능(`변수선언 및 할당`)과 
+>     * 본질적으로는 상태를 표현할 수 있으면 충분
+>     * 일반적 imperative programming language 에선 변수선언 및 할당로 구현
+>     * 참고로, Functional Programming Language의 경우 변수없이도 상태 표현이 가능함. 
+> * 데이터의 값에 대한 `조건`문을 실행하고 그 결과에 따라 `분기`할 수 있는 기능을 제공하고,  
+> * 특정조건등에 따른 `반복`문 기능 등을 제공해야 한다 (단, 조건에 따라 반복횟수가 달라지는 **unbounded iteration** 기능 제공을 의미).
+>     * iteration 이 표현가능한 computation은 recursion(재귀) 로도 표현가능함. 
 >
 > 때문에 Programming Language를 배울 때,  
 >  
 > * 변수의 선언과 값을 할당하는 것과 
 > * 데이터를 담는 방법, 
 > * 조건문, 분기문, 반복문 등을 기본적으로 배우게 됨.
+>
+> 이는 Turing Machine과 동등한 system 을 만들 수 있는 Programming Language 가 제공해야 하는 기능으로 범용 프로그래밍 언어가 갖춰야할 조건에 해당함: (**무한실행 가능성** 은 생략했음)  
+> 
+> Turing Machine에 대한 보다 자세한 내용은 다음을 참고: [Turing Machine](https://ds31x.tistory.com/626#2.-%EA%B3%84%EC%82%B0-%EC%9D%B4%EB%A1%A0%EC%97%90%EC%84%9C%EC%9D%98-machine)
 >  
 > 여기서 조건문, 분기문, 반복문 등을 ***control structure*** 라고 부름.
 
@@ -93,8 +101,12 @@ tags:
 
 Assembly Language, BASIC(초기), Fortran(초기) 등은 imperative programming 이라고 봄:
 
+참고로, imperative programming language의 특징은 다음과 같음:
+
 * 상태 변경
 * 명령 순차 실행
 * 메모리 갱신
 
-보다 자세한 Imperative (명령형)와 Declarative (선언형) 의 차이는 [참고: Declarative Programming Language vs. Imperative Programming Language](../../python/oop/oop_0_02_0imperative_declarative.md)를 참고.
+보다 자세한 Imperative (명령형)와 Declarative (선언형) 의 차이는 다음을 참고:
+
+* [참고: Declarative Programming Language vs. Imperative Programming Language](../../python/oop/oop_0_02_0imperative_declarative.md)

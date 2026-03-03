@@ -1,3 +1,8 @@
+---
+title: Assembly Language
+tags: [assembly, mnemonic, assembler, machine-code, low-level-language]
+---
+
 # Assembly Language (어셈블리어)
 
 1세대 programming code인 machine code의 뒤를 이어 등장한 2세대 programming code임.
@@ -8,13 +13,13 @@
 
 ## 특징
 
-`Machine code`와 1:1로 대응하는 ***Mnemonic*** 언어임.
+`Machine code`와 1:1로 대응하는 [***Mnemonic***](https://medium.com/hexlant/mnemonic-%EC%9D%B4%EB%9E%80-7fb48106bd77) 언어임.
 
 * Machine code의 bit pattern 들의 조합 대신 간단한 영어단어에 해당하는 mnemonics를 사용.
 * address에 label을 붙여서 보다 기억하기 쉽고 효율적인 프로그래밍이 가능해짐.
 * comment가 가능해짐 (가독성 대폭 향상됨)
 
-> 기억하기 쉽도록 machine code 의 instructor에 상징적인 기호 (영어단어로 생각하면 쉬움)를 할당한 것임.  
+> 기억하기 쉽도록 machine code 의 instructor에 상징적인 기호 (mnemonic, 실제론 "영어단어" 가 mnemonic으로 사용됨)를 할당한 것임.  
 >  
 
 다음과 같은 대응이 이루어짐.
