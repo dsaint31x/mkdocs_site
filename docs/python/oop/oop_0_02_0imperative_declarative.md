@@ -1,3 +1,8 @@
+---
+title: "Declarative Programming Language vs. Imperative Programming Language"
+tags: [Programming, Paradigm, Declarative, Imperative, Turing Completeness]
+---
+
 # 참고: Declarative Programming Language vs. Imperative Programming Language
 
 > Structured Programming과 OOP(Object-Oriented Programming)의 차이를 보기 전에,
