@@ -14,7 +14,7 @@ Back propagation은 다음 2가지를 조합하여 ANN을 학습시킴.
 * 1970년 Seppo Linnainmaa가 석사 논문 [The representation of the cumulative rounding error of an algorithm as a Taylor expansion of the local rounding errors](https://people.idsia.ch/~juergen/linnainmaa1970thesis.pdf)에서 제안.  
  
 > 정말 천재적이라고 생각이 든다.  
-> 복잡한 문제를 작은 단위로 나누어 처리하는 기본에 충실.
+> 복잡한 문제를 작은 단위로 나누어 처리하는 기본에 충실.  
 > 한 연산의 입/출력을 이용하여 local gradient를 구하고,  
 > 이를 chain rule로 결합하여 전체 도함수의 값을 구해냄.
 
