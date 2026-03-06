@@ -93,12 +93,13 @@ ANN에서는 이를 edge에 weight을 할당하여 강화될수록 weight가 커
 > hyper-plane의 아래에 위치하는 경우엔 `off` 이 되고, 그 외의 경우는 `on` 이 되는 경우를 생각하면 쉽다.
 
 이 TLU를 기반으로 input layer (input nodes로 구성됨)와 output layer (output nodes로 구성됨) 
-로만 구성된 것을 `Single Layer Perceptron` or `Perceptron`이라고 부름.
+로만 구성된 것을 `Single Layer Perceptron` (**SLP**) or `Perceptron`이라고 부름.
 
 ![](./img/single_layer_perceptron.png)
 
-> 일반적으로 `perceptron`이라고 하면 `SLP`를 가리킨다. Scikit-Learn에서 `sklearn.linear_model.Perceptron`으로 제공되고 있다.  
-> package 명에서도 알 수 있듯이 Perceptron은 linear model에 불과하다.
+> 일반적으로 `perceptron`이라고 하면 `SLP`를 가리킨다.  
+> (Scikit-Learn에서 `sklearn.linear_model.Perceptron`으로 제공되고 있다.)  
+> package 명에서도 알 수 있듯이 **Perceptron은 linear model에 불과** 하다.
 
 다음은 Perceptron에서 node $i$와 $j$를 잇는 weight $w_{i,j}$의 update가 어떻게 이루어지는지를 보여주는 식으로 Gradient Descent와 매우 유사함을 알 수 있다.
 
