@@ -68,10 +68,17 @@ Reinforcement Learning Process는 다음의 요소들을 반드시 가지고 있
 
 때문에 `reward function` 등이 label 대신 주어짐. 
 
-* `Reward` signal은 ^^agent가 취한 action에 대한 environment의 feedback^^ 으로 supervised learning의 ground truth에 해당하는 label과는 차이가 있음.  
-*  Reinforcement Learning의 경우, ^^어떤 이상적인 action을 명시적으로 모든 상황에 맞게 할당할 수 없기 때문에 해당 action이 얼마나 goal을 달성하는데 유용한지를 측정하는 reward function^^ 을 사용헤 학습한다.
+* `Reward` signal은 ^^agent가 취한 action에 대한 environment의 (evaluative) feedback^^ 으로
+supervised learning의 ground truth에 해당하는 label (=instructive feedbak)과는 차이가 있음.  
+*  Reinforcement Learning의 경우,  
+^^어떤 이상적인 action을 명시적으로 모든 상황에 맞게 할당할 수 없기 때문^^ 에
+해당 action이 **얼마나 goal을 달성하는데 유용한지를 측정하는 reward function (=evaluation feedback)** 을 사용해 학습한다.
 
-해당 `reward function`으로부터 주어지는 ^^reward signal을 maximization하는 learning이라는 점에서 `unsupervised learning`하고도 차이^^ 가 있다.
+> Supervised Learning에서는 정답(=best action, label)이 존재함 (이를 instaructive feedback이라고 부름).
+> 반면 Reinforcement Learning은 evaluation feedback으로 어느정도 좋은지 나쁜지를 정량화해주긴 하나, 현재 상황에 best action인지는 알 방법이 없음.
+> 때문에 앞서 살핀 exploartion와 exploitation의 균형이 잡아야 함.
+
+주어진 기간동안 해당 `reward function`으로부터 주어지는 ^^reward signal의 합을 maximization하는 learning이라는 점에서 `unsupervised learning`하고도 차이^^ 가 있다.
 
 * `unsupervised learning`은 아예 정답에 해당하는 정보가 없으나
 * Reinforcement learning의 경우 정답에 해당하는 정보를 주는 `reward function`이 존재한다.
@@ -82,7 +89,7 @@ Reinforcement Learning은
 
 * `Unsupervised learning`와 비슷하게, 
 * agent가 얻는 ***experience의 내부적인 특성 구조*** 를 학습을 통해 추출하기도 하지만 
-* 이는 reinforcement learning의 최종 목표는 아님. e
+* 이는 reinforcement learning의 최종 목표는 아님. 
 * xperience의 내부적인 특성 구조 추출 과정을 통해 최종 목표인 reward signal을 maximization을 효과적으로 달성한다는 점에서 representative learning 들과도 차이를 보임.  
 
 ---
