@@ -51,10 +51,17 @@ Reinforcement Learning Process는 다음의 요소들을 반드시 가지고 있
 ![](../img/ch00/reinforcement_learning.png){width="400" align="center"}
 </figure>
 
-> 일반적으로 agent가 효과적으로 reinforcement learning을 하려면, `exploration` (탐험) 과 `exploitation` (이용) 사이의 균형을 잘 잡아야 한다.  
+> **Exploitation vs Exploration dilemma**  
+> 
+> 일반적으로 agent가 효과적으로 reinforcement learning을 하려면,
+> `exploration` (탐험) 과 `exploitation` (이용) 사이의 균형을 잘 잡아야 한다:   
 >  
-> * $^{(1)}$exploration : 다양한 situation에 대해 적절한 action을 찾기 위해서 새로운 시도를 하는 것을 의미함.  
+> * $^{(1)}$exploration :
+>     * 다양한 situation에 대해 적절한 action을 찾기 위해서 기존에 알고있는 최고의 action(=greedy action)이 아닌 새로운 시도를 하는 것을 의미함.
+>     * exploration은 단기간 적은 보상을 획득하지만 현재 모르는 정보를 탐색해 현재 greedy action보다 더 나은 action을 발견하여 더 높은 total reward를 획득할 수 있는 수단임
 > * $^{(2)}$exploitation : 현재까지의 경험을 토대로 가장 높은 reward를 보이는 action을 수행하는 것을 의미함.
+>     * 일종의 greedy algorithm임:
+>     * exploitation은 현재 가진 정보를 기준으로 즉각적인 최고의 보상을 획득할 수 있는 수단 
 
 ---
 
