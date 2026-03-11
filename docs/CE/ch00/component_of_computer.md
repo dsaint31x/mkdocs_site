@@ -25,10 +25,10 @@ tags: [hardware, software, cpu, memory, i/o, system-sw, application ]
     * Storage 라고도 불림.
 * **Input Device**
     * data나 program을 외부로부터 컴퓨터로 읽어들이는 역할 수행.
-    * 키보드와 마우스가 대표적.
+    * [키보드](https://dsaint31.me/mkdocs_site/CE/ch06/ce06_4_04_keyboard/?h=keyboard)와 [마우스](https://dsaint31.me/mkdocs_site/CE/ch06/ce06_4_04_keyboard/#mouse)가 대표적.
 * **Output Device**
     * 처리한 결과를 외부로 출력하는 역할을 수행.
-    * 모니터와 프린터가 대표적.
+    * [모니터](https://dsaint31.me/mkdocs_site/CE/ch06/ce06_4_04_keyboard/#monitor)와 프린터가 대표적.
 
 > **CPU** 와 **Memory**, **I/O Devices** 와 같이 세가지 구성요소로  
 > 기술되는 경우도 많음.
