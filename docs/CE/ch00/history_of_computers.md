@@ -48,43 +48,48 @@ Claude Shannon's [A Symbolic Analysis of Relay and Switching Circuits (1939년)]
 ### 0세대 컴퓨터
 
 `Z3`
-: 세계 최초의 프로그래머블 `이진수 기반 전기기계식 범용 컴퓨터`
-: [Relay](../ch02_co/ce02_03_1_relay.md) 
-: [Z3에 대하여](https://ds31x.tistory.com/385) 
+: 세계 최초의 프로그래머블 `이진수 기반 전기기계식 범용 컴퓨터`  
+[Relay](../ch02_co/ce02_03_1_relay.md)  
+ref: [Z3에 대하여](https://ds31x.tistory.com/385) 
 
 `Atanasoff Berry Computer (ABC)`
-: 세계 최초의 `전자식 디지털 컴퓨터`로 알려짐 (`ENIAC`은 최초의 전자식 디지털 범용컴퓨터)
-: [Vacuum Tube](../ch02_co/ce02_03_2_vacuum_tube.md) 사용.  
-: 1937~1942년에 아이오와 주립대의  
+: 세계 최초의 `전자식 디지털 컴퓨터`로 알려짐 (`ENIAC`은 최초의 전자식 디지털 범용컴퓨터)  
+[Vacuum Tube](../ch02_co/ce02_03_2_vacuum_tube.md) 사용.  
+1937~1942년에 아이오와 주립대의  
 존 빈센트 아타나소프와 클리포드 베리가 개발한 컴퓨터로  
 **복잡한 수학 계산(선형방정식 풀이)** 을 위해 설계된 Special Purpose Computer.  
 "[Plugboard (정식명칭: Control Panel)](https://ko.wikipedia.org/wiki/%ED%94%8C%EB%9F%AC%EA%B7%B8%ED%8C%90)를 통한 Programming이 가능한 `ENIAC`" 과 달리  
-: 프로그래밍이 가능한 [범용 컴퓨터](./category_of_computers.md#사용목적에-따른-분류)가 아니었음.  
-: 때문에 ABC를 가리켜 컴퓨터가 아닌 특정 계산만이 가능한 고정된 전자장치라고 여기는 의견도 있음.  
-: ref: [ABC에 대하여](https://ds31x.tistory.com/378)
+**프로그래밍이 가능한 [범용 컴퓨터](./category_of_computers.md#사용목적에-따른-분류)가 아니었음**.  
+때문에 ABC를 가리켜 컴퓨터가 아닌 **특정 계산만이 가능한 고정된 전자장치** 라고 여기는 의견도 있음.  
+ref: [ABC에 대하여](https://ds31x.tistory.com/378)
 
 `Colossus`
 : Alan Turing이 만든 bombe (에니그마를 해독하기 위한 전기기계식 컴퓨터?)와 그의 확률론적 방식에 영향을 받아,  
-Tommy Flowers 그룹이 설계하고 개발한 1943~1945년 개발된 컴퓨터.
+**Tommy Flowers 그룹** 이 설계하고 개발한 1943~1945년 개발된 컴퓨터.  
 (bombe는 이미테이션 게임이라는 영화를 보면 관련 이야기들이 나옴.)  
-2차세계대전(1939~1945) 중 독일군의 암호전신기인 [Lorenz Cipher](https://ko.wikipedia.org/wiki/%EB%A1%9C%EB%A0%8C%EC%B8%A0_%EC%95%94%ED%98%B8%EA%B8%B0%EA%B3%84)를 해독하기 위해 개발된 초기 `프로그래밍 (외장형) 이 가능한 전자 디지털 Computer`였음 (Plug-board 이용한 터라 범용 stored program이라고 보긴 어려움).  
-(오늘날의 범용 컴퓨터와 거리가 먼 [Special-Purpose Computer](./category_of_computers.md#사용목적에-따른-분류) 이며, 최초의 범용 프로그래밍이 가능한 컴퓨터는 `ENIAC`으로 인정하는 의견이 다수임.)
-^^군사기밀이었기 때문에 한참 후 존재가 공개(1970년대)^^ 된 컴퓨터 (Vacuum tube를 사용했고, 스위치 및 plug-board를 이용한 프로그래밍을 지원)  
-[The Colossus에 대하여](https://ds31x.tistory.com/379) 
+2차세계대전(1939~1945) 중  
+독일군의 암호전신기인 [Lorenz Cipher](https://ko.wikipedia.org/wiki/%EB%A1%9C%EB%A0%8C%EC%B8%A0_%EC%95%94%ED%98%B8%EA%B8%B0%EA%B3%84)를 해독하기 위해  
+개발된 초기 `프로그래밍 (외장형) 이 가능한 전자 디지털 Computer`였음  
+(Plug-board 이용한 터라 범용 stored program이라고 보긴 어려움).  
+오늘날의 범용 컴퓨터와 거리가 먼 [Special-Purpose Computer](./category_of_computers.md#사용목적에-따른-분류) 이며,  
+최초의 범용 프로그래밍이 가능한 컴퓨터는 `ENIAC`으로 인정하는 의견이 다수임.  
+^^군사기밀이었기 때문에 한참 후 존재가 공개(1970년대)^^ 된 컴퓨터  
+(Vacuum tube를 사용했고, 스위치 및 plug-board를 이용한 프로그래밍을 지원)  
+ref: [The Colossus에 대하여](https://ds31x.tistory.com/379) 
 
 `(Harvard) Mark I`
-: 세계 최초의 `전기기계식 Computer`로 알려짐 (Z3가 패전국 독일제라는 약점이...).  
+: 세계 최초의 `전기기계식 Computer`로 알려짐 ([Z3](https://ds31x.tistory.com/385)가 패전국 독일제라는 약점이...).  
 1944년 IBM사에서 개발한 것으로 Automatic Sequence Control Calculator (ASCC)이라는 공식명칭을 가짐.  
 속도와 범용성, 구현 방식 등에서 현대의 컴퓨터와 큰 차이를 보이지만, 프로그램에 따라 순차적으로 계산을 수행하는 자동화된 연산기계라는 의의를 가짐. 
 (Harvard에 설치되어서 **Harvard Mark I** 이라고 불림).  
 3,000개의 [`Relay(전기기계식 switch)`](../ch02_co/ce02_03_1_relay.md)와 4마력의 Motor 72개로 구성됨.  
 15.3m의 길이에 2.4m의 높이에 걸맞는 31.5톤의 무게로 알려짐(기계식의 위엄?).  
-`톱니바퀴로 가감산이 가능한 계산기를 Gear(치차)식 계산기`라고 부르는데, 이것의 극한으로 간 것이 Mark I임  
+`톱니바퀴로 가감산이 가능한 계산기를 Gear(치차)식 계산기`라고 부르는데, 이것의 극한으로 간 것이 Harvard Mark I임  
 (Motor가 필요한 이유가 Gear 등을 회전시켜야 하기 때문).  
 원폭 개발(맨해튼 프로젝트) 등에 사용됨.  
-[Harvard Mark I 에 대하여](https://ds31x.tistory.com/380)
+ref: [Harvard Mark I 에 대하여](https://ds31x.tistory.com/380)
 
-> 전기기계식(electromechanical) : `Relay`가 사용됨을 의미함.
+> 전기기계식(electromechanical) : `Relay`(전기식) 와 기어(기계식)를 사용함을 의미함.
 
 참고: [기계식, 전기식, 전자식의 차이](https://ds31x.tistory.com/377)
 
