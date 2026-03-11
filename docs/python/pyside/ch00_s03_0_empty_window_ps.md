@@ -73,7 +73,7 @@ class MW(QWidget):
     def initialize_ui(self):
         """Application의 UI 설정을 담당"""
         # Window의 위치와 크기를 설정. 
-        setGeometry(x position, y position, width, height)
+        # setGeometry(x position, y position, width, height)
         self.setGeometry(200, 100, 400, 200)
         
         # Window의 title bar에 보일 text를 설정
