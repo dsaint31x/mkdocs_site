@@ -81,7 +81,7 @@ supervised learning의 ground truth에 해당하는 label (=instructive feedbak)
 ^^어떤 이상적인 action을 명시적으로 모든 상황에 맞게 할당할 수 없기 때문^^ 에
 해당 action이 **얼마나 goal을 달성하는데 유용한지를 측정하는 reward function (=evaluation feedback)** 을 사용해 학습한다.
 
-> Supervised Learning에서는 정답(=best action, label)이 존재함 (이를 instaructive feedback이라고 부름).
+> Supervised Learning에서는 정답(=best action, label)이 존재함 (이를 instructive feedback이라고 부름).
 > 반면 Reinforcement Learning은 evaluation feedback으로 어느정도 좋은지 나쁜지를 정량화해주긴 하나, 현재 상황에 best action인지는 알 방법이 없음.
 > 때문에 앞서 살핀 exploartion와 exploitation의 균형이 잡아야 함.
 
@@ -97,7 +97,9 @@ Reinforcement Learning은
 * `Unsupervised learning`와 비슷하게, 
 * agent가 얻는 ***experience의 내부적인 특성 구조*** 를 학습을 통해 추출하기도 하지만 
 * 이는 reinforcement learning의 최종 목표는 아님. 
-* xperience의 내부적인 특성 구조 추출 과정을 통해 최종 목표인 reward signal을 maximization을 효과적으로 달성한다는 점에서 representative learning 들과도 차이를 보임.  
+* experience의 내부적인 특성 구조 추출 과정을 통해
+  최종 목표인 reward signal을 maximization을 효과적으로 달성한다는 점에서
+  특성 구조 추출 자체가 목표인 representative learning 들과도 차이를 보임.  
 
 ---
 
@@ -105,8 +107,9 @@ Reinforcement Learning은
 
 * Environment의 모든 state에 대해 reward와 penalty가 주어져있다고 생각하고 acton을 통해 agent는 environment의 state를 변경해 나갈 수 있다고 하자. 
 * 이때 agent가 acton을 결정하는 기준이 바로 policy이고 이 policy가 final accumulated reward를 최대화하는 방향으로 학습이 되게 하면 된다. 
-* 이는 매우 간단한 경우이고, 많은 경우 reward는 즉각적으로 주어지기 어려운 경우도 많다 (체스 등에서 당장은 상대편 말을 잡아서 이득이지만, 장기적으로는 킹을 잃게 되는 수가 있을 수 있고, 당장은 내 퀸을 잃지만 장기적으로는 상대 킹을 잡는 수가 있을 수 있다).
-* 더욱이 상대편이 있는 경우엔 상대방의 action에 의해서도 reward가 영향을 받게 된다는 점이 reward function에서 어려운 점이다. 
+* 이는 매우 간단한 경우이고, 많은 경우 reward는 즉각적으로 주어지기 어려운 경우도 많다  
+(체스 등에서 당장은 상대편 말을 잡아서 이득이지만, 장기적으로는 킹을 잃게 되는 수가 있을 수 있고, 당장은 내 퀸을 잃지만 장기적으로는 상대 킹을 잡는 수가 있을 수 있다).
+* 더욱이 상대편이 있는 경우엔 상대방의 action에 의해서도 reward가 영향을 받게 된다는 점이 reward function 을 만들 때 어려운 점이다. 
 
 ^^즉, reward는 action에 대해 즉각적일 수도 있으나 대부분 delayed feedback으로 주어질 수 있다.^^
 
