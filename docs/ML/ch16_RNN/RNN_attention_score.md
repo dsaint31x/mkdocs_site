@@ -65,11 +65,11 @@ Grave et al.이 제안한 것을 포함하여 다음과 같은 여러 attention 
 
 | ref. | name | def. | etc.|
 |---|---|---|---|
-|[Grave et al., 2014](https://arxiv.org/abs/1410.5401)| content-based attention | $f(\textbf{s},\textbf{h})=\frac{\textbf{s}\cdot\textbf{h}}{\|\textbf{s}\| \|\textbf{h}\|}$| $\textbf{s}$: decoder hidden state <br/> $textbf{h}$: encder hidden state |
-|[Bahdanau et al., 2014](https://arxiv.org/abs/1409.0473)| Bahdanau (or additive) attention | $f(\textbf{s},\textbf{h})=\textbf{v}^\top \text{tanh}(W_s \textbf{s} + W_h \textbf{h})$| Luong et al. 에선 `concat` attention score와 비슷. <br/> $\textbf{v}$: learnable weight vector <br/> $W_s, W_h$: learnable weight matrix |
-|[Luong et al., 2015](https://arxiv.org/abs/1508.04025)| Luong attention | $f(\textbf{s}, \textbf{h})= \textbf{h} \cdot W \textbf{s}$ | 논문에서 `general dot product approach` 라고 기술된 attention score|
-|[Luong et al., 2015](https://arxiv.org/abs/1508.04025)| dot attention | $f(\textbf{s},\textbf{h})= \textbf{h} \cdot \textbf{s}$ | 논문에서 `dot product approach` 라고 기술된 attention score|
-|[Vaswani et al., 2017](http://papers.nips.cc/paper/7181-attention-is-all-you-need.pdf)|scaled dot-product attention *|$f(\textbf{s},\textbf{h})= \frac{\textbf{s}\cdot \textbf{h}}{\sqrt{n}}$ | $\textbf{s}$: query vector <br/> $\textbf{h}$: key vector <br/> $n$ 은 encoder state $\textbf{h}$의 dimension임.<br/> inner product를 사용하므로, $\textbf{s}$와 $\textbf{h}$의 차원이 같음.| 
+|[Grave et al., 2014](https://arxiv.org/abs/1410.5401)| content-based attention | $f(\textbf{s},\textbf{h})=\frac{\textbf{s}\cdot\textbf{h}}{\|\textbf{s}\| \|\textbf{h}\|}$| $\textbf{s}$: decoder hidden state. <br/> $\textbf{h}$: encder hidden state. |
+|[Bahdanau et al., 2014](https://arxiv.org/abs/1409.0473)| Bahdanau (or additive) attention | $f(\textbf{s},\textbf{h})=\textbf{v}^\top \text{tanh}(W_s \textbf{s} + W_h \textbf{h})$| Luong et al. 에선 `concat` attention score와 비슷. <br/> $\textbf{v}$: learnable weight vector. <br/> $W_s, W_h$: learnable weight matrix. |
+|[Luong et al., 2015](https://arxiv.org/abs/1508.04025)| Luong attention | $f(\textbf{s}, \textbf{h})= \textbf{h} \cdot W \textbf{s}$ | 논문에서 `general dot product approach` 라고 기술된 attention score.|
+|[Luong et al., 2015](https://arxiv.org/abs/1508.04025)| dot attention | $f(\textbf{s},\textbf{h})= \textbf{h} \cdot \textbf{s}$ | 논문에서 `dot product approach` 라고 기술된 attention score.|
+|[Vaswani et al., 2017](http://papers.nips.cc/paper/7181-attention-is-all-you-need.pdf)|scaled dot-product attention *|$f(\textbf{s},\textbf{h})= \frac{\textbf{s}\cdot \textbf{h}}{\sqrt{n}}$ | $\textbf{s}$: query vector. <br/> $\textbf{h}$: key vector. <br/> $n$ 은 encoder state $\textbf{h}$의 dimension임.<br/> inner product를 사용하므로, $\textbf{s}$와 $\textbf{h}$의 차원이 같음.| 
 
 * dot product approach가 additive approach보다 좀 더 나은 것으로 알려져있고 (Luong et al., 2015), 때문에 dot product approach가 보다 널리 사용됨.
     * 사실 transformer를 소개한, Vaswani et al. (2017)에서 제안된 **scaled dot-product attention** 이 가장 많이 사용된다 (keras에서 `keras.layers.Attention`으로 구현됨.)
