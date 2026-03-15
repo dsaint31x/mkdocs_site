@@ -33,7 +33,7 @@ Attention mechanism 의
 >  
 > `softmax` 함수를 취해서 attention distribution (아래 그림 참고)을 구함.    
 > 이 **attention distribution은 일종의 확률분포(다 더하면 1.0)** 이며  
-> 이를 `value` vector (or Encoder의 모든 hidden states) 의 weight로 삼아 
+> 이를 `value` vector (or Encoder의 모든 hidden states) 의 weight로 삼아  
 > weighted sum을 구하면 이 결과가 바로 **attention output (or context vector)** 임.   
 >  
 > ![](../img/ch16_RNN/encoder_decoder_w_attention.png)  
@@ -97,15 +97,28 @@ Grave et al.이 제안한 것을 포함하여 다음과 같은 여러 attention 
 |[Luong et al., 2015](https://arxiv.org/abs/1508.04025)| dot attention | $f(\textbf{s},\textbf{h})= \textbf{h} \cdot \textbf{s}$ | 논문에서 `dot product approach` 라고 기술된 attention score.|
 |[Vaswani et al., 2017](http://papers.nips.cc/paper/7181-attention-is-all-you-need.pdf)|scaled dot-product attention *|$f(\textbf{s},\textbf{h})= \frac{\textbf{s}\cdot \textbf{h}}{\sqrt{n}}$ | $\textbf{s}$: query vector. <br/> $\textbf{h}$: key vector. <br/> $n$ 은 encoder state $\textbf{h}$의 dimension임.<br/> inner product를 사용하므로, $\textbf{s}$와 $\textbf{h}$의 차원이 같음.| 
 
-* dot product approach가 additive approach보다 좀 더 나은 것으로 알려져있고 (Luong et al., 2015), 때문에 dot product approach가 보다 널리 사용됨.
-    * 사실 transformer를 소개한, Vaswani et al. (2017)에서 제안된 **scaled dot-product attention** 이 가장 많이 사용된다 (keras에서 `keras.layers.Attention`으로 구현됨.)
-    * 이 것이 Attenion is All You Need 라는 Transformer를 제안한 논문에서 사용한 방식.
-* decoder's hidden state에 접근하기 보다는 decoder의 output을 사용하는 형태로 구현하는 경우가 보다 쉽고 고속화등에서 유리한 점이 있기 때문에 많이 사용됨(성능도 나쁘지 않음).
-* decoder의 output을 사용할 경우, Luong et al.이 제안한대로 attention layout의 출력을 softmax를 activation으로 가지며 decoder의 최종 output을 내놓는 `dense`의 입력으로 직접 사용함.
+* **dot product approach** 가 additive approach보다 좀 더 나은 것으로 알려져 있고 (Luong et al., 2015),
+  때문에 dot product approach가 보다 널리 사용됨.
+* 사실 Transformer를 소개한 Vaswani et al. (2017)에서 제안된 **scaled dot-product attention** 이 가장 많이 사용된다
+  (Keras에서 `keras.layers.MultiHeadAttention` 으로 구현됨).
+    * 이것이 Attention is All You Need 라는 Transformer를 제안한 논문에서 사용한 방식.
+
+|클래스                              |구현 내용                                                   |
+|---------------------------------|--------------------------------------------------------|
+|`keras.layers.Attention`         |Luong-style dot-product attention (single-head)         |
+|`keras.layers.MultiHeadAttention`|Vaswani et al. scaled dot-product attention (multi-head)|
+
+**참고**
+
+* Decoder의 hidden state에 접근하기보다는
+  decoder의 output을 사용하는 형태로 구현하는 경우가 보다 쉽고,
+  고속화 등에서 유리한 점이 있기 때문에 많이 사용됨 (성능도 나쁘지 않음).
+* Decoder의 output을 사용할 경우, Luong et al.이 제안한 대로 attention layer의 출력을 — softmax를 activation으로 가지며 decoder의 최종 output을 내놓는 — `Dense` layer의 입력으로 직접 사용함.​​​​​​​​​​​​​​​​
 
 ## 읽어보면 좋은 자료.
 
+* [self attention에 대하여](https://ds31x.github.io/wiki/review/self_attention/)
 * [Multi-head attention mechanism: “queries”, “keys”, and “values,” over and over again](https://data-science-blog.com/blog/2021/04/07/multi-head-attention-mechanism/)
 * [어텐션 메커니즘 (Attention Mechanism) : Seq2Seq 모델에서 Transformer 모델로 가기까지](https://heekangpark.github.io/nlp/attention)
-* [cosine similarity](https://dsaint31.tistory.com/entry/ML-Cosine-Similarity)
-* [distance function](https://dsaint31.tistory.com/entry/ML-Cosine-Similarity)
+* [cosine similarity](https://dsaint31.tistory.com/570)
+* [distance based similarity](https://dsaint31.tistory.com/933#1.%20%EA%B1%B0%EB%A6%AC%20%EA%B8%B0%EB%B0%98%20(Distance-based)%20Similarity-1)
