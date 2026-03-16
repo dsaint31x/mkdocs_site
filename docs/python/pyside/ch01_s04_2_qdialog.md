@@ -74,18 +74,26 @@ class MW(QMainWindow):
         """ 버튼 클릭 시 호출되는 슬롯 """
         print("click", s)
         
-        # QDialog의 기본 인스턴스를 생성. 부모를 self(MW)로 지정.
+        # QDialog의 기본 인스턴스를 생성.
+        # 부모를 self(MW)로 지정.
         dlg = QDialog(self)
         dlg.setWindowTitle("QDialog Title")
         
         
         # Modal 방식 대화상자 코드
         dlg.exec()
+
+        # 다음은 open()을 사용하여
+        # GUI상에선 부모는 disable시키나 blocking모드는 아닌 형태로 실행. 
+        dlg.open()
         
-        # 다음은 open()을 사용하여 대화상자를 'Modeless' 형태로 실행
+        # 다음은 show()을 사용하여
+        # 대화상자를 'Modeless' 형태로 실행 (당연히 non-blocking모드)
         # Modeless: 이 대화상자가 열려 있어도 부모 윈도우(MW)를 계속 사용할 수 있음
         #           코드 실행을 멈추지 않음.
         # dlg.open()
+
+        print("test: blocking mode!")
 
 # Main script로 동작하는 루틴 구현
 if __name__ == "__main__":
@@ -97,9 +105,18 @@ if __name__ == "__main__":
 ```
 
 * Modal dialog에 대한 예제이므로,
-* Dialog를 위한 Event Loop가 동작하도록 `dlg.exec()`를 호출해줘야 함.
+* Dialog를 위한 Event Loop가 동작하도록 `dlg.exec()`를 호출해줘야 함: 이 경우 modal 로 동작.
+* `dlg.show()`로 수행할 경우, Event Loop가 따로 생기지 않으며 이는 modeless 동작으로 이어짐:
+    * 단, `dlg`객체의 scope가 method이므로 있으므로 부모 지정을 안하면 method 호출이 끝나면서 닫힐 수 있음에 유의.
+    * `self.dlg` 형태로 사용하는 것을 권장.
+* `dlg.open()`의 경우, 부모 객체를 disable시키는 건 modal과 같으나, non-bloking 모드인 점에 유의할 것.
+    * 이 경우, 아래의 `"test: bloking mode!"`가 다이알로그를 닫지 않아도 출력됨.
+    * 이는 non-blocking으로 `.open()` 메서드가 동작함을 의미.
 
-위의 예는 Dialog Box를 만드는 가장 간단한 경우로, `QDialog`를 위의 경우처럼 사용하는 경우는 사실 없음.
+참고: scope 란?[Python 의 Scoping Rule: LEGB](https://ds31x.tistory.com/45)
+
+위의 예는 Dialog Box를 만드는 가장 간단한 경우로,  
+`QDialog`를 위의 경우처럼 사용하는 경우는 실무에선 거의 없음.
 
 다음 예제와 같이  
 
