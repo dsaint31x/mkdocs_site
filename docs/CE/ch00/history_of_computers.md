@@ -457,8 +457,9 @@ S/W 단독으로 상용화가 이루어지기시작.
 
 ### 정보처리 속도 단위: FLOPS
 
-`FLOPS (FLoating-point Operation Per Second)`는  
+`FLOPS (FLoating-point Operations Per Second)`는  
 정보처리 속도 단위로 ***초당 부동소수점 연산 횟수*** 를 의미함.  
+(모델이나 알고리즘의 계산량을 의미하는 `FLOPs` (FLoating-point OPerations)와 같은 철자이나 대소문자가 다름에 유의할 것)
 
 `Mega-`, `Giga-` 등의 [prefix](../ch01/ch01_14_prefix.md)와 함께 사용된다.  
 다른 단위로는 `IPS` (Instruction Per Second)로 ***초당 명령어 횟수*** 도 있음.
