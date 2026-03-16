@@ -15,7 +15,7 @@ Desktop-style의 GUI를 위한 다양한 **widget class** 들을 제공하는 **
 
 ### 0-0. `QWidget` : Qt 에서 비어있는 기본 widget 을 위한 Class. 
 
-  * 일반적으로 관련있는 Widgets를 포함하여 묶어주는 **container** 로 많이 사용됨.
+  * 일반적으로 ^^관련있는 Widgets를 포함하여 묶어주는 **container** 로 많이 사용^^ 됨.
   * GUI Components (=widgets) 이 공유하는 기본 기능들을 가지고 있음.
 
 GUI의 기본 구성요소인 [Widget](https://wikidocs.net/189238)을 추상화하고 있는 Class.
@@ -40,12 +40,14 @@ from PySide6.QtWidgets import QApplication, QWidget, QLabel
 
 ### 1-0. `QWidget` Class
 
-앞서 `QtWidgets` 모듈에서 언급했듯이, <u>GUI의 다양한 component</u>를 PySide와 PyQt에서는 ***widget*** 이라고 부른다.
+앞서 `QtWidgets` 모듈에서 언급했듯이,  
+<u>GUI의 다양한 component</u>를 PySide와 PyQt에서는 ***widget*** 이라고 부른다.
 
 * Widgets가 공통적으로 가져야 하는 기능을 `QWidget` class에 **abstraction(추상화)** 시켜 놓았다.
 * 즉, widget의 **abstraction** 이라고 생각하면 된다.
 
-`QWidget`은 widget에게 요구되는 다양한 기능들을 구현하고 있으며, 앞서 `empty_window_ps.py` 예제에서 사용된 것들은 다음과 같다.
+`QWidget`은 widget에게 요구되는 다양한 기능들을 구현하고 있으며,  
+앞서 `empty_window_ps.py` 예제에서 사용된 것들은 다음과 같다.
 
 - `show()` :  
 	해당 widget의 **instance** 를 화면에 보이게 하는 **method**.
@@ -64,20 +66,22 @@ from PySide6.QtWidgets import QApplication, QWidget, QLabel
 > `QWidget`의 `geometry`는 **setter** 가 `setGeometry`, **getter** 가 `geometry`라는 이름으로 주어져 있다.
 > 
 
-Setter와 Getter개념이 생소하다면 다음 문서를 참고하라 : [OOP: Setter and Getter](https://dsaint31.me/mkdocs_site/python/oop/ds_setter_and_getter/)
+Setter와 Getter개념이 생소하다면  
+다음 문서를 참고하라 : [OOP: Setter and Getter](https://dsaint31.me/mkdocs_site/python/oop/ds_setter_and_getter/)
 
 ---
 
 ### 1-1. `QApplication` Class
 
-Qt 의 GUI application을 추상화하고 있는 class. 
+Qt 의 **GUI application** 을 추상화하고 있는 class. 
 
 > 좀 더 정확히 말한다면 GUI application의 [runtime context](https://ds31x.tistory.com/621#5.-runtime-context)를 관리하며, 애플리케이션의 제어 흐름을 처리하는 event loop를 구동시키는 클래스임.
 
 PySide 또는 PyQt로 GUI 프로그램을 만들 때, 
 
 * 오직 하나의 `QApplication` **instance** 만 생성되어야 하며, 
-* 해당 **instance** 의 `exec()` **method** 호출을 통해 해당 GUI application의 오직 하나뿐인 `Qt (Main) Event Loop`가 수행된다. 
+* 해당 **instance** 의 `exec()` **method** 호출을 통해
+  해당 GUI application의 오직 하나뿐인 `Qt (Main) Event Loop`가 수행된다. 
 
 즉, `QApplication` class는 
 
@@ -89,7 +93,8 @@ PySide 또는 PyQt로 GUI 프로그램을 만들 때,
 
 ### 참고: Qt (Main) Event Loop
 
-Qt GUI application의 GUI 창에서 이루어지는 ***OS와 사용자와의 interaction(상호작용)이 처리되는 event loop***.
+Qt GUI application의 GUI 창에서 이루어지는  
+***OS와 사용자와의 interaction(상호작용)이 처리되는 event loop***.
 
 * 사용자의 버튼 클릭 등의 **interaction** 은 해당하는 **event** 를 생성시키고 
 * 이 **event** 는 ***event queue*** 에 집어넣어지는데,
@@ -119,7 +124,10 @@ Qt GUI application에서
 
 ---
 
-이 후에도 수많은 widget Class들이 나오지만 위에서 다룬 class들은 기본 중의 기본으로 정말 많이 사용된다. 다음의 PyQt 또는 PySide에서 제공하는 API등을 한번 읽어보길 권한다.
+이 후에도 수많은 widget Class들이 나오지만  
+위에서 다룬 class들은 기본 중의 기본으로 정말 많이 사용된다.  
+
+다음의 PyQt 또는 PySide에서 제공하는 API등을 한번 읽어보길 권한다.
 
 * [PyQt Reference Guide](https://www.riverbankcomputing.com/static/Docs/PyQt6/)
 * [PySide API](https://doc.qt.io/qtforpython/api.html)
