@@ -19,11 +19,14 @@
 - windows 11 기준으로 한 경로의 길이는 260자(=`MAX_PATH`)로 제한됨.
 - `\`, `/`, `?`, `:`, `*`, `”`, `<`, `>`, `|`
 
-> Windows 10 1607 버전부터는 NTFS 들어오면서 길이 제한을 늘릴 수 있으나 그룹정책 편집 (`Enable Long Paths`) 등이 필요함: 이 경우 32767자 까지 확장 가능.
+> Windows 10 1607 버전부터는 NTFS 들어오면서 길이 제한을 늘릴 수 있으나
+> 그룹정책 편집 (`Enable Long Paths`) 등이 필요함: 이 경우 32767자 까지 확장 가능.
 
 ---
 
 ## 관련 Commands (WINDOWS)
+
+튜토리얼 형태로 보고 싶으면 다음 URL을 참고:[cmd.exe 익히기](https://ds31x.tistory.com/272#%EC%98%88%EC%A0%9C-%ED%8A%9C%ED%86%A0%EB%A6%AC%EC%96%BC-%EB%B9%88-%EB%94%94%EB%A0%89%ED%86%A0%EB%A6%AC%EC%97%90%EC%84%9C-%EC%8B%9C%EC%9E%91%ED%95%98%EC%97%AC-%ED%8C%8C%EC%9D%BC%EA%B3%BC-%EB%94%94%EB%A0%89%ED%86%A0%EB%A6%AC-%EB%8B%A4%EB%A3%A8%EA%B8%B0)
 
 ### File 목록 표시
 
