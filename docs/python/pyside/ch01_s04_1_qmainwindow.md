@@ -46,7 +46,8 @@ def initialize_ui(self):
     # 'img/pyqt_logo.png' 경로를 조합.
     icon_path = os.path.join(
         os.path.dirname(os.path.abspath(__file__)),
-        'img/pyqt_logo.png'
+        'img',
+        'pyqt_logo.png',
     )
     # 아이콘 파일이 실제로 존재하는지 확인하여,
     # 있을 경우에만 아이콘을 설정(에러 방지).
