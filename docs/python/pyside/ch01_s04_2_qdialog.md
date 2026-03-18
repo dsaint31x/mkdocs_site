@@ -93,15 +93,15 @@ class MW(QMainWindow):
         # Modal 방식 대화상자 코드
         dlg.exec()
 
-        # 다음은 open()을 사용하여
-        # GUI상에선 부모는 disable시키나 blocking모드는 아닌 형태로 실행. 
-        dlg.open()
-        
-        # 다음은 show()을 사용하여
-        # 대화상자를 'Modeless' 형태로 실행 (당연히 non-blocking모드)
-        # Modeless: 이 대화상자가 열려 있어도 부모 윈도우(MW)를 계속 사용할 수 있음
-        #           코드 실행을 멈추지 않음.
+        # # 다음은 open()을 사용하여
+        # # GUI상에선 부모는 disable시키나 blocking모드는 아닌 형태로 실행. 
         # dlg.open()
+        
+        # # 다음은 show()을 사용하여
+        # # 대화상자를 'Modeless' 형태로 실행 (당연히 non-blocking모드)
+        # # Modeless: 이 대화상자가 열려 있어도 부모 윈도우(MW)를 계속 사용할 수 있음
+        # #           코드 실행을 멈추지 않음.
+        # dlg.show()
 
         print("test: blocking mode!")
 
