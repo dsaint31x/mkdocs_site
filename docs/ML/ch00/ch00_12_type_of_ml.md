@@ -1,3 +1,24 @@
+---
+title: Categories of ML
+description: >
+  ML(Machine Learning)을 분류하는 네 가지 기준—human supervision의 정도,
+  model 여부, prediction 가능 여부, 학습 시기—에 따른 subcategory들을 소개한다.
+tags:
+  - supervised learning
+  - unsupervised learning
+  - semi-supervised learning
+  - reinforcement learning
+  - self-supervised learning
+  - instance based learning
+  - model based learning
+  - inductive learning
+  - transductive learning
+  - batch learning
+  - online learning
+  - incremental learning
+  - machine learning
+---
+
 # Categories of ML
 
 ML은 다음과 같은 구분 기준을 가지고 subcategory들로 나눌 수 있다. 
@@ -22,14 +43,15 @@ Whether or not they are trained with human supervision.
 
 ## Model 여부에 따른 구분.
 
-단순히 훈련 때 주어진 데이터 샘플을 기억하고, 이들과의 similarity를 이용하여 새로운 샘플에 대한 판정을 하는 경우와 훈련 데이터를 통해 일반적인 패턴을 추출하여 이를 통해  predictive model을 만들고 해당 모델에 기반하여 새로운 샘플에 대한 판정을 하는 경우를 구분할 수 있음.
+단순히 **훈련 때 주어진 데이터 샘플을 기억(저장)**하고 이들과의 **similarity를 이용** 하여 새로운 샘플에 대한 판정을 하는 경우와  
+훈련 데이터를 통해 **일반적인 패턴을 추출** 하고 이를 통해 predictive **model** 을 만들고 해당 model 에 기반하여 새로운 샘플에 대한 판정을 하는 경우를 구분할 수 있음.
 
 이 기준으로 나눈 분류는 다음과 같음.
 
 > Whether the method relies on ^^comparing new data points to known ones in the training set^^ , or instead ^^detects patterns in the training data and creates a `predictive model`^^, much like scientists do.
 
-* Instance based Learning
-* Model based Learning
+* [Instance based Learning](./ch00_31_instance_based_learning)
+* [Model based Learning](./ch00_32_model_based_learning)
 
 ---
 
@@ -37,7 +59,7 @@ Whether or not they are trained with human supervision.
 
 `새로운 데이터에 대한 prediction이 가능` 한지 여부로 구분.
 
-* Inductive Learning (귀납적 학습)
+* [Inductive Learning (귀납적 학습)](./ch00_32_model_based_learning)
     * Training dataset 에서 일반화가 가능한 규칙, 함수, 모델을 도출.
     * Training dataset 에 없는 새로운 데이터에 대해 prediction 가능! 
 * [Transductive Learning](http://ds31x.blogspot.com/2023/08/ml-transductive-learning-and-inductive.html?view=classic) *
@@ -47,13 +69,15 @@ Whether or not they are trained with human supervision.
 
 ---
 
-## 학습 시기에 따른 구분.
+## 학습 시기에 따른 구분
 
-Whether they are capable of ***incremental on-the-fly learning***
+Whether they are capable of ***incremental on-the-fly learning***  
+점진적인 실시간 학습 가능 여부!
 
 * [Batch Learning](./ch00_42_batch_learning.md) 
-  * 모든 training data를 이용하여 학습.
-  * 학습이 종료된 이후 inference 및 서비스 실행 (해당 과정에선 학습이 이루어지지 않음)
+    * 모든 training data를 이용하여 학습.
+    * 학습이 종료된 이후 inference 및 서비스 실행
+    * (해당 서비스 과정에선 학습이 이루어지지 않음)
 * [Online Learning (or Incremental Learning)](./ch00_41_online_learning.md)
-  * 데이터가 순차적으로 들어올 때마다 점진적으로 모델의 parameter가 업데이트됨.
+    * 데이터가 순차적으로 들어올 때마다 점진적으로 모델의 parameter가 업데이트됨.
 
