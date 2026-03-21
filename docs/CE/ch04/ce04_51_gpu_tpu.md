@@ -16,7 +16,10 @@ tags:
 
 ![](./img/CPU-vs-GPU-Architecture_W640.jpg){width="300"}
 
-> GPGPU의 경우 병렬화를 DLP(Data Level Parallelism) 와 TLP(Thread Level Parallelism)에 기반한 SIMT (Single Instruction Multiple Thread)로 구현.  
+> GPGPU (General Purpose Graphics Processing Units) 의 경우,
+> 병렬화를 DLP(Data Level Parallelism) 와 TLP(Thread Level Parallelism)에 기반한
+> **SIMT** (Single Instruction Multiple Thread)로 구현.
+> 
 > 참고자료: [Hardware Threading, Scalar / Vector Processor](https://ds31x.tistory.com/364)
 
 GPU는 H/W이고 이를 이용하는 S/W (일종의 interface)는 CUDA, MPS, ROCm 등이 있음:  
@@ -29,7 +32,7 @@ GPU는 H/W이고 이를 이용하는 S/W (일종의 interface)는 CUDA, MPS, ROC
 
 ## Tensor Processing Unit (TPU) 
 
-Google에서 커스텀식으로 개발한 ASIC(Application-Specific Integrated Circuit).
+Google에서 커스텀식으로 개발한 ASIC(Application-Specific Integrated Circuit).  
 Tensorflow로 구현된 application등을 효과적으로 학습시키고 처리하는 데 사용됨.
 
 - Dense vector and matrix 를 매우 빠르게 처리한다.
