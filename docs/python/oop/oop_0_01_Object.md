@@ -15,7 +15,7 @@ tags: [object, oop, python, abstraction, simula-67]
 
 ### 참고: Python에서의 Object란?
 
-![](../img/python_object.jpeg){style="display: block; margin: 0 auto; width=300"}
+![](../img/python_object.jpeg){style="display: block; margin: 0 auto; width:400px"}
 
 다음의 속성을 가진 데이터 덩어리 (a chunk of data)를 가리킴.
 
