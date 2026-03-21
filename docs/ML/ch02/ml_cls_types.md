@@ -1,5 +1,5 @@
 ---
-tags: [binary-classification, multiclass, multilabel, multioutput, OvO, OvR]
+tags: [binary-classification, multiclass, multilabel, multioutput, ovo, ovr]
 ---
 
 # Types of Classification
