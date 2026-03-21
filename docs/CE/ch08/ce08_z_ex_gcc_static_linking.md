@@ -2,8 +2,8 @@
 title: "gcc: Static Linking"
 tags:
     - gcc
-    - Object
-    - Header
+    - object
+    - header
     - hdr 
 ---
 
