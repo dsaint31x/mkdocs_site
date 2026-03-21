@@ -1,6 +1,11 @@
 ---
 title: Object 란
-tags: [object, oop, python, abstraction, simula-67]
+tags: 
+  - object
+  - oop
+  - python
+  - abstraction
+  - "simula-67"
 ---
 
 # Object (객체) 란
