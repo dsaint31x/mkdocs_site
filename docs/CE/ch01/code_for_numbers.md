@@ -78,7 +78,8 @@
 | 1111 | 1000 | 1111 | 1001 | 1100 | 0111 |
 
 EBCDIC는 문자 기호들에 대한 코드들도 포함시켰기 때문에 한 기호당 8비트를 차지하도록 확장되어 ^^숫자만 사용하는 경우에는 낭비가 심하다.^^  
-때문에 ***Packed 10진수 방식*** 과 같이 문자기호를 위해 확장된 zone을 제거하고 `BCD` 만을 사용하는 경우도 있다. (단, sign에 해당하는 4bit는 맨 하위로 보내짐)
+때문에 ***Packed 10진수 방식*** 과 같이 **문자기호를 위해 확장된 zone을 제거** 하고 `BCD` 만을 사용하는 경우도 있다.  
+(단, 이 경우 sign에 해당하는 4bit는 맨 하위로 보내짐)
 
 $+897_{10}$을 Packed BCD Code로 나타내면 `1000 1001 0111 1100`가 됨.
 
@@ -91,9 +92,11 @@ $+897_{10}$을 Packed BCD Code로 나타내면 `1000 1001 0111 1100`가 됨.
 
 ## Excess-3 Code
 
-* BCD 코드는 2진수 표현에 가깝고 Encoding에 용이하나, Complement(보수)에 대한 계산 및 처리가 까다롭다는 단점을 가짐.
+* BCD 코드는 2진수 표현에 가깝고 Encoding에 용이하나, **Complement(보수)에 대한 계산 및 처리가 까다롭다는 단점** 을 가짐.
 * 이를 보완하기 위해 BCD 코드에 +3을 한 것이 `Excess-3 Code` 임. 
-* 이는 9의 보수를 매우 쉽게 얻을 수 있음.(Self-complementing Code): 1's complement를 취하면 자동으로 9의 보수를 얻게 됨.
+* 이는 9의 보수를 매우 쉽게 얻을 수 있음.(Self-complementing Code): 1's complement를 취하면 자동으로 원래 숫자의 9의 보수를 얻게 됨.
+
+이는 subtraction 연산 효율을 가져옴: **`NOT` 게이트와 `adder`만 있으면 `subtractor`가 필요 없음**
 
 ---
 
@@ -118,11 +121,11 @@ $+897_{10}$을 Packed BCD Code로 나타내면 `1000 1001 0111 1100`가 됨.
 
 ---
 
-## 비교: BCD, Express-3, and Gray Code
+## 비교: BCD, Excess-3, and Gray Code
 
 다음 table은 숫자를 표현하는 3가지 Code를 보여준다.
 
-| Decimal | BCD | Express-3 | Gray |
+| Decimal | BCD | Excess-3 | Gray |
 |:---:|:---:|:---:|:---:|
 | 0 | 0000 | 0011 | 0000 |
 | 1 | 0001 | 0100 | 0001 |
