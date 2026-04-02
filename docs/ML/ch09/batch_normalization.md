@@ -21,7 +21,7 @@ draft: false
 
 # Batch Normalization
 
-![](./img/batch_norm.png){style="display:block; maring: 0 auto; width: 500px"}
+![](./img/batch_norm.png){style="display:block; margin: 0 auto; width: 500px"}
 
 * [figure original URL](https://towardsdatascience.com/batch-norm-explained-visually-how-it-works-and-why-neural-networks-need-it-b18919692739/)
 
@@ -127,7 +127,7 @@ Gradient Vanishing과 Exploding의 위험을 효과적으로 감소시킴: 정�
 
 주로 pre-activation BN이 사용됨:
 
-![](./img/preactivation_bn.png){style="display:block; maring: 0 auto; width: 500px"}
+![](./img/preactivation_bn.png){style="display:block; margin: 0 auto; width: 500px"}
 
 ## 기존 해법과의 비교.
 
