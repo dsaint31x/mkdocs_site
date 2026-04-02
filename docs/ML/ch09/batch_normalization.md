@@ -1,20 +1,32 @@
 # Batch Normalization
 
-Gradient Vanishing과 Exploding의 위험을 효과적으로 감소시킴.
+![](./img/batch_norm.png)
 
-* Layer parameter가 변함에 따라, 다음 layer에 들어오는 input의 distribution이 바뀌는 ***Internal Covariate Shift*** (ICS) 문제를 Gradient Vanishing and/or Exploding의 원인이라고 가정 (참고로 현재 `BN`의 제안 당시 ICS가정은 다르게 해석되고 있음: [아래 설명](#bn과-ics-가정) 참고).
-* 이를 위해 layer의 Input을 standardization을 하고, task 수행에 최적의 분포가 되도록 scaling과 shifting을 학습하여 이를 layer input에 적용.
-* 단, `RNN`의 time 방향으로 unrolling된 쪽에 `BN`은 적용해도 큰 효과가 없는 것으로 알려짐 (`RNN`에서는 대신 `Layer Normalization`을 사용한다.)
+[Ioffe et al.이 2015년 제안한 기법](https://arxiv.org/pdf/1502.03167)으로  
+Gradient Vanishing과 Exploding의 위험을 효과적으로 감소시킴: 정확히는 mini-batch normalization이라고 해야할텐데...
 
-어찌 보면 ***layer 별로 최적의 input 분포를 가지도록 pre-processing을 해주는 것*** 이 batch normalization이다. (여기서 최적의 분포란 현재 training dataset을 기준으로 task를 가장 잘 수행할 수 있게 해주는 input의 분포를 의미.)
+* Layer parameter가 변함에 따라,
+  다음 layer에 들어오는 input의 distribution이 바뀌는 ***Internal Covariate Shift*** (ICS) 문제를
+  Gradient Vanishing and/or Exploding의 원인이라고 가정
+  (참고로 현재 `BN`의 제안 당시 ICS가정은 다르게 해석되고 있음: [아래 설명](#bn과-ics-가정) 참고).
+* 이를 위해 layer의 Input을 standardization을 하고,
+  task 수행에 최적의 분포가 되도록 scaling과 shifting을 **학습** 하여
+  이를 layer input에 적용.
+* 단, `RNN`의 time 방향으로 unrolling된 쪽에 `BN`은 적용해도 큰 효과가 없는 것으로 알려짐
+  (때문에 `RNN` 및 `transformer` 에서는 대신 `Layer Normalization`을 주로 사용.)
 
-> internal covariate shift를 해결하는 ideal 방법은 layer의 input에 whitening을 가해서, input의 feature들이 서로에 대해 independent (~uncorrelated)하고 각각의 variance가 1이 되도록 해주면 된다.  
+어찌 보면 ***layer 별로 최적의 input 분포를 가지도록 pre-processing을 해주는 것*** 이 batch normalization이다.  
+(여기서 최적의 분포란 현재 training dataset을 기준으로 task를 가장 잘 수행할 수 있게 해주는 input의 분포를 의미.)
+
+> internal covariate shift를 해결하는 ideal solution은
+> layer의 input에 whitening을 가해서,
+> input의 feature들이 서로에 대해 independent (~uncorrelated)하고 각각의 variance가 1이 되도록 해주면 된다.  
 >
 > 하지만 2015년 `BN`을 제안한 Sergey Ioffe et al.에 따르면  
 > 
-> * whitening은 covariance matrix 등의 계산이 필요해서 계산량이 너무 많고, 
+> * whitening은 covariance matrix 등의 계산이 필요해서 **계산량이 너무 많고** , 
 > * 각 layer의 parameters의 효과를 상쇄시키는 등의 문제점이 있어서 
-> * ANN에 직접 적용할 경우 부작용이 컸다고 한다.
+> * **ANN에 직접 적용할 경우 부작용이 컸다고 보고함** .
 
 ---
 
