@@ -23,9 +23,9 @@ draft: false
 
 ![](./img/batch_norm.png){style="display:block; maring: 0 auto; width: 500px"}
 
-* [original URL](https://towardsdatascience.com/batch-norm-explained-visually-how-it-works-and-why-neural-networks-need-it-b18919692739/)
+* [figure original URL](https://towardsdatascience.com/batch-norm-explained-visually-how-it-works-and-why-neural-networks-need-it-b18919692739/)
 
-[Ioffe et al.이 2015년 제안한 기법](https://arxiv.org/pdf/1502.03167)으로  
+Batch Normalization은 [Ioffe et al.이 2015년 제안한 기법](https://arxiv.org/pdf/1502.03167)으로  
 Gradient Vanishing과 Exploding의 위험을 효과적으로 감소시킴: 정확히는 mini-batch normalization이라고 해야할텐데...
 
 * Layer parameter가 변함에 따라,
