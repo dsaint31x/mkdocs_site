@@ -11,6 +11,7 @@ tags:
   - layer normalization
   - gradient vanishing
   - gradient exploding
+  - regularization
 categories:
   - ai
   - deep learning
