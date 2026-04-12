@@ -319,13 +319,15 @@ nav:
         - "python/pyside/ch02_s04_qfont_qpixmap.md"
         - "python/pyside/ch02_s05_qtcore_qt.md"
         - "python/pyside/ch02_s06_qpushbutton.md"
+      - "ch03":
+        - "python/pyside/ch03_s00_intro.md"
+        - "python/pyside/ch03_s01_qlineedit.md"
+        - "python/pyside/ch03_s02_qradiobutton.md"
+        - "python/pyside/ch03_s03_qcheckbox.md"
+        - "python/pyside/ch03_s04_qgroupbox.md"
+        - "python/pyside/ch03_s05_qcombobox.md"
       - "ch04":
-        - "python/pyside/ch04_s00_intro.md"
-        - "python/pyside/ch04_s01_qlineedit.md"
-        - "python/pyside/ch04_s02_qradiobutton.md"
-        - "python/pyside/ch04_s03_qcheckbox.md"
-        - "python/pyside/ch04_s04_qgroupbox.md"
-        - "python/pyside/ch04_s05_qcombobox.md"
+        - "python/pyside/ch04_s01_event_handling.md"
   - "DIP":
     - "OpenCV: Gui Features in OpenCV":
       - "DIP/cv2/ch00/dip_0_00.md"
