@@ -1,9 +1,9 @@
 ---
-title: Chapter 01. Window and Dialog
+title: Window and Dialog
 tags: [pyside6, pyqt6, window, dialog, qmainwindow, qdialog, qapplication]
 ---
 
-# Chapter 01. Window and Dialog
+# Window and Dialog
 
 이 장에서는 **GUI application** 을 구성하는 핵심 요소인 **Main Window** (메인 윈도우)와 **Dialog Box** (대화상자)의 개념 및 차이점을 자세히 살펴보고, 이를 구현하기 위한 대표적인 클래스인 **QMainWindow** 와 **QDialog** 를 소개한다.
 
