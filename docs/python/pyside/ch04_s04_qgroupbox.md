@@ -89,7 +89,7 @@ date: 2025-04-12
 
 **`checkedButton()` 동작 주의사항 (주석 해제 후 테스트 권장)**
 
-* non-exclusive 모드에서 `checkedButton()`은 list가 아닌 **객체 하나**만 반환함.
+* non-exclusive 모드에서 `checkedButton()`은 list가 아닌 **객체 하나** 만 반환함.
 * check로 인해 호출된 경우 - 해당 checked button 객체를 반환.
 * uncheck로 인해 호출된 경우 - checked 상태인 버튼 중 index가 가장 낮은 것을 반환.
 * 아무것도 선택되지 않은 경우 - `None` 반환.

@@ -8,5 +8,5 @@
 
 다음의 Widget 클래스들은 앞서 살펴본 것이므로 이 장에선 다루진 않음:
 
-* [`QLabel`](./ch02_s03_qlabel) : GUI에서 고정된 text 문자열 또는 image를 표시하는 Widget.
-* [`QPushButton`](./ch02_s06_qpushbutton) :  GUI에서의 푸쉬 버튼을 abstraction하고 있는 Widget
+* [`QLabel`](./ch02_s03_qlabel.md) : GUI에서 고정된 text 문자열 또는 image를 표시하는 Widget.
+* [`QPushButton`](./ch02_s06_qpushbutton.md) :  GUI에서의 푸쉬 버튼을 abstraction하고 있는 Widget

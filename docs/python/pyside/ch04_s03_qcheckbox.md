@@ -18,7 +18,7 @@ date: 2025-04-12
 
 **module** : `QtWidgets`
 
-여러 option 중 **복수 개**를 선택할 수 있게 해주는 checkable box Widget.
+여러 option 중 **복수 개** 를 선택할 수 있게 해주는 checkable box Widget.
 
 * 체크 가능한 네모 박스와 그 옆의 text label로 구성됨.
 * `toggled` 또는 `clicked` signal을 통해 slot과 연결하여 사용함.

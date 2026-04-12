@@ -33,12 +33,12 @@ GUI에서 고정된 text 문자열 또는 image를 표시하는 Widget.
 
 | Method | 설명 |
 |---|---|
-| `__init__(text, parent)` | text와 parent widget을 인자로 받아 instance 생성. parent 지정 권장 |
+| `__init__(text, parent)` | text와 parent widget을 인자로 받아 instance 생성. <br/> parent 지정 권장 |
 | `setText(str)` | 표시할 문자열 설정 |
 | `text()` | 현재 표시 중인 문자열 반환 |
 | `setAlignment(flag)` | `Qt.AlignmentFlag` enum으로 content 정렬 방식 설정 |
 | `setFont(QFont)` | `QtGui.QFont` instance로 폰트 설정 |
-| `setPixmap(QPixmap)` | `QtGui.QPixmap` instance로 표시할 image 설정. 재호출 시 이전 image가 교체됨 |
+| `setPixmap(QPixmap)` | `QtGui.QPixmap` instance로 표시할 image 설정. <br/>재호출 시 이전 image가 교체됨 |
 | `setScaledContents(bool)` | `True`이면 pixmap을 `QLabel` instance의 크기에 맞게 scaling |
 | `move(x, y)` | absolute positioning에서 widget의 위치를 지정 |
 | `setStyleSheet(str)` | CSS 문자열로 스타일 변경 |
@@ -78,7 +78,7 @@ label_instance.setAlignment(Qt.AlignmentFlag.AlignCenter)  # PySide6 / PyQt6 모
 | `Qt.AlignmentFlag.AlignTop` | 상단 정렬 |
 | `Qt.AlignmentFlag.AlignBottom` | 하단 정렬 |
 | `Qt.AlignmentFlag.AlignVCenter` | 수직 방향 중앙 정렬 |
-| `Qt.AlignmentFlag.AlignCenter` | `AlignHCenter \| AlignVCenter` 와 동일 - 수평 + 수직 중앙 정렬 |
+| `Qt.AlignmentFlag.AlignCenter` | `AlignHCenter | AlignVCenter` 와 동일 <br/> 수평 + 수직 중앙 정렬 |
 
 **`Qt.AlignCenter` vs `Qt.AlignmentFlag.AlignCenter`**
 
@@ -114,8 +114,10 @@ image_label.setPixmap(pixmap)
 image_label.setScaledContents(True)
 ```
 
-* `setPixmap()` - 표시할 image를 `QPixmap` instance로 설정함. `setPixmap()`을 다시 호출하면 이전 image가 **교체**됨 (중첩 표시되지 않음).
-* `setScaledContents(True)` - pixmap을 `QLabel` instance의 현재 크기에 맞게 scaling하여 표시함. `QLabel` 자체의 크기는 별도로 설정해야 함.
+* `setPixmap()` - 표시할 image를 `QPixmap` instance로 설정함. 
+    * `setPixmap()`을 다시 호출하면 이전 image가 **교체** 됨 (중첩 표시되지 않음).
+* `setScaledContents(True)` - pixmap을 `QLabel` instance의 현재 크기에 맞게 scaling하여 표시함. 
+    * `QLabel` 자체의 크기는 별도로 설정해야 함.
 
 **지원 image 포맷**
 
@@ -224,6 +226,6 @@ if __name__ == '__main__':
 
 **`pixmap.scaled()` 주의사항**
 
-* `scaled()`는 원본 pixmap을 수정하지 않고 **새로운 `QPixmap` instance를 반환**함.
+* `scaled()`는 원본 pixmap을 수정하지 않고 **새로운 `QPixmap` instance를 반환** 함.
 * 반드시 반환값을 변수에 다시 할당해야 함. (`pixmap = pixmap.scaled(...)`)
 * `Qt.AspectRatioMode.KeepAspectRatio` - 원본 비율을 유지하면서 지정한 크기 안에 맞게 축소/확대함.

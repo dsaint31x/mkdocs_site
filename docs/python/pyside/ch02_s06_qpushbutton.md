@@ -37,8 +37,8 @@ Qt 고유의 event 처리 메커니즘으로, 객체 간의 통신을 위해 고
 
 **동작 순서**
 
-1. 사용자 입력 등 event가 발생하면 widget이 해당 **signal**을 emit함.
-2. signal에 미리 연결(connect)해둔 **slot**이 호출됨.
+1. 사용자 입력 등 event가 발생하면 widget이 해당 **signal** 을 emit함.
+2. signal에 미리 연결(connect)해둔 **slot** 이 호출됨.
 3. slot은 개발자가 구현한 method 또는 function으로, event 발생 시 수행할 task를 담고 있음.
 
 **Signal**

@@ -82,7 +82,7 @@ Signal은 특정 이벤트 발생 시 Qt가 자동으로 emit하는 알림으로
 | `returnPressed` | Enter / Return 키 입력 시 | 없음 |
 | `selectionChanged` | 선택된 text 범위 변경 시 | 없음 |
 | `textChanged(text)` | text 변경 시 (프로그램 코드에 의한 변경 포함) | `str` |
-| `textEdited(text)` | **사용자**가 직접 키보드로 text 편집 시 | `str` |
+| `textEdited(text)` | **사용자** 가 직접 키보드로 text 편집 시 | `str` |
 | `editingFinished` | 편집 완료 시 (Enter 입력 또는 focus 이탈) | 없음 |
 
 **`textChanged` vs `textEdited`**

@@ -34,7 +34,7 @@ date: 2025-04-12
 
 ## `Qt` Class
 
-widget이나 다른 class들의 **설정**에 관련된 ***식별자(identifier)들***을 모아둔 일종의 namespace class.
+widget이나 다른 class들의 **설정** 에 관련된 ***식별자(identifier)들***을 모아둔 일종의 namespace class.
 
 * 정렬 방식 (`AlignmentFlag`), 가로세로 비율 (`AspectRatioMode`) 등 다양한 enum이 정의되어 있음.
 * `QtCore` 모듈에서 import하여 사용함.
@@ -70,7 +70,7 @@ content의 정렬 방식을 지정하는 `enum` type.
 | `AlignTop` | 상단으로 정렬 |
 | `AlignBottom` | 하단으로 정렬 |
 | `AlignVCenter` | 수직 방향 가운데 정렬 |
-| `AlignCenter` | `AlignHCenter \| AlignVCenter` 와 동일 - 수평 + 수직 중앙 정렬 |
+| `AlignCenter` | `AlignHCenter | AlignVCenter` 와 동일 - 수평 + 수직 중앙 정렬 |
 | `AlignJustify` | 가용한 공간에 맞춰 양쪽 정렬 (multi-line text에서만 효과 있음) |
 
 ### 사용법

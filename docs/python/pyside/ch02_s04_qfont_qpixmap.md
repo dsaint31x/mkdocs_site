@@ -18,7 +18,7 @@ date: 2025-04-12
 **관련 module** : `QtGui`
 
 `QFont`와 `QPixmap`은 `QtGui` 모듈에서 제공하는 대표적인 클래스들로,  
-`QLabel` widget과 자주 함께 사용되는 **그래픽 요소들을 추상화**하고 있음.
+`QLabel` widget과 자주 함께 사용되는 **그래픽 요소들을 추상화** 하고 있음.
 
 **주의사항**
 
@@ -92,7 +92,7 @@ img_label.setPixmap(pixmap)
 
 | Method | 설명 |
 |---|---|
-| `scaled(w, h, mode)` | 지정한 크기로 resize된 **새로운** `QPixmap` instance를 반환. 원본을 수정하지 않음 |
+| `scaled(w, h, mode)` | 지정한 크기로 resize된 **새로운** `QPixmap` instance를 반환. <br/>원본을 수정하지 않음 |
 | `fill(color)` | pixmap 전체를 지정한 색으로 채움 |
 
 **`scaled()` 사용 예시**
