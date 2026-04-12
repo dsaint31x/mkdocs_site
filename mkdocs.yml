@@ -312,7 +312,15 @@ nav:
         - "python/pyside/ch01_s04_1_qmainwindow.md"
         - "python/pyside/ch01_s04_2_qdialog.md"
         - "python/pyside/ch01_s04_3_qapplication.md"
+      - "ch02":
+        - "python/pyside/ch02_s01_widget.md"
+        - "python/pyside/ch02_s02_qwidget.md"
+        - "python/pyside/ch02_s03_qlabel.md"
+        - "python/pyside/ch02_s04_qfont_qpixmap.md"
+        - "python/pyside/ch02_s05_qtcore_qt.md"
+        - "python/pyside/ch02_s06_qpushbutton.md"
       - "ch04":
+        - "python/pyside/ch04_s00_intro.md"
         - "python/pyside/ch04_s01_qlineedit.md"
         - "python/pyside/ch04_s02_qradiobutton.md"
         - "python/pyside/ch04_s03_qcheckbox.md"
