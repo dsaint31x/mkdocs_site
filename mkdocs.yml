@@ -312,6 +312,12 @@ nav:
         - "python/pyside/ch01_s04_1_qmainwindow.md"
         - "python/pyside/ch01_s04_2_qdialog.md"
         - "python/pyside/ch01_s04_3_qapplication.md"
+      - "ch04":
+        - "python/pyside/ch04_s01_qlineedit.md"
+        - "python/pyside/ch04_s02_qradiobutton.md"
+        - "python/pyside/ch04_s03_qcheckbox.md"
+        - "python/pyside/ch04_s04_qgroupbox.md"
+        - "python/pyside/ch04_s05_qcombobox.md"
   - "DIP":
     - "OpenCV: Gui Features in OpenCV":
       - "DIP/cv2/ch00/dip_0_00.md"
