@@ -6,10 +6,10 @@ tags:
   - PySide6
   - PyQt6
   - QLineEdit
-  - Widget
+  - widget
   - GUI
-  - Signal
-  - Slot
+  - signal
+  - slot
 date: 2025-04-12
 ---
 
