@@ -151,11 +151,13 @@ try:
         QApplication, QWidget, QLineEdit,
         QPushButton, QVBoxLayout, QHBoxLayout, QLabel,
     )
+    from PySide6.QtCore import Qt
 except ImportError:
     from PyQt6.QtWidgets import (
         QApplication, QWidget, QLineEdit,
         QPushButton, QVBoxLayout, QHBoxLayout, QLabel,
     )
+    from PyQt6.QtCore import Qt
 
 
 class MW(QWidget):
@@ -187,6 +189,7 @@ class MW(QWidget):
             ("redo",  self.le.redo),
         ]:
             btn = QPushButton(label)
+            # btn.setFocusPolicy(Qt.FocusPolicy.NoFocus) #windows!
             btn.clicked.connect(slot)
             btn_layout.addWidget(btn)
 
