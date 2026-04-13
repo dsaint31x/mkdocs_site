@@ -189,7 +189,8 @@ class MW(QWidget):
             ("redo",  self.le.redo),
         ]:
             btn = QPushButton(label)
-            # btn.setFocusPolicy(Qt.FocusPolicy.NoFocus) #windows!
+            # button에 포커스를 뺏기면 선택영역이 사라지므로 다음 처리 필요.
+            btn.setFocusPolicy(Qt.FocusPolicy.NoFocus) #windows and linux
             btn.clicked.connect(slot)
             btn_layout.addWidget(btn)
 
@@ -208,7 +209,6 @@ class MW(QWidget):
         self.status_label.setText(
             f"undo available: {undo_ok}  |  redo available: {redo_ok}"
         )
-
 
 if __name__ == "__main__":
     app = QApplication(sys.argv)
