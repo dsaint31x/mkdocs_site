@@ -29,18 +29,22 @@ draft: false
 Batch Normalization은 [Ioffe et al.이 2015년 제안한 기법](https://arxiv.org/pdf/1502.03167)으로  
 Gradient Vanishing과 Exploding의 위험을 효과적으로 감소시킴: 정확히는 mini-batch normalization이라고 해야할텐데...
 
-* Layer parameter가 변함에 따라,
-  다음 layer에 들어오는 input의 distribution이 바뀌는 ***Internal Covariate Shift*** (ICS) 문제를
-  Gradient Vanishing and/or Exploding의 원인이라고 가정
+* Layer parameter가 변함에 따라,  
+  다음 layer에 들어오는 input의 distribution이 바뀌는 ***Internal Covariate Shift*** (ICS) 문제를  
+  Gradient Vanishing and/or Exploding의 원인이라고 가정.
   (참고로 현재 `BN`의 제안 당시 ICS가정은 다르게 해석되고 있음: [아래 설명](#bn과-ics-가정) 참고).
-* 이를 위해 layer의 Input을 standardization을 하고,
-  task 수행에 최적의 분포가 되도록 scaling과 shifting을 **학습** 하여
+* 이를 위해 layer의 Input을 standardization을 하고,  
+  task 수행에 최적의 분포가 되도록 scaling과 shifting을 **학습** 하여  
   이를 layer input에 적용.
-* 단, `RNN`의 time 방향으로 unrolling된 쪽에 `BN`은 적용해도 큰 효과가 없는 것으로 알려짐
-  (때문에 `RNN` 및 `transformer` 에서는 대신 `Layer Normalization`을 주로 사용.)
+* 단, `RNN`의 time 방향으로 unrolling된 쪽에 `BN`은 적용해도 큰 효과가 없는 것으로 알려짐:
+    * RNN이 다루는 sequence data들이 각기 다른 sequence length를 가지며, 이를 padding을 통해 같은 사이즈가 되도록 함.
+    * 해당 padding은 실제로 의미가 없는 0 등의 값을 가지게 되는데 이를 `BN`으로 처리시 padding으로 인한 의미없는 0 들로 인해 제대로 된 통계적 지표(feature별 mean, std들을 제대로 못 구함).
+    * 때문에 `RNN` 및 `transformer` 에서는 `BN` 대신 `Layer Normalization`을 주로 사용: 각각의 token을 따로 normalization을 수행함.
 
 어찌 보면 ***layer 별로 최적의 input 분포를 가지도록 pre-processing을 해주는 것*** 이 batch normalization이다.  
-(여기서 최적의 분포란 현재 training dataset을 기준으로 task를 가장 잘 수행할 수 있게 해주는 input의 분포를 의미.)
+
+* 여기서 최적의 분포란 현재 training dataset을 기준으로 task를 가장 잘 수행할 수 있게 해주는 input의 분포를 의미.
+* 보통은 activation 전에 처리되어 activation이 안정적인 분포의 입력 tensor (= 비슷비습한 에너지 레벨이 맞추어진 tensor들)를 가지게 해 줌.
 
 > internal covariate shift를 해결하는 ideal solution은
 > layer의 input에 whitening을 가해서,
@@ -157,6 +161,9 @@ Keras에서는 optimizer 객체에서 설정하며
 
 ![](./img/bn_training.png){style="display:block; margin: 0 auto; width: 800px"}
 
+* 위 그림에서 보면, 통계적 처리(mean과 std구하기)가 feature별로 이루어짐 (batch축을 따라 이루어짐)
+* layer normalization은 column이 아닌 row로 mean과 std가 구해짐: 이는 각각의 token 별로 이루어지는 것으로 feature 축을 따라 계산이 이루어짐.
+
 standardization을 위해 mini-batch ($B$)의 mean ($\mu_B$)과 variance ($\sigma^2_B$)를 구하고, 이를 바탕으로 normalization을 한 다음, scaling($\gamma$)과 shift ($\beta$)를 수행. 
 
 1. $\displaystyle \mu_B=\frac{1}{m_B}\sum^{m_B}_{i=1}\textbf{x}^{(i)}$
@@ -164,9 +171,14 @@ standardization을 위해 mini-batch ($B$)의 mean ($\mu_B$)과 variance ($\sigm
 3. $\displaystyle \hat{\textbf{x}}^{(i)}=\frac{\textbf{x}^{(i)}-\mu_B}{\sqrt{\sigma_B^2+\epsilon}}$ ← Standardization 을 의미함. z-Transform이라고도 불림.
 4. $\displaystyle \textbf{z}^{(i)}=\gamma \otimes \hat{\textbf{x}}^{(i)}+\beta$ ← rescaling and shift.
 
+* $\otimes$ : Element-wise multiplication (or Hadamard multiplication)
 * $\textbf{z}^{(i)}$는 $i$ input instance $\textbf{x}$에 대한 rescaled and shifted version임.
 * $\gamma$와 $\beta$는 back-propagation을 통해 학습되는 parameters임.
+    * 학습 초기 단계에서 $\gamma=1$, $\beta=0$
+    * 모델이 역전파를 통해 스스로 판단하여 다음 레이어(활성화 함수)에 가장 알맞은 최적의 데이터 분포로 모양을 다시 빚어냄.
 * 위에서 $\epsilon$은 zero-division을 막아주기 위한 smoothing factor임.
+
+> 딥러닝 모델이 훈련하는 동안 역전파(Back-propagation) 과정을 통해 데이터의 분포에 맞게 최적의 값으로 스스로 업데이트하며 학습됨!
 
 ---
 
