@@ -65,7 +65,8 @@ Debian 계열(Debian, Mint, Ubuntu 등)과 Redhat (Redhat, Fedora, CentOS)계열
 ### 1. Debian 계열.
 
 ***Debian***
-: Debian은 1993년 Ian Murdock이 만든 배포판으로 `.deb` 패키지 포맷과 `apt` 패키지 관리 시스템을 사용 하는 특징을 가지며, Debian 계열의 여러 distros의 기반이 됨.
+: Debian은 1993년 Ian Murdock이 만든 배포판으로 `.deb` 패키지 포맷과 `apt` 패키지 관리 시스템을 사용 하는 특징을 가지며, Debian 계열의 여러 distros의 기반이 됨.  
+   [Release들은 이 링크로 확인하면 됨](https://wiki.debian.org/DebianReleases)
 
 ***Ubuntu***
 : Ubuntu는 많은 논란을 일으키기도 하지만, 가장 사용자 층이 넓은 distro임이 분명함. 5년간 지원을 보장하는 LTS Version(Long Term Support Version)을 일반적으로 2년마다 발표하고, 그 사이 6개월마다 새로운 버전을 발표할 정도로 매우 활발한 움직임을 보인다. 뛰어난 사용자 친화성과 넓은 hardware 지원으로 유명하며, Kubuntu, Xubuntu와 같은 자체적인 variations 도 많음.
