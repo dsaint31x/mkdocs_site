@@ -73,16 +73,16 @@ single time-step의 input에 대해 sequence output이 나오는 network임.
 (`seq2seq`로 불림).
 
 
-> 사실 `seq2seq` 은 일종의 task의 형태로
+> 사실 `seq2seq` 은 일종의 task의 형태로  
 > **sequence 데이터가 들어가서 sequence 출력이 나옴** 을 의미함.  
 > `encoder-decoder` 는 모델의 구조를 가리키는 용어임.  
 >
-> * CNN을 encoder로 하고
-> * transformer를 decoder로 하는 방식은
-> * `seq2seq`가 아니나 `encoder-decoder` 구조임)
+> * CNN을 encoder로 하고  
+> * transformer를 decoder로 하는 방식은  
+> * `seq2seq`가 아니나 역시 `encoder-decoder` 구조로 볼 수 있음.
 >
-> 이 **두 용어** 가
-> "seq2seq model" = "encoder-decoder RNN" 으로 흔히 사용되고 있으나,
+> 이 **두 용어** 가  
+> "seq2seq model" = "encoder-decoder RNN" 으로 흔히 사용되나  
 > 위의 차이는 기억을 할 것.
 > 
 > `Sequence To Sequence Learning with Neural Networks (Sutskever et al. 2014) 논문이 워낙 유명해지면서
@@ -97,12 +97,13 @@ input sequence (3 time-steps)들이 존재하는 부분은 encoder라고 볼 수
 
 input sequence를 전체를 입력받아서 encoding을 수행하여 represent(=`context vector`)를 얻고  
 이를 기반으로 decoding을 하여 output sequence를 얻는 형태로  
-2017년 transformer가 등장하기 전까지 machine translation 분야 등에서 인기있던 topology였음.
+2017년 transformer가 등장하기 전까지 machine translation 분야 등에서 인기 있던 topology 였음.
 
+사실 Transformer도 Encoder-Decoder 구조를 취하고 있음 (RNN 셀 대신에 MHA 등으로 대체되었으나)
 
-> 위의 그림과 같이
-> encoder와 decoder가 연결된 가운데에서 input과 output이 같이 존재하는 형태로 그려지기도 하지만,
-> 아래 그림처럼 input seq.가 있는 곳에선 output이 없고,
+> 위의 그림과 같이  
+> encoder와 decoder가 연결된 가운데에서 input과 output이 같이 존재하는 형태로 그려지기도 하지만,  
+> 아래 그림처럼 input seq.가 있는 곳에선 output이 없고,  
 > output이 있는 곳에선 input이 없는 형태로 그려지기도 함.  
 >
 > ![encoder_decoder_network](../img/ch16_RNN/encoder_decoder_network.png){style="display: block; margin: auto 0; width:400"}
@@ -117,7 +118,7 @@ input sequence를 전체를 입력받아서 encoding을 수행하여 represent(=
 * decoder 시작 부분에 입력되는 hidden state의 정보가 손실되기 쉬움
 * (**information bottleneck** 이라고 불림).
 
-다음 그림에서 오른쪽 상단의 연결구조가 전통적인 encoder-decoder RNN 구조임.
+다음 그림에서 왼쪽 상단의 연결구조가 전통적인 encoder-decoder RNN 구조임.
 
 ![](./img/Attention_RNN_ED.png){style="display: block; margin: 0 auto; width:500px"}
 <p style="text-align:center; font-size:0.9em; color:#666;">
@@ -125,7 +126,8 @@ ref. Natural Language Processing with Transformers, Revised Edition. ch 1
 </p>
 
 
-때문에 `attention RNN encoder-decoder` (right-bottom)등에서는 `encoder`의 모든 hidden state 들을 `decoder`가 사용하는 방식으로 개선이 됨: 이 같은 방식은 `attention` 기반의 모델에서 흔하게 사용되고 있음.
+왼쪽 하단은 `attention RNN encoder-decoder` 를 나타낸다.  
+여기선 `encoder`의 모든 hidden state 들을 `decoder`가 사용하는 방식으로 개선이 됨: 이 같은 방식은 `attention` 기반의 RNN 모델에서 흔하게 사용되고 있음.
 
 * 모든 hidden state를 다 사용하므로 
 * 그 중 어디에 집중하여 출력을 결정할지를 `attention` 이라는 가중치로 결정함. 
