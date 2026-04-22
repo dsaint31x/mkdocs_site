@@ -30,7 +30,7 @@ Batch Normalization은 [Ioffe et al.이 2015년 제안한 기법](https://arxiv.
 Gradient Vanishing과 Exploding의 위험을 효과적으로 감소시킴: 정확히는 mini-batch normalization이라고 해야할텐데...
 
 * Layer parameter가 변함에 따라,  
-  다음 layer에 들어오는 input의 distribution이 바뀌는 ***Internal Covariate Shift*** (ICS) 문제를  
+  다음 layer에 들어오는 input의 distribution이 바뀌는 [***Internal Covariate Shift*** (ICS) 문제](https://dsaint31.tistory.com/675#Internal%20Covariate%20Shift-1-1)를  
   Gradient Vanishing and/or Exploding의 원인이라고 가정.
   (참고로 현재 `BN`의 제안 당시 ICS가정은 다르게 해석되고 있음: [아래 설명](#bn과-ics-가정) 참고).
 * 이를 위해 layer의 Input을 standardization을 하고,  
