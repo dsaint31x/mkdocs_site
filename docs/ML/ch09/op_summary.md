@@ -24,15 +24,17 @@ parameters의 수가 적은 비교적 단순한 모델들의 경우,
     * 따라서 메모리 문제와 매우 큰 계산량 때문에 Hessian 계열 method는 DNN 학습에 일반적으로 적합하지 않음.
 
 > Adaptive learning rate 를 구현하기 위해,  
-> Hessian matrix 와 같은 이차미분 정보를 직접 계산하는 2nd order optimization method 도 존재함.
+> Hessian matrix 와 같은 이차미분 정보를 직접 계산하는 2nd order optimization method (미분의 차수:order, 다항식의 차수:degree)도 존재함.
 > 
 > 하지만, Deep Learning에선 Hessian matrix를 구하는 계산량이 매우 크기 때문에 이는 실용적이지 않음.  
 > "squared gradient 의 [Exponential Moving Average](https://dsaint31.tistory.com/860)",  
-> 즉, "gradient의 uncentered second moment"를 이용하여  
+> 즉, "gradient의 [uncentered second moment](https://dsaint31.tistory.com/256#Moment%EC%9D%98%20%EC%A2%85%EB%A5%98-1-1)"를 이용하여  
 > parameter마다 실제로 적용되는 update 크기, 즉 **effective step size를 조절** 하는 방식이 널리 사용됨.
 >
-> 참고로 learning rate는 optimizer가 기본적으로 사용하는 전역 step 크기이고,
-> effective step size는 각 parameter에 실제로 적용되는 최종 update 크기를 가리킴.
+> 참고로,
+>
+> * learning rate는 optimizer가 기본적으로 사용하는 전역 step 크기이고,
+> * effective step size는 각 parameter에 실제로 적용되는 최종 update 크기를 가리킴.
 
 * 참고: [Gradient Descent Method](https://dsaint31.tistory.com/633)
 
