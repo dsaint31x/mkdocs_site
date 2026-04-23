@@ -10,16 +10,29 @@ Optimizer는
 * 주어진 손실 함수(loss function)를 최소화하기 위해
 * 모델의 parameters를 어떤 규칙에 따라 업데이트할지를 정의하는 알고리즘
 
-parameters의 수가 적은 단순한 모델들의 경우 
+즉, optimization problem에서 objective function을 줄이는 방향으로 parameter를 반복적으로 갱신하여, minimizer 또는 그에 가까운 해를 찾는 알고리즘을 가리킴.
 
-* 2차 미분 정보를 활용하는 Hessian 계열 (Newton's Method)이 사용(이론적으로는 보다 빠른 수렴을 제공)되기도 하나,
-* ***Deep Neural Network에선 Gradient 계열 만이 사용됨.***
-   * parameters의 수의 square에 비례하는 연산을 요구하는 Hessian 계열은
-   * **메모리 문제** 와 함께 **너무 느린 학습 속도 (~계산량)** 로 인해 DNN 에 적합하지 않음.
+* 참고: [Optimization Problem 이란](https://dsaint31.tistory.com/728)
 
-> Adaptive learning rate 를 위해,  
-> 이차미분의 Hessian matrix 대신,  
-> [Exponential Moving Average](https://dsaint31.tistory.com/860) of "gradient square (=2nd moment)" 등이 사용됨.
+parameters의 수가 적은 비교적 단순한 모델들의 경우,
+
+* 2차 미분 정보를 활용하는 **Hessian 계열 method**, 예를 들어 Newton's Method가 사용되기도 함.
+    * 이러한 방법은 curvature 정보를 직접 반영하므로, 이론적으로는 1차 방법보다 더 빠른 수렴을 보일 수 있음.
+* 반면, Deep Neural Network에서는 1차 미분 기반의 Gradient 계열 optimizer가 주로 사용됨.
+    * Hessian matrix는 parameter 수를 $p$라고 할 때 저장에만 $O(p^2)$의 메모리를 요구함.
+    * 또한 이를 이용한 계산은 일반적으로 그보다 더 큰 계산 비용을 필요로 하므로, DNN처럼 parameter 수가 매우 큰 모델에서는 실용적이지 않음.
+    * 따라서 메모리 문제와 매우 큰 계산량 때문에 Hessian 계열 method는 DNN 학습에 일반적으로 적합하지 않음.
+
+> Adaptive learning rate 를 구현하기 위해,  
+> Hessian matrix 와 같은 이차미분 정보를 직접 계산하는 2nd order optimization method 도 존재함.
+> 하지만, Deep Learning에선 Hessian matrix를 구하는 계산량이 매우 크기 때문에 이는 실용적이지 않음.
+> "squared gradient 의 [Exponential Moving Average](https://dsaint31.tistory.com/860)",
+> 즉, "gradient의 uncentered second moment"를 이용하여
+> parameter마다 실제로 적용되는 update 크기, 즉 effective step size를 조절하는 방식이 널리 사용됨.
+>
+> 참고로 learning rate는 optimizer가 기본적으로 사용하는 전역 step 크기이고, effective step size는 각 parameter에 실제로 적용되는 최종 update 크기를 가리킴.
+
+* 참고: [Gradient Descent Method](https://dsaint31.tistory.com/633)
 
 ---
 
