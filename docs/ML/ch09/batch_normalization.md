@@ -190,14 +190,19 @@ Training 단계와 큰 차이는 없으나 mini-batch에서 구해지는 $\mu_B$
 
 때문에 Test에서 사용되는 mean과 shift는 Training 과정 중에 mini-batch 별로 구해지는 $\mu_B$와 $\sigma_B^2$ 들을 이용하여 exponential moving averaging (일반적인 구현물에서 사용됨)으로 구하거나 Training dataset 전체의 mean과 variance를 사용한다.
 
-Exponential moving average를 사용할 경우, `momentum`이라는 hyper-parameter가 추가된다. 
+Exponential moving average를 사용할 경우, `momentum`이라는 hyper-parameter가 추가된다.
+
+* 주의할 점은 아래 식은 TF(or Keras)에서의 형식이고, PyTorch의 경우 momentum이 running mean과 running std에 곱해짐
+* 원래 momentum이 곱해지는 항이 일반적인 EMA와 달리 PyTorch의 경우가 좀 특이한 편임 
 
 $$\hat{\textbf{v}} \leftarrow \hat{\textbf{v}} \times \text{momentum} + \textbf{v} \times (1-\text{momentum})$$
 
-* $\textbf{v}$ : current mini-batch로부터 구해진 mean 또는 standard deviation vector. (feature별로 구해진다는 점을 잊지 말 것)
+* $\textbf{v}$ : current mini-batch로부터 구해진 mean (=running mean) vector 또는 variance deviation (=running variance) vector.
+    * feature별로 구해진다는 점을 잊지 말 것: 결국 vector가 됨.
+    * 보통 running mean, running variance 라고 불림.
 * $\hat{\textbf{v}}$ : inference에서 사용되게 될 mean과 standard deviation vector.
 
-일반적으로 training dataset이 크거나 mini-batch의 크기가 작을 경우 `momentum`은 커져야 한다. (보통 적어도 0.9정도를 사용.)
+일반적으로 training dataset이 크거나 mini-batch의 크기가 작을 경우 `momentum`은 커져야 한다. (보통 적어도 0.9정도를 사용: PyTorch에서 1-0.9=0.1)
 
 > 다음을 참고하라 : Github code [Batch-Normalization](https://github.com/shuuki4/Batch-Normalization/blob/master/BatchNormalization.py)
 
