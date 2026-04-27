@@ -197,7 +197,7 @@ Exponential moving average를 사용할 경우, `momentum`이라는 hyper-parame
 
 $$\hat{\textbf{v}} \leftarrow \hat{\textbf{v}} \times \text{momentum} + \textbf{v} \times (1-\text{momentum})$$
 
-* $\textbf{v}$ : current mini-batch로부터 구해진 mean (=running mean) vector 또는 variance deviation (=running variance) vector.
+* $\textbf{v}$ : current mini-batch로부터 구해진 mean (=running mean) vector 또는 variance (=running variance) vector.
     * feature별로 구해진다는 점을 잊지 말 것: 결국 vector가 됨.
     * 보통 running mean, running variance 라고 불림.
 * $\hat{\textbf{v}}$ : inference에서 사용되게 될 mean과 standard deviation vector.
