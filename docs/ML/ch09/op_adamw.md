@@ -87,12 +87,12 @@ $$ \begin{aligned}v_t &= \beta v_{t-1} + (1-\beta) g_t \\
 * Adam은 momentum을 "그대로 쓰는" 알고리즘이 아니라,
 * **1st moment와 2nd moment를 adaptive 하게 추정하는 알고리즘** 이다.
 
-1st moment는 EMA를 통한 Momentum 알고리즘의 효과를 가져오고,  
-2nd moment는 지금까지 적용된 parameter 각각의 변화의 정도를 고려하여 adaptive하게 각 parameter에 적용되는 step size 를 결정하게 함.
+1st moment (of gradient)는 EMA를 통한 Momentum 알고리즘의 효과를 가져오고,  
+2nd moment (of gradient)는 지금까지 적용된 parameter 각각의 변화의 정도를 고려하여 adaptive하게 각 parameter에 적용되는 step size 를 결정하게 함.
 
-#### 1.3.1. 1차 모멘트: gradient 평균 추정
+#### 1.3.1. 1차 모멘트: gradient (이동)평균 추정
 
-Adam의 1st moment 는 다음을 추정하는 것임:
+Adam의 1st moment of gradient 는 다음을 추정하는 것임:
 
 $$
 m_t \approx \mathbb{E}[g_t]
@@ -111,7 +111,7 @@ $$
 
 #### 1.3.2. 2차 모멘트: gradient 에너지 추정
 
-Adam의 2nd moment는 다음을 추정한다.
+Adam의 2nd moment of gradient는 다음을 추정한다.
 
 $$v_t \approx \mathbb{E}[g_t^2]$$
 
@@ -123,7 +123,7 @@ $$v_t = \beta_2 v_{t-1} + (1-\beta_2) g_t^2$$
 
 * gradient 크기의 평균 제곱. (gradient 벡터의 제곱)
 * gradient 벡터에서의 각 요소별로 제곱을 하여 각 요소(~parameter별 축)에서의 **크기(scale)** 를 구함. 
-* 이들을 EMA로 처리하면 지금까지 parameter에 대해 가해진 변화량을 가늠할 수 있기 때문에 Parameter별로 다른 adaptive step size 들을 결정하는데 사용 가능. 
+* 이들을 EMA로 처리하면 지금까지 parameter에 대해 가해진 변화량을 가늠할 수 있기 때문에 Parameter별로 다른 ***adaptive step size 들을 결정*** 하는데 사용 가능. 
 
 이를 다음과 같이 적용한다 (`RMSProp`의 아이디어)
 
@@ -219,6 +219,11 @@ $$
 
 * weight decay 강도가 각 parameters 마다 달라지는 효과가 발생함.
 * regularization이 원하는 단순한 "크기 억제" 가 아닌, "gradient vector" 가 가리키는 방향 자체에 대한 왜곡이 일어나는 셈임.
+
+실제론 다음과 같이 되지만 설명을 간단히 하기 위해 1차 moment 대신 gradient를 직접 사용함:
+
+$$ g^\ast_t = g_t + \lambda \theta_t \\ m_t = \beta_1 m_{t-1} + (1-\beta_1)g^\ast_t \\ \v_t = \beta_2 v_{t-1} + (1-\beta_2)(g^\ast_t)^2$$
+$$ \theta_{t+1} = \theta_t - \eta \frac{\hat{m}_t}{\sqrt{\hat{v}_t + \varepsi}}$$
 
 
 ## 3. AdamW: Regularization 을 분리
