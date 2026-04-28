@@ -222,8 +222,8 @@ $$
 
 실제론 다음과 같이 되지만 설명을 간단히 하기 위해 1차 moment 대신 gradient를 직접 사용함:
 
-$$ g^\ast_t = g_t + \lambda \theta_t \\ m_t = \beta_1 m_{t-1} + (1-\beta_1)g^\ast_t \\ \v_t = \beta_2 v_{t-1} + (1-\beta_2)(g^\ast_t)^2$$
-$$ \theta_{t+1} = \theta_t - \eta \frac{\hat{m}_t}{\sqrt{\hat{v}_t + \varepsi}}$$
+$$ g^\ast_t = g_t + \lambda \theta_t \\ m_t = \beta_1 m_{t-1} + (1-\beta_1)g^\ast_t \\ v_t = \beta_2 v_{t-1} + (1-\beta_2)(g^\ast_t)^2$$
+$$ \theta_{t+1} = \theta_t - \eta \frac{\hat{m}_t}{\sqrt{\hat{v}_t + \epsilon}}$$
 
 
 ## 3. AdamW: Regularization 을 분리
