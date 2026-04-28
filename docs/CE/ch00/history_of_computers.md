@@ -39,7 +39,7 @@ Vannevar Bush's [Differential Analyzer (미분해석기)](https://ds31x.tistory.
 
 * Analog Mechanical Calculator.
 
-Claude Shannon's [A Symbolic Analysis of Relay and Switching Circuits (1939년)](https://ds31x.tistory.com/393)
+Claude Shannon's [A Symbolic Analysis of Relay and Switching Circuits (1937년)](https://ds31x.tistory.com/393)
 
 * Computer를 Switch의 조합으로 만들 수 있음: Digital Logic Circuit 의 등장.
 
