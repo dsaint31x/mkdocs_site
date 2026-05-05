@@ -291,13 +291,16 @@ def keyPressEvent(self, event: QKeyEvent):
 그럼에도 Custom Signal을 사용하는 이유는  
 다음의 기능을 **보다 더 간결하고 직관적으로 구현** 할 수 있음:
 
-* ***느슨한 결합(loose coupling)*** : Event Handler가 처리 로직을 직접 알 필요 없이, Signal만 emit하면 됨. 어떤 Slot이 연결되어 있는지는 Event Handler의 관심사가 아님.
-* ***복수의 Slot 연결*** : 하나의 Custom Signal에 여러 Slot을 연결할 수 있음. 예를 들어, 이미지 변경과 동시에 log 기록, status bar 갱신 등을 각각 별도 Slot으로 처리할 수 있음.
+* ***느슨한 결합(loose coupling)*** : Event Handler가 처리 로직을 직접 알 필요 없이, Signal만 emit하면 됨.  
+  어떤 Slot이 연결되어 있는지는 Event Handler의 관심사가 아님.
+* ***복수의 Slot 연결*** : 하나의 Custom Signal에 여러 Slot을 연결할 수 있음.  
+  예를 들어, 이미지 변경과 동시에 log 기록, status bar 갱신 등을 각각 별도 Slot으로 처리할 수 있음.
 * ***재사용성*** : Custom Signal을 가진 widget을 다른 application에서 재사용할 때, Slot만 교체하면 다른 동작을 수행할 수 있음.
 
 > Event Handling에서도  
 > `installEventFilter()` 메커니즘을 사용하면  
 > 유사한 효과를 얻을 수 있음.
+>   
 > 다만, Signal-Slot 방식이  
 > 코드의 가독성과 유지보수 측면에서 더 자연스러움.
 
@@ -312,7 +315,7 @@ Custom Signal은 ***widget의 재사용이 빈번하거나,
 
 ## Custom Signal을 별도 class에 정의하는 방법
 
-위 예제에서는 `MW`(QMainWindow subclass) 자체에 Custom Signal을 선언했지만,  
+위 예제에서는 `MW`(`QMainWindow` subclass) 자체에 Custom Signal을 선언했지만,  
 ***별도의 `QObject` subclass*** 에 Custom Signal을 정의하는 방법도 가능함.
 
 ```python
