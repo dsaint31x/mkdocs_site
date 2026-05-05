@@ -330,6 +330,7 @@ nav:
         - "python/pyside/ch04_s01_event_handling.md"
         - "python/pyside/ch04_s02_ex_event_handling.md"
         - "python/pyside/ch04_s03_ex_signals_and_slots.md"
+        - "python/pyside/ch04_s04_ex_custom_signal.md"
   - "DIP":
     - "OpenCV: Gui Features in OpenCV":
       - "DIP/cv2/ch00/dip_0_00.md"

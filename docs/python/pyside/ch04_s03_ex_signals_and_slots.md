@@ -66,6 +66,7 @@ hook up이라고도 불림.
 
 * 하나의 Signal에 복수의 Slot을 연결할 수 있음 (1:N).
 * 복수의 Signal을 하나의 Slot에 연결할 수도 있음 (N:1).
+* `type` 키워드 파라메터로 Connect Type을 지정할 수 있음.
 
 ```python
 button.clicked.connect(self.button_clicked)
@@ -73,6 +74,9 @@ button.clicked.connect(self.button_clicked)
 
 위 코드는 `QPushButton` instance의 `clicked` Signal에  
 `self.button_clicked` method를 Slot으로 연결하는 예임.
+
+* `type` 파라미터에 argument를 지정하지 않았으므로 
+* 기본값인 AutoConnection 으로 동작.
 
 ### Emit (Activation)
 
@@ -108,7 +112,7 @@ Connection type에 따라 Slot이 호출되는 방식과 시점이 달라짐.
 > `connect()`에서 connection type을 생략하면  
 > 기본값인 `Qt.ConnectionType.AutoConnection`이 적용됨.
 
-## 예제
+### Connection Type Examples
 
 다음 세 가지 예제를 통해 각 connection type의 동작 차이를 살펴봄.
 
@@ -118,7 +122,7 @@ Connection type에 따라 Slot이 호출되는 방식과 시점이 달라짐.
 | 예제 2 | `QueuedConnection` | Slot이 receiver의 thread에서 비동기적으로 실행됨 |
 | 예제 3 | `AutoConnection` | 같은 thread / 다른 thread 여부에 따라 자동 결정됨 |
 
-### 예제 1: DirectConnection
+#### 예제 1: DirectConnection
 
 다음 코드는 button을 클릭하면 `clicked` Signal이 발생하고,  
 `DirectConnection`으로 연결된 Slot이 ***즉시 실행*** 되는 예제임.
@@ -239,7 +243,7 @@ Slot이 receiver의 Event Loop에서 실행되도록 해야 함.
 cross-thread 시 `QueuedConnection`으로 동작하므로,  
 명시적으로 `DirectConnection`을 지정하지 않는 한 이 문제는 일반적으로 발생하지 않음.
 
-### 예제 2: QueuedConnection
+#### 예제 2: QueuedConnection
 
 다음 코드는 worker thread에서 Signal을 emit하고,  
 `QueuedConnection`으로 연결된 Slot이  
@@ -374,7 +378,7 @@ if __name__ == "__main__":
 * Worker thread에서 직접 widget을 조작하면 crash나 undefined behavior가 발생할 수 있음.
 * `QueuedConnection`을 사용하면 worker thread의 결과를 main thread의 Event Loop를 통해 안전하게 widget에 반영할 수 있음.
 
-### 예제 3: AutoConnection
+#### 예제 3: AutoConnection (가장 중요)
 
 다음 코드는 `AutoConnection`(기본값)을 사용하여  
 ***같은 thread에서 emit하면 Direct, 다른 thread에서 emit하면 Queued*** 로  
@@ -520,7 +524,7 @@ if __name__ == "__main__":
     sys.exit(app.exec())
 ```
 
-#### Main thread에서 emit한 경우
+**Main thread에서 emit한 경우**:
 
 `Emit from Main Thread` button을 누르면 console 출력은 다음과 같음.
 
@@ -536,7 +540,7 @@ Sender(MW)와 receiver(MW)가 같은 thread에 있으므로
 `AutoConnection`이 ***`DirectConnection`으로 동작*** 하여  
 Slot이 emit 흐름 안에서 즉시 실행됨.
 
-#### Worker thread에서 emit한 경우
+**Worker thread에서 emit한 경우:**
 
 `Emit from Worker Thread` button을 누르면 console 출력은 다음과 같음.
 
@@ -547,24 +551,13 @@ Sender(Worker)와 receiver(MW)가 다른 thread에 있으므로
 `AutoConnection`이 ***`QueuedConnection`으로 동작*** 하여  
 Slot이 main thread의 Event Loop에서 비동기적으로 실행됨.
 
-#### 정리
+**`AutoConnection` 의 동작 방식 정리:**
 
 | emit 위치 | AutoConnection 동작 | Slot 실행 시점 |
-|:---|:---|:---|
-| Main thread (same thread) | → `DirectConnection` | emit 호출 흐름 안에서 즉시 |
-| Worker thread (different thread) | → `QueuedConnection` | main thread Event Loop가 처리할 때 |
+|---|---|---|
+| Main thread (same thread) | `DirectConnection` | emit 호출 흐름 안에서 즉시 |
+| Worker thread (different thread) | `QueuedConnection` | main thread Event Loop가 처리할 때 |
 
-## 정리
-
-| 항목 | DirectConnection | QueuedConnection | AutoConnection |
-|:---|:---|:---|:---|
-| 동작 방식 | 즉시 함수 호출 (동기) | posted event queue 등록 (비동기) | 자동 결정 |
-| Slot 실행 thread | Signal을 emit한 thread | receiver가 속한 thread | 상황에 따라 다름 |
-| Event System 사용 | 사용 안 함 | `QMetaCallEvent`를 Posted Event로 활용 | 상황에 따라 다름 |
-| 주요 사용 상황 | 같은 thread 내 communication | cross-thread communication | 일반적 사용 (기본값) |
-| thread-safety | cross-thread 시 ***주의 필요*** | thread-safe | thread-safe |
-
----
 
 * Signals and Slots는 Event System과 ***독립된 메커니즘*** 이지만, `QueuedConnection`에서는 내부적으로 Posted Event를 활용함.
 * `DirectConnection`은 일반 함수 호출과 동일하게 즉시 실행되며, Event System을 거치지 않음.
@@ -582,7 +575,7 @@ Signal은 종류에 따라 Slot에 추가적인 ***argument를 전달*** 함.
 `QButtonGroup`의 `buttonClicked` Signal은 클릭된 button의 reference를  
 각각 Slot에 넘겨줌.
 
-### Signal이 전달하는 argument 확인 방법
+### Signal이 전달하는 arguments 확인 방법
 
 특정 Signal이 어떤 argument를 전달하는지 확인하는 방법은 다음과 같음.
 
@@ -732,7 +725,41 @@ if __name__ == "__main__":
     * 어떤 object가 Signal을 emit했는지 확인할 때 사용함.
     * `QObject`에 정의되어 있으므로 모든 Qt object에서 호출 가능함.
 
-> Signals and Slots에 대한 보다 자세한 내용은 다음 문서를 참고할 것.
->
-> * [Signals & Slots — Qt for Python](https://doc.qt.io/qtforpython-6/overviews/signalsandslots.html)
-> * [Signals and Slots — PyQt Documentation](https://www.riverbankcomputing.com/static/Docs/PyQt6/signals_slots.html)
+## Summary
+
+Signals and Slots 는 
+
+* Qt 고유의 object 간 communication 기법 으로 
+* 전통적인 Event handling 대신에 Qt기반의 GUI에서 이벤트 처리에 사용됨.
+
+Signals and Slots 는
+
+* connection type에 따라 동기식/비동기식 으로 동작함.
+* 이를 정리하면 다음과 같음:
+
+| 항목 | DirectConnection | QueuedConnection | **AutoConnection** |
+|---|---|---|---|
+| 동작 방식 | 즉시 함수 호출 (동기) | posted event queue 등록 (비동기) | 자동 결정 |
+| Slot 실행 thread | Signal을 emit한 thread | receiver가 속한 thread | 상황에 따라 다름 |
+| Event System 사용 | 사용 안 함 | `QMetaCallEvent`를 Posted Event로 활용 | 상황에 따라 다름 |
+| 주요 사용 상황 | 같은 thread 내 communication | cross-thread communication | 일반적 사용 (기본값) |
+| thread-safety | cross-thread 시 ***주의 필요*** | thread-safe | thread-safe |
+
+Signals and Slots 에서
+
+* signal 은 event에 대한 일종의 notification이고,  
+* slot은 특정 signal이 emit된 경우 수행되도록 연결된 method 임.
+* signal 은 연결된 slot 에 추가적인 argument를 전달할 수 있음.
+
+마지막으로, custom signal 도 만들 수 있음 (이는 다음 문서에서 보다 자세히 다룸) :
+
+---
+
+---
+
+## 참고자료
+
+Signals and Slots에 대한 보다 자세한 내용은 다음 문서를 참고할 것.
+
+* [Signals & Slots — Qt for Python](https://doc.qt.io/qtforpython-6/overviews/signalsandslots.html)
+* [Signals and Slots — PyQt Documentation](https://www.riverbankcomputing.com/static/Docs/PyQt6/signals_slots.html)
