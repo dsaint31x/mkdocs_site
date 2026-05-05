@@ -152,7 +152,7 @@ Qt는 event를 `QEvent` class로 추상화하며, event 종류에 따라 subclas
 | `closeEvent()`      | widget 또는 window가 닫히려 할 때     | `QCloseEvent`  | 닫기 허용 여부를 결정하거나 저장 확인 dialog를 띄울 때 사용함.     |
 | `focusInEvent()`    | widget이 keyboard focus를 얻었을 때 | `QFocusEvent`  | focus 표시나 입력 상태 초기화에 사용함.      |
 
-이 Event Handler를 overrde하여 reimplementation 하면
+이 Event Handler를 override하여 re-implementation 하면
 
 * 해당 Widget 에서의 관련 event 에 대한 동작이 완전히 변경됨을 의미한다.
 * 높은 수준의 Customized Widgets가 이 방식을 이용하여 구현된다.
@@ -223,7 +223,7 @@ Signals and Slots는 Qt의 meta-object system을 기반으로 동작하며,
 개발자가 `QEvent`, `event()`, `event handler`를 직접 다루지 않고도
 object 간 통신 및 GUI Application에서의 event처리 등을 구현할 수 있게 해줌.
 
-다음은 `QPushButton` 객체인 `button`의 `clicke` signal에 대한 slot으로  같은 클래스에 구현된 메서드 `on_button_clicked`를 지정하는 간단한 예제임:
+다음은 `QPushButton` 객체인 `button`의 `clicked` signal에 대한 slot으로  같은 클래스에 구현된 메서드 `on_button_clicked`를 지정하는 간단한 예제임:
 
 ```python
 button.clicked.connect(self.on_button_clicked)
