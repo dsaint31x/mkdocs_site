@@ -27,7 +27,7 @@ Event별로 처리를 담당하는 ***Event Handler*** 는
 
 개발자는 Event Handling을 다음과 같이 수행:
 
-* 해당 evnet의 handler에 해당하는 method를 ***overriding*** 하여
+* 해당 event의 handler에 해당하는 method를 ***overriding*** 하여
 * ***해당 Event 발생 시의 처리를 reimplement*** 하거나,
 * 해당 method 내부에서 `if-else` 구문을 통해 **원하는 기능만 추가하는 방식** 으로 구현함.
 
@@ -287,7 +287,6 @@ class Canvas(QWidget):
 
         # QWidget이 그림을 그릴 영역을 가지도록 최소 크기 지정.
         self.setMinimumSize(320, 180)
-        self.show()
 
     def move_circle(self):
         """
@@ -341,6 +340,7 @@ class MW(QWidget):
     def __init__(self):
         super().__init__()
         self.init_ui()
+        self.show()
 
     def init_ui(self):
         self.setWindowTitle("Posted Paint Event Ex")
