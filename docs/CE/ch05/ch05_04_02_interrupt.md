@@ -58,9 +58,14 @@ event가 발생했을 때, `CPU`는 대개의 경우 어떤 process를 처리하
 
 지나치게 interrupt처리에 많은 시간을 줄 수 없으며, 이같은 시간제한을 위한 `timer interrupt`도 존재함.
 
-## OS와 signal (or event) handler system.
+---
+
+---
+
+##- OS와 signal (or event) handler system.
 
 SW적 관점에서 OS는 마치 hardware interrupt를 모방한 ***virtual or software interrupt system*** 을 가지고 있다.
+
 
 User application에서 
 
@@ -87,9 +92,9 @@ UNIX에서는 이러한 software interrupt 개념에 착안하여,
 
 보다 자세한 건 다음 url을 참고할 것 : [Interrupt 요약](https://dsaint31.tistory.com/447)
 
----
+--
 
-### H/W Interrupt vs. S/W Interrupt vs. Signal
+### 참고: H/W Interrupt vs. S/W Interrupt vs. Signal
 
 * H/W Interrupt는 **외부 장치가 CPU에게** 알리는 것(External, Asynchronous)이고,
 * S/W Interrupt는 **프로그램이 CPU를 통해 Kernel에게** 요청(CPU의 명령어 execute 통해)하는 것(Internal, Synchronous) 이며,
