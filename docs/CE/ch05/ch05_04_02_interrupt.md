@@ -72,14 +72,38 @@ User application에서
 UNIX에서는 이러한 software interrupt 개념에 착안하여, 
 
 * 프로세스에게 **비동기적** 으로 event 발생을 통보하기 위한 signal mechanism을 제공.
-* Signal은 software interrupt와 유사하게 현재 실행 흐름을 중단하고 등록된 handler를 호출한다.
+* Signal은 **software interrupt와 유사하게 현재 실행 흐름을 중단하고 등록된 handler를 호출** 한다.
 * 하지만, CPU 명령어에 의해 **동기적으로 발생하는 software interrupt(trap)** 와 달리
-* kernel이 프로세스 단위로 전달하는 **비동기적 통보 메커니즘**이라는 점에서 구별됨:
+* kernel이 프로세스 단위로 전달하는 **비동기적/동기적 통보 메커니즘** 이라는 점에서 구별됨:
     * `CTRL+C`에 의한 `SIGINT`도 대표적인 signal의 예임
+    * CPU Exception에 의해 만들어지는 SIGNAl은 동기적이나
+    * 다른 SIGNAL은 모두 비동기적임.
+    * S/W Interrupt는 CPU 에서 발생하나,
+    * SIGNAL은 항상 Kernel이 생성하고 전달함 (발생원인은 CPU일수도 그외의 H/W일수도 있음).
 
 [SIGNAL 요약](https://ds31x.tistory.com/132)
 
 하지만 최근에는 `signal`이라는 용어보다 `event`라는 용어가 더 많이 사용된다.
 
 보다 자세한 건 다음 url을 참고할 것 : [Interrupt 요약](https://dsaint31.tistory.com/447)
+
+---
+
+### H/W Interrupt vs. S/W Interrupt vs. Signal
+
+* H/W Interrupt는 **외부 장치가 CPU에게** 알리는 것(External, Asynchronous)이고,
+* S/W Interrupt는 **프로그램이 CPU를 통해 Kernel에게** 요청(CPU의 명령어 execute 통해)하는 것(Internal, Synchronous) 이며,
+* Signal은 **Kernel이 프로세스에게** 통보하는 것 (Kernel, Asynchronous/Synchronous).
+
+| | H/W Interrupt | S/W Interrupt | Signal |
+|---|---|---|---|
+| **발생 원인** | CPU 외부 장치 (키보드, 타이머 등) | CPU가 명령어 실행 (`INT n`, `SVC`, `SYSCALL`) | Kernel이 생성 |
+| **발생 위치** | CPU 외부 | CPU 내부 | Kernel |
+| **동기/비동기** | 항상 비동기 | 항상 동기 | 주로 비동기, CPU Exception에 의한 경우 동기 |
+| **전달 대상** | CPU → Kernel(ISR) | CPU → Kernel(ISR) | Kernel → Process |
+| **전달 방향** | H/W → CPU → Kernel | 프로그램 → CPU → Kernel | Kernel → 프로세스 |
+| **처리 방식** | ISR 실행 | ISR 실행 | Signal handler 실행 |
+| **handler 등록** | Kernel이 관리 | Kernel이 관리 | 프로세스가 등록 가능 |
+| **목적** | H/W 이벤트 처리 | OS 서비스 요청 (system call) | 프로세스에 이벤트 통보 |
+| **예시** | 키보드 입력, 타이머 | `SYSCALL`, `SVC`, `INT 0x80` | `SIGINT`, `SIGFPE`, `SIGKILL` |
 
