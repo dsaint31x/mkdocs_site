@@ -64,7 +64,7 @@ event가 발생했을 때, `CPU`는 대개의 경우 어떤 process를 처리하
 
 ---
 
-##- OS와 signal (or event) handler system.
+## 참고: OS와 signal (or event) handler system.
 
 SW적 관점에서 OS는 마치 hardware interrupt를 모방한 ***virtual or software interrupt system*** 을 가지고 있다.
 
@@ -94,7 +94,7 @@ UNIX에서는 이러한 software interrupt 개념에 착안하여,
 
 보다 자세한 건 다음 url을 참고할 것 : [Interrupt 요약](https://dsaint31.tistory.com/447)
 
---
+---
 
 ### 참고: H/W Interrupt vs. S/W Interrupt vs. Signal
 
