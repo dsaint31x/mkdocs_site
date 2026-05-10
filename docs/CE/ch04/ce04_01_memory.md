@@ -65,8 +65,10 @@ memory에 저장된 값을 **CPU가 접근** 하기 위해서는
 - 64bit computer는 memory address를 $2^{64}$가지로 지정 가능.
     - 이는 8byte로 address를 지정함을 의미.
 
-64bit computer의 경우, 최대 $2^{64}$ bytes에 해당하는 address를 가질 수 있으나,  
-실제 memory addressing에는 ***전체 64bit 중 하위 48bit만 사용*** 함.
+64bit computer의 경우, 이론적으로 최대 $2^{64}$ 개의 byte address를 표현할 수 있으므로,  
+최대 $2^{64}$ bytes의 address space를 가질 수 있음.  
+그러나 실제 구현에서는 CPU와 OS의 설계에 따라 사용 가능한 address bit 수가 제한되며,  
+x86-64에서는 일반적으로 48bit 또는 최근에는 57bit virtual address를 지원함.
 
 - `C`언어에서의 **pointer variable (포인터 변수)** 의 크기(자료형의 크기)를 보면,  
   해당 memory address가 어느정도 크기인지를 알 수 있음.
@@ -74,6 +76,14 @@ memory에 저장된 값을 **CPU가 접근** 하기 위해서는
 - 무엇보다 OS부터 64bit OS를 설치해야 함.
 
 > $2^{64}$ bytes 은 16,777,216 TiB (Tebibytes, 2의 40승)의 어마어마한 수임.
+
+참고로,  
+
+* virtual address(가상 주소) 라고 부르는 이유는,
+* CPU 명령어와 프로그램이 직접 다루는 주소가 실제 DRAM의 물리 주소(physical address) 가 아니라,
+* MMU(Memory Management Unit)를 통해 변환되는 논리적 주소 공간의 주소이기 때문임.
+* CPU가 메모리에 접근할 때 대략 다음 과정을 거침:
+    * `virtual address→MMU→physical address→DRAM`
 
 ---
 
