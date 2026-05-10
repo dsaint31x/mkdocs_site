@@ -27,6 +27,10 @@ The ***console*** allows system administrators to
 
 ## Terminal
 
+Terminal이라는 이름은 라틴어 terminus에서 온 것으로,   
+“끝”, “말단”, “종점”을 뜻한다.   
+초기 컴퓨터 환경에서 terminal은 중앙 컴퓨터에 연결된 말단 입출력 장치였기 때문에 이 이름이 붙었다.
+
 > 컴퓨터에 local 또는 remote로 접속할 수 있는 ***console을 S/W로 구현한 것***.  
 > (보통 `shell`이 수행되도록 해주는 wrapper라고 볼 수 있다.)
 >
