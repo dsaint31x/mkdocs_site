@@ -1,5 +1,7 @@
 # Interrupt and Polling
 
+![](../img/interrupt_polling.png)
+
 `Interrupt`와 `Polling`은 `CPU`에게 어떤 event들이 발생했음을 알리고 이들을 처리하기 위해 제안된 두가지 방법임.
 
 event가 발생했을 때, `CPU`는 대개의 경우 어떤 process를 처리하고 있을 경우가 많음. 즉, `CPU`는 어떤 process를 처리하고 있는 도중이라도 특정 event들이 발생했는지 여부를 알 수 있어야 하고 이를 처리할 수 있어야 함.
