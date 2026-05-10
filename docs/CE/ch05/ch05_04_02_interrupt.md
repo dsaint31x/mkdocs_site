@@ -2,9 +2,13 @@
 
 ![](../img/interrupt_polling.png){style="display: block; margin: 0 auto; width: 600"}
 
-`Interrupt`와 `Polling`은 `CPU`에게 어떤 event들이 발생했음을 알리고 이들을 처리하기 위해 제안된 두가지 방법임.
+`Interrupt`와 `Polling`은 
 
-event가 발생했을 때, `CPU`는 대개의 경우 어떤 process를 처리하고 있을 경우가 많음. 즉, `CPU`는 어떤 process를 처리하고 있는 도중이라도 특정 event들이 발생했는지 여부를 알 수 있어야 하고 이를 처리할 수 있어야 함.
+* `CPU`에게 어떤 event들이 발생했음을 알리고
+* 이들을 처리하기 위해 제안된 두가지 방법임.
+
+event가 발생했을 때, `CPU`는 대개의 경우 어떤 process를 처리하고 있을 경우가 많음.  
+즉, `CPU`는 어떤 process를 처리하고 있는 도중이라도 특정 event들이 발생했는지 여부를 알 수 있어야 하고 이를 처리할 수 있어야 함.
 
 예를 들어, 키보드에서 입력이 된 event가 발생했으나 `CPU`가 특정 process를 처리하느라 이를 인식하지 못할 경우 사용자는 해당 process가 종료되기 전까지는 키보드를 통한 어떤 입력도 수행되지 못하는 것을 보게될 것이고 이는 컴퓨터가 죽은 게 아닌가 생각하게 될 것임. 때문에 interrupt나 polling을 통해 event를 확인하고 처리할 수 있어야 함.
 
