@@ -62,9 +62,20 @@ event가 발생했을 때, `CPU`는 대개의 경우 어떤 process를 처리하
 
 SW적 관점에서 OS는 마치 hardware interrupt를 모방한 ***virtual or software interrupt system*** 을 가지고 있다.
 
-User application에서 system call을 통해 Kernel mode로 동작을 요청할 때 software interrupt가 발생하며, 이후로 kernel mode가 되어 해당 처리가 완료된 이후, 원래의 User application의 user mode로 돌아와 작업이 재개된다.
+User application에서 
 
-UNIX에서는 이같은 software interrupt를 주로 `signal`이라고 부르며 해당 처리 방식을 `signal mechanism`이라고 부른다. (`CTRL+c`도 대표적인 signal)
+1. system call을 통해 Kernel mode로 동작을 요청할 때
+2. software interrupt (=trap)가 발생하며,
+3. 이후로 kernel mode가 되어 해당 처리가 완료된 이후,
+4. 원래의 User application의 user mode로 돌아와 작업이 재개된다.
+
+UNIX에서는 이러한 software interrupt 개념에 착안하여, 
+
+* 프로세스에게 **비동기적** 으로 event 발생을 통보하기 위한 signal mechanism을 제공.
+* Signal은 software interrupt와 유사하게 현재 실행 흐름을 중단하고 등록된 handler를 호출한다.
+* 하지만, CPU 명령어에 의해 **동기적으로 발생하는 software interrupt(trap)** 와 달리
+* kernel이 프로세스 단위로 전달하는 **비동기적 통보 메커니즘**이라는 점에서 구별됨:
+    * `CTRL+C`에 의한 `SIGINT`도 대표적인 signal의 예임
 
 [SIGNAL 요약](https://ds31x.tistory.com/132)
 
