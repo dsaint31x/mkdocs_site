@@ -40,8 +40,8 @@
 
 > 여러 Output들을 ***하나의 Pin*** 으로 묶을 경우,  
 >
-> * Open-Drain 또는 
-> * [Tri-State](https://dsaint31.me/mkdocs_site/CE/ch03_seq/ce03_02_1_memory1/#memory-with-address) 가 쓰임. 
+> * [Open-Drain](../ch02_co/ce02_04_4_2_open_collector.md) 또는 
+> * [Tri-State](../ch02_co/ce02_04_4_3_tri_state_output.md) 가 쓰임. 
 
 ---
 
@@ -49,9 +49,11 @@
 
 ## GPIO (General Purpose I/O)
 
-General Purpose I/O는 Chip에서 제공하는 Pin의 수가 한정되어 있기 때문에  
-특정 Pin을 **입력과 출력으로 같이 쓰는 경우** 에 사용되는 방식.  
-일반적으로 `Tri-State Output` 을 이용하여 구현됨.
+General Purpose I/O는 
+
+* Chip에서 제공하는 Pin의 수가 한정되어 있기 때문에  
+* 특정 Pin을 **입력과 출력으로 같이 쓰는 경우** 에 사용되는 방식.  
+* 일반적으로 [`Tri-State Output`](../ch02_co/ce02_04_4_3_tri_state_output.md) 을 이용하여 구현됨.
 
 > Memory의 경우,  
 > **Read와 Write가 동시에 이루어지는 경우가 거의 없기 때문** 에
@@ -82,7 +84,7 @@ Memory의 경우 다음과 같은 2개의 BUS를 가짐.
 다음 그림은  
 
 * 아까의 Memory Component에  
-* `Tri-State` 기반의 `GPIO` 와,  
+* []`Tri-State`](../ch02_co/ce02_04_4_3_tri_state_output.md)  기반의 `GPIO` 와,  
 * `Bus`를 도입한 경우에 대한
 * Simplified Schematic Representation임.
 
