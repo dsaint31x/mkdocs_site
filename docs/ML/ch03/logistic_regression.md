@@ -356,6 +356,8 @@ MSE 보다는 cross entropy가 보다 적합한 loss function임.
 
 ---
 
+---
+
 ## Multi-class Classification으로 확장.
 
 Logistic regression의 Logistic function을 multi-class로 확장하면 Softmax function이 된다.
@@ -369,6 +371,16 @@ Logistic regression의 Logistic function을 multi-class로 확장하면 Softmax 
 * [참고: Softmax function](https://dsaint31.tistory.com/294)
 
 Logistic Regression이 Bernoulli Distribution에 기반한 `MLE` 였던 것을 multi-class classification으로 일반화하면, Categorical Distribution에 기반한 `MLE`가 된다.
+
+| 구분        | Binary NLL<br/>(이진 음의 로그 가능도)               | Categorical NLL<br/>(범주형 음의 로그 가능도)                |
+| --------- | -------------------------------------- | --------------------------------------------- |
+| 대상 문제     | Binary classification<br/>(이진 분류)           | Multiclass classification<br/>(다중 클래스 분류)          |
+| 확률 모델     | Bernoulli distribution<br/>(베르누이 분포)        | Categorical distribution<br/>(범주형 분포)              |
+| 정답 형태     | $y \in {0,1}$                          | $y \in \{1,\dots,K\}$ 또는 one-hot vector(원-핫 벡터) |
+| 모델 출력     | $\hat{p}=P(y=1 \mid x;\theta)$         | $\hat{p}_k=P(y=k \mid x;\theta)$              |
+| 샘플 하나의 손실 | $-[y\log\hat{p}+(1-y)\log(1-\hat{p})]$ | $-\sum_{k=1}^{K}y_k\log\hat{p}_k$             |
+| 다른 이름     | Binary Cross-entropy<br/>(BCE, 이진 교차 엔트로피)  | Multiclass Cross-entropy<br/>(다중 클래스 교차 엔트로피)      |
+
 
 > 비슷하게 `MSE`를 기반으로 하는 linear regression의 경우,  
 >
