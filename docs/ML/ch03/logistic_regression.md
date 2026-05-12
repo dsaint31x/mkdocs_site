@@ -395,3 +395,4 @@ NFLT (No Free Lunch Theorem)에 의해
 * [Minimizing the Negative Log-Likelihood, in English](https://willwolf.io/2017/05/18/minimizing_the_negative_log_likelihood_in_english/?fbclid=IwAR0nSqtezeZqG0kc2OqQZBSzxB-UXiNKILD44oPGlFcPxGdTbPyOokDyIVE)
 * [Binomial Distribution](https://dsaint31.tistory.com/467)
 * [Poisson Distribution](https://dsaint31.tistory.com/636)
+* [Entropy, KL-Divergence, and Cross-entropy](https://dsaint31.tistory.com/292)
