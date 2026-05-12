@@ -9,13 +9,13 @@
 * 이전 자리에서 넘어오는 carry에 대한 고려가 없음
 * 때문에 half adder라고 불림.
 
-![](./imgs/half_adder.png)
+![](./imgs/half_adder.png){style="display:block; margin: 0 auto; width:500px"}
 
 ## Full Adder
 
 2개의 bit와 이전 자리에서 넘어오는 carry를 고려한 addition을 수행함.
 
-![](./imgs/full_adder.png)
+![](./imgs/full_adder.png){style="display:block; margin: 0 auto; width:500px"}
 
 ## Ripple-carry Adder
 
@@ -24,7 +24,7 @@ full adder들을 순차적으로 연결하여 구현.
 * input carry가 이전 자리에 대한 full adder의 출력 carry와 연결됨.
 * 각 full adder의 출력 carry가 다음 자리의 input으로 연결되어 각 비트에서 다음 비트로 물결이 출렁이듯 전달된다는 의미로 ripple이 붙음.
 
-![](./imgs/ripple_carry_adder.png)
+![](./imgs/ripple_carry_adder.png){style="display:block; margin: 0 auto; width:500px"}
 
 쉽게 이해가 되는 구조이나 propagation delay 등으로 인해 자리수가 높은 adder 구현에는 적합하지 않음.
 
@@ -70,7 +70,7 @@ $$
  \text{ AND } C_i
 ) \text{ OR }(B_i
 \text{ AND } C_i
-)]) \\\\
+)]) \\
  &\text{ OR }(B_{i+1}
 \text{ AND } [(A_i
  \text{ AND } B_i
