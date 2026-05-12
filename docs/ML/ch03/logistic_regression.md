@@ -38,7 +38,7 @@ Logistic Regression의 동작 순서는 다음과 같음.
 
 다음 그림은 Computational Graph 또는 Single Layer Perceptron (or `Dense` Layer)로 표현한 Logistic Regression임.
 
-![](./img/logistic_regression_ann.png){style="display: block; margin:0 auto;width=500"}
+![](./img/logistic_regression_ann.png){style="display: block; margin:0 auto;width=500px"}
 
 다음은 Logistic Regression의 출력 $\hat{p}$의 수식이다.
 $$
