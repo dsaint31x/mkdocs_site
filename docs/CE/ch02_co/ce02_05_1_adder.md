@@ -24,7 +24,7 @@ full adder들을 순차적으로 연결하여 구현.
 * input carry가 이전 자리에 대한 full adder의 출력 carry와 연결됨.
 * 각 full adder의 출력 carry가 다음 자리의 input으로 연결되어 각 비트에서 다음 비트로 물결이 출렁이듯 전달된다는 의미로 ripple이 붙음.
 
-![](./imgs/ripple_carry_adder.png){style="display:block; margin: 0 auto; width:500px"}
+![](./imgs/ripple_carry_adder.png){style="display:block; margin: 0 auto; width:300px"}
 
 쉽게 이해가 되는 구조이나 propagation delay 등으로 인해 자리수가 높은 adder 구현에는 적합하지 않음.
 
