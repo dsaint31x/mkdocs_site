@@ -20,8 +20,8 @@ tags:
 # Logistic Regression
 
 Logistic Regression은  
-이름과 달리, binary classification task를 위한 모델로서  
-특정 class에 속할 확률을 결과값으로 가짐.(output이 하나의 확률값임).
+이름과 달리, ***binary classification task*** 를 위한 모델로서  
+특정 class에 속할 확률을 결과값으로 가짐 (output이 확률값 하나임).
 
 * Label은 일반적으로 1 또는 0 으로 표기하여 
 * 특정 class에 속하는 경우 1을 label로 가지고
@@ -77,7 +77,7 @@ input $\textbf{x}$가 주어질 경우,
 하나의 클래스에 속하는지 안 속하는지를 결정하는 task를 
 ***binary classification*** 이라고 함.
 
-> 하나의 클래스에 속하는 경우(=1)와 속하지 않는 경우(=-1) 두 개의 클래스ㄹ 가지기 때문에 binary classification 이라고 불림.
+> 하나의 클래스에 속하는 경우(=1)와 속하지 않는 경우(=0) 두 개의 클래스를 가지기 때문에 binary classification 이라고 불림.
 
 ANN 등으로 만들 경우,  
 output이 숫자 하나로 나오며  
@@ -97,7 +97,10 @@ $i$번째 input $\textbf{x}^{(i)}$에 대응하는 label $y^{(i)}$는 `0` 또는
     * 정답은 고정이니 확률이 0%인 `0`으로 기재.
     * $i$번째 sample이 class 0 으로 label이 지정된 경우, 해당 sample이 class 1일 확률은 `0`이 된다.
 
-즉, $i$번째 sample의 label $y^{(i)}$를 class의 index로 봐도 되지만, class 1에 속할 확률이라고 볼 수도 있다.
+즉, $i$번째 sample의 label $y^{(i)}$를 
+
+* class의 index (=클래스 0이냐 1이냐)로 봐도 되지만,
+* 클래스 1에 속할 확률이라고 볼 수도 있다.
 
 이는 달리 말하면 binary classifier의 output은  
 ***class 1에 속할 확률*** 이라고 볼 수 있음을 의미한다.
@@ -278,7 +281,7 @@ $$J(\boldsymbol{\theta}) = -\frac{1}{m} \sum_{i=1}^m \left[ y^{(i)}\log \left(\h
 
 하지만, 다행스럽게도 위의 loss function은 ***convex function*** 임.
 
-* Gradient Decent를 사용할 경우 global minimum에 해당하는 parameters를 항상 구할 수 있음을 의미함. 
+* Gradient Descent를 사용할 경우 global minimum에 해당하는 parameters를 항상 구할 수 있음을 의미함. 
 
 ---
 
@@ -297,10 +300,10 @@ $$\dfrac{\partial}{\partial \theta_j}J(\boldsymbol{\theta})=\frac{1}{M}\sum_{i=1
 * 이를 training set의 모든 instances에 대해 averaging.
 
 위와 같은 partial derivatives를 통해 gradient $\nabla_{\boldsymbol{\theta}}J(\boldsymbol{\theta})$를 구하고,  
-이를 이용한 Gradient Decent method로 parameters를 구해나가면  
+이를 이용한 Gradient Descent method로 parameters를 구해나가면  
 Logistic regression의 training이 이루어짐. 
 
-* [참고: Gradient Decent Method (GD)](https://dsaint31.tistory.com/633)
+* [참고: Gradient Descent Method (GD)](https://dsaint31.tistory.com/633)
 
 ---
 
