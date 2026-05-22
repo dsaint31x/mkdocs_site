@@ -398,6 +398,29 @@ NFLT (No Free Lunch Theorem)에 의해
 
 > 참고: [No Free Lunch Theorem (NFLT)](https://dsaint31.tistory.com/605)
 
+다음은 NLL와 Cross entropy의 관계를 정리한 내용임:
+
+> Cross entropy는 target distribution $p$에 대한 expected NLL이며,
+> p가 one-hot인 degenerate distribution이면 그 expected NLL은 관측 label 하나에 대한 ordinary NLL과 정확히 같아진다.
+
+* Bernoulli 분포에서는 binary cross entropy가 Bernoulli likelihood의 negative log-likelihood와 정확히 같음.
+* Soft Bernoulli target $p$에서는 binary cross entropy가 $Y \sim \mathrm{Bernoulli}(p)$에서 가능한 $Y=1$, $Y=0$ 각각의 NLL을 평균낸 expected NLL임.
+* Categorical 분포에서는 hard one-hot target에 대한 cross entropy가 categorical likelihood의 negative log-likelihood와 정확히 같음.
+* Soft categorical target $\mathbf{p}$에서는 cross entropy가 $Y \sim \mathrm{Categorical}(\mathbf{p})$에서 가능한 각 class label의 NLL을 평균낸 expected NLL임.
+* Multi-label classification에서 각 label을 independent Bernoulli로 모델링하면 binary cross entropy의 합이 전체 label vector에 대한 negative log-likelihood와 정확히 같음.
+
+## 결론:
+
+$$H(\mathbf{p}, \mathbf{q}) = \mathbb{E}_{Y \sim \mathrm{Categorical}(\mathbf{p})}
+\left[-\log q_Y \right] = -\sum_{i=1}^{K} p_i \log q_i $$
+
+where
+
+* $\mathbf{p} = (p_1,\dots,p_K)$ is the target probability vector,
+* $\mathbf{q} = (q_1,\dots,q_K)$ is the model probability vector, and
+* $q_i = P_\theta(Y=i \mid x)$ is the model probability assigned to class $i$.
+
+
 ---
 
 ---
