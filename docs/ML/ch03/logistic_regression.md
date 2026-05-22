@@ -1,7 +1,21 @@
 ---
 title: Logistic Regression
-tags: [Logistic, Classification, Regression, MLEM]
+summary: Logistic Regression을 Bernoulli distribution, maximum likelihood estimation, negative log-likelihood, binary cross entropy 관점에서 정리하고, 이를 multi-class classification과 categorical cross entropy로 확장한다.
+description: Logistic Regression의 확률적 해석, Bernoulli likelihood, MLE, NLL, BCE, cross entropy, softmax 기반 multi-class classification까지 정리한 문서.
+tags:
+  - logistic-regression
+  - binary-classification
+  - bernoulli-distribution
+  - maximum-likelihood-estimation
+  - negative-log-likelihood
+  - binary-cross-entropy
+  - cross-entropy
+  - categorical-distribution
+  - softmax
+  - machine-learning
+  - deep-learning
 ---
+
 
 # Logistic Regression
 
@@ -38,7 +52,7 @@ Logistic Regression의 동작 순서는 다음과 같음.
 
 다음 그림은 Computational Graph 또는 Single Layer Perceptron (or `Dense` Layer)로 표현한 Logistic Regression임.
 
-![](./img/logistic_regression_ann.png){style="display: block; margin:0 auto;width=500px"}
+![](./img/logistic_regression_ann.png){style="display: block; margin:0 auto;width=350px"}
 
 다음은 Logistic Regression의 출력 $\hat{p}$의 수식이다.
 $$
