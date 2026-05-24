@@ -19,7 +19,10 @@ public: true
 
 * Python에서 대부분의 class는 `object`를 최상위 base class로 가진다.
 * Python에서 class 자체도 object이다.
-* 우리가 정의한 일반적인 class는 `type` class의 instance이다.
+* Python의 모든 class는 `type` class의 instance이다.
+
+
+참고: [이에 대한 보다 자세한 자료](https://ds31x.tistory.com/573)
 
 우리가 `Samp1`이라는 class를 정의하고, `a`라는 이름의 variable에 `Samp1`의 instance를 할당한 경우는 다음과 같다.
 
@@ -45,8 +48,6 @@ a = Samp1()
 * `Samp1` class는 `type` class의 instance이다.
 
 Python에서는 class도 object이고, function도 object이다.
-
-참고: [이에 대한 보다 자세한 자료](https://ds31x.tistory.com/573)
 
 > Python에서 특히 function은 first-class object이다.
 >
