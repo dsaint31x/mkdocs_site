@@ -5,7 +5,7 @@ tags: [oop, abstraction, class, instance, object, attribute, behavior, python, c
 
 # Abstraction (추상화) : Class and Instance
 
-![](./imgs/abstraction_object_instance_class.png)
+![](./imgs/abstraction_object_instance_class.png){style="display: block; margin: 0 auto; width: 600px"}
 
 > 抽 : 뽑아낼 추  
 > 像 : 모양 상  
