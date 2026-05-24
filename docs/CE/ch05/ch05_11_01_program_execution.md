@@ -19,7 +19,7 @@ tags:
 
 # Library, Shared Library, Dynamic Linking
 
-![](./img/library_so_dll.png){style="display: block; magin: 0 auto; width: 500px"}
+![](./img/library_so_dll.png){style="display: block; margin: 0 auto; width: 600px"}
 
 ## **0. Library**
 
