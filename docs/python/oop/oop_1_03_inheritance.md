@@ -1,35 +1,75 @@
+---
+title: "Inheritance"
+summary: "객체지향 프로그래밍에서 상속의 의미, class hierarchy, method overriding, super(), multiple inheritance, diamond problem, MRO를 Python 예제로 정리한다."
+date: 2026-05-25
+last_modified_at: 2026-05-25
+categories:
+  - OOP
+  - Python
+tags:
+  - inheritance
+  - class
+  - object
+  - hierarchy
+  - superclass
+  - subclass
+  - overriding
+  - super
+  - multiple-inheritance
+  - diamond-problem
+  - mro
+toc: true
+math: false
+mermaid: false
+---
+
 # Inheritance (상속)
 
-OOP에서 애용되는 Object간의 관계(relation) 중의 하나이다. Inheritance를 통해 생성되는 관계가 `is-a`관계 (이후 다룸)임.
+OOP에서 애용되는 Object간의 관계(relation) 중의 하나이다.  
+Inheritance를 통해 생성되는 관계가 `is-a`관계 (이후 다룸)임.
 
 Hierarchy(계층화)와 함께 modularity (모듈화)와 코드의 재사용성을 극대화 시킬 수 있는 방법임.
 
 > [Hierarchy(계층화)](./oop_1_001_modularity.md#oop에서-modularity와-hierarchy) 를 다시 한번 읽어볼 것.
-> 
+ 
+inheritance가 OOP에서 이용되는 이유는 다음과 같음:
+
+* 공통 기능을 부모 class에 모아둘 수 있음.
+* 여러 자식 class에서 중복 코드를 줄일 수 있음.
+* class 사이의 관계를 명확하게 표현할 수 있음.
+* 기존 class를 수정하지 않고 기능을 확장할 수 있음
+
+---
 
 ---
 
 ## Class의 Hierarchy 구조
 
-Class에서의 Hierarchy는 inheritance를 통해 이루어진다. 다음은 판타지 게임의 인간 종족을 abstraction하고 이들을 상속을 통해 계층화 한 Diagram이다.
+Class에서의 Hierarchy는 inheritance를 통해 이루어진다.  
+다음은 판타지 게임의 인간 종족을 abstraction하고 이들을 상속을 통해 계층화 한 Diagram이다.
 
-![](../img/hierarchy_inheritance.png)
+![](../img/hierarchy_inheritance.png){style="display: block; margin: 0 auto; width: 400px"}
 
 inheritance를 통해
 
-- 기존 class와 구분되는 ***특징*** 만을 기술하여
+- 기존 class와 구분되는 ***attributes*** 만을 따로 기술하여
 - **subclass(하위 class)** 로 추가.
 
 상속에 따라 attribute(특성)을 공유하게 됨. ← 재사용성이 높아짐.
 
 * attributes는 Python의 용어로서 class가 가지고 있는 methods와 variables를 가리킴.
 
-> Python이나 Java는 모든 class에서 가져야할 attributes를 Object 라는 클래스에 구현하고 이를 상속받는 구조를 취함으로서 재사용성을 극대화하고 구현코드를 최소화함.
+> Python이나 Java는
+> 모든 class에서 가져야할 attributes를
+> Object (or object) 라는 클래스에 구현하고
+> 이를 상속받는 구조를 취함으로서 재사용성을 극대화하고 구현코드를 최소화함.
 
 용어들은 다음과 같음.
 
-* parent class = super class = 상위클래스
-* child class = sub class = 하위클래스
+* parent class = superclass = base class = 상위클래스
+* child class = subclass = derived class = 하위클래스
+
+---
 
 ### Example (Python)
 
@@ -81,22 +121,43 @@ if __name__ == "__main__":
         h.introduce()    
 ```
 
-* 생성자 `__init__(self, name)`를 모든 sub-class에서 over-riding하고 있음.
-* over-riding할 경우, super-class의 method는 가려져서 대체된다. 때문에 super-class의 것을 호출하기 위해선, `super()`를 통해 super-class의 object를 가져와서 호출해야함. 
-* `super().__init__(name)`을 통해 super-class의 생성자를 호출하고 나서 sub-class 고유의 처리구문을 수행함.
-* over-riding을 하지 않는 경우, 기본적으로 super-class의 method를 사용한다. 위의 `Human` 의 `introduce`메서드가 그 예임.
+* 생성자 `__init__(self, name)`를 모든 sub-class에서 over-riding하고 있음: 정확히는 method overriding.
+* **over-riding**할 경우, super-class의 method는 가려져서 대체된다.
+    * 때문에 super-class의 것을 호출하기 위해선,
+    * `super()`를 통해 super-class의 attribue에 접근가능함.
+* `super().__init__(name)`을 통해
+    * super-class의 생성자를 호출하고 나서 sub-class 고유의 처리구문을 수행함.
+    * 또는 경우에 따라, sub-class 고유의 처리를 하고나서 super-class의 생성자를 호출할 수도 있음.
+* over-riding을 하지 않는 경우, 기본적으로 super-class의 method를 사용한다.
+    * 위의 `Human` 의 `introduce`메서드가 그 예임.
     * 즉, 공통적으로 사용되는 attributes들은 super class에 구현하는게 좋다.
 
-> over-riding과 over-loading은 다른 개념임. 그 차이점을 숙지하고 있어야 한다. 자세한 건 다음 url을 참고하라.  
+> **over-riding**과 **over-loading**은 다른 개념임.
+> 그 차이점을 숙지하고 있어야 한다.
+> 자세한 건 다음 url을 참고하라.  
 > [overriding and overloading](https://ds31x.tistory.com/36)
+
+다음 동적인 attribute 추가와 관련된 instance-level overriding에 대한 부부을 다룸:
+* 자세한 건 다음을 참고: [instance method vs. special method](https://ds31x.tistory.com/622#4.-%EC%9D%BC%EB%B0%98-method-vs-special-method)
+
+참고로 dunder method(=special method)의 경우, instance-level overriding을 허용하지 않음.
+* 자세한 건 다음을 참고: [Special Method의 특징](https://ds31x.tistory.com/622#4.2-special-method-interpreter%EA%B0%80-%ED%98%B8%EC%B6%9C)
+
+---
 
 ## Multiple Inheritance (다중 상속)
 
-두 개 이상의 super class가 필요한 경우 사용된다. Java와 같이 super class는 하나만을 허용하고, interface등을 통해 Multiple Inheritance의 기능을 구현하는 경우도 있다. 실제로 Multiple Inheritance는 편리하지만, 그만큼 ***충돌이 발생할 위험이 크다*** 는 부작용도 있다 (같은 이름의 method가 여러 super class에 존재시 어느 super class의 메서드를 우선시할지 등등).
+두 개 이상의 super class가 필요한 경우 사용된다.  
+실제로 Multiple Inheritance는 편리하지만, 그만큼 ***충돌이 발생할 위험이 크다*** 는 부작용도 있다  
+(같은 이름의 method가 여러 super class에 존재시 어느 super class의 메서드를 우선시할지 등등).
 
-![](../img/multiple_inheritance.png)
+때문에 Java와 같이 super class는 하나만을 허용하고, interface등을 통해 Multiple Inheritance의 기능을 구현하는 경우도 있다.  
+
+
+![](../img/multiple_inheritance.png){style="display: block; margin: 0 auto; width: 400px"}
 
 * multiple inheritance가 발생하면 다이아몬드 모양이 만들어진다고 해서 `다이아몬드 상속`이라고 부르기도 한다.
+* diamond inheritance는 자주 탐색 과정에서 모호성이 발생하는 점에 기인하여 diamond problem이라고도 불림.
 
 Python에서는 다중상속을 지원하고 ***Method Resolution Order*** (`mro()`로 확인 가능)에 따라, 왼쪽에 놓인 super class에서부터 우선권이 주어진다.
 
