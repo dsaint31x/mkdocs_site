@@ -17,7 +17,7 @@ Dialog는
 * 사용자에게 정보를 보여주거나, 
 * 사용자로부터 간단한 입력을 받기 위해 사용되는 GUI 구성 요소임.
 
-> Dialog는 흔히 **Dialog box**라고도 부름.
+> Dialog는 흔히 **Dialog box** 라고도 부름.
 
 PySide6에서는 Custom Dialog를 직접 만들 수도 있으나, Qt에서 미리 제공하는 built-in dialog를 사용하는 경우가 많음.
 
