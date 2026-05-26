@@ -42,7 +42,7 @@ QMessageBox.warning(parent, title, message)
 QMessageBox.critical(parent, title, message)
 QMessageBox.question(parent, title, message)
 QMessageBox.about(parent, title, message)
-````
+```
 
 각 method의 용도는 다음과 같음.
 
