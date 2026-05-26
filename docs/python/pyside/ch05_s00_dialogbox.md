@@ -72,7 +72,7 @@ if __name__ == "__main__":
 
     # Qt event loop 시작.
     app.exec()
-````
+```
 
 다시 강조하지만, 위 코드는 특정 Dialog를 만드는 완성 예제가 아님.
 
