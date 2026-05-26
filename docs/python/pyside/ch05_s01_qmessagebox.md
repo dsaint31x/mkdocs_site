@@ -168,7 +168,7 @@ else:
 
 ### `about()`
 
-`about()`은 S/W의 정보 등을 보여주는 **About Dialog**를 생성하는 데 사용됨.
+`about()`은 S/W의 정보 등을 보여주는 **About Dialog** 를 생성하는 데 사용됨.
 
 `about()`도 `QMessageBox`에서 제공하는 static method임.  
 즉, application에 대한 정보를 사용자에게 전달하는 message dialog를 간단히 만들 때 사용됨.
