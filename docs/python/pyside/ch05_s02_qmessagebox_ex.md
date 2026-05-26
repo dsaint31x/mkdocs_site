@@ -14,7 +14,7 @@ tags:
 # QMessageBox 예제 코드
 
 `QMessageBox`의 static method를 사용하면 사용자에게 message dialog를 간단히 표시할 수 있음.  
-아래 예제들은 버튼을 클릭했을 때 각각 `information()`, `warning()`, `critical()`, `question()` dialog를 띄우는 코드임.
+아래 예제들은 버튼을 클릭했을 때 각각 `information`, `warning`, `critical`, `question` dialog를 띄우는 코드임.
 
 ---
 
