@@ -43,13 +43,13 @@ tags:
 | `getExistingDirectory()` | directory 선택 | `directory_path` |
 
 주의할 점은 `getOpenFileName()`, `getOpenFileNames()`, `getSaveFileName()`의 두 번째 반환값이  
-`is_ok` 같은 boolean 값이 아니라 **선택된 filter 문자열**이라는 점임.
+`is_ok` 같은 boolean 값이 아니라 **선택된 filter 문자열** 이라는 점임.
 
 즉, 다음과 같은 형태임.
 
 ```python
 file_name, selected_filter = QFileDialog.getOpenFileName(...)
-````
+```
 
 사용자가 실제로 선택했는지는 반환된 path가 빈 문자열인지 확인하면 됨.
 
