@@ -331,6 +331,12 @@ nav:
         - "python/pyside/ch04_s02_ex_event_handling.md"
         - "python/pyside/ch04_s03_ex_signals_and_slots.md"
         - "python/pyside/ch04_s04_ex_custom_signal.md"
+      - "ch05":
+        - "python/pyside/ch05_s00_qdialogbox.md"
+        - "python/pyside/ch05_s01_qmessagebox.md"
+        - "python/pyside/ch05_s02_qmessagebox_ex.md"
+        - "python/pyside/ch05_s03_qinputdialog.md"
+        - "python/pyside/ch05_s04_qfiledialog.md"
   - "DIP":
     - "OpenCV: Gui Features in OpenCV":
       - "DIP/cv2/ch00/dip_0_00.md"
