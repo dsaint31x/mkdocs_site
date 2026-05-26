@@ -30,6 +30,10 @@ tags:
     * 하지만 이 경우 사용자의 선택 결과를 반환값으로 바로 받는 것이 아니라, signal-slot을 통해 처리해야 함. 
 * 일반적인 간단한 message box에서는 주로 modal dialog가 사용됨.
 
+---
+
+---
+
 ## 사용법
 
 PyQt와 PySide가 제공하는 `QMessageBox`는 자주 사용되는 message dialog를 간단히 생성하고 표시하기 위한 static methods를 제공함.
@@ -59,7 +63,9 @@ QMessageBox.about(parent, title, message)
 > 참고로, `about()`은 보통 application 정보를 보여주는 용도로 사용되므로, 사용자의 선택을 세밀하게 처리하는 용도보다는 정보 표시 목적이 강함.  
 > 일부 문헌에선 Message Dialog로 분류하지 않기도 함.
 
-===
+---
+
+---
 
 ## 주요 static methods 사용 예제
 
