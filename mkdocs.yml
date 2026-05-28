@@ -413,6 +413,7 @@ nav:
       - Classification:
         - "ML/ch02/ml_cls_types.md"
         - "ML/ch02/ml_cls_metrics.md"
+        - "ML/ch04/ml_classifier_summary.md"
       - 'Optimizers':
         - "ML/ch09/op_summary.md"
         - "ML/ch09/op_momentum.md"
