@@ -96,7 +96,7 @@ threshold $0.5$는 고정된 법칙이 아님.
 
 ### **1-2. Multi-class Classification**
 
-* Class가 3개 이상이고, 하나의 sample이 **정확히 하나의 class**에 속하는 문제임.
+* Class가 3개 이상이고, 하나의 sample이 **정확히 하나의 class** 에 속하는 문제임.
 * Class들이 mutually exclusive함.
 
 $$
@@ -121,7 +121,7 @@ $$
 
 ### **1-3b. Multi-output Classification**
 
-Multi-output classification은 하나의 sample에 대해 **여러 개의 독립적인 output**을 동시에 예측하는 문제임.
+Multi-output classification은 하나의 sample에 대해 **여러 개의 독립적인 output** 을 동시에 예측하는 문제임.
 
 각 output $j$는 그 자체로 독립된 classification target임.
 
