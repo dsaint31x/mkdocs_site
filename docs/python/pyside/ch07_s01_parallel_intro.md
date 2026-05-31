@@ -1,7 +1,7 @@
 ---
 title: GUI 프로그램에서 Process와 Thread
 tags: [GUI, Qt, PySide6, PyQt, Process, Thread, Multithreading, Multiprocessing, QThread, QThreadPool, QProcess]
-----------------------------------------------------------------------------------------------------------------
+---
 
 # GUI 프로그램에서 Process와 Thread
 
