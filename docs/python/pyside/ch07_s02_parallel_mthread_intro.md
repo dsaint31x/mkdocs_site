@@ -2,7 +2,8 @@
 
 title: GUI 프로그램에서 Multithreading이 필요한 이유
 tags: [GUI, Qt, PySide6, PyQt, Thread, Multithreading, QThread, QThreadPool, QRunnable, Event Loop]
----------------------------------------------------------------------------------------------------
+---
+
 
 # GUI 프로그램에서 Multithreading이 필요한 이유
 
