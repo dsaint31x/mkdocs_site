@@ -1,7 +1,7 @@
 ---
 title: QThread와 QRunnable의 차이
 tags: [GUI, Qt, PySide6, PyQt, Thread, Multithreading, QThread, QRunnable, QThreadPool, Event Loop]
-------
+---
 
 # QThread와 QRunnable의 차이
 
