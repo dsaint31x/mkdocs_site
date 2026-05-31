@@ -54,9 +54,11 @@ class MW(QMainWindow):
         # Main window를 화면에 표시.
         self.show()
 
-    def button_clicked(self, s):
+    def button_clicked(self, checked):
         # Dialog 관련 기능 테스트를 위한 method.
-        print("click", s)
+        # checked는 QPushButton이 checkable일 때 현재 선택 상태를 나타냄.
+        # 일반 QPushButton에서는 보통 False가 전달됨.
+        print("click", checked)
 
         # ----------------------
         # 이후 예제에서 이 위치에 
