@@ -342,7 +342,7 @@ nav:
         - "python/pyside/ch07_s02_parallel_mthread_intro.md"
         - "python/pyside/ch07_s03_parallel_mthread_comp.md"
         - "python/pyside/ch07_s04_parallel_qthread.md"
-        - "python/pyside/ch07_s05_parallel_qthread_ex.md"
+        - "python/pyside/ch07_s05_qthread_ex.md"
   - "DIP":
     - "OpenCV: Gui Features in OpenCV":
       - "DIP/cv2/ch00/dip_0_00.md"
