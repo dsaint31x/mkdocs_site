@@ -15,9 +15,13 @@ tags: [GUI, Qt, PySide6, PyQt, Thread, Multithreading, QThread, QRunnable, QThre
 
 즉, `QThread`는 thread 자체를 직접 다루는 방식에 가깝고, `QRunnable`은 thread pool에 맡길 작업 단위를 정의하는 방식에 가깝다.
 
-# QThread
+---
 
-## Thread 자체를 다루는 class
+---
+
+## QThread
+
+### Thread 자체를 다루는 class
 
 `QThread`는 Qt에서 thread를 다루기 위한 class임.
 
@@ -30,7 +34,9 @@ tags: [GUI, Qt, PySide6, PyQt, Thread, Multithreading, QThread, QRunnable, QThre
 1. `QThread`를 상속받고 `run()` method를 override하는 방식
 2. `QObject` 기반 worker를 만든 뒤 `moveToThread()`로 worker를 별도 thread로 옮기는 방식
 
-## 1. QThread를 상속받는 방식
+---
+
+### 1. QThread를 상속받는 방식
 
 가장 직접적인 방식은 `QThread`를 상속받고, `run()` method를 override하는 것임.
 
@@ -54,7 +60,9 @@ class WorkerThread(QThread):
 
 즉, `QThread`를 상속받아 `run()`을 override하는 방식은 가능하지만, Qt에서 항상 권장되는 유일한 방식은 아님.
 
-## 2. 참고: QObject worker를 moveToThread()로 옮기는 방식
+---
+
+### 2. 참고: QObject worker를 moveToThread()로 옮기는 방식
 
 Qt에서 자주 사용되는 또 다른 방식으로, 실제 작업을 수행하는 `QObject` 기반 worker class를 만들고 이를 `moveToThread()`로 별도 thread에 옮기는 방법이 있다.
 
@@ -115,7 +123,9 @@ thread.start()
 
 따라서 PyQt나 PySide에서 비교적 복잡한 background 작업을 구현할 때는 `QThread`를 직접 상속하는 방식보다, `QObject` worker를 만들고 `moveToThread()`를 사용하는 방식이 더 명확한 경우가 많다.
 
-## 명시적인 thread 관리
+---
+
+### 명시적인 thread 관리
 
 `QThread`를 사용하는 경우 개발자는 thread의 생명주기를 비교적 명시적으로 관리해야 한다.
 
@@ -134,7 +144,9 @@ thread.start()
 
 때문에 그만큼 코드량은 증가하지만, thread의 시작 시점, 종료 시점, event loop 사용 여부, worker object의 수명 등을 세밀하게 제어할 수 있다는 장점이 있다.
 
-## 상대적으로 많은 resource 사용
+---
+
+### 상대적으로 많은 resource 사용
 
 각 `QThread`는 실제 native thread와 연결된다. 따라서 많은 수의 `QThread`를 계속 생성하면 thread stack, scheduling, context switching 비용 등이 증가할 수 있다.
 
@@ -142,7 +154,9 @@ thread.start()
 
 이런 경우에는 `QThreadPool`과 `QRunnable`을 사용하는 방식이 더 적합하다.
 
-## 구현 복잡성
+---
+
+### 구현 복잡성
 
 `QThread`는 thread를 세밀하게 제어할 수 있다는 장점을 가진다.
 
@@ -159,9 +173,13 @@ thread.start()
 * 자유도가 높은 대신, 
 * thread와 object의 수명 관리를 정확히 이해하고 사용해야 한다.
 
-# QRunnable
+---
 
-## Thread가 실행할 job을 표현하는 class
+---
+
+## QRunnable
+
+### Thread가 실행할 job을 표현하는 class
 
 `QRunnable`은 thread 자체가 아니라, thread에서 실행될 하나의 job 또는 task를 표현하는 class임.
 
@@ -174,9 +192,13 @@ class WorkerTask(QRunnable):
         ...
 ```
 
-여기서 중요한 점은 `QRunnable`이 thread를 직접 생성하거나 관리하지 않는다는 것이다. `QRunnable`은 어디까지나 “실행할 작업”을 나타내며, 실제 thread 관리는 `QThreadPool`이 담당한다.
+여기서 중요한 점은 `QRunnable`이 thread를 직접 생성하거나 관리하지 않는다는 것이다.  
 
-## QThreadPool을 통한 실행
+`QRunnable`은 어디까지나 “실행할 작업”을 나타내며, 실제 thread 관리는 `QThreadPool`이 담당한다.
+
+---
+
+### QThreadPool을 통한 실행
 
 `QRunnable`은 일반적으로 `QThreadPool`에 전달되어 실행된다.
 
@@ -192,7 +214,9 @@ pool.start(task)
 
 따라서 짧은 작업이 많이 발생하거나, 비슷한 형태의 background task를 반복적으로 처리해야 하는 경우에 `QRunnable`과 `QThreadPool` 조합이 유리하다.
 
-## 상대적으로 간단한 사용법
+---
+
+### 상대적으로 간단한 사용법
 
 `QRunnable`은 기본 구조가 단순하다.
 
@@ -207,7 +231,9 @@ pool.start(task)
 
 예를 들어 여러 image file을 background에서 읽거나, 여러 network 요청을 병렬적으로 처리하거나, 다수의 작은 preprocessing task를 처리하는 경우에 사용할 수 있다.
 
-## 제한적인 제어
+---
+
+### 제한적인 제어
 
 `QRunnable`은 사용법이 간단한 대신, `QThread`처럼 개별 thread를 세밀하게 제어하기는 어렵다.
 
@@ -223,7 +249,9 @@ pool.start(task)
 
 즉, `QRunnable`은 개별 thread를 제어하는 도구라기보다, thread pool에 맡길 작업 단위를 정의하는 도구로 보는 것이 정확하다.
 
-## Signal 사용 시 주의점
+---
+
+### Signal 사용 시 주의점
 
 `QRunnable`은 `QObject`을 상속한 class가 아니므로, 그 자체로 Qt signal을 정의하고 사용하기 어렵다.
 
@@ -243,9 +271,13 @@ class WorkerSignals(QObject):
 
 이 구조를 사용하면 `QRunnable`의 단순함을 유지하면서도, GUI thread와 안전하게 통신할 수 있다.
 
-# 사용 상황에 따른 선택
+---
 
-## QThread 사용이 적합한 경우
+---
+
+## 사용 상황에 따른 선택
+
+### QThread 사용이 적합한 경우
 
 `QThread`는 thread의 생명주기를 세밀하게 제어해야 하는 경우에 적합하다.
 
@@ -260,7 +292,9 @@ class WorkerSignals(QObject):
 
 즉, `QThread`는 “thread 자체를 명시적으로 관리해야 하는 경우”에 적합하다.
 
-## QRunnable 사용이 적합한 경우
+---
+
+### QRunnable 사용이 적합한 경우
 
 `QRunnable`은 비교적 짧고 독립적인 작업을 많이 처리해야 하는 경우에 적합하다.
 
@@ -275,7 +309,11 @@ class WorkerSignals(QObject):
 
 즉, `QRunnable`은 “thread를 직접 관리하기보다, 실행할 task를 thread pool에 맡기는 경우”에 적합하다.
 
-# 정리
+---
+
+---
+
+## 정리
 
 `QThread`와 `QRunnable`은 모두 PyQt와 PySide에서 multithreading을 구현할 때 사용되지만, 관점이 다르다.
 
