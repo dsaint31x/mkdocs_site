@@ -67,7 +67,9 @@ self.worker.start()
 
 `quit()` method는 thread의 event loop를 종료하도록 요청하는 method임.
 
-중요한 점은 `quit()`가 항상 `run()` 내부의 작업을 ***즉시 중단시키는 method가 아니라는 점** 이다. 
+> 의미가 있으려면 해당 thread 안에서 다음과 같은 event loop가 돌고 있어야 함.
+>
+> 중요한 점은 `quit()`가 항상 `run()` 내부의 작업을 ***즉시 중단시키는 method가 아니라는 점*** 이다. 
 
 * `quit()`는 thread 내부에서 event loop가 실행 중일 때, 
 * 즉 `exec()`가 호출되어 있는 경우에 그 ***event loop를 종료하도록 요청*** 한다.
