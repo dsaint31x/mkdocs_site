@@ -175,7 +175,18 @@ mo_clf = mo_clf.fit(X_train_scaled, y_train_multioutput)
 
 일부 classifier는 기본적으로 binary classification만 직접 처리할 수 있음.
 
-이 binary classifier를 multi-class 또는 multi-label classification에 사용하려면
+* 대표적인 예는 SVM 계열임.
+* SVM은 두 class 사이의 margin을 최대화하는 binary classification 임.
+* 따라서 class가 3개 이상인 multiclass classification에서는
+One-vs-One 또는 One-vs-Rest 방식으로 여러 개의 binary SVM을 학습한 뒤
+그 결과를 조합해야 함.
+
+scikit-learn에서도 SVC는 내부적으로 OvO 방식을 사용하고,
+LinearSVC는 OvR 방식을 사용하여 multiclass classification을 처리한다.
+
+> 참고로 Logistic Regression은 multi-nomial logistic regression으로 일반화가 가능하여, multi-class classification으로 직접 확장이 가능함.
+
+이처럼 binary classifier를 multi-class 또는 multi-label classification에 사용하려면
 문제를 여러 개의 binary classification task로 분해한 뒤 결과를 조합해야 함.
 
 $$
@@ -207,7 +218,7 @@ Wrapper는 base classifier의 내부 알고리즘을 바꾸지 않고, 다음을
 
 * OvR, OvO는 multi-class classification 전략임.
 * Binary Relevance, Classifier Chain은 multi-label classification 전략임.
-* scikit-learn의 `OneVsRestClassifier`는 2D binary indicator target을 넣으면 Binary Relevance 구현 도구로도 사용 가능함.
+* 참고로, scikit-learn의 `OneVsRestClassifier`는 2D binary indicator target을 넣으면 Binary Relevance 구현 도구로도 사용 가능함.
 
 ---
 
@@ -230,6 +241,8 @@ from sklearn.multiclass import OneVsRestClassifier
 from sklearn.linear_model import LogisticRegression
 
 # y_train: shape (n_samples,)인 1D class label vector
+# LogisticRegression은 멀티클래스를 자동으로 지원가능하나,
+# 예를 들기 위해 사용함.
 ovr_clf = OneVsRestClassifier(LogisticRegression(max_iter=1000))
 ovr_clf = ovr_clf.fit(X_train_scaled, y_train)
 ```
@@ -246,6 +259,11 @@ $$
 
 Prediction 시 각 classifier의 결과를 모아 voting으로 최종 class를 결정함.
 
+* Prediction 시 각 binary classifier는 두 class 중 하나에 vote를 부여함.
+* 기본적으로 가장 많은 vote를 얻은 class가 최종 class로 선택됨.
+* 단, 구현에 따라 vote가 동률인 경우 pair-wise classifier의 confidence score를 tie-breaking에 사용할 수 있음. 
+* 참고로 scikit-learn의 `OneVsOneClassifier`는 `decision_function()`에서 vote에 정규화된 pair-wise confidence score를 더해 class별 decision score를 계산함.
+
 ```python
 from sklearn.multiclass import OneVsOneClassifier
 from sklearn.svm import SVC
@@ -259,6 +277,8 @@ ovo_clf = ovo_clf.fit(X_train_scaled, y_train)
 ### **2-4. Binary Relevance**
 
 Label $L$개에 대해 $L$개의 독립적인 binary classifier를 학습함.
+
+> Relevance 는 해당 label과 샘플의 관련성을 의미!
 
 $$
 h_j(\mathbf{x}_i) \approx y_{ij}
