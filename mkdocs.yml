@@ -176,9 +176,9 @@ nav:
         - 'CE/ch03_seq/ce03_01_0_4_counter.md'
         - 'CE/ch03_seq/ce03_01_0_5_register.md'
         - 'HW vs SW': "CE/ch03_seq/ce03_05_hw_and_sw.md"
-    - 'Computer Architecture':
-      - 'CE/ch04/ce04_00_00_title.md'
-      - 'CE/ch04/ce04_00_intro_computer_structure.md'
+    - 'ch04: Computer Architecture': 
+      - "Intro":
+        - 'CE/ch04/ce04_00_intro_computer_structure.md'
       - "Memory":
         - 'memory summary': 'CE/ch03_seq/ce03_02_0_primary_secondary_memory.md'
         - 'memory 기초':  'CE/ch03_seq/ce03_02_1_memory1.md'
