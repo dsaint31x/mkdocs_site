@@ -1,3 +1,10 @@
+---
+title: Memory Component
+tags: [Memory, Register, Address, Address Bus, Data Bus, Decoder, Mux, Selector, Tri-State, GPIO, CAS, RAS, Memory Latency]
+categories: [Computer Engineering, Computer Architecture, Memory]
+last_modified_at: 2026-06-03
+---
+
 # Memory Component
 
 보다 많은 Bit를 기억하기 위해서는  
@@ -84,7 +91,7 @@ Memory의 경우 다음과 같은 2개의 BUS를 가짐.
 다음 그림은  
 
 * 아까의 Memory Component에  
-* []`Tri-State`](../ch02_co/ce02_04_4_3_tri_state_output.md)  기반의 `GPIO` 와,  
+* [`Tri-State`](../ch02_co/ce02_04_4_3_tri_state_output.md)  기반의 `GPIO` 와,  
 * `Bus`를 도입한 경우에 대한
 * Simplified Schematic Representation임.
 
