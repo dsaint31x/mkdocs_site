@@ -14,10 +14,10 @@ tags:
 아래 그림은 CPU와 GPU의 차이점을 모식도로 표현함.
 병렬처리에 최적화된 GPU의 특징인 다수의 core 를 볼 수 있음.
 
-![](./img/CPU-vs-GPU-Architecture_W640.jpg){width="300"}
+![](./img/CPU-vs-GPU-Architecture_W640.jpg){style="display: block; margin: 0 auto; width:400px"}
 
-> GPGPU (General Purpose Graphics Processing Units) 의 경우,
-> 병렬화를 DLP(Data Level Parallelism) 와 TLP(Thread Level Parallelism)에 기반한
+> GPGPU (General Purpose Graphics Processing Units) 의 경우,  
+> **병렬화** 를 *DLP(Data Level Parallelism)* 와 *TLP(Thread Level Parallelism)* 에 기반한
 > **SIMT** (Single Instruction Multiple Thread)로 구현.
 > 
 > 참고자료: [Hardware Threading, Scalar / Vector Processor](https://ds31x.tistory.com/364)
@@ -32,11 +32,11 @@ GPU는 H/W이고 이를 이용하는 S/W (일종의 interface)는 CUDA, MPS, ROC
 
 ## Tensor Processing Unit (TPU) 
 
-Google에서 커스텀식으로 개발한 ASIC(Application-Specific Integrated Circuit).  
+Google에서 개발한 ASIC(Application-Specific Integrated Circuit).  
 Tensorflow로 구현된 application등을 효과적으로 학습시키고 처리하는 데 사용됨.
 
 - Dense vector and matrix 를 매우 빠르게 처리한다.
-- GPU에서 CUDA, MPS, ROCm 가 사용되는 것처럼, TPU에서는 XLA가 사용됨.
+- GPU에서 CUDA, MPS, ROCm 가 사용되는 것처럼, TPU에서는 XLA가 주로 사용됨.
 
 > XLA(Accelerated Linear Algebra)에 대해 좀더 자세한 것은 다음을 참고:
 >
