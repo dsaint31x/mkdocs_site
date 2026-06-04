@@ -57,10 +57,10 @@ Target $y$의 형태에 따라 classification task를 구분함.
 
 | 구분 | Target 형태 | Sample당 output 수 | 의미 | 예시 |
 |---|---|---:|---|---|
-| Binary Classification | $y \in \{0, 1\}$ | 1개 | 두 class 중 하나 선택 | 정상/비정상, 양성/음성 |
-| Multi-class Classification | $y \in \{0, 1, \cdots, K-1\}$ | 1개 | 여러 class 중 정확히 하나 선택 | 숫자 0~9 분류, 품종 분류 |
-| Multi-label Classification | $\mathbf{y} \in \{0,1\}^{L}$ | 여러 개 가능 | 여러 label을 동시에 선택 가능 | 이미지 태그 분류, 문서 태그 분류 |
-| Multi-output Classification | $\mathbf{y} \in \{0,\cdots,K_j{-}1\}^{Q}$ | $Q$개 (각 output 독립) | 여러 개의 독립된 classification target을 동시에 예측 | 날씨 종류 + 강풍 여부 동시 예측 |
+| Binary Classification | $y \in \{0, 1\}$ | 1개 | 두 class 중 하나 선택 | 정상/비정상,<br/>양성/음성 |
+| Multi-class Classification | $y \in \{0, 1, \cdots, K-1\}$ | 1개 | 여러 class 중 <br/>정확히 하나 선택 | 숫자 0~9 분류,<br/>품종 분류 |
+| Multi-label Classification | $\mathbf{y} \in \{0,1\}^{L}$ | 여러 개 가능 | 여러 label을 <br/>동시에 선택 가능 | 이미지 태그 분류,<br/>문서 태그 분류 |
+| Multi-output Classification | $\mathbf{y} \in \{0,\cdots,K_j{-}1\}^{Q}$ | $Q$개 <br/>(각 output 독립) | 여러 개의 독립된 <br/>classification target을 동시에 예측 | 날씨 종류<br/>+ 강풍 여부<br/> 동시 예측 |
 
 ---
 
