@@ -359,12 +359,8 @@ Binary Relevance의 한계를 보완하기 위한 multi-label classification 방
 앞에서 예측한 label을 뒤 label classifier의 추가 입력 feature로 사용함.
 
 $$
-h_0(\mathbf{x}) \approx y_0
-$$
-$$
-h_1(\mathbf{x}, \hat{y}_0) \approx y_1
-$$
-$$
+h_0(\mathbf{x}) \approx y_0 \\
+h_1(\mathbf{x}, \hat{y}_0) \approx y_1 \\
 h_2(\mathbf{x}, \hat{y}_0, \hat{y}_1) \approx y_2
 $$
 
