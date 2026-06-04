@@ -90,7 +90,8 @@ threshold $0.5$는 고정된 법칙이 아님.
 
 * recall을 높이고 싶으면 threshold를 낮출 수 있음.
 * precision을 높이고 싶으면 threshold를 높일 수 있음.
-* imbalanced data에서는 threshold tuning이 중요함.
+* imbalanced data에서는 threshold tuning이 중요함
+  (ROC curve보다 PR curve를 이용하는게 권장됨).
 
 ---
 
