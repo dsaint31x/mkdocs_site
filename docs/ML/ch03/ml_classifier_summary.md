@@ -98,11 +98,15 @@ threshold $0.5$는 고정된 법칙이 아님.
 ### **1-2. Multi-class Classification**
 
 * Class가 3개 이상이고, 하나의 sample이 **정확히 하나의 class** 에 속하는 문제임.
-* Class들이 mutually exclusive함.
+* Class들이 **mutually exclusive** 함.
 
 $$
 y \in \{0, 1, 2, \cdots, K-1\}
 $$
+
+> Logistic Regressor는 Softmax Regressor로 자연스럽게 확장되어 multi-class classification이 가능함.  
+> Decision Tree, Naive Bayes, KNN, Artificial Neural Network등과 같이 구조적으로  multi-class classification이 가능한 알고리즘들도 있으나,
+> Support Vector Machine 처럼 태생적으로 binary class classification만 가능한 알고리즘도 있음.
 
 ---
 
@@ -120,7 +124,7 @@ $$
 ---
 
 
-### **1-3b. Multi-output Classification**
+### **1-4. Multi-output Classification**
 
 Multi-output classification은 하나의 sample에 대해 **여러 개의 독립적인 output** 을 동시에 예측하는 문제임.
 
@@ -145,8 +149,8 @@ Multi-label classification과의 차이는 다음과 같음.
 | 각 output의 값 | $\{0, 1\}$ | $\{0, 1, \cdots, K_j - 1\}$ |
 | 의미 | 하나의 target에 여러 label | 여러 개의 독립된 target |
 
-scikit-learn에서 Decision Tree, Random Forest, Extra Trees는 multi-output target을 직접 처리할 수 있음.
-그 외 모델에서는 `MultiOutputClassifier`를 사용함.
+scikit-learn에서 Decision Tree, Random Forest, Extra Trees는 multi-output target을 직접 처리할 수 있음.  
+그 외 모델에서는 `MultiOutputClassifier`를 사용하여 확장 가능함.
 
 ```python
 from sklearn.multioutput import MultiOutputClassifier
@@ -158,7 +162,7 @@ mo_clf = MultiOutputClassifier(LogisticRegression(max_iter=1000))
 mo_clf = mo_clf.fit(X_train_scaled, y_train_multioutput)
 ```
 
-### **1-4. Multi-class와 Multi-label의 차이**
+### **참고: Multi-class와 Multi-label의 차이**
 
 | 구분 | Multi-class Classification | Multi-label Classification |
 |---|---|---|
@@ -327,7 +331,7 @@ y_pred_custom = (y_score >= thresholds).astype(int)
 | $h_{\text{night}}(\mathbf{x})$ | night label이 있는가? |
 | $h_{\text{outdoor}}(\mathbf{x})$ | outdoor label이 있는가? |
 
-Multi-label 문제에서는 모든 label에 동일한 threshold $0.5$를 쓰는 것이 항상 좋은 선택은 아님.
+Multi-label 문제에서는 모든 label에 동일한 threshold $0.5$를 쓰는 것이 항상 좋은 선택은 아님.  
 label별 prevalence, precision-recall trade-off, cost를 고려하여 threshold를 따로 조정할 수 있음.
 
 * **장점**: 구현 단순. 기존 binary classifier 그대로 사용. label별 threshold 조정 용이.
