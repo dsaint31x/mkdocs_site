@@ -1,3 +1,8 @@
+---
+title: QRunnable과 QThreadPool
+tags: [PySide6, Qt, QRunnable, QThreadPool, QThread, moveToThread, Thread, Signal, Slot]
+---
+
 # QRunnable과 QThreadPool
 
 `QRunnable`과 `QThreadPool`은 Qt 프레임워크에서 제공하는 클래스로,
