@@ -169,7 +169,7 @@ Qt에서 background 작업을 수행하는 대표적인 방식은 크게 다음 
 
 `QThread`를 상속하는 방식은 `QThread` class를 직접 상속하고, `run()` method 안에 background 작업을 작성하는 방식임.
 
-```python id="tg28cg"
+```python
 class WorkerThread(QThread):
     def run(self):
         # background thread에서 수행할 작업
@@ -191,7 +191,7 @@ class WorkerThread(QThread):
 
 `moveToThread()` 방식은 실제 작업을 수행하는 객체를 `QObject` 기반 worker로 만들고, 해당 worker 객체를 별도의 `QThread`로 이동시키는 방식임.
 
-```python id="6q6ap1"
+```python
 worker = Worker()
 thread = QThread()
 
@@ -226,7 +226,7 @@ thread.start()
 
 `QRunnable`과 `QThreadPool` 방식은 thread 자체가 아니라 작업 단위에 집중하는 방식임.
 
-```python id="70bgcn"
+```python
 task = Task()
 pool.start(task)
 ```
