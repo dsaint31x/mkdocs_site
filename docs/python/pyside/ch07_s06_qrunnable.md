@@ -119,6 +119,9 @@ tags: [PySide6, Qt, QRunnable, QThreadPool, QThread, moveToThread, Thread, Signa
 `waitForDone()`은 pool에 있는 모든 작업이 완료될 때까지 대기함.
 
 * 선택적 `msecs` 매개변수를 통해 최대 대기 시간(ms)을 설정할 수 있음.
+    * 지정된 시간 내에 pool의 작업이 종료되지 않아 timeout이 발생한 경우,
+    * 반환값이 `False` 임.
+    * 모든 작업이 완료된 경우는 반환값이 `True` 임. 
 * 기본값 `-1`은 무한 대기를 의미함.
 * GUI thread에서 호출하면 event loop가 막혀 화면이 멈출 수 있으므로 주의해야 함.
 
