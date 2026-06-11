@@ -98,7 +98,7 @@ CPU가 컴퓨터의 다른 구성 요소와 상호 작용하고 명령을 실행
         * `CU`는 Execute에서 필요한 Data를 위해 `Memory Access`를 제어하고,
         * 연산 결과 저장 (`Write Back`)을 위한 Data의 이동을 지시함.
 
-> **CU**는  
+> **CU** 는  
 > instruction에 따라, memory와 ALU, I/O device에 제어 신호를 보내고 해당 장치들로부터 신호를 받아 다음 처리를 제어하는 장치.
 >
 > CU는 다음의 명령어들을 fetch하고 decode 후 execute시키는 장치로 다른 구성요소들의 동작을 제어하는 장치임.
