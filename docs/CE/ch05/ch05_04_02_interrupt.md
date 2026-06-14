@@ -1,3 +1,8 @@
+---
+title: Interrupt and Polling
+tags: [Computer Architecture, Operating System, Interrupt, Polling, IRQ, ISR, System Call, Signal, Trap, Context]
+---
+
 # Interrupt and Polling
 
 ![](../img/interrupt_polling.png){style="display: block; margin: 0 auto; width: 600"}
