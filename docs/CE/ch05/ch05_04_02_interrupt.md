@@ -1,6 +1,6 @@
 ---
 title: Interrupt and Polling
-tags: [Computer Architecture, Operating System, Interrupt, Polling, IRQ, ISR, System Call, Signal, Trap, Context]
+tags: [Computer Architecture, Operating System, Interrupt, Polling, IRQ, ISR, System Call, SIGNAL, TRAP, Context]
 ---
 
 # Interrupt and Polling
@@ -179,7 +179,7 @@ User application이 file I/O, process 생성, network 통신 등 kernel의 기�
 
 이들은 모두 user mode program이 CPU instruction을 실행하여 kernel mode로 진입한다는 공통점을 가짐.
 
-> **TRAP**은
+> **TRAP** 은
 > 특정 instruction 이름이 아니라
 > system call이나 CPU exception처럼 현재 실행 흐름에서 동기적으로 발생하는 kernel/handler 진입 mechanism을 가리킴.
 
