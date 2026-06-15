@@ -144,14 +144,16 @@ nav:
         - "CE/ch01/ch01_12_otherunits.md"
         - "CE/ch01/ch01_13_boolean_algebra.md"
         - "CE/ch01/ch01_14_prefix.md"
-        - "CE/ch01/numeral_system.md"
-        - "CE/ch01/positive_number.md"
-        - "CE/ch01/negative_number.md"
-        - "CE/ch01/overflow_underflow.md"
-        - "CE/ch01/real_number.md"
-        - "CE/ch01/code_for_numbers.md"
-        - "CE/ch01/code_for_character.md"
-        - "CE/ch01/Encoding_for_external_rep.md"
+        - "internal repr.":
+          - "CE/ch01/numeral_system.md"
+          - "CE/ch01/positive_number.md"
+          - "CE/ch01/negative_number.md"
+          - "CE/ch01/overflow_underflow.md"
+          - "CE/ch01/real_number.md"
+        - "external repr.":
+          - "CE/ch01/code_for_numbers.md"
+          - "CE/ch01/code_for_character.md"
+          - "CE/ch01/Encoding_for_external_rep.md"
       - 'ch02: Bits and Combinatorial Logic':
         - 'CE/ch02_co/ce02_00_0_title.md'
         - 'CE/ch02_co/ce02_03_0_HW4Bits.md'
