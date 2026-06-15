@@ -22,60 +22,85 @@ bit는 `0`,`1`의 값을 갖는 ^^information의 최소단위^^ 이기 때문에
 ## `byte` 
 : `8bit` 에 해당.  
     주로 사용되는 단위들 중에서 가장 작음.(bit는 너무 작아 안쓰임) 
----
-
-## `half word` 
-: `16bit` 에 해당 (ARM 기준).  
-초기 컴퓨터가 16bit machine일 때의 `word`였으나,  
-컴퓨터가 발전하면서 half를 붙여서 구분.
-
----
-
-## `long word (or full word)` 
-: `32bit` 에 해당 (ARM 기준).  
-컴퓨터가 32bit machine일 때의 `word`.  
-컴퓨터가 발전하면서 `long`이라는 `prefix`가 붙어서 구분하기 시작.  
-일반적으로 `word` 라고 하면 `long word`를 가리키는 경우가 많음.
 
 ---
 
 ## `word`
 
-* `word` 란 ***컴퓨터가 한 cycle에 처리할 수 있는 단위*** 를 가리킴. 
-    * 주소를 가리키는 pointer 변수의 크기라고 생각하면 쉽다.
-* 주로 **데이터의 입력, 처리, 저장 및 출력을 수행하는 기본 단위** 를 지칭한다.
+word는 
 
-위의 word 정의에 따르면, word는 계속 커질 수 밖에 없기 때문에 prefix를 붙여 구분을 함.
+* computer architecture에서
+* CPU(or Processor)가 기본 단위로 다루는
+* data unit을 가리키는 용어이다.
 
-`Word` 관련한 Data Types의 크기는 아키텍처나 OS등에 따라 차이가 심한 편이므로  
-개발 전에 반드시 확인을 해두는게 좋다.  
+다만 word의 크기는 bit나 bytes와 달리 고정되어 있지 않음.
+
+> word는
+>
+> * 특정 machine의 pointer 크기나
+> * 한 clock cycle에 처리할 수 있는 data 크기로 이해하는 경우도 있으나,
+> 
+> 엄밀하게 애기하면 이들과 항상 같지 않으므로 주의해야 함.
+
+초보자 입장에서는 word를 “CPU가 기준 단위처럼 다루는 data 크기” 정도로 이해하는 것이 좋음:
+
+* Computer architecture, ISA, ABI, API 등등 word라는 용어가 사용된 계층에 따라
+* 크기가 달라질 수 있으므로 주의 해야 한다.
+
+**참고:**
+
+| 계층 |	정의 |
+|---|---|
+|Computer Architecture	|computer architecture는 computer system의 구조, 구성 요소, 동작 방식, 그리고 hardware와 software 사이의 설계 원리를 다루는 분야이다.
+|ISA	|ISA는 software가 processor를 제어하기 위해 사용할 수 있는 instruction, register, addressing mode, data type 등을 정의한 processor의 programmer-visible interface이다.
+|ABI	|ABI는 compiled binary가 특정 OS와 processor 환경에서 실행될 수 있도록 calling convention, register 사용, data layout, alignment, symbol naming 등을 정한 binary-level interface이다.
+|API	|API는 source code 수준에서 program이 OS, library, framework의 기능을 사용하기 위해 호출하는 function, data type, constant, object 등의 source-level interface이다.
+
+* `word`는 computer architecture 문맥에서 등장하는 일반적인 용어이다.
+* ISA 문서에서는 `word`, `doubleword` 같은 용어가 instruction의 operand 크기를 설명하는 데 사용될 수 있다.
+& ABI 문맥에서는 `word` 자체를 새로 정의한다기보다는, pointer size, data type size, alignment, calling convention처럼 compiled binary가 실제로 데이터를 배치하고 전달하는 규칙을 정한다.
+* 반면 Windows API의 `WORD`, `DWORD`, `QWORD`는 ISA나 ABI 용어가 아니라 Windows API에서 source code 수준으로 제공하는 type name이다.
+
+따라서 엄밀히 애기하면, `word`, pointer 크기, `WORD`는 구분해야 함.
+
+* `word`는 architecture/ISA 문맥의 기본 data unit 용어이고,
+* pointer 크기는 ABI에 의해 실제 실행 환경에서 정해지며,
+* `WORD`는 Windows API에서 정의한 자료형 이름이다.
+
 다음은 대략적인 경향을 파악하기 위해 일반적인 경우를 소개한다.
 
-### ARM Processor
+### ARM ISA 경우
 
-* `Half Word` : 2bytes
+AArch32와 AArch64 등
+
+* `Halfword` : 2bytes
 * `Word` : 4bytes
-* `Double Word` : 8bytes
+* `Doubleword` : 8bytes
 
-### x86 processor (intel, amd)
+### x86 ISA 계열
 
-* `Half Word` : 일반적으로 잘 사용되지 않음.
+x86 ISA 계열에서는 역사적 하위 호환성으로 인해 ARM의 경우보다 크기가 작은 편임.
+
+* `Halfword` : 일반적으로 잘 사용되지 않음.
 * `Word` : 2bytes
-* `Double Word` : 4bytes
-* `Quad Word` : 8bytes
+* `Doubleword` : 4bytes
+* `Quadword` : 8bytes
 
-### x64 Processor (Windows)
-* `Half Word` : 2bytes
-* `WORD` : 2bytes
-* `DWORD` : 4bytes
-* `QWORD` : 8bytes
+> x86-64 system이 64-bit machine이라고 해서 word가 8 bytes가 되는 것은 아님에 유의.
 
----
-  
-## `double word` 
-: 64bit 에 해당 (ARM기준).  
-현재의 computer는 64bit machine으로 원래 word의 정의에 따르면, 현재는 `double word`가 word임.   
-하지만 하위호환성 등에 대한 고려로, 이를 word라고 하진 않고 `double word`라고 지칭하는 게 일반적임.
+### API 문맥에서의 WORD, DWORD, QWORD
+
+Windows API에서는 WORD, DWORD, QWORD 같은 type name을 사용한다.
+
+이들은 ISA가 직접 정의한 용어가 아니라 Windows API에서 source code 수준으로 제공하는 자료형 이름임:
+
+* `WORD`: 2 bytes
+* `DWORD` :	4 bytes
+* `QWORD` : 8 bytes
+
+참고로 `DWORD`는 Double Word의 약자이지만, Windows API 문맥에서는 4 bytes를 의미한다.
+
+64-bit Windows에서 pointer는 보통 8 bytes이지만, 하위호환성 문제로 여전히 `WORD`는 2 bytes이고 `DWORD`는 4 bytes로 유지된다.
 
 ---
 
