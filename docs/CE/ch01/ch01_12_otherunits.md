@@ -58,7 +58,7 @@ word는
 
 * `word`는 computer architecture 문맥에서 등장하는 일반적인 용어이다.
 * ISA 문서에서는 `word`, `doubleword` 같은 용어가 instruction의 operand 크기를 설명하는 데 사용될 수 있다.
-& ABI 문맥에서는 `word` 자체를 새로 정의한다기보다는, pointer size, data type size, alignment, calling convention처럼 compiled binary가 실제로 데이터를 배치하고 전달하는 규칙을 정한다.
+* ABI 문맥에서는 `word` 자체를 새로 정의한다기보다는, pointer size, data type size, alignment, calling convention처럼 compiled binary가 실제로 데이터를 배치하고 전달하는 규칙을 정한다.
 * 반면 Windows API의 `WORD`, `DWORD`, `QWORD`는 ISA나 ABI 용어가 아니라 Windows API에서 source code 수준으로 제공하는 type name이다.
 
 따라서 엄밀히 애기하면, `word`, pointer 크기, `WORD`는 구분해야 함.
@@ -80,6 +80,8 @@ AArch32와 AArch64 등
 ### x86 ISA 계열
 
 x86 ISA 계열에서는 역사적 하위 호환성으로 인해 ARM의 경우보다 크기가 작은 편임.
+
+IA-32(32bit x86),  x86-64, AMD64, Intel64 (64bit x86) 등에선 다음과 같음:
 
 * `Halfword` : 일반적으로 잘 사용되지 않음.
 * `Word` : 2bytes
