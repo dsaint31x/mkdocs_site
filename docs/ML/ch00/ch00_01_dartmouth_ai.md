@@ -1,5 +1,5 @@
 ---
-tags: [AI, J. McCarthy, History]
+tags: [ai, J. McCarthy, history]
 ---
 
 # 참고자료 : AI의 시작 ...
