@@ -30,7 +30,7 @@ variants of ReLU 중 다음의 특성을 가지는 대표적 activation function
 
 > 정확히 애기하면, 다음과 같음:
 >
-> $\text{SiLU}(x) = x \sigma(x) = x \sigma(\beta x) \vbar _{\beta=1} = \text{Swish}_{\beta=1}(x)
+> $\text{SiLU}(x) = x \sigma(x) = x \sigma(\beta x) \vbar _{\beta=1} = \text{Swish}_{\beta=1}(x)$
 
 역사적으로는 
 
@@ -50,9 +50,7 @@ variants of ReLU 중 다음의 특성을 가지는 대표적 activation function
 * `monotonic` 과 
 * `convexity` 
 
-<figure markdown>
-![](./img/gelu_deri.png){width="400" align="center"}
-</figure>
+![](./img/gelu_deri.png){style="display:block; margin:0 auto; width:400px"}
 
 하지만 2016년 등장한 ***Gaussian Error Linear Unit*** (`GELU`)가  
 기존의 activation functions 이상의 성능을 보임에 따라,  
@@ -64,9 +62,7 @@ variants of ReLU 중 다음의 특성을 가지는 대표적 activation function
 
 ### Gaussian Error Linear Unit (GELU)
 
-<figure markdown>
-![](./img/gelu_elu.png){width="400" align="center"}
-</figure>
+![](./img/gelu_elu.png){style="display:block; margin:0 auto; width:400px"}
 
 $$\begin{aligned}\text{GELU}(x) &=x \Phi (x)\\&=xP(X\le x),\quad X \sim \mathcal{N}(0,1)\end{aligned}$$
 
@@ -98,14 +94,11 @@ $$\begin{aligned}\text{GELU}(x) &=x \Phi (x)\\&=xP(X\le x),\quad X \sim \mathcal
 
 > MobileNetV3 계열에서 `Swish`를 계산량 측면에서 단순화한 `hard-swish`가 사용됨..
 
-<figure markdown>
-![](./img/silu_relu.png){width="400" align="center"}
-</figure>
+![](./img/silu_relu.png){style="display:block; margin:0 auto; width:400px"}
 
-<figure markdown>
-![](./img/silu.png){width="600" align="center"}
-</figure>
 
+![](./img/silu.png){style="display:block; margin:0 auto; width:400px"}
+  
 `SiLU`는 다음과 같이 sigmoid function을 기반으로 `ReLU` 및 `GELU`와 매우 흡사한 shape의 activation function을 만들 수 있음.
 
 $$\text{SiLU}(x)=x \sigma(x)$$
@@ -133,9 +126,7 @@ $$\text{SiLU}(x)=x\sigma(x)$$
 
 $$\dfrac{d}{dx}\text{SiLU}(x) = \text{SiLU}(x) + \sigma (x)(1-\text{SiLU}(x))$$
 
-<figure markdown>
-![](./img/derivative_silu.png){width="400" align="center"}
-</figure>
+![](./img/derivative_silu.png){style="display:block; margin:0 auto; width:400px"}
 
 $$\begin{aligned} \dfrac{d}{dx}f(x) &= 1\sigma(x) + x\sigma(x)(1-\sigma(x)) \\ &= \sigma(x) + x\sigma(x)-x(\sigma(x))^2 \\ &= \sigma(x) + f(x)- f(x)\sigma(x) \\&=\sigma(x) +f(x)(1-\sigma(x))\end{aligned}$$
 
@@ -160,9 +151,7 @@ $$\text{mish}(x)=x \text{tanh}(\text{softplus}(x)) = x \text{tanh}(\log (1+e^x))
 
 `Swish`와 비교하여 `Mish`는 좀더 강한 regularization 효과를 가지면서 gradient가 보다 smooth하다고 알려짐.
 
-<figure markdown>
-![](./img/mish.png){width="500" aligh="center"}
-</figure>
+![](./img/mish.png){style="display:block; margin:0 auto; width:400px"}
 
 ---
 
