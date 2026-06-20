@@ -445,15 +445,20 @@ nav:
         - "ML/ch07/tSNE.md"
     - "DL":
       - "Deep Learning (simple)":
-        - "ML/ch08/dev_hist_ann.md"
-        - "ML/ch08/back_propagation.md"
-        - "ML/ch08/reverse_mode_autodiff.md"
-        - "ML/ch08/datastructure_graph.md"
+        - "ANN 역사":
+          - "ML/ch08/dev_hist_ann.md"
+          - "ML/ch08/dl_slp_dlp.md"
+          - "ML/ch08/dl_mlp.md"
+        - "Backpropagation": 
+          - "ML/ch08/back_propagation.md"
+          - "ML/ch08/reverse_mode_autodiff.md"
+          - "ML/ch08/datastructure_graph.md"
         - "ML/ch09/sol_gv_ge.md"
-        - "ML/ch09/weight_initializations.md"
-        - "ML/ch09/act_relu.md"
-        - "ML/ch09/act_elu.md"
-        - "ML/ch09/act_silu.md"
+        - "weight init. & activation func.":
+          - "ML/ch09/weight_initializations.md"
+          - "ML/ch09/act_relu.md"
+          - "ML/ch09/act_elu.md"
+          - "ML/ch09/act_silu.md"
         - "ML/ch09/batch_normalization.md"
         - 'Transfer Learning': "ML/ch11_training/knowledge_transfer.md"
       - 'Hyperparameter Tuning':
