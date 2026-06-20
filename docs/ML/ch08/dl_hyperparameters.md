@@ -18,7 +18,7 @@ Deep Learning에서 `Hyper-parameter`는
 * the [weight initialization algorithm](../ch09/weight_initializations.md)
 * the [type of optimizer](../ch09/op_summary.md)
     * [**learning rate**](./dl_learning_rate.md) of optimizer
-    * * decay constant of optimizer
+    * decay constant of optimizer
 * the [**batch size**](./dl_batchsize.md)
 * and so on.
 
@@ -118,8 +118,8 @@ neurons 수를 늘리는 방식으로 접근할 수 있음.
 * layer의 수를 늘려 deep architecture를 구성하는 것이 
 * 더 권장되는 경우가 많음.
 
-**실무** 에서는 처음부터 너무 작은 model을 만드는 것보다,
-충분히 큰 model에서 출발한 뒤 조절하는 방식이 자주 사용됨.
+**실무** 에서는 처음부터 너무 작은 model 에서 출발하는 방식보다,
+***충분히 큰 model에서 출발한 뒤 조절하는 방식*** 이 자주 사용됨.
 
 즉,
 
@@ -133,10 +133,10 @@ neurons 수를 늘리는 방식으로 접근할 수 있음.
 등을 통해 model complexity를 조절함.
 
 Vincent Vanhoucke는 이러한 접근을
-`stretch pants approach`라고 부름.
+**`stretch pants approach`** 라고 부름.
 
-즉, 처음부터 너무 딱 맞는 model을 고르기보다는
-충분히 큰 model을 준비한 뒤 필요한 만큼 조절하는 방식임.
+> 즉, 처음부터 너무 딱 맞는 model을 고르기보다는  
+> 충분히 큰 model을 준비한 뒤 필요한 만큼 조절하는 방식임.
 
 ---
 
