@@ -459,6 +459,8 @@ nav:
       - 'Hyperparameter Tuning':
         - "ML/ch08/keras_tuner.md"
         - "ML/ch08/dl_hyperparameters.md"
+        - "ML/ch08/dl_learning_rate.md"
+        - "ML/ch08/dl_batch_size.md"
     - 'DL Architectures':
       - 'CNN':
         - "ML/ch14_cnn/CNN_intro.md"

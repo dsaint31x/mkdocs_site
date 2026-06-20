@@ -254,7 +254,7 @@ Scikit-Learn에서 제공하는 `sklearn.neural_network.MLPRegressor` 와 `sklea
 * `'relu'` : [the rectified linear function](../ch09/act_relu.md)
 
 
-### SLP와 MLP의 차이점
+### SLP와 MLP의 activation function 차이점
 
 * SLP를 보통 Perceptron이라고 부르며, activation function이 step function임.
 * MLP는 학습이 되기 위해서 back-propagation으로 gradient를 구해야하면 때문에 미분 가능한 activation function인 sigmoid functions과 여러 다른 functions (적어도 sub-gradient를 구할 수 있어야함)로 변경이 이루어짐.
@@ -269,7 +269,10 @@ activation function이 identity function일 경우, perceptron은 단순한 line
 
 > 선형대수에서 linear transform은 matrix 와 vector의 곱으로 표현이 되는데 아무리 많은 matrix를 곱해준다(여러 층을 쌓음)고 해도 하나의 matrix로 대체 (그 많은 matrix들을 곱해서 얻어짐)되는 것이 잘 알려져 있음.
 
-즉, activation function이 있기 때문에 MLP가 SLP와 차이를 가지게 되는 것이며, 달리 말하면 layers를 깊이 쌓는 구조가 single layer나 적은 수의 layers로 구성된 구조보다 높은 성능을 가지는 근본적인 이유가 activation function의 존재 때문임.
+즉, non-linear activation function이 있기 때문에 
+
+* MLP가 SLP와 차이를 가지게 되는 것임, 
+* 아무리 layers를 깊이 쌓아도 linear activation function 을 사용할 경우엔 single layer 와 똑같음.
 
 ---
 
