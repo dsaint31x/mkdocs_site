@@ -201,7 +201,7 @@ MLPClassifier는
 기본 구조는 다음과 같음.
 
 $$
-\mathbf{h} = f(\mathbf{W}_{1}\mathbf{x} + \mathbf{b}_{1}) \\
+\mathbf{h} = f(\mathbf{W}_{1}\mathbf{x} + \mathbf{b}_{1}) \\\\
 \hat{y} = g(\mathbf{W}_{2}\mathbf{h} + \mathbf{b}_{2})
 $$
 
