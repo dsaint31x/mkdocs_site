@@ -17,9 +17,8 @@ Deep Learning에서 `Hyper-parameter`는
 * the [**type of activation function**](#activation-function) in each layer
 * the [weight initialization algorithm](../ch09/weight_initializations.md)
 * the [type of optimizer](../ch09/op_summary.md)
-
-  * [**learning rate**](./dl_learning_rate.md) of optimizer
-  * decay constant of optimizer
+    * [**learning rate**](./dl_learning_rate.md) of optimizer
+    * * decay constant of optimizer
 * the [**batch size**](./dl_batchsize.md)
 * and so on.
 
