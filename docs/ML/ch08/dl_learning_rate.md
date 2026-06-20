@@ -1,5 +1,5 @@
 ---
-title: Learning Rate Range Test
+title: Learning Rate Tuning
 tags: [Learning Rate, Hyperparameter, Optimization, Deep Learning, Training]
 ---
 
@@ -16,13 +16,21 @@ Learning rate가
 * 너무 크면 loss가 불안정하게 증가하거나 발산할 수 있음. 
 * 따라서 효율적이고 안정적인 학습을 위해 적절한 learning rate를 선택하는 것이 중요함.
 
+참고자료: [Learning rate 의 중요성](https://dsaint31.tistory.com/633#Learning%20rate%20%EC%9D%98%20%EC%A4%91%EC%9A%94%EC%84%B1-1-7)
+
+---
+
+---
+
 ## Learning rate range test
 
-아래에서 기술된 Learning rate range test는 적절한 learning rate 범위를 찾기 위한 실험적 방법임. 
+아래에서 기술된 Learning rate range test는 ***적절한 learning rate 범위를 찾기 위한 실험적 방법*** 임. 
 
 * 이 방법의 목적은 최종 모델을 학습시키는 것이 아니라, 
 * learning rate 변화에 따라 loss가 어떻게 반응하는지 관찰하고
 * 이를 통해 적절한 초기 learning rate를 찾는 것임.
+
+---
 
 ### 절차
 
@@ -33,8 +41,12 @@ Learning rate가
 4. 각 iteration 에서의 loss를 기록함.
 5. loss (y축)를 learning rate(x축)에 대한 함수로 시각화함.
 6. loss가 감소하다가 **다시 증가( or 발산) 하기 시작하는 지점 (=Turning point)** 을 찾음.
-7. 해당 turning point 에서의 learning rate 보다 약간 작은 (경험적으로1/10 정도로 권장되는 문헌 있음) learning rate를 최적의 초기 learning rate로 선택.
+7. 해당 turning point 에서의 learning rate 보다 약간 작은 (1/10 정도로 경험적인 정도를 언급한 문헌 있음) learning rate를 최적의 초기 learning rate로 선택.
 8. 모델을 다시 초기화한 뒤, 선택된 초기 learning rate로 정상적인 학습을 수행함.
+
+---
+
+---
 
 ## Learning rate range test의 원리
 
@@ -45,19 +57,26 @@ Learning rate가
 
 > 일반적으로 최종 학습에는 해당 지점보다 약간 1/10 정도 작은 learning rate를 사용함.
 
+---
+
+---
+
 ## Learning rate range test 사용 시 주의사항
 
-* 이는 Learning rate마다 별도의 모델을 생성하여 각각 수백 iteration씩 학습하는 방식이 아님.
+* 이는 Learning rate마다 별도의 모델을 생성하여 각각 수 iteration씩 학습하는 방식이 아님.
     * 엄밀하게는 이 방식이 공정하다고 볼 수 있으나, 실제 적용하기에 비효율적임. 
     * 하나의 모델을 사용해 수백 iteration 동안 학습하면서 learning rate를 점진적으로 증가시키는 방식으로도 충분함.
     * 이는 초기 학습이 매우 적은 Learning rate로 이루어지기 때문이므로, 반드시 매우 작은 Learning rate 로 시작해야 함.
 * Learning rate는 보통 선형 증가보다 매 iteration마다 일정 비율을 곱하는 지수적 증가 방식을 사용함.
-    * 예를 들어 (10^{-5})에서 시작하여 500 iteration 동안 (10)까지 증가시키려면, 매 iteration마다 다음 값을 learning rate에 곱함.
+    * 예를 들어 $10^{-5}$에서 시작하여 500 iteration 동안 $10$까지 증가시키려면, 매 iteration마다 다음 값을 learning rate에 곱함.
 
 $$
 \left(\frac{10}{10^{-5}}\right)^{1/500}
 $$
 
+---
+
+---
 
 ## Learning rate range test 의  한계
 
@@ -68,4 +87,6 @@ $$
 
 즉, 학습 설정이 크게 변경되었다면 learning rate range test를 다시 수행하여 적절한 learning rate 범위를 재탐색하는 것이 좋음.
 
-> 다만 batch size나 기타 설정이 소폭 변경된 경우에는 기존 결과를 초기값으로 활용한 뒤, 필요할 때만 추가 실험을 수행할 수 있음.
+> 다만
+> batch size나 기타 설정이 소폭 변경된 경우에는
+> 기존 결과를 초기값으로 활용한 뒤, 필요할 때만 추가 실험을 수행할 수 있음.
