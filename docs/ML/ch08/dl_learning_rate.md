@@ -1,5 +1,5 @@
 ---
-title: Learning Rate Range Test
+title: Learning Rate Tuning
 tags: [Learning Rate, Hyperparameter, Optimization, Deep Learning, Training]
 ---
 
