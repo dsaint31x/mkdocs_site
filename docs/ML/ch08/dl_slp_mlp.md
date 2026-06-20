@@ -323,11 +323,7 @@ $$
 \text{log loss} 
 = \text{binary cross-entropy}
 = \text{negative log-likelihood} \\
-\mathcal{L}_{\text{log loss}}(y, \hat{p})
-=
-\mathcal{L}_{\mathrm{BCE}}(y, \hat{p})
-=
-\mathcal{L}_{\mathrm{NLL}}(y, \hat{p})
+\mathcal{L}_{\text{log loss}}(y, \hat{p}) = \mathcal{L}_{\mathrm{BCE}}(y, \hat{p}) = \mathcal{L}_{\mathrm{NLL}}(y, \hat{p})
 $$
 
 where
