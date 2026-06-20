@@ -447,7 +447,7 @@ nav:
       - "Deep Learning (simple)":
         - "ANN 역사":
           - "ML/ch08/dev_hist_ann.md"
-          - "ML/ch08/dl_slp_dlp.md"
+          - "ML/ch08/dl_slp_mlp.md"
           - "ML/ch08/dl_mlp.md"
         - "Backpropagation": 
           - "ML/ch08/back_propagation.md"
