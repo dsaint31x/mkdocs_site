@@ -2,18 +2,19 @@
 title: MLPRegressor
 tags:
   - MLPRegressor
-  - Multi-Layer Perceptron
-  - ANN
-  - Regression
+  - multilayer-perceptron
+  - mlp
+  - ann
+  - regression
   - scikit-learn
-  - Neural Network
-  - Hidden Layer
-  - Activation Function
-  - Solver
-  - Early Stopping
-  - Loss Curve
-  - Regularization
-  - Hyperparameter
+  - neural network
+  - hidden layer
+  - activation-function
+  - solver
+  - early-stopping
+  - loss-curve
+  - regularization
+  - hyperparameter
 ---
 
 # MLPRegressor
