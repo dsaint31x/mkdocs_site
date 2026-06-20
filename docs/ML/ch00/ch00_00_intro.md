@@ -1,5 +1,5 @@
 ---
-tags: [AI, ML, DL, Representation, Representative Learning]
+tags: [ai, ml, dl, representation, representative Learning]
 ---
 
 # AI, ML and DL.
