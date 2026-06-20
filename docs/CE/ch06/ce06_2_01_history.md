@@ -2,18 +2,18 @@
 title: "Network 00 - History of Data Communication"
 description: "데이터 통신의 역사와 네트워크의 기본 개념 정리: ARPANET, UUCP, USENet, LAN/WAN, Switching, Protocol, 통신 방식 등"
 tags: 
-  - Data Communication
-  - ARPANET
-  - UUCP
-  - USENet
-  - LAN
-  - WAN
-  - Protocol
-  - TCP/IP
-  - OSI
-  - Switching
-  - Modem
-  - History of Internet
+  - data-communication
+  - arpanet
+  - uucp
+  - usenet
+  - lan
+  - wan
+  - protocol
+  - tcp/ip
+  - osi
+  - switching
+  - modem
+  - history
 ---
 
 ![](./img/network00.png){style="display: block; margin: 0 auto; width:500"}

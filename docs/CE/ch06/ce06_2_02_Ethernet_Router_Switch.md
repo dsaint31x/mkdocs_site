@@ -2,13 +2,13 @@
 title: Network 01 - Ethernet, Wi-Fi, Bluetooth 기초 정리
 description: Ethernet, Wi-Fi, Bluetooth의 개념과 차이를 정리
 tags:
-  - Ethernet
-  - Wi-Fi
-  - IEEE 802.11
-  - Bluetooth
-  - LAN
-  - Router
-  - Switch
+  - ethernet
+  - wi-fi
+  - ieee 802.11
+  - bluetooth
+  - lan
+  - router
+  - switching
 ---
 
 # Network 01

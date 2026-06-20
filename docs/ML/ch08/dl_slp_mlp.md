@@ -1,6 +1,6 @@
 ---
 title: Perceptron and MLPClassifier
-tags: [Perceptron, SLP, MLPClassifier, Classification, scikit-learn]
+tags: [perceptron, slp, mlpclassifier, mlp, classification, scikit-learn]
 ---
 
 # Perceptron and MLPClassifier
@@ -217,9 +217,7 @@ MLPClassifier는
 
 ---
 
----
-
-## MLPClassifier의 특징
+### MLPClassifier의 특징
 
 MLPClassifier의 주요 특징은 다음과 같음:
 

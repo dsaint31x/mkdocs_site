@@ -1,7 +1,7 @@
 ---
 
 title: Early Artificial Neural Networks
-tags: [Artificial Neural Network, ANN, McCulloch-Pitts Neuron, Hebbian Learning, Perceptron, Single-Layer Perceptron, Multi-Layer Perceptron, Backpropagation, Activation Function, Deep Learning History]
+tags: [artificial-neural-network, ann, McCulloch-Pitts-neuron, hebbian-learning, perceptron, single-layer-perceptron, slp, multiLayer-perceptron, mlp, backpropagation, activation-function, deep-learning, history, dl]
 
 ---
 
