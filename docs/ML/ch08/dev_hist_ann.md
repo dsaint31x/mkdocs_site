@@ -1,3 +1,10 @@
+---
+
+title: Early Artificial Neural Networks
+tags: [Artificial Neural Network, ANN, McCulloch-Pitts Neuron, Hebbian Learning, Perceptron, Single-Layer Perceptron, Multi-Layer Perceptron, Backpropagation, Activation Function, Deep Learning History]
+
+---
+
 # 초창기 Artificial Neural Network
 
 ## ANN의 시작.
