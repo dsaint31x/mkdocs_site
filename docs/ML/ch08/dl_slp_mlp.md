@@ -201,8 +201,8 @@ MLPClassifier는
 기본 구조는 다음과 같음.
 
 $$
-\mathbf{h} = f(\mathbf{W}*{1}\mathbf{x} + \mathbf{b}*{1}) \\
-\hat{y} = g(\mathbf{W}*{2}\mathbf{h} + \mathbf{b}*{2})
+\mathbf{h} = f(\mathbf{W}_{1}\mathbf{x} + \mathbf{b}_{1}) \\
+\hat{y} = g(\mathbf{W}_{2}\mathbf{h} + \mathbf{b}_{2})
 $$
 
 여기서
@@ -286,7 +286,7 @@ MLPClassifier(
 ## binary classification에서의 log loss
 
 binary classification에서 true label이
-$y \in {0, 1}$이고, model이 positive class probability를 $\hat{p}$로 예측한다고 하자.
+$y \in ]\{0, 1\}$이고, model이 positive class probability를 $\hat{p}$로 예측한다고 하자.
 
 이때 likelihood는 다음과 같음.
 
@@ -298,11 +298,9 @@ $$
 
 $$
 -\log P(y \mid x) =
-
 -\left[
 y \log \hat{p} + (1-y)\log(1-\hat{p})
 \right]
-]
 $$
 
 이 식이 binary cross-entropy이고, classification 문맥에서는 `log loss`라고도 부름.
@@ -382,7 +380,7 @@ $$
 -\sum_{c=1}^{C}
 \left[
 y_c \log \hat{p}_c
-+
+\pm
 (1-y_c)\log(1-\hat{p}_c)
 \right]
 $$
