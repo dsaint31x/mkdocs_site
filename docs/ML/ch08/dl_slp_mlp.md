@@ -1,6 +1,6 @@
 ---
 title: Perceptron and MLPClassifier
-tags: [Perceptron, SLP, MLPClassifier, Classification, scikit-learn]
+tags: [perceptron, slp, mlpclassifier, mlp, classification, scikit-learn]
 ---
 
 # Perceptron and MLPClassifier
