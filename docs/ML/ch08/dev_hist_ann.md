@@ -259,6 +259,10 @@ Scikit-Learn에서 제공하는 `sklearn.neural_network.MLPRegressor` 와 `sklea
 * SLP를 보통 Perceptron이라고 부르며, activation function이 step function임.
 * MLP는 학습이 되기 위해서 back-propagation으로 gradient를 구해야하면 때문에 미분 가능한 activation function인 sigmoid functions과 여러 다른 functions (적어도 sub-gradient를 구할 수 있어야함)로 변경이 이루어짐.
 
+참고자료 1: [Perceptron vs. MLPClassifier](./dl_slp_mlp.md)
+
+참고자료 2: [MLPRegressor](./dl_mlp.md)
+
 
 ### Activation function의 중요성.
 
