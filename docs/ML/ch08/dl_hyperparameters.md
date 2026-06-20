@@ -5,6 +5,8 @@ tags: [Deep Learning, Hyperparameter, Layer, Neuron, Activation Function, Optimi
 
 # Hyper-Parameters in DL
 
+![](./img/dl_hyperparameters.png)
+
 Deep Learning에서 `Hyper-parameter`는
 
 * model이 학습을 통해 자동으로 결정하는 값(= **parameter**)이 아니라,
