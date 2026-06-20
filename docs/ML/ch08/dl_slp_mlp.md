@@ -320,9 +320,7 @@ where
 즉, binary classification에서는 다음 관계로 이해할 수 있음.
 
 $$
-\text{log loss} 
-= \text{binary cross-entropy}
-= \text{negative log-likelihood} \\
+\text{log loss}  = \text{binary cross-entropy} = \text{negative log-likelihood} \\
 \mathcal{L}_{\text{log loss}}(y, \hat{p}) = \mathcal{L}_{\mathrm{BCE}}(y, \hat{p}) = \mathcal{L}_{\mathrm{NLL}}(y, \hat{p})
 $$
 
