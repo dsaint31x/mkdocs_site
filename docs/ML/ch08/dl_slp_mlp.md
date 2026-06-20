@@ -288,7 +288,7 @@ MLPClassifier(
 ## binary classification에서의 log loss
 
 binary classification에서 true label이
-$y \in ]\{0, 1\}$이고, model이 positive class probability를 $\hat{p}$로 예측한다고 하자.
+$y \in \{ 0, 1 \}$이고, model이 positive class probability를 $\hat{p}$로 예측한다고 하자.
 
 이때 likelihood는 다음과 같음.
 
