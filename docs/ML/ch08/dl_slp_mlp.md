@@ -380,14 +380,11 @@ $$
 
 여러 sample에 대한 평균 loss는 다음과 같음:
 
-$$
-\mathcal{L}_{\mathrm{log\ loss}}
-=
+$$\mathcal{L}_{\text{log loss}} =
 -\frac{1}{N}
 \sum_{i=1}^{N}
 \sum_{c=1}^{C}
-y_{i,c}\log p_{i,c}
-$$
+y_{i,c}\log (p_{i,c})$$
 
 ---
 
