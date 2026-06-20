@@ -36,7 +36,7 @@ Perceptron의 기본 구조는 다음과 같음.
 
 $$
 \begin{aligned}z &= \mathbf{w}^\top \mathbf{x} + b \\
-\hat{y} = f(z)\end{aligned}
+\hat{y} &= f(z)\end{aligned}
 $$
 
 여기서
