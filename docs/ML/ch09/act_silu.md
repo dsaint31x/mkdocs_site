@@ -84,7 +84,7 @@ $$\begin{aligned}\text{GELU}(x) &=x \Phi (x)\\&=xP(X\le x),\quad X \sim \mathcal
 
 > 수식상으로는 error function을 이용하여 표현
 >
-> $\Phi(x)=\frac{1}{2}\left[ 1+erf\left( \frac{x}{\sqrt{2}} \right) \right]$
+> $\Phi(x)=\frac{1}{2}\left[ 1+\text{erf}\left( \frac{x}{\sqrt{2}} \right) \right]$
 >
 > 하지만, 실제 구현에선 다음의 근사식이 더 많이 이용됨:
 >
