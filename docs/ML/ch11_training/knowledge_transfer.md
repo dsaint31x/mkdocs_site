@@ -18,14 +18,49 @@
 
 ![](./img/transfer_learning.png){style="display: block; margin: 0 auto; width:400px"}
 
-> 엄밀하게 애기할 경우, 이 문서에 다루는 Transfer Learning은  
-> Supervised pretraining based transfer learning 임.  
-> pre-trained model을 Freeze시킨 채로 맨 위 Layer만 학습을 시키는 것을 가리킴. 
+> transfer learning은  
 > 
-> 이후 pre-trained model의 일부 혹은 전체 layers를 재학습시키는 것은 fine tuning이라고도 함.  
-> 하지만 대부분의 경우 이 두 과정이 함께 연이어 이루어지기 때문에  
-> 이를 합쳐 transfer-learning으로 크게 지칭하는 경우도 많다.
+> * source task 또는 source dataset에서 미리 학습된 pre-trained model의 knowledge를  
+> * target task 또는 target dataset에 활용하는 방법임.
+>
+> 이때 pre-trained model은 supervised learning으로 학습되었을 수도 있고,  
+> self-supervised learning이나 unsupervised pretraining으로 학습되었을 수도 있음.
+> 
+> 가장 단순한 방식은 pre-trained model의 lower layers 또는 backbone을
+feature extractor로 사용하는 것임.
+>
+> * 이 경우 pre-trained backbone의 parameters는 freeze한 채,
+> * target task의 출력에 맞는 downstream layer 또는 task-specific head를 새로 추가하고
+> * 이 추가된 layer만 학습시킴.
+> 
+> 이를 feature extraction 방식의 transfer learning이라고 함.
+>
+> * 특히 pre-trained backbone을 freeze한 채
+> * target task에 맞는 linear head만 학습시키는 방식은
+> * **linear probing** 이라고 함.
+> 
+> 이는 pre-trained representation이 target task에 얼마나 유용한지 확인하는  
+> 대표적인 feature extraction 방식임.
+>
+> 반면 pre-trained backbone의 일부 또는 전체를 unfreeze하여
+> target task에 맞게 parameters를 추가로 학습시키는 과정은
+> **fine-tuning** 이라고 함.
+> 
+> * Fine-tuning에서는 pre-trained weights를 초기값으로 사용하되,
+> * target task의 data에 맞게 기존 representation을 조정함.
 
+* Linear probing은 backbone을 freeze하고 linear head만 학습시키는 방식이고,
+* Fine-tuning은 backbone의 일부 또는 전체까지 함께 재학습시키는 방식임.
+
+실제 workflow:
+
+1. linear probing 또는 feature extraction 방식으로 새 head를 학습한 뒤,
+2. 이후 pre-trained backbone의 일부 또는 전체를 unfreeze하여  
+   fine-tuning을 이어서 수행하는 경우가 많음.
+
+> 문헌이나 실무에서는  
+> feature extraction, linear probing, fine-tuning을 모두 포함하여  
+> 넓은 의미의 transfer learning이라고 지칭하는 경우도 많음.
 
 ---
 
