@@ -412,7 +412,7 @@ Downstream classification
 
 즉 GAN은 다음처럼 구분해야 함.
 
-| 경우                                              | 분류                       |
+| 경우 | 분류 |
 | :---: | :---: |
 | GAN으로 image generation만 수행                      | unsupervised learning    |
 | GAN discriminator feature를 downstream task에 재사용 | unsupervised pretraining |
