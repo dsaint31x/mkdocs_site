@@ -36,8 +36,8 @@ logical proposition (논리 명제)를 계산 (and, or, not 등의)함.
 
 위 그림은 다음 4가지 종류의 연산을 보여줌.
 
-* `precession` : identity op.
-* `disjunction` : $2=1 \lor 2$ (`or`).
+* `precession` : identity op. $2=1$.
+* `disjunction` : $3=1 \lor 2$ (`or`).
 * `conjunction` : $3=1 \land 2$ (`and`).
 * `conjoined negation` : $3 = 1 \land \neg 2$.
 
