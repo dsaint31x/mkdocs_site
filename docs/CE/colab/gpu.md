@@ -66,3 +66,50 @@ device = torch.device(devices[0])
 다음은 PyTorch에서 MPS 가속을 사용하는 예제 코드임.
 
 [DL_MPS_Test](https://gist.github.com/dsaint31x/bdd3b9461d5cdc1779b86665f774c821)
+
+---
+
+## Google 의 TPU (Tensor Processing Unit)를 이용한 XLA 가속.
+
+PyTorch 에서는 `torch_xla` package를 통해 TPU 같은 XLA device를 사용할 수 있음.
+
+* `torch_xla`가 XLA backend를 PyTorch에 연결하는 package
+
+TPU 사용 가능 환경에서는 보통 다음과 같이 XLA device를 확인하고 지정함.
+
+```python
+import torch
+import torch_xla
+
+device = torch_xla.device()
+
+print(device)                # xla:0
+print(device.type)           # xla
+print(torch_xla.devices())   # 사용 가능한 XLA devices
+````
+- `torch.cuda.is_available()` 같은 단순 TPU availability check와 완전히 대응되는 표준 함수는 없음.
+- `torch_xla.device()`는 `torch_xla` runtime이 초기화되면서 XLA device를 잡는 방식에 가까움.
+- `xm.xla_device()`는 `torch_xla.device()` 의 이전 방식으로 이전 문서들에서 보이는 형태임.
+
+
+특정 tensor를 TPU/XLA device에 올리는 방식은 CUDA/MPS와 유사함.
+
+```python
+x = torch.tensor([1.0, 2.0, 3.0])
+x = x.to(device)
+
+print(x)
+print(x.device)
+```
+
+단, TPU는 일반적인 `cuda` device가 아니라 XLA device로 동작함.
+
+따라서 PyTorch에서 TPU를 사용할 때는 `torch_xla`를 추가로 사용하며,
+환경에 따라 `PJRT_DEVICE=TPU` 같은 runtime 설정이 필요할 수 있음.
+
+참고자료: 
+
+* [xla 관련 개념 설명자료](https://ds31x.tistory.com/225)
+* [사용법 위주 설명자료](https://ds31x.tistory.com/689)
+
+
