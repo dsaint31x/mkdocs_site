@@ -234,8 +234,7 @@ def ds_linear_model(x, w, b):
     return ret_v
 ```
 
-이 함수는 기본적으로 다음 식을 계산함.
-
+이 함수는 기본적으로 다음 식을 계산함:
 $$
 \hat{y} = xw + b
 $$
@@ -253,8 +252,7 @@ assert torch.allclose(ret_v, tmp)
 
 ### 3.2 Custom Loss Function: MSE
 
-MSE는 다음과 같이 정의됨.
-
+Mean Squared Error (MSE)는 다음과 같이 정의됨:
 $$
 L = \frac{1}{n}
 \sum_{i=1}^{n}
@@ -308,14 +306,12 @@ pred.dtype, pred.shape
 (torch.float32, torch.Size([200, 1]))
 ```
 
-현재 $w=1$, $b=0$ 이므로 model은 다음을 계산함.
-
+현재 $w=1$, $b=0$ 이므로 model은 다음을 계산함:
 $$
 \hat{y} = x
 $$
 
-하지만 실제 데이터는 다음 관계를 바탕으로 생성됨.
-
+하지만 실제 데이터는 다음 관계를 바탕으로 생성됨:
 $$
 y \approx 1.8x + 32
 $$
@@ -414,8 +410,7 @@ nn.MSELoss의 gradient: tensor([0.6667, 0.6667, 0.6667])
 
 ### 5.1 Gradient Descent Update 식
 
-Gradient Descent는 gradient의 반대 방향으로 parameter를 update함.
-
+Gradient Descent는 gradient의 반대 방향으로 parameter를 update함:
 $$
 \begin{aligned}
 w_{t+1} &= w_t - \eta \frac{\partial L}{\partial w} \\
@@ -431,8 +426,7 @@ $$
 
 [central difference](https://dsaint31.tistory.com/540#Finite%20Difference%20(%EC%9C%A0%ED%95%9C%EC%B0%A8%EB%B6%84)%20%EC%A2%85%EB%A5%98-1-3)로 gradient를 근사함.
 
-$w$ 에 대한 gradient는 다음처럼 근사함.
-
+$w$ 에 대한 gradient는 다음처럼 근사함:
 $$
 \frac{\partial L}{\partial w}
 \approx
@@ -462,16 +456,16 @@ d_loss_d_w = (
 tmp = array(-5540.0024, dtype=float32)
 ```
 
-따라서 현재 위치에서 $w$ 에 대한 gradient는 다음과 같음.
-
+따라서 현재 위치에서 $w$ 에 대한 gradient는 다음과 같음:
 $$
 \frac{\partial L}{\partial w} \approx -5540.0024
 $$
 
-$b$ 에 대한 gradient는 다음처럼 근사함.
-
-$$\frac{\partial L}{\partial b} \approx
-\frac{ L(w, b + \delta) - L(w, b - \delta)}{2\delta}$$
+$b$ 에 대한 gradient는 다음처럼 근사함:
+$$
+\frac{\partial L}{\partial b} \approx
+\frac{ L(w, b + \delta) - L(w, b - \delta)}{2\delta}
+$$
 
 이에 대한 구현 코드는 다음과 같음:
 
@@ -569,40 +563,56 @@ Analytical gradient는 수식이 맞다면 더 빠르고 정확함.
 ### 6.2 MSE Loss의 미분
 
 예측값은 다음과 같음:
-$$\hat{y} = wx + b$$
+$$
+\hat{y} = wx + b
+$$
 
 단일 sample에 대한 squared error는 다음과 같음:
-$$L_i = (\hat{y}_i - y_i)^2$$
+$$
+L_i = (\hat{y}_i - y_i)^2
+$$
 
 전체 MSE loss는 다음과 같음:
-$$L = \frac{1}{n} \sum_{i=1}^{n} (\hat{y}_i - y_i)^2$$
+$$
+L = \frac{1}{n} \sum_{i=1}^{n} (\hat{y}_i - y_i)^
+2$$
 
 단일 sample loss를 $\hat{y}_i$ 에 대해 미분하면 다음과 같음:
-$$\frac{\partial L_i}{\partial \hat{y}_i} = 2(\hat{y}_i - y_i)$$
+$$
+\frac{\partial L_i}{\partial \hat{y}_i} = 2(\hat{y}_i - y_i)
+$$
 
 linear model에서는 다음이 성립함:
-$$\begin{aligned}
+$$
+\begin{aligned}
 \frac{\partial \hat{y}_i}{\partial w} &= x_i \\
 \frac{\partial \hat{y}_i}{\partial b} &= 1
-\end{aligned}$$
+\end{aligned}
+$$
 
 chain rule에 의해 다음이 성립함:
-$$\begin{aligned}
+$$
+\begin{aligned}
 \frac{\partial L_i}{\partial w} &= \frac{\partial L_i}{\partial \hat{y}_i} \frac{\partial \hat{y}_i}{\partial w} \\
 \frac{\partial L_i}{\partial b} &= \frac{\partial L_i}{\partial \hat{y}_i} \frac{\partial \hat{y}_i}{\partial b}
-\end{aligned}$$
+\end{aligned}
+$$
 
 따라서 단일 sample에 대해서는 다음과 같음:
-$$\begin{aligned}
+$$
+\begin{aligned}
 \frac{\partial L_i}{\partial w} &= 2(\hat{y}_i - y_i)x_i \\
 \frac{\partial L_i}{\partial b} &= 2(\hat{y}_i - y_i)
-\end{aligned}$$
+\end{aligned}
+$$
 
 MSE는 sample별 squared error의 평균이므로 전체 gradient는 다음과 같음:
-$$\begin{aligned}
+$$
+\begin{aligned}
 \frac{\partial L}{\partial w} &= \frac{1}{n} \sum_{i=1}^{n} 2(\hat{y}_i - y_i)x_i \\
 \frac{\partial L}{\partial b} &= \frac{1}{n} \sum_{i=1}^{n} 2(\hat{y}_i - y_i)
-\end{aligned}$$
+\end{aligned}
+$$
 
 ---
 
@@ -768,14 +778,12 @@ Epoch 5000: Loss 33.8953
 (tensor([[1.7953]]), tensor([31.9390]))
 ```
 
-이상적인 관계는 다음이었음.
-
+이상적인 관계는 다음이었음:
 $$
 y = 1.8x + 32
 $$
 
-학습 결과는 다음과 같이 해석할 수 있음.
-
+학습 결과는 다음과 같이 해석할 수 있음:
 $$
 \hat{y} = 1.7953x + 31.9390
 $$
