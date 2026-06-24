@@ -14,13 +14,11 @@ Linear Regression은
 * 근사하는 regression model임.
 
 일반적으로 다음과 같이 표현함.
-
 $$
 \hat{y} = \mathbf{w}^{\top}\mathbf{x} + b
 $$
 
 입력이 하나인 경우에는 다음처럼 쓸 수 있음.
-
 $$
 \hat{y} = wx + b
 $$
@@ -37,10 +35,11 @@ $$
 > $wx + b$ 는 linear transform이 아니라 
 > affine transform임.
 > 
-> 순수한 linear transform은 원점을 지나야 하지만,
-> bias $b$ 가 있으면 직선이 위아래로 이동할 수 있기 때문임.
+> * 순수한 linear transform은 원점을 지나야 하지만,
+> * bias $b$ 가 있으면 직선이 위아래로 이동할 수 있기 때문임.
 >
-> homogeneous coordinate 등을 통해 쉽게 linear transform으로 변경가능함.
+> affine transform은 homogeneous coordinate를 사용하면
+> 한 차원 더 높은 공간에서 linear transform으로 표현할 수 있음.
 > 
 
 Machine learning에서는 관례적으로 이 형태의 model을 linear regression이라고 부름.
@@ -54,10 +53,7 @@ Machine learning에서는 관례적으로 이 형태의 model을 linear regressi
 이번 예제에서는 Celsius를 입력으로 받아 Fahrenheit를 예측하는 문제를 다룸.
 
 Celsius $x$ 를 Fahrenheit $y$ 로 변환하는 식은 다음과 같음:
-
-$$
-y = 1.8x + 32
-$$
+$$y = 1.8x + 32$$
 
 * $x$: Celsius
 * $y$: Fahrenheit
@@ -85,6 +81,7 @@ for c in [torch, np]:
 2.11.0+cpu
 2.0.2
 ```
+
 ---
 
 ### 2.2 데이터 생성
@@ -141,8 +138,8 @@ print(x.shape, y.shape, y_ideal.shape)
 
 ![](./img/cel2fah_data.png){style="display: block; margin: 0 auto; width:500px"}
 
-왼쪽 그래프는 noise가 없는 이상적인 직선이고,
-오른쪽 그래프는 noise가 추가된 학습 데이터임.
+* 왼쪽 그래프는 noise가 없는 이상적인 직선이고,
+* 오른쪽 그래프는 noise가 추가된 학습 데이터임.
 
 출력 shape은 다음과 같음.
 
@@ -166,10 +163,7 @@ y_ideal = torch.tensor(y_ideal).float().reshape(-1, 1)
 * `.float()`는 dtype을 `torch.float32`로 변환함.
 
 참고로, `.reshape(-1, 1)`은 data shape을 다음 형태로 맞춤.
-
-$$
-(\text{sample 수}, \text{feature 수})
-$$
+$$(\text{sample 수}, \text{feature 수})$$
 
 이번 예제에서는 feature가 
 Celsius 하나이므로 shape은 다음과 같음.
@@ -284,9 +278,7 @@ w = torch.ones((1, 1))
 b = torch.zeros((1))
 ```
 
-matrix 형태로 맞추기 위해 처리함.
-
-값을 확인하면 다음과 같음.
+* matrix 형태로 맞추기 위해 처리함.
 
 ---
 
@@ -294,7 +286,7 @@ matrix 형태로 맞추기 위해 처리함.
 
 ### 4.1 Prediction 확인
 
-초기 parameter로 prediction을 수행함.
+초기 parameter로 prediction을 수행하여 입출력 shape등을 체크할 것:
 
 ```python
 pred = ds_linear_model(x, w, b)
@@ -308,7 +300,7 @@ pred.dtype, pred.shape
 (torch.float32, torch.Size([200, 1]))
 ```
 
-현재 $w=[[1]]$, $b=0$ 이므로 model은 다음을 계산함.
+현재 $w=1$, $b=0$ 이므로 model은 다음을 계산함.
 
 $$
 \hat{y} = x
@@ -320,7 +312,11 @@ $$
 y \approx 1.8x + 32
 $$
 
-제대로 된 값을 원하는 것이 아닌, 입출력의 shape가 설계한대로 나오는지 확인하는 것이 중요함.
+현재 학습이 되지 않았기 때문에  
+weight와 bias가 초기값 그대로이므로  
+결과도 제대로 된 값을 원하는 것이 아님.
+
+이는 입출력의 shape가 설계한대로 나오는지 확인하고 모델의 동작만을 확인하기 위한 절차임.
 
 ---
 
@@ -378,7 +374,7 @@ nn.MSELoss 결과: 1.0000
 직접 구현한 MSE 결과: 1.0000
 ```
 
-AutoGrad 의 동작이 같은지를 gradient 값으로 비교함.
+AutoGrad 의 동작이 두 경우 모두 같은지를 gradient 값으로 비교함.
 
 ```python
 pred.grad = None
@@ -423,7 +419,7 @@ $$
 
 ### 5.2 Numerical Method로 Gradient 근사하기
 
-central difference로 gradient를 근사함.
+[central difference](https://dsaint31.tistory.com/540#Finite%20Difference%20(%EC%9C%A0%ED%95%9C%EC%B0%A8%EB%B6%84)%20%EC%A2%85%EB%A5%98-1-3)로 gradient를 근사함.
 
 $w$ 에 대한 gradient는 다음처럼 근사함.
 
@@ -486,7 +482,7 @@ d_loss_d_b = (
 
 ### 5.3 Parameter Update
 
-계산한 gradient로 parameter를 update함.
+계산한 gradient로 parameters를 update함.
 
 ```python
 print(f"before: {w.item() = :8.2f}, {b.item() = :8.2f}")
@@ -530,6 +526,7 @@ l의 경우 loss가 크게 증가했음.
 
 * 즉, 이 경우는 발산하는 상황임.
 * 원인은 learning rate가 너무 큰 `1e-2` 이기 때문임.
+* 발산하는 경우, learning rate를 줄여야 함.
 
 이후 학습에서는 더 작은 learning rate인 $2 \times 10^{-4}$를 사용함.
 
@@ -561,71 +558,47 @@ Analytical gradient는 수식이 맞다면 더 빠르고 정확함.
 
 ### 6.2 MSE Loss의 미분
 
-예측값은 다음과 같음.
+예측값은 다음과 같음:
+$$\hat{y} = wx + b$$
 
-$$
-\hat{y} = wx + b
-$$
+단일 sample에 대한 squared error는 다음과 같음:
+$$L_i = (\hat{y}_i - y_i)^2$$
 
-단일 sample에 대한 squared error는 다음과 같음.
-
-$$
-L_i = (\hat{y}_i - y_i)^2
-$$
-
-전체 MSE loss는 다음과 같음.
-
-$$
-L = \frac{1}{n} \sum_{i=1}^{n} (\hat{y}_i - y_i)^2
-$$
+전체 MSE loss는 다음과 같음:
+$$L = \frac{1}{n} \sum_{i=1}^{n} (\hat{y}_i - y_i)^2$$
 
 단일 sample loss를 $\hat{y}_i$ 에 대해 미분하면 다음과 같음:
+$$\frac{\partial L_i}{\partial \hat{y}_i} = 2(\hat{y}_i - y_i)$$
 
-$$
-\frac{\partial L_i}{\partial \hat{y}_i} = 2(\hat{y}_i - y_i)
-$$
-
-linear model에서는 다음이 성립함.
-
-$$
-\begin{aligned}
+linear model에서는 다음이 성립함:
+$$\begin{aligned}
 \frac{\partial \hat{y}_i}{\partial w} &= x_i \\
 \frac{\partial \hat{y}_i}{\partial b} &= 1
-\end{aligned}
-$$
+\end{aligned}$$
 
-chain rule에 의해 다음이 성립함.
-
-$$
-\begin{aligned}
+chain rule에 의해 다음이 성립함:
+$$\begin{aligned}
 \frac{\partial L_i}{\partial w} &= \frac{\partial L_i}{\partial \hat{y}_i} \frac{\partial \hat{y}_i}{\partial w} \\
 \frac{\partial L_i}{\partial b} &= \frac{\partial L_i}{\partial \hat{y}_i} \frac{\partial \hat{y}_i}{\partial b}
-\end{aligned}
-$$
+\end{aligned}$$
 
-따라서 단일 sample에 대해서는 다음과 같음.
-
-$$
-\begin{aligned}
+따라서 단일 sample에 대해서는 다음과 같음:
+$$\begin{aligned}
 \frac{\partial L_i}{\partial w} &= 2(\hat{y}_i - y_i)x_i \\
 \frac{\partial L_i}{\partial b} &= 2(\hat{y}_i - y_i)
-\end{aligned}
-$$
+\end{aligned}$$
 
-MSE는 sample별 squared error의 평균이므로 전체 gradient는 다음과 같음.
-
-$$
-\begin{aligned}
+MSE는 sample별 squared error의 평균이므로 전체 gradient는 다음과 같음:
+$$\begin{aligned}
 \frac{\partial L}{\partial w} &= \frac{1}{n} \sum_{i=1}^{n} 2(\hat{y}_i - y_i)x_i \\
 \frac{\partial L}{\partial b} &= \frac{1}{n} \sum_{i=1}^{n} 2(\hat{y}_i - y_i)
-\end{aligned}
-$$
+\end{aligned}$$
 
 ---
 
 ### 6.3 Analytical Gradient 구현
 
-미분식을 함수로 구현함.
+미분식을 다음의 function으로 구현함:
 
 ```python
 def a_d_loss_d_pred(pred, y):
@@ -639,7 +612,7 @@ def a_d_pred_d_b(x, w, b):
     return 1.
 ```
 
-전체 gradient 계산 함수는 다음과 같음.
+전체 gradient 계산 function은 다음과 같음:
 
 ```python
 def get_grad(x, y, pred, w, b):
@@ -816,6 +789,7 @@ plt.plot(x, pred, x, y_ideal, x, y)
 * noise가 섞인 데이터
 
 ![](./img/dl_lr_res01.png){style="display: block; margin: 0 auto; width:500px"}
+
 ---
 
 ## 8. PyTorch AutoGrad 사용하기
