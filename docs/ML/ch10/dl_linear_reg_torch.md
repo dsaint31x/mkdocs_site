@@ -56,7 +56,9 @@ Machine learning에서는 관례적으로 이 형태의 model을 linear regressi
 이번 예제에서는 Celsius를 입력으로 받아 Fahrenheit를 예측하는 문제를 다룸.
 
 Celsius $x$ 를 Fahrenheit $y$ 로 변환하는 식은 다음과 같음:
-$$y = 1.8x + 32$$
+$$
+y = 1.8x + 32
+$$
 
 * $x$: Celsius
 * $y$: Fahrenheit
