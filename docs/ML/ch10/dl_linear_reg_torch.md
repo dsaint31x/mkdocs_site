@@ -44,6 +44,9 @@ $$
 
 Machine learning에서는 관례적으로 이 형태의 model을 linear regression이라고 부름.
 
+
+* 참고자료: [Affine vs. Linear](https://dsaint31.tistory.com/652)
+
 ---
 
 ---
@@ -282,6 +285,8 @@ b = torch.zeros((1))
 
 ---
 
+---
+
 ## 4. 학습 전 동작 확인
 
 ### 4.1 Prediction 확인
@@ -397,6 +402,8 @@ nn.MSELoss의 gradient: tensor([0.6667, 0.6667, 0.6667])
 직접 구현한 gradient:   tensor([0.6667, 0.6667, 0.6667])
 두 gradient가 동일한가? True
 ```
+
+---
 
 ---
 
@@ -789,6 +796,8 @@ plt.plot(x, pred, x, y_ideal, x, y)
 * noise가 섞인 데이터
 
 ![](./img/dl_lr_res01.png){style="display: block; margin: 0 auto; width:500px"}
+
+---
 
 ---
 
@@ -1213,7 +1222,7 @@ params = torch.tensor(
 )
 ```
 
-실제로 PyTorch를 사용할 경우, 이같이 직접 만들 필요가 없음.
+실제로 PyTorch를 사용할 경우, 이같이 직접 만들 필요 없음.
 
 * model 자체도 PyTorch에서 제공하는 `nn.Linear`로 바꿀 수 있음.
 * 거의 대부분의 layer나 함수들을 제공함.
@@ -1226,6 +1235,10 @@ $$
 
 * PyTorch의 `nn.Linear(in_features=1, out_features=1)`는
 * 입력 feature 1개를 받아 출력 feature 1개를 만드는 linear layer임.
+
+참고로, `nn.Linear`의 parameters는 Kaiming initialization (=He initialization)을 기반으로 초기화 됨:
+
+* 참고자료: [Kaiming initialization](https://ds31x.tistory.com/236#.kaiming_uniform_-and-.kaiming_normal_)
 
 ---
 
