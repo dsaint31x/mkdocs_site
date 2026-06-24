@@ -462,6 +462,8 @@ nav:
           - "ML/ch09/act_silu.md"
         - "ML/ch09/batch_normalization.md"
         - 'Transfer Learning': "ML/ch11_training/knowledge_transfer.md"
+      - 'PyTorch Basics':
+        - "ML/ch10/dl_linear_reg_torch.md"
       - 'Hyperparameter Tuning':
         - "ML/ch08/keras_tuner.md"
         - "ML/ch08/dl_hyperparameters.md"
