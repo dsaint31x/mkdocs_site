@@ -46,6 +46,7 @@ Machine learning에서는 관례적으로 이 형태의 model을 linear regressi
 
 
 * 참고자료: [Affine vs. Linear](https://dsaint31.tistory.com/652)
+* 참고자료: [Linear Regression](https://dsaint31.tistory.com/960)
 
 ---
 
