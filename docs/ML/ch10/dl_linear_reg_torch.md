@@ -585,7 +585,7 @@ $$
 linear model에서는 다음이 성립함:
 $$
 \begin{aligned}
-\frac{\partial \hat{y}_i}{\partial w} &= x_i \\
+\frac{\partial \hat{y}_i}{\partial w} &= x_i \\\\
 \frac{\partial \hat{y}_i}{\partial b} &= 1
 \end{aligned}
 $$
@@ -593,7 +593,7 @@ $$
 chain rule에 의해 다음이 성립함:
 $$
 \begin{aligned}
-\frac{\partial L_i}{\partial w} &= \frac{\partial L_i}{\partial \hat{y}_i} \frac{\partial \hat{y}_i}{\partial w} \\
+\frac{\partial L_i}{\partial w} &= \frac{\partial L_i}{\partial \hat{y}_i} \frac{\partial \hat{y}_i}{\partial w} \\\\
 \frac{\partial L_i}{\partial b} &= \frac{\partial L_i}{\partial \hat{y}_i} \frac{\partial \hat{y}_i}{\partial b}
 \end{aligned}
 $$
@@ -601,7 +601,7 @@ $$
 따라서 단일 sample에 대해서는 다음과 같음:
 $$
 \begin{aligned}
-\frac{\partial L_i}{\partial w} &= 2(\hat{y}_i - y_i)x_i \\
+\frac{\partial L_i}{\partial w} &= 2(\hat{y}_i - y_i)x_i \\\\
 \frac{\partial L_i}{\partial b} &= 2(\hat{y}_i - y_i)
 \end{aligned}
 $$
@@ -609,7 +609,7 @@ $$
 MSE는 sample별 squared error의 평균이므로 전체 gradient는 다음과 같음:
 $$
 \begin{aligned}
-\frac{\partial L}{\partial w} &= \frac{1}{n} \sum_{i=1}^{n} 2(\hat{y}_i - y_i)x_i \\
+\frac{\partial L}{\partial w} &= \frac{1}{n} \sum_{i=1}^{n} 2(\hat{y}_i - y_i) x_i \\\\
 \frac{\partial L}{\partial b} &= \frac{1}{n} \sum_{i=1}^{n} 2(\hat{y}_i - y_i)
 \end{aligned}
 $$
