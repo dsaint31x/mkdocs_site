@@ -413,7 +413,7 @@ nn.MSELoss의 gradient: tensor([0.6667, 0.6667, 0.6667])
 Gradient Descent는 gradient의 반대 방향으로 parameter를 update함:
 $$
 \begin{aligned}
-w_{t+1} &= w_t - \eta \frac{\partial L}{\partial w} \\
+w_{t+1} &= w_t - \eta \frac{\partial L}{\partial w} \\\\
 b_{t+1} &= b_t - \eta \frac{\partial L}{\partial b}
 \end{aligned}
 $$
@@ -609,8 +609,8 @@ $$
 MSE는 sample별 squared error의 평균이므로 전체 gradient는 다음과 같음:
 $$
 \begin{aligned}
-\frac{\partial L}{\partial w} &= \frac{1}{n} \sum_{i=1}^{n} 2(\hat{y}_i - y_i) x_i \\\\
-\frac{\partial L}{\partial b} &= \frac{1}{n} \sum_{i=1}^{n} 2(\hat{y}_i - y_i)
+\frac{\partial L}{\partial w} &= \frac{1}{n} \sum\_{i=1}^{n} 2(\hat{y}\_i - y\_i) x\_i \\\\
+\frac{\partial L}{\partial b} &= \frac{1}{n} \sum\_{i=1}^{n} 2(\hat{y}\_i - y\_i)
 \end{aligned}
 $$
 
