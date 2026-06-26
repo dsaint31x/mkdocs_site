@@ -993,7 +993,7 @@ def ds_training_auto(x, y, model, params, n_epoch, lr, log_flag=False):
         l.backward()
 
         with torch.no_grad():
-            params -= lr * params.grad
+            params -= lr * params.grad # 반복하여 grad를 계산해야 하므로 inplace op.
 
         if epoch % 2000 == 0:
             print(f'Epoch {epoch}: Loss {float(l):0.4f}')
@@ -1006,6 +1006,11 @@ def ds_training_auto(x, y, model, params, n_epoch, lr, log_flag=False):
 
 * `l.backward()`가 gradient를 계산함.
 * `torch.no_grad()` 안에서 parameter를 update함: `backward` 가 필요하지 않은 연산들을 위한 context
+    * update 연산은 computation graph에 기록되면 안 됨.
+* 반드시 in-place 연산으로 대상 tensor인 `params`를 갱신해야 함.
+    * `params = params - lr * params.grad` 처럼 새 tensor를 만들면 params가 더 이상 원래의 leaf tensor가 아니라 계산 결과 tensor가 됨.
+    * 이후로는 `params.grad`가 자동으로 accumulate되지 않게 됨
+    * leaf tensor를 유지한 채 값만 바꾸기 위해서는 in-place update를 사용해야 함.
 
 다음과 같이 gradient 계산이 필요치 않는 연산은 `with torch.no_grad()` context 내에 위치시킨다.
 
