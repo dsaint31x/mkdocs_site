@@ -6,6 +6,11 @@ $$ \text{ReLU}(x) = \text{max}(x,0)$$
 
 GPU를 효과적으로 활용할 수 있는 구현물이 기본으로 제공되며, 가장 기본적으로 사용하기 좋은 activation function임.
 
+단, Transformer 계열에선 ReLU보다 성능이 좋은 GELU나 SwiGLU 계열을 주로 사용함:
+
+* 이들도 ReLU처럼 양수 영역에서 쉽게 포화되지 않는(non-saturating) 특성을 가짐.
+* 단, 더 부드러운 gradient를 제공.
+
 ---
 
 ### ReLU 미분
@@ -27,8 +32,13 @@ logistic과 같은 sigmoid function 계열의 activation function의 가장 큰 
 
 * `ReLU`는 positive input에 대해 기울기가 1을 유지하기 때문에 deep ANN 에서도 gradient가 소실되는 단점이 sigmoid 계열에 비해 획기적으로 개선됨.
     * 양으로 큰 input에 대해서도 기울기가 1로 유지됨.
+    * 앞서 말한대로 sigmoid, tanh는 출력 상한이 있어 큰 입력에서 포화(saturation)되고 gradient가 거의 0이 됨.
+    * ReLU는 positive regision에선 출력에 상한이 없으므로 이 영역에서는 gradient가 항상 1로 유지되어 vanishing gradient를 크게 완화함.
 * `ReLU`는 negative input에 대해선 기울기가 0이 되는 non-linearity를 가지고 있기 때문에 identity function과 달리 ANN에 non-linearity를 부가해주는 activation function의 역할을 함.
     * ***Activation function은 반드시 non-linear function이어야 함.***
+    * ReLU는 음수 영역에서 gradient가 막히는 비용(dying ReLU)을 치르지만,
+    * 그 대신 간단하고 강한 비선형성, sparse activation, 양수 영역에서 안정적인 gradient 전달을 얻음.
+    * 그리고 그 비용은 실전에서 여러 기법으로 관리 가능함.
 * 계산 효율성 측면에서도 연산량이 많은 exponential 을 사용하는 sigmoid에 비해서 `ReLU`는 max 함수 기반으로 훨씬 간단하기 때문에 유리하다.
 * 기존의 Glorot weight init.과 함께 사용될 경우, forward-pass에서 layer의 output이 0의 값으로 쏠리는 분포를 보이는 단점이 있으나, 이를 개선한 He weight init.과 사용시 이같은 문제가 거의 없음.
 * `ReLU`는 Sparse activation을 생성함으로서 over-fitting을 막아주는 효과를 가짐(L1 Norm기반의 Lasso loss를 사용할 경우 Model의 weights를 sparse하게 해주면서 over-fitting을 막아주던 것과 비슷)
