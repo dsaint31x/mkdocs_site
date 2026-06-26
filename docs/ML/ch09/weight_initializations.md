@@ -86,11 +86,11 @@ $\text{fan}_\text{out}$
 주의할 것은 activation function에 따라 좀더 적절한 initialization이 결정된다는 점임.  
 때문에 아래 표에서 궁합이 맞는 activation functions 가 같이 표기됨.
 
-| Initialization | Activation functions | $\sigma^2$(Normal dist.) | [$-l$, $l$] (Uniform dist.) | Keras impl. |
+| Initialization | Activation<br/>functions | $\sigma^2$<br/>(Normal dist.) | [$-l$, $l$]<br/>(Uniform dist.) | Keras <b/>impl. |
 |:----:|:----:|:----:|:----:|:----:|
-| Yann LeCun	| SELU	| $\sigma^2 = 1/\text{fan}_\text{in}$	| $l=\sqrt{3\sigma^2}$ | `lecun_normal`, `lecun_uniform`|
-| Xavier Glorot |	None, tanh, sigmoid, softmax |	$\sigma^2 = 1/\text{fan}_\text{avg}$ | $l = \sqrt{3\sigma^2}$ | `glorot_normal`, `glorot_uniform` | 
-| Kaiming He	| ReLU, Leaky ReLU, ELU, GELU, Mish	| $\sigma^2 = 2/\text{fan}_\text{in}$ |	$l = \sqrt{3\sigma^2}$ | `he_normal`,`he_uniform`| 
+| Yann LeCun	| SELU	| $\sigma^2 = 1/\text{fan}_\text{in}$	| $l=\sqrt{3\sigma^2}$ | `lecun_normal`,<br/>`lecun_uniform`|
+| Xavier Glorot |	None, tanh,<br/>sigmoid, softmax |	$\sigma^2 = 1/\text{fan}_\text{avg}$ | $l = \sqrt{3\sigma^2}$ | `glorot_normal`,<br/>`glorot_uniform` | 
+| Kaiming He	| ReLU, Leaky ReLU,<br/>ELU, GELU, Mish	| $\sigma^2 = 2/\text{fan}_\text{in}$ |	$l = \sqrt{3\sigma^2}$ | `he_normal`,<br/>`he_uniform`| 
 
 * 위의 normal distribution들은 variance만 차이가 있을 뿐, 모두 mean=0임.
 * Xavier Glorto et al.이 제안한 방식의 경우, `ReLU`가 유행하기 전까지 가장 많이 사용되었으나 아쉽게도 `ReLU`와는 잘 맞지 않는다 (layer가 깊어질수록 0에 치우치게 된다.)는 결과들로 인해 ***Kaiming He et al.*** 의 방식이 제안됨.
