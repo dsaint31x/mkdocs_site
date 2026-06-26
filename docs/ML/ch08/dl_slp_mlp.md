@@ -5,7 +5,7 @@ tags: [perceptron, slp, mlpclassifier, mlp, classification, scikit-learn]
 
 # Perceptron and MLPClassifier
 
-`Perceptron`과 `MLPClassifier`는
+`Perceptron`과 `MLPClassifier`(Multi-Layer Perceptron Classifier)는
 
 * 둘 다 neural network 계열의 
 * classification model로 볼 수 있음.
@@ -80,7 +80,7 @@ Perceptron은 매우 단순한 classification model임.
 Perceptron()
 ```
 
-`SGDClassifier` 클래스 이용:
+`SGDClassifier` 클래스 이용하는 경우:
 
 ```python
 SGDClassifier(
@@ -90,6 +90,8 @@ SGDClassifier(
     penalty=None,
 )
 ```
+
+* `eta0` 나 `learning_rate` 등은 다음 링크를 참조:[learing_rate and eta0 for SGD](https://ds31x.tistory.com/669#6-4.-learning_rate,-eta0)
 
 scikit-learn에서  
 
