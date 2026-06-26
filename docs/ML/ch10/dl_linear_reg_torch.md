@@ -1260,6 +1260,9 @@ $$
 
 ### 10.1 `nn.Linear` 기반 학습 코드
 
+
+* 참고자료: [torch.nn.Linear 에 대하여](https://ds31x.tistory.com/421)
+
 코드는 다음과 같음.
 
 ```python
