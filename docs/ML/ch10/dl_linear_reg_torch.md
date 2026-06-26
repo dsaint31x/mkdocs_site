@@ -1246,7 +1246,7 @@ params = torch.tensor(
 `nn.Linear`는 내부적으로 다음 연산을 수행함.
 
 $$
-\hat{y} = x @ W^{\top} + b
+\hat{\textbf{y}} = \textbf{x} @ W^{\top} + \textbf{b}
 $$
 
 * PyTorch의 `nn.Linear(in_features=1, out_features=1)`는
