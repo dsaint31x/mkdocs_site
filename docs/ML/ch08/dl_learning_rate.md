@@ -3,7 +3,7 @@ title: Learning Rate Tuning and Scheduling
 tags: [Learning Rate, Hyperparameter, Optimization, Deep Learning, Training]
 ---
 
-# Learning Rate Range Test
+# Learning Rate Range Test and Scheduling
 
 > Learning rate는  
 > 모델 학습 과정에서 
@@ -59,11 +59,15 @@ Learning rate가
 > 위에서 다룬 Learning rate range test는
 > ***1cycle scheduling*** 에서 maximum learning rate $\eta_1$을 정할 때 자주 사용됨.
 
----
+7번에서 구해진 것이 maximum learning rate $\eta_1$ 임.
+
+rule of thumb로 최소 learning rate는 옵티마이저나 모델 구조와 무관하게 거의 항상 $10^{-7} \sim 10^{-6}$ 수준의 고정값으로 여김.
 
 ---
 
-## Learning rate range test의 원리
+---
+
+### 원리
 
 1. Learning rate가 너무 작으면 parameter update가 매우 작아 loss가 거의 감소하지 않음.
 2. Learning rate가 적절한 범위에 들어가면 parameter가 효과적으로 update되어 loss가 빠르게 감소함.
@@ -76,7 +80,7 @@ Learning rate가
 
 ---
 
-## Learning rate range test 사용 시 주의사항
+### 사용 시 주의사항
 
 * 이는 Learning rate마다 별도의 모델을 생성하여 각각 수 iteration씩 학습하는 방식이 아님.
     * 엄밀하게는 이 방식이 공정하다고 볼 수 있으나, 실제 적용하기에 비효율적임. 
@@ -93,7 +97,7 @@ $$
 
 ---
 
-## Learning rate range test 의  한계
+### 한계
 
 * 엄밀히 애기하면, Learning rate range test로 얻은 결과는 특정 모델, 데이터셋, optimizer, batch size 설정에 대해서만 유효함.
     * Batch size가 크게 변경되면 gradient의 분산과 update 특성이 달라지므로 적절한 learning rate 범위도 달라질 수 있음.
@@ -112,7 +116,7 @@ $$
 
 ---
 
-# Learning Rate Scheduling 의 중요성
+## Learning Rate Scheduling 의 중요성
 
 Constant learning rate는 학습 전체 과정에서 같은 step size를 사용함.
 
@@ -533,7 +537,16 @@ Cyclical Learning Rates는
 * 핵심 아이디어는 learning rate를 계속 줄이기만 할 필요가 없다는 것임.
 * 오히려 learning rate를 일정 범위 안에서 주기적으로 커지도록 만들면,
 * optimizer가 sharp local minimum이나 plateau에서 벗어나 더 좋은 영역을 탐색할 수 있음을 보임.
-* 또한 Smith는 learning rate range test를 통해 적절한 lower bound와 upper bound를 찾는 방법도 함께 제안함.
+
+Smith는 learning rate range test를 통해 
+
+* 관찰 결과에서 accuracy가 증가하기 시작하는 learning rate를 lower bound 후보로 보고,
+* accuracy가 더 이상 개선되지 않거나 불안정해지기 직전의 learning rate를 upper bound 후보로 선택함.
+
+즉, loss가 안정적으로 감소하다가 불안정해지기 직전의 learning rate를 찾고, 이를 `max_lr` 후보로 삼는 방법을 제안함.
+
+* 반면 `base_lr` (cycle에서 가장 낮은 learning rate)는 range test로 엄밀하게 구하는 값이라기보다는,
+* 충분히 작은 값 또는 `max_lr`보다 한두 order of magnitude 작은 값으로 설정하는 경우가 많음.
 
 PyTorch에서는 `CyclicLR`을 통해 지원함:
 
