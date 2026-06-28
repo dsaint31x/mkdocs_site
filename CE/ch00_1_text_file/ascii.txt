@@ -1,0 +1,2 @@
+The code of A is 65 (base-10).
+The code of a is 97 (base-10).

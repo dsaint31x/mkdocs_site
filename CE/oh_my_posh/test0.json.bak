@@ -1,0 +1,79 @@
+{
+  "$schema": "https://raw.githubusercontent.com/JanDeDobbeleer/oh-my-posh/main/themes/schema.json",
+  "final_space": true,
+  "osc99": true,
+  "console_title": true,
+  "console_title_style": "template",
+  "console_title_template": "{{.Folder}}{{if .Root}} :: root{{end}} :: {{.Shell}}",
+  "blocks": [
+
+    {
+      "type": "prompt",
+      "alignment": "left",
+      "segments": [
+        { 
+          "type": "root",
+          "style": "plain",
+          "foreground": "yellow",
+          "properties": {
+            "root_icon": ""
+          }
+        },
+        {
+          "type": "path",
+          "style": "powerline",
+          "foreground": "black",
+          "background": "#68D6D6",
+      "powerline_symbol": "",
+          "leading_diamond": "",
+          "trailing_diamond": "",
+          "properties": {
+        "prefix": " \uF07C ",
+            "style": "folder"
+          }
+        },
+        {
+          "type": "python",
+          "style": "powerline",
+          "powerline_symbol": "\uE0B0",
+          "foreground": "#100e23",
+          "background": "#906cff",
+          "properties": {
+            "prefix": " \uE235 "
+          }
+        },
+        {
+          "type": "git",
+          "style": "powerline",
+          "powerline_symbol": "",
+          "foreground": "black",
+          "background": "green",
+          "properties": {
+            "display_stash_count": true,
+            "display_upstream_icon": true,
+            "display_status": true,
+            "display_status_detail": true,
+            "branch_icon": "  ",
+            "branch_identical_icon": "≡",
+            "branch_ahead_icon": "↑",
+            "branch_behind_icon": "↓",
+            "branch_gone": "≢",
+            "local_working_icon": "",
+            "local_staged_icon": "",
+            "stash_count_icon": "",
+            "commit_icon": "▷ ",
+            "tag_icon": "▶ ",
+            "rebase_icon": "Ɫ ",
+            "cherry_pick_icon": "✓ ",
+            "merge_icon": "◴ ",
+            "no_commits_icon": "[no commits]",
+            "status_separator_icon": " │",
+            "status_colors_enabled": true,
+            "color_background": true,
+            "local_changes_color": "yellow"
+          }
+        }
+      ]
+    }
+  ]
+}
