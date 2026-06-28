@@ -60,6 +60,7 @@ plugins:
       minify_html: true
   - git-revision-date-localized:
       enable_creation_date: true # 작성일 표시를 위해 필수
+      type: columns 
   - open-in-new-tab
   #- glightbox
 
