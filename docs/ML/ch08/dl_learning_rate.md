@@ -525,7 +525,7 @@ Cyclical / Restart Scheduling은
 
 ---
 
-#### 1 Cyclical Learning Rates
+#### 1. Cyclical Learning Rates
 
 Cyclical Learning Rates는 
 
@@ -567,7 +567,7 @@ scheduler = torch.optim.lr_scheduler.CyclicLR(
 
 > `OneCycleLR`이나 `CyclicLR`은 batch 단위로 `scheduler.step()`이 이루어짐
 
-#### 2 Cosine Annealing with Warm Restarts
+#### 2. Cosine Annealing with Warm Restarts
 
 Cosine Annealing with Warm Restarts는 
 
