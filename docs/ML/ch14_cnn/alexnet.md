@@ -1,3 +1,17 @@
+---
+title: alexnet
+description: ilsvrc 2012 우승 모델인 alexnet의 구조, 핵심 기법, 역사적 의미 정리
+tags:
+  - deep learning
+  - cnn
+  - alexnet
+  - relu
+  - dropout
+  - imagenet
+  - ilsvrc
+  - computer vision
+---
+
 # AlexNet 
 
 ori. [ImageNet Classification with Deep Convolutional Neural Networks](https://proceedings.neurips.cc/paper_files/paper/2012/file/c399862d3b9d6b76c8436e924a68c45b-Paper.pdf)
@@ -18,7 +32,7 @@ Hinton et al.이 Deep Learning의 위력을 확실히 알리는데 일조한 유
 * LeNet의 convolutional layer + pooling layer 의 방식을 조금 바꾸어 convolutional layer를 연달아 연결.
 * `ReLU` 를 activation으로 도입.
 * 다음의 세가지 regularization을 통해 보다 깊게 layer를 쌓음 
-    * `dropout layer` 도입 (F9, F10의 출력의 50%를 dropout). *
+    * [`dropout layer`](../ch09/dl_dropout) 도입 (F9, F10의 출력의 50%를 dropout). *
     * `data argumentation` 수행. *
     * local response normalization. (오늘날 batch normalization으로 대체됨)
 * overlapping pooling (kernel_size=3, stride=2)을 사용.
