@@ -597,6 +597,8 @@ model이 단순한 방향으로 학습되도록 만드는 장치임.
 
 ## early_stopping
 
+* 참고자료: [ML에서 ealry stopping이란](../ch09/dl_earlystopping)
+
 `early_stopping`은 조기 종료 기능임.
 
 ```python
