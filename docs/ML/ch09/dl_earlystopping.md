@@ -20,8 +20,7 @@ math: true
 
 `Early Stopping`은 training을 정해진 epoch 끝까지 무조건 진행하지 않고, validation 성능이 더 이상 좋아지지 않는 시점에서 학습을 멈추는 regularization(정규화) 기법임.
 
-<img width="438" height="239" alt="image" src="https://github.com/user-attachments/assets/2b994da1-8b55-4a1a-aae9-2799f9dd9543" />
-
+<img width="567" height="459" alt="image" src="https://github.com/user-attachments/assets/4bdbb2c8-850a-44f6-8beb-47c3661c5e88" />
 
 ## 배경
 
