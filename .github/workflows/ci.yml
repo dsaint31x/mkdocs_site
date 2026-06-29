@@ -11,7 +11,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5 # v4에서 v5로 업데이트 (Node.js 24 지원 대응)
         with:
           # 0은 모든 커밋 히스토리를 가져오라는 의미입니다 (날짜 추적에 필수)
           fetch-depth: 0
