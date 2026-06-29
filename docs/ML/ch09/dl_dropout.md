@@ -13,7 +13,7 @@ tags:
   - mc-dropout
 ---
 
-# Dropout
+# Dropout and MC Dropout
 
 Dropout은 학습 중 일부 neuron의 출력을 임시로 0으로 만들어 co-adaptation을 줄이고 generalization을 높이는 neural network regularization(정규화) 기법임.
 
@@ -619,13 +619,11 @@ class FunctionalDropoutMLP(nn.Module):
 
 ---
 
-# 참고: Monte Carlo Dropout
-
-## 12. MC Dropout의 핵심 아이디어
+## 참고: Monte Carlo Dropout
 
 앞에서 본 일반적인 Dropout은 학습 중 regularization을 위해 사용되고, inference 시점에는 꺼짐.
 
-일반 inference는 다음처럼 수행함.
+즉, 일반 droput에서의 inference는 다음처럼 수행함:
 
 ```python
 model.eval()
@@ -654,7 +652,7 @@ MC Dropout은 다음 순서로 동작함.
 
 ---
 
-## 13. MC Dropout 구현
+### MC Dropout 구현
 
 MC Dropout을 구현할 때 전체 model에 `model.train()`을 호출하면 안 되는 경우가 많음.
 
@@ -796,10 +794,7 @@ MC Dropout의 출력은 다음처럼 해석할 수 있음.
 
 ---
 
----
-
-
-## 14. MCDropout Module
+### 14. MCDropout Module
 
 앞의 방식은 기존 model에 들어 있는 Dropout layer만 골라서 train mode로 바꾸는 방식임.
 
@@ -852,10 +847,7 @@ class MCAlphaDropout(nn.AlphaDropout):
 
 ---
 
----
-
-
-# Summary
+## Summary
 
 Dropout은 Hinton group이 제안하고, Srivastava et al.이 체계적으로 정리한 neural network regularization 기법임.
 
