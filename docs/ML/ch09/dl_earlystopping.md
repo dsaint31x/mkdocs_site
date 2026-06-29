@@ -1,3 +1,21 @@
+---
+title: "Early Stopping"
+description: "Validation 성능을 기준으로 학습을 조기 종료하여 overfitting을 줄이는 regularization 기법"
+date: 2026-06-29
+categories:
+  - Deep Learning
+  - Regularization
+  - PyTorch
+tags:
+  - early-stopping
+  - overfitting
+  - validation-loss
+  - regularization
+  - checkpoint
+  - pytorch
+math: true
+---
+
 # Early Stopping
 
 `Early Stopping`은 training을 정해진 epoch 끝까지 무조건 진행하지 않고, validation 성능이 더 이상 좋아지지 않는 시점에서 학습을 멈추는 regularization(정규화) 기법임.
