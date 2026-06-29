@@ -17,6 +17,7 @@ tags:
 
 Dropout은 학습 중 일부 neuron의 출력을 임시로 0으로 만들어 co-adaptation을 줄이고 generalization을 높이는 neural network regularization(정규화) 기법임.
 
+![](./img/dl_dropout){style="display: block; margni: 0 auto; width: 600px"}
 
 ## 1. Dropout이 등장한 문제의식
 
