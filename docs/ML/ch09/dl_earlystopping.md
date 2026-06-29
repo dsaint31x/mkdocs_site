@@ -32,10 +32,10 @@ math: true
     * validation loss는 어느 시점까지 감소하다가 다시 증가함.
     * 이 시점 이후부터는 generalization performance(일반화 성능)가 나빠질 가능성이 커짐.
 
-수식으로 나타내면 다음과 같음. $t$를 epoch, $L_{val}(t)$를 validation loss라 할 때,
-
+수식으로 나타내면 다음과 같음.  
+$t$를 epoch, $L_{val}(t)$ 를 validation loss라 할 때,
 $$
-L_{val}(t) \;\begin{cases} \text{decreasing} & t < t^{*} \\ \text{increasing} & t > t^{*} \end{cases}
+L_{val}(t) \;\begin{cases} \text{decreasing} & t < t^{*} \\\\ \text{increasing} & t > t^{*} \end{cases}
 $$
 
 * 여기서 $t^{*}$는 validation loss가 최소가 되는 epoch이며, 이 지점을 넘기면 overfitting이 본격화되는 구간으로 볼 수 있음.
