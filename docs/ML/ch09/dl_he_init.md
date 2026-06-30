@@ -62,8 +62,7 @@ $$
 
 $$
 \text{Var}(z_i^{(l)}) = \text{Var}\left(
-\sum_{j=1}^{n_{l-1}}
-w_{ij}^{(l)} a_j^{(l-1)}
+\sum_{j=1}^{n_{l-1}} w_{ij}^{(l)} a_j^{(l-1)}
 \right)
 $$
 
