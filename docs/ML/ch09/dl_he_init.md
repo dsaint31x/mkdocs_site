@@ -22,7 +22,7 @@ $$
 여기서 $n_{l-1}$은 layer $l$의 입력 개수임:
 
 $$
-n_{l-1} = \text{fan_in}^{(l)}
+n_{l-1} = \text{fan\_in}^{(l)}
 $$
 
 ReLU activation 을 거친 activation (=ReLU출력)은 다음과 같음:
