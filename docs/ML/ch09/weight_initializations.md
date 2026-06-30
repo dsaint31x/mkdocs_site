@@ -1,32 +1,65 @@
+---
+title: "Weight Initialization"
+description: "Gradient vanishing/exploding problem을 완화하기 위한 weight initialization의 필요성, fan-in/fan-out 개념, LeCun, Xavier Glorot, Kaiming He initialization을 정리한다."
+date: 2026-06-30
+categories:
+  - Deep Learning
+  - Neural Network
+  - Optimization
+tags:
+  - weight initialization
+  - Xavier initialization
+  - Glorot initialization
+  - He initialization
+  - Kaiming initialization
+  - LeCun initialization
+  - fan in
+  - fan out
+  - gradient vanishing
+  - gradient exploding
+  - variance
+  - activation function
+math: true
+---
+
 # Weight Initialization (가중치 초기화)
 
-Weight Initialization은 Gradient Vanishing or Exploding Problem을 개선하기 위해 연구된 방법으로 2010년에 상당한 성과를 보이면서 deep neural network를 효과적으로 학습시키기 위해 널리 사용됨. (현재도 기본적으로 사용된다.)
+* Weight Initialization은 Gradient Vanishing/Exploding Problem을 개선하기 위해 연구된 방법으로, 2010년 Xavier Glorot et al.에 의해 효과가 입증되면서 deep neural network를 효과적으로 학습시키기 위한 기본 기법으로 널리 사용되게 됨. (현재도 기본적으로 사용됨.)
+* 핵심 인과관계는 다음 한 줄로 요약됨.
+  * ^^"logistic activation function" + "normal distribution 초기화"^^ 조합이 ^^각 layer의 input/output node 수가 다르다는 구조적 특성^^과 결합되면서, variance가 layer를 거칠수록 한쪽으로 누적·증폭되고, 이것이 결국 gradient를 죽이는 방향으로 이어짐.
+ 
+참고 : [Random variable의 곱과 variance](https://dsaint31.tistory.com/580) 
 
-## Weight Initialization 중요성.
+## 1. Variance가 커지는 메커니즘
 
-2000년대까지도 왜 Gradient vanishing 및 exploding이 발생하는지를 정확히 파악하지 못했는데, 2010년 Xavier Glorot et al.에 의해 이에 대한 단서가 찾아졌고, 이를 통해 획기적으로 개선(해결이 아니고 개선임)하는 방법으로 적절한 weight initialization과 activation function의 조합이 제안된다.
+* ANN의 한 layer output은 input들의 weighted sum에 activation function을 씌운 값임.
+  * forward flow에서는 output의 variance가 ^^input node 개수($\text{fan}_{in}$)에 비례하여^^ 커짐.
+  * backward flow에서는 gradient의 variance가 ^^output node 개수($\text{fan}_{out}$)에 비례하여^^ 커짐.
+* 당시 관행이던 normal distribution 초기화는 이 $\text{fan}_{in}$, $\text{fan}_{out}$ 차이를 전혀 보정해주지 않음.
+  * 결과적으로 forward pass가 진행될수록(= layer를 통과할수록) output의 variance가 input의 variance보다 점점 커지는 방향으로 누적됨.
 
-Xavier Glorot et al.이 찾은 원인은 다음과 같음
+## 2. Variance 증가 → Gradient Vanishing으로 이어지는 경로
 
-당시 ANN의 경우, 
+* variance가 누적되어 커지면, output layer에 가까운 layer일수록 logistic activation의 입력값이 매우 크거나 작은 값으로 몰리게 됨.
+  * 그 결과 logistic 출력이 0 또는 1 쪽으로 saturate(포화)됨.
+* logistic의 saturated region에서는 derivative가 거의 0에 가까움.
+  * backward-pass는 이 derivative들을 차례로 곱해가며 lower layer로 전달하는 과정임.
+  * 시작부터 거의 0인 값을 곱해나가다 보니, 몇 layer만 지나도 gradient는 사실상 0이 되어버림. (Vanishing Gradient)
 
-* ***"`logistic` activation function"*** 과 ***"normal distribution으로 초기화된 weights"*** 를 사용했는데, 
-* 이 조합은 ^^각 layer에서 input nodes와 output nodes의 수가 다른 점^^ 과 함께 작용하여
-* layer에서 ***input에서의 variance와 output의 variance가 매우 달라지게 함(output의 variance가 커짐)*** 을 확인함.
-    * 좀 더 자세히 말하면, ^^input node의 갯수 ($\text{fan}_\text{in}$)에 비례하여 layer output의 variance가 커짐^^. (forward flow의 경우이며, backward flow의 경우엔 output node의 갯수 ($\text{fan}_\text{out}$)에 비례하여 커짐.)
+## 3. 또 다른 원인: Bias Shift
 
-output의 variance가 커질 경우, forward-pass에서 점점 variance는 증가하게 되고 최종 output layer에 가까운 layer에서는 대부분 logistic activation function이 0 또는 1로 saturate(수렴)되는 결과를 일으키게 된다.
+* variance 누적과는 별개로, logistic activation 자체의 출력 분포도 문제를 더함.
+  * logistic 출력은 mean이 0.5이고 항상 양수임. (참고로 normal distribution의 mean은 0임.)
+* mean activation이 0이 아닌 unit은 다음 layer 입장에서 일종의 bias처럼 작용함.
+  * 이런 unit들의 출력이 서로 상쇄되지 않으면, 학습이 진행될수록 다음 layer의 unit들에 그 영향이 누적됨.
+  * 이를 **bias shift**라 부름. (mean activation이 0이 아닌 unit이 다음 layer에 bias처럼 작용하고, 이런 unit들이 서로 상쇄되지 않을 경우 다음 layer의 unit들에 누적되어 나타나는 효과를 가리키는 용어로, ELU 논문(Clevert et al., 2016, ICLR) 등에서 정의되어 널리 쓰이는 표준 용어임.)
+* logistic의 bias shift는 앞서 설명한 variance 누적 문제를 더 악화시키는 방향으로 작용함.  
+  * mean이 0에 가까운 `tanh`가 logistic보다 학습에 유리한 경우가 많음.
 
-이후 이루어지는 backward-pass에서는 derivatives가 전달되어야 하는데, logistic의 saturated region에서의 derivatives는 거의 0으로 너무나 작고, 이같이 작은 값으로 시작되는 backward-pass의 전달은 중도에서 정말 0이 되어버려(Vanishing Gradient), lower layer들로 제대로된 gradient를 전달되지 않게 된다.
+참고 : [sigmoid](https://dsaint31.tistory.com/430)
 
-> 더욱이 logistic activation의 출력은 mean이 0.5이고 항상 양수를 출력하다보니  
-> (normal distribution 의 mean은 0임을 기억)  
-> forward pass에서 output의 weighted sum이 input의 weighted sum보다 커지는 `bias shift`가 발생하기 쉬움 (이는 여러 layers를 통과할수록 variance가 커지는 문제로 이어짐).  
-> 이는 `tanh` 이 logistic보다 좀더 학습을 잘 시키는 이유의 근거가 된다. (`tanh`은 mean이 0임.)
+참고 : [hyperbolic tangent, `tanh`](https://dsaint31.tistory.com/577)
 
-* 참고 : [sigmoid](https://dsaint31.tistory.com/430)
-* 참고 : [hyperbolic tangent, `tanh`](https://dsaint31.tistory.com/577)
-* 참고 : [Random variable의 곱과 variance](https://dsaint31.tistory.com/580) 
 
 ---
 
@@ -38,21 +71,31 @@ ANN에서 weight initialization 관점에서 gradient vanishing을 막으려면 
 * 이는 forward-flow 와 backward-flow 모두에서 성립해야 한다.
 * 이를 위해선 layer의 input과 output이 동일한 variance를 가져야 한다.
 
-$\text{fan}_\text{in}$과 $\text{fan}_\text{out}$이 같지 않을 경우 variance를 완전히 동일하게 만들기는 불가능하지만, Xavier Glorot et al.은 일종의 좋은 타협안을 제시했고 성공을 거뒀다. 
+$\text{fan}_\text{in}$과 $\text{fan}_\text{out}$이 같지 않을 경우 variance를 완전히 동일하게 만들기는 불가능하지만,  
+Xavier Glorot et al.은 일종의 좋은 타협안을 제시했고 성공을 거뒀다. 
 
-이 타협안은 바로 문제가 되는 variance를 $\text{fan}_\text{in}$ 과 $\text{fan}_\text{out}$ 를 기반으로 조절하는 것이었음.
+> Glorot et al.이 제안한 weight initialization (이른바 Xavier/Glorot initialization)은  
+> $\text{fan}_{in}$, $\text{fan}_{out}$을 고려해  
+> 초기 weight의 scale을 조정함으로써 이 variance 누적을 완화하는 방향으로 설계됨.
+
+핵심은 variance를 $\text{fan}_\text{in}$ 과 $\text{fan}_\text{out}$ 를 기반으로 조절하는 것이었음.  
+(사실 더 정확하게 애기하면 2nd raw moment 를 조절함)
 
 > 사실 [Yann LeCun et al. (1998)](https://www.researchgate.net/publication/2811922_Efficient_BackProp) 도 비슷한 형태의 Weight Initialization을 제시했다.
 
 이 외에 weight의 초기화에서 주의할 점들은 다음과 같음.
 
-* weights는 0으로 초기화되어선 안됨 (모두 0을 곱하면 같은 출력이 나오게 된다.)
-* weights를 constant로 초기화해선 안됨 (모든 같은 gradient를 가지게 되기 때문).
+* weights는 모두 0으로 초기화되어선 안됨 (모두 0을 곱하면 같은 출력이 나오게 된다.)
+* weights를 constant로 초기화해선 안됨 (모든 같은 gradient를 가지게 되어 layer내의 모든 neuron이 대칭적인 구조가 되버림).
 * 때문에 작은 수의 random number로 초기화되어야 함 (값이 너무 클 경우 logistic function의 출력을 saturation시킴.)
-* random이어야 하는 이유는 weights의 분포가 asymmetric해야하기 때문임.
+    * random이어야 하는 이유는 같은 layer 안의 neuron들이 서로 다른 weight를 가져야 하기 때문임.    
+    * 참고로 초기화 분포 자체는 보통 mean이 0인 symmetric distribution을 사용해도 됨.
 
-때문에 normal distribution으로 초기화할 경우 gradient vanishing이 발생하기 쉬움을 알 수 있다.
-(normal distribution의 variance인 1은 gradient vanishing의 관점에서 보면 작지 않다. 때문에, 만약 0.01 정도로 줄인다면 좀더 나은 결과를 얻을 수 있음.)
+때문에 scale을 조절하지 않은 standard normal distribution, 즉 $N(0, 1)$로 초기화할 경우 activation 값이 쉽게 커지고 logistic function이 saturation 영역에 들어갈 수 있음.
+
+* 즉, 문제가 되는 것은 normal distribution 자체가 아니라, fan-in/fan-out을 고려하지 않은 너무 큰 variance임.
+* normal distribution의 variance인 1은 vanishing gradient의 관점에서 보면 작지 않은 variance임.
+* 만약 0.01 정도로 줄인다면 좀더 나은 결과를 얻을 수 있음.
 
 ---
 
@@ -69,7 +112,7 @@ $\text{fan}_\text{out}$
 ***Ex.***: `conv2d` layer 에서 receptive field의 크기가 $5 \times 5$이고, input의 channel이 $3$ 이고 output은 $10$ 인 경우는 다음과 같음.
 
 * `kernel_shape` : $5 \times 5 \times 3 \times 10$
-* $\text{fan}_\text{in}$ : $5 \times 5 \times 3 = 72$
+* $\text{fan}_\text{in}$ : $5 \times 5 \times 3 = 75$
 * $\text{fan}_\text{out}$ : $5 \times 5 \times 10 = 250$
 
 ---
