@@ -404,3 +404,56 @@ $$
 $$
 \text{std}\left(w_{ij}^{(l)}\right) = \sqrt{ \frac{2}{\text{fan}_\text{in}^{(l)}} }
 $$
+
+---
+
+## 참고: Uniform distribution based He initialization 
+
+지금까지는 weight를 정규분포 $\mathcal{N}\left(0, \frac{2}{\text{fan}_\text{in}^{(l)}}\right)$로 초기화하는 경우를 다룸.
+
+하지만, 실무에서는 weight를 다음과 같이 $[-a, a]$ 구간의 균등분포(Uniform distribution)로 초기화하는 경우도 많음:
+
+$$
+w_{ij}^{(l)} \sim \mathcal{U}(-a, a)
+$$
+
+이 경우에도 weight의 variance가 8절에서 구한 값과 같아야 함:
+
+$$
+\text{Var}(w_{ij}^{(l)}) = \frac{2}{\text{fan}_\text{in}^{(l)}}
+$$
+
+구간 $[-a, a]$의 균등분포는 평균이 0이고, variance는 다음과 같이 알려져 있음:
+
+$$
+\begin{aligned}
+\text{Var}\left(w\sim \mathcal{U}(-a, a)\right) &= E\left[w^2\right] - \left( E[w] \right)^2 \\
+&= \frac{1}{2a} \int_{-a}^{w=a} w^2 f_\text{pdf}(w) dw - \left( 0 \right)^2 \\
+&= \frac{1}{2a} \frac{w^3}{3}\vbar _{w=-a}^{a} \\
+&= \frac{1}{2a} \left[ \frac{a^3}{3} - \frac{(-a)^3}{3} \right] \\
+&=\frac{a^2}{3}
+$$
+
+따라서, He Initialization의 variance 조건을 만족시키려면 다음이 성립해야 함:
+
+$$
+\frac{a^2}{3} = \frac{2}{\text{fan}_\text{in}^{(l)}}
+$$
+
+양변에 $3$을 곱하면,
+
+$$
+a^2 = \frac{6}{\text{fan}_\text{in}^{(l)}}
+$$
+
+양변에 제곱근을 취하면 다음과 같이 $a$가 정리됨:
+
+$$
+a = \sqrt{ \frac{6}{\text{fan}_\text{in}^{(l)}} }
+$$
+
+따라서, Uniform 분포 기반 He Initialization은 다음과 같음:
+
+$$
+w_{ij}^{(l)} \sim \mathcal{U}\left(-\sqrt{ \frac{6}{\text{fan}_\text{in}^{(l)}} },\ \sqrt{ \frac{6}{\text{fan}_\text{in}^{(l)}} }\right)
+$$
