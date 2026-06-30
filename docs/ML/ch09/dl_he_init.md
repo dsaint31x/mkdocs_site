@@ -22,7 +22,7 @@ $$
 여기서 $n_{l-1}$은 layer $l$의 입력 개수임:
 
 $$
-n_{l-1} = \text{fan\_in}^{(l)}
+n_{l-1} = \text{fan}_\text{in}^{(l)}
 $$
 
 ReLU activation 을 거친 activation (=ReLU출력)은 다음과 같음:
@@ -211,12 +211,12 @@ n_{l-1}
 E[(a_j^{(l-1)})^2]
 $$
 
-$n_{l-1} = \text{fan_in}^{l}$ 이므로 다음이 성립:
+$n_{l-1} = \text{fan}_\text{in}^{l}$ 이므로 다음이 성립:
 
 $$
 \text{Var}(z_i^{(l)}) =
 
-\text{fan_in}^{(l)}
+\text{fan}_\text{in}^{(l)}
 \cdot
 \text{Var}(w_{ij}^{(l)})
 \cdot
@@ -456,10 +456,10 @@ $$
 \text{Var}(w_{ij}^{(l)}) = \frac{2}{n_{l-1}}
 $$
 
-$n_{l-1} = \text{fan_in}^{(l)}$ 이므로 다음으로 정리됨:
+$n_{l-1} = \text{fan}_\text{in}^{(l)}$ 이므로 다음으로 정리됨:
 
 $$
-Var(w_{ij}^{(l)}) = \frac{2}{\text{fan_in}^{(l)}}
+Var(w_{ij}^{(l)}) = \frac{2}{\text{fan}_\text{in}^{(l)}}
 $$
 
 ---
@@ -472,7 +472,7 @@ $$
 w_{ij}^{(l)} \sim \mathcal{N}
 \left(
 0,
-\frac{2}{\text{fan_in}^{(l)}}
+\frac{2}{\text{fan}_\text{in}^{(l)}}
 \right)
 $$
 
@@ -482,7 +482,7 @@ $$
 \text{std}(w_{ij}^{(l)}) =
 
 \sqrt{
-\frac{2}{\text{fan_in}^{(l)}}
+\frac{2}{\text{fan}_\text{in}^{(l)}}
 }
 $$
 
