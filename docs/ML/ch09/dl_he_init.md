@@ -28,7 +28,7 @@ $$
 ReLU activation을 거친 activation(= ReLU 출력)은 다음과 같음:
 
 $$
-a_i^{(l)} = ReLU\left(z_i^{(l)}\right)
+a_i^{(l)} = \text{ReLU}\left(z_i^{(l)}\right)
 $$
 
 ---
@@ -258,7 +258,7 @@ activation의 second raw moment를 기준으로 삼음.
 이제 ReLU가 pre-activation $z_i^{(l)}$의 second raw moment를 어떻게 바꾸는지 살펴봄.
 
 $$
-a_i^{(l)} = ReLU\left(z_i^{(l)}\right)
+a_i^{(l)} = \text{ReLU}\left(z_i^{(l)}\right)
 $$
 
 $z_i^{(l)}$가 평균 0이고 대칭적인 분포를 가진다고 가정함:
@@ -270,7 +270,7 @@ $$
 ReLU는 이 pre-activation $z_i^{(l)}$의 음수 영역을 0으로 만들고, 양수 영역만 통과시킴:
 
 $$
-ReLU\left(z_i^{(l)}\right) =
+\text{ReLU}\left(z_i^{(l)}\right) =
 \begin{cases}
 z_i^{(l)} & \text{if } z_i^{(l)} > 0 \\
 0 & \text{if } z_i^{(l)} \leq 0
@@ -280,13 +280,13 @@ $$
 따라서, 다음이 성립:
 
 $$
-E\left[(a_i^{(l)})^2\right] = E\left[ReLU\left(z_i^{(l)}\right)^2\right]
+E\left[ \left(a_i^{(l)} \right)^2\right] = E\left[\text{ReLU}\left(z_i^{(l)}\right)^2\right]
 $$
 
 ReLU의 특성상 다음이 성립:
 
 $$
-E\left[ReLU\left(z_i^{(l)}\right)^2\right] =
+E\left[\text{ReLU}\left(z_i^{(l)}\right)^2\right] =
 E\left[(z_i^{(l)})^2 \mid z_i^{(l)} > 0\right]P\left(z_i^{(l)} > 0\right)
 $$
 
@@ -300,21 +300,21 @@ $$
 
 $$
 \begin{aligned}
-E\left[ReLU\left(z_i^{(l)}\right)^2\right] &= \frac{1}{2}E\left[(z_i^{(l)})^2\right] \\\\
-E\left[(a_i^{(l)})^2\right] &= \frac{1}{2}E\left[(z_i^{(l)})^2\right]
+E\left[ \text{ReLU}\left(z_i^{(l)}\right)^2\right] &= \frac{1}{2}E\left[\left(z_i^{(l)} \right)^2\right] \\\\
+E\left[ \left(a_i^{(l)} \right)^2\right] &= \frac{1}{2}E\left[\left(z_i^{(l)}\right)^2\right]
 \end{aligned}
 $$
 
 여기서 $E\left[z_i^{(l)}\right]=0$이므로 다음이 성립:
 
 $$
-E\left[(z_i^{(l)})^2\right] = \text{Var}\left(z_i^{(l)}\right)
+E\left[\left(z_i^{(l)}\right)^2\right] = \text{Var}\left(z_i^{(l)}\right)
 $$
 
 따라서, 다음이 성립:
 
 $$
-E\left[(a_i^{(l)})^2\right] =
+E\left[ \left(a_i^{(l)} \right)^2\right] =
 \frac{1}{2}\text{Var}\left(z_i^{(l)}\right)
 $$
 
@@ -338,8 +338,8 @@ $$
 
 $$
 \begin{aligned}
-E\left[(a_i^{(l)})^2\right] &= \frac{1}{2} \left( n_{l-1} \sigma_{w,l}^2 E\left[(a_j^{(l-1)})^2\right] \right) \\\\
-&=\frac{1}{2} n_{l-1} \sigma_{w,l}^2 E\left[(a_j^{(l-1)})^2\right]
+E\left[\left(a_i^{(l)}\right)^2\right] &= \frac{1}{2} \left( n_{l-1} \sigma_{w,l}^2 E\left[\left(a_j^{(l-1)}\right)^2\right] \right) \\\\
+&=\frac{1}{2} n_{l-1} \sigma_{w,l}^2 E\left[\left(a_j^{(l-1)}\right)^2\right]
 \end{aligned}
 $$
 
@@ -351,7 +351,7 @@ ReLU를 activation으로 사용하는 layer에서 vanishing gradient나 explodin
 activation의 second raw moment가 layer를 거치며 유지되어야 함:
 
 $$
-E\left[(a_i^{(l)})^2\right] = E\left[(a_j^{(l-1)})^2\right]
+E\left[\left(a_i^{(l)}\right)^2\right] = E\left[\left(a_j^{(l-1)}\right)^2\right]
 $$
 
 6절의 식을 대입하면,
@@ -360,11 +360,11 @@ $$
 \frac{1}{2}
 n_{l-1}
 \sigma_{w,l}^2
-E\left[(a_j^{(l-1)})^2\right] =
-E\left[(a_j^{(l-1)})^2\right]
+E\left[\left(a_j^{(l-1)}\right)^2\right] =
+E\left[\left(a_j^{(l-1)}\right)^2\right]
 $$
 
-양변을 $E\left[(a_j^{(l-1)})^2\right]$로 나누면 다음이 성립:
+양변을 $E\left[\left(a_j^{(l-1)}\right)^2\right]$로 나누면 다음이 성립:
 
 $$
 \frac{1}{2}
@@ -407,5 +407,5 @@ $$
 즉, 표준편차를 다음과 같이 정하면 됨:
 
 $$
-\text{std}(w_{ij}^{(l)}) = \sqrt{ \frac{2}{\text{fan}_\text{in}^{(l)}} }
+\text{std}\left(w_{ij}^{(l)}\right) = \sqrt{ \frac{2}{\text{fan}_\text{in}^{(l)}} }
 $$
