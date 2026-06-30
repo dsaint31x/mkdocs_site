@@ -24,6 +24,9 @@ math: true
 
 # Weight Initialization (가중치 초기화)
 
+<img width="800" height="440" alt="image" src="https://github.com/user-attachments/assets/af8f0ccf-62a0-4294-84b2-568d90b52c52" />
+
+
 Weight Initialization은 Gradient Vanishing/Exploding Problem을 개선하기 위해 연구된 방법
 
 2010년 Xavier Glorot et al.에 의해 효과가 입증되면서 deep neural network를 효과적으로 학습시키기 위한 기본 기법으로 널리 사용되게 됨:
