@@ -432,6 +432,7 @@ $$
 &= \frac{1}{2a} \frac{w^3}{3}\vbar _{w=-a}^{a} \\
 &= \frac{1}{2a} \left[ \frac{a^3}{3} - \frac{(-a)^3}{3} \right] \\
 &=\frac{a^2}{3}
+\end{aligned}
 $$
 
 따라서, He Initialization의 variance 조건을 만족시키려면 다음이 성립해야 함:
