@@ -91,20 +91,16 @@ summation이 되는 항 $\text{Var}\left(w_{ij}^{(l)} a_j^{(l-1)}\right)$ 는 �
 $$
 \text{Var}\left(
 w_{ij}^{(l)} a_j^{(l-1)}
-\right) =
-
-E\left[
+\right) = E\left[
 \left(
 w_{ij}^{(l)} a_j^{(l-1)}
 \right)^2
-\right] -
-
-E\left[
+\right] - E\left[
 w_{ij}^{(l)} a_j^{(l-1)}
 \right]^2
 $$
 
-$w_{ij}^{(l)}$와 $a_j^{(l-1)}$ 는 서로 independent(독립)이라고 가정했으므로  
+$w_{ij}^{(l)}$ 와 $a_j^{(l-1)}$ 는 서로 independent(독립)이라고 가정했으므로  
 우선 뒤의 평균 항은 다음이 성립:
 
 $$
