@@ -222,16 +222,9 @@ $$
 * $E(a_j^{(l-1)}) \ne 0$ 라도 weight의 평균이 0이면 $E[w_{ij}^{(l)}a_j^{(l-1)}]=0$이 성립
 
 
-이를 반영하면, pre-activation variance 는 다음이 성립
+이를 반영하면, pre-activation variance 는 다음이 성립:
 
-$$
-\begin{aligned}
-Var(w_{ij}^{(l)}a_j^{(l-1)}) &= E [ (w_{ij}^{(l)}a_j^{(l-1)})^2 ] - ( E[(w_{ij}^{(l)}a_j^{(l-1)})])^2 \\
-&= E [ (w_{ij}^{(l)}a_j^{(l-1)})^2 ] \\
-&= E [(w_{ij}^{(l)})^2 (a_j^{(l-1)})^2 ] \\
-&= E [(w_{ij}^{(l)})^2] E[(a_j^{(l-1)})^2]
-\end{aligned}
-$$
+$$\begin{aligned}\text{Var}(w_{ij}^{(l)}a_j^{(l-1)}) &= E [ (w_{ij}^{(l)}a_j^{(l-1)})^2 ] - ( E[(w_{ij}^{(l)}a_j^{(l-1)})])^2 \\&= E [ (w_{ij}^{(l)}a_j^{(l-1)})^2 ] \\&= E [(w_{ij}^{(l)})^2 (a_j^{(l-1)})^2 ] \\&= E [(w_{ij}^{(l)})^2] E[(a_j^{(l-1)})^2] \end{aligned}$$
 
 * $w_{ij}^{(l)}$ 와 $a_j^{(l-1)}$ 이 서로 독립이라고 가정함.
 
@@ -413,10 +406,6 @@ $$
 즉, 표준편차를 다음과 같이 정하면 됨:
 
 $$
-\text{std}(w_{ij}^{(l)}) =
-
-\sqrt{
-\frac{2}{\text{fan}_\text{in}^{(l)}}
-}
+\text{std}(w_{ij}^{(l)}) = \sqrt{ \frac{2}{\text{fan}_\text{in}^{(l)}} }
 $$
 
