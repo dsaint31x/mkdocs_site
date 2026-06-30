@@ -71,18 +71,9 @@ covariance 항은 0이 되어 다음이 성립:
 
 $$
 \begin{aligned}
-\text{Var}(z_i^{(l)}) &=\sum_{j=1}^{n_{l-1}}
-\text{Var}\left(
-w_{ij}^{(l)} a_j^{(l-1)}
-\right) + 2 \color{red}{\sum_{j < k} \text{Cov}(w_{ij}^{(l)} a_j^{(l-1)} , w_{ik}^{(l)} a_k^{(l-1)} )} \\\\
-& = \sum_{j=1}^{n_{l-1}}
-\text{Var}\left(
-w_{ij}^{(l)} a_j^{(l-1)}
-\right) + 2\cdot \color{red}{0} \\\\
-\text{Var}(z_i^{(l)}) &= \sum_{j=1}^{n_{l-1}}
-\text{Var}\left(
-w_{ij}^{(l)} a_j^{(l-1)}
-\right)
+\text{Var}(z_i^{(l)}) &=\sum_{j=1}^{n_{l-1}} \text{Var}\left( w_{ij}^{(l)} a_j^{(l-1)} \right) + 2 \color{red}{\sum_{j < k} \text{Cov}(w_{ij}^{(l)} a_j^{(l-1)} , w_{ik}^{(l)} a_k^{(l-1)} )} \\\\
+& = \sum_{j=1}^{n_{l-1}} \text{Var}\left( w_{ij}^{(l)} a_j^{(l-1)} \right) + 2\cdot \color{red}{0} \\\\
+\text{Var}(z_i^{(l)}) &= \sum_{j=1}^{n_{l-1}} \text{Var}\left( w_{ij}^{(l)} a_j^{(l-1)} \right)
 \end{aligned}
 $$
 
