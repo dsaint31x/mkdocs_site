@@ -315,7 +315,7 @@ $$
 앞에서 구한 식은 다음으로 변경됨
 
 $$
-\text{Var(z_i^{(l)}) = n_{l-1} \sigma_{w,l}^2 E[(a_j^{(l-1)})^2]
+\text{Var}(z_i^{(l)}) = n_{l-1} \sigma_{w,l}^2 E[(a_j^{(l-1)})^2]
 $$
 
 이를 ReLU 이후 second raw moment 식에 대입함.
@@ -327,17 +327,9 @@ $$
 따라서, 다음이 성립:
 
 $$
-\begin{aligned}
-E[(a_i^{(l)})^2] &= \frac{1}{2}
-\left(
-n_{l-1}
-\sigma_{w,l}^2
-E[(a_j^{(l-1)})^2]
-\right) \\\\
-&=\frac{1}{2}
-n_{l-1}
-\sigma_{w,l}^2
-E[(a_j^{(l-1)})^2]
+\begin{aligned} 
+E[(a_i^{(l)})^2] &= \frac{1}{2} \left( n_{l-1} \sigma_{w,l}^2 E[(a_j^{(l-1)})^2] \right) \\\\
+&=\frac{1}{2} n_{l-1} \sigma_{w,l}^2 E[(a_j^{(l-1)})^2]
 \end{aligned}
 $$
 
