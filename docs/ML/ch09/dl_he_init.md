@@ -55,7 +55,7 @@ $$
 $w_{ij}^{(l)}$와 $a_j^{(l-1)}$는 서로 independent(독립)이라고 가정하므로 $\text{Cov}\left(w_{ij}^{(l)}, a_j^{(l-1)}\right) = 0$이 되어, 위 식은 다음과 같이 단순화됨:
 
 $$
-E\left[w_{ij}^{(l)} a_j^{(l-1)}\right] = \text{Cov}\left(w_{ij}^{(l)}, a_j^{(l-1)}\right) + E\left[w_{ij}^{(l)}\right]\, E\left[a_j^{(l-1)}\right] = E\left[w_{ij}^{(l)}\right]\, E\left[a_j^{(l-1)}\right]
+E\left[w_{ij}^{(l)} a_j^{(l-1)}\right] = \text{Cov}\left(w_{ij}^{(l)}, a_j^{(l-1)}\right) + E\left[w_{ij}^{(l)}\right] E\left[a_j^{(l-1)}\right] = E\left[w_{ij}^{(l)}\right] E\left[a_j^{(l-1)}\right]
 $$
 
 그리고 서로 다른 항들 $w_{ij}^{(l)}a_j^{(l-1)}$은 서로 independent(독립) 또는 최소한 uncorrelated(비상관)이라고 가정함:
@@ -325,7 +325,7 @@ $$
 3절에서 구한 식은 다음과 같음:
 
 $$
-\text{Var}\left(z_i^{(l)}\right) = n_{l-1} \sigma_{w,l}^2 E\left[(a_j^{(l-1)})^2\right]
+\text{Var}\left(z_i^{(l)}\right) = n_{l-1} \sigma_{w,l}^2 E\left[\left(a_j^{(l-1)}\right)^2\right]
 $$
 
 이를 5절의 ReLU 이후 second raw moment 식에 대입함:
