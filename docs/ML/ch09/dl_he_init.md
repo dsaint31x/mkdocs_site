@@ -51,7 +51,7 @@ $w_{ij}^{(l)}$와 $a_j^{(l-1)}$는 서로 independent(독립)이라고 가정하
 
 $$
 \begin{aligned}
-E\left[w_{ij}^{(l)} a_j^{(l-1)}\right] &= \color{red}{\text{Cov}(w_{ij}^{(l)}, a_j^{(l-1)})} \color{black}{+ E\left[w_{ij}^{(l)}\right] E\left[a_j^{(l-1)}\right]} \\\\
+E\left[w_{ij}^{(l)} a_j^{(l-1)}\right] &= \color{red}{\text{Cov}\left(w_{ij}^{(l)}, a_j^{(l-1)}\right)} \color{black}{+ E\left[w_{ij}^{(l)}\right] E\left[a_j^{(l-1)}\right]} \\\\
 &= \color{red}{0}\color{black}{ + E \left[w_{ij}^{(l)}\right] E\left[a_j^{(l-1)}\right]} \\
 &= E\left[w_{ij}^{(l)}\right] E\left[a_j^{(l-1)}\right] \\
 \end{aligned}
@@ -116,7 +116,7 @@ $$
 앞서 평균이 0이라고 가정했으므로 다음이 성립:
 
 $$
-\color{blue}{E[w_{ij}^{(l)}]} = 0
+\color{blue}{E\left[w_{ij}^{(l)}\right]} = 0
 $$
 
 즉,
