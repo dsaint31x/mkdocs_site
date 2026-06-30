@@ -128,13 +128,7 @@ $$
 독립성에 의해,
 
 $$
-E\left[
-(w_{ij}^{(l)})^2
-(a_j^{(l-1)})^2
-\right] =
-
-E[(w_{ij}^{(l)})^2]
-E[(a_j^{(l-1)})^2]
+E\left[(w_{ij}^{(l)})^2(a_j^{(l-1)})^2\right] = E[(w_{ij}^{(l)})^2] E[(a_j^{(l-1)})^2]
 $$
 
 또한 weight들의 평균 $E[w_{ij}^{(l)}]=0$이므로 다음이 성립:
@@ -146,21 +140,13 @@ $$
 따라서, 다음이 성립:
 
 $$
-\text{Var}\left(
-w_{ij}^{(l)} a_j^{(l-1)}
-\right) =
-\sigma_{w,l}^2
-E[(a_j^{(l-1)})^2]
+\text{Var}\left(w_{ij}^{(l)} a_j^{(l-1)}\right) =\sigma_{w,l}^2 E[(a_j^{(l-1)})^2]
 $$
 
 이를 다시 $\text{Var}(z_i^{(l)})$에 대입하면,
 
 $$
-\text{Var}(z_i^{(l)}) =
-
-\sum_{j=1}^{n_{l-1}}
-\sigma_{w,l}^2
-E[(a_j^{(l-1)})^2]
+\text{Var}(z_i^{(l)}) = \sum_{j=1}^{n_{l-1}} \sigma_{w,l}^2 E[(a_j^{(l-1)})^2]
 $$
 
 각 입력 activation이 같은 scale을 가진다고 보면,
@@ -169,19 +155,12 @@ $E[(a_j^{(l-1)})^2]$ 는 $j$에 대해 동일하게 볼 수 있음.
 따라서, 다음이 성립:
 
 $$
-\text{Var}(z_i^{(l)}) =
-
-n_{l-1}
-\sigma_{w,l}^2
-E[(a_j^{(l-1)})^2]
+\text{Var}(z_i^{(l)}) = n_{l-1} \sigma_{w,l}^2 E[(a_j^{(l-1)})^2]
 $$
 
 $n_{l-1} = \text{fan}_\text{in}^{l}$ 이므로 다음이 성립:
 
-$$
-\text{Var}(z_i^{(l)}) =
-
-\text{fan}_\text{in}^{(l)}
+$$ \text{Var}(z_i^{(l)}) = \text{fan}_\text{in}^{(l)}
 \cdot
 \text{Var}(w_{ij}^{(l)})
 \cdot
