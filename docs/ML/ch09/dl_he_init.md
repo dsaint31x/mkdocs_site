@@ -52,7 +52,8 @@ $$
 E\left[w_{ij}^{(l)} a_j^{(l-1)}\right] = \text{Cov}\left(w_{ij}^{(l)}, a_j^{(l-1)}\right) + E\left[w_{ij}^{(l)}\right] E\left[a_j^{(l-1)}\right] = E\left[w_{ij}^{(l)}\right] E\left[a_j^{(l-1)}\right]
 $$
 
-그리고 서로 다른 항들 $w_{ij}^{(l)}a_j^{(l-1)}$은 서로 independent(독립) 또는 최소한 uncorrelated(비상관)이라고 가정함:
+그리고 서로 다른 항들 ( $w_{ij}^{(l)}a_j^{(l-1)}$ 항들)은  
+서로 independent(독립) 또는 최소한 uncorrelated(비상관)이라고 가정함:
 
 $$
 \text{Cov}\left(w_{ij}^{(l)} a_j^{(l-1)},\ w_{ik}^{(l)} a_k^{(l-1)}\right) = 0 \quad (j \ne k)
@@ -76,7 +77,7 @@ $$
 \right)
 $$
 
-서로 다른 항들이 독립 또는 최소 비상관이라고 가정했으므로
+서로 다른 항들이 dependent(독립) 또는 최소 uncorrelated(비상관)이라고 가정했으므로  
 covariance 항은 0이 되어 다음이 성립:
 
 $$
@@ -101,14 +102,14 @@ w_{ij}^{(l)} a_j^{(l-1)}
 \right]^2
 $$
 
-$w_{ij}^{(l)}$와 $a_j^{(l-1)}$는 서로 independent(독립)이라고 가정했으므로
-우선 뒤의 평균 항은 다음이 성립:
+$w_{ij}^{(l)}$와 $a_j^{(l-1)}$는 서로 independent(독립)이라고 가정했으므로  
+우선 뒤의 평균의 제곱 항에서의 평균은 다음이 성립:
 
 $$
 E\left[w_{ij}^{(l)} a_j^{(l-1)}\right] = E\left[w_{ij}^{(l)}\right]E\left[a_j^{(l-1)}\right]
 $$
 
-앞서 평균이 0이라고 가정했으므로 다음이 성립:
+앞서 weight의 평균이 0이라고 가정했으므로 다음이 성립:
 
 $$
 E\left[w_{ij}^{(l)}\right] = 0
@@ -159,7 +160,7 @@ $$
 \text{Var}\left(z_i^{(l)}\right) = \sum_{j=1}^{n_{l-1}} \sigma_{w,l}^2 E\left[(a_j^{(l-1)})^2\right]
 $$
 
-각 입력 activation이 같은 scale을 가진다고 보면,
+각 입력 activation이 같은 scale을 가진다고 보면,  
 $E\left[(a_j^{(l-1)})^2\right]$는 $j$에 대해 동일하다고 볼 수 있음.
 
 따라서, 다음이 성립:
