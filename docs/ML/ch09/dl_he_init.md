@@ -28,7 +28,7 @@ $$
 ReLU activation을 거친 activation(= ReLU 출력)은 다음과 같음:
 
 $$
-a_i^{(l)} = ReLU(z_i^{(l)})
+a_i^{(l)} = \text{ReLU}(z_i^{(l)})
 $$
 
 ---
@@ -50,10 +50,14 @@ $$
 $w_{ij}^{(l)}$와 $a_j^{(l-1)}$는 서로 independent(독립)이라고 가정하므로 $\text{Cov}(w_{ij}^{(l)}, a_j^{(l-1)}) = 0$이 되어, 위 식은 다음과 같이 단순화됨:
 
 $$
-E\left[w_{ij}^{(l)} a_j^{(l-1)}\right] = \text{Cov}(w_{ij}^{(l)}, a_j^{(l-1)}) + E[w_{ij}^{(l)}]\, E[a_j^{(l-1)}] = E[w_{ij}^{(l)}]\, E[a_j^{(l-1)}]
+\begin{aligned}
+E\left[w_{ij}^{(l)} a_j^{(l-1)}\right] &= \color{red}{\text{Cov}(w_{ij}^{(l)}, a_j^{(l-1)})} + E[w_{ij}^{(l)}] E[a_j^{(l-1)}] \\\\
+&= \color{red}{0} + E[w_{ij}^{(l)}] E[a_j^{(l-1)}] \\
+&= E[w_{ij}^{(l)}] E[a_j^{(l-1)}] \\
+\end{aligned}
 $$
 
-그리고 서로 다른 항들 $w_{ij}^{(l)}a_j^{(l-1)}$은 서로 독립 또는 최소한 비상관이라고 가정함:
+그리고 서로 다른 항들 $w_{ij}^{(l)}a_j^{(l-1)}$은 서로 independent 또는 최소한 uncorrelated(비상관)이라고 가정함:
 
 $$
 \text{Cov}\left(w_{ij}^{(l)} a_j^{(l-1)},\ w_{ik}^{(l)} a_k^{(l-1)}\right) = 0 \quad (j \ne k)
@@ -97,29 +101,29 @@ w_{ij}^{(l)} a_j^{(l-1)}
 \left(
 w_{ij}^{(l)} a_j^{(l-1)}
 \right)^2
-\right] - E\left[
+\right] - \color{red}{E\left[
 w_{ij}^{(l)} a_j^{(l-1)}
-\right]^2
+\right]}^2
 $$
 
 $w_{ij}^{(l)}$와 $a_j^{(l-1)}$는 서로 independent(독립)이라고 가정했으므로
 우선 뒤의 평균 항은 다음이 성립:
 
 $$
-E\left[w_{ij}^{(l)} a_j^{(l-1)}\right] = E[w_{ij}^{(l)}]E[a_j^{(l-1)}]
+\color{red}{E\left[w_{ij}^{(l)} a_j^{(l-1)}\right]} = \color{blue}{E[w_{ij}^{(l)}]}E[a_j^{(l-1)}]
 $$
 
 앞서 평균이 0이라고 가정했으므로 다음이 성립:
 
 $$
-E[w_{ij}^{(l)}] = 0
+\color{blue}{E[w_{ij}^{(l)}]} = 0
 $$
 
 즉,
 
 $$
 \begin{aligned}
-E\left[ w_{ij}^{(l)} a_j^{(l-1)} \right] &= 0 \cdot E[a_j^{(l-1)}] \\\\
+\color{red}{E\left[ w_{ij}^{(l)} a_j^{(l-1)} \right]} &= \color{blue}{0} \cdot E[a_j^{(l-1)}] \\\\
 &=0
 \end{aligned}
 $$
@@ -127,25 +131,31 @@ $$
 따라서, 다음이 성립:
 
 $$
-\text{Var} \left(w_{ij}^{(l)} a_j^{(l-1)} \right) = E\left[\left( w_{ij}^{(l)} a_j^{(l-1)} \right)^2 \right]
+\begin{aligned}
+\text{Var} \left(w_{ij}^{(l)} a_j^{(l-1)} \right) &= E\left[\left( w_{ij}^{(l)} a_j^{(l-1)} \right)^2 \right] - \color{red}{E\left[
+w_{ij}^{(l)} a_j^{(l-1)}
+\right]}^2 \\\\
+&= E\left[\left( w_{ij}^{(l)} a_j^{(l-1)} \right)^2 \right] - \color{red}{0} \\\\
+\text{Var} \left(w_{ij}^{(l)} a_j^{(l-1)} \right) &= E\left[\left( w_{ij}^{(l)} a_j^{(l-1)} \right)^2 \right]
+\end{aligned}
 $$
 
 제곱을 풀면 다음이 성립:
 
 $$
-E\left[\left(w_{ij}^{(l)} a_j^{(l-1)}\right)^2 \right] = E\left[ (w_{ij}^{(l)})^2 (a_j^{(l-1)})^2 \right]
+E\left[\left(w_{ij}^{(l)} a_j^{(l-1)}\right)^2 \right] = E\left[ \left(w_{ij}^{(l)}\right)^2 \left(a_j^{(l-1)}\right)^2 \right]
 $$
 
 독립성에 의해,
 
 $$
-E\left[(w_{ij}^{(l)})^2(a_j^{(l-1)})^2\right] = E[(w_{ij}^{(l)})^2] E[(a_j^{(l-1)})^2]
+E\left[\left(w_{ij}^{(l)}\right)^2 \left(a_j^{(l-1)} \right)^2\right] = \color{red}{E[\left(w_{ij}^{(l)}\right)^2]} E[\left(a_j^{(l-1)}\right)^2]
 $$
 
-또한 weight의 평균 $E[w_{ij}^{(l)}]=0$이므로 다음이 성립:
+또한 weight의 평균 $\color{red}{E\left[w_{ij}^{(l)}\right]=0}$이므로 다음이 성립:
 
 $$
-E[(w_{ij}^{(l)})^2] = \text{Var}(w_{ij}^{(l)}) = \sigma_{w,l}^2
+E\left[(w_{ij}^{(l)})^2\right] = \text{Var}(w_{ij}^{(l)}) = \sigma_{w,l}^2
 $$
 
 따라서, 다음이 성립:
