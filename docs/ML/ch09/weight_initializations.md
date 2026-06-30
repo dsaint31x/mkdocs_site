@@ -24,9 +24,13 @@ math: true
 
 # Weight Initialization (가중치 초기화)
 
-* Weight Initialization은 Gradient Vanishing/Exploding Problem을 개선하기 위해 연구된 방법으로, 2010년 Xavier Glorot et al.에 의해 효과가 입증되면서 deep neural network를 효과적으로 학습시키기 위한 기본 기법으로 널리 사용되게 됨. (현재도 기본적으로 사용됨.)
-* 핵심 인과관계는 다음 한 줄로 요약됨.
-  * ^^"logistic activation function" + "normal distribution 초기화"^^ 조합이 ^^각 layer의 input/output node 수가 다르다는 구조적 특성^^과 결합되면서, variance가 layer를 거칠수록 한쪽으로 누적·증폭되고, 이것이 결국 gradient를 죽이는 방향으로 이어짐.
+Weight Initialization은 Gradient Vanishing/Exploding Problem을 개선하기 위해 연구된 방법
+
+2010년 Xavier Glorot et al.에 의해 효과가 입증되면서 deep neural network를 효과적으로 학습시키기 위한 기본 기법으로 널리 사용되게 됨:
+
+* ^^"logistic activation function" + "normal distribution 초기화"^^ 조합이
+* ^^각 layer의 input/output node 수가 다르다는 구조적 특성^^ 과 결합되면서,
+* variance가 layer를 거칠수록 한쪽으로 누적/증폭되고, 이것이 결국 gradient를 죽이는 방향으로 이어짐.
  
 참고 : [Random variable의 곱과 variance](https://dsaint31.tistory.com/580) 
 
@@ -52,7 +56,10 @@ math: true
   * logistic 출력은 mean이 0.5이고 항상 양수임. (참고로 normal distribution의 mean은 0임.)
 * mean activation이 0이 아닌 unit은 다음 layer 입장에서 일종의 bias처럼 작용함.
   * 이런 unit들의 출력이 서로 상쇄되지 않으면, 학습이 진행될수록 다음 layer의 unit들에 그 영향이 누적됨.
-  * 이를 **bias shift**라 부름. (mean activation이 0이 아닌 unit이 다음 layer에 bias처럼 작용하고, 이런 unit들이 서로 상쇄되지 않을 경우 다음 layer의 unit들에 누적되어 나타나는 효과를 가리키는 용어로, ELU 논문(Clevert et al., 2016, ICLR) 등에서 정의되어 널리 쓰이는 표준 용어임.)
+  * 이를 **bias shift**라 부름.
+      * bias shift는 mean activation이
+      * 0이 아닌 unit이 다음 layer에 bias처럼 작용하고,
+      * 이런 unit들이 서로 상쇄되지 않을 경우 다음 layer의 unit들에 누적되어 나타나는 효과를 가리키는 용어
 * logistic의 bias shift는 앞서 설명한 variance 누적 문제를 더 악화시키는 방향으로 작용함.  
   * mean이 0에 가까운 `tanh`가 logistic보다 학습에 유리한 경우가 많음.
 
@@ -122,7 +129,7 @@ $\text{fan}_\text{out}$
 초기에 많이 애용된 
 
 * constant로 고정된 경우나 
-* Normal distribution을 사용한 경우는, 
+* Normal distribution ($N(0,1)$)을 사용한 경우는, 
 
 오늘날 사용되지 않으며 ***다음의 방법들*** 이 주로 이용된다.
 
