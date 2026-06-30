@@ -149,7 +149,7 @@ $$
 독립성에 의해,
 
 $$
-E\left[\left(w_{ij}^{(l)}\right)^2 \left(a_j^{(l-1)} \right)^2\right] = \color{red}{E[\left(w_{ij}^{(l)}\right)^2]} \color{black}{E[\left(a_j^{(l-1)}\right)^2]}
+E\left[\left(w_{ij}^{(l)}\right)^2 \left(a_j^{(l-1)} \right)^2\right] = \color{red}{E\left[\left(w_{ij}^{(l)}\right)^2\right]} \color{black}{E\left[\left(a_j^{(l-1)}\right)^2\right]}
 $$
 
 또한 weight의 평균 $\color{red}{E\left[w_{ij}^{(l)}\right]=0}$이므로 다음이 성립:
@@ -161,22 +161,22 @@ $$
 따라서, 다음이 성립:
 
 $$
-\text{Var}\left(w_{ij}^{(l)} a_j^{(l-1)}\right) =\sigma_{w,l}^2 E[(a_j^{(l-1)})^2]
+\text{Var}\left(w_{ij}^{(l)} a_j^{(l-1)}\right) =\sigma_{w,l}^2 E\left[(a_j^{(l-1)})^2\right]
 $$
 
-이를 다시 $\text{Var}(z_i^{(l)})$에 대입하면,
+이를 다시 $\text{Var}\left(z_i^{(l)}\right)$에 대입하면,
 
 $$
-\text{Var}(z_i^{(l)}) = \sum_{j=1}^{n_{l-1}} \sigma_{w,l}^2 E[(a_j^{(l-1)})^2]
+\text{Var}\left(z_i^{(l)}\right) = \sum_{j=1}^{n_{l-1}} \sigma_{w,l}^2 E\left[(a_j^{(l-1)})^2\right]
 $$
 
 각 입력 activation이 같은 scale을 가진다고 보면,
-$E[(a_j^{(l-1)})^2]$는 $j$에 대해 동일하다고 볼 수 있음.
+$E\left[(a_j^{(l-1)})^2\right]$는 $j$에 대해 동일하다고 볼 수 있음.
 
 따라서, 다음이 성립:
 
 $$
-\text{Var}(z_i^{(l)}) = n_{l-1} \sigma_{w,l}^2 E[(a_j^{(l-1)})^2]
+\text{Var}\left(z_i^{(l)}\right) = n_{l-1} \sigma_{w,l}^2 E\left[(a_j^{(l-1)})^2\right]
 $$
 
 $n_{l-1} = \text{fan}_\text{in}^{(l)}$이므로 다음이 성립:
@@ -184,16 +184,16 @@ $n_{l-1} = \text{fan}_\text{in}^{(l)}$이므로 다음이 성립:
 $$
 \text{Var}(z_i^{(l)}) = \text{fan}_\text{in}^{(l)}
 \cdot
-\text{Var}(w_{ij}^{(l)})
+\text{Var}\left(w_{ij}^{(l)}\right)
 \cdot
-E[(a_j^{(l-1)})^2]
+E\left[(a_j^{(l-1)})^2\right]
 $$
 
 위 식에서 주의할 점은:
 
 * He Initialization의 대상인 pre-activation의 variance에 영향을 주는 것은
-* 이전 layer의 activation의 variance $\text{Var}(a_j^{(l-1)})$가 아니라
-* 바로 이전 layer의 activation의 second raw moment $E[(a_j^{(l-1)})^2]$라는 점임.
+* 이전 layer의 activation의 variance $\text{Var}\left(a_j^{(l-1)}\right)$가 아니라
+* 바로 이전 layer의 activation의 second raw moment $E\left[(a_j^{(l-1)})^2\right]$라는 점임.
 
 ---
 
