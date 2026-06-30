@@ -429,7 +429,7 @@ $$
 \begin{aligned}
 \text{Var}\left(w\sim \mathcal{U}(-a, a)\right) &= E\left[w^2\right] - \left( E[w] \right)^2 \\
 &= \int_{-a}^{w=a} f_\text{pdf}(w) w^2 dw - \left( 0 \right)^2 \\
-&= \frac{1}{2a} \frac{w^3}{3} \Big| _{w=-a}^{a} \\
+&= \frac{1}{2a} \left. \frac{w^3}{3} \right\Big| _{w=-a}^{a} \\
 &= \frac{1}{2a} \left[ \frac{a^3}{3} - \frac{(-a)^3}{3} \right] \\
 &=\frac{a^2}{3}
 \end{aligned}
