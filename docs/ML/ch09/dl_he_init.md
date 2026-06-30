@@ -149,7 +149,7 @@ $$
 독립성에 의해,
 
 $$
-E\left[\left(w_{ij}^{(l)}\right)^2 \left(a_j^{(l-1)} \right)^2\right] = \color{red}{E[\left(w_{ij}^{(l)}\right)^2]} E[\left(a_j^{(l-1)}\right)^2]
+E\left[\left(w_{ij}^{(l)}\right)^2 \left(a_j^{(l-1)} \right)^2\right] = \color{red}{E[\left(w_{ij}^{(l)}\right)^2]} \color{black}{E[\left(a_j^{(l-1)}\right)^2]}
 $$
 
 또한 weight의 평균 $\color{red}{E\left[w_{ij}^{(l)}\right]=0}$이므로 다음이 성립:
