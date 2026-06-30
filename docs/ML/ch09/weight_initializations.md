@@ -151,13 +151,16 @@ $\text{fan}_\text{out}$
 다음의 값들의 수식적인 유도는 He initialization 을 예를 든 다음 문서를 참고할 것: [He Initialization (Kaiming Intializationi) 유도](./dl_he_init.md)
 
 > PyTorch에선 `fan_out`을 `fan_in` 대신 사용하는 He initialization으로 사용할 수 있음.
-> 보통 netork가 매우 깊어서  backward pass에서 gradient의 vanishing/exploding이 더 큰 문제가 될 때 `fan_out`을 적용한다.  
-> He et al. (2015) 논문에서도  forward/backward 어느 쪽을 기준으로 하든 결과(분산이 안정적으로 유지된다는 결론)는 점근적으로 동등하다고 언급하고 있음.  
+> 
+> * 보통 netork가 매우 깊어서  backward pass에서 gradient의 vanishing/exploding이 더 큰 문제가 될 때 `fan_out`을 적용한다.  
+> * He et al. (2015) 논문에서도  forward/backward 어느 쪽을 기준으로 하든 결과(분산이 안정적으로 유지된다는 결론)는 점근적으로 동등하다고 언급하고 있음.  
 >
 > 대표적인 예가  
-> torchvision의 ResNet 구현(수십~수백 layer)은 `Conv2d` layer에 대해 `nn.init.kaiming_normal_(m.weight, mode="fan_out", nonlinearity="relu")`를 사용함.
 >
-> 개인적으론 작은 값이 되도록 선택하는 것을 선호함.
+> * torchvision의 ResNet 구현(수십~수백 layer)은 `Conv2d` layer에 대해 `nn.init.kaiming_normal_(m.weight, mode="fan_out", nonlinearity="relu")`를 사용함.
+> * 개인적으론 작은 값이 되도록 선택하는 것을 선호함 (`fan_in`과 `fan_out`이 분모로 들어가므로 크기가 큰 쪽을 선택).
+
+---
 
 ## References
 * [Efficient BackProp. Yann LeCun et al.1998](https://www.researchgate.net/publication/2811922_Efficient_BackProp)
@@ -166,4 +169,3 @@ $\text{fan}_\text{out}$
 * [갈아먹는 딥러닝 기초 [2] weight initialization](https://yeomko.tistory.com/40) ***
 * Keras API Ref. : [Layer weight initializers](https://keras.io/api/layers/initializers/) **
 * Github : [Keras Source Code: initializers.py](https://github.com/keras-team/keras/blob/7a39b6c62d43c25472b2c2476bd2a8983ae4f682/keras/initializers.py#L462) 
-* [Hyper parameters in Action](https://towardsdatascience.com/hyper-parameters-in-action-part-ii-weight-initializers-35aee1a28404) **
