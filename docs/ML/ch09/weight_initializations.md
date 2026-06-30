@@ -61,7 +61,7 @@ $\text{fan}_\text{in}$과 $\text{fan}_\text{out}$이 같지 않을 경우 varian
 앞서 애기한 fan in과 fan out은 다음과 같다.
 
 $\text{fan}_\text{in}$
-: layer에 들어오는 input node 수에 해당함. 
+: layer에 들어오는 input node 수에 해당함 (=이전 layer의 neuron 수에 해당). 
 
 $\text{fan}_\text{out}$
 : layer에 들어오는 output node 수에 해당함. 
@@ -86,16 +86,28 @@ $\text{fan}_\text{out}$
 주의할 것은 activation function에 따라 좀더 적절한 initialization이 결정된다는 점임.  
 때문에 아래 표에서 궁합이 맞는 activation functions 가 같이 표기됨.
 
-| Initialization | Activation<br/>functions | $\sigma^2$<br/>(Normal dist. , $\mu=0$) | [$-a$, $a$]<br/>(Uniform dist.) | Keras <b/>impl. |
+| Initialization | Activation<br/>functions | $\sigma^2$<br/>(Normal dist. , $\mu=0$) | [$-a, a$]<br/>(Uniform dist.) | Keras <b/>impl. |
 |:----:|:----:|:----:|:----:|:----:|
 | Yann LeCun	| SELU	| $\sigma^2 = 1/\text{fan}_\text{in}$	| $a=\sqrt{3\sigma^2}=\sqrt{\frac{3}{\text{fan}_\text{in}}}$ | `lecun_normal`,<br/>`lecun_uniform`|
 | Xavier Glorot |	None, tanh,<br/>sigmoid, softmax |	$\sigma^2 = 1/\text{fan}_\text{avg}$ | $a = \sqrt{3\sigma^2}=\sqrt{\frac{3}{\text{fan}_\text{avg}}}$ | `glorot_normal`,<br/>`glorot_uniform` | 
 | Kaiming He	| ReLU, Leaky ReLU,<br/>ELU, GELU, Mish	| $\sigma^2 = 2/\text{fan}_\text{in}$ | $a = \sqrt{3\sigma^2} =\sqrt{\frac{6}{\text{fan}_\text{avg}}}$ | `he_normal`,<br/>`he_uniform`| 
 
 * 위의 normal distribution들은 variance만 차이가 있을 뿐, 모두 mean=0임.
-* Xavier Glorto et al.이 제안한 방식의 경우, `ReLU`가 유행하기 전까지 가장 많이 사용되었으나 아쉽게도 `ReLU`와는 잘 맞지 않는다 (layer가 깊어질수록 0에 치우치게 된다.)는 결과들로 인해 ***Kaiming He et al.*** 의 방식이 제안됨.
-    * `ReLU`에서 0 이상의 값은 그대로 통과시키다보니 다시 $\text{fan}_\text{in}$만을 고려하면서 He의 방식에서는 coefficient를 조금 다르게 줌. `ReLU` 계열들을 사용시 기본으로 사용됨.
+* Xavier Glorot et al.이 제안한 방식의 경우, `ReLU`가 유행하기 전까지 가장 많이 사용되었으나 아쉽게도 `ReLU`와는 잘 맞지 않는다는 결과들로 인해 ***Kaiming He et al.*** 의 방식이 제안됨.
+    * `ReLU`에서 0 이상의 값은 그대로 통과시키다보니 다시 $\text{fan}_\text{in}$만을 고려하면서 He의 방식에서는 coefficient를 조금 다르게 줌.
+    * `ReLU` 계열들을 사용시 기본으로 사용됨.
 * 참고로 LeCun의 방법과 가장 궁합이 맞는 `SELU` (Scaled Exponential Linear Unit)는 한참 뒤인 2017년에 제안됨.
+
+다음의 값들의 수식적인 유도는 He initialization 을 예를 든 다음 문서를 참고할 것: [He Initialization (Kaiming Intializationi) 유도](./dl_he_init.md)
+
+> PyTorch에선 `fan_out`을 `fan_in` 대신 사용하는 He initialization으로 사용할 수 있음.
+> 보통 netork가 매우 깊어서  backward pass에서 gradient의 vanishing/exploding이 더 큰 문제가 될 때 `fan_out`을 적용한다.  
+> He et al. (2015) 논문에서도  forward/backward 어느 쪽을 기준으로 하든 결과(분산이 안정적으로 유지된다는 결론)는 점근적으로 동등하다고 언급하고 있음.  
+>
+> 대표적인 예가  
+> torchvision의 ResNet 구현(수십~수백 layer)은 `Conv2d` layer에 대해 `nn.init.kaiming_normal_(m.weight, mode="fan_out", nonlinearity="relu")`를 사용함.
+>
+> 개인적으론 작은 값이 되도록 선택하는 것을 선호함.
 
 ## References
 * [Efficient BackProp. Yann LeCun et al.1998](https://www.researchgate.net/publication/2811922_Efficient_BackProp)
