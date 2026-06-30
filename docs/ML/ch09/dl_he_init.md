@@ -51,7 +51,7 @@ $w_{ij}^{(l)}$와 $a_j^{(l-1)}$는 서로 independent(독립)이라고 가정하
 
 $$
 \begin{aligned}
-E\left[w_{ij}^{(l)} a_j^{(l-1)}\right] &= \color{red}{\text{Cov}(w_{ij}^{(l)}, a_j^{(l-1)})} + E[w_{ij}^{(l)}] E[a_j^{(l-1)}] \\\\
+E\left[w_{ij}^{(l)} a_j^{(l-1)}\right] &= \color{red}{\text{Cov}(w_{ij}^{(l)}, a_j^{(l-1)})} \color{black}{+ E[w_{ij}^{(l)}] E[a_j^{(l-1)}]} \\\\
 &= \color{red}{0} + E[w_{ij}^{(l)}] E[a_j^{(l-1)}] \\
 &= E[w_{ij}^{(l)}] E[a_j^{(l-1)}] \\
 \end{aligned}
