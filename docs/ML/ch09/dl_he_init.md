@@ -46,12 +46,6 @@ E\left[w_{ij}^{(l)}\right] &= 0 \\\\
 \end{aligned}
 $$
 
-일반적으로 두 확률변수 $X, Y$의 곱의 기댓값은 다음과 같이 covariance를 포함함:
-
-$$
-E\left[XY\right] = \text{Cov}\left(X,Y\right) + E\left[X\right]\,E\left[Y\right]
-$$
-
 $w_{ij}^{(l)}$와 $a_j^{(l-1)}$는 서로 independent(독립)이라고 가정하므로 $\text{Cov}\left(w_{ij}^{(l)}, a_j^{(l-1)}\right) = 0$이 되어, 위 식은 다음과 같이 단순화됨:
 
 $$
