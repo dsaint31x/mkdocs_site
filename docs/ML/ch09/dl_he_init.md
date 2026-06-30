@@ -28,7 +28,7 @@ $$
 ReLU activation을 거친 activation(= ReLU 출력)은 다음과 같음:
 
 $$
-a_i^{(l)} = \text{ReLU}(z_i^{(l)})
+a_i^{(l)} = ReLU\left(z_i^{(l)}\right)
 $$
 
 ---
@@ -41,23 +41,24 @@ weight의 평균은 0임:
 
 $$
 \begin{aligned}
-E[w_{ij}^{(l)}] &= 0 \\\\
-\text{Var}(w_{ij}^{(l)}) &= \sigma^2_{w,l}
+E\left[w_{ij}^{(l)}\right] &= 0 \\\\
+\text{Var}\left(w_{ij}^{(l)}\right) &= \sigma^2_{w,l}
 \end{aligned}
 $$
 
-
-$w_{ij}^{(l)}$와 $a_j^{(l-1)}$는 서로 independent(독립)이라고 가정하므로 $\text{Cov}(w_{ij}^{(l)}, a_j^{(l-1)}) = 0$이 되어, 위 식은 다음과 같이 단순화됨:
+일반적으로 두 확률변수 $X, Y$의 곱의 기댓값은 다음과 같이 covariance를 포함함:
 
 $$
-\begin{aligned}
-E\left[w_{ij}^{(l)} a_j^{(l-1)}\right] &= \color{red}{\text{Cov}\left(w_{ij}^{(l)}, a_j^{(l-1)}\right)} \color{black}{+ E\left[w_{ij}^{(l)}\right] E\left[a_j^{(l-1)}\right]} \\\\
-&= \color{red}{0}\color{black}{ + E \left[w_{ij}^{(l)}\right] E\left[a_j^{(l-1)}\right]} \\
-&= E\left[w_{ij}^{(l)}\right] E\left[a_j^{(l-1)}\right] \\
-\end{aligned}
+E\left[XY\right] = \text{Cov}\left(X,Y\right) + E\left[X\right]\,E\left[Y\right]
 $$
 
-그리고 서로 다른 항들 $w_{ij}^{(l)}a_j^{(l-1)}$은 서로 independent 또는 최소한 uncorrelated(비상관)이라고 가정함:
+$w_{ij}^{(l)}$와 $a_j^{(l-1)}$는 서로 independent(독립)이라고 가정하므로 $\text{Cov}\left(w_{ij}^{(l)}, a_j^{(l-1)}\right) = 0$이 되어, 위 식은 다음과 같이 단순화됨:
+
+$$
+E\left[w_{ij}^{(l)} a_j^{(l-1)}\right] = \text{Cov}\left(w_{ij}^{(l)}, a_j^{(l-1)}\right) + E\left[w_{ij}^{(l)}\right]\, E\left[a_j^{(l-1)}\right] = E\left[w_{ij}^{(l)}\right]\, E\left[a_j^{(l-1)}\right]
+$$
+
+그리고 서로 다른 항들 $w_{ij}^{(l)}a_j^{(l-1)}$은 서로 independent(독립) 또는 최소한 uncorrelated(비상관)이라고 가정함:
 
 $$
 \text{Cov}\left(w_{ij}^{(l)} a_j^{(l-1)},\ w_{ik}^{(l)} a_k^{(l-1)}\right) = 0 \quad (j \ne k)
@@ -65,7 +66,7 @@ $$
 
 ---
 
-## 3. Pre-activation의 Variance $\text{Var}(z_i^{(l)})$ 유도
+## 3. Pre-activation의 Variance $\text{Var}\left(z_i^{(l)}\right)$ 유도
 
 $l$번째 layer의 $i$번째 neuron의 pre-activation $z_i^{(l)}$은 다음과 같음:
 
@@ -76,7 +77,7 @@ $$
 이 $z_i^{(l)}$의 variance는 다음과 같음:
 
 $$
-\text{Var}(z_i^{(l)}) = \text{Var}\left(
+\text{Var}\left(z_i^{(l)}\right) = \text{Var}\left(
 \sum_{j=1}^{n_{l-1}} w_{ij}^{(l)} a_j^{(l-1)}
 \right)
 $$
@@ -86,9 +87,9 @@ covariance 항은 0이 되어 다음이 성립:
 
 $$
 \begin{aligned}
-\text{Var}(z_i^{(l)}) &=\sum_{j=1}^{n_{l-1}} \text{Var}\left( w_{ij}^{(l)} a_j^{(l-1)} \right) + 2 \color{red}{\sum_{j < k} \text{Cov}\left(w_{ij}^{(l)} a_j^{(l-1)} , w_{ik}^{(l)} a_k^{(l-1)} \right)} \\\\
+\text{Var}\left(z_i^{(l)}\right) &=\sum_{j=1}^{n_{l-1}} \text{Var}\left( w_{ij}^{(l)} a_j^{(l-1)} \right) + 2 \color{red}{\sum_{j < k} \text{Cov}\left(w_{ij}^{(l)} a_j^{(l-1)} , w_{ik}^{(l)} a_k^{(l-1)} \right)} \\\\
 & = \sum_{j=1}^{n_{l-1}} \text{Var}\left( w_{ij}^{(l)} a_j^{(l-1)} \right) + 2\cdot \color{red}{0} \\\\
-\text{Var}(z_i^{(l)}) &= \sum_{j=1}^{n_{l-1}} \text{Var}\left( w_{ij}^{(l)} a_j^{(l-1)} \right)
+\text{Var}\left(z_i^{(l)}\right) &= \sum_{j=1}^{n_{l-1}} \text{Var}\left( w_{ij}^{(l)} a_j^{(l-1)} \right)
 \end{aligned}
 $$
 
@@ -101,29 +102,29 @@ w_{ij}^{(l)} a_j^{(l-1)}
 \left(
 w_{ij}^{(l)} a_j^{(l-1)}
 \right)^2
-\right] - \color{red}{E\left[
+\right] - E\left[
 w_{ij}^{(l)} a_j^{(l-1)}
-\right]}^2
+\right]^2
 $$
 
 $w_{ij}^{(l)}$와 $a_j^{(l-1)}$는 서로 independent(독립)이라고 가정했으므로
 우선 뒤의 평균 항은 다음이 성립:
 
 $$
-\color{red}{E\left[w_{ij}^{(l)} a_j^{(l-1)}\right]} = \color{blue}{E[w_{ij}^{(l)}]}E[a_j^{(l-1)}]
+E\left[w_{ij}^{(l)} a_j^{(l-1)}\right] = E\left[w_{ij}^{(l)}\right]E\left[a_j^{(l-1)}\right]
 $$
 
 앞서 평균이 0이라고 가정했으므로 다음이 성립:
 
 $$
-\color{blue}{E\left[w_{ij}^{(l)}\right]} = 0
+E\left[w_{ij}^{(l)}\right] = 0
 $$
 
 즉,
 
 $$
 \begin{aligned}
-\color{red}{E\left[ w_{ij}^{(l)} a_j^{(l-1)} \right]} &= \color{blue}{0} \cdot E[a_j^{(l-1)}] \\\\
+E\left[ w_{ij}^{(l)} a_j^{(l-1)} \right] &= 0 \cdot E\left[a_j^{(l-1)}\right] \\\\
 &=0
 \end{aligned}
 $$
@@ -131,31 +132,25 @@ $$
 따라서, 다음이 성립:
 
 $$
-\begin{aligned}
-\text{Var} \left(w_{ij}^{(l)} a_j^{(l-1)} \right) &= E\left[\left( w_{ij}^{(l)} a_j^{(l-1)} \right)^2 \right] - \color{red}{E\left[
-w_{ij}^{(l)} a_j^{(l-1)}
-\right]}^2 \\\\
-&= E\left[\left( w_{ij}^{(l)} a_j^{(l-1)} \right)^2 \right] - \color{red}{0} \\\\
-\text{Var} \left(w_{ij}^{(l)} a_j^{(l-1)} \right) &= E\left[\left( w_{ij}^{(l)} a_j^{(l-1)} \right)^2 \right]
-\end{aligned}
+\text{Var} \left(w_{ij}^{(l)} a_j^{(l-1)} \right) = E\left[\left( w_{ij}^{(l)} a_j^{(l-1)} \right)^2 \right]
 $$
 
 제곱을 풀면 다음이 성립:
 
 $$
-E\left[\left(w_{ij}^{(l)} a_j^{(l-1)}\right)^2 \right] = E\left[ \left(w_{ij}^{(l)}\right)^2 \left(a_j^{(l-1)}\right)^2 \right]
+E\left[\left(w_{ij}^{(l)} a_j^{(l-1)}\right)^2 \right] = E\left[ (w_{ij}^{(l)})^2 (a_j^{(l-1)})^2 \right]
 $$
 
 독립성에 의해,
 
 $$
-E\left[\left(w_{ij}^{(l)}\right)^2 \left(a_j^{(l-1)} \right)^2\right] = \color{red}{E\left[\left(w_{ij}^{(l)}\right)^2\right]} \color{black}{E\left[\left(a_j^{(l-1)}\right)^2\right]}
+E\left[(w_{ij}^{(l)})^2(a_j^{(l-1)})^2\right] = E\left[(w_{ij}^{(l)})^2\right] E\left[(a_j^{(l-1)})^2\right]
 $$
 
-또한 weight의 평균 $\color{red}{E\left[w_{ij}^{(l)}\right]=0}$이므로 다음이 성립:
+또한 weight의 평균 $E\left[w_{ij}^{(l)}\right]=0$이므로 다음이 성립:
 
 $$
-E\left[(w_{ij}^{(l)})^2\right] = \text{Var}(w_{ij}^{(l)}) = \sigma_{w,l}^2
+E\left[(w_{ij}^{(l)})^2\right] = \text{Var}\left(w_{ij}^{(l)}\right) = \sigma_{w,l}^2
 $$
 
 따라서, 다음이 성립:
@@ -182,7 +177,7 @@ $$
 $n_{l-1} = \text{fan}_\text{in}^{(l)}$이므로 다음이 성립:
 
 $$
-\text{Var}(z_i^{(l)}) = \text{fan}_\text{in}^{(l)}
+\text{Var}\left(z_i^{(l)}\right) = \text{fan}_\text{in}^{(l)}
 \cdot
 \text{Var}\left(w_{ij}^{(l)}\right)
 \cdot
@@ -202,9 +197,9 @@ $$
 variance의 정의는 다음과 같음:
 
 $$
-\text{Var}(a_j^{(l-1)}) = E\left[
+\text{Var}\left(a_j^{(l-1)}\right) = E\left[
 \left(
-a_j^{(l-1)} - E[a_j^{(l-1)}]
+a_j^{(l-1)} - E\left[a_j^{(l-1)}\right]
 \right)^2
 \right]
 $$
@@ -214,7 +209,7 @@ $$
 반면 다음은 second raw moment임:
 
 $$
-E[(a_j^{(l-1)})^2]
+E\left[(a_j^{(l-1)})^2\right]
 $$
 
 앞의 계산에서
@@ -226,28 +221,28 @@ $$
 그 이유는 현재 사용하는 weight의 평균을 0이라고 가정하기 때문임:
 
 $$
-E[w_{ij}^{(l)}] = 0
+E\left[w_{ij}^{(l)}\right] = 0
 $$
 
 동시에 $w_{ij}^{(l)}$와 $a_j^{(l-1)}$은 독립이므로,
 다음과 같이 곱 $w_{ij}^{(l)}a_j^{(l-1)}$의 평균도 0이 됨:
 
 $$
-E[w_{ij}^{(l)}a_j^{(l-1)}] = E[w_{ij}^{(l)}]E[a_j^{(l-1)}] = 0 \cdot E[a_j^{(l-1)}]
+E\left[w_{ij}^{(l)}a_j^{(l-1)}\right] = E\left[w_{ij}^{(l)}\right]E\left[a_j^{(l-1)}\right] = 0 \cdot E\left[a_j^{(l-1)}\right]
 $$
 
-* 중요한 점은 $E[a_j^{(l-1)}]=0$일 필요가 없다는 것임.
+* 중요한 점은 $E\left[a_j^{(l-1)}\right]=0$일 필요가 없다는 것임.
 * ReLU 이후 activation은 보통 0 이상이라 평균이 0이 아닐 수 있음.
-* $E[a_j^{(l-1)}] \ne 0$이라도 weight의 평균이 0이면 $E[w_{ij}^{(l)}a_j^{(l-1)}]=0$이 성립함.
+* $E\left[a_j^{(l-1)}\right] \ne 0$이라도 weight의 평균이 0이면 $E\left[w_{ij}^{(l)}a_j^{(l-1)}\right]=0$이 성립함.
 
 이를 반영하면, pre-activation variance는 다음과 같이 정리됨:
 
 $$
 \begin{aligned}
-\text{Var}(w_{ij}^{(l)}a_j^{(l-1)}) &= E [ (w_{ij}^{(l)}a_j^{(l-1)})^2 ] - ( E[(w_{ij}^{(l)}a_j^{(l-1)})])^2 \\
-&= E [ (w_{ij}^{(l)}a_j^{(l-1)})^2 ] \\
-&= E [(w_{ij}^{(l)})^2 (a_j^{(l-1)})^2 ] \\
-&= E [(w_{ij}^{(l)})^2] E[(a_j^{(l-1)})^2]
+\text{Var}\left(w_{ij}^{(l)}a_j^{(l-1)}\right) &= E \left[ (w_{ij}^{(l)}a_j^{(l-1)})^2 \right] - ( E\left[(w_{ij}^{(l)}a_j^{(l-1)})\right])^2 \\
+&= E \left[ (w_{ij}^{(l)}a_j^{(l-1)})^2 \right] \\
+&= E \left[(w_{ij}^{(l)})^2 (a_j^{(l-1)})^2 \right] \\
+&= E \left[(w_{ij}^{(l)})^2\right] E\left[(a_j^{(l-1)})^2\right]
 \end{aligned}
 $$
 
@@ -263,19 +258,19 @@ activation의 second raw moment를 기준으로 삼음.
 이제 ReLU가 pre-activation $z_i^{(l)}$의 second raw moment를 어떻게 바꾸는지 살펴봄.
 
 $$
-a_i^{(l)} = ReLU(z_i^{(l)})
+a_i^{(l)} = ReLU\left(z_i^{(l)}\right)
 $$
 
 $z_i^{(l)}$가 평균 0이고 대칭적인 분포를 가진다고 가정함:
 
 $$
-E[z_i^{(l)}] = 0
+E\left[z_i^{(l)}\right] = 0
 $$
 
 ReLU는 이 pre-activation $z_i^{(l)}$의 음수 영역을 0으로 만들고, 양수 영역만 통과시킴:
 
 $$
-ReLU(z_i^{(l)}) =
+ReLU\left(z_i^{(l)}\right) =
 \begin{cases}
 z_i^{(l)} & \text{if } z_i^{(l)} > 0 \\
 0 & \text{if } z_i^{(l)} \leq 0
@@ -285,42 +280,42 @@ $$
 따라서, 다음이 성립:
 
 $$
-E[(a_i^{(l)})^2] = E[ReLU(z_i^{(l)})^2]
+E\left[(a_i^{(l)})^2\right] = E\left[ReLU\left(z_i^{(l)}\right)^2\right]
 $$
 
 ReLU의 특성상 다음이 성립:
 
 $$
-E[ReLU(z_i^{(l)})^2] =
-E[(z_i^{(l)})^2 \mid z_i^{(l)} > 0]P(z_i^{(l)} > 0)
+E\left[ReLU\left(z_i^{(l)}\right)^2\right] =
+E\left[(z_i^{(l)})^2 \mid z_i^{(l)} > 0\right]P\left(z_i^{(l)} > 0\right)
 $$
 
 또한 $z_i^{(l)}$이 평균 0의 대칭분포이므로 다음이 성립:
 
 $$
-P(z_i^{(l)} > 0) = \frac{1}{2}
+P\left(z_i^{(l)} > 0\right) = \frac{1}{2}
 $$
 
 따라서, 다음이 성립:
 
 $$
 \begin{aligned}
-E[ReLU(z_i^{(l)})^2] &= \frac{1}{2}E[(z_i^{(l)})^2] \\\\
-E[(a_i^{(l)})^2] &= \frac{1}{2}E[(z_i^{(l)})^2]
+E\left[ReLU\left(z_i^{(l)}\right)^2\right] &= \frac{1}{2}E\left[(z_i^{(l)})^2\right] \\\\
+E\left[(a_i^{(l)})^2\right] &= \frac{1}{2}E\left[(z_i^{(l)})^2\right]
 \end{aligned}
 $$
 
-여기서 $E[z_i^{(l)}]=0$이므로 다음이 성립:
+여기서 $E\left[z_i^{(l)}\right]=0$이므로 다음이 성립:
 
 $$
-E[(z_i^{(l)})^2] = \text{Var}(z_i^{(l)})
+E\left[(z_i^{(l)})^2\right] = \text{Var}\left(z_i^{(l)}\right)
 $$
 
 따라서, 다음이 성립:
 
 $$
-E[(a_i^{(l)})^2] =
-\frac{1}{2}\text{Var}(z_i^{(l)})
+E\left[(a_i^{(l)})^2\right] =
+\frac{1}{2}\text{Var}\left(z_i^{(l)}\right)
 $$
 
 ---
@@ -330,21 +325,21 @@ $$
 3절에서 구한 식은 다음과 같음:
 
 $$
-\text{Var}(z_i^{(l)}) = n_{l-1} \sigma_{w,l}^2 E[(a_j^{(l-1)})^2]
+\text{Var}\left(z_i^{(l)}\right) = n_{l-1} \sigma_{w,l}^2 E\left[(a_j^{(l-1)})^2\right]
 $$
 
 이를 5절의 ReLU 이후 second raw moment 식에 대입함:
 
 $$
-E[(a_i^{(l)})^2] = \frac{1}{2}\text{Var}(z_i^{(l)})
+E\left[(a_i^{(l)})^2\right] = \frac{1}{2}\text{Var}\left(z_i^{(l)}\right)
 $$
 
 따라서, 다음이 성립:
 
 $$
 \begin{aligned}
-E[(a_i^{(l)})^2] &= \frac{1}{2} \left( n_{l-1} \sigma_{w,l}^2 E[(a_j^{(l-1)})^2] \right) \\\\
-&=\frac{1}{2} n_{l-1} \sigma_{w,l}^2 E[(a_j^{(l-1)})^2]
+E\left[(a_i^{(l)})^2\right] &= \frac{1}{2} \left( n_{l-1} \sigma_{w,l}^2 E\left[(a_j^{(l-1)})^2\right] \right) \\\\
+&=\frac{1}{2} n_{l-1} \sigma_{w,l}^2 E\left[(a_j^{(l-1)})^2\right]
 \end{aligned}
 $$
 
@@ -356,7 +351,7 @@ ReLU를 activation으로 사용하는 layer에서 vanishing gradient나 explodin
 activation의 second raw moment가 layer를 거치며 유지되어야 함:
 
 $$
-E[(a_i^{(l)})^2] = E[(a_j^{(l-1)})^2]
+E\left[(a_i^{(l)})^2\right] = E\left[(a_j^{(l-1)})^2\right]
 $$
 
 6절의 식을 대입하면,
@@ -365,11 +360,11 @@ $$
 \frac{1}{2}
 n_{l-1}
 \sigma_{w,l}^2
-E[(a_j^{(l-1)})^2] =
-E[(a_j^{(l-1)})^2]
+E\left[(a_j^{(l-1)})^2\right] =
+E\left[(a_j^{(l-1)})^2\right]
 $$
 
-양변을 $E[(a_j^{(l-1)})^2]$로 나누면 다음이 성립:
+양변을 $E\left[(a_j^{(l-1)})^2\right]$로 나누면 다음이 성립:
 
 $$
 \frac{1}{2}
@@ -386,13 +381,13 @@ $$
 즉, 다음이 성립함:
 
 $$
-\text{Var}(w_{ij}^{(l)}) = \frac{2}{n_{l-1}}
+\text{Var}\left(w_{ij}^{(l)}\right) = \frac{2}{n_{l-1}}
 $$
 
 $n_{l-1} = \text{fan}_\text{in}^{(l)}$이므로 다음으로 정리됨:
 
 $$
-\text{Var}(w_{ij}^{(l)}) = \frac{2}{\text{fan}_\text{in}^{(l)}}
+\text{Var}\left(w_{ij}^{(l)}\right) = \frac{2}{\text{fan}_\text{in}^{(l)}}
 $$
 
 ---
