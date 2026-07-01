@@ -96,7 +96,7 @@ GPU가속을 사용하면 다음의 사양도 확인 가능함.
 !nvidia-smi
 ```
 
-[Colab에서 사용가능한 GPU 및 TPU](./colab_ai_acce)
+[Colab에서 사용가능한 GPU 및 TPU](../colab_ai_acce)
 
 - GPU : ~K80 또는~ T4(`Tesla T4`)  
 - TPU도 사용 가능 : [TPU참고](../ch04/ce04_51_gpu_tpu.md#tensor-processing-unit-tpu)
