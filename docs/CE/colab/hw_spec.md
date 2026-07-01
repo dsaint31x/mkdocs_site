@@ -13,6 +13,8 @@ Google Colaboratory = Google Drive + Jupyter Notebook
 - 구글 계정 전용의 가상 머신 지원 – GPU 및 TPU를 제공
 - Google drive 문서와 같이 링크만으로 접근 가능: 공동작업 가능
 
+참고: [IPython, Jupyter Notebook, and Colab](https://ds31x.tistory.com/331)
+
 ---
 
 ---
@@ -50,7 +52,10 @@ Google Colaboratory = Google Drive + Jupyter Notebook
 
 > 소스코드는 `.ipynb` 확장자로 구글 드라이브에 안전하게 보관됨. 사용할 데이터들도 Google Drive에 저장하고 이를 mount할 경우, 지속성을 가지고 작업가능.
 
-참고: [.ipynb 파일에 대하여](https://ds31x.tistory.com/483)
+참고:
+
+* [GPU (GPGPU)란?](https://dsaint31.tistory.com/416)
+* [.ipynb 파일에 대하여](https://ds31x.tistory.com/483)
 
 ---
 
@@ -91,7 +96,9 @@ GPU가속을 사용하면 다음의 사양도 확인 가능함.
 !nvidia-smi
 ```
 
-- GPU : K80 또는 T4(`Tesla T4`)  
+[Colab에서 사용가능한 GPU 및 TPU](/CE/colab/colab_ai_acce)
+
+- GPU : ~K80 또는~ T4(`Tesla T4`)  
 - TPU도 사용 가능 : [TPU참고](../ch04/ce04_51_gpu_tpu.md#tensor-processing-unit-tpu)
 
 
