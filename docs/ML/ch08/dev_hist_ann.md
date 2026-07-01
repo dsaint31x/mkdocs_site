@@ -89,7 +89,7 @@ ANN에서는 이를 edge에 weight을 할당하여 강화될수록 weight가 커
 ![](./img/TLU.png){style="display: block; margin: 0 auto; width: 500px"}
 
 * activation function으로 TLU는 heaviside의 [step function](https://dsaint31.tistory.com/553)이나 [signum function (or sign function)](https://dsaint31.tistory.com/555)을 사용함.
-* 이후 [sigmoid functions](https://dsaint31.tistory.com/430)들이 사용됨 (back-propagation이 도입되면서).
+* 이후 [sigmoid functions](https://dsaint31.tistory.com/430)들(1984년 logistic func.)이 사용됨 (back-propagation이 도입과 함께).
 * 오늘날의 dense layer (fully connected layer)와 유사하며, 가장 많이 사용되는 activation function은 ReLU 임.
 
 > `TLU`는 linear function에 의해 정의되는 hyper-plane을 decision boundary로 삼는 일종의 binary classifier임.  
@@ -181,12 +181,12 @@ $$
 
 > 흔히 `reverse-mode autodiff`라고 불림.
 
-뒤이어 1974년 Paul J. Werbos가 박사학위 논문에서 `reverse-mode autodiff`와 gradient descent를 결합한 `Back-propagation` 를 MLP에 적용한다.
+뒤이어 1974년 Paul J. Werbos가 박사학위 논문에서 `reverse-mode autodiff`와 gradient descent를 결합한 `Back-propagation` 개념을 제안한다.
 
 [Beyond regression: New tools for prediction and analysis in the behavioral sciences, 1974 (Paul J. Werbos, Ph.D. dissertation)](https://www.researchgate.net/publication/35055330_Beyond_regression_new_tools_for_prediction_and_analysis_in_the_behavior_sciences_microform)
 
 * `Back-propagation`은 Error (목표값과 추정값과의 차이)를 이용하여 Hidden Layer의 weight들을 학습시킬 수 있음.
-* 아쉽지만 Werbos의 제안은 큰 관심을 받지 못했고, 이후 Rumelhart와 Hinton에 의해 재발견되기까지 Back-propagation은 대중화되지 못함.
+* 아쉽지만 Werbos의 제안은 큰 관심을 받지 못했고, 이후 Rumelhart와 Hinton에 의해 재발견되기까지 Back-propagation은 ANN에서 대중화되지 못함.
 
 1986년 Rumelhart와 Hinton이 Back-propagation을 통해 MLP가 학습 가능함을 다시 한번 보이면서 ANN의 부활이 시작됨.
 
