@@ -36,7 +36,15 @@ variants of ReLU 중 다음의 특성을 가지는 대표적 activation function
 
 * `GELU` 이후, 
 * smooth하면서 non-monotonic한 ReLU 계열 activation function들이 더 주목받기 시작함.
+    * 2016년 $\beta=1$인 경우인 $x \sigma(x)$인 `SiLU` 가 `GELU`와 함께 제안됨.
 * `Swish`는 이러한 흐름 속에서 제안된 activation function으로 볼 수 있음.
+    * 이후 2017년에 $\beta$가 도입된 보다 generalized form의 Swish 로 등장함.
+ 
+일부 문헌헤서는 복잡한 task에서 기본 activation으로 ReLU 대신 Swish를 권장하나  
+GPU 등에서 보다 최적화된 ReLU가 여전히 많이 이용됨.
+
+단, transformer 의 FFN 에선 GELU가 기본적으로 많이 사용되어왔으며,  
+최근엔 `SwiGLU` (2020)가 보다 많이 사용되는 추세임.
 
 ---
 
@@ -51,6 +59,9 @@ variants of ReLU 중 다음의 특성을 가지는 대표적 activation function
 * `convexity` 
 
 ![](./img/gelu_deri.png){style="display:block; margin:0 auto; width:400px"}
+
+* left: $\text{GELU}(x)$
+* right: $\frac{d}{dx}\text{GELU}(x}$
 
 하지만 2016년 등장한 ***Gaussian Error Linear Unit*** (`GELU`)가  
 기존의 activation functions 이상의 성능을 보임에 따라,  
@@ -74,11 +85,16 @@ $$\begin{aligned}\text{GELU}(x) &=x \Phi (x)\\&=xP(X\le x),\quad X \sim \mathcal
 * `ReLU`계열보다 훨씬 연산량이 많지만, 복잡한 task에서 `ELU`를 포함 기존의 activation function들보다 우수한 성능을 보임
 
 `GELU`는 ^^좋은 성능을 보이지만 연산량이 많다는 단점^^ 을 가지고 있음. 
+
+또 주목할 점은  
 `GELU`를 제안한 논문에서 ***Sigmoid Linear Unit*** (`SiLU`)를 같이 제안하고 이를 `GELU`와 비교하였다는 점임.
 
-해당 논문에서는 `SiLU`는 GELU보다 떨어지는 성능으로 보고되었으나, 이후 더 단순한 수식임에도 GELU를 거의 그대로 모사할 수 있는 ***Generalization*** 이 이루어지면서 보다 많이 사용이 되기 시작함.
+해당 논문에서는 `SiLU`는 GELU보다 떨어지는 성능으로 보고되었으나,  
 
-> 수식상으로는 error function을 이용하여 표현
+* 이후 더 단순한 수식임에도 GELU를 거의 그대로 모사할 수 있는
+* ***Generalization*** 이 이루어지면서 보다 많이 사용이 되기 시작함.
+
+> GELU는 수식상으로 error function을 이용하여 표현
 >
 > $\Phi(x)=\frac{1}{2}\left[ 1+\text{erf}\left( \frac{x}{\sqrt{2}} \right) \right]$
 >
@@ -86,13 +102,13 @@ $$\begin{aligned}\text{GELU}(x) &=x \Phi (x)\\&=xP(X\le x),\quad X \sim \mathcal
 >
 > $\text{GELU}(x)\approx 0.5x \left[1+\tanh \left(\sqrt{\frac{2}{\pi}}(x+0.044715 x^3) \right)\right]$
 >
-> 파이토치의 경우, `nn.GELU(approximate='tanh')`를 통해 위 근사식을 사용 가능.
+> PyTorch 의 경우, `nn.GELU(approximate='tanh')`를 통해 위 근사식을 사용 가능.
 
 ---
 
 ## Sigmoid Linear Unit (SiLU or Swish)
 
-> MobileNetV3 계열에서 `Swish`를 계산량 측면에서 단순화한 `hard-swish`가 사용됨..
+> MobileNetV3 계열에서 `Swish`를 계산량 측면에서 단순화한 `hard-swish`가 사용됨.
 
 ![](./img/silu_relu.png){style="display:block; margin:0 auto; width:400px"}
 
@@ -109,7 +125,12 @@ $$\text{SiLU}(x)=x \sigma(x)$$
 
 [Prajit Ramachandran et al., “Searching for Activation Functions”, arXiv preprint arXiv:1710.05941 (2017).](https://arxiv.org/abs/1710.05941)
 
-`SiLU`의 경우, [sigmoid function](https://dsaint31.tistory.com/577)의 ***input에 $\beta$로 scaling을 하는 generalization*** 을 통해, GELU와 거의 동등한 동작 (연산의 측면에서는 `GELU`보다 우수함)보이도록 만들 수 있으며, 보다 나은 성능을 얻을 수 있는 것으로 알려짐.
+`SiLU`의 경우, 
+
+* [sigmoid function](https://dsaint31.tistory.com/577)의 ***input에
+* $\beta$로 scaling을 하는 generalization*** 을 통해,
+* GELU와 거의 동등한 동작 (연산의 측면에서는 `GELU`보다 우수함)보이도록 만들 수 있으며,
+* 보다 나은 성능을 얻을 수 있는 것으로 알려짐.
 
 $$\begin{aligned}\text{SiLU}_{\beta} &= x \sigma (\beta x) \\\\ \text{GELU}(x) &\approx x \sigma (1.702 x) \\ &= \text{SiLU}_{\beta=1.702}(x)\end{aligned}$$
 
@@ -118,7 +139,41 @@ TensorFlow/Keras에서는 `silu` 또는 `swish`라는 이름으로 제공되며,
 
 $$\text{SiLU}(x)=x\sigma(x)$$
 
-> `PReLU`와 같이 `SiLU`도 $\beta$를 trainable parameter로 삼는 parameterized Siwsh도 있음 (역시 적은 학습데이터에선 over-fit할 확률이 커짐)
+PyTorch에선 $\beta=1$로 고정된 SiLU는 다음과 같이 제공하며 
+
+* `torch.nn` 에서 `nn.SiLU()` 로 제공.
+* `torch.functional` 에서 `F.silu(x)`로 도 사용가능.
+
+Swish는 다음과 같이 구현할 수 있음:
+
+```python
+import torch
+import torch.nn as nn
+
+
+class Swish(nn.Module):
+    def __init__(self, beta: float = 1.0):
+        super().__init__()
+        self.beta = beta
+
+    def forward(self, x):
+        return x * torch.sigmoid(self.beta * x)
+```
+
+`PReLU`와 같이 `SiLU`도 $\beta$를 trainable parameter로 삼는 parameterized Swㅑsh도 있음  
+(이 역시 `PReLU` 처럼 적은 학습데이터에선 over-fit할 확률이 커짐)
+
+다음은 `parameterized Swish` 구현 코드(PyTorch)임:
+
+```python
+class LearnableSwish(nn.Module):
+    def __init__(self, beta: float = 1.0):
+        super().__init__()
+        self.beta = nn.Parameter(torch.tensor(beta))
+
+    def forward(self, x):
+        return x * torch.sigmoid(self.beta * x)
+```
 
 ---
 
