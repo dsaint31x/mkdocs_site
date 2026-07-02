@@ -144,8 +144,8 @@ $$\text{SiLU}(x)=x \sigma(x)$$
 
 `SiLU`의 경우, 
 
-* [sigmoid function](https://dsaint31.tistory.com/577)의 ***input에
-* $\beta$로 scaling을 하는 generalization*** 을 통해,
+* [sigmoid function](https://dsaint31.tistory.com/577)의 input에
+* $\beta$로 scaling을 하는 generalization 을 통해,
 * GELU와 거의 동등한 동작 (연산의 측면에서는 `GELU`보다 우수함)보이도록 만들 수 있으며,
 * 보다 나은 성능을 얻을 수 있는 것으로 알려짐.
 
