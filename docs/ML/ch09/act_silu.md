@@ -49,7 +49,8 @@ GPU 등에서 보다 최적화된 ReLU가 여전히 많이 이용됨.
 최근엔 `SwiGLU` (2020)가 보다 많이 사용되는 추세임.
 
 참고로, `SwiGLU` 는 하나의 function이 아닌 unit임.  
-즉, activation unit으로 activation function을 포함한 더 넓은 계산 단위에 해당함. 
+즉, activation unit으로 activation function을 포함한 더 넓은 계산 단위에 해당함.
+
 $$
 \begin{aligned}
 \mathbf{z} &= \mathbf{x}\mathbf{W} + \mathbf{b} \in \mathbb{R}^{2d}, \\
@@ -75,7 +76,7 @@ $$
 ![](./img/gelu_deri.png){style="display:block; margin:0 auto; width:400px"}
 
 * left: $\text{GELU}(x)$
-* right: $\frac{d}{dx}\text{GELU}(x}$
+* right: $\frac{d}{dx}\text{GELU}(x)$
 
 하지만 2016년 등장한 ***Gaussian Error Linear Unit*** (`GELU`)가  
 기존의 activation functions 이상의 성능을 보임에 따라,  
