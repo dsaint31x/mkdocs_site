@@ -1,14 +1,14 @@
 ---
 title: Sigmoid Linear Unit (SiLU) - from GELU to Mish
 tags:
-  - Deep Learning
-  - Activation Function
-  - SiLU
-  - Swish
-  - GELU
-  - Mish
-  - ReLU
-  - Neural Network
+  - deep learning
+  - activation function
+  - silu
+  - swish
+  - gelu
+  - mish
+  - relu
+  - glu
 description: GELU에서 SiLU, Swish, Mish로 이어지는 smooth, non-convex, non-monotonic activation function 계열 정리
 ---
 
@@ -16,12 +16,14 @@ description: GELU에서 SiLU, Swish, Mish로 이어지는 smooth, non-convex, no
 
 SiLU 는 Sigmoid Linear Unit 의 약자로
 
-* `ELU` 이후 등장한 smooth activation function 계열 중 하나로,
-* 여러 실험에서 ReLU 계열의 대안으로 좋은 성능을 보인 activation function
-* 현재 deeper model이나 복잡한 dataset에서 ReLU의 대안으로 사용되는 추세임.
-* Swish라는 이름으로도 잘 알려짐.
+* `ELU` (2015) 이후 
+* 2016년에 등장한 smooth activation function 계열 중 하나로,
+* 여러 실험에서 ReLU 계열의 대안으로 좋은 성능을 보인 activation function임.
+* `Swish` (SiLU의 일반형, 2017)라는 이름으로도 잘 알려짐.
+* `Swish`는 **현재 deeper model이나 복잡한 dataset에서 ReLU의 대안** 으로 사용되는 추세임.
+    * 사실 `\beta=1`을 기본값으로 쓰는터라 `SiLU`와 잘 구별되지 않음. 
 
-`SiLU`는 이명으로 `Swish`라고도 불리며, 
+`SiLU`는 `Swish` 의 special case 이임, 
 variants of ReLU 중 다음의 특성을 가지는 대표적 activation function 임:
 
 * smooth, 
@@ -45,6 +47,18 @@ GPU 등에서 보다 최적화된 ReLU가 여전히 많이 이용됨.
 
 단, transformer 의 FFN 에선 GELU가 기본적으로 많이 사용되어왔으며,  
 최근엔 `SwiGLU` (2020)가 보다 많이 사용되는 추세임.
+
+참고로, `SwiGLU` 는 하나의 function이 아닌 unit임.  
+즉, activation unit으로 activation function을 포함한 더 넓은 계산 단위에 해당함. 
+$$
+\begin{aligned}
+\mathbf{z} &= \mathbf{x}\mathbf{W} + \mathbf{b} \in \mathbb{R}^{2d}, \\
+\mathbf{z}_1, \mathbf{z}_2 &= \operatorname{chunk}(\mathbf{z}, 2), \\
+\operatorname{SwiGLU}(\mathbf{x}) &= \operatorname{Swish}(\mathbf{z}_1) \odot \mathbf{z}_2
+\end{aligned}
+$$
+
+* input $\textbf{x}$을 두 갈래로 나누고, 한쪽은 gate를 거친 후 다른 한쪽의 출력과 element-wise product 하는 구조
 
 ---
 
