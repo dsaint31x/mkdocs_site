@@ -21,7 +21,7 @@ SiLU 는 Sigmoid Linear Unit 의 약자로
 * 여러 실험에서 ReLU 계열의 대안으로 좋은 성능을 보인 activation function임.
 * `Swish` (SiLU의 일반형, 2017)라는 이름으로도 잘 알려짐.
 * `Swish`는 **현재 deeper model이나 복잡한 dataset에서 ReLU의 대안** 으로 사용되는 추세임.
-    * 사실 `\beta=1`을 기본값으로 쓰는터라 `SiLU`와 잘 구별되지 않음. 
+    * 사실 $\beta=1$ 을 기본값으로 쓰는 터라 `SiLU`와 잘 구별되지 않음. 
 
 `SiLU`는 `Swish` 의 special case 이임, 
 variants of ReLU 중 다음의 특성을 가지는 대표적 activation function 임:
