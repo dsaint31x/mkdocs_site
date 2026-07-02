@@ -30,7 +30,7 @@ variants of ReLU 중 다음의 특성을 가지는 대표적 activation function
 
 > 정확히 애기하면, 다음과 같음:
 >
-> $\text{SiLU}(x) = x \sigma(x) = x \sigma(\beta x) \vbar _{\beta=1} = \text{Swish}_{\beta=1}(x)$
+> $\text{SiLU}(x) = x \sigma(x) = \left. x \sigma(\beta x) \right|_{\beta=1} = \text{Swish}_{\beta=1}(x)$
 
 역사적으로는 
 
