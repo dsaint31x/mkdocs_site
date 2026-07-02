@@ -59,7 +59,7 @@ $$
 \end{aligned}
 $$
 
-* input $\textbf{x}$을 두 갈래로 나누고, 한쪽은 gate를 거친 후 다른 한쪽의 출력과 element-wise product 하는 구조
+* input $\textbf{x}$을 두 갈래로 나누고, 한쪽은 gate를 거친 후 다른 한쪽의 출력과 element-wise product (=Hadamard product)하는 구조
 
 ---
 
@@ -109,7 +109,7 @@ $$\begin{aligned}\text{GELU}(x) &=x \Phi (x)\\&=xP(X\le x),\quad X \sim \mathcal
 * 이후 더 단순한 수식임에도 GELU를 거의 그대로 모사할 수 있는
 * ***Generalization*** 이 이루어지면서 보다 많이 사용이 되기 시작함.
 
-> GELU는 수식상으로 error function을 이용하여 표현
+> GELU는 수식상으로 [error function](https://dsaint31.tistory.com/612)을 이용하여 표현
 >
 > $\Phi(x)=\frac{1}{2}\left[ 1+\text{erf}\left( \frac{x}{\sqrt{2}} \right) \right]$
 >
@@ -118,6 +118,8 @@ $$\begin{aligned}\text{GELU}(x) &=x \Phi (x)\\&=xP(X\le x),\quad X \sim \mathcal
 > $\text{GELU}(x)\approx 0.5x \left[1+\tanh \left(\sqrt{\frac{2}{\pi}}(x+0.044715 x^3) \right)\right]$
 >
 > PyTorch 의 경우, `nn.GELU(approximate='tanh')`를 통해 위 근사식을 사용 가능.
+
+* 참고: [Gaussian Distribution 의 CDF와 error Function 에 대한 자료](https://dsaint31.tistory.com/612)
 
 ---
 
