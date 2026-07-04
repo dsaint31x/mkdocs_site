@@ -27,24 +27,29 @@ draft: false
 * [figure original URL](https://towardsdatascience.com/batch-norm-explained-visually-how-it-works-and-why-neural-networks-need-it-b18919692739/)
 
 Batch Normalization은 [Ioffe et al.이 2015년 제안한 기법](https://arxiv.org/pdf/1502.03167)으로  
-Gradient Vanishing과 Exploding의 위험을 효과적으로 감소시킴: 정확히는 mini-batch normalization이라고 해야할텐데...
+Gradient Vanishing과 Exploding의 위험을 효과적으로 감소시키는 기법임.
+
+> 좀 더 정확한 용어로는 mini-batch normalization 이라고도 할 수 있음
 
 * Layer parameter가 변함에 따라,  
   다음 layer에 들어오는 input의 distribution이 바뀌는 [***Internal Covariate Shift*** (ICS) 문제](https://dsaint31.tistory.com/675#Internal%20Covariate%20Shift-1-1)를  
-  Gradient Vanishing and/or Exploding의 원인이라고 가정.
+  Gradient Vanishing and/or Exploding의 원인이라고 가정하고  
+  이를 해결하기 위해 제안된 기법임.  
   (참고로 현재 `BN`의 제안 당시 ICS가정은 다르게 해석되고 있음: [아래 설명](#bn-ics) 참고).
-* 이를 위해 layer의 Input을 standardization을 하고,  
+* BN은 layer의 Input을 standardization을 하고,  
   task 수행에 최적의 분포가 되도록 scaling과 shifting을 **학습** 하여  
   이를 layer input에 적용.
 * 단, `RNN`의 time 방향으로 unrolling된 쪽에 `BN`은 적용해도 큰 효과가 없는 것으로 알려짐:
     * RNN이 다루는 sequence data들이 각기 다른 sequence length를 가지며, 이를 padding을 통해 같은 사이즈가 되도록 함.
-    * 해당 padding은 실제로 의미가 없는 0 등의 값을 가지게 되는데 이를 `BN`으로 처리시 padding으로 인한 의미없는 0 들로 인해 제대로 된 통계적 지표(feature별 mean, std들을 제대로 못 구함).
+    * 해당 padding은 실제로 의미가 없는 0 등의 값을 가지게 되는데  
+      이를 `BN`으로 처리시 padding으로 인한 의미없는 0 들로 인해 제대로 된 통계적 지표(feature별 mean, std들을 제대로 못 구함).
     * 때문에 `RNN` 및 `transformer` 에서는 `BN` 대신 `Layer Normalization`을 주로 사용: 각각의 token을 따로 normalization을 수행함.
 
-어찌 보면 ***layer 별로 최적의 input 분포를 가지도록 pre-processing을 해주는 것*** 이 batch normalization이다.  
+***layer 별로 최적의 input 분포를 가지도록 pre-processing을 해주는 것*** 이  
+**batch normalization** 이다.  
 
 * 여기서 최적의 분포란 현재 training dataset을 기준으로 task를 가장 잘 수행할 수 있게 해주는 input의 분포를 의미.
-* 보통은 activation 전에 처리되어 activation이 안정적인 분포의 입력 tensor (= 비슷비습한 에너지 레벨이 맞추어진 tensor들)를 가지게 해 줌.
+* 보통은 activation 전에 처리되어 activation이 안정적인 분포의 입력 tensor (= 비슷비슷한 에너지 레벨이 맞추어진 tensor들)를 가지게 해 줌.
 
 > internal covariate shift를 해결하는 ideal solution은
 > layer의 input에 whitening을 가해서,
@@ -54,7 +59,7 @@ Gradient Vanishing과 Exploding의 위험을 효과적으로 감소시킴: 정�
 > 
 > * whitening은 covariance matrix 등의 계산이 필요해서 **계산량이 너무 많고** , 
 > * 각 layer의 parameters의 효과를 상쇄시키는 등의 문제점이 있어서 
-> * **ANN에 직접 적용할 경우 부작용이 컸다고 보고함** .
+> * **ANN에 직접 적용할 경우 오히려 성능이 떨어지는 부작용이 컸다고 보고함** .
 
 ---
 
@@ -95,14 +100,18 @@ Gradient Vanishing과 Exploding의 위험을 효과적으로 감소시킴: 정�
 
 ## 장점
 
-* ***Gradient Vanishing과 exploding을 효과적으로 감소시킴*** 에 따라 ^^`sigmoid`를 hidden layer의 activation으로 사용할 수 있을 정도의 성능 향상^^ 을 보임.
-* ***Weight initialization이 training에 미치는 효과를 감소*** 시켜서 ^^poor weight initialization에서도 학습이 잘 이루어지게 해줌.^^ (그렇다고 억지로 나쁜 weight initialization을 사용할 필요는 없음)
+* ***Gradient Vanishing과 exploding을 효과적으로 감소시킴***   
+    * 기존에 깊은 네트워크에서 사용하기 어렵던 ^^`sigmoid`를 hidden layer의 activation으로 사용할 수 있을 정도로 vanihsin gradient를 감소^^ 시킨 것으로 보고됨되.
+* ***Weight initialization이 training에 미치는 효과를 감소*** 
+    * ^^poor weight initialization에서도 학습이 잘 이루어지게 해줌.^^
+    * 그렇다고 억지로 나쁜 weight initialization을 사용할 필요는 없음.
 * ^^learning ratio를 크게 해도 Training이 잘 이루어지게 해 줌^^.
-    * `BN` 등장 전에는 learning ratio를 지나치게 크게 할 경우, gradient vanishing 또는 expanding이 심해지는 등의 문제로 학습이 제대로 되기 힘들었음.
-* Regularization의 효과를 가짐 
-    * 해당 효과는 ***mini-batch size를 크게 해주면 그 효과가 감소*** 하는 단점을 가지지만, 
-    * `BN`을 통해서 gradient vanishing 방지와 regularization을 동시에 달성할 수 있음. 
-    * 때문에 `BN`은 학습속도를 저하시키는 drop-out을 ANN에서 제거할 수 있게 해줌 (즉, ***overfitting 방지 효과*** 도 가짐.).
+    * `BN` 등장 전에는 learning ratio를 지나치게 크게 할 경우,
+    * gradient vanishing 또는 expanding이 심해지는 등의 문제로 학습이 제대로 되기 힘들었음.
+* 부가적으로 Regularization의 효과를 가짐 
+    * 단, ***mini-batch size를 크게 해주면 BN에 의한 regularization 효과가 감소*** 함 (단점) 
+    * 적절한 mini-batch size를 선택 시 `BN`을 통해서 gradient vanishing 방지와 regularization을 동시에 달성할 수 있음. 
+    * 실제로 `BN`은 학습속도를 저하시키는 drop-out을 ANN에서 제거할 수 있게 해주는 모듈로 알려짐: 즉, ***overfitting 방지 효과*** 도 가짐.
 
 ---
 
@@ -111,8 +120,10 @@ Gradient Vanishing과 Exploding의 위험을 효과적으로 감소시킴: 정�
 * model에 부가적인 연산이 layer별로 추가되기 때문에 ***계산량이 늘어남***  
     * 하지만 `BN`을 사용할 경우, learning ratio를 크게 잡을 수 있고 수렴속도가 압도적으로 빨리지기 때문에 
     * ^^전체 training에 걸리는 시간은 오히려 짧은 것으로 알려짐^^
-    * 단, 이는 training의 경우이고 inference의 속도는 확실히 느려짐. 
-    * Inference를 위해서는 `BN`의 scale과 shift를 layer에서 직접 적용하도록 처리함으로서 속도를 향상시킬 수 있음 (`TFLite`에서 이 방식을 통해 `BN` layer를 제거함)
+    * 단, 이는 training의 경우이고 **inference의 속도는 확실히 느려짐**. 
+    * Inference를 위해서는 `BN`의 scale과 shift를 앞에 있는 layer에서 직접 적용하도록 parameters 변경가능함
+        * 이를 통해 inference의 속도 저하를 방지할 수 있음.
+        * `TFLite` 나 PyTorch 등의 최적화 처리에서 이 방식을 통해 `BN` layer를 제거함.
 * ***mini-batch의 크기에 영향*** 을 많이 받음. 
     * 지나치게 작은 mini-batch 크기에서는 `BN`이 제대로 동작하기 어려움.
     * 반대로 지나치게 커질 경우, regularization 효과가 감소함.
@@ -128,6 +139,8 @@ Gradient Vanishing과 Exploding의 위험을 효과적으로 감소시킴: 정�
 2015년 `BN`이 제안된 이후 이 기법은 필수적인 layer로 받아들여짐  
 (`CNN`에서는 거의 필수적으로 사용된다).
 
+> 단 오늘날에는 layer normalization 으로 대체되는 경우도 많은 편임.
+
 ---
 
 ## CNN 에서의 활용
@@ -139,23 +152,18 @@ Gradient Vanishing과 Exploding의 위험을 효과적으로 감소시킴: 정�
 ## 기존 해법과의 비교.
 
 기존의 weight initialization과 activation function을 통한 Gradient vanishing과 exploding 해결방안은  
-훈련 초기 layer의 input과 output의 variance를 비슷하게 유지시키는 것은 가능했으나  
-training으로 인해 weights가 변화하게 될 경우 그 효과가 떨어지는 문제점을 가짐.
+
+* ***훈련 초기에만 layer의 input과 output의 variance를 비슷하게 유지시킴***  
+* training 이 상당히 진행되면 이로 인해 weights 의 분포가 많이 변화하게 되기 때문에
+* weight initialization 의 효과가 떨어지는 문제점을 가짐.
 
 이에 반해 `BN`은 training 이 진행되면서 각각의 parameters가 훈련되어 layer의 입력(혹은 출력)이 다음 layer에서의 훈련에 적합하도록 조정이 된다는 장점을 가짐.
-
-특정 범위로 gradient를 제한하는 `Gradient Clipping` 은 RNN에서 자주 발생하는 Gradient Exploding을 해결하기 위한 방법으로 더 많이 사용된다. 
-
-Keras에서는 optimizer 객체에서 설정하며 
-
-* gradient vector의 ^^각 element의 값의 크기^^ 를 기준(`clipvalue`)으로 하거나, 
-* gradient vector의 ^^norm^^ 을 기준(`clipnorm`)으로 하여 clipping 되도록 설정.
 
 ---
 
 ## Algorithm
 
-`BN`의 경우, training과 inference 단계에서 조금 다른 처리를 취함.
+`BN`의 경우, training과 inference 단계에서 다르게 동작하는 대표적인 layer 임.
 
 ### Training
 
@@ -164,7 +172,8 @@ Keras에서는 optimizer 객체에서 설정하며
 * 위 그림에서 보면, 통계적 처리(mean과 std구하기)가 feature별로 이루어짐 (batch축을 따라 이루어짐)
 * layer normalization은 column이 아닌 row로 mean과 std가 구해짐: 이는 각각의 token 별로 이루어지는 것으로 feature 축을 따라 계산이 이루어짐.
 
-standardization을 위해 mini-batch ($B$)의 mean ($\mu_B$)과 variance ($\sigma^2_B$)를 구하고, 이를 바탕으로 normalization을 한 다음, scaling($\gamma$)과 shift ($\beta$)를 수행. 
+standardization을 위해 mini-batch ($B$)의 mean ($\mu_B$)과 variance ($\sigma^2_B$)를 구하고,  
+이를 바탕으로 normalization을 한 다음, scaling($\gamma$)과 shift ($\beta$)를 수행. 
 
 1. $\displaystyle \mu_B=\frac{1}{m_B}\sum^{m_B}_{i=1}\textbf{x}^{(i)}$
 2. $\displaystyle \sigma_B^2=\frac{1}{m_B}\sum^{m_B}_{i=1}\left(\textbf{x}^{(i)}-\mu_B\right)^2$
@@ -188,21 +197,30 @@ standardization을 위해 mini-batch ($B$)의 mean ($\mu_B$)과 variance ($\sigm
 
 Training 단계와 큰 차이는 없으나 mini-batch에서 구해지는 $\mu_B$와 $\sigma_B^2$를 Inference에선 구할 수 없음.
 
-때문에 Test에서 사용되는 mean과 shift는 Training 과정 중에 mini-batch 별로 구해지는 $\mu_B$와 $\sigma_B^2$ 들을 이용하여 exponential moving averaging (일반적인 구현물에서 사용됨)으로 구하거나 Training dataset 전체의 mean과 variance를 사용한다.
+때문에 Test에서 사용되는 mean과 shift는  
+
+* Training 과정 중에 mini-batch 별로 구해지는 $\mu_B$와 $\sigma_B^2$ 들을 바탕으로 exponential moving averaging (일반적인 구현물에서 사용됨)하거나 
+* Training dataset 전체의 mean과 variance를 사용한다.
 
 Exponential moving average를 사용할 경우, `momentum`이라는 hyper-parameter가 추가된다.
 
-* 주의할 점은 아래 식은 TF(or Keras)에서의 형식이고, PyTorch의 경우 momentum이 running mean과 running std에 곱해짐
-* 원래 momentum이 곱해지는 항이 일반적인 EMA와 달리 PyTorch의 경우가 좀 특이한 편임 
-
+* 주의할 점은 아래 식은 TF(or Keras)에서의 식이고, ***PyTorch의 경우 momentum이 running mean과 running std에 곱해짐***.
+* 원래 momentum이 곱해지는 항이 "[일반적인 EMA](https://dsaint31.tistory.com/860)"와 달리 **PyTorch의 경우가 특이함**.
+    * 다음과 같이 이전 추정치에 곱해지는 coefficient를  moment라고 지칭하는게 일반적이 EMA임. 
 $$\hat{\textbf{v}} \leftarrow \hat{\textbf{v}} \times \text{momentum} + \textbf{v} \times (1-\text{momentum})$$
+
+* 하지만, PyTorch에서는 running vactor 에 곱해지는 coefficient를 moment 로 지칭하는 차이기 있음:
+* $$\hat{\textbf{v}} \leftarrow \textbf{v} \times \text{momentum} + \hat{\textbf{v}} \times (1-\text{momentum})$$
 
 * $\textbf{v}$ : current mini-batch로부터 구해진 mean (=running mean) vector 또는 variance (=running variance) vector.
     * feature별로 구해진다는 점을 잊지 말 것: 결국 vector가 됨.
     * 보통 running mean, running variance 라고 불림.
 * $\hat{\textbf{v}}$ : inference에서 사용되게 될 mean과 standard deviation vector.
 
-일반적으로 training dataset이 크거나 mini-batch의 크기가 작을 경우 `momentum`은 커져야 한다. (보통 적어도 0.9정도를 사용: PyTorch에서 1-0.9=0.1)
+일반적으로 training dataset이 크거나 mini-batch의 크기가 작을 경우 큰 값의 `momentum` 이 선호됨.
+
+* 일반적인 EMA 기준으로 보통 적어도 0.9 정도를 사용
+* PyTorch 에서는 momentum이 반대 개념으로 사용되니 0.1 정도를 기본값으로 사용: $1-0.9=0.1$ 
 
 > 다음을 참고하라 : Github code [Batch-Normalization](https://github.com/shuuki4/Batch-Normalization/blob/master/BatchNormalization.py)
 
