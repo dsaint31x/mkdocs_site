@@ -108,7 +108,7 @@ Gradient Vanishing과 Exploding의 위험을 효과적으로 감소시키는 기
 * ^^learning ratio를 크게 해도 Training이 잘 이루어지게 해 줌^^.
     * `BN` 등장 전에는 learning ratio를 지나치게 크게 할 경우,
     * gradient vanishing 또는 expanding이 심해지는 등의 문제로 학습이 제대로 되기 힘들었음.
-* 부가적으로 Regularization의 효과를 가짐 
+* 부가적으로 [Regularization의 효과](https://dsaint31.tistory.com/848)를 가짐 
     * 단, ***mini-batch size를 크게 해주면 BN에 의한 regularization 효과가 감소*** 함 (단점) 
     * 적절한 mini-batch size를 선택 시 `BN`을 통해서 gradient vanishing 방지와 regularization을 동시에 달성할 수 있음. 
     * 실제로 `BN`은 학습속도를 저하시키는 drop-out을 ANN에서 제거할 수 있게 해주는 모듈로 알려짐: 즉, ***overfitting 방지 효과*** 도 가짐.
