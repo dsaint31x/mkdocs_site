@@ -23,7 +23,7 @@ ANN이 1990년대 부활의 싹을 틔우고 있을 때에 가장 큰 문제점�
 
 ---
 
-## Gradient Vanishing and Exploding Problems
+## Vanishing and Exploding Gradient Problems
 
 Back-propagation의 경우, 
 
@@ -35,12 +35,12 @@ ANN이 깊을 경우
 * 해당 gradient가 output에서 작은 값으로 시작되면 중간에 너무 작은 값이 되어 input에 가까울 layers의 weights를 제대로 update하지 못하고 소실되는 문제가 발생.
 * 반대로 너무 큰 값으로 시작할 경우엔 지나치게 layer의 wights가 커져서 수의 범위를 넘어서는 문제가 발생함.
 
-전자를 Gradient Vanishing Problem이라고 부르며,  
-반대로 Gradient가 지나치게 증폭되어 model이 diverge하는 경우를 Gradient Exploding Problem 이라고 부름.
+전자를 Vanishing Gradient Problem이라고 부르며,  
+반대로 Gradient가 지나치게 증폭되어 model이 diverge하는 경우를 Exploding Gradient Problem 이라고 부름.
 
 ![](./img/gradient_vanishing.png)
 
-ANN의 경우 깊어져야 task에 대한 representative feature를 얻어낼 수 있는데, Gradient vanishing은 이를 막는 가장 큰 문제점이었다.
+ANN의 경우 깊어져야 task에 대한 representative feature를 얻어낼 수 있는데, DNN에서의 Vanishing Gradient 은 이를 막는 가장 큰 문제점이었다.
 
 ---
 
