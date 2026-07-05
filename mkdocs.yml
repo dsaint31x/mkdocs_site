@@ -457,14 +457,16 @@ nav:
           - "ML/ch08/back_propagation.md"
           - "ML/ch08/reverse_mode_autodiff.md"
           - "ML/ch08/datastructure_graph.md"
-        - "ML/ch09/sol_gv_ge.md"
-        - "weight init. & activation func.":
-          - "ML/ch09/weight_initializations.md"
-          - "ML/ch09/act_relu.md"
-          - "ML/ch09/act_elu.md"
-          - "ML/ch09/act_silu.md"
-        - "ML/ch09/batch_normalization.md"
-        - "ML/ch09/dl_dropout.md"
+        - "How to stable gradient":
+          - ML/ch09/sol_gv_ge.md"
+          - "weight init. & activation func.":
+            - "ML/ch09/weight_initializations.md"
+            - "ML/ch09/act_relu.md"
+            - "ML/ch09/act_elu.md"
+            - "ML/ch09/act_silu.md"
+          - "ML/ch09/batch_normalization.md"
+          - "ML/ch09/dl_dropout.md"
+          - "ML/ch09/dl_grad_clipping.md"
         - 'Transfer Learning': "ML/ch11_training/knowledge_transfer.md"
       - 'PyTorch Basics':
         - "ML/ch10/dl_linear_reg_torch.md"
