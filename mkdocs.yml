@@ -457,7 +457,7 @@ nav:
           - "ML/ch08/back_propagation.md"
           - "ML/ch08/reverse_mode_autodiff.md"
           - "ML/ch08/datastructure_graph.md"
-        - "How to stable gradient":
+        - "How to stabilize gradient":
           - "ML/ch09/sol_gv_ge.md"
           - "weight init. & activation func.":
             - "ML/ch09/weight_initializations.md"
