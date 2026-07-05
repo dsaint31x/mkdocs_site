@@ -204,20 +204,24 @@ Training 단계와 큰 차이는 없으나 mini-batch에서 구해지는 $\mu_B$
 
 Exponential moving average를 사용할 경우, `momentum`이라는 hyper-parameter가 추가된다.
 
-* 주의할 점은 아래 식은 TF(or Keras)에서의 식이고, ***PyTorch의 경우 momentum이 running mean과 running std에 곱해짐***.
-* 원래 momentum이 곱해지는 항이 "[일반적인 EMA](https://dsaint31.tistory.com/860)"와 달리 **PyTorch의 경우가 특이함**.
+다음의 2개의 식을 살펴볼 것.
+
+* 주의할 점은 첫번째 식은 TF(or Keras)에서의 식으로 일반적인 EMA의 식이고,  
+  ***PyTorch의 경우 momentum이 running mean과 running std에 곱해지는***
+  두번째 식임.
+* 원래 momentum이 곱해지는 항이 "[일반적인 EMA](https://dsaint31.tistory.com/860)"와 달리 **PyTorch의 momentum 은 차이가 있음**.
     * 다음과 같이 이전 추정치에 곱해지는 coefficient를  moment라고 지칭하는게 일반적이 EMA임. 
 $$\hat{\textbf{v}} \leftarrow \hat{\textbf{v}} \times \text{momentum} + \textbf{v} \times (1-\text{momentum})$$
 
 * 하지만, PyTorch에서는 running vactor 에 곱해지는 coefficient를 moment 로 지칭하는 차이기 있음:
-* $$\hat{\textbf{v}} \leftarrow \textbf{v} \times \text{momentum} + \hat{\textbf{v}} \times (1-\text{momentum})$$
+$$\hat{\textbf{v}} \leftarrow \textbf{v} \times \text{momentum} + \hat{\textbf{v}} \times (1-\text{momentum})$$
 
 * $\textbf{v}$ : current mini-batch로부터 구해진 mean (=running mean) vector 또는 variance (=running variance) vector.
     * feature별로 구해진다는 점을 잊지 말 것: 결국 vector가 됨.
     * 보통 running mean, running variance 라고 불림.
 * $\hat{\textbf{v}}$ : inference에서 사용되게 될 mean과 standard deviation vector.
 
-일반적으로 training dataset이 크거나 mini-batch의 크기가 작을 경우 큰 값의 `momentum` 이 선호됨.
+일반적으로 training dataset이 크거나 mini-batch의 크기가 작을수록 보다 큰 값의 `momentum` (일반 EMA기준)이 선호됨.
 
 * 일반적인 EMA 기준으로 보통 적어도 0.9 정도를 사용
 * PyTorch 에서는 momentum이 반대 개념으로 사용되니 0.1 정도를 기본값으로 사용: $1-0.9=0.1$ 
