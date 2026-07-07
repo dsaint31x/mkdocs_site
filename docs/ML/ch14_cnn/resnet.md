@@ -143,8 +143,8 @@ ResNet-152:
 
 기존 모델이 hypothesis $\mathcal{H}(\mathbf{x})$를 직접 학습하는 것과 달리, ResNet은 hypothesis와 input $\mathbf{x}$의 차이인 residual function을 학습함.
 
-* 기존 plain network의 어떤 block이 입력 $\mathbf{x}\)를 받아 원하는 mapping $\mathcal{H}(\mathbf{x})$를 직접 학습한다고 생각할 수 있음.
-* ResNet은 이 mapping을 직접 학습하는 대신, residual function을 학습하도록 문제를 바꿈.
+* 기존 plain network의 어떤 block이 입력 $\mathbf{x}$를 받아 원하는 mapping $\mathcal{H}(\mathbf{x})$를 직접 학습한다고 생각할 수 있음.
+* ResNet은 이 mapping을 직접 학습하는 대신, residual function $\mathcal{F}(\mathbf{x})$ 을 학습하도록 문제를 바꿈.
 
 $$
 \mathcal{F}(\mathbf{x}) = \mathcal{H}(\mathbf{x}) - \mathbf{x}
