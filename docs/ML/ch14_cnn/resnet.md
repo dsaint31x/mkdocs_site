@@ -35,10 +35,17 @@ ResNet은 `skip connection` (= `short connection`)을 도입하여 매우 깊은
 ![](./img/resnet.png)
 
 * 각 convolutional layers 의 activation function은 `ReLU` 임.
-* 파선으로 그려진 skip connection 의 경우, 논문에서 zero-padding shortcuts와 projection shortcuts 의 두가지로 구현하여 비교함.
-* projection shortcuts가 좀더 우수한 결과를 보임.
-* channel이 2배 늘어나는 경우에는 feature map의 width와 height가 1/2 로 줄어듬 (pooling을 사용하지 않고, stride=2로 사용)
-* 일반적으로 같은 channel 수의 `RU`가 연결된 경우에는 stride=1이지만, 달라지는 경우 stride=2를 사용함. 
+* 파선(dotted shortcut)으로 그려진 skip connection 은, feature map의 크기나 channel 수가 바뀌어 $\textbf{x}$와 $\mathcal{F}(\textbf{x})$의 차원이 맞지 않아서 처리가 필요한 경우로 논문에서 zero-padding shortcut 과 projection shortcut 의 두 가지로 구현하여 비교함.
+    * zero-padding shortcut (논문에서 Option A) 는 shortcut은 identity mapping을 유지하되, channel 수가 늘어나는 부분은 0으로 padding함: 추가 parameter 없음.
+    * Projection shortcut (Option B) 은 1×1 convolution을 사용하여 shortcut branch의 차원을 맞춤: 1x1 convolution을 통해 projection을 시킨다고 보면 됨.
+    * projection shortcuts가 좀 더 우수한 결과를 보임.
+    * 참고로, 현재 backbone으로 제공되는 대부분의 ResNet-18/34 (basic block), ResNet-50/101/152 (bottleneck block) 들의 ckpt는 dotted projection shortcut을 사용함.
+* channel이 2배 늘어나는 경우에는 feature map의 width와 height가 1/2 로 줄어듬 (이 경우, pooling을 사용하지 않고 `stride=2`로 사용)
+* 일반적으로 같은 channel 수의 `RU`가 연결된 경우에는 `stride=1`이지만, 달라지는 경우 `stride=2`를 사용함 (즉 spatial size에서 높이와 넓이가 1/2로 줄어들고 대신 channel은 2배 증가함.
+    * 예를 들어
+    * `conv2_x` 에서  `conv3_x` 인 경우
+    * spatial size는 $56 \times 56$ 에서 $28 \times 28$ 로 줄고
+    * channel은 $64$에서 $128$로 늘어남.  
 
 ResNet은 convolutional layer 와 fully-connected layer 만을 count(즉, trainable layer만 count)하여,  
 18개의 layers를 가지는 ResNet-18부터 152개의 layers를 가지는 ResNet-152까지  
