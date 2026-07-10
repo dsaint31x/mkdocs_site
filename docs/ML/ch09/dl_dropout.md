@@ -24,24 +24,34 @@ Dropout은 학습 중 일부 neuron의 출력을 임시로 0으로 만들어 co-
 `Dropout`은 Hinton group이 2012년에 처음 제안하고, Srivastava et al.이 2014년 논문에서 더 체계적으로 정리한 neural network regularization(정규화) 기법임.
 
 * Hinton, G. E., Srivastava, N., Krizhevsky, A., Sutskever, I., & Salakhutdinov, R. (2012). Improving Neural Networks by Preventing Co-adaptation of Feature Detectors.
+    * 최초 제 
+    * 이 연구는 작은 학습 데이터에서 큰 신경망을 학습할 때 hidden unit을 무작위로 생략함으로써 overfitting을 줄일 수 있다고 설명. 
 * Srivastava, N., Hinton, G., Krizhevsky, A., Sutskever, I., & Salakhutdinov, R. (2014). Dropout: A Simple Way to Prevent Neural Networks from Overfitting. Journal of Machine Learning Research.
+    * 대표적인 정식 논문 
+    * Dropout이 unit 사이의 과도한 co-adaptation을 줄이고, 학습 중 많은 수의 서로 다른 얇은 subnetwork를 표본 추출하는 효과가 있다고 설명.
 
-본격적으로 들어가기 전에, 먼저 *왜* 이런 기법이 필요했는지를 짧은 예시로 짐작해볼 수 있음.
+본격적으로 들어가기 전에, 먼저 *왜* 이런 기법이 필요했는지를 살펴보자.
 
-어떤 학생이 시험을 준비할 때, 기출문제의 정답 패턴만 외워서 시험을 본다고 가정해보면, 새로운 문제가 나오면 잘 풀지 못할 가능성이 큼.  
-이렇게 training data(기출문제)에만 맞춰져서 새로운 data에는 잘 통하지 않는 현상을 흔히 **overfitting(과적합)** 이라고 부름.
+> 어떤 학생이 시험을 준비할 때,
+> 기출문제의 정답 패턴만 외워서 시험을 본다고 가정해보면, 새로운 문제가 나오면 잘 풀지 못할 가능성이 큼.  
+> 이렇게 training data(기출문제)에만 맞춰져서 새로운 data에는 잘 통하지 않는 현상을 흔히 **overfitting(과적합)** 이라고 부름.
+>
+> 참고: [overfitting (과적합)](https://dsaint31.tistory.com/951)
 
 Neural network에서도 overfitting이 일어나는데, 
-2012년 논문 *Improving Neural Networks by Preventing Co-adaptation of Feature Detectors* 는 그 구체적인 원인 중 하나로 **co-adaptation** 이라는 현상을 지목함.  
-이 논문이 말하는 co-adaptation은 다음과 같이 정리됨.
+2012년 논문 *Improving Neural Networks by Preventing Co-adaptation of Feature Detectors* 는  
+그 구체적인 원인 중 하나로 **co-adaptation** 이라는 현상을 지목함.  
 
-- 여러 neuron(혹은 feature detector)들이 서로에게 지나치게 의존하는 현상
+이 논문이 말하는 **co-adaptation** 은 다음과 같이 정리됨.
+
+- 여러 neuron(혹은 feature detector, unit)들이 서로에게 지나치게 의존하는 현상
 - 어떤 neuron이 혼자서도 의미 있는 feature를 학습하는 게 아니라, 항상 다른 특정 neuron들과 “팀”을 이뤄야만 제 역할을 하는 상황
 - 이런 neuron 조합은 training data의 세부적인 pattern에만 맞춰진(과적합된) 상태가 되기 쉽고, 보지 않은 test data에는 잘 작동하지 않을 위험이 큼
 
 이를 정리하면, Dropout은 다음과 같은 질문에서 출발한 기법이라고 볼 수 있음.
 
-> Neural network가 특정 neuron 조합에만 의존하지 않고, 더 일반적으로 통하는 feature를 학습하게 만들 수 없을까?
+> Neural network가 특정 neuron 조합에만 의존하지 않고,
+> 더 일반적으로 통하는 feature를 학습하게 만들 수 없을까?
 
 Dropout이 이 문제를 해결하는 방법은 의외로 단순함.
 
@@ -69,7 +79,8 @@ Dropout이 이 문제를 해결하는 방법은 의외로 단순함.
 | 작은 parameter norm | weight decay, $\ell_2$ regularization 등으로 weight 크기를 줄이는 경우 |
 | smooth function | 입력이 조금 바뀌어도 출력이 크게 흔들리지 않는 함수 |
 
-Dropout은 이 세 가지 중 특히 **robust하고 smooth한 function을 학습하게 만드는 방향** 과 깊게 관련되어 있음. 이 연결은 1절의 co-adaptation 문제와도 이어짐.
+Dropout은 이 세 가지 중 특히 **robust하고 smooth한 function을 학습하게 만드는 방향** 과 깊게 관련되어 있음.  
+이 연결은 1절의 co-adaptation 문제와도 이어짐.
 
 - 특정 neuron 조합에만 의존하는 model은 그 조합이 조금만 흔들려도(예: 일부 neuron이 약간 다르게 반응해도) 출력이 크게 바뀔 수 있어서, 입력 변화에 민감한 model이 되기 쉬움
 - 반대로 여러 neuron에 정보가 골고루 분산되어 있다면, 일부가 흔들려도 전체 출력은 비교적 안정적으로 유지될 가능성이 높음
@@ -95,24 +106,27 @@ $$
 \epsilon \sim \mathcal{N}(0, \sigma^2), \qquad x' = x + \epsilon
 $$
 
-noise의 평균이 0이기 때문에, 다음 성질이 성립함:
+**noise의 평균이 0** 이기 때문에, 다음 성질이 성립함:
 $$
 E[x'] = x
 $$
 
-- 즉, 매 학습 step마다 입력에 약간의 noise가 더해지지만, 평균적으로는 원래 입력 $x$를 유지함
-- Bishop은 1995년 *Training with Input Noise is Equivalent to Tikhonov Regularization*에서, 이렇게 input noise를 추가해 학습하는 것이 Tikhonov regularization(Tikhonov, 1943)과 수학적으로 연결됨을 보임
-- 즉 input noise는 model이 입력의 작은 변화에 덜 민감해지도록 만드는, 일종의 regularization으로 해석할 수 있음
+- 즉, 각 입력 sample이 model에 제시될 때마다 새로운 noise가 추가되지만, zero-mean noise 인 경우 사평균적으로는 원래 입력 $x$를 유지함
+- Bishop은 1995년 *Training with Noise is Equivalent to Tikhonov Regularization* 에서,  
+  이렇게 ***input noise를 추가해 학습*** 하는 것이 [Tikhonov regularization(Tikhonov, 1963)](https://dsaint31.tistory.com/947#%EC%97%AD%EC%82%AC%EC%A0%81%20%EB%B0%B0%EA%B2%BD-1-1)과 수학적으로 동등함을 보임: Ridge가 바로 Tikhonov Regularization의 한 종류임.
+- 즉 ***input noise는 model이 입력의 작은 변화에 지나치게 민감해지지 않도록 만드는, 일종의 regularization으로 해석*** 할 수 있음
 
 다만 deep neural network에서는 input layer에만 noise를 넣는 것으로는 충분하지 않을 수 있음.
 
-- 그 이유는, network를 여러 layer 지나면서 representation이 계속 바뀌고, co-adaptation 역시 input이 아니라 중간의 hidden layer neuron들 사이에서도 발생하기 때문
+- 그 이유는, network를 여러 layer 지나면서 representation이 계속 바뀌고,  
+- co-adaptation 역시 input이 아니라 중간의 hidden layer neuron들 사이에서도 발생하기 때문
 
 이로부터 다음과 같은 자연스러운 확장 아이디어가 나옴.
 
-> Input에만 noise를 넣을 게 아니라, network 내부의 activation(즉 activation function을 통과한 후의 출력값)에도 noise를 넣어보면 어떨까?
+> Input에만 noise를 넣을 게 아니라,  
+> **network 내부의 activation(즉 activation function을 통과한 후의 출력값)에도 noise를 추가** 하면 어떨까?
 
-이 아이디어가 곧 Dropout의 핵심으로 이어짐.
+바로 이 아이디어가 곧 Dropout 으로 이어짐.
 
 ---
 
@@ -120,7 +134,8 @@ $$
 
 ## 4. Dropout의 핵심 아이디어: Activation에 Noise 주기
 
-Dropout은 3절의 input noise 아이디어를, input이 아닌 hidden layer의 activation(activation function을 통과한 후의 출력값)으로 확장한 방법이라고 이해하면 됨. 이하에서는 표기를 간단히 하기 위해 이 출력값을 그냥 “activation”이라고 부름.
+Dropout은 3절의 input noise 아이디어를, input이 아닌 hidden layer의 activation(activation function을 통과한 후의 출력값)으로 확장한 방법이라고 이해하면 됨.  
+이하에서는 표기를 간단히 하기 위해 이 출력값을 그냥 “activation”이라고 부름.
 
 - 즉, 입력 $x$에만 noise를 주는 게 아니라, 중간 layer의 activation $h$ 자체를 random variable로 바꿔버림
 
@@ -144,7 +159,9 @@ $$
 
 - 즉 Dropout은 activation에 noise를 주입하면서도, 평균적으로는 원래 activation의 크기를 그대로 유지하도록 설계된 기법임
 - 실제로 PyTorch의 `nn.Dropout`도 이 방식을 그대로 사용함
-- train mode에서는 일부 activation을 0으로 만들고 나머지를 $\dfrac{1}{1-p}$만큼 키우며, eval mode에서는 dropout을 적용하지 않고 입력을 그대로 통과시킴
+- train mode에서는 일부 activation을 0으로 만들고 나머지를 $\dfrac{1}{1-p}$만큼 키우며, eval mode에서는 dropout을 적용하지 않고 입력을 그대로 통과(=identity function)시킴
+
+> 현재 대부분의 딥러닝 프레임워크는 학습 중 유지된 값을 $1-p$ 로 나누는 ***inverted dropout*** 을 사용
 
 ---
 
@@ -353,7 +370,7 @@ print(logits_eval.shape)   # torch.Size([32, 3])
 Dropout 위치와 비율은 validation 성능을 보면서 조절함.
 
 * 모든 hidden layer에 반드시 넣을 필요는 없음
-* 작은 model에 Dropout을 너무 많이 넣으면 underfitting이 발생할 수 있음
+* ***작은 model에 Dropout을 너무 많이 넣으면 underfitting이 발생할 수 있음***
 * overfitting이 강하게 나타나는 상위 hidden layer나 classifier head에 우선 적용하는 경우가 많음
 
 ---
@@ -364,12 +381,14 @@ Dropout 위치와 비율은 validation 성능을 보면서 조절함.
 
 MLP에서는 개별 activation을 제거하는 `nn.Dropout`을 많이 사용함.
 
+* 이는 입력된 tensor의 각 원소를 독립적으로 제거(=0으로 만듦)함.
+
 하지만 CNN에서는 feature map 내부의 인접 pixel들이 서로 강하게 관련되어 있음.
 
 * 개별 위치의 activation만 무작위로 제거하면 효과가 약할 수 있음
 * image feature map에서는 주변 pixel들이 비슷한 정보를 담는 경우가 많음
 * 따라서 하나의 pixel activation을 제거해도 주변 값으로 쉽게 보완될 수 있음
-* 이 경우 channel 단위로 feature map을 제거하는 `nn.Dropout2d`가 더 적절할 수 있음
+* 이 경우 **channel 단위로 feature map을 제거** 하는 `nn.Dropout2d`가 더 적절할 수 있음
 
 ```python
 class DropoutCNN(nn.Module):
@@ -445,7 +464,7 @@ print(logits.shape)  # torch.Size([8, 10])
 
 앞의 예제들은 주로 `ReLU`를 사용하는 일반적인 network를 기준으로 했음.
 
-하지만 activation function으로 `SELU`를 사용하는 경우에는 일반 `Dropout` 대신 `AlphaDropout`을 사용함.
+하지만 **activation function으로 `SELU`를 사용하는 경우에는 일반 `Dropout` 대신 `AlphaDropout`을 사용** 하는것이 권장됨.
 
 * `SELU`는 activation의 평균과 분산이 layer를 지나면서 비교적 안정적으로 유지되도록 설계된 activation임
 * 일반 `Dropout`은 activation을 단순히 `0`으로 만듦
