@@ -15,7 +15,14 @@ tags:
 
 # Dropout and MC Dropout
 
-Dropout은 학습 중 일부 neuron의 출력을 임시로 0으로 만들어 co-adaptation을 줄이고 generalization을 높이는 neural network regularization(정규화) 기법임.
+Dropout은 학습 중 일부 **neuron의 출력(=activation)** 을 임시로 0으로 만들어 co-adaptation을 줄이고 generalization을 높이는 neural network regularization(정규화) 기법임.
+
+비슷하지만 다음의 기술들과 구분할 것:
+
+* 참고로, 2013년 Li Wan 등이 제안한 **DropConnect** 는 학습 중 weight connection을 랜덤하게 제거하는 기법임.
+* 최근 많이 사용되는 **DropPath** 는 residual branch 전체를 무작위로 제거하여 stochastic depth (Gao Huang et al., 2016)를 구현하는 기법임.
+
+> 초기 EfficientNet 구현 일부에서는 stochastic depth와 유사한 기능을 drop_connect라고 부르기도 할 정도로 헷갈려하는 실무자들도 있으니 주의.
 
 ![](./img/dl_dropout.png){style="display: block; margni: 0 auto; width: 600px"}
 
