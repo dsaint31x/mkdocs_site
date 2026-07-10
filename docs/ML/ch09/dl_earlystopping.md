@@ -33,9 +33,9 @@ math: true
 
 수식으로 나타내면 다음과 같음.  
 $t$를 epoch, $L_{val}(t)$ 를 validation loss라 할 때,
+
 $$
-L_{val}(t) \;\begin{cases} \text{decreasing} & t < t^{*} \\\\ \text{increasing} & t > t^{*} \end{cases}
-$$
+L_{\mathrm{val}}(t) = \begin{cases} \text{decreasing}, & t < t^{*} \\ \text{increasing}, & t > t^{*} \end{cases}$$
 
 * 여기서 $t^{*}$는 validation loss가 최소가 되는 epoch이며, 이 지점을 넘기면 overfitting이 본격화되는 구간으로 볼 수 있음.
 
