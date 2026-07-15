@@ -1,5 +1,4 @@
 ---
-
 title: "DenseNet의 구조와 특징"
 description: "DenseNet의 dense connectivity, Dense Layer, growth rate, bottleneck, transition layer, compression 및 DenseNet-121의 구조와 특징을 정리한 문서"
 
@@ -24,7 +23,6 @@ tags:
 toc: true
 math: true
 draft: false
-
 ---
 
 # DenseNet
