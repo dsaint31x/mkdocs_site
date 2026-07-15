@@ -39,9 +39,15 @@ DenseNet의 핵심 목적은 다음과 같음.
 * 적은 parameter를 이용한 높은 성능 달성
 * 저수준 feature와 고수준 feature의 직접적인 연결
 
+<img width="333" height="242" alt="image" src="https://github.com/user-attachments/assets/7d894bfd-3c00-4b6c-abf8-33108f3fd75e" />
+
+
 ---
 
 ## 2. Dense Connectivity
+
+<img width="397" height="200" alt="image" src="https://github.com/user-attachments/assets/ff80e634-0bfe-4d0b-bcb5-7660bd8e97ca" />
+
 
 일반적인 CNN에서는 $l$번째 layer가 바로 이전 layer의 출력만 입력으로 사용함.
 
