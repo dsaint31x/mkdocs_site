@@ -484,6 +484,7 @@ nav:
         - "ML/ch14_cnn/alexnet.md"
         - "ML/ch14_cnn/vgg.md"
         - "ML/ch14_cnn/resnet.md"
+        - "ML/ch14_cnn/densenet.md"
       - 'RNN':
         - "ML/ch16_RNN/RNN_intro.md"
         - "ML/ch16_RNN/RNN_memory_cell.md"
