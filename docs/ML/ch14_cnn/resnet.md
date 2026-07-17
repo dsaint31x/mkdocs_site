@@ -19,6 +19,10 @@ math: true
 
 ref.: original paper, [Deep Residual Learning for Image Recognition](https://arxiv.org/abs/1512.03385)
 
+현재 많이 사용되는 구현 상 변화는 다음 논문을 참고하는게 더 나음:
+
+* ref.: [Bag of Tricks for Image Classification with Convolutional Neural Networks (He et al., CVPR 2019)](https://openaccess.thecvf.com/content_CVPR_2019/papers/He_Bag_of_Tricks_for_Image_Classification_with_Convolutional_Neural_Networks_CVPR_2019_paper.pdf)
+
 ---
 
 ILSVRC 2015 우승 모델이며, deep learning에서 “deep”의 의미를 크게 바꾼 모델임.
@@ -240,4 +244,4 @@ model = wide_resnet101_2(weights=Wide_ResNet101_2_Weights.DEFAULT)
 ## 같이 보면 좋은 자료들
 
 * [ResNet Explained!](https://youtu.be/sAzL4XMke80?si=EjwNyuKMUlgAuB97)
-
+* [https://bo-10000.tistory.com/133](https://bo-10000.tistory.com/133)
