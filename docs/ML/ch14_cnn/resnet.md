@@ -84,12 +84,12 @@ ResNet의 앞부분에는 본격적인 residual unit이 시작되기 전에 `ste
 * 이 $56 \times 56$, 64-channel feature map에서 `RU (64ch)` stage, 즉 논문 표기의 `conv2_x`가 시작됨.
 
 ![](./img/resnet.png)
+* ResNet-34 와 VGG19를 비교!
+* stem과 block, classifier 별로 다른 색을 사용함.
 
 Residual stage는 많은 수의 convolutional layer가 `residual unit (RU)` 단위로 반복되어 구성됨.
 
-Residual stage는 많은 수의 convolutional layer가 `residual unit (RU)` 단위로 반복되어 구성됨.
-
-* ResNet-18/34에서 사용하는 기본 `RU`는 보통 2개의 convolutional layers로 구성됨.
+* ResNet-18/34에서 사용하는 `Basic RU`는 보통 2개의 convolutional layers로 구성됨.
     * 첫 번째 convolutional layer는 BN과 ReLU로 이어짐.
     * 이후 두 번째 convolutional layer를 거치고, 그 결과는 BN을 통과함.
     * 이 결과는 shortcut connection으로 전달된 input과 addition을 수행하고, 해당 결과는 다시 ReLU를 거침.
@@ -104,9 +104,9 @@ ResNet의 기본 activation function은 `ReLU`이며, convolutional layer 뒤에
 파선(dotted shortcut)으로 그려진 skip connection은 feature map의 spatial size나 channel 수가 바뀌어 $\mathbf{x}$와 $\mathcal{h}(\mathbf{x})$의 차원이 맞지 않는 경우를 의미함.
 
 * 논문에서는 이를 zero-padding shortcut과 projection shortcut의 두 가지 방식으로 구현하여 비교함.
-* zero-padding shortcut, 즉 Option A는 shortcut branch에서 identity mapping을 유지하되, channel 수가 늘어나는 부분을 0으로 padding함. 추가 parameter가 없음.
-* projection shortcut, 즉 Option B는 1x1 convolution을 사용하여 shortcut branch의 차원을 맞춤.
-* projection shortcut이 대체로 더 우수한 결과를 보임.
+    * zero-padding shortcut 는 shortcut branch에서 identity mapping을 유지하되, channel 수가 늘어나는 부분을 0으로 padding함. 추가 parameter가 없음.
+    * projection shortcut 는 1x1 convolution을 사용하여 shortcut branch의 차원을 맞춤.
+    * projection shortcut이 대체로 더 우수한 결과를 보임.
 * 현재 `torchvision` 등에서 backbone으로 제공되는 대부분의 ResNet-18/34 basic block, ResNet-50/101/152 bottleneck block 구현은 차원이 바뀌는 지점에서 projection shortcut을 사용함.
 
 stage가 바뀌는 경우에는 pooling 대신 convolution에서 `stride=2`를 사용하여 spatial size를 줄이는 것이 일반적임.
@@ -131,7 +131,7 @@ ResNet-152:
 
 ## Residual Block
 
-다음은 ResNet-18/34에서 사용된 기본 `RU`와, 그보다 더 깊은 ResNet에서 사용된 `Bottleneck RU`의 구성임.
+다음은 ResNet-18/34에서 사용된 `Basci RU`와, 그보다 더 깊은 ResNet에서 사용된 `Bottleneck RU`의 구성임.
 
 ![](./img/residual_unit.png)
 
@@ -147,16 +147,31 @@ ResNet-152:
 
 ![](./img/resnet_idblock_convblock.png)
 
-여러 variation 이 있음:
+* 2개의 conv 를 사용하는 `Basic RU` 임.
+* main branch의 구성이 `Bottleneck RU`에선 앞서 보인 3개의 conv 를 사용.
+
+stem과 연결된 stage1을 제외하고  
+각 stage의 첫번째 RU (앞서 그림에서 파선으로 표시된 shortcut을 가지는)는 
+
+* Downsampling (stride=2를 이용)을 수행하며,
+* 1x1 convolution을 사용하는 shortcut을 사용
+
+이후 Residual block 들 
+
+* stride가 1로 해상도 변화가 없고
+* identity shortcut을 사용함.
+
+ResNet에는 여러 variation 들이 있음:
 
 <img width="1255" height="1142" alt="image" src="https://github.com/user-attachments/assets/0d93e65f-6160-4f84-b994-a28a1e175f90" />
 
-* ResNet-B 는 torchvision 의 resnet 구현물에 도입됨 (timm 의 구현물은 resnet original 임)
+* ResNet-B 는 torchvision 의 resnet 구현물에 도입됨 (`timm` 의 구현물도 마찬가지)
     * Path A의 1x1 conv w/ stride=2가 input feature map의 3/4를 무시하게 되기 때문에,
     * 이를 방지하기 위해 downsampling block에서 path A의 첫 두 conv block의 구조를 변경 
 * ResNet-C는 ResNet-B의 downsampling block 구조를 포함.
     * 그리고 input stem의 7x7 conv를 3x3 conv 3개로 변경
     * 이를 deep stem 이라고도 함.
+    * inception-v2 에서 제안됨.
 * ResNet-D는 ResNet-B의 downsampling block에서 사용한 path A 구조와 ResNet-C의 input stem 구조를 포함.
     * Path B의 1x1 conv를 avgpool + 1x1 conv 구조로 변경
     * 이유는 1x1 conv w/ stride 2 의 information loss 때문임
