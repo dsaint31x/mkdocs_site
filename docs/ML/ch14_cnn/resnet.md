@@ -56,6 +56,12 @@ ResNet은 `skip connection` 또는 `shortcut connection`을 도입하여
 
 전반적인 구조는 다음과 같음.
 
+<img width="1204" height="1198" alt="image" src="https://github.com/user-attachments/assets/0c41c19a-5f69-4bdc-b141-bbcaea3e636d" />
+
+위의 그림에선 입력을 처리하는 stem 이 위에 표시됨
+
+Bullet list로 표현하면 다음과 같음:
+
 * `Stem`
 * `Residual stages`
     * `RU (64ch, conv2_x)`
@@ -136,6 +142,21 @@ ResNet-152:
 다음은 `Bottleneck RU`에서 identity shortcut과 projection shortcut을 보여줌.
 
 ![](./img/resnet_idblock_convblock.png)
+
+여러 variation 이 있음:
+
+<img width="1255" height="1142" alt="image" src="https://github.com/user-attachments/assets/0d93e65f-6160-4f84-b994-a28a1e175f90" />
+
+* ResNet-B 는 torchvision 의 resnet 구현물에 도입됨 (timm 의 구현물은 resnet original 임)
+    * Path A의 1x1 conv w/ stride=2가 input feature map의 3/4를 무시하게 되기 때문에,
+    * 이를 방지하기 위해 downsampling block에서 path A의 첫 두 conv block의 구조를 변경 
+* ResNet-C는 ResNet-B의 downsampling block 구조를 포함.
+    * 그리고 input stem의 7x7 conv를 3x3 conv 3개로 변경
+    * 이를 deep stem 이라고도 함.
+* ResNet-D는 ResNet-B의 downsampling block에서 사용한 path A 구조와 ResNet-C의 input stem 구조를 포함.
+    * Path B의 1x1 conv를 avgpool + 1x1 conv 구조로 변경
+    * 이유는 1x1 conv w/ stride 2 의 information loss 때문임
+* ResNet-D 의 경우 `timm.resnet50d` 와 같이 `d` 가 뒤에 붙는 이름을 가짐.
 
 ---
 
