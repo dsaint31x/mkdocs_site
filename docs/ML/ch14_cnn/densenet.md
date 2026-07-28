@@ -46,7 +46,7 @@ DenseNet의 핵심 목적은 다음과 같음.
 
 ## 2. Dense Connectivity
 
-<img width="397" height="200" alt="image" style="display: block; margin: 0 auto;" src="https://github.com/user-attachments/assets/ff80e634-0bfe-4d0b-bcb5-7660bd8e97ca" />
+<img width="595" height="300" alt="image" style="display: block; margin: 0 auto;" src="https://github.com/user-attachments/assets/ff80e634-0bfe-4d0b-bcb5-7660bd8e97ca" />
 
 
 일반적인 CNN에서는 $l$번째 layer가 바로 이전 layer의 출력만 입력으로 사용함.
@@ -65,7 +65,7 @@ $$
 \right)
 $$
 
-여기서 대괄호 $[\cdot]$는 feature map을 **channel dimension으로 concatenation하는 연산**임.
+여기서 대괄호 $[\cdot]$는 feature map을 **channel dimension으로 concatenation하는 연산** 임.
 
 따라서 DenseNet에서는 다음과 같은 연결 구조가 형성됨.
 
@@ -110,22 +110,13 @@ DenseNet의 연결 방식은 ResNet의 residual connection과 구분됨.
 ResNet은 이전 feature map과 새로운 feature map을 element-wise addition으로 결합함.
 
 $$
-\mathbf{x}_l =
-
-H_l(\mathbf{x}*{l-1})
-+
-\mathbf{x}*{l-1}
+\mathbf{x}_l = H_l(\mathbf{x}*{l-1}) + \mathbf{x}*{l-1}
 $$
 
 반면 DenseNet은 이전 feature map들을 channel dimension으로 concatenation함.
 
 $$
-\mathbf{x}_l =
-
-H_l
-\left(
-[\mathbf{x}_0,\mathbf{x}*1,\ldots,\mathbf{x}*{l-1}]
-\right)
+\mathbf{x}_l = H_l \left( [\mathbf{x}_0,\mathbf{x}*1,\ldots,\mathbf{x}*{l-1}] \right)
 $$
 
 따라서 두 모델의 핵심 차이는 다음과 같음.
@@ -162,7 +153,7 @@ $$
 $$
 
 * convolution을 먼저 수행한 뒤 normalization과 activation을 적용하는 당시 전통적인 구조와 달리,
-* normalization과 activation을 convolution 앞에 배치하는 **pre-activation 구조**임.
+* normalization과 activation을 convolution 앞에 배치하는 **pre-activation 구조** 임.
 
 ### $1\times1$ convolution
 
@@ -170,7 +161,7 @@ DenseNet의 $1\times1$ convolution은 뒤따르는 $3\times3$ convolution의 입
 
 * 여기서 $k$는 growth rate(성장률) 라고 부름.
 * growth rate는 DenseNet에서는 각 Dense Layer가 새롭게 추가하는 feature map의 수를 의미함.
-* DenseNet에서 이러한 bottleneck 구조를 사용하는 모델을 **DenseNet-B**라고 부름.
+* DenseNet에서 이러한 bottleneck 구조를 사용하는 모델을 **DenseNet-B** 라고 부름.
 
 일반적으로 $3\times3$ convolution이 growth rate인 $k$개의 새로운 feature map을 생성할 때, 앞의 $1\times1$ convolution은 $4k$개의 intermediate feature map을 생성함.
 
@@ -186,7 +177,7 @@ $$
 
 ## 5. Growth Rate
 
-DenseNet의 각 layer가 새롭게 생성하여 Dense Block에 추가하는 feature map의 수를 **growth rate**라고 부름.
+DenseNet의 각 layer가 새롭게 생성하여 Dense Block에 추가하는 feature map의 수를 **growth rate** 라고 부름.
 
 Growth rate는 일반적으로 $k$로 표기함.
 
@@ -255,7 +246,7 @@ $$
 
 ## 7. Transition Layer
 
-Dense Block 사이에서는 feature map의 spatial resolution과 channel 수를 조절하기 위해 **Transition Layer**를 사용함.
+Dense Block 사이에서는 feature map의 spatial resolution과 channel 수를 조절하기 위해 **Transition Layer** 를 사용함.
 
 Transition Layer의 일반적인 구성은 다음과 같음.
 
@@ -282,7 +273,7 @@ Transition Layer는 CNN의 pooling layer와 유사한 downsampling 역할을 수
 
 ## 8. Compression
 
-Transition Layer에서 channel 수를 감소시키는 비율을 **compression factor**라고 부름.
+Transition Layer에서 channel 수를 감소시키는 비율을 **compression factor** 라고 부름.
 
 Compression factor는 일반적으로 $\theta$로 표기하며 다음 범위를 가짐.
 
@@ -293,11 +284,7 @@ $$
 Dense Block의 출력 channel 수가 (C)일 경우 Transition Layer의 출력 channel 수는 다음과 같음.
 
 $$
-C_{\text{out}} =
-
-\lfloor
-\theta C
-\rfloor
+C_{\text{out}} = \lfloor \theta C \rfloor
 $$
 
 예를 들어 Dense Block의 출력 channel 수가 512이고 $\theta=0.5$인 경우 다음과 같음.
@@ -306,9 +293,9 @@ $$
 C_{\text{out}} = 512\times0.5 = 256
 $$
 
-Compression을 적용한 DenseNet을 **DenseNet-C**라고 부름.
+Compression을 적용한 DenseNet을 **DenseNet-C** 라고 부름.
 
-Bottleneck과 compression을 모두 적용한 구조를 **DenseNet-BC**라고 부르며, 일반적으로 사용되는 DenseNet-121, DenseNet-169, DenseNet-201이 이에 해당함.
+Bottleneck과 compression을 모두 적용한 구조를 **DenseNet-BC** 라고 부르며, 일반적으로 사용되는 DenseNet-121, DenseNet-169, DenseNet-201이 이에 해당함.
 
 ---
 
@@ -325,9 +312,9 @@ $$
 $$
 \text{Input}
 \rightarrow
-\text{Stem}
+\text{Stem} \\\\
 \rightarrow
-\text{Dense Block 1}
+\text{Dense Block 1} 
 \rightarrow
 \text{Transition 1}
 \rightarrow
@@ -339,7 +326,7 @@ $$
 \rightarrow
 \text{Transition 3}
 \rightarrow
-\text{Dense Block 4}
+\text{Dense Block 4} \\\\
 \rightarrow
 \text{Classifier}
 $$
@@ -368,7 +355,7 @@ DenseNet-121이라는 이름의 121은 convolution layer와 classification layer
 
 대표적인 DenseNet 모델의 Dense Block 구성은 다음과 같음.
 
-| 모델           | Dense Block별 layer 수 | Growth rate |
+| 모델           | Dense Block별<br/>layer 수 | Growth rate |
 | ------------ | -------------------- | ----------: |
 | DenseNet-121 | $[6,12,24,16]$       |          32 |
 | DenseNet-169 | $[6,12,32,32]$       |          32 |
@@ -423,7 +410,7 @@ DenseNet-121은 깊이가 121 layer이지만 약 8 million개의 parameter를 �
 * 저수준 feature와 고수준 feature의 효과적인 결합
 * 작은 객체나 미세한 texture 정보를 보존하는 데 유리한 구조
 * transfer learning과 fine-tuning에 널리 사용되는 backbone
-* (224\times224) 입력을 사용하는 일반적인 image classification pipeline에 적용 가능
+* $224\times224$ 입력을 사용하는 일반적인 image classification pipeline에 적용 가능
 
 ---
 
@@ -449,7 +436,10 @@ DenseNet은 parameter 수가 적지만 반드시 memory 사용량과 연산 시�
 
 DenseNet은 각 layer가 이전 모든 layer의 feature map을 channel dimension으로 concatenation하여 사용하는 CNN 구조임.
 
-Dense Block에서는 spatial resolution을 유지하면서 feature를 누적하고, Transition Layer에서는 $1\times1$ convolution과 average pooling을 이용하여 channel 수와 spatial resolution을 감소시킴.
+Dense Block에서는 
+
+* spatial resolution을 유지하면서 feature를 누적하고,
+* Transition Layer에서는 $1\times1$ convolution과 average pooling을 이용하여 channel 수와 spatial resolution을 감소시킴.
 
 각 layer는 growth rate $k$만큼의 새로운 feature를 생성하며, 기존 feature를 지속적으로 재사용함으로써 적은 parameter로 높은 표현력을 확보함.
 
