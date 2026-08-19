@@ -84,7 +84,7 @@ ANN에서는 이를 edge에 weight을 할당하여 강화될수록 weight가 커
 ![](./img/Rosenblatt.png){width="300" align="center"}
 </figure>
 
-[The PERCEPTRON: A Probabilistic Model for Information Storage and Organization in the Brain , 1958](https://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.335.3398&rep=rep1&type=pdf)
+[The PERCEPTRON: A Probabilistic Model for Information Storage and Organization in the Brain , 1958](https://psycnet.apa.org/doiLanding?doi=10.1037%2Fh0042519)
 
 `Perceptron`은 다음의 `Threshold Logic Unit` (TLU, 또는 Linear Threshold Unit, LTU)라고 불리는 artificial neuron을 기본 구성단위로 삼음.
 
@@ -95,7 +95,7 @@ ANN에서는 이를 edge에 weight을 할당하여 강화될수록 weight가 커
 
 * activation function으로 TLU는 heaviside의 [step function](https://dsaint31.tistory.com/553)이나 [signum function (or sign function)](https://dsaint31.tistory.com/555)을 사용함.
 * 이후 [sigmoid functions](https://dsaint31.tistory.com/430)들(1986년 logistic func.사용을 Rumelhart 등이 제안)이 사용됨 (back-propagation이 도입과 함께).
-* 오늘날의 dense layer (fully connected layer)와 유사하며, 가장 많이 사용되는 activation function은 ReLU 임.
+* 오늘날의 dense layer (fully connected layer)와 매우 유사함: dense layer에서 오늘날 가장 많이 사용되는 activation function은 ReLU 임.
 
 > `TLU`는 linear function에 의해 정의되는 hyper-plane을 decision boundary로 삼는 일종의 binary classifier임.  
 > hyper-plane의 아래에 위치하는 경우엔 `off` 이 되고, 그 외의 경우는 `on` 이 되는 경우를 생각하면 쉽다.
