@@ -28,7 +28,7 @@ Perceptron은 binary classification을 위한 linear classifier 임.
 Target과 prediction은 다음과 같음:
 
 $$
-y,\hat y\in{0,1}
+y,\hat y\in \{0,1\}
 $$
 
 Perceptron의 weighted sum은 다음과 같음:
@@ -42,7 +42,7 @@ Prediction은 step activation을 통해 결정됨:
 $$
 \hat y=
 \begin{cases}
-1, & z\geq0\
+1, & z\geq0 \\
 0, & z<0
 \end{cases}
 $$
@@ -57,7 +57,7 @@ Target별 표현은 다음과 같음:
 
 $$
 L_{\mathrm{Perceptron}} = \begin{cases}
-\max(0,-z), & y=1\
+\max(0,-z), & y=1 \\
 \max(0,z), & y=0
 \end{cases}
 $$
@@ -119,7 +119,7 @@ Perceptron을 수학적으로 표현할 때는 -1/+1 notation이 더 간단함.
 Target은 다음과 같음:
 
 $$
-t\in{-1,+1}
+t\in \{-1,+1\}
 $$
 
 Weighted sum은 동일함:
@@ -203,10 +203,7 @@ $$
 따라서 다음과 같이 대응됨:
 
 $$
-y=0 \rightarrow t=-1
-$$
-
-$$
+y=0 \rightarrow t=-1 \\
 y=1 \rightarrow t=+1
 $$
 
@@ -250,7 +247,7 @@ Binary classification에서는 0/1 label을 그대로 입력할 수 있음.
 이 경우, 실제 input label은 다음과 같음:
 
 $$
-y\in{0,1}
+y\in \{0,1\}
 $$
 
 수식 전개에서는 signed label로 변환하여 표현할 수 있음:
