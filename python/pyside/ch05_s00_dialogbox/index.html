@@ -24,10 +24,10 @@
 </span><span id=__span-0-12><a id=__codelineno-0-12 name=__codelineno-0-12 href=#__codelineno-0-12></a>        <span class=nb>super</span><span class=p>()</span><span class=o>.</span><span class=fm>__init__</span><span class=p>()</span>
 </span><span id=__span-0-13><a id=__codelineno-0-13 name=__codelineno-0-13 href=#__codelineno-0-13></a>
 </span><span id=__span-0-14><a id=__codelineno-0-14 name=__codelineno-0-14 href=#__codelineno-0-14></a>        <span class=c1># Main window의 title 설정.</span>
-</span><span id=__span-0-15><a id=__codelineno-0-15 name=__codelineno-0-15 href=#__codelineno-0-15></a>        <span class=bp>self</span><span class=o>.</span><span class=n>setWindowTitle</span><span class=p>(</span><span class=s2>&quot;QDialog Example&quot;</span><span class=p>)</span>
+</span><span id=__span-0-15><a id=__codelineno-0-15 name=__codelineno-0-15 href=#__codelineno-0-15></a>        <span class=bp>self</span><span class=o>.</span><span class=n>setWindowTitle</span><span class=p>(</span><span class=s2>"QDialog Example"</span><span class=p>)</span>
 </span><span id=__span-0-16><a id=__codelineno-0-16 name=__codelineno-0-16 href=#__codelineno-0-16></a>
 </span><span id=__span-0-17><a id=__codelineno-0-17 name=__codelineno-0-17 href=#__codelineno-0-17></a>        <span class=c1># Dialog를 띄우기 위한 테스트용 button 생성.</span>
-</span><span id=__span-0-18><a id=__codelineno-0-18 name=__codelineno-0-18 href=#__codelineno-0-18></a>        <span class=n>button</span> <span class=o>=</span> <span class=n>QPushButton</span><span class=p>(</span><span class=s2>&quot;Press me for a dialog!&quot;</span><span class=p>,</span> <span class=bp>self</span><span class=p>)</span>
+</span><span id=__span-0-18><a id=__codelineno-0-18 name=__codelineno-0-18 href=#__codelineno-0-18></a>        <span class=n>button</span> <span class=o>=</span> <span class=n>QPushButton</span><span class=p>(</span><span class=s2>"Press me for a dialog!"</span><span class=p>,</span> <span class=bp>self</span><span class=p>)</span>
 </span><span id=__span-0-19><a id=__codelineno-0-19 name=__codelineno-0-19 href=#__codelineno-0-19></a>
 </span><span id=__span-0-20><a id=__codelineno-0-20 name=__codelineno-0-20 href=#__codelineno-0-20></a>        <span class=c1># button이 click되면 button_clicked method가 호출되도록 연결.</span>
 </span><span id=__span-0-21><a id=__codelineno-0-21 name=__codelineno-0-21 href=#__codelineno-0-21></a>        <span class=n>button</span><span class=o>.</span><span class=n>clicked</span><span class=o>.</span><span class=n>connect</span><span class=p>(</span><span class=bp>self</span><span class=o>.</span><span class=n>button_clicked</span><span class=p>)</span>
@@ -42,14 +42,14 @@
 </span><span id=__span-0-30><a id=__codelineno-0-30 name=__codelineno-0-30 href=#__codelineno-0-30></a>        <span class=c1># Dialog 관련 기능 테스트를 위한 method.</span>
 </span><span id=__span-0-31><a id=__codelineno-0-31 name=__codelineno-0-31 href=#__codelineno-0-31></a>        <span class=c1># checked는 QPushButton이 checkable일 때 현재 선택 상태를 나타냄.</span>
 </span><span id=__span-0-32><a id=__codelineno-0-32 name=__codelineno-0-32 href=#__codelineno-0-32></a>        <span class=c1># 일반 QPushButton에서는 보통 False가 전달됨.</span>
-</span><span id=__span-0-33><a id=__codelineno-0-33 name=__codelineno-0-33 href=#__codelineno-0-33></a>        <span class=nb>print</span><span class=p>(</span><span class=s2>&quot;click&quot;</span><span class=p>,</span> <span class=n>checked</span><span class=p>)</span>
+</span><span id=__span-0-33><a id=__codelineno-0-33 name=__codelineno-0-33 href=#__codelineno-0-33></a>        <span class=nb>print</span><span class=p>(</span><span class=s2>"click"</span><span class=p>,</span> <span class=n>checked</span><span class=p>)</span>
 </span><span id=__span-0-34><a id=__codelineno-0-34 name=__codelineno-0-34 href=#__codelineno-0-34></a>
 </span><span id=__span-0-35><a id=__codelineno-0-35 name=__codelineno-0-35 href=#__codelineno-0-35></a>        <span class=c1># ----------------------</span>
 </span><span id=__span-0-36><a id=__codelineno-0-36 name=__codelineno-0-36 href=#__codelineno-0-36></a>        <span class=c1># 이후 예제에서 이 위치에 </span>
 </span><span id=__span-0-37><a id=__codelineno-0-37 name=__codelineno-0-37 href=#__codelineno-0-37></a>        <span class=c1># dialog 관련 코드가 작성될 예정임.</span>
 </span><span id=__span-0-38><a id=__codelineno-0-38 name=__codelineno-0-38 href=#__codelineno-0-38></a>
 </span><span id=__span-0-39><a id=__codelineno-0-39 name=__codelineno-0-39 href=#__codelineno-0-39></a>
-</span><span id=__span-0-40><a id=__codelineno-0-40 name=__codelineno-0-40 href=#__codelineno-0-40></a><span class=k>if</span> <span class=vm>__name__</span> <span class=o>==</span> <span class=s2>&quot;__main__&quot;</span><span class=p>:</span>
+</span><span id=__span-0-40><a id=__codelineno-0-40 name=__codelineno-0-40 href=#__codelineno-0-40></a><span class=k>if</span> <span class=vm>__name__</span> <span class=o>==</span> <span class=s2>"__main__"</span><span class=p>:</span>
 </span><span id=__span-0-41><a id=__codelineno-0-41 name=__codelineno-0-41 href=#__codelineno-0-41></a>    <span class=c1># Qt application 객체 생성.</span>
 </span><span id=__span-0-42><a id=__codelineno-0-42 name=__codelineno-0-42 href=#__codelineno-0-42></a>    <span class=n>app</span> <span class=o>=</span> <span class=n>QApplication</span><span class=p>(</span><span class=n>sys</span><span class=o>.</span><span class=n>argv</span><span class=p>)</span>
 </span><span id=__span-0-43><a id=__codelineno-0-43 name=__codelineno-0-43 href=#__codelineno-0-43></a>
