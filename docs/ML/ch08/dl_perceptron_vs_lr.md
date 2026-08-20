@@ -69,7 +69,7 @@ Prediction은 step activation을 통해 결정됨:
 $$
 \hat y=
 \begin{cases}
-1, & z\geq0\
+1, & z\geq0 \\
 0, & z<0
 \end{cases}
 $$
@@ -77,7 +77,7 @@ $$
 Output은 binary:
 
 $$
-\hat y\in{0,1}
+\hat y\in \{0,1\}
 $$
 
 0/1 notation에서 Perceptron의 weight update는 다음과 같음:
@@ -102,7 +102,7 @@ $$
 Perceptron:
 
 $$
-y-\hat y\in{-1,0,+1}
+y-\hat y\in \{-1,0,+1\}
 $$
 
 * correct classification: no update.
