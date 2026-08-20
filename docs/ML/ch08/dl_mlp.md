@@ -157,11 +157,11 @@ scale 문제의 영향이 줄어들 수 있음.
 * normalization 기법
 * 적절한 optimizer 설정
 
-하지만 scikit-learn의 `MLPRegressor`는
-이런 보정 장치가 따로 내장되어 있지 않은,
+하지만 scikit-learn의 `MLPRegressor`는  
+이런 보정 장치가 따로 내장되어 있지 않은,  
 비교적 단순한 MLP estimator임.
 
-따라서 일반적으로는
+따라서 일반적으로는  
 `StandardScaler`와 함께 사용하는 편이 안정적임.
 
 ---
@@ -339,7 +339,7 @@ activation="relu"
 
 | 값            | 의미                    |
 | ------------ | --------------------- |
-| `"identity"` | (f(x) = x)            |
+| `"identity"` | $f(x) = x$            |
 | `"logistic"` | sigmoid function      |
 | `"tanh"`     | hyperbolic tangent    |
 | `"relu"`     | rectified linear unit |
@@ -390,7 +390,7 @@ loss="squared_error"
 | 값                 | 의미                                                   |
 | ----------------- | ---------------------------------------------------- |
 | `"squared_error"` | 일반적인 regression에서 사용하는 squared error 계열 loss         |
-| `"poisson"`       | (y \ge 0)인 target에 사용할 수 있는 Poisson deviance 계열 loss |
+| `"poisson"`       | $y \ge 0$인 target에 사용할 수 있는 Poisson deviance 계열 loss |
 
 앞서 signature에서 언급했듯
 `loss` parameter 자체는 scikit-learn 1.7부터 사용 가능함.
