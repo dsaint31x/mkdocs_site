@@ -15,7 +15,7 @@ Deep Learning에서는
 
 이때
 
-* 하나의 묶음을 **batch** 라고 하고,
+* 하나의 묶음을 **batch** 라고 하고 (고전적 ML에선 mini-batch),
 * 하나의 batch에 포함된 sample 수를 **batch size** 라고 함.
 
 즉,
@@ -26,10 +26,11 @@ $$
 
 임.
 
-예를 들어 training dataset에 $50{,}000$개의 sample이 있고,  
-batch size가 $32$라면,
+예를 들어 
 
-한 번의 parameter update에는 $32$개의 sample이 사용됨.
+* training dataset에 $50{,}000$개의 sample이 있고,  
+* batch size가 $32$라면,
+* 한 번의 parameter update에는 $32$개의 sample이 사용됨.
 
 ---
 
@@ -44,10 +45,10 @@ Batch size를 이해하려면 다음 용어들을 같이 구분해야 함.
 * **epoch**: training dataset 전체를 한 번 모두 사용하는 과정.
 
 training dataset의 크기가 $N$, batch size가 $B$라면,  
-한 epoch에서 필요한 update 횟수는 대략 다음과 같음.
+한 epoch에서 이루어지는 update 횟수는 대략 다음과 같음.
 
 $$
-\left\lceil \frac{N}{B} \right\rceil
+\text{# of updates per epoch}\left\lceil \frac{N}{B} \right\rceil
 $$
 
 예를 들어 $N = 50{,}000$, $B = 32$이면,
@@ -56,9 +57,9 @@ $$
 \left\lceil \frac{50{,}000}{32} \right\rceil \approx 1563
 $$
 
-즉, 한 epoch 동안 약 $1563$번의 parameter update가 발생함.
+즉, 한 epoch 동안 약 $1,563$번의 parameter updates가 발생함.
 
-반면 batch size가 $1024$라면,
+반면 batch size가 $1,024$라면,
 
 $$
 \left\lceil \frac{50{,}000}{1024} \right\rceil \approx 49
@@ -66,23 +67,20 @@ $$
 
 즉, 한 epoch 동안 약 $49$번만 parameter update가 발생함.
 
-따라서,
+따라서, 다음이 성립함:
 
 $$
-B \uparrow \Rightarrow \frac{N}{B} \downarrow
-$$
-
-즉, 다음이 성립함.
-
-$$
+B \uparrow \Rightarrow \frac{N}{B} \downarrow \\
 \text{batch size 증가} \Rightarrow \text{epoch당 update 횟수 감소}
 $$
 
 ---
 
+---
+
 ## Batch Size가 중요한 이유
 
-초기 neural network 학습에서는 전체 dataset을 사용하여 gradient를 계산하는 방식보다,  
+아주 초기 neural network 학습에서는 전체 dataset을 사용하여 gradient를 계산하는 방식보다,  
 일부 sample만 사용하여 gradient를 추정하는 **Stochastic Gradient Descent (SGD)** 방식이 널리 사용되었음.
 
 이 방식은 gradient가 다소 noisy하더라도,
@@ -91,9 +89,11 @@ $$
 * memory 사용량이 작으며,
 * 큰 dataset에서도 반복적인 parameter update가 가능하다는 장점이 있었음.
 
-이후 실제 Deep Learning에서는 sample 1개만 사용하는 순수 SGD와  
-전체 dataset을 사용하는 full-batch gradient descent 사이의 절충안으로  
-**mini-batch SGD** 가 표준적인 학습 방식으로 자리 잡음.
+이후 
+
+* 실제 Deep Learning에서는 sample 1개만 사용하는 순수 SGD와  
+* 전체 dataset을 사용하는 full-batch gradient descent 사이의 절충안으로  
+* **mini-batch SGD** 가 표준적인 학습 방식으로 자리 잡음.
 
 즉, batch size는
 
@@ -108,6 +108,8 @@ $$
 >
 > 아래에서는 batch size의 의미와 trade-off를 자세히 다루지만,  
 > 실제 학습 환경에서는 GPU memory가 중요한 제약 조건이 되는 경우가 많음.
+
+---
 
 ---
 
@@ -140,6 +142,7 @@ $$
     * gradient가 상대적으로 안정적임.
     * GPU나 분산 학습 환경에서 병렬 처리 효율이 좋음.
     * memory 사용량이 큼.
+    * **초기에 학습이 unstable할 수 있음 (특히 작은 모델의 경우)** : generalization이 잘 안될 수 있어서 주의해야 함.
 
 즉, large batch는 다음의 특징을 가짐.
 
@@ -160,7 +163,7 @@ validation 또는 test 성능이 낮아지는 경우가 보고되었음.
 * large batch가
 * **sharp minimum** 으로 수렴하기 쉽기 때문이라고 설명함.
 
-> **Sharp minimum** 은 주변으로 조금만 이동해도 loss가 빠르게 증가하는 해를 의미함.
+> **Sharp minimum** 은 ***주변으로 조금만 이동해도 loss가 빠르게 증가하는 해를 의미*** 함.
 >
 > * 이런 해는 training data에는 잘 맞을 수 있지만,
 > * unseen data에 대한 generalization이 나쁠 수 있음.
@@ -193,10 +196,12 @@ validation 또는 test 성능이 낮아지는 경우가 보고되었음.
 여기서 **더 오래 train한다** 는 것은
 
 * 단순히 wall-clock time을 늘린다는 뜻이 아니라,
-* 줄어든 update 횟수를 보상할 만큼 학습량을 늘린다는 의미임.
+* ***줄어든 update 횟수를 보상할 만큼 학습량을 늘린다는 의미*** 임.
 
 즉, large batch에서 generalization gap을 줄이려면  
 전체 step 수, epoch 수, learning rate 설정을 함께 고려해야 함.
+
+---
 
 ---
 
@@ -289,6 +294,8 @@ $$
 
 ---
 
+---
+
 ## Warmup
 
 앞서 살펴본 대로,  
@@ -312,10 +319,12 @@ large batch에서 learning rate를 크게 키우는 것은 유용할 수 있음.
 
 ---
 
+---
+
 ## 최신 연구 흐름: Critical Batch Size
 
 최근 large-scale training, 특히 LLM pretraining에서는  
-batch size를 단순히 “클수록 좋은 값”으로 보지 않음.
+batch size를 단순히 "클수록 좋은 값" 으로 보지 않음.
 
 중요한 개념 중 하나가 **Critical Batch Size (CBS)** 임.
 
@@ -365,6 +374,8 @@ Critical batch size는 대략 다음과 같이 이해할 수 있음.
 
 ---
 
+---
+
 ## 정리
 
 Batch size는  
@@ -400,8 +411,10 @@ batch size만 키우면 안 됨.
 * GPU 또는 분산 학습 환경.
 * validation 성능.
 
-결론적으로 batch size는  
-단순히 “한 번에 몇 개의 sample을 넣을 것인가”의 문제가 아님.
+결론적으로 
+
+* batch size는  
+* 단순히 "한 번에 몇 개의 sample을 넣을 것인가" 의 단순한 문제가 아님.
 
 Batch size는
 
@@ -412,6 +425,8 @@ Batch size는
 * data efficiency
 
 를 모두 바꾸는 중요한 hyperparameter임.
+
+---
 
 ---
 
