@@ -18,7 +18,8 @@ Learning rate가
 
 참고자료: [Learning rate 의 중요성](https://dsaint31.tistory.com/633#Learning%20rate%20%EC%9D%98%20%EC%A4%91%EC%9A%94%EC%84%B1-1-7)
 
-또한 하나의 learning rate를 처음부터 끝까지 고정해서 사용하는 것은 일반적으로 최선의 방법이라고 보기 어려움.
+또한 **하나의 learning rate를 처음부터 끝까지 고정해서 사용하는 것** 은  
+일반적으로 최선의 방법이라고 보기 어려움.
 
 일반적으로 다음과 같은 방식이 권장됨:
 
@@ -56,12 +57,18 @@ Learning rate가
 7. 해당 turning point 에서의 learning rate 보다 약간 작은 (1/10 정도로 경험적인 정도를 언급한 문헌 있음) learning rate를 최적의 초기 learning rate로 선택.
 8. 모델을 다시 초기화한 뒤, 선택된 초기 learning rate로 정상적인 학습을 수행함.
 
-> 위에서 다룬 Learning rate range test는
-> ***1cycle scheduling*** 에서 maximum learning rate $\eta_1$을 정할 때 자주 사용됨.
+> 위에서 다룬 Learning rate range test는  
+> ***[1cycle scheduling](#2-1cycle-scheduling)*** 에서
+> maximum learning rate $\eta_1$을 정할 때 자주 사용됨.
+>
+> 7번에서 구해진 것이 maximum learning rate $\eta_1$ 임.
 
-7번에서 구해진 것이 maximum learning rate $\eta_1$ 임.
+rule of thumb로 최소 learning rate는 옵티마이저나 모델 구조와 무관하게  
+거의 항상 $10^{-7} \sim 10^{-6}$ 수준의 고정값으로 여겨짐.
 
-rule of thumb로 최소 learning rate는 옵티마이저나 모델 구조와 무관하게 거의 항상 $10^{-7} \sim 10^{-6}$ 수준의 고정값으로 여김.
+* [A DISCIPLINED APPROACH TO NEURAL NETWORK
+HYPER-PARAMETERS: PART 1 – LEARNING RATE,
+BATCH SIZE, MOMENTUM, AND WEIGHT DECAY, Smith, 2018](https://arxiv.org/pdf/1803.09820)
 
 ---
 
@@ -99,7 +106,7 @@ $$
 
 ### 한계
 
-* 엄밀히 애기하면, Learning rate range test로 얻은 결과는 특정 모델, 데이터셋, optimizer, batch size 설정에 대해서만 유효함.
+* 엄밀히 애기하면, **Learning rate range test로 얻은 결과는 특정 모델, 데이터셋, optimizer, batch size 설정에 대해서만 유효** 함.
     * Batch size가 크게 변경되면 gradient의 분산과 update 특성이 달라지므로 적절한 learning rate 범위도 달라질 수 있음.
     * Optimizer를 SGD에서 Adam으로 변경하거나 momentum 등의 hyperparameter를 변경한 경우에도 결과가 달라질 수 있음.
     * 모델 구조나 심지어 데이터 전처리가 크게 바뀐 경우에도 다시 수행하는 것이 바람직함.
@@ -141,7 +148,7 @@ Constant learning rate는 학습 전체 과정에서 같은 step size를 사용�
 
 ---
 
-### Learning Rate Scheduling의 분류
+## Learning Rate Scheduling의 분류
 
 Learning Rate Scheduling은 training 중 learning rate를 고정하지 않고, 학습 단계에 맞게 조절하는 방법임.
 
@@ -195,7 +202,7 @@ Learning Rate Scheduling은 training 중 learning rate를 고정하지 않고, �
 
 ---
 
-#### Monotonic Decay Scheduling
+### Monotonic Decay Scheduling
 
 Monotonic Decay Scheduling은 training이 진행될수록 learning rate를 전반적으로 감소시키는 방식임.
 
@@ -220,7 +227,7 @@ Monotonic Decay Scheduling은 training이 진행될수록 learning rate를 전�
 | Piecewise Constant Scheduling | 특정 시점마다 계단식으로 감소           |
 | Cosine Annealing              | cosine curve를 따라 부드럽게 감소      |
 
-##### 1. Exponential Decay Scheduling
+#### 1. Exponential Decay Scheduling
 
 Exponential Scheduling은 learning rate를 일정한 비율로 계속 감소시키는 방식임.
 $$
@@ -248,7 +255,7 @@ scheduler = torch.optim.lr_scheduler.ExponentialLR(
 
 주로, `scheduler.step()`은 epoch 마다 한번 호출됨.
 
-##### 2. Power Decay Scheduling
+#### 2. Power Decay Scheduling
 
 Power Scheduling은 iteration number $t$에 따라 learning rate를 다음과 같이 감소시키는 방식임.
 $$
@@ -264,7 +271,7 @@ where,
 
 보통 $c = 1$로 설정하는 경우가 많음.
 
-##### 3. Piecewise Constant Scheduling
+#### 3. Piecewise Constant Scheduling
 
 Piecewise Constant Scheduling은 일정 구간마다 learning rate를 직접 지정하는 방식임.
 
@@ -293,7 +300,7 @@ $$
 
 PyTorch에선 `MultiStepLR` 로 지원함.
 
-##### 4. Cosine Annealing
+#### 4. Cosine Annealing
 
 Cosine Annealing은 cosine function을 이용하여 learning rate를 부드럽게 감소시키는 방식.
 $$
@@ -332,7 +339,7 @@ scheduler = torch.optim.lr_scheduler.CosineAnnealingLR(
 
 ---
 
-#### Adaptive Decay Scheduling
+### Adaptive Decay Scheduling
 
 Adaptive Decay Scheduling은 learning rate의 감소 시점이 미리 고정되어 있지 않은 방식임.
 (Performance Scheduling 이라고도 불림)
@@ -388,7 +395,7 @@ for epoch in range(n_epochs):
 
 ---
 
-#### Warm-up + Decay Scheduling
+### Warm-up + Decay Scheduling
 
 Warm-up + Decay Scheduling은 
 
@@ -401,7 +408,7 @@ $$
 
 * warm-up은 초반 phase 를 가리킴.
 
-##### 1. Learning Rate Warm-up
+#### 1. Learning Rate Warm-up
 
 Warm-up은 training 초반에 learning rate를 바로 크게 사용하지 않고, 작은 값에서 시작해 점진적으로 증가시킴
 
@@ -437,7 +444,7 @@ warmup_scheduler = torch.optim.lr_scheduler.LinearLR(
 
 Warm-up 이후에는 다른 scheduler (주로 monotonic decay scheduling)를 사용하는 방식임.
 
-##### 2. 1cycle Scheduling
+#### 2. 1cycle Scheduling
 
 1cycle Scheduling은 training 동안 하나의 큰 learning rate cycle 로 처리함.
 
@@ -502,7 +509,7 @@ for epoch in range(n_epochs):
 
 ---
 
-#### Cyclical / Restart Scheduling
+### Cyclical / Restart Scheduling
 
 Cyclical / Restart Scheduling은 
 
@@ -525,7 +532,7 @@ Cyclical / Restart Scheduling은
 
 ---
 
-##### 1. Cyclical Learning Rates
+#### 1. Cyclical Learning Rates
 
 Cyclical Learning Rates는 
 
@@ -567,7 +574,7 @@ scheduler = torch.optim.lr_scheduler.CyclicLR(
 
 > `OneCycleLR`이나 `CyclicLR`은 batch 단위로 `scheduler.step()`이 이루어짐
 
-##### 2. Cosine Annealing with Warm Restarts
+#### 2. Cosine Annealing with Warm Restarts
 
 Cosine Annealing with Warm Restarts는 
 
@@ -609,7 +616,7 @@ scheduler = torch.optim.lr_scheduler.CosineAnnealingWarmRestarts(
 
 ---
 
-### PyTorch에서 Scheduler를 사용할 때의 주의점
+## PyTorch에서 Scheduler를 사용할 때의 주의점
 
 PyTorch에서 learning rate scheduler를 사용할 때는 `scheduler.step()`을 언제 호출해야 하는지가 중요함.
 
