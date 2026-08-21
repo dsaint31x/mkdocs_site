@@ -54,7 +54,7 @@ Learning rate가
 4. 각 iteration 에서의 loss를 기록함.
 5. loss (y축)를 learning rate(x축)에 대한 함수로 시각화함.
 6. loss가 감소하다가 **다시 증가( or 발산) 하기 시작하는 지점 (=Turning point)** 을 찾음.
-7. 해당 turning point 에서의 learning rate 보다 약간 작은 (1/10 정도로 경험적인 정도를 언급한 문헌 있음) learning rate를 최적의 초기 learning rate로 선택.
+7. 해당 turning point 에서의 learning rate 보다 약간 작은 (1/10 or 1/20 정도로 경험적인 정도를 언급한 문헌 있음) learning rate를 최적의 초기 learning rate로 선택.
 8. 모델을 다시 초기화한 뒤, 선택된 초기 learning rate로 정상적인 학습을 수행함.
 
 > 위에서 다룬 Learning rate range test는  
@@ -97,7 +97,7 @@ BATCH SIZE, MOMENTUM, AND WEIGHT DECAY, Smith, 2018](https://arxiv.org/pdf/1803.
     * 예를 들어 $10^{-5}$에서 시작하여 500 iteration 동안 $10$까지 증가시키려면, 매 iteration마다 다음 값을 learning rate에 곱함.
 
 $$
-\left(\frac{10}{10^{-5}}\right)^{1/500}
+\eta_{t+1} = \eta_t \left(\frac{10}{10^{-5}}\right)^{1/500}
 $$
 
 ---
@@ -148,6 +148,8 @@ Constant learning rate는 학습 전체 과정에서 같은 step size를 사용�
 
 ---
 
+---
+
 ## Learning Rate Scheduling의 분류
 
 Learning Rate Scheduling은 training 중 learning rate를 고정하지 않고, 학습 단계에 맞게 조절하는 방법임.
@@ -164,9 +166,9 @@ Learning Rate Scheduling은 training 중 learning rate를 고정하지 않고, �
 | 분류                            | 핵심 기준                                             | 대표 기법                                                    |
 | ----------------------------- | ------------------------------------------------- | -------------------------------------------------------- |
 | Monotonic Decay Scheduling    | training이 진행될수록<br/>learning rate를 전반적으로 감소시킴       | Exponential Decay, Power Decay,<br/>Piecewise Constant,<br/>Cosine Annealing |
-| Adaptive Decay Scheduling<br/>Performance Scheduling  | validation metric 등<br/>학습 결과를 보고 learning rate를 감소시킴 | ReduceLROnPlateau                |
-| Warm-up + Decay Scheduling    | 초반에는 learning rate를 증가시키고,<br/>이후에는 다시 감소시킴           | Warm-up + decay,<br/>1cycle                                  |
-| Cyclical / Restart Scheduling | learning rate 증가와 감소를<br/>여러 번 반복하거나 restart 시켜<br/> plateau나 local optimum 탈출 유도 | Cyclical LR,<br/>Cosine Annealing with Warm Restarts         |
+| Adaptive Decay Scheduling, <br/>Performance Scheduling  | validation metric 등<br/>학습 결과를 보고 learning rate를 감소시킴 | ReduceLROnPlateau                |
+| Warm-up + Decay Scheduling    | 초반에는 <br/>learning rate를 증가시키고,<br/>이후에는 다시 감소시킴           | Warm-up + decay,<br/>1cycle (=single cycle)                                 |
+| Cyclical / Restart Scheduling | learning rate 증가와 감소를<br/>여러 번 반복하거나 restart 시켜<br/> saddle-point plateau를 빠르게 통과하거나 optimization 효율을 높임 | [Cyclical LR](https://arxiv.org/abs/1506.01186?utm_source=chatgpt.com),<br/>Cosine Annealing with Warm Restarts         |
 
 **Monotonic Decay Scheduling**
 
@@ -183,6 +185,9 @@ Learning Rate Scheduling은 training 중 learning rate를 고정하지 않고, �
 
 **Warm-up + Decay Scheduling**
 
+<img width="300" height="186" alt="image" src="https://github.com/user-attachments/assets/3bd220b6-832a-49bf-b6b5-31966b67a63c" />
+
+
 * 초반에는 learning rate를 작은 값에서 시작해 증가시키고,
 * 이후에는 다시 감소시키는 방식임.
 * Warm-up은 단독 schedule이라기보다는 보통 전체 schedule의 초반 phase로 사용됨.
@@ -195,10 +200,14 @@ Learning Rate Scheduling은 training 중 learning rate를 고정하지 않고, �
 
 **Cyclical / Restart Scheduling** 
 
+<img width="245" height="157" alt="image" src="https://github.com/user-attachments/assets/ed3cd66a-a605-4807-b014-662a03296ec1" />
+
 * learning rate를 한 번 줄이고 끝내는 방식이 아님.
 * Learning rate를 여러 번 다시 키우거나,
 * 증가와 감소를 반복함
-* 이는 optimizer가 plateau나 local optimum에서 효과적으로 벗어날 수 있게 해 줌.
+* 이는 optimizer가 saddle-point plateau를 빠르게 통과하거나 optimization 효율을 높임
+
+---
 
 ---
 
