@@ -189,17 +189,17 @@ Output layer의 activation function은 보통 task에 의해 결정됨.
   * identity function, 즉 별도의 activation function을 사용하지 않는 방식이 일반적임.
 
 Hidden layer의 activation function은
-오늘날 대부분 ReLU 계열이 사용됨.
+오늘날 대부분 [ReLU](../ch09/act_relu/) 계열이 사용됨.
 
 대표적인 예는 다음과 같음.
 
-* ReLU
-* Leaky ReLU
-* ELU
-* GELU
-* Swish
+* [Rectified Linear Unit (ReLU)](../ch09/act_relu/)
+* [Leaky ReLU](../ch09/act_relu/#leaky-relu)
+* [Exponential Linear Unit (ELU)](../ch09/act_elu/)
+* [Gaussian Error Linear Unit (GELU)](../ch09/act_silu.md#gaussian-error-linear-unit-gelu)
+* [Swish (SiLU 의 일반형)](../ch09/act_silu/)
 
-특히 CNN이나 일반적인 feed-forward network에서는 ReLU 계열이 널리 사용되며,
+특히 CNN이나 일반적인 feed-forward network에서는 [ReLU](../ch09/act_relu/) 계열이 널리 사용되며,  
 Transformer 계열에서는 [GELU](../ch09/act_silu.md#gaussian-error-linear-unit-gelu)가 자주 사용됨.
 
 activation function은 
