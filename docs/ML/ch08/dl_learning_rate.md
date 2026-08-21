@@ -280,8 +280,8 @@ Piecewise Constant Scheduling은 일정 구간마다 learning rate를 직접 지
 $$
 \eta(t) =
 \begin{cases}
-0.1 & \text{if } 0 \le t < 5 \
-0.001 & \text{if } 5 \le t < 55 \
+0.1 & \text{if } 0 \le t < 5 \\
+0.001 & \text{if } 5 \le t < 55 \\
 0.0001 & \text{if } 55 \le t
 \end{cases}
 $$
