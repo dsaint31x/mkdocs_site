@@ -20,7 +20,7 @@ Deep Learning에서 `Hyper-parameter`는
 * the [weight initialization algorithm](../ch09/weight_initializations.md)
 * the [type of optimizer](../ch09/op_summary.md)
     * [**learning rate**](./dl_learning_rate.md) of optimizer
-    * decay constant of optimizer
+    * decay constant of optimizer (including [weight decay](../ch09/op_adamw/#2-weight-decay) and [decay factor](../ch09/op_rmsprop/))
 * the [**batch size**](./dl_batchsize.md)
 * and so on.
 
