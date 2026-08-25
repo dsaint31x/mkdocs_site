@@ -1,5 +1,5 @@
 ---
-title: "Perceptron과 Linear Regression의 차이"
+title: "Perceptron과 Linear Regression, Logistic Regression 의 차이"
 description: "Perceptron과 Linear Regression의 linear output, loss, prediction, update 방식의 차이를 비교하고 scikit-learn Perceptron의 SGD 기반 구현과 연결"
 tags:
   - Machine Learning
@@ -14,7 +14,7 @@ categories:
   - Linear Models
 ---
 
-# Perceptron과 Linear Regression의 차이
+# Perceptron과 Linear Regression, Logistic Regression 의 차이
 
 Perceptron, Logistic Regression과 Linear Regression은 모두 linear combination을 사용함:
 
@@ -38,26 +38,28 @@ $$
 \hat y=z
 $$
 
-대표적인 loss는 Mean Squared Error, MSE:
+대표적인 loss는 Mean Squared Error, MSE 임 (아래는 단일 sample에서의 MSE):
 
 $$
 L_{\mathrm{MSE}} = \frac{1}{2}(y-\hat y)^2
 $$
 
-Linear Regression 자체가 sample-wise update를 반드시 요구하는 것은 아님.
+주의할 점은 Linear Regression 자체가 sample-wise update를 반드시 요구하는 것은 아님.
 
 * Batch Gradient Descent: 전체 training set으로 update.
 * SGD: single sample 단위로 update.
 * Mini-batch Gradient Descent: 일부 sample 단위로 update.
 * closed-form solution을 사용하는 경우 iterative update 자체가 필요하지 않을 수도 있음.
 
-Linear Regression을 SGD로 학습하는 경우의 weight update는 다음과 같음:
+Linear Regression을 SGD로 학습(sample-wise update)하는 경우의 weight update는 다음과 같음:
 
 $$
 w_i^{(\mathrm{next})} = w_i+\eta(y-\hat y)x_i
 $$
 
-여기서 prediction error는 continuous value이므로 ***error magnitude가 update 크기에 직접 반영됨.***
+여기서 prediction error는 continuous value이므로 ***error magnitude $y-hat y$ 가 update 크기에 직접 반영됨.***
+
+---
 
 ### 참고: SGD를 통한 Linear Regression
 
@@ -78,13 +80,21 @@ $$
 
 ---
 
+### 참고: Gradient Descent Method
+
+다음 자료 참고: [Gradient Descent Method](https://dsaint31.tistory.com/633)
+
+---
+
 ---
 
 ## 2. Logistic Regression
 
+> [참고자료](https://dsaint31.me/mkdocs_site/ML/ch03/ml_classifier_summary/#4-1-logistic-regression)
+
 Logistic Regression은 
 
-* binary classification을 위한 linear model임.
+* binary classification을 위한 linear model임: [linear classification model](https://dsaint31.tistory.com/847).
 * Logistic function 자체는 19세기에 제안되었으며,
     * Joseph Berkson이 1944년 logit을 이용한 binary response model을 제안하면서
     * 현대적인 Logistic Regression의 기반이 마련됨.
