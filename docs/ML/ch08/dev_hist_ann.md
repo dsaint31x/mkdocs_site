@@ -242,14 +242,22 @@ MLP가 학습이 되기 시작했으나 다른 Machine Learning 기법에 비해
     * 하지만, over-fitting은 여전히 DL에서 극복해야하는 문제점이며, dropout이나 batch normalization, regularization 등의 기법이 계속해서 연구되고 있음.
 
 ---
+ 
+## 2012년 AlexNet 등장
+
+[AlexNet](../ch14_cnn/alexnet/) (Alex Krizhevsky, Hinton, et al.)은 2012년 ILSVRC 에서 매우 뛰어난 성능으로 우승하면서 현대 딥러닝 시대의 서막을 연 것으로 평가됨.
+
+* Convolutional Layers 5개 + Dense(=Fully connected) Layers 3개로 구성된 Convolutional Neural Network임.
+* GPU(2개) 를 통한 병렬연산과, ReLU activation function, Dropout 을 사용함.
+
+---
 
 ## Key Change to the MLP from Back-propagation : Activation Function
 
-Rumelhart가 Back-propagation을 MLP 학습에 효과적으로 사용하기 위해 MLP의 activation function을 기존의 heaviside step function을 `logistic function`으로 변경 (`logistic function`은 sigmoid functions의 대표)함.
+Rumelhart가 Back-propagation을 MLP 학습에 효과적으로 사용하기 위해 MLP의 activation function을 기존의 [Heaviside step function](https://dsaint31.tistory.com/553)을 [`logistic function`](https://dsaint31.tistory.com/320)으로 변경 (`logistic function`은 [sigmoid functions](https://dsaint31.tistory.com/430)의 대표)함.
 
-Back-propagation은 Gradient decent와 Reverse-mode Autodiff.의 조합이기 때문에 결국 differentiation에 기반함.
-
-때문에 미분가능하면서 step function과 유사한 `logistic function`으로 activation function을 삼음.
+* Back-propagation은 Gradient decent와 Reverse-mode Autodiff.의 조합이기 때문에 결국 differentiation에 기반함.
+* 때문에 미분가능하면서 step function과 유사한 `logistic function`으로 activation function을 삼음.
 
 Scikit-Learn에서 제공하는 `sklearn.neural_network.MLPRegressor` 와 `sklearn.neural_network.MLPClassifier` 의 hidden layer에서 사용되는 Activation functions는 다음과 같음.
 
@@ -271,7 +279,7 @@ Scikit-Learn에서 제공하는 `sklearn.neural_network.MLPRegressor` 와 `sklea
 
 ### Activation function의 중요성.
 
-Activation function은 MLP에 non-linearity를 부여해주는 핵심 요소이다.
+Activation function은 **MLP에 non-linearity를 부여해주는 핵심 요소** 이다.
 
 activation function이 identity function일 경우, perceptron은 단순한 linear function으로 Weight와 Input vector의 곱에 불과하다.  
 이는 linear transform이므로 아무리 많은 layer로 쌓아도 단 하나의 layer로 대체가능함을 의미한다.
