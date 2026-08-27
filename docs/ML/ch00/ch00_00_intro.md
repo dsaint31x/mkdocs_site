@@ -297,7 +297,7 @@ AI와, ML, 그리고 DL은 다음과 같은 관계를 보인다.
 ## 같이보면 좋은 자료: 
 
 * [History of ML](https://ds31x.tistory.com/324)
-* [ANN의 발전사](../ch08/dev_hist_ann/)
+* [ANN의 발전사](../../ch08/dev_hist_ann/)
 
 
 
