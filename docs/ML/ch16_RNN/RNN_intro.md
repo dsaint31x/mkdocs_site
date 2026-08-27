@@ -1,8 +1,14 @@
 # Recurrent Neural Network (순환신경망, `RNN`)
 
-> time series data와 같은 sequential data를 다루는데 적합한 ANN.  
-> `feedback connection`을 가짐.  
-> 때문에 weight를 구분하여 가지는 layer들이 쌓이기도 하지만, feedback connection에 의해 time에 대해 weight를 공유하는 layer가 쌓이는 효과를 가지기 때문에 매우 복잡한 ANN이 됨. 
+> time series data와 같은 (임의의 길이를 가지는) sequential data를 다루는데 적합한 ANN.  
+> `feedback connection`을 가짐.
+>   
+> RNN은 1개의 layer라도  
+> 기본적으로 feedback connection에 의해  
+> time 축 상으로 weight를 공유하는 layer가 쌓이는 효과를 가짐.  
+>
+> 여기에 다른 weights 를 가지는  
+> 여러 layer들을 쌓을 수도 있기 때문에 매우 복잡한 ANN이 됨.  
 >
 > * [time series data란](https://dsaint31.tistory.com/604)
 
@@ -10,24 +16,32 @@
 
 ## Feed-forward Network vs. RNN
 
-ANN은 일종의 node들을 edge로 연결한 *일종의 system* 이라고 볼 수 있다. 
+ANN은 node들을 edge로 연결한 *일종의 system* 이라고 볼 수 있다. 
 
-> 일반적으로 system은 특정 input에 대해 특정 output을 mapping 시켜주는 transformer 또는 function으로 해석되며, input과 output을 가지는 sub-system의 연결 방식에 따라 구분되기도 한다. 
+> 일반적으로 system은  
+> 특정 input에 대해 특정 output을 mapping 시켜주는  
+> transformer (DL의 transformer architecture아님) 또는 function으로 해석되며,  
+> input과 output을 가지는 sub-system의 연결 방식에 따라 구분되기도 한다. 
 
-ANN의 연결방식에서 input에서 output으로 연결이 하나의 방향으로만 이루어진 경우, `feed-forward network`라고 부른다. 
+ANN의 연결방식에서  
+input에서 output으로 연결이 하나의 방향으로만 이루어진 경우, `feed-forward network`라고 부른다. 
 
 * feed-forward network는 일종의 memoryless system (or ***instantaneous system*** )임.
 * 이전 결과에 상관없이 현재의 input에 의해서만 output이 결정됨.
 * sequence type의 input을 처리할 때, input의 전체 length가 한번에 feed-forward network에 주어져야함.
     * 이는 input의 크기가 고정됨을 의미.
 
-Feed-forward network에 해당하는 instantaneous system과 대조되는 것이 바로 ***dynamic system (memory system, state machine)*** 으로 이같은 systems에서는 ***feedback connection이 존재*** 한다.  
-ANN에서 feedback connection이 있는 구조를 `Recurrent Neural Network` (`RNN`)라고 칭함.
+Feed-forward network에 해당하는 instantaneous system과 대조되는 것이  
+바로 ***dynamic system (memory system, state machine)*** 임.  
+dynamic systems에서는 ***feedback connection이 존재*** 한다.  
+
+ANN 의 경우, feedback connection이 있는 구조를 `Recurrent Neural Network` (`RNN`) 라고 칭함.
 
 * feedback connection은 system이나 subsystem에서의 ***output을 앞단이나 자신의 input으로 사용되도록 연결*** 된 것을 가리킴.
     * feedback connection이 있는 경우, network는 일종의 loop를 이루게 됨.
 * dynamic system은 feedback connection을 통해 과거의 output이 현재의 output에 영향을 주도록 구현됨.
-    * dynamic system은 과거의 input과 output에 대한 기억에 해당하는 `state`를 가지고 있으며, ***state와 input`에 의해 output이 결정*** 된다.
+    * dynamic system은 과거의 input과 output에 대한 기억에 해당하는 `state`를 가지고 있으며,
+    * ***state와 input`에 의해 output이 결정*** 된다.
     * 현재의 `state`는 과거의 `state`와 현재의 `input`에 의해 결정됨.
 * 과거의 output을 기억하여 이를 이용한다고 볼 수 있으며 때문에 ***memory를 가진 system*** 이라고 부름.
 
@@ -40,13 +54,16 @@ ANN에서 feedback connection이 있는 구조를 `Recurrent Neural Network` (`R
 
 다음의 그림은 `RNN`의 구조를 보여줌.
 
-![](./img/simple_rnn.png)
+![](./img/simple_rnn.png){style="display: block; margin: 0 auto; width: 300px}
 
 * input $\textbf{x}$에 대해서 weight $U$가 곱해짐.
 * $\textbf{h}$는 hidden state라고 불려지며 **일종의 memory** 라고 볼 수 있음.
 * feedback connection을 통해 과거의 $\textbf{h}$와 현재의 input $\textbf{x}$에 의해 현재의 state가 결정됨.
-* hidden state로부터 output이 나오는 부분은 위그림은 단순히 $W$로 표현했으나 이는 `RNN`에서 고정된 것이 아님. 단순한 dense layer를 사용할 수도 있으나 보다 복잡하게 구성될수도 있음.
+* hidden state로부터 output이 나오는 부분이 위 그림에선 단순히 $W$로 표현했으나 이는 `RNN`에서 고정된 것이 아님.
+    * 단순한 dense layer를 사용할 수도 있으나
+    * 그보다 복잡하게 구성될 수도 있음.
 * hidden state라고 불리는 이유는 output으로 그대로 나오지 않는 경우(위 그림에선 `W` 와 곱해짐)가 대부분이라, I/O 만으로는 확인할 수 없기 때문임.
+    * 간단하게 그릴 때는 output과 hidden state를 같게 표시하기도 함. 
 
 이를 수식적으로 표현하면 다음과 같음.
 
@@ -64,8 +81,10 @@ $$
 
 > `RNN` 의 구조적 특징은 feedback connection을 가지고 있다는 것임.  
 > 이 feedback connection을 통해, 과거의 input들을 기억(?)하고 있는 ***state*** 를 가짐.
+> 동시에 임의의 길이의 input data를 다룰 수 있음.
 
-`RNN`은 이전 input에 대한 정보를 가지고 있는 state가 있기 때문에 이론상으로는 무한히 긴 input sequence 을 처리할 수 있다 (한번에 입력받을 최대사이즈는 고정).
+`RNN`은 이전 input에 대한 정보를 가지고 있는 state가 있기 때문에  
+이론상으로는 무한히 긴 input sequence 을 처리할 수 있다 (매 time에 입력받는 데이터 사이즈는 고정됨).
 
 * sequence에서 특정 time의 data point에 해당하는 vector (이 vector의 최대길이는 고정)가 `RNN`에 입력됨.
 * 이후 다음 time의 data point에 해당하는 vector가 `RNN`에 입력됨.
@@ -103,16 +122,19 @@ $$
 
 특히 `RNN`은 번역이나 `speech-to-text` 등에 많이 사용되었던 방식임 
 
-> 현재 번역과 같은 자연어 처리에는 `transformer`를 기반으로 처리하는 게 일반적임. `RNN`은 초기에 사용됨.
+> 현재 번역과 같은 자연어 처리에는 `transformer`를 기반으로 처리하는 게 일반적임.
+> `RNN`은 초기 기계번역에 사용됨.
 
 ---
 
 ## RNN의 응용분야.
 
-`RNN`은 sequential data를 다루는데 가장 기본적으로 적용되는 모델이라고 할 수 있으나, `Transformer`의 등장으로 그 사용범위가 줄어들고 있는 추세이다.
+`RNN`은 sequential data를 다루는데 가장 기본적으로 적용되는 모델이라고 할 수 있으나,  
+`Transformer`의 등장으로 그 사용 범위가 줄어들고 있는 추세이다.
 
 * 아주 짧은 sequential data에는 fully connected layer로 구성된 방식도 가능함(max-length가 고정됨)
 * 1D convolution을 통한 sequential data처리도 가능함.
 * 하지만 최근엔 `Transformer` 방식이 가장 널리 사용됨.
 
-`RNN`이 많이 사용되는 방식은 과거의 input들을 통해 pattern을 기억하고 이를 바탕으로 미래의 output을 예측하는 형태이다. 예를 들면, 특정 단어들의 list를 입력으로 받고 다음에 올 단어를 예측하거나, 지난 특정 기간의 날씨정보를 입력받아 내일의 날씨를 예측하는 task에서 `RNN`은 자연스럽게 적용할 수 있음.
+`RNN`이 많이 사용되는 방식은 과거의 input들을 통해 pattern을 기억하고 이를 바탕으로 미래의 output을 예측하는 형태이다.  
+예를 들면, 특정 단어들의 list를 입력으로 받고 다음에 올 단어를 예측하거나, 지난 특정 기간의 날씨정보를 입력받아 내일의 날씨를 예측하는 task에서 `RNN`은 자연스럽게 적용할 수 있음.
