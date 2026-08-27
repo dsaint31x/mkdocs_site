@@ -1,20 +1,23 @@
 ---
-tags: [ai, ml, dl, representation, representative Learning]
+tags: [ai, ml, dl, representation, representation Learning]
 ---
 
 # AI, ML and DL.
 
 ## AI 란
 
-John McCarthy (AI 용어 창안자. 미국의 인지심리학자.1927-2011) 에 따르면  Artificial Intelligence (AI)의 정의는 다음과 같음.
+John McCarthy (AI 용어 창안자. 미국의 인지심리학자.1927-2011) 에 따르면  
+Artificial Intelligence (AI)의 정의는 다음과 같음:
 
 > ref. : [Basic Questions](http://www-formal.stanford.edu/jmc/whatisai/node1.html)
 
 **Q. What is `artificial intelligence`?**
 : A. It is the science and engineering of ^^making intelligent machines^^, especially intelligent computer programs. It is related to the similar task of using computers to understand human intelligence, but ***AI does not have to confine itself to methods that are biologically observable.***  
-이는 지능적인 기계, 특히 지능적인 컴퓨터 프로그램을 만드는 과학과 공학입니다. 인간 지능을 이해하기 위해 컴퓨터를 사용하는 유사한 작업과 관련이 있지만, AI는 생물학적으로 관찰 가능한 방법에만 국한될 필요는 없습니다.
+이는 지능적인 기계, 특히 지능적인 컴퓨터 프로그램을 만드는 과학과 공학입니다.  
+인간 지능을 이해하기 위해 컴퓨터를 사용하는 유사한 작업과 관련이 있지만, AI는 생물학적으로 관찰 가능한 방법에만 국한될 필요는 없습니다.
 
-AI라는 용어는 1956년 [다트머스대학 컨퍼런스](./ch00_01_dartmouth_ai.md)에서 최초로 등장했으며, `기계 혹은 시스템으로부터 만들어진 지능` 또는 
+AI라는 용어는 1956년 [다트머스대학 컨퍼런스](./ch00_01_dartmouth_ai.md)에서 최초로 등장했으며,  
+`기계 혹은 시스템으로부터 만들어진 지능` 또는 
 `이와 같은 지능을 만들 수 있는 방법론 등을 연구하는 분야` 를 가리킨다.
 
 ---
@@ -51,7 +54,11 @@ AI가 ***기존의 컴퓨터 시스템과 구분되는  4가지 잠재적 목표
 * 합리적(rationally)으로 사고(생각, thinking)하는 시스템
 * ***합리적(rationally)으로 행동하는(acting) 시스템*** : 이상적 목표!
 
-현재 어떤 AI기술도 General AI(인간처럼 사고/행동)는 구현치 못했음. 하지만, Deep Learning을 통해 Computer Vision분야 등에서는 인간 이상의 성과를 보이는 Narrow AI (특정 작업에서 인간처럼 혹은 인간 이상으로 사고/행동)가 구현되기 시작했다. Narrow AI의 대표적인 분야는 다음과 같음.
+현재 어떤 AI기술도 General AI(인간처럼 사고/행동)는 구현치 못했음.  
+하지만, Deep Learning을 통해 Computer Vision분야 등에서는  
+인간 이상의 성과를 보이는 Narrow AI (특정 작업에서 인간처럼 혹은 인간 이상으로 사고/행동)가 구현되기 시작했다.  
+
+Narrow AI의 대표적인 분야는 다음과 같음.
 
 * 체스, 바둑
 * 이미지 인식(일부)
@@ -91,7 +98,7 @@ Total Turing Test 통과를 위해서 AI에게 필요한 능력
 
 1. ref. Wikipedia's [Turing Test](https://ko.wikipedia.org/wiki/%ED%8A%9C%EB%A7%81_%ED%85%8C%EC%8A%A4%ED%8A%B8)
 2. Pearson Series in Artificial Intelligence : [Artificial Intelligence : A Modern Approach](https://www.amazon.com/Artificial-Intelligence-A-Modern-Approach/dp/0134610997)
-3. AI의 모든 것"이란? : [Turing Test](https://atozofai.withgoogle.com/intl/ko/about/)
+3. AI의 모든 것"이란? : [Turing Test](https://dsaint31.tistory.com/970#%EC%B0%B8%EA%B3%A0%3A%20Turing%20Machine%EA%B3%BC%20Imitation%20Game-1-1)
 
 ---
 
@@ -179,7 +186,7 @@ representation은 자동 학습(auto-learned) 되는 경우가 많으며, 사람
 
 ## Deep Learning (DL) 이란. ***
 
-엄격하게 애기하면 `Deep Learning`은 `ML`의 한 종류이며, `Representative Learning`에 속한다.  
+엄격하게 애기하면 `Deep Learning`은 `ML`의 한 종류이며, `Representation Learning`에 속한다.  
 
 > 보다 엄밀하게 애기하면, `ML`의 한 분야인 `ANN`에서 hidden layer를 여러 개 사용하는 방법을 Deep Learning이라고 한다.  
 >  
@@ -211,7 +218,7 @@ representation은 자동 학습(auto-learned) 되는 경우가 많으며, 사람
 >  
 > 하지만, 위에서 말한 알아서 최적의 representation을 여러 층으로 쌓인 non-linear activation function을 가지는 low layers를 통해 dataset으로부터 직접 얻어낸다는 점이 `DL`이 다른 `ML` 알고리즘과 비교할 수 없는 유용성을 가지게 해준 가장 큰 특징이다.  
 
-즉, 어떤 함수라도 근사할 수 있는 ANN ([UAT참고](https://ds31x.blogspot.com/2023/08/dl-universal-approximation-theorem-uat.html?view=classic))에 ***보다 효과적으로 학습되도록 hierarchical representative learning의 기능을 더한 것*** 이 바로 DL이라고 생각해도 크게 틀리지 않다.
+즉, 어떤 함수라도 근사할 수 있는 ANN ([UAT참고](https://ds31x.blogspot.com/2023/08/dl-universal-approximation-theorem-uat.html?view=classic))에 ***보다 효과적으로 학습되도록 hierarchical representation learning의 기능을 더한 것*** 이 바로 DL이라고 생각해도 크게 틀리지 않다.
 
 ---
 
@@ -241,7 +248,8 @@ AI와, ML, 그리고 DL은 다음과 같은 관계를 보인다.
 * Decision Tree, SVM, Gradient Boosting and so on
 
 **DL**
-: 현재 가장 우수한 성능의 ML을 구현하는 기술로 ***많은 Layers로 구성된 ANN (Artificial Neural Network)*** 을 가리킴.
+: 현재 가장 우수한 성능의 ML을 구현하는 기술로  
+***많은 Layers로 구성된 ANN (Artificial Neural Network)*** 을 가리킴.
 
 * MLP, CNN, RNN, Transformer, GAN
 
