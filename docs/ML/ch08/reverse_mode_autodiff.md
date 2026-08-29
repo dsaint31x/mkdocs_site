@@ -66,7 +66,7 @@ $$
 
 $z=2xy+y+3$에 대한 Computation Graph는 다음과 같음.
 
-![Untitled](./img/back_propagation_ex_00.png)
+![Untitled](./img/back_propagation_ex_00.png){style="display:block; margin:0 auto; width:700px"}
 
 * 왼쪽부터 node를 거쳐서 computation이 수행됨.
 * node는 operation이고, edge는 데이터의 흐름(flow)를 의미함.
@@ -115,14 +115,14 @@ $z=2xy+y+3$에 대해, 입력 $x=40, y=4$ 인 경우의 Backward pass(or backwar
 
 ## **Node에 대한 reverse-mode differentiation (국소적 연산, Local gradient)**
 
-![Untitled](./img/back_propagation_ex_04.png)
+![Untitled](./img/back_propagation_ex_04.png){style="display:block; margin:0 auto; width:700px"}
 
 노드(=연산)에 대한 입/출력 을 바탕으로 local gradient $\left(\dfrac{\partial n_2}{\partial n_1}\right)$를 구하고, chain rule에 기반하여 이전 결과$\left(\dfrac{\partial L}{\partial n_2} \right)$에 곱하여 gradient를 구해 나감.
 
 > 입/출력 은 vector, matrix 로 확장 가능하며,  
 > 입/출력 이 모두 vector인 경우 흔히 알려진 Jacobian matrix가 local gradient가 됨.
 
-![Untitled](./img/back_propagation_ex_05.png){style="display:block; margin:0 auto; width:700px"}
+![](./img/ReLU_bp_ex1.png){style="display:block; margin:0 auto; width:700px"}
 
 * 입력과 출력이 각각 5개의 component를 가진 vector인 경우의 예.
 * 이 경우 local gradient는 $5 \times 5$ Jacobian matrix임.
@@ -132,8 +132,6 @@ $z=2xy+y+3$에 대해, 입력 $x=40, y=4$ 인 경우의 Backward pass(or backwar
   element-wise operation에서는  
   off-diagonal partial derivative가 모두 0이므로  
   Jacobian이 매우 sparse하며, 실제로 diagonal matrix가 됨.
-
-![](./img/ReLU_bp_ex.png){style="display:block; margin:0 auto; width:700px"}
 
 ---
 
