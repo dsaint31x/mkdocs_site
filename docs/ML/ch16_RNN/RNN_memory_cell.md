@@ -16,15 +16,15 @@ categories:
 
 # Memory Cell (or Cell)
 
-> 가변 길이의 sequence 입력을 처리할 수 있으나
-> Simple RNN cell (Elman, 1990)은 vanishing gradient 등의 문제로
+> 가변 길이의 sequence 입력을 처리할 수 있으나  
+> Simple RNN cell (Elman, 1990)은 vanishing gradient 등의 문제로  
 > long-term dependency를 학습하기 어려움 (대략 수십 step 이하로 제한)  
 > 때문에 Simple RNN 보다는 LSTM, GRU 등의 Memory Cell 이  
 > 주로 사용됨.  
 >
-> Transformer의 등장(2017) 이후에는
-> NLP 를 포함한 거의 대부분의 sequence modeling 영역에서
-> Transformer 계열이 RNN 계열을 대부분 대체함.
+> Transformer의 등장(2017) 이후에는  
+> NLP 를 포함한 거의 대부분의 sequence modeling 영역에서  
+> Transformer 계열이 RNN 계열을 대부분 대체함.  
 
 ## Recurrent Neuron
 
