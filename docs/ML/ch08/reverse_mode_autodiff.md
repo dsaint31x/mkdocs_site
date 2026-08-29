@@ -77,7 +77,7 @@ $z=2xy+y+3$에 대한 Computation Graph는 다음과 같음.
 
 $z=2xy+y+3$에 대해, 입력 $x=40, y=4$를 대입하고, Forward pass 수행한 결과
 
-![Untitled](./img/back_propagation_ex_01.png)
+![Untitled](./img/back_propagation_ex_01.png){style="display:block; margin:0 auto; width:700px"}
 
 * 각 node의 연산 결과를 저장해야만 reverse-mode autodiff가 가능함.
 * 때문에 80, 320 등의 중간연산 결과들을 포함하는 각 node의 입출력이 모두 저장됨.
@@ -88,7 +88,7 @@ $z=2xy+y+3$에 대해, 입력 $x=40, y=4$를 대입하고, Forward pass 수행�
 
 Backward mode autodiff의 핵심인 backward pass는 다음과 같음.
 
-![Untitled](./img/back_propagation_ex_02.png)
+![Untitled](./img/back_propagation_ex_02.png){style="display:block; margin:0 auto; width:700px"}
 
 - manual differentiation의 결과(붉은색 좌하단)와 backward-mode autodiff의 결과(푸른색 우측)가 일치함.
 - 각 노드별로 국소적인 미분을 수행하고, 이를 chain rule에 기반하여 곱하여 확장해나감.
@@ -100,7 +100,7 @@ Backward mode autodiff의 핵심인 backward pass는 다음과 같음.
 
 $z=2xy+y+3$에 대해, 입력 $x=40, y=4$ 인 경우의 Backward pass(or backward flow)수행은 다음과 같음. 해당 수행은 반드시 대응하는 입력에 대해 Forward pass를 수행하고 난 이후 이루어짐.
 
-![Untitled](./img/back_propagation_ex_03.png)
+![Untitled](./img/back_propagation_ex_03.png){style="display:block; margin:0 auto; width:700px"}
 
 - 각 node의 중간 결과물 및 입력값이 있어야만 구할 수 있음.
 - 때문에 Forward pass를 수행하면서 이들을 저장하고 있어야 함.
@@ -122,10 +122,10 @@ $z=2xy+y+3$에 대해, 입력 $x=40, y=4$ 인 경우의 Backward pass(or backwar
 > 입/출력 은 vector, matrix 로 확장 가능하며,  
 > 입/출력 이 모두 vector인 경우 흔히 알려진 Jacobian matrix가 local gradient가 됨.
 
-![Untitled](./img/back_propagation_ex_05.png)
+![Untitled](./img/back_propagation_ex_05.png){style="display:block; margin:0 auto; width:700px"}
 
 * 입력과 출력이 각각 5개의 component를 가진 vector인 경우의 예.
-* 이 경우 local gradient는 5 \times 5 Jacobian matrix임.
+* 이 경우 local gradient는 $5 \times 5$ Jacobian matrix임.
 * Backpropagation에서는 Jacobian matrix와 upstream gradient vector의 곱 형태로 gradient가 전달됨.
 * 다만 Jacobian이 항상 sparse한 것은 아님.
 * ReLU처럼 각 output component가 대응되는 input component에만 의존하는  
@@ -133,7 +133,7 @@ $z=2xy+y+3$에 대해, 입력 $x=40, y=4$ 인 경우의 Backward pass(or backwar
   off-diagonal partial derivative가 모두 0이므로  
   Jacobian이 매우 sparse하며, 실제로 diagonal matrix가 됨.
 
-![](./img/ReLU_bp_ex.png){style="display:block; margin:0 auto; width:600px"}
+![](./img/ReLU_bp_ex.png){style="display:block; margin:0 auto; width:700px"}
 
 ---
 
@@ -143,7 +143,7 @@ $z=2xy+y+3$에 대해, 입력 $x=40, y=4$ 인 경우의 Backward pass(or backwar
 
 ### **Add and Multiplication**
 
-![Untitled](./img/back_propagation_ex_06.png)
+![Untitled](./img/back_propagation_ex_06.png){style="display:block; margin:0 auto; width:700px"}
 
 - Add node (or add gate)의 경우, 이전 결과물이 그대로 해당 노드를 통과함. (1을 곱하기 때문)
 - Multiplication node의 경우, forward pass에 기록된 입력값들을 바꾸어 곱해짐.
@@ -154,7 +154,7 @@ $z=2xy+y+3$에 대해, 입력 $x=40, y=4$ 인 경우의 Backward pass(or backwar
 
 ### **Squared and Exponentiation**
 
-![Untitled](./img/back_propagation_ex_07.png)
+![Untitled](./img/back_propagation_ex_07.png){style="display:block; margin:0 auto; width:700px"}
 
 - local gradient가 곱해짐.
 - 각각의 local gradient 계산에 입력값이 필요함.
@@ -167,7 +167,7 @@ $z=2xy+y+3$에 대해, 입력 $x=40, y=4$ 인 경우의 Backward pass(or backwar
 
 * **참고:** [ReLU](../ch09/act_relu.md)
 
-![Untitled](./img/back_propagation_ex_08.png)
+![Untitled](./img/back_propagation_ex_08.png){style="display:block; margin:0 auto; width:700px"}
 
 * 꼭 미분가능하지 않아도 activation function으로 사용가능함을 기억할 것.
 
@@ -179,11 +179,11 @@ $z=2xy+y+3$에 대해, 입력 $x=40, y=4$ 인 경우의 Backward pass(or backwar
 
 * 참고: [Derivative of Logistic Function](https://dsaint31.tistory.com/613)
 
-![Untitled](./img/back_propagation_ex_09.png)
+![Untitled](./img/back_propagation_ex_09.png){style="display:block; margin:0 auto; width:700px"}
 
 이를 간략히 표현한 결과는 아래 그림의 좌측과 같으며, 이는 우측의 manual differentiation과 같은 결과를 보임.
 
-![Untitled](./img/back_propagation_ex_10.png)
+![Untitled](./img/back_propagation_ex_10.png){style="display:block; margin:0 auto; width:700px"}
 
 - 왼쪽 하단의 축약형에서 sigmoid로 표기한 이유는 일반적으로 (거의 대부분) sigmoid function이라고도 혼용해서 부르기 때문임. 
 - 엄밀히 말하면 logistic function이며, logistic function은 sigmoid function의 대표적인 함수이나 그에 속하는 하나의 함수에 불과함.
@@ -198,7 +198,7 @@ $z=2xy+y+3$에 대해, 입력 $x=40, y=4$ 인 경우의 Backward pass(or backwar
 
 이전의 각 노드별 패턴에 따라 아래와 같이 나오는지 확인해 보는 연습을 해보면 이해하는데 도움이 됨.
 
-![Untitled](./img/back_propagation_ex_11.png)
+![Untitled](./img/back_propagation_ex_11.png){style="display:block; margin:0 auto; width:700px"}
 
 - 푸른색 박스처럼 logistic function을 computation graph로 분해하여 처리하던지, 붉은 색 글씨로 한번에 처리하던지 결과는 같음.
 
