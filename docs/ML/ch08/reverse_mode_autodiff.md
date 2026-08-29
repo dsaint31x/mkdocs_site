@@ -124,10 +124,16 @@ $z=2xy+y+3$에 대해, 입력 $x=40, y=4$ 인 경우의 Backward pass(or backwar
 
 ![Untitled](./img/back_propagation_ex_05.png)
 
-- 5개 component를 가진 vector가 입출력인 경우의 예.
-- 이 경우, local gradient는 $5\times 5$ Jacobian matrix임.
-- matrix와 vector의 곱 형태의 미분이 수행됨.
-- partial differentiation의 특징상 Jacobian matrix는 매우 sparse한 matrix인 경우가 대부분임.
+* 입력과 출력이 각각 5개의 component를 가진 vector인 경우의 예.
+* 이 경우 local gradient는 5 \times 5 Jacobian matrix임.
+* Backpropagation에서는 Jacobian matrix와 upstream gradient vector의 곱 형태로 gradient가 전달됨.
+* 다만 Jacobian이 항상 sparse한 것은 아님.
+* ReLU처럼 각 output component가 대응되는 input component에만 의존하는  
+  element-wise operation에서는  
+  off-diagonal partial derivative가 모두 0이므로  
+  Jacobian이 매우 sparse하며, 실제로 diagonal matrix가 됨.
+
+![](./img/ReLU_bp_ex.png){style="display:block; margin:0 auto; width:600px"}
 
 ---
 
