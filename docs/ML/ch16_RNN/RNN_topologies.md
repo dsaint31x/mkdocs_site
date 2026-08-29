@@ -105,7 +105,7 @@ input sequence를 전체를 입력받아서 encoding을 수행하여 represent(=
 > encoder와 decoder가 연결된 가운데에서 input과 output이 같이 존재하는 형태로 그려지기도 하지만,  
 > 다음과 같이 그려지는 게 더 일반적임.  
 >
-> ![encoder_decoder_network](../img/ch16_RNN/encoder_decoder_network1.png){style="display: block; margin: 0 auto; width:600px"}
+> ![encoder_decoder_network](./img/encoder_decoder_network1.png){style="display: block; margin: 0 auto; width:600px"}
 >  
 
 문제는 
