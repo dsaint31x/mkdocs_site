@@ -103,12 +103,10 @@ input sequence를 전체를 입력받아서 encoding을 수행하여 represent(=
 
 > 위의 그림과 같이  
 > encoder와 decoder가 연결된 가운데에서 input과 output이 같이 존재하는 형태로 그려지기도 하지만,  
-> 아래 그림처럼 input seq.가 있는 곳에선 output이 없고,  
-> output이 있는 곳에선 input이 없는 형태로 그려지기도 함.  
+> 다음과 같이 그려지는 게 더 일반적임.  
 >
-> ![encoder_decoder_network](../img/ch16_RNN/encoder_decoder_network.png){style="display: block; margin: auto 0; width:400"}
+> ![encoder_decoder_network](../img/ch16_RNN/encoder_decoder_network1.png){style="display: block; margin: 0 auto; width:600px"}
 >  
-> 이경우 `many-to-one`과 `one-to-many`가 연결된 것으로도 볼 수 있다.
 
 문제는 
 
