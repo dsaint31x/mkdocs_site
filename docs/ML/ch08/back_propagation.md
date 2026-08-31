@@ -2,10 +2,16 @@
 
 ***딥러닝 모델을 학습시키기 위한 핵심 알고리즘.***
 
-Back propagation은 다음 2가지를 조합하여 ANN을 학습시킴.
+넓은 의미의 **Back-propagation learning** 은 다음 두 과정을 반복하여 ANN을 학습시킴.
 
 - "Reverse-mode AutoDiff" (Reverse-mode automatic differentiation)
+    - loss에 대한 parameters의 gradient를 효율적으로 계산    
 - ***"Gradient Descent"***
+    - loss에 대한 parameters의 gradient를 효율적으로 계산 
+
+엄밀한 의미에서 **backpropagation** 은 이 중  
+computational graph를 역방향으로 따라가며 gradient를 계산하는 Reverse-mode AD 과정을  
+주로 가리킴.
 
 ## Reverse-mode AutoDiff
  
