@@ -145,9 +145,9 @@ $$
 
 ### 단점
 
-- 이전 **state**와 현재 **input**에 의해 현재의 state와 output이 결정되는 순차적 구조로 인해 다음의 한계를 가짐:
-    - 서로 다른 time step의 input 사이에 **direct interaction이 불가**하며, 이전 state를 매개로 간접적으로만 정보가 전달됨.
-    - 멀리 떨어진 time step 사이의 정보가 여러 recurrent state를 거쳐 전달되어야 하므로 **long-term dependency 학습에 한계**를 가짐.
+- 이전 **state** 와 현재 **input** 에 의해 현재의 state와 output이 결정되는 순차적 구조로 인해 다음의 한계를 가짐:
+    - 서로 다른 time step의 input 사이에 **direct interaction이 불가** 하며, 이전 state를 매개로 간접적으로만 정보가 전달됨.
+    - 멀리 떨어진 time step 사이의 정보가 여러 recurrent state를 거쳐 전달되어야 하므로 **long-term dependency 학습에 한계** 를 가짐.
     - 현재 time step의 계산이 이전 time step의 state에 의존하므로 **sequence 방향의 computation 병렬화가 어려움**.
         - 반면 Transformer는 일반적으로 fixed maximum sequence length를 설정하지만, 해당 범위 내의 모든 time step input을 동시에 처리할 수 있어 sequence 방향의 병렬화에 훨씬 유리함.
 - **Vanishing/Exploding Gradient** 문제가 발생할 수 있음:
@@ -156,7 +156,7 @@ $$
         - Vanishing Gradient가 발생하면 매우 이른 time step의 input이 현재의 loss와 weight update에 미치는 영향이 sequence가 길어질수록 매우 작아져 long-term dependency 학습이 어려워짐.
     - `tanh` activation은 hidden state의 값을 제한하여 activation의 폭주를 억제하는 데 도움을 주지만, **Vanishing/Exploding Gradient 문제 자체를 해결하지는 못함**.
         - 특히 `tanh`가 saturation 영역에 들어가면 derivative가 0에 가까워져 **Vanishing Gradient를 악화시킬 수 있음 (다만 logistic sigmoid보다 zero-centered이고 최대 derivative도 더 커서 일반적으로 gradient propagation에는 더 유리함.)**.
-    - **LSTM**과 **GRU** 같은 memory cell variants는 gating mechanism과 memory path를 통해 gradient와 정보를 더 오래 전달할 수 있도록 하여, 특히 **Vanishing Gradient와 long-term dependency 문제를 완화**함. 다만 이를 완전히 제거하지는 못함.
+    - **LSTM**과 **GRU** 같은 memory cell variants는 gating mechanism과 memory path를 통해 gradient와 정보를 더 오래 전달할 수 있도록 하여, 특히 **Vanishing Gradient와 long-term dependency 문제를 완화** 함. 다만 이를 완전히 제거하지는 못함.
 
 ---
 
