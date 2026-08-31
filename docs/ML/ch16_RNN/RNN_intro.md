@@ -40,8 +40,8 @@ ANN 의 경우, feedback connection이 있는 구조를 `Recurrent Neural Networ
 * feedback connection은 system이나 subsystem에서의 ***output을 앞단이나 자신의 input으로 사용되도록 연결*** 된 것을 가리킴.
     * feedback connection이 있는 경우, network는 일종의 loop를 이루게 됨.
 * dynamic system은 feedback connection을 통해 과거의 output이 현재의 output에 영향을 주도록 구현됨.
-    * dynamic system은 과거의 input과 output에 대한 기억에 해당하는 `state`를 가지고 있으며,
-    * ***state와 input`에 의해 output이 결정*** 된다.
+    * dynamic system은 과거의 `input`과 `output`에 대한 기억에 해당하는 `state`를 가지고 있으며,
+    * ***`state`와 `input`에 의해 `output`이 결정*** 된다.
     * 현재의 `state`는 과거의 `state`와 현재의 `input`에 의해 결정됨.
 * 과거의 output을 기억하여 이를 이용한다고 볼 수 있으며 때문에 ***memory를 가진 system*** 이라고 부름.
 
