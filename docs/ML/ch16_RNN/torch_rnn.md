@@ -23,9 +23,10 @@ PyTorch는 Simple RNN을 구현하기 위한 두 모듈을 제공한다.
   
   전체 시퀀스의 순환 연산을 수행한다. 시점 반복과 hidden state 전달을 모듈 내부에서 처리한다.
 
-두 모듈이 반환하는 값은 hidden state이다. 별도의 prediction output layer는 포함하지 않는다.
+주의할 점은 두 module이 반환하는 값은 hidden state 임.
 
-분류나 회귀를 위한 예측값이 필요하면 다음과 같은 출력 층을 추가한다.
+* 별도의 prediction output layer는 포함하지 않음.
+* 때문에 분류나 회귀를 위한 예측값이 필요하면 다음과 같은 출력 층을 추가할 것:
 
 ```python
 output_layer = nn.Linear(hidden_size, output_size)
@@ -34,10 +35,12 @@ prediction = output_layer(hidden_state)
 
 ---
 
+---
+
 
 ## `nn.RNNCell`
 
-`nn.RNNCell`은 한 시점의 입력과 이전 hidden state를 받아 새로운 hidden state를 계산한다.
+`nn.RNNCell`은 한 시점의 입력과 이전 hidden state를 받아 새로운 hidden state를 계산.
 
 ### 생성자
 
@@ -109,19 +112,15 @@ H_t:     (batch_size, hidden_size)  = (4, 5)
   </g>
 </svg>
 
-반환값
+반환값: `H_t`
 
-```text
-H_t
-```
-
-* 이 값은 새로운 hidden state이다. 
-* 분류 점수나 회귀값과 같은 prediction output이 아니다.
+* 이 값은 새로운 hidden state 임. 
+* 분류 점수나 회귀값과 같은 prediction output이 아님에 유의할 것.
 
 ### 전체 시퀀스 처리
 
-`nn.RNNCell`은 한 번 호출할 때 한 시점만 처리한다.  
-전체 시퀀스는 반복문으로 처리한다.
+`nn.RNNCell`은 한 번 호출할 때 한 시점만 처리함.  
+전체 시퀀스는 반복문으로 처리할 것.
 
 ```python
 batch_size = 4
@@ -158,20 +157,14 @@ H:      (batch_size, hidden_size)
 
 `nn.RNNCell`
 
-hidden state를 prediction으로 바꾸는 출력 층이 없다.
-
-예측값이 필요하면 다음 층을 별도로 추가한다.
-
-```text
-nn.Linear
-```
+* hidden state를 prediction으로 바꾸는 출력 층이 없다.
+* 때문에 예측값이 필요하면 `nn.Linear` 층을 별도로 추가할 것.
 
 다음 모델은 RNNCell과 prediction output weight를 하나의 모듈로 구현한다.
 
 ```python
 import torch
 from torch import nn
-
 
 class RNNCellModel(nn.Module):
     def __init__(self, input_size, hidden_size, output_size):
@@ -278,7 +271,9 @@ Y_t = H_t @ output_layer.weight.T + output_layer.bias
   </g>
 </svg>
 
-점선으로 표시한 부분은 모듈 외부에 별도로 추가한 부분이다.
+* 점선으로 표시한 부분은 모듈 외부에 별도로 추가한 부분임.
+
+---
 
 ---
 
@@ -286,8 +281,8 @@ Y_t = H_t @ output_layer.weight.T + output_layer.bias
 
 `nn.RNN`
 
-* 전체 시퀀스를 한 번에 처리한다. 
-* 시점 반복과 hidden state 전달은 모듈 내부에서 수행된다.
+* 전체 시퀀스를 한 번에 처리. 
+* 시점 반복과 hidden state 전달은 모듈 내부에서 수행함.
 
 ### 생성자
 
@@ -396,9 +391,9 @@ output, H_n = rnn(X, H_0)
 
 ### Multi-layer RNN
 
-`num_layers`는 쌓을 recurrent layer의 수를 지정한다.
+`num_layers`는 쌓을 recurrent layer의 수를 지정함.
 
-다음은 2개의 recurrent layer를 쌓은 RNN이다.
+다음은 2개의 recurrent layer를 쌓은 RNN 의 구현 코드임:
 
 ```python
 rnn = nn.RNN(
@@ -409,9 +404,8 @@ rnn = nn.RNN(
 )
 ```
 
-첫 번째 recurrent layer는 입력 시퀀스를 처리한다.
-
-두 번째 recurrent layer는 첫 번째 층이 모든 시점에서 만든 hidden state를 입력으로 받는다.
+* 첫 번째 recurrent layer는 입력 시퀀스를 처리한다.
+* 두 번째 recurrent layer는 첫 번째 층이 모든 시점에서 만든 hidden state를 입력으로 받는다.
 
 <svg viewBox="0 0 820 340" width="100%" role="img" aria-labelledby="multilayer-rnn-title multilayer-rnn-desc" xmlns="http://www.w3.org/2000/svg">
   <title id="multilayer-rnn-title">2층 RNN의 데이터 흐름</title>
@@ -474,20 +468,21 @@ bias_ih_l1:    (hidden_size)
 bias_hh_l1:    (hidden_size)
 ```
 
-`dropout`이 0보다 크면 마지막 recurrent layer를 제외한 층 사이에 적용된다.
+참고로, 
 
----
+* `dropout`이 0보다 크면
+* 마지막 recurrent layer를 제외한 층 사이에 적용된다.
 
 ### 단방향과 양방향 설정의 shape
 
-다음은 단방향 설정이다.
+다음은 단방향 설정임:
 
 ```python
 bidirectional=False
 batch_first=True
 ```
 
-단방향 RNN의 shape은 다음과 같다.
+단방향 RNN의 shape은 다음과 같음:
 
 ```text
 X:       (batch_size, sequence_length, input_size)
@@ -496,14 +491,14 @@ output:  (batch_size, sequence_length, hidden_size)
 H_n:     (num_layers, batch_size, hidden_size)
 ```
 
-다음은 양방향 설정이다.
+다음은 양방향 설정임:
 
 ```python
 bidirectional=True
 batch_first=True
 ```
 
-양방향 RNN의 shape은 다음과 같다.
+양방향 RNN의 shape은 다음과 같음:
 
 ```text
 X:       (batch_size, sequence_length, input_size)
@@ -512,9 +507,12 @@ output:  (batch_size, sequence_length, 2 * hidden_size)
 H_n:     (2 * num_layers, batch_size, hidden_size)
 ```
 
-정방향과 역방향의 hidden state가 함께 저장되므로 관련 차원의 크기가 두 배가 된다.
+* 정방향과 역방향의 hidden state가 함께 저장되므로 관련 차원의 크기가 두 배가 된다.
 
-`batch_first`는 `X`와 `output`의 차원 순서만 바꾼다. `H_0`과 `H_n`의 차원 순서에는 영향을 주지 않는다.
+참고로,
+
+* `batch_first`는 `X`와 `output`의 차원 순서만 바꾼다.
+* `H_0`과 `H_n`의 차원 순서에는 영향을 주지 않는다.
 
 
 ### Prediction output 추가
@@ -579,7 +577,7 @@ X = torch.randn(4, 10, 3)
 Y_all, H_all, H_n = model(X)
 ```
 
-Tensor shape:
+Tensor shape 는 다음과 같음:
 
 ```text
 X:      (batch_size, sequence_length, input_size)
@@ -595,7 +593,7 @@ model.output_layer.weight  # (output_size, hidden_size)
 model.output_layer.bias    # (output_size,)
 ```
 
-위 parameter shape은 단방향 설정을 기준으로 한다.
+* 위 parameter shape은 단방향 설정을 기준으로 한다.
 
 양방향 설정에서는 정방향과 역방향 hidden state가 결합되므로 다음 shape을 사용한다.
 
@@ -685,11 +683,13 @@ Y_last:     (batch_size, output_size)
   </g>
 </svg>
 
-점선으로 표시한 부분은 모듈 외부에 별도로 추가한 부분이다.
+* 점선으로 표시한 부분은 모듈 외부에 별도로 추가한 부분이다.
+
+---
 
 ## 동일한 가중치로 `nn.RNNCell`과 `nn.RNN` 비교
 
-단일 층, 단방향, 동일한 활성화 함수를 사용하면 두 모듈은 같은 순환 연산을 수행할 수 있다.
+단일 층, 단방향, 동일한 활성화 함수를 사용하면 두 모듈은 같은 순환 연산을 수행할 수 있음.
 
 정확한 비교를 위해 두 모듈의 가중치와 bias를 동일하게 만든다.
 
