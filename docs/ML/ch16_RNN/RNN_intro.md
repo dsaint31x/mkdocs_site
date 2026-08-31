@@ -127,6 +127,38 @@ $$
 
 ---
 
+## RNN 계열 모델의 장단점
+
+### 장점
+
+* 동일한 recurrent cell을 모든 time step에 반복 적용하고, 이전 state를 현재 계산에 사용하는 구조로 인해 다음의 장점을 가짐:
+    * Sequential data modeling에 자연스럽게 적합함 : 이전 state를 현재 계산에 반영하므로 sequence의 순서 정보를 직접적으로 다룰 수 있음.
+    * ***Variable-length sequence 처리에 적합함*** (구조적으로 fixed maximum length 불필요): 동일한 recurrent cell을 반복 적용하므로 길이가 다른 sequence에도 같은 구조를 사용할 수 있음.
+    * Parameter sharing : 모든 time step에서 동일한 weight를 공유하므로 sequence 길이가 증가해도 parameter 수는 증가하지 않음.
+    * ***Temporal dependency를 modeling*** 가능 : 이전 state를 통해 과거 정보가 현재 prediction에 반영됨.
+    * Streaming / online processing에 유리함 : 전체 sequence를 한 번에 입력하지 않아도, input이 들어오는 순서대로 state를 갱신하면서 처리할 수 있음.
+* LSTM과 GRU 같은 memory cell variants를 사용하면 recurrent structure의 장점을 유지하면서 다음을 추가로 얻을 수 있음:
+    * gating mechanism을 통해 중요한 정보를 선택적으로 유지하거나 제거할 수 있음.
+    * Simple RNN보다 long-term dependency 학습에 유리함.
+    * Vanishing Gradient 문제를 완화할 수 있음.
+
+### 단점
+
+- 이전 **state**와 현재 **input**에 의해 현재의 state와 output이 결정되는 순차적 구조로 인해 다음의 한계를 가짐:
+    - 서로 다른 time step의 input 사이에 **direct interaction이 불가**하며, 이전 state를 매개로 간접적으로만 정보가 전달됨.
+    - 멀리 떨어진 time step 사이의 정보가 여러 recurrent state를 거쳐 전달되어야 하므로 **long-term dependency 학습에 한계**를 가짐.
+    - 현재 time step의 계산이 이전 time step의 state에 의존하므로 **sequence 방향의 computation 병렬화가 어려움**.
+        - 반면 Transformer는 일반적으로 fixed maximum sequence length를 설정하지만, 해당 범위 내의 모든 time step input을 동시에 처리할 수 있어 sequence 방향의 병렬화에 훨씬 유리함.
+- **Vanishing/Exploding Gradient** 문제가 발생할 수 있음:
+    - time 축으로 펼치면 매우 깊은 network와 같은 형태가 되어, **BPTT** 과정에서 gradient가 여러 time step에 걸쳐 반복적으로 곱해짐.        
+    - RNN layer를 여러 층으로 쌓으면 time 방향뿐 아니라 **layer 방향으로도 gradient path가 길어져** Vanishing/Exploding Gradient 문제가 더 심해질 수 있음.
+        - Vanishing Gradient가 발생하면 매우 이른 time step의 input이 현재의 loss와 weight update에 미치는 영향이 sequence가 길어질수록 매우 작아져 long-term dependency 학습이 어려워짐.
+    - `tanh` activation은 hidden state의 값을 제한하여 activation의 폭주를 억제하는 데 도움을 주지만, **Vanishing/Exploding Gradient 문제 자체를 해결하지는 못함**.
+        - 특히 `tanh`가 saturation 영역에 들어가면 derivative가 0에 가까워져 **Vanishing Gradient를 악화시킬 수 있음 (다만 logistic sigmoid보다 zero-centered이고 최대 derivative도 더 커서 일반적으로 gradient propagation에는 더 유리함.)**.
+    - **LSTM**과 **GRU** 같은 memory cell variants는 gating mechanism과 memory path를 통해 gradient와 정보를 더 오래 전달할 수 있도록 하여, 특히 **Vanishing Gradient와 long-term dependency 문제를 완화**함. 다만 이를 완전히 제거하지는 못함.
+
+---
+
 ## RNN의 응용분야.
 
 `RNN`은 sequential data를 다루는데 가장 기본적으로 적용되는 모델이라고 할 수 있으나,  
