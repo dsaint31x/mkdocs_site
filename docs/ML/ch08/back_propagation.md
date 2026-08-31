@@ -13,6 +13,10 @@
 computational graph를 역방향으로 따라가며 gradient를 계산하는 Reverse-mode AD 과정을  
 주로 가리킴.
 
+<img width="926" height="501" alt="image" src="https://github.com/user-attachments/assets/1b0c038b-3e1f-4d06-bf58-deec2c608847" />
+
+* ref. : Anlaytics Vidhya
+
 ## Reverse-mode AutoDiff
  
 * 컴퓨터로 정확하고 빠르게 Differentiation(미분)을 수행(=gradient 구하기)하기 위해  
