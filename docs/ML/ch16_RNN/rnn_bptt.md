@@ -1,8 +1,10 @@
 # Simple RNN: Forward Pass, BPTT, and Long-term Dependency Problem
 
-## 1. RNN의 Forward Pass
+## 1. Simple RNN의 Forward Pass
 
-그림의 symbol은 다음과 같음.
+### 1.1 Forward Computation
+
+이 글에서 사용하는 symbol은 다음과 같음.
 
 - `x_t`: time step `t`의 input vector
 - `h_t`: time step `t`의 hidden state vector
@@ -61,7 +63,7 @@ $$
   <text x="600" y="495" text-anchor="middle" font-family="Arial, 'Noto Sans KR', sans-serif" font-size="18" fill="#475569">각 위치의 label은 별도 parameter가 아니라 동일한 matrix의 usage를 나타냄</text>
 </svg>
 
-### 1.1 Parameter Sharing
+### 1.2 Parameter Sharing
 
 모든 time step에서 동일한 parameter를 반복해서 사용함.
 
@@ -71,7 +73,7 @@ $$
 
 따라서 RNN을 time dimension을 따라 unfold하더라도 새로운 weight가 생성되는 것이 아님.
 
-Unfolded computational graph에서 `U_t`, `V_t`, `W_t`처럼 표시할 수는 있지만, 이는 서로 다른 parameter가 아니라 동일한 shared parameter의 서로 다른 **usage**를 나타냄.
+Unfolded computational graph에서 `U_t`, `V_t`, `W_t`처럼 표시할 수는 있지만, 이는 서로 다른 parameter가 아니라 동일한 shared parameter의 서로 다른 **usage** 를 나타냄.
 
 `U`의 usage 사이에 성립하는 관계는 다음과 같음:
 
@@ -93,9 +95,9 @@ $$
 
 ---
 
-## 2. Forward Pass에서 Earlier Information Retention
+### 1.3 Earlier Information이 Hidden State에 유지되는 과정
 
-Time step `k`의 input information은 이후 time step으로 직접 연결되는 것이 아니라 hidden state를 통해 successive time step에 반영됨.
+Time step `k`의 input information은 later time step으로 직접 연결되는 것이 아니라, successive hidden states를 통해 간접적으로 반영됨.
 
 Forward path는 다음과 같음:
 
@@ -126,34 +128,36 @@ $$
     <text x="1020" y="292" font-size="15" fill="#475569">earlier input의 차이가</text><text x="1020" y="315" font-size="15" fill="#475569">later state에서 충분히</text><text x="1020" y="338" font-size="15" fill="#475569">구분되지 않을 수 있음</text>
   </g>
   <rect x="205" y="365" width="790" height="42" rx="21" fill="#ffffff" stroke="#bfdbfe" stroke-width="2"/>
-  <text x="600" y="392" text-anchor="middle" font-family="Arial, 'Noto Sans KR', sans-serif" font-size="17" font-weight="700" fill="#1e40af">Successive recurrent state transition에서의 state-representation retention 문제임</text>
+  <text x="600" y="392" text-anchor="middle" font-family="Arial, 'Noto Sans KR', sans-serif" font-size="17" font-weight="700" fill="#1e40af">Earlier information이 successive hidden states에 유지되어야 함</text>
 </svg>
 
-각 recurrent step에서는 이전 hidden state와 current input을 사용하여 다음 hidden state를 계산함. 따라서 earlier information은 독립된 형태로 보존되는 것이 아니라, 매 time step에서 계산되는 state representation에 계속 유지되어야 함.
+각 recurrent step에서는 previous hidden state와 current input을 사용하여 next hidden state를 계산함. 따라서 earlier information은 별도의 storage에 독립적으로 보존되는 것이 아니라, 매 time step에서 새로 계산되는 hidden-state representation 안에 유지되어야 함.
 
-Simple RNN에는 earlier information을 선택적으로 유지하는 explicit memory mechanism이 없음. Earlier information이 later hidden state까지 유지되는지는 recurrent weight `V`, successive input의 영향, activation function, 그리고 전체 recurrent state dynamics에 의해 결정됨.
+Simple RNN에는 earlier information을 선택적으로 preserve하거나 update하는 gating mechanism과 별도의 memory cell이 없음. Earlier information이 later hidden state까지 유지되는지는 recurrent weight `V`, subsequent input, activation function, 그리고 전체 recurrent state dynamics에 의해 결정됨.
 
-`tanh`와 같은 nonlinear activation이 saturation 영역에 들어가면 서로 다른 pre-activation이 서로 비슷한 hidden-state value로 mapping될 수 있음. Successive recurrent state transition이 반복되면 earlier input이 달랐던 두 sequence의 hidden-state representation이 later time step에서 서로 유사해질 수 있음.
+`tanh`와 같은 nonlinear activation이 saturation 영역에 들어가면 서로 다른 pre-activation이 비슷한 hidden-state value로 mapping될 수 있음. 또한 recurrent state transition이 반복되면서 earlier input이 달랐던 두 sequence의 hidden-state representation이 later time step에서 서로 유사해질 수 있음.
 
 이 경우 current hidden state만으로는 earlier input의 차이를 충분히 구분하기 어려우며, current output이 해당 earlier information을 사용하는 것도 어려워짐.
 
-즉 forward pass의 핵심 문제는 **earlier information을 구분하고 사용하는 데 필요한 state representation이 successive recurrent state transition 동안 안정적으로 유지되지 않을 수 있다는 것**임.
+즉 forward pass의 핵심 문제는 **earlier information을 구분하고 사용하는 데 필요한 state representation이 successive recurrent state transition 동안 안정적으로 유지되지 않을 수 있다는 것** 임.
 
 ---
 
-## 3. BPTT
+## 2. BPTT
+
+### 2.1 Unfolded Computational Graph와 Backward Pass
 
 RNN을 time dimension을 따라 unfold하면 하나의 깊은 computational graph처럼 볼 수 있음.
 
-Forward pass에서는 input과 hidden state가 successive time step에 따라 계산됨.
+Forward pass에서는 input과 hidden state가 time step 순서대로 계산됨.
 
-Backward pass에서는 loss에서 시작하여 unfolded computational graph에 **backpropagation**을 적용함.
+Backward pass에서는 loss에서 시작하여 unfolded computational graph에 **backpropagation** 을 적용함.
 
 Current loss와 earlier time step 사이의 gradient를 계산할 때는 chain rule에 의해 각 recurrent step의 **local gradient가 연속적으로 곱해짐**.
 
-따라서 일반적인 neural network의 backpropagation과 원리는 같지만, RNN에서는 backpropagation이 time dimension을 따라 수행되므로 이를 **Backpropagation Through Time, BPTT**라고 부름.
+따라서 일반적인 neural network의 backpropagation과 원리는 같지만, RNN에서는 backpropagation이 time dimension을 따라 수행되므로 이를 **Backpropagation Through Time, BPTT** 라고 부름.
 
-### 3.1 Shared Parameter의 Gradient
+### 2.2 Shared Parameter의 Gradient
 
 Forward pass에서 같은 `U`, `V`, `W`가 여러 time step에서 반복해서 사용되므로, backward pass에서는 각 usage에서 해당 shared parameter에 대한 gradient contribution이 발생함.
 
@@ -198,11 +202,11 @@ $$
 
 각 usage에서 계산된 gradient contribution을 합산하여 하나의 shared parameter에 대한 gradient를 구하고, optimizer가 이를 이용하여 parameter를 update함.
 
-Loss를 time step에 대해 mean으로 정의했다면 gradient의 전체 scale은 달라질 수 있지만, parameter sharing으로 발생한 contribution이 accumulation된다는 원리는 동일함.
+Loss를 time step에 대해 mean으로 정의했다면 gradient의 전체 scale은 달라질 수 있지만, shared parameter의 각 usage에서 발생한 contribution이 하나의 parameter gradient로 accumulation된다는 원리는 동일함.
 
 ---
 
-## 4. Recurrent Local Gradient와 Chain Rule
+### 2.3 Recurrent Local Gradient와 Chain Rule
 
 Simple RNN의 hidden state를 `tanh` activation으로 나타내면 다음과 같음:
 
@@ -216,7 +220,7 @@ $$
 a_t = Ux_t + Vh_{t-1} + b_h
 $$
 
-한 recurrent step에서 이전 hidden state에 대한 local Jacobian은 다음과 같음:
+Hidden state는 vector이므로 한 recurrent step의 local gradient는 정확히는 Jacobian임. Previous hidden state에 대한 local Jacobian은 다음과 같음:
 
 $$
 \frac{\partial h_t}{\partial h_{t-1}} = D_tV
@@ -272,7 +276,9 @@ $$
 
 ---
 
-## 5. Vanishing Gradient
+## 3. Gradient Problems
+
+### 3.1 Vanishing Gradient
 
 `tanh`의 derivative가 가지는 범위는 다음과 같음:
 
@@ -284,7 +290,7 @@ $$
 
 Recurrent weight `V`도 해당 direction에서 gradient를 충분히 증폭시키지 못하면 recurrent local Jacobian이 gradient를 줄이는 방향으로 작용함.
 
-이러한 local gradient가 chain rule에 의해 많은 recurrent step에 걸쳐 계속 곱해지면 distant earlier time step에 대한 gradient가 매우 작아질 수 있음. 이를 **vanishing gradient**라고 함.
+이러한 local gradient가 chain rule에 의해 많은 recurrent step에 걸쳐 계속 곱해지면 distant earlier time step에 대한 gradient가 매우 작아질 수 있음. 이를 **vanishing gradient** 라고 함.
 
 <!-- Recurrent step이 누적될수록 gradient magnitude가 0에 가까워지는 vanishing gradient | source: ./figures/04_vanishing_gradient.svg -->
 <svg xmlns="http://www.w3.org/2000/svg" width="1200" height="500" viewBox="0 0 1200 500" role="img" aria-labelledby="title desc">
@@ -303,18 +309,18 @@ Recurrent weight `V`도 해당 direction에서 gradient를 충분히 증폭시�
 그 결과는 다음과 같음.
 
 - Distant earlier time step의 input이나 hidden state가 current output에 중요하더라도 해당 time step에 대한 gradient가 거의 0이 될 수 있음.
-- 해당 dependency의 gradient contribution이 shared parameter update에 충분히 반영되지 못함.
+- 해당 dependency에 대한 gradient contribution이 shared parameter update에 충분히 반영되지 못함.
 - Simple RNN이 distant time steps 사이의 dependency를 학습하기 어려워짐.
 
-즉 **vanishing gradient는 long-term dependency를 학습하기 어렵게 만드는 backward pass의 핵심 문제**임.
+즉 **vanishing gradient는 distant earlier time step의 gradient contribution이 parameter update에 충분히 반영되지 못하게 하므로 long-term dependency 학습과 직접적으로 연결됨.**
 
 ---
 
-## 6. Exploding Gradient
+### 3.2 Exploding Gradient
 
 Recurrent weight `V`가 특정 direction에서 gradient를 크게 증폭시키고 그 효과가 activation derivative에 의한 감소보다 크면, recurrent local Jacobian이 gradient를 증폭시키는 방향으로 작용할 수 있음.
 
-이러한 local gradient가 여러 recurrent step에 걸쳐 계속 곱해지면 전체 gradient magnitude가 매우 커질 수 있음. 이를 **exploding gradient**라고 함.
+이러한 local gradient가 여러 recurrent step에 걸쳐 계속 곱해지면 전체 gradient magnitude가 매우 커질 수 있음. 이를 **exploding gradient** 라고 함.
 
 <!-- Recurrent step이 누적될수록 gradient magnitude가 급격히 증가하는 exploding gradient | source: ./figures/05_exploding_gradient.svg -->
 <svg xmlns="http://www.w3.org/2000/svg" width="1200" height="500" viewBox="0 0 1200 500" role="img" aria-labelledby="title desc">
@@ -338,27 +344,29 @@ Recurrent weight `V`가 특정 direction에서 gradient를 크게 증폭시키�
 - 심한 경우 numerical overflow로 `Inf` 또는 `NaN`이 생성될 수 있음.
 - 결국 optimization이 unstable해지거나 training이 diverge할 수 있음.
 
-따라서 **exploding gradient는 long-term dependency를 직접적으로 학습하지 못하게 만드는 원인이라기보다 optimization stability를 해치는 문제**임.
+따라서 **exploding gradient는 long-term dependency를 직접적으로 학습하지 못하게 만드는 원인이라기보다 optimization stability를 해치는 문제** 임.
 
 `gradient clipping`은 exploding gradient를 완화하기 위해 널리 사용하는 방법임.
 
 ---
 
-## 7. Long-term Dependency Problem
+## 4. Long-term Dependency Problem
 
-**Long-term dependency**는 distant time step의 information이 current output을 결정하는 데 중요한 dependency를 의미함.
+### 4.1 Definition
 
-Simple RNN에서 이 문제는 forward pass와 backward pass를 구분하여 이해해야 함.
+**Long-term dependency** 는 distant time step의 information이 current output을 결정하는 데 중요한 dependency를 의미함.
 
-### 7.1 Forward Pass의 Information Retention
+Simple RNN에서 이 문제는 forward pass에서 earlier information을 hidden state에 유지하는 문제와 backward pass의 **vanishing gradient** 를 구분하여 이해해야 함.
 
-Earlier information은 successive recurrent state transition 동안 hidden-state representation에 유지되어야 함. 하지만 simple RNN에는 해당 information을 선택적으로 유지하는 explicit memory mechanism이 없으므로, later hidden state에서 earlier information을 충분히 구분하거나 사용하는 것이 어려워질 수 있음.
+### 4.2 Forward Pass에서 Earlier Information 유지
 
-### 7.2 Backward Pass의 Learning Signal
+Earlier information은 successive recurrent state transition 동안 hidden-state representation에 유지되어야 함. 하지만 Simple RNN에는 이를 선택적으로 preserve하거나 update하는 gating mechanism과 별도의 memory cell이 없으므로, later hidden state에서 earlier information을 충분히 구분하거나 사용하는 것이 어려워질 수 있음.
 
-BPTT에서는 current loss와 distant earlier time step 사이의 gradient를 계산하기 위해 많은 recurrent local gradient를 연속적으로 곱함. Vanishing gradient가 발생하면 distant earlier time step의 gradient contribution이 거의 0이 되어 해당 dependency가 parameter update에 충분히 반영되지 못함.
+### 4.3 Backward Pass의 Vanishing Gradient
 
-<!-- Forward information retention 문제와 backward vanishing gradient의 구분 | source: ./figures/06_long_term_dependency.svg -->
+BPTT에서는 current loss와 distant earlier time step 사이의 gradient를 계산하기 위해 많은 recurrent local gradient를 연속적으로 곱함. Vanishing gradient가 발생하면 distant earlier time step에 대한 gradient가 거의 0이 되어 해당 dependency의 gradient contribution이 parameter update에 충분히 반영되지 못함.
+
+<!-- Forward pass에서 earlier information을 유지하는 문제와 backward vanishing gradient의 구분 | source: ./figures/06_long_term_dependency.svg -->
 <svg xmlns="http://www.w3.org/2000/svg" width="1200" height="720" viewBox="0 0 1200 720" role="img" aria-labelledby="title desc">
   <title id="title">Long-term dependency의 forward와 backward 문제</title>
   <desc id="desc">Forward pass에서는 서로 다른 earlier information을 담은 hidden-state representation이 successive recurrent transition을 거치며 구분하기 어려워질 수 있고, backward pass에서는 gradient가 distant earlier time step으로 갈수록 작아지는 과정을 분리해 나타낸 그림</desc>
@@ -370,8 +378,8 @@ BPTT에서는 current loss와 distant earlier time step 사이의 gradient를 �
   <rect width="1200" height="720" rx="24" fill="#f8fafc"/>
   <text x="55" y="52" font-family="Arial, 'Noto Sans KR', sans-serif" font-size="28" font-weight="700" fill="#0f172a">Long-term Dependency Problem</text>
   <rect x="45" y="80" width="1110" height="285" rx="22" fill="#ffffff" stroke="#bfdbfe" stroke-width="2"/>
-  <rect x="65" y="98" width="280" height="42" rx="21" fill="#dbeafe"/>
-  <text x="205" y="126" text-anchor="middle" font-family="Arial, 'Noto Sans KR', sans-serif" font-size="18" font-weight="700" fill="#1e40af">A. Forward pass · state representation</text>
+  <rect x="65" y="98" width="400" height="42" rx="21" fill="#dbeafe"/>
+    <text x="265" y="126" text-anchor="middle" font-family="Arial, 'Noto Sans KR', sans-serif" font-size="18" font-weight="700" fill="#1e40af">A. Forward pass · earlier information 유지</text>
   <g font-family="Arial, 'Noto Sans KR', sans-serif" text-anchor="middle">
     <rect x="75" y="185" width="130" height="76" rx="16" fill="#eff6ff" stroke="#2563eb" stroke-width="2"/><text x="140" y="218" font-size="16" fill="#1e40af">earlier input</text><text x="140" y="246" font-size="24" font-weight="700" fill="#1e3a8a">x<tspan baseline-shift="sub" font-size="14">k</tspan></text>
     <g filter="url(#shadow)" fill="#ede9fe" stroke="#7c3aed" stroke-width="2"><rect x="270" y="175" width="150" height="96" rx="18"/><rect x="505" y="175" width="150" height="96" rx="18"/><rect x="780" y="175" width="150" height="96" rx="18"/></g>
@@ -385,8 +393,8 @@ BPTT에서는 current loss와 distant earlier time step 사이의 gradient를 �
     <text x="1000" y="309" font-size="15" fill="#475569">state representations가</text><text x="1000" y="330" font-size="15" fill="#475569">서로 구분되기 어려워질 수 있음</text>
   </g>
   <rect x="45" y="385" width="1110" height="250" rx="22" fill="#ffffff" stroke="#ddd6fe" stroke-width="2"/>
-  <rect x="65" y="403" width="285" height="42" rx="21" fill="#ede9fe"/>
-  <text x="208" y="431" text-anchor="middle" font-family="Arial, 'Noto Sans KR', sans-serif" font-size="18" font-weight="700" fill="#6d28d9">B. Backward pass · BPTT gradient</text>
+  <rect x="65" y="403" width="380" height="42" rx="21" fill="#ede9fe"/>
+  <text x="255" y="431" text-anchor="middle" font-family="Arial, 'Noto Sans KR', sans-serif" font-size="18" font-weight="700" fill="#6d28d9">B. Backward pass · vanishing gradient</text>
   <g font-family="Arial, 'Noto Sans KR', sans-serif" text-anchor="middle">
     <rect x="75" y="495" width="150" height="76" rx="16" fill="#f5f3ff" stroke="#7c3aed" stroke-width="2"/><text x="150" y="526" font-size="15" fill="#6d28d9">distant state</text><text x="150" y="553" font-size="24" font-weight="700" fill="#4c1d95">h<tspan baseline-shift="sub" font-size="14">k</tspan></text>
     <rect x="975" y="495" width="155" height="76" rx="16" fill="#fee2e2" stroke="#dc2626" stroke-width="2"/><text x="1052" y="526" font-size="15" fill="#991b1b">current loss</text><text x="1052" y="553" font-size="24" font-weight="700" fill="#7f1d1d">L<tspan baseline-shift="sub" font-size="14">t</tspan></text>
@@ -395,15 +403,17 @@ BPTT에서는 current loss와 distant earlier time step 사이의 gradient를 �
     <text x="600" y="607" font-size="17" font-weight="700" fill="#6d28d9">chain rule의 recurrent local-gradient product가 길어질수록 gradient가 작아질 수 있음</text>
   </g>
   <rect x="215" y="655" width="770" height="42" rx="21" fill="#fff7ed" stroke="#fdba74" stroke-width="2"/>
-  <text x="600" y="682" text-anchor="middle" font-family="Arial, 'Noto Sans KR', sans-serif" font-size="17" font-weight="700" fill="#9a3412">Forward information retention 문제와 backward vanishing gradient는 구분해야 함</text>
+  <text x="600" y="682" text-anchor="middle" font-family="Arial, 'Noto Sans KR', sans-serif" font-size="17" font-weight="700" fill="#9a3412">Forward pass의 information 유지와 backward pass의 vanishing gradient는 구분해야 함</text>
 </svg>
 
 두 문제의 관계는 다음과 같음.
 
-- Forward pass에서는 earlier information을 later hidden state에 유지하고 사용하는 것이 어려울 수 있음.
-- Backward pass에서는 vanishing gradient 때문에 그 dependency를 학습하는 데 필요한 gradient contribution이 충분하지 않을 수 있음.
+- Forward pass에서는 earlier information을 later hidden state의 representation에 유지하고 사용하는 것이 어려울 수 있음.
+- Backward pass에서는 vanishing gradient 때문에 distant earlier time step의 gradient contribution이 parameter update에 충분히 반영되지 못할 수 있음.
 - Exploding gradient는 같은 recurrent local-gradient multiplication에서 발생할 수 있지만, 주로 optimization stability를 해치는 별도의 문제임.
 
-즉 simple RNN의 long-term dependency problem을 설명할 때는 **forward information retention 문제** 와 **backward vanishing gradient 문제** 를 구분해야 함.
+즉 Simple RNN의 long-term dependency problem을 설명할 때는 **forward pass에서 earlier information을 hidden state에 유지하는 문제** 와 **backward pass의 vanishing gradient problem** 을 구분해야 함.
 
-LSTM과 GRU는 information을 선택적으로 유지하고 update하는 **gating mechanism**을 도입하여, simple RNN의 long-term dependency problem을 완화하는 RNN architecture임.
+### 4.4 LSTM과 GRU
+
+LSTM과 GRU는 information을 선택적으로 preserve하고 update하는 **gating mechanism** 을 도입하여 Simple RNN의 long-term dependency problem을 완화하는 RNN architecture임.
