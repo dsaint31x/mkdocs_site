@@ -16,14 +16,14 @@ tags:
 PyTorch는 Simple RNN을 구현하기 위한 두 모듈을 제공한다.
 
 - `nn.RNNCell`
-  
-  한 시점의 순환 연산을 수행한다. 전체 시퀀스를 처리하려면 반복문과 hidden state 전달을 직접 작성해야 한다.
+    * 한 시점의 순환 연산을 수행한다.
+    * 전체 시퀀스를 처리하려면 반복문과 hidden state 전달을 직접 작성해야 한다.
 
 - `nn.RNN`
-  
-  전체 시퀀스의 순환 연산을 수행한다. 시점 반복과 hidden state 전달을 모듈 내부에서 처리한다.
+    * 전체 시퀀스의 순환 연산을 수행한다.
+    * 시점 반복과 hidden state 전달을 모듈 내부에서 처리한다.
 
-주의할 점은 두 module이 반환하는 값은 hidden state 임.
+주의할 점은 PyTorch의 두 module이 반환하는 값은 hidden state 임.
 
 * 별도의 prediction output layer는 포함하지 않음.
 * 때문에 분류나 회귀를 위한 예측값이 필요하면 다음과 같은 출력 층을 추가할 것:
@@ -40,7 +40,12 @@ prediction = output_layer(hidden_state)
 
 ## `nn.RNNCell`
 
-`nn.RNNCell`은 한 시점의 입력과 이전 hidden state를 받아 새로운 hidden state를 계산.
+`nn.RNNCell`은 
+
+* 한 시점의 입력과 이전 hidden state를 받아
+* 새로운 hidden state를 계산.
+
+---
 
 ### 생성자
 
@@ -54,6 +59,10 @@ nn.RNNCell(
     dtype=None,              # parameter의 data type
 )
 ```
+
+* `nonlinearity` 에 custom function 등의 할당은 안 됨: `tanh` 또는 `relu`에서만 골라야 한다.
+
+---
 
 ### 한 시점 처리
 
@@ -117,6 +126,8 @@ H_t:     (batch_size, hidden_size)  = (4, 5)
 * 이 값은 새로운 hidden state 임. 
 * 분류 점수나 회귀값과 같은 prediction output이 아님에 유의할 것.
 
+---
+
 ### 전체 시퀀스 처리
 
 `nn.RNNCell`은 한 번 호출할 때 한 시점만 처리함.  
@@ -140,8 +151,8 @@ for X_t in X.unbind(dim=1):
 H_all = torch.stack(hidden_states, dim=1)
 ```
 
-* `H_all` : 모든 시점의 hidden state가 저장된다.
-* `H` : 마지막 시점의 hidden state가 저장된다.
+* `H_all` : 모든 timestep(시점)의 hidden state가 저장됨.
+* `H` : 마지막 timestep(시점)의 hidden state가 저장됨.
 
 각각의 dimension은 다음과 같음:
 
@@ -157,10 +168,14 @@ H:      (batch_size, hidden_size)
 
 `nn.RNNCell`
 
-* hidden state를 prediction으로 바꾸는 출력 층이 없다.
-* 때문에 예측값이 필요하면 `nn.Linear` 층을 별도로 추가할 것.
+* hidden state를 prediction으로 바꾸는 출력 층이 없음.
+* 때문에 예측값이 필요하면 `nn.Linear` 층을 별도로 추가해야 함.
 
-다음 모델은 RNNCell과 prediction output weight를 하나의 모듈로 구현한다.
+다음의 코드에서 `RNNCellMode`은 
+
+* RNNCell과
+* prediction output weight를
+* 하나의 모듈로 구현함:
 
 ```python
 import torch
@@ -301,9 +316,14 @@ nn.RNN(
 )
 ```
 
+---
+
 ### 전체 시퀀스 처리
 
-다음 예제는 batch 차원을 첫 번째로 배치한다.
+다음 예제에선 batch 차원을 첫 번째로 배치하는 것을 전제로 함:
+
+* PyTorch의 경우 `batch_first`가 `False`가 기본값이나
+* 많은 경우 `True`를 사용하는 경우도 많기 때문에 이를 전제로 예제 작성함:
 
 ```python
 import torch
@@ -389,6 +409,8 @@ output, H_n = rnn(X, H_0)
 
 `nn.RNN` 도 별도의 prediction output layer가 없다.
 
+---
+
 ### Multi-layer RNN
 
 `num_layers`는 쌓을 recurrent layer의 수를 지정함.
@@ -471,7 +493,9 @@ bias_hh_l1:    (hidden_size)
 참고로, 
 
 * `dropout`이 0보다 크면
-* 마지막 recurrent layer를 제외한 층 사이에 적용된다.
+* 마지막 recurrent layer를 제외한 층 사이에 적용됨.
+
+---
 
 ### 단방향과 양방향 설정의 shape
 
@@ -514,10 +538,11 @@ H_n:     (2 * num_layers, batch_size, hidden_size)
 * `batch_first`는 `X`와 `output`의 차원 순서만 바꾼다.
 * `H_0`과 `H_n`의 차원 순서에는 영향을 주지 않는다.
 
+---
 
 ### Prediction output 추가
 
-다음 모델은 RNN과 prediction output weight를 하나의 모듈로 구현한다.
+다음 모델은 RNN과 prediction output weight를 하나의 모듈로 구현한 예제임:
 
 ```python
 import torch
@@ -687,7 +712,9 @@ Y_last:     (batch_size, output_size)
 
 ---
 
-## 동일한 가중치로 `nn.RNNCell`과 `nn.RNN` 비교
+---
+
+## 예제: 동일한 가중치로 `nn.RNNCell`과 `nn.RNN` 비교
 
 단일 층, 단방향, 동일한 활성화 함수를 사용하면 두 모듈은 같은 순환 연산을 수행할 수 있음.
 
@@ -992,9 +1019,8 @@ True
 True
 ```
 
-첫 번째 결과는 모든 시점의 hidden state가 같음을 나타낸다.
-
-두 번째 결과는 마지막 hidden state가 같음을 나타낸다.
+* 첫 번째 결과는 모든 시점의 hidden state가 같음을 의미함.
+* 두 번째 결과는 마지막 hidden state가 같음을 의미함.
 
 두 모듈의 핵심 차이는 순환 계산식이 아니라 시퀀스 반복을 누가 담당하는지에 있다.
 
@@ -1007,6 +1033,7 @@ True
 | 양방향 처리 | 직접 구성 | `bidirectional=True`로 구성 |
 | prediction output layer | 포함하지 않음 | 포함하지 않음 |
 
-세밀한 시점별 제어가 필요하면 `nn.RNNCell`이 적합하다.
+각각에 적절한 사용 시점은
 
-일반적인 시퀀스 처리가 목적이면 `nn.RNN`이 간결하다.
+* 세밀한 시점별 제어가 필요하면 `nn.RNNCell`이 적합.
+* 일반적인 시퀀스 처리가 목적이면 `nn.RNN`이 적합.
