@@ -251,21 +251,40 @@ $$
   <text x="600" y="475" text-anchor="middle" font-family="Arial, 'Noto Sans KR', sans-serif" font-size="18" fill="#475569">V는 모든 step에서 동일하지만 D는 activation에 따라 달라짐</text>
 </svg>
 
-Time step `t`의 loss가 time step `k`의 hidden state에 미치는 gradient는 다음과 같음:
+Time step `t` 의 loss가 time step `k` 의 hidden state에 미치는 gradient는 다음과 같음:
 
 $$
 \frac{\partial L_t}{\partial h_k}
 = \frac{\partial L_t}{\partial h_t}
-\frac{\partial h_t}{\partial h_{t-1}}
-\cdots
-\frac{\partial h_{k+1}}{\partial h_k}
+  \frac{\partial h_t}{\partial h_{t-1}}
+  \cdots
+  \frac{\partial h_{k+1}}{\partial h_k}
 $$
+
+여기서 $\partial L_t / \partial h_t$ 는 output layer를 거치는 경로를 한 항으로 축약한 표기임.
+Output layer를 $o_t = W h_t + b_y$, $\hat{y}_t = \mathrm{softmax}(o_t)$, $L_t = \mathrm{CE}(\hat{y}_t, y_t)$ 로 두면 다음과 같이 풀림:
+
+$$
+\frac{\partial L_t}{\partial h_t}
+= \frac{\partial L_t}{\partial \hat{y}_t}
+  \frac{\partial \hat{y}_t}{\partial o_t}
+  \frac{\partial o_t}{\partial h_t}
+= \frac{\partial L_t}{\partial o_t} W
+$$
+
+이 factor는 $k$ 에 의존하지 않는 상수 항이므로, 이하에서는 다시 $\partial L_t / \partial h_t$ 로 축약함.
 
 각 recurrent local Jacobian을 대입한 product는 다음과 같음:
 
 $$
-\cdots (D_tV)(D_{t-1}V)(D_{t-2}V)\cdots
+\frac{\partial L_t}{\partial h_k}
+= \frac{\partial L_t}{\partial h_t}
+  (D_t V)(D_{t-1} V) \cdots (D_{k+1} V)
+= \frac{\partial L_t}{\partial h_t} \prod_{i=k+1}^{t} D_i V
 $$
+
+Product는 index $t$ 에서 시작하여 $k+1$ 에서 끝남.  
+행렬 곱은 non-commutative이므로 순서를 바꿀 수 없으며, gradient를 row vector로 두는 numerator layout에서는 index가 큰 쪽이 왼쪽에 옴.
 
 여기서 중요한 점은 다음과 같음.
 
