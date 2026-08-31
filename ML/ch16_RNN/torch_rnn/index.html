@@ -279,55 +279,293 @@
 </span></code></pre></div> <p><svg viewbox="0 0 850 190" width=100% role=img aria-labelledby="rnn-output-title rnn-output-desc" xmlns=http://www.w3.org/2000/svg> <title id=rnn-output-title>RNN과 별도의 출력 층</title> <desc id=rnn-output-desc>RNN은 hidden states를 반환하고 별도의 Linear 층이 이를 prediction으로 변환한다.</desc> <defs> <marker id=rnn-output-arrow markerwidth=10 markerheight=10 refx=9 refy=5 orient=auto> <path fill=currentColor d="M 0 0 L 10 5 L 0 10 z"/> </marker> </defs> <g fill=none stroke=currentColor stroke-width=2> <rect x=35 y=64 width=145 height=62 rx=10 /> <rect x=260 y=64 width=190 height=62 rx=10 /> <rect x=535 y=64 width=135 height=62 rx=10 stroke-dasharray="7 5"/> <rect x=750 y=64 width=75 height=62 rx=10 stroke-dasharray="7 5"/> <line x1=180 y1=95 x2=260 y2=95 marker-end=url(#rnn-output-arrow) /> <line x1=450 y1=95 x2=535 y2=95 marker-end=url(#rnn-output-arrow) /> <line x1=670 y1=95 x2=750 y2=95 marker-end=url(#rnn-output-arrow) /> </g> <g fill=currentColor font-family=sans-serif text-anchor=middle> <text x=107 y=102 font-size=20>RNN</text> <text x=355 y=88 font-size=18>시점별 hidden states</text> <text x=355 y=111 font-size=17>output</text> <text x=602 y=88 font-size=18>별도 추가</text> <text x=602 y=111 font-size=17>nn.Linear</text> <text x=787 y=88 font-size=18>prediction</text> <text x=787 y=111 font-size=17>Y</text> </g> </svg></p> <ul> <li>점선으로 표시한 부분은 모듈 외부에 별도로 추가한 부분이다.</li> </ul> <hr> <h2 id=nnrnncell-nnrnn>동일한 가중치로 <code>nn.RNNCell</code>과 <code>nn.RNN</code> 비교<a class=headerlink href=#nnrnncell-nnrnn title="Permanent link">&para;</a></h2> <p>단일 층, 단방향, 동일한 활성화 함수를 사용하면 두 모듈은 같은 순환 연산을 수행할 수 있음.</p> <p>정확한 비교를 위해 두 모듈의 가중치와 bias를 동일하게 만든다.</p> <div class="language-python highlight"><pre><span></span><code><span id=__span-33-1><a id=__codelineno-33-1 name=__codelineno-33-1 href=#__codelineno-33-1></a><span class=kn>import</span><span class=w> </span><span class=nn>torch</span>
 </span><span id=__span-33-2><a id=__codelineno-33-2 name=__codelineno-33-2 href=#__codelineno-33-2></a><span class=kn>from</span><span class=w> </span><span class=nn>torch</span><span class=w> </span><span class=kn>import</span> <span class=n>nn</span>
 </span><span id=__span-33-3><a id=__codelineno-33-3 name=__codelineno-33-3 href=#__codelineno-33-3></a>
-</span><span id=__span-33-4><a id=__codelineno-33-4 name=__codelineno-33-4 href=#__codelineno-33-4></a><span class=n>torch</span><span class=o>.</span><span class=n>manual_seed</span><span class=p>(</span><span class=mi>0</span><span class=p>)</span>
-</span><span id=__span-33-5><a id=__codelineno-33-5 name=__codelineno-33-5 href=#__codelineno-33-5></a>
-</span><span id=__span-33-6><a id=__codelineno-33-6 name=__codelineno-33-6 href=#__codelineno-33-6></a><span class=n>batch_size</span> <span class=o>=</span> <span class=mi>4</span>
-</span><span id=__span-33-7><a id=__codelineno-33-7 name=__codelineno-33-7 href=#__codelineno-33-7></a><span class=n>sequence_length</span> <span class=o>=</span> <span class=mi>10</span>
-</span><span id=__span-33-8><a id=__codelineno-33-8 name=__codelineno-33-8 href=#__codelineno-33-8></a><span class=n>input_size</span> <span class=o>=</span> <span class=mi>3</span>
-</span><span id=__span-33-9><a id=__codelineno-33-9 name=__codelineno-33-9 href=#__codelineno-33-9></a><span class=n>hidden_size</span> <span class=o>=</span> <span class=mi>5</span>
-</span><span id=__span-33-10><a id=__codelineno-33-10 name=__codelineno-33-10 href=#__codelineno-33-10></a>
-</span><span id=__span-33-11><a id=__codelineno-33-11 name=__codelineno-33-11 href=#__codelineno-33-11></a><span class=n>X</span> <span class=o>=</span> <span class=n>torch</span><span class=o>.</span><span class=n>randn</span><span class=p>(</span><span class=n>batch_size</span><span class=p>,</span> <span class=n>sequence_length</span><span class=p>,</span> <span class=n>input_size</span><span class=p>)</span>
-</span><span id=__span-33-12><a id=__codelineno-33-12 name=__codelineno-33-12 href=#__codelineno-33-12></a><span class=n>H_0</span> <span class=o>=</span> <span class=n>torch</span><span class=o>.</span><span class=n>zeros</span><span class=p>(</span><span class=n>batch_size</span><span class=p>,</span> <span class=n>hidden_size</span><span class=p>)</span>
-</span><span id=__span-33-13><a id=__codelineno-33-13 name=__codelineno-33-13 href=#__codelineno-33-13></a>
-</span><span id=__span-33-14><a id=__codelineno-33-14 name=__codelineno-33-14 href=#__codelineno-33-14></a><span class=n>rnn</span> <span class=o>=</span> <span class=n>nn</span><span class=o>.</span><span class=n>RNN</span><span class=p>(</span>
-</span><span id=__span-33-15><a id=__codelineno-33-15 name=__codelineno-33-15 href=#__codelineno-33-15></a>    <span class=n>input_size</span><span class=o>=</span><span class=n>input_size</span><span class=p>,</span>
-</span><span id=__span-33-16><a id=__codelineno-33-16 name=__codelineno-33-16 href=#__codelineno-33-16></a>    <span class=n>hidden_size</span><span class=o>=</span><span class=n>hidden_size</span><span class=p>,</span>
-</span><span id=__span-33-17><a id=__codelineno-33-17 name=__codelineno-33-17 href=#__codelineno-33-17></a>    <span class=n>num_layers</span><span class=o>=</span><span class=mi>1</span><span class=p>,</span>
-</span><span id=__span-33-18><a id=__codelineno-33-18 name=__codelineno-33-18 href=#__codelineno-33-18></a>    <span class=n>nonlinearity</span><span class=o>=</span><span class=s2>"tanh"</span><span class=p>,</span>
-</span><span id=__span-33-19><a id=__codelineno-33-19 name=__codelineno-33-19 href=#__codelineno-33-19></a>    <span class=n>bias</span><span class=o>=</span><span class=kc>True</span><span class=p>,</span>
-</span><span id=__span-33-20><a id=__codelineno-33-20 name=__codelineno-33-20 href=#__codelineno-33-20></a>    <span class=n>batch_first</span><span class=o>=</span><span class=kc>True</span><span class=p>,</span>
-</span><span id=__span-33-21><a id=__codelineno-33-21 name=__codelineno-33-21 href=#__codelineno-33-21></a>    <span class=n>bidirectional</span><span class=o>=</span><span class=kc>False</span><span class=p>,</span>
-</span><span id=__span-33-22><a id=__codelineno-33-22 name=__codelineno-33-22 href=#__codelineno-33-22></a><span class=p>)</span>
-</span><span id=__span-33-23><a id=__codelineno-33-23 name=__codelineno-33-23 href=#__codelineno-33-23></a>
-</span><span id=__span-33-24><a id=__codelineno-33-24 name=__codelineno-33-24 href=#__codelineno-33-24></a><span class=n>rnn_cell</span> <span class=o>=</span> <span class=n>nn</span><span class=o>.</span><span class=n>RNNCell</span><span class=p>(</span>
-</span><span id=__span-33-25><a id=__codelineno-33-25 name=__codelineno-33-25 href=#__codelineno-33-25></a>    <span class=n>input_size</span><span class=o>=</span><span class=n>input_size</span><span class=p>,</span>
-</span><span id=__span-33-26><a id=__codelineno-33-26 name=__codelineno-33-26 href=#__codelineno-33-26></a>    <span class=n>hidden_size</span><span class=o>=</span><span class=n>hidden_size</span><span class=p>,</span>
-</span><span id=__span-33-27><a id=__codelineno-33-27 name=__codelineno-33-27 href=#__codelineno-33-27></a>    <span class=n>bias</span><span class=o>=</span><span class=kc>True</span><span class=p>,</span>
-</span><span id=__span-33-28><a id=__codelineno-33-28 name=__codelineno-33-28 href=#__codelineno-33-28></a>    <span class=n>nonlinearity</span><span class=o>=</span><span class=s2>"tanh"</span><span class=p>,</span>
-</span><span id=__span-33-29><a id=__codelineno-33-29 name=__codelineno-33-29 href=#__codelineno-33-29></a><span class=p>)</span>
-</span><span id=__span-33-30><a id=__codelineno-33-30 name=__codelineno-33-30 href=#__codelineno-33-30></a>
-</span><span id=__span-33-31><a id=__codelineno-33-31 name=__codelineno-33-31 href=#__codelineno-33-31></a><span class=k>with</span> <span class=n>torch</span><span class=o>.</span><span class=n>no_grad</span><span class=p>():</span>
-</span><span id=__span-33-32><a id=__codelineno-33-32 name=__codelineno-33-32 href=#__codelineno-33-32></a>    <span class=n>rnn_cell</span><span class=o>.</span><span class=n>weight_ih</span><span class=o>.</span><span class=n>copy_</span><span class=p>(</span><span class=n>rnn</span><span class=o>.</span><span class=n>weight_ih_l0</span><span class=p>)</span>
-</span><span id=__span-33-33><a id=__codelineno-33-33 name=__codelineno-33-33 href=#__codelineno-33-33></a>    <span class=n>rnn_cell</span><span class=o>.</span><span class=n>weight_hh</span><span class=o>.</span><span class=n>copy_</span><span class=p>(</span><span class=n>rnn</span><span class=o>.</span><span class=n>weight_hh_l0</span><span class=p>)</span>
-</span><span id=__span-33-34><a id=__codelineno-33-34 name=__codelineno-33-34 href=#__codelineno-33-34></a>    <span class=n>rnn_cell</span><span class=o>.</span><span class=n>bias_ih</span><span class=o>.</span><span class=n>copy_</span><span class=p>(</span><span class=n>rnn</span><span class=o>.</span><span class=n>bias_ih_l0</span><span class=p>)</span>
-</span><span id=__span-33-35><a id=__codelineno-33-35 name=__codelineno-33-35 href=#__codelineno-33-35></a>    <span class=n>rnn_cell</span><span class=o>.</span><span class=n>bias_hh</span><span class=o>.</span><span class=n>copy_</span><span class=p>(</span><span class=n>rnn</span><span class=o>.</span><span class=n>bias_hh_l0</span><span class=p>)</span>
-</span><span id=__span-33-36><a id=__codelineno-33-36 name=__codelineno-33-36 href=#__codelineno-33-36></a>
-</span><span id=__span-33-37><a id=__codelineno-33-37 name=__codelineno-33-37 href=#__codelineno-33-37></a><span class=c1># RNNCell로 시퀀스를 직접 순회</span>
-</span><span id=__span-33-38><a id=__codelineno-33-38 name=__codelineno-33-38 href=#__codelineno-33-38></a><span class=n>H_cell</span> <span class=o>=</span> <span class=n>H_0</span><span class=o>.</span><span class=n>clone</span><span class=p>()</span>
-</span><span id=__span-33-39><a id=__codelineno-33-39 name=__codelineno-33-39 href=#__codelineno-33-39></a><span class=n>cell_hidden_states</span> <span class=o>=</span> <span class=p>[]</span>
-</span><span id=__span-33-40><a id=__codelineno-33-40 name=__codelineno-33-40 href=#__codelineno-33-40></a>
-</span><span id=__span-33-41><a id=__codelineno-33-41 name=__codelineno-33-41 href=#__codelineno-33-41></a><span class=k>for</span> <span class=n>X_t</span> <span class=ow>in</span> <span class=n>X</span><span class=o>.</span><span class=n>unbind</span><span class=p>(</span><span class=n>dim</span><span class=o>=</span><span class=mi>1</span><span class=p>):</span>
-</span><span id=__span-33-42><a id=__codelineno-33-42 name=__codelineno-33-42 href=#__codelineno-33-42></a>    <span class=n>H_cell</span> <span class=o>=</span> <span class=n>rnn_cell</span><span class=p>(</span><span class=n>X_t</span><span class=p>,</span> <span class=n>H_cell</span><span class=p>)</span>
-</span><span id=__span-33-43><a id=__codelineno-33-43 name=__codelineno-33-43 href=#__codelineno-33-43></a>    <span class=n>cell_hidden_states</span><span class=o>.</span><span class=n>append</span><span class=p>(</span><span class=n>H_cell</span><span class=p>)</span>
-</span><span id=__span-33-44><a id=__codelineno-33-44 name=__codelineno-33-44 href=#__codelineno-33-44></a>
-</span><span id=__span-33-45><a id=__codelineno-33-45 name=__codelineno-33-45 href=#__codelineno-33-45></a><span class=n>cell_output</span> <span class=o>=</span> <span class=n>torch</span><span class=o>.</span><span class=n>stack</span><span class=p>(</span><span class=n>cell_hidden_states</span><span class=p>,</span> <span class=n>dim</span><span class=o>=</span><span class=mi>1</span><span class=p>)</span>
+</span><span id=__span-33-4><a id=__codelineno-33-4 name=__codelineno-33-4 href=#__codelineno-33-4></a>
+</span><span id=__span-33-5><a id=__codelineno-33-5 name=__codelineno-33-5 href=#__codelineno-33-5></a><span class=c1># 재현 가능한 결과를 위해 random seed 고정</span>
+</span><span id=__span-33-6><a id=__codelineno-33-6 name=__codelineno-33-6 href=#__codelineno-33-6></a><span class=n>torch</span><span class=o>.</span><span class=n>manual_seed</span><span class=p>(</span><span class=mi>0</span><span class=p>)</span>
+</span><span id=__span-33-7><a id=__codelineno-33-7 name=__codelineno-33-7 href=#__codelineno-33-7></a>
+</span><span id=__span-33-8><a id=__codelineno-33-8 name=__codelineno-33-8 href=#__codelineno-33-8></a>
+</span><span id=__span-33-9><a id=__codelineno-33-9 name=__codelineno-33-9 href=#__codelineno-33-9></a><span class=c1># 입력 sequence의 기본 크기 설정</span>
+</span><span id=__span-33-10><a id=__codelineno-33-10 name=__codelineno-33-10 href=#__codelineno-33-10></a><span class=n>batch_size</span> <span class=o>=</span> <span class=mi>4</span>
+</span><span id=__span-33-11><a id=__codelineno-33-11 name=__codelineno-33-11 href=#__codelineno-33-11></a><span class=n>sequence_length</span> <span class=o>=</span> <span class=mi>10</span>
+</span><span id=__span-33-12><a id=__codelineno-33-12 name=__codelineno-33-12 href=#__codelineno-33-12></a><span class=n>input_size</span> <span class=o>=</span> <span class=mi>3</span>
+</span><span id=__span-33-13><a id=__codelineno-33-13 name=__codelineno-33-13 href=#__codelineno-33-13></a><span class=n>hidden_size</span> <span class=o>=</span> <span class=mi>5</span>
+</span><span id=__span-33-14><a id=__codelineno-33-14 name=__codelineno-33-14 href=#__codelineno-33-14></a>
+</span><span id=__span-33-15><a id=__codelineno-33-15 name=__codelineno-33-15 href=#__codelineno-33-15></a>
+</span><span id=__span-33-16><a id=__codelineno-33-16 name=__codelineno-33-16 href=#__codelineno-33-16></a><span class=c1># 입력 tensor</span>
+</span><span id=__span-33-17><a id=__codelineno-33-17 name=__codelineno-33-17 href=#__codelineno-33-17></a><span class=c1>#</span>
+</span><span id=__span-33-18><a id=__codelineno-33-18 name=__codelineno-33-18 href=#__codelineno-33-18></a><span class=c1># shape:</span>
+</span><span id=__span-33-19><a id=__codelineno-33-19 name=__codelineno-33-19 href=#__codelineno-33-19></a><span class=c1># (batch_size, sequence_length, input_size)</span>
+</span><span id=__span-33-20><a id=__codelineno-33-20 name=__codelineno-33-20 href=#__codelineno-33-20></a><span class=c1>#</span>
+</span><span id=__span-33-21><a id=__codelineno-33-21 name=__codelineno-33-21 href=#__codelineno-33-21></a><span class=c1># 여기서는</span>
+</span><span id=__span-33-22><a id=__codelineno-33-22 name=__codelineno-33-22 href=#__codelineno-33-22></a><span class=c1># (4, 10, 3)</span>
+</span><span id=__span-33-23><a id=__codelineno-33-23 name=__codelineno-33-23 href=#__codelineno-33-23></a><span class=c1>#</span>
+</span><span id=__span-33-24><a id=__codelineno-33-24 name=__codelineno-33-24 href=#__codelineno-33-24></a><span class=c1># 각 batch에는 길이 10의 sequence가 있고,</span>
+</span><span id=__span-33-25><a id=__codelineno-33-25 name=__codelineno-33-25 href=#__codelineno-33-25></a><span class=c1># 각 time step은 3개의 feature를 가짐.</span>
+</span><span id=__span-33-26><a id=__codelineno-33-26 name=__codelineno-33-26 href=#__codelineno-33-26></a><span class=n>X</span> <span class=o>=</span> <span class=n>torch</span><span class=o>.</span><span class=n>randn</span><span class=p>(</span>
+</span><span id=__span-33-27><a id=__codelineno-33-27 name=__codelineno-33-27 href=#__codelineno-33-27></a>    <span class=n>batch_size</span><span class=p>,</span>
+</span><span id=__span-33-28><a id=__codelineno-33-28 name=__codelineno-33-28 href=#__codelineno-33-28></a>    <span class=n>sequence_length</span><span class=p>,</span>
+</span><span id=__span-33-29><a id=__codelineno-33-29 name=__codelineno-33-29 href=#__codelineno-33-29></a>    <span class=n>input_size</span><span class=p>,</span>
+</span><span id=__span-33-30><a id=__codelineno-33-30 name=__codelineno-33-30 href=#__codelineno-33-30></a><span class=p>)</span>
+</span><span id=__span-33-31><a id=__codelineno-33-31 name=__codelineno-33-31 href=#__codelineno-33-31></a>
+</span><span id=__span-33-32><a id=__codelineno-33-32 name=__codelineno-33-32 href=#__codelineno-33-32></a>
+</span><span id=__span-33-33><a id=__codelineno-33-33 name=__codelineno-33-33 href=#__codelineno-33-33></a><span class=c1># initial hidden state</span>
+</span><span id=__span-33-34><a id=__codelineno-33-34 name=__codelineno-33-34 href=#__codelineno-33-34></a><span class=c1>#</span>
+</span><span id=__span-33-35><a id=__codelineno-33-35 name=__codelineno-33-35 href=#__codelineno-33-35></a><span class=c1># RNNCell은 한 time step씩 처리하므로</span>
+</span><span id=__span-33-36><a id=__codelineno-33-36 name=__codelineno-33-36 href=#__codelineno-33-36></a><span class=c1># hidden state의 shape은 다음과 같음.</span>
+</span><span id=__span-33-37><a id=__codelineno-33-37 name=__codelineno-33-37 href=#__codelineno-33-37></a><span class=c1>#</span>
+</span><span id=__span-33-38><a id=__codelineno-33-38 name=__codelineno-33-38 href=#__codelineno-33-38></a><span class=c1># (batch_size, hidden_size)</span>
+</span><span id=__span-33-39><a id=__codelineno-33-39 name=__codelineno-33-39 href=#__codelineno-33-39></a><span class=c1>#</span>
+</span><span id=__span-33-40><a id=__codelineno-33-40 name=__codelineno-33-40 href=#__codelineno-33-40></a><span class=c1># 여기서는</span>
+</span><span id=__span-33-41><a id=__codelineno-33-41 name=__codelineno-33-41 href=#__codelineno-33-41></a><span class=c1># (4, 5)</span>
+</span><span id=__span-33-42><a id=__codelineno-33-42 name=__codelineno-33-42 href=#__codelineno-33-42></a><span class=n>H_0</span> <span class=o>=</span> <span class=n>torch</span><span class=o>.</span><span class=n>zeros</span><span class=p>(</span>
+</span><span id=__span-33-43><a id=__codelineno-33-43 name=__codelineno-33-43 href=#__codelineno-33-43></a>    <span class=n>batch_size</span><span class=p>,</span>
+</span><span id=__span-33-44><a id=__codelineno-33-44 name=__codelineno-33-44 href=#__codelineno-33-44></a>    <span class=n>hidden_size</span><span class=p>,</span>
+</span><span id=__span-33-45><a id=__codelineno-33-45 name=__codelineno-33-45 href=#__codelineno-33-45></a><span class=p>)</span>
 </span><span id=__span-33-46><a id=__codelineno-33-46 name=__codelineno-33-46 href=#__codelineno-33-46></a>
-</span><span id=__span-33-47><a id=__codelineno-33-47 name=__codelineno-33-47 href=#__codelineno-33-47></a><span class=c1># RNN으로 전체 시퀀스를 한 번에 처리</span>
-</span><span id=__span-33-48><a id=__codelineno-33-48 name=__codelineno-33-48 href=#__codelineno-33-48></a><span class=n>rnn_output</span><span class=p>,</span> <span class=n>H_rnn</span> <span class=o>=</span> <span class=n>rnn</span><span class=p>(</span><span class=n>X</span><span class=p>,</span> <span class=n>H_0</span><span class=o>.</span><span class=n>unsqueeze</span><span class=p>(</span><span class=mi>0</span><span class=p>))</span>
-</span><span id=__span-33-49><a id=__codelineno-33-49 name=__codelineno-33-49 href=#__codelineno-33-49></a>
-</span><span id=__span-33-50><a id=__codelineno-33-50 name=__codelineno-33-50 href=#__codelineno-33-50></a><span class=nb>print</span><span class=p>(</span><span class=n>torch</span><span class=o>.</span><span class=n>allclose</span><span class=p>(</span><span class=n>cell_output</span><span class=p>,</span> <span class=n>rnn_output</span><span class=p>))</span>
-</span><span id=__span-33-51><a id=__codelineno-33-51 name=__codelineno-33-51 href=#__codelineno-33-51></a><span class=nb>print</span><span class=p>(</span><span class=n>torch</span><span class=o>.</span><span class=n>allclose</span><span class=p>(</span><span class=n>H_cell</span><span class=o>.</span><span class=n>unsqueeze</span><span class=p>(</span><span class=mi>0</span><span class=p>),</span> <span class=n>H_rnn</span><span class=p>))</span>
+</span><span id=__span-33-47><a id=__codelineno-33-47 name=__codelineno-33-47 href=#__codelineno-33-47></a>
+</span><span id=__span-33-48><a id=__codelineno-33-48 name=__codelineno-33-48 href=#__codelineno-33-48></a><span class=c1># 전체 sequence를 한 번에 처리할 RNN</span>
+</span><span id=__span-33-49><a id=__codelineno-33-49 name=__codelineno-33-49 href=#__codelineno-33-49></a><span class=c1>#</span>
+</span><span id=__span-33-50><a id=__codelineno-33-50 name=__codelineno-33-50 href=#__codelineno-33-50></a><span class=c1># batch_first=True 이므로 input shape은</span>
+</span><span id=__span-33-51><a id=__codelineno-33-51 name=__codelineno-33-51 href=#__codelineno-33-51></a><span class=c1>#</span>
+</span><span id=__span-33-52><a id=__codelineno-33-52 name=__codelineno-33-52 href=#__codelineno-33-52></a><span class=c1># (batch_size, sequence_length, input_size)</span>
+</span><span id=__span-33-53><a id=__codelineno-33-53 name=__codelineno-33-53 href=#__codelineno-33-53></a><span class=c1>#</span>
+</span><span id=__span-33-54><a id=__codelineno-33-54 name=__codelineno-33-54 href=#__codelineno-33-54></a><span class=c1># 형태를 사용함.</span>
+</span><span id=__span-33-55><a id=__codelineno-33-55 name=__codelineno-33-55 href=#__codelineno-33-55></a><span class=n>rnn</span> <span class=o>=</span> <span class=n>nn</span><span class=o>.</span><span class=n>RNN</span><span class=p>(</span>
+</span><span id=__span-33-56><a id=__codelineno-33-56 name=__codelineno-33-56 href=#__codelineno-33-56></a>    <span class=n>input_size</span><span class=o>=</span><span class=n>input_size</span><span class=p>,</span>
+</span><span id=__span-33-57><a id=__codelineno-33-57 name=__codelineno-33-57 href=#__codelineno-33-57></a>    <span class=n>hidden_size</span><span class=o>=</span><span class=n>hidden_size</span><span class=p>,</span>
+</span><span id=__span-33-58><a id=__codelineno-33-58 name=__codelineno-33-58 href=#__codelineno-33-58></a>    <span class=n>num_layers</span><span class=o>=</span><span class=mi>1</span><span class=p>,</span>
+</span><span id=__span-33-59><a id=__codelineno-33-59 name=__codelineno-33-59 href=#__codelineno-33-59></a>    <span class=n>nonlinearity</span><span class=o>=</span><span class=s2>"tanh"</span><span class=p>,</span>
+</span><span id=__span-33-60><a id=__codelineno-33-60 name=__codelineno-33-60 href=#__codelineno-33-60></a>    <span class=n>bias</span><span class=o>=</span><span class=kc>True</span><span class=p>,</span>
+</span><span id=__span-33-61><a id=__codelineno-33-61 name=__codelineno-33-61 href=#__codelineno-33-61></a>    <span class=n>batch_first</span><span class=o>=</span><span class=kc>True</span><span class=p>,</span>
+</span><span id=__span-33-62><a id=__codelineno-33-62 name=__codelineno-33-62 href=#__codelineno-33-62></a>    <span class=n>bidirectional</span><span class=o>=</span><span class=kc>False</span><span class=p>,</span>
+</span><span id=__span-33-63><a id=__codelineno-33-63 name=__codelineno-33-63 href=#__codelineno-33-63></a><span class=p>)</span>
+</span><span id=__span-33-64><a id=__codelineno-33-64 name=__codelineno-33-64 href=#__codelineno-33-64></a>
+</span><span id=__span-33-65><a id=__codelineno-33-65 name=__codelineno-33-65 href=#__codelineno-33-65></a>
+</span><span id=__span-33-66><a id=__codelineno-33-66 name=__codelineno-33-66 href=#__codelineno-33-66></a><span class=c1># 한 time step씩 처리할 RNNCell</span>
+</span><span id=__span-33-67><a id=__codelineno-33-67 name=__codelineno-33-67 href=#__codelineno-33-67></a><span class=c1>#</span>
+</span><span id=__span-33-68><a id=__codelineno-33-68 name=__codelineno-33-68 href=#__codelineno-33-68></a><span class=c1># RNN과 동일하게</span>
+</span><span id=__span-33-69><a id=__codelineno-33-69 name=__codelineno-33-69 href=#__codelineno-33-69></a><span class=c1># input_size=3,</span>
+</span><span id=__span-33-70><a id=__codelineno-33-70 name=__codelineno-33-70 href=#__codelineno-33-70></a><span class=c1># hidden_size=5,</span>
+</span><span id=__span-33-71><a id=__codelineno-33-71 name=__codelineno-33-71 href=#__codelineno-33-71></a><span class=c1># tanh activation,</span>
+</span><span id=__span-33-72><a id=__codelineno-33-72 name=__codelineno-33-72 href=#__codelineno-33-72></a><span class=c1># bias 사용</span>
+</span><span id=__span-33-73><a id=__codelineno-33-73 name=__codelineno-33-73 href=#__codelineno-33-73></a><span class=c1>#</span>
+</span><span id=__span-33-74><a id=__codelineno-33-74 name=__codelineno-33-74 href=#__codelineno-33-74></a><span class=c1># 으로 구성함.</span>
+</span><span id=__span-33-75><a id=__codelineno-33-75 name=__codelineno-33-75 href=#__codelineno-33-75></a><span class=n>rnn_cell</span> <span class=o>=</span> <span class=n>nn</span><span class=o>.</span><span class=n>RNNCell</span><span class=p>(</span>
+</span><span id=__span-33-76><a id=__codelineno-33-76 name=__codelineno-33-76 href=#__codelineno-33-76></a>    <span class=n>input_size</span><span class=o>=</span><span class=n>input_size</span><span class=p>,</span>
+</span><span id=__span-33-77><a id=__codelineno-33-77 name=__codelineno-33-77 href=#__codelineno-33-77></a>    <span class=n>hidden_size</span><span class=o>=</span><span class=n>hidden_size</span><span class=p>,</span>
+</span><span id=__span-33-78><a id=__codelineno-33-78 name=__codelineno-33-78 href=#__codelineno-33-78></a>    <span class=n>bias</span><span class=o>=</span><span class=kc>True</span><span class=p>,</span>
+</span><span id=__span-33-79><a id=__codelineno-33-79 name=__codelineno-33-79 href=#__codelineno-33-79></a>    <span class=n>nonlinearity</span><span class=o>=</span><span class=s2>"tanh"</span><span class=p>,</span>
+</span><span id=__span-33-80><a id=__codelineno-33-80 name=__codelineno-33-80 href=#__codelineno-33-80></a><span class=p>)</span>
+</span><span id=__span-33-81><a id=__codelineno-33-81 name=__codelineno-33-81 href=#__codelineno-33-81></a>
+</span><span id=__span-33-82><a id=__codelineno-33-82 name=__codelineno-33-82 href=#__codelineno-33-82></a>
+</span><span id=__span-33-83><a id=__codelineno-33-83 name=__codelineno-33-83 href=#__codelineno-33-83></a><span class=c1># RNN과 RNNCell이 같은 계산 결과를 내는지 비교하려면</span>
+</span><span id=__span-33-84><a id=__codelineno-33-84 name=__codelineno-33-84 href=#__codelineno-33-84></a><span class=c1># 두 module이 동일한 parameter를 사용해야 함.</span>
+</span><span id=__span-33-85><a id=__codelineno-33-85 name=__codelineno-33-85 href=#__codelineno-33-85></a><span class=c1>#</span>
+</span><span id=__span-33-86><a id=__codelineno-33-86 name=__codelineno-33-86 href=#__codelineno-33-86></a><span class=c1># 따라서 RNN의 첫 번째 recurrent layer에 있는</span>
+</span><span id=__span-33-87><a id=__codelineno-33-87 name=__codelineno-33-87 href=#__codelineno-33-87></a><span class=c1># weight와 bias를 RNNCell로 복사함.</span>
+</span><span id=__span-33-88><a id=__codelineno-33-88 name=__codelineno-33-88 href=#__codelineno-33-88></a><span class=c1>#</span>
+</span><span id=__span-33-89><a id=__codelineno-33-89 name=__codelineno-33-89 href=#__codelineno-33-89></a><span class=c1># parameter 값을 직접 변경하는 작업이므로</span>
+</span><span id=__span-33-90><a id=__codelineno-33-90 name=__codelineno-33-90 href=#__codelineno-33-90></a><span class=c1># gradient tracking은 필요하지 않음.</span>
+</span><span id=__span-33-91><a id=__codelineno-33-91 name=__codelineno-33-91 href=#__codelineno-33-91></a><span class=k>with</span> <span class=n>torch</span><span class=o>.</span><span class=n>no_grad</span><span class=p>():</span>
+</span><span id=__span-33-92><a id=__codelineno-33-92 name=__codelineno-33-92 href=#__codelineno-33-92></a>
+</span><span id=__span-33-93><a id=__codelineno-33-93 name=__codelineno-33-93 href=#__codelineno-33-93></a>    <span class=c1># input → hidden weight 복사</span>
+</span><span id=__span-33-94><a id=__codelineno-33-94 name=__codelineno-33-94 href=#__codelineno-33-94></a>    <span class=c1>#</span>
+</span><span id=__span-33-95><a id=__codelineno-33-95 name=__codelineno-33-95 href=#__codelineno-33-95></a>    <span class=c1># rnn.weight_ih_l0</span>
+</span><span id=__span-33-96><a id=__codelineno-33-96 name=__codelineno-33-96 href=#__codelineno-33-96></a>    <span class=c1># shape:</span>
+</span><span id=__span-33-97><a id=__codelineno-33-97 name=__codelineno-33-97 href=#__codelineno-33-97></a>    <span class=c1># (hidden_size, input_size)</span>
+</span><span id=__span-33-98><a id=__codelineno-33-98 name=__codelineno-33-98 href=#__codelineno-33-98></a>    <span class=c1>#</span>
+</span><span id=__span-33-99><a id=__codelineno-33-99 name=__codelineno-33-99 href=#__codelineno-33-99></a>    <span class=c1># 여기서는</span>
+</span><span id=__span-33-100><a id=__codelineno-33-100 name=__codelineno-33-100 href=#__codelineno-33-100></a>    <span class=c1># (5, 3)</span>
+</span><span id=__span-33-101><a id=__codelineno-33-101 name=__codelineno-33-101 href=#__codelineno-33-101></a>    <span class=n>rnn_cell</span><span class=o>.</span><span class=n>weight_ih</span><span class=o>.</span><span class=n>copy_</span><span class=p>(</span>
+</span><span id=__span-33-102><a id=__codelineno-33-102 name=__codelineno-33-102 href=#__codelineno-33-102></a>        <span class=n>rnn</span><span class=o>.</span><span class=n>weight_ih_l0</span>
+</span><span id=__span-33-103><a id=__codelineno-33-103 name=__codelineno-33-103 href=#__codelineno-33-103></a>    <span class=p>)</span>
+</span><span id=__span-33-104><a id=__codelineno-33-104 name=__codelineno-33-104 href=#__codelineno-33-104></a>
+</span><span id=__span-33-105><a id=__codelineno-33-105 name=__codelineno-33-105 href=#__codelineno-33-105></a>    <span class=c1># hidden → hidden weight 복사</span>
+</span><span id=__span-33-106><a id=__codelineno-33-106 name=__codelineno-33-106 href=#__codelineno-33-106></a>    <span class=c1>#</span>
+</span><span id=__span-33-107><a id=__codelineno-33-107 name=__codelineno-33-107 href=#__codelineno-33-107></a>    <span class=c1># rnn.weight_hh_l0</span>
+</span><span id=__span-33-108><a id=__codelineno-33-108 name=__codelineno-33-108 href=#__codelineno-33-108></a>    <span class=c1># shape:</span>
+</span><span id=__span-33-109><a id=__codelineno-33-109 name=__codelineno-33-109 href=#__codelineno-33-109></a>    <span class=c1># (hidden_size, hidden_size)</span>
+</span><span id=__span-33-110><a id=__codelineno-33-110 name=__codelineno-33-110 href=#__codelineno-33-110></a>    <span class=c1>#</span>
+</span><span id=__span-33-111><a id=__codelineno-33-111 name=__codelineno-33-111 href=#__codelineno-33-111></a>    <span class=c1># 여기서는</span>
+</span><span id=__span-33-112><a id=__codelineno-33-112 name=__codelineno-33-112 href=#__codelineno-33-112></a>    <span class=c1># (5, 5)</span>
+</span><span id=__span-33-113><a id=__codelineno-33-113 name=__codelineno-33-113 href=#__codelineno-33-113></a>    <span class=n>rnn_cell</span><span class=o>.</span><span class=n>weight_hh</span><span class=o>.</span><span class=n>copy_</span><span class=p>(</span>
+</span><span id=__span-33-114><a id=__codelineno-33-114 name=__codelineno-33-114 href=#__codelineno-33-114></a>        <span class=n>rnn</span><span class=o>.</span><span class=n>weight_hh_l0</span>
+</span><span id=__span-33-115><a id=__codelineno-33-115 name=__codelineno-33-115 href=#__codelineno-33-115></a>    <span class=p>)</span>
+</span><span id=__span-33-116><a id=__codelineno-33-116 name=__codelineno-33-116 href=#__codelineno-33-116></a>
+</span><span id=__span-33-117><a id=__codelineno-33-117 name=__codelineno-33-117 href=#__codelineno-33-117></a>    <span class=c1># input → hidden bias 복사</span>
+</span><span id=__span-33-118><a id=__codelineno-33-118 name=__codelineno-33-118 href=#__codelineno-33-118></a>    <span class=c1>#</span>
+</span><span id=__span-33-119><a id=__codelineno-33-119 name=__codelineno-33-119 href=#__codelineno-33-119></a>    <span class=c1># shape:</span>
+</span><span id=__span-33-120><a id=__codelineno-33-120 name=__codelineno-33-120 href=#__codelineno-33-120></a>    <span class=c1># (hidden_size,)</span>
+</span><span id=__span-33-121><a id=__codelineno-33-121 name=__codelineno-33-121 href=#__codelineno-33-121></a>    <span class=c1>#</span>
+</span><span id=__span-33-122><a id=__codelineno-33-122 name=__codelineno-33-122 href=#__codelineno-33-122></a>    <span class=c1># 여기서는</span>
+</span><span id=__span-33-123><a id=__codelineno-33-123 name=__codelineno-33-123 href=#__codelineno-33-123></a>    <span class=c1># (5,)</span>
+</span><span id=__span-33-124><a id=__codelineno-33-124 name=__codelineno-33-124 href=#__codelineno-33-124></a>    <span class=n>rnn_cell</span><span class=o>.</span><span class=n>bias_ih</span><span class=o>.</span><span class=n>copy_</span><span class=p>(</span>
+</span><span id=__span-33-125><a id=__codelineno-33-125 name=__codelineno-33-125 href=#__codelineno-33-125></a>        <span class=n>rnn</span><span class=o>.</span><span class=n>bias_ih_l0</span>
+</span><span id=__span-33-126><a id=__codelineno-33-126 name=__codelineno-33-126 href=#__codelineno-33-126></a>    <span class=p>)</span>
+</span><span id=__span-33-127><a id=__codelineno-33-127 name=__codelineno-33-127 href=#__codelineno-33-127></a>
+</span><span id=__span-33-128><a id=__codelineno-33-128 name=__codelineno-33-128 href=#__codelineno-33-128></a>    <span class=c1># hidden → hidden bias 복사</span>
+</span><span id=__span-33-129><a id=__codelineno-33-129 name=__codelineno-33-129 href=#__codelineno-33-129></a>    <span class=c1>#</span>
+</span><span id=__span-33-130><a id=__codelineno-33-130 name=__codelineno-33-130 href=#__codelineno-33-130></a>    <span class=c1># shape:</span>
+</span><span id=__span-33-131><a id=__codelineno-33-131 name=__codelineno-33-131 href=#__codelineno-33-131></a>    <span class=c1># (hidden_size,)</span>
+</span><span id=__span-33-132><a id=__codelineno-33-132 name=__codelineno-33-132 href=#__codelineno-33-132></a>    <span class=c1>#</span>
+</span><span id=__span-33-133><a id=__codelineno-33-133 name=__codelineno-33-133 href=#__codelineno-33-133></a>    <span class=c1># 여기서는</span>
+</span><span id=__span-33-134><a id=__codelineno-33-134 name=__codelineno-33-134 href=#__codelineno-33-134></a>    <span class=c1># (5,)</span>
+</span><span id=__span-33-135><a id=__codelineno-33-135 name=__codelineno-33-135 href=#__codelineno-33-135></a>    <span class=n>rnn_cell</span><span class=o>.</span><span class=n>bias_hh</span><span class=o>.</span><span class=n>copy_</span><span class=p>(</span>
+</span><span id=__span-33-136><a id=__codelineno-33-136 name=__codelineno-33-136 href=#__codelineno-33-136></a>        <span class=n>rnn</span><span class=o>.</span><span class=n>bias_hh_l0</span>
+</span><span id=__span-33-137><a id=__codelineno-33-137 name=__codelineno-33-137 href=#__codelineno-33-137></a>    <span class=p>)</span>
+</span><span id=__span-33-138><a id=__codelineno-33-138 name=__codelineno-33-138 href=#__codelineno-33-138></a>
+</span><span id=__span-33-139><a id=__codelineno-33-139 name=__codelineno-33-139 href=#__codelineno-33-139></a>
+</span><span id=__span-33-140><a id=__codelineno-33-140 name=__codelineno-33-140 href=#__codelineno-33-140></a><span class=c1># ------------------------------------------------------------</span>
+</span><span id=__span-33-141><a id=__codelineno-33-141 name=__codelineno-33-141 href=#__codelineno-33-141></a><span class=c1># RNNCell로 sequence를 직접 순회</span>
+</span><span id=__span-33-142><a id=__codelineno-33-142 name=__codelineno-33-142 href=#__codelineno-33-142></a><span class=c1># ------------------------------------------------------------</span>
+</span><span id=__span-33-143><a id=__codelineno-33-143 name=__codelineno-33-143 href=#__codelineno-33-143></a>
+</span><span id=__span-33-144><a id=__codelineno-33-144 name=__codelineno-33-144 href=#__codelineno-33-144></a>
+</span><span id=__span-33-145><a id=__codelineno-33-145 name=__codelineno-33-145 href=#__codelineno-33-145></a><span class=c1># initial hidden state를 복사하여 시작</span>
+</span><span id=__span-33-146><a id=__codelineno-33-146 name=__codelineno-33-146 href=#__codelineno-33-146></a><span class=c1>#</span>
+</span><span id=__span-33-147><a id=__codelineno-33-147 name=__codelineno-33-147 href=#__codelineno-33-147></a><span class=c1># clone()을 사용한 이유는</span>
+</span><span id=__span-33-148><a id=__codelineno-33-148 name=__codelineno-33-148 href=#__codelineno-33-148></a><span class=c1># H_0 자체를 그대로 참조하지 않고</span>
+</span><span id=__span-33-149><a id=__codelineno-33-149 name=__codelineno-33-149 href=#__codelineno-33-149></a><span class=c1># 별도의 tensor에서 hidden state를 계속 갱신하기 위함.</span>
+</span><span id=__span-33-150><a id=__codelineno-33-150 name=__codelineno-33-150 href=#__codelineno-33-150></a><span class=n>H_cell</span> <span class=o>=</span> <span class=n>H_0</span><span class=o>.</span><span class=n>clone</span><span class=p>()</span>
+</span><span id=__span-33-151><a id=__codelineno-33-151 name=__codelineno-33-151 href=#__codelineno-33-151></a>
+</span><span id=__span-33-152><a id=__codelineno-33-152 name=__codelineno-33-152 href=#__codelineno-33-152></a>
+</span><span id=__span-33-153><a id=__codelineno-33-153 name=__codelineno-33-153 href=#__codelineno-33-153></a><span class=c1># 각 time step에서 계산된 hidden state를 저장할 list</span>
+</span><span id=__span-33-154><a id=__codelineno-33-154 name=__codelineno-33-154 href=#__codelineno-33-154></a><span class=n>cell_hidden_states</span> <span class=o>=</span> <span class=p>[]</span>
+</span><span id=__span-33-155><a id=__codelineno-33-155 name=__codelineno-33-155 href=#__codelineno-33-155></a>
+</span><span id=__span-33-156><a id=__codelineno-33-156 name=__codelineno-33-156 href=#__codelineno-33-156></a>
+</span><span id=__span-33-157><a id=__codelineno-33-157 name=__codelineno-33-157 href=#__codelineno-33-157></a><span class=c1># X의 shape:</span>
+</span><span id=__span-33-158><a id=__codelineno-33-158 name=__codelineno-33-158 href=#__codelineno-33-158></a><span class=c1>#</span>
+</span><span id=__span-33-159><a id=__codelineno-33-159 name=__codelineno-33-159 href=#__codelineno-33-159></a><span class=c1># (batch_size, sequence_length, input_size)</span>
+</span><span id=__span-33-160><a id=__codelineno-33-160 name=__codelineno-33-160 href=#__codelineno-33-160></a><span class=c1>#</span>
+</span><span id=__span-33-161><a id=__codelineno-33-161 name=__codelineno-33-161 href=#__codelineno-33-161></a><span class=c1># unbind(dim=1)을 수행하면</span>
+</span><span id=__span-33-162><a id=__codelineno-33-162 name=__codelineno-33-162 href=#__codelineno-33-162></a><span class=c1># sequence dimension을 따라 tensor를 분리함.</span>
+</span><span id=__span-33-163><a id=__codelineno-33-163 name=__codelineno-33-163 href=#__codelineno-33-163></a><span class=c1>#</span>
+</span><span id=__span-33-164><a id=__codelineno-33-164 name=__codelineno-33-164 href=#__codelineno-33-164></a><span class=c1># 따라서 각 X_t의 shape은</span>
+</span><span id=__span-33-165><a id=__codelineno-33-165 name=__codelineno-33-165 href=#__codelineno-33-165></a><span class=c1>#</span>
+</span><span id=__span-33-166><a id=__codelineno-33-166 name=__codelineno-33-166 href=#__codelineno-33-166></a><span class=c1># (batch_size, input_size)</span>
+</span><span id=__span-33-167><a id=__codelineno-33-167 name=__codelineno-33-167 href=#__codelineno-33-167></a><span class=c1>#</span>
+</span><span id=__span-33-168><a id=__codelineno-33-168 name=__codelineno-33-168 href=#__codelineno-33-168></a><span class=c1># 여기서는</span>
+</span><span id=__span-33-169><a id=__codelineno-33-169 name=__codelineno-33-169 href=#__codelineno-33-169></a><span class=c1># (4, 3)</span>
+</span><span id=__span-33-170><a id=__codelineno-33-170 name=__codelineno-33-170 href=#__codelineno-33-170></a><span class=k>for</span> <span class=n>X_t</span> <span class=ow>in</span> <span class=n>X</span><span class=o>.</span><span class=n>unbind</span><span class=p>(</span><span class=n>dim</span><span class=o>=</span><span class=mi>1</span><span class=p>):</span>
+</span><span id=__span-33-171><a id=__codelineno-33-171 name=__codelineno-33-171 href=#__codelineno-33-171></a>
+</span><span id=__span-33-172><a id=__codelineno-33-172 name=__codelineno-33-172 href=#__codelineno-33-172></a>    <span class=c1># 현재 time step의 input과</span>
+</span><span id=__span-33-173><a id=__codelineno-33-173 name=__codelineno-33-173 href=#__codelineno-33-173></a>    <span class=c1># 이전 hidden state를 RNNCell에 전달</span>
+</span><span id=__span-33-174><a id=__codelineno-33-174 name=__codelineno-33-174 href=#__codelineno-33-174></a>    <span class=c1>#</span>
+</span><span id=__span-33-175><a id=__codelineno-33-175 name=__codelineno-33-175 href=#__codelineno-33-175></a>    <span class=c1># X_t:</span>
+</span><span id=__span-33-176><a id=__codelineno-33-176 name=__codelineno-33-176 href=#__codelineno-33-176></a>    <span class=c1># (batch_size, input_size)</span>
+</span><span id=__span-33-177><a id=__codelineno-33-177 name=__codelineno-33-177 href=#__codelineno-33-177></a>    <span class=c1>#</span>
+</span><span id=__span-33-178><a id=__codelineno-33-178 name=__codelineno-33-178 href=#__codelineno-33-178></a>    <span class=c1># H_cell:</span>
+</span><span id=__span-33-179><a id=__codelineno-33-179 name=__codelineno-33-179 href=#__codelineno-33-179></a>    <span class=c1># (batch_size, hidden_size)</span>
+</span><span id=__span-33-180><a id=__codelineno-33-180 name=__codelineno-33-180 href=#__codelineno-33-180></a>    <span class=c1>#</span>
+</span><span id=__span-33-181><a id=__codelineno-33-181 name=__codelineno-33-181 href=#__codelineno-33-181></a>    <span class=c1># 반환되는 H_cell:</span>
+</span><span id=__span-33-182><a id=__codelineno-33-182 name=__codelineno-33-182 href=#__codelineno-33-182></a>    <span class=c1># (batch_size, hidden_size)</span>
+</span><span id=__span-33-183><a id=__codelineno-33-183 name=__codelineno-33-183 href=#__codelineno-33-183></a>    <span class=n>H_cell</span> <span class=o>=</span> <span class=n>rnn_cell</span><span class=p>(</span>
+</span><span id=__span-33-184><a id=__codelineno-33-184 name=__codelineno-33-184 href=#__codelineno-33-184></a>        <span class=n>X_t</span><span class=p>,</span>
+</span><span id=__span-33-185><a id=__codelineno-33-185 name=__codelineno-33-185 href=#__codelineno-33-185></a>        <span class=n>H_cell</span><span class=p>,</span>
+</span><span id=__span-33-186><a id=__codelineno-33-186 name=__codelineno-33-186 href=#__codelineno-33-186></a>    <span class=p>)</span>
+</span><span id=__span-33-187><a id=__codelineno-33-187 name=__codelineno-33-187 href=#__codelineno-33-187></a>
+</span><span id=__span-33-188><a id=__codelineno-33-188 name=__codelineno-33-188 href=#__codelineno-33-188></a>    <span class=c1># 현재 time step의 hidden state 저장</span>
+</span><span id=__span-33-189><a id=__codelineno-33-189 name=__codelineno-33-189 href=#__codelineno-33-189></a>    <span class=n>cell_hidden_states</span><span class=o>.</span><span class=n>append</span><span class=p>(</span><span class=n>H_cell</span><span class=p>)</span>
+</span><span id=__span-33-190><a id=__codelineno-33-190 name=__codelineno-33-190 href=#__codelineno-33-190></a>
+</span><span id=__span-33-191><a id=__codelineno-33-191 name=__codelineno-33-191 href=#__codelineno-33-191></a>
+</span><span id=__span-33-192><a id=__codelineno-33-192 name=__codelineno-33-192 href=#__codelineno-33-192></a><span class=c1># cell_hidden_states는</span>
+</span><span id=__span-33-193><a id=__codelineno-33-193 name=__codelineno-33-193 href=#__codelineno-33-193></a><span class=c1># length가 sequence_length인 Python list임.</span>
+</span><span id=__span-33-194><a id=__codelineno-33-194 name=__codelineno-33-194 href=#__codelineno-33-194></a><span class=c1>#</span>
+</span><span id=__span-33-195><a id=__codelineno-33-195 name=__codelineno-33-195 href=#__codelineno-33-195></a><span class=c1># 각 원소의 shape은</span>
+</span><span id=__span-33-196><a id=__codelineno-33-196 name=__codelineno-33-196 href=#__codelineno-33-196></a><span class=c1>#</span>
+</span><span id=__span-33-197><a id=__codelineno-33-197 name=__codelineno-33-197 href=#__codelineno-33-197></a><span class=c1># (batch_size, hidden_size)</span>
+</span><span id=__span-33-198><a id=__codelineno-33-198 name=__codelineno-33-198 href=#__codelineno-33-198></a><span class=c1>#</span>
+</span><span id=__span-33-199><a id=__codelineno-33-199 name=__codelineno-33-199 href=#__codelineno-33-199></a><span class=c1># torch.stack(..., dim=1)을 사용하면</span>
+</span><span id=__span-33-200><a id=__codelineno-33-200 name=__codelineno-33-200 href=#__codelineno-33-200></a><span class=c1># sequence dimension을 새로 만들어</span>
+</span><span id=__span-33-201><a id=__codelineno-33-201 name=__codelineno-33-201 href=#__codelineno-33-201></a><span class=c1>#</span>
+</span><span id=__span-33-202><a id=__codelineno-33-202 name=__codelineno-33-202 href=#__codelineno-33-202></a><span class=c1># (batch_size, sequence_length, hidden_size)</span>
+</span><span id=__span-33-203><a id=__codelineno-33-203 name=__codelineno-33-203 href=#__codelineno-33-203></a><span class=c1>#</span>
+</span><span id=__span-33-204><a id=__codelineno-33-204 name=__codelineno-33-204 href=#__codelineno-33-204></a><span class=c1># 형태로 결합됨.</span>
+</span><span id=__span-33-205><a id=__codelineno-33-205 name=__codelineno-33-205 href=#__codelineno-33-205></a><span class=n>cell_output</span> <span class=o>=</span> <span class=n>torch</span><span class=o>.</span><span class=n>stack</span><span class=p>(</span>
+</span><span id=__span-33-206><a id=__codelineno-33-206 name=__codelineno-33-206 href=#__codelineno-33-206></a>    <span class=n>cell_hidden_states</span><span class=p>,</span>
+</span><span id=__span-33-207><a id=__codelineno-33-207 name=__codelineno-33-207 href=#__codelineno-33-207></a>    <span class=n>dim</span><span class=o>=</span><span class=mi>1</span><span class=p>,</span>
+</span><span id=__span-33-208><a id=__codelineno-33-208 name=__codelineno-33-208 href=#__codelineno-33-208></a><span class=p>)</span>
+</span><span id=__span-33-209><a id=__codelineno-33-209 name=__codelineno-33-209 href=#__codelineno-33-209></a>
+</span><span id=__span-33-210><a id=__codelineno-33-210 name=__codelineno-33-210 href=#__codelineno-33-210></a>
+</span><span id=__span-33-211><a id=__codelineno-33-211 name=__codelineno-33-211 href=#__codelineno-33-211></a><span class=c1># ------------------------------------------------------------</span>
+</span><span id=__span-33-212><a id=__codelineno-33-212 name=__codelineno-33-212 href=#__codelineno-33-212></a><span class=c1># RNN으로 전체 sequence를 한 번에 처리</span>
+</span><span id=__span-33-213><a id=__codelineno-33-213 name=__codelineno-33-213 href=#__codelineno-33-213></a><span class=c1># ------------------------------------------------------------</span>
+</span><span id=__span-33-214><a id=__codelineno-33-214 name=__codelineno-33-214 href=#__codelineno-33-214></a>
+</span><span id=__span-33-215><a id=__codelineno-33-215 name=__codelineno-33-215 href=#__codelineno-33-215></a>
+</span><span id=__span-33-216><a id=__codelineno-33-216 name=__codelineno-33-216 href=#__codelineno-33-216></a><span class=c1># nn.RNN에 전달하는 initial hidden state는</span>
+</span><span id=__span-33-217><a id=__codelineno-33-217 name=__codelineno-33-217 href=#__codelineno-33-217></a><span class=c1># layer dimension까지 포함해야 함.</span>
+</span><span id=__span-33-218><a id=__codelineno-33-218 name=__codelineno-33-218 href=#__codelineno-33-218></a><span class=c1>#</span>
+</span><span id=__span-33-219><a id=__codelineno-33-219 name=__codelineno-33-219 href=#__codelineno-33-219></a><span class=c1># RNNCell용 H_0의 shape:</span>
+</span><span id=__span-33-220><a id=__codelineno-33-220 name=__codelineno-33-220 href=#__codelineno-33-220></a><span class=c1>#</span>
+</span><span id=__span-33-221><a id=__codelineno-33-221 name=__codelineno-33-221 href=#__codelineno-33-221></a><span class=c1># (batch_size, hidden_size)</span>
+</span><span id=__span-33-222><a id=__codelineno-33-222 name=__codelineno-33-222 href=#__codelineno-33-222></a><span class=c1>#</span>
+</span><span id=__span-33-223><a id=__codelineno-33-223 name=__codelineno-33-223 href=#__codelineno-33-223></a><span class=c1># unsqueeze(0) 후:</span>
+</span><span id=__span-33-224><a id=__codelineno-33-224 name=__codelineno-33-224 href=#__codelineno-33-224></a><span class=c1>#</span>
+</span><span id=__span-33-225><a id=__codelineno-33-225 name=__codelineno-33-225 href=#__codelineno-33-225></a><span class=c1># (num_layers, batch_size, hidden_size)</span>
+</span><span id=__span-33-226><a id=__codelineno-33-226 name=__codelineno-33-226 href=#__codelineno-33-226></a><span class=c1>#</span>
+</span><span id=__span-33-227><a id=__codelineno-33-227 name=__codelineno-33-227 href=#__codelineno-33-227></a><span class=c1># 여기서는</span>
+</span><span id=__span-33-228><a id=__codelineno-33-228 name=__codelineno-33-228 href=#__codelineno-33-228></a><span class=c1># (1, 4, 5)</span>
+</span><span id=__span-33-229><a id=__codelineno-33-229 name=__codelineno-33-229 href=#__codelineno-33-229></a><span class=n>rnn_output</span><span class=p>,</span> <span class=n>H_rnn</span> <span class=o>=</span> <span class=n>rnn</span><span class=p>(</span>
+</span><span id=__span-33-230><a id=__codelineno-33-230 name=__codelineno-33-230 href=#__codelineno-33-230></a>    <span class=n>X</span><span class=p>,</span>
+</span><span id=__span-33-231><a id=__codelineno-33-231 name=__codelineno-33-231 href=#__codelineno-33-231></a>    <span class=n>H_0</span><span class=o>.</span><span class=n>unsqueeze</span><span class=p>(</span><span class=mi>0</span><span class=p>),</span>
+</span><span id=__span-33-232><a id=__codelineno-33-232 name=__codelineno-33-232 href=#__codelineno-33-232></a><span class=p>)</span>
+</span><span id=__span-33-233><a id=__codelineno-33-233 name=__codelineno-33-233 href=#__codelineno-33-233></a>
+</span><span id=__span-33-234><a id=__codelineno-33-234 name=__codelineno-33-234 href=#__codelineno-33-234></a>
+</span><span id=__span-33-235><a id=__codelineno-33-235 name=__codelineno-33-235 href=#__codelineno-33-235></a><span class=c1># rnn_output에는</span>
+</span><span id=__span-33-236><a id=__codelineno-33-236 name=__codelineno-33-236 href=#__codelineno-33-236></a><span class=c1># 모든 time step의 hidden state가 저장됨.</span>
+</span><span id=__span-33-237><a id=__codelineno-33-237 name=__codelineno-33-237 href=#__codelineno-33-237></a><span class=c1>#</span>
+</span><span id=__span-33-238><a id=__codelineno-33-238 name=__codelineno-33-238 href=#__codelineno-33-238></a><span class=c1># shape:</span>
+</span><span id=__span-33-239><a id=__codelineno-33-239 name=__codelineno-33-239 href=#__codelineno-33-239></a><span class=c1># (batch_size, sequence_length, hidden_size)</span>
+</span><span id=__span-33-240><a id=__codelineno-33-240 name=__codelineno-33-240 href=#__codelineno-33-240></a><span class=c1>#</span>
+</span><span id=__span-33-241><a id=__codelineno-33-241 name=__codelineno-33-241 href=#__codelineno-33-241></a><span class=c1># 여기서는</span>
+</span><span id=__span-33-242><a id=__codelineno-33-242 name=__codelineno-33-242 href=#__codelineno-33-242></a><span class=c1># (4, 10, 5)</span>
+</span><span id=__span-33-243><a id=__codelineno-33-243 name=__codelineno-33-243 href=#__codelineno-33-243></a>
+</span><span id=__span-33-244><a id=__codelineno-33-244 name=__codelineno-33-244 href=#__codelineno-33-244></a>
+</span><span id=__span-33-245><a id=__codelineno-33-245 name=__codelineno-33-245 href=#__codelineno-33-245></a><span class=c1># H_rnn에는</span>
+</span><span id=__span-33-246><a id=__codelineno-33-246 name=__codelineno-33-246 href=#__codelineno-33-246></a><span class=c1># 각 recurrent layer의 final hidden state가 저장됨.</span>
+</span><span id=__span-33-247><a id=__codelineno-33-247 name=__codelineno-33-247 href=#__codelineno-33-247></a><span class=c1>#</span>
+</span><span id=__span-33-248><a id=__codelineno-33-248 name=__codelineno-33-248 href=#__codelineno-33-248></a><span class=c1># shape:</span>
+</span><span id=__span-33-249><a id=__codelineno-33-249 name=__codelineno-33-249 href=#__codelineno-33-249></a><span class=c1># (num_layers, batch_size, hidden_size)</span>
+</span><span id=__span-33-250><a id=__codelineno-33-250 name=__codelineno-33-250 href=#__codelineno-33-250></a><span class=c1>#</span>
+</span><span id=__span-33-251><a id=__codelineno-33-251 name=__codelineno-33-251 href=#__codelineno-33-251></a><span class=c1># 여기서는</span>
+</span><span id=__span-33-252><a id=__codelineno-33-252 name=__codelineno-33-252 href=#__codelineno-33-252></a><span class=c1># (1, 4, 5)</span>
+</span><span id=__span-33-253><a id=__codelineno-33-253 name=__codelineno-33-253 href=#__codelineno-33-253></a>
+</span><span id=__span-33-254><a id=__codelineno-33-254 name=__codelineno-33-254 href=#__codelineno-33-254></a>
+</span><span id=__span-33-255><a id=__codelineno-33-255 name=__codelineno-33-255 href=#__codelineno-33-255></a><span class=c1># ------------------------------------------------------------</span>
+</span><span id=__span-33-256><a id=__codelineno-33-256 name=__codelineno-33-256 href=#__codelineno-33-256></a><span class=c1># 결과 비교</span>
+</span><span id=__span-33-257><a id=__codelineno-33-257 name=__codelineno-33-257 href=#__codelineno-33-257></a><span class=c1># ------------------------------------------------------------</span>
+</span><span id=__span-33-258><a id=__codelineno-33-258 name=__codelineno-33-258 href=#__codelineno-33-258></a>
+</span><span id=__span-33-259><a id=__codelineno-33-259 name=__codelineno-33-259 href=#__codelineno-33-259></a>
+</span><span id=__span-33-260><a id=__codelineno-33-260 name=__codelineno-33-260 href=#__codelineno-33-260></a><span class=c1># 모든 time step의 hidden state 비교</span>
+</span><span id=__span-33-261><a id=__codelineno-33-261 name=__codelineno-33-261 href=#__codelineno-33-261></a><span class=c1>#</span>
+</span><span id=__span-33-262><a id=__codelineno-33-262 name=__codelineno-33-262 href=#__codelineno-33-262></a><span class=c1># cell_output:</span>
+</span><span id=__span-33-263><a id=__codelineno-33-263 name=__codelineno-33-263 href=#__codelineno-33-263></a><span class=c1># RNNCell을 직접 반복하여 얻은 hidden-state sequence</span>
+</span><span id=__span-33-264><a id=__codelineno-33-264 name=__codelineno-33-264 href=#__codelineno-33-264></a><span class=c1>#</span>
+</span><span id=__span-33-265><a id=__codelineno-33-265 name=__codelineno-33-265 href=#__codelineno-33-265></a><span class=c1># rnn_output:</span>
+</span><span id=__span-33-266><a id=__codelineno-33-266 name=__codelineno-33-266 href=#__codelineno-33-266></a><span class=c1># nn.RNN이 내부적으로 sequence를 처리하여 얻은 hidden-state sequence</span>
+</span><span id=__span-33-267><a id=__codelineno-33-267 name=__codelineno-33-267 href=#__codelineno-33-267></a><span class=nb>print</span><span class=p>(</span>
+</span><span id=__span-33-268><a id=__codelineno-33-268 name=__codelineno-33-268 href=#__codelineno-33-268></a>    <span class=n>torch</span><span class=o>.</span><span class=n>allclose</span><span class=p>(</span>
+</span><span id=__span-33-269><a id=__codelineno-33-269 name=__codelineno-33-269 href=#__codelineno-33-269></a>        <span class=n>cell_output</span><span class=p>,</span>
+</span><span id=__span-33-270><a id=__codelineno-33-270 name=__codelineno-33-270 href=#__codelineno-33-270></a>        <span class=n>rnn_output</span><span class=p>,</span>
+</span><span id=__span-33-271><a id=__codelineno-33-271 name=__codelineno-33-271 href=#__codelineno-33-271></a>    <span class=p>)</span>
+</span><span id=__span-33-272><a id=__codelineno-33-272 name=__codelineno-33-272 href=#__codelineno-33-272></a><span class=p>)</span>
+</span><span id=__span-33-273><a id=__codelineno-33-273 name=__codelineno-33-273 href=#__codelineno-33-273></a>
+</span><span id=__span-33-274><a id=__codelineno-33-274 name=__codelineno-33-274 href=#__codelineno-33-274></a>
+</span><span id=__span-33-275><a id=__codelineno-33-275 name=__codelineno-33-275 href=#__codelineno-33-275></a><span class=c1># final hidden state 비교</span>
+</span><span id=__span-33-276><a id=__codelineno-33-276 name=__codelineno-33-276 href=#__codelineno-33-276></a><span class=c1>#</span>
+</span><span id=__span-33-277><a id=__codelineno-33-277 name=__codelineno-33-277 href=#__codelineno-33-277></a><span class=c1># H_cell의 shape은</span>
+</span><span id=__span-33-278><a id=__codelineno-33-278 name=__codelineno-33-278 href=#__codelineno-33-278></a><span class=c1># (batch_size, hidden_size)</span>
+</span><span id=__span-33-279><a id=__codelineno-33-279 name=__codelineno-33-279 href=#__codelineno-33-279></a><span class=c1>#</span>
+</span><span id=__span-33-280><a id=__codelineno-33-280 name=__codelineno-33-280 href=#__codelineno-33-280></a><span class=c1># H_rnn의 shape은</span>
+</span><span id=__span-33-281><a id=__codelineno-33-281 name=__codelineno-33-281 href=#__codelineno-33-281></a><span class=c1># (num_layers, batch_size, hidden_size)</span>
+</span><span id=__span-33-282><a id=__codelineno-33-282 name=__codelineno-33-282 href=#__codelineno-33-282></a><span class=c1>#</span>
+</span><span id=__span-33-283><a id=__codelineno-33-283 name=__codelineno-33-283 href=#__codelineno-33-283></a><span class=c1># 따라서 H_cell에 layer dimension을 추가한 뒤 비교함.</span>
+</span><span id=__span-33-284><a id=__codelineno-33-284 name=__codelineno-33-284 href=#__codelineno-33-284></a><span class=nb>print</span><span class=p>(</span>
+</span><span id=__span-33-285><a id=__codelineno-33-285 name=__codelineno-33-285 href=#__codelineno-33-285></a>    <span class=n>torch</span><span class=o>.</span><span class=n>allclose</span><span class=p>(</span>
+</span><span id=__span-33-286><a id=__codelineno-33-286 name=__codelineno-33-286 href=#__codelineno-33-286></a>        <span class=n>H_cell</span><span class=o>.</span><span class=n>unsqueeze</span><span class=p>(</span><span class=mi>0</span><span class=p>),</span>
+</span><span id=__span-33-287><a id=__codelineno-33-287 name=__codelineno-33-287 href=#__codelineno-33-287></a>        <span class=n>H_rnn</span><span class=p>,</span>
+</span><span id=__span-33-288><a id=__codelineno-33-288 name=__codelineno-33-288 href=#__codelineno-33-288></a>    <span class=p>)</span>
+</span><span id=__span-33-289><a id=__codelineno-33-289 name=__codelineno-33-289 href=#__codelineno-33-289></a><span class=p>)</span>
 </span></code></pre></div> <p>실행 결과:</p> <div class="language-text highlight"><pre><span></span><code><span id=__span-34-1><a id=__codelineno-34-1 name=__codelineno-34-1 href=#__codelineno-34-1></a>True
 </span><span id=__span-34-2><a id=__codelineno-34-2 name=__codelineno-34-2 href=#__codelineno-34-2></a>True
-</span></code></pre></div> <p>첫 번째 결과는 모든 시점의 hidden state가 같음을 나타낸다.</p> <p>두 번째 결과는 마지막 hidden state가 같음을 나타낸다.</p> <p>두 모듈의 핵심 차이는 순환 계산식이 아니라 시퀀스 반복을 누가 담당하는지에 있다.</p> <table> <thead> <tr> <th>항목</th> <th><code>nn.RNNCell</code></th> <th><code>nn.RNN</code></th> </tr> </thead> <tbody> <tr> <td>한 번에 처리하는 범위</td> <td>한 시점</td> <td>전체 시퀀스</td> </tr> <tr> <td>시점 반복</td> <td>직접 작성</td> <td>모듈 내부에서 처리</td> </tr> <tr> <td>주 반환값</td> <td>새 hidden state</td> <td>시점별 hidden states와 마지막 hidden state</td> </tr> <tr> <td>여러 recurrent layer</td> <td>직접 구성</td> <td><code>num_layers</code>로 구성</td> </tr> <tr> <td>양방향 처리</td> <td>직접 구성</td> <td><code>bidirectional=True</code>로 구성</td> </tr> <tr> <td>prediction output layer</td> <td>포함하지 않음</td> <td>포함하지 않음</td> </tr> </tbody> </table> <p>세밀한 시점별 제어가 필요하면 <code>nn.RNNCell</code>이 적합하다.</p> <p>일반적인 시퀀스 처리가 목적이면 <code>nn.RNN</code>이 간결하다.</p> <aside class=md-source-file> <span class=md-source-file__fact> <span class=md-icon title="마지막 업데이트"> <svg xmlns=http://www.w3.org/2000/svg viewbox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg> </span> <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="2026년 8월 31일 12:54:44 UTC">2026년 8월 31일</span> </span> <span class=md-source-file__fact> <span class=md-icon title=작성일> <svg xmlns=http://www.w3.org/2000/svg viewbox="0 0 24 24"><path d="M14.47 15.08 11 13V7h1.5v5.25l3.08 1.83c-.41.28-.79.62-1.11 1m-1.39 4.84c-.36.05-.71.08-1.08.08-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8c0 .37-.03.72-.08 1.08.69.1 1.33.32 1.92.64.1-.56.16-1.13.16-1.72 0-5.5-4.5-10-10-10S2 6.5 2 12s4.47 10 10 10c.59 0 1.16-.06 1.72-.16-.32-.59-.54-1.23-.64-1.92M18 15v3h-3v2h3v3h2v-3h3v-2h-3v-3z"/></svg> </span> <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="2026년 8월 31일 12:45:22 UTC">2026년 8월 31일</span> </span> </aside> <!-- custom_theme content --> <hr> <div class=giscus></div> <script src=https://giscus.app/client.js data-repo=dsaint31x/mkdocs_site data-repo-id=R_kgDOIu-aCA data-category=General data-category-id=DIC_kwDOIu-aCM4C0_Vc data-mapping=pathname data-strict=0 data-reactions-enabled=1 data-emit-metadata=0 data-input-position=bottom data-theme=preferred_color_scheme data-lang=ko crossorigin=anonymous async>
+</span></code></pre></div> <p>첫 번째 결과는 모든 시점의 hidden state가 같음을 나타낸다.</p> <p>두 번째 결과는 마지막 hidden state가 같음을 나타낸다.</p> <p>두 모듈의 핵심 차이는 순환 계산식이 아니라 시퀀스 반복을 누가 담당하는지에 있다.</p> <table> <thead> <tr> <th>항목</th> <th><code>nn.RNNCell</code></th> <th><code>nn.RNN</code></th> </tr> </thead> <tbody> <tr> <td>한 번에 처리하는 범위</td> <td>한 시점</td> <td>전체 시퀀스</td> </tr> <tr> <td>시점 반복</td> <td>직접 작성</td> <td>모듈 내부에서 처리</td> </tr> <tr> <td>주 반환값</td> <td>새 hidden state</td> <td>시점별 hidden states와 마지막 hidden state</td> </tr> <tr> <td>여러 recurrent layer</td> <td>직접 구성</td> <td><code>num_layers</code>로 구성</td> </tr> <tr> <td>양방향 처리</td> <td>직접 구성</td> <td><code>bidirectional=True</code>로 구성</td> </tr> <tr> <td>prediction output layer</td> <td>포함하지 않음</td> <td>포함하지 않음</td> </tr> </tbody> </table> <p>세밀한 시점별 제어가 필요하면 <code>nn.RNNCell</code>이 적합하다.</p> <p>일반적인 시퀀스 처리가 목적이면 <code>nn.RNN</code>이 간결하다.</p> <aside class=md-source-file> <span class=md-source-file__fact> <span class=md-icon title="마지막 업데이트"> <svg xmlns=http://www.w3.org/2000/svg viewbox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg> </span> <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="2026년 8월 31일 13:06:17 UTC">2026년 8월 31일</span> </span> <span class=md-source-file__fact> <span class=md-icon title=작성일> <svg xmlns=http://www.w3.org/2000/svg viewbox="0 0 24 24"><path d="M14.47 15.08 11 13V7h1.5v5.25l3.08 1.83c-.41.28-.79.62-1.11 1m-1.39 4.84c-.36.05-.71.08-1.08.08-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8c0 .37-.03.72-.08 1.08.69.1 1.33.32 1.92.64.1-.56.16-1.13.16-1.72 0-5.5-4.5-10-10-10S2 6.5 2 12s4.47 10 10 10c.59 0 1.16-.06 1.72-.16-.32-.59-.54-1.23-.64-1.92M18 15v3h-3v2h3v3h2v-3h3v-2h-3v-3z"/></svg> </span> <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="2026년 8월 31일 12:45:22 UTC">2026년 8월 31일</span> </span> </aside> <!-- custom_theme content --> <hr> <div class=giscus></div> <script src=https://giscus.app/client.js data-repo=dsaint31x/mkdocs_site data-repo-id=R_kgDOIu-aCA data-category=General data-category-id=DIC_kwDOIu-aCM4C0_Vc data-mapping=pathname data-strict=0 data-reactions-enabled=1 data-emit-metadata=0 data-input-position=bottom data-theme=preferred_color_scheme data-lang=ko crossorigin=anonymous async>
     </script> </article> </div> <script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script> </div> <button type=button class="md-top md-icon" data-md-component=top hidden> <svg xmlns=http://www.w3.org/2000/svg viewbox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg> 맨위로 </button> </main> <footer class=md-footer> <div class="md-footer-meta md-typeset"> <div class="md-footer-meta__inner md-grid"> <div class=md-copyright> Made with <a href=https://squidfunk.github.io/mkdocs-material/ target=_blank rel=noopener> Material for MkDocs </a> </div> </div> </div> </footer> </div> <div class=md-dialog data-md-component=dialog> <div class="md-dialog__inner md-typeset"></div> </div> <script id=__config type=application/json>{"annotate": null, "base": "../../..", "features": ["announce.dismiss", "content.action.edit", "content.action.view", "content.code.annotate", "content.code.copy", "content.tooltips", "navigation.tabs", "navigation.sections", "navigation.indexes", "navigation.footer", "navigation.top", "navigation.tracking", "search.highlight", "search.share", "search.suggest", "toc.follow"], "search": "../../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "\ud074\ub9bd\ubcf4\ub4dc\uc5d0 \ubcf5\uc0ac\ub428", "clipboard.copy": "\ud074\ub9bd\ubcf4\ub4dc\ub85c \ubcf5\uc0ac", "search.result.more.one": "\uc774 \ubb38\uc11c\uc5d0\uc11c 1\uac1c\uc758 \uac80\uc0c9 \uacb0\uacfc \ub354 \ubcf4\uae30", "search.result.more.other": "\uc774 \ubb38\uc11c\uc5d0\uc11c #\uac1c\uc758 \uac80\uc0c9 \uacb0\uacfc \ub354 \ubcf4\uae30", "search.result.none": "\uac80\uc0c9\uc5b4\uc640 \uc77c\uce58\ud558\ub294 \ubb38\uc11c\uac00 \uc5c6\uc2b5\ub2c8\ub2e4", "search.result.one": "1\uac1c\uc758 \uc77c\uce58\ud558\ub294 \ubb38\uc11c", "search.result.other": "#\uac1c\uc758 \uc77c\uce58\ud558\ub294 \ubb38\uc11c", "search.result.placeholder": "\uac80\uc0c9\uc5b4\ub97c \uc785\ub825\ud558\uc138\uc694", "search.result.term.missing": "\ud3ec\ud568\ub418\uc9c0 \uc54a\uc740 \uac80\uc0c9\uc5b4", "select.version": "\ubc84\uc804 \uc120\ud0dd"}, "version": null}</script> <script src=../../../assets/javascripts/bundle.d7400e89.min.js></script> <script src=../../../javascripts/katex.js></script> <script src=https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.7/katex.min.js></script> <script src=https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.7/contrib/auto-render.min.js></script> <script src=../../../js/open_in_new_tab.js></script> </body> </html>
