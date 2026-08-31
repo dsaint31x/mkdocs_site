@@ -54,7 +54,7 @@ ANN 의 경우, feedback connection이 있는 구조를 `Recurrent Neural Networ
 
 다음의 그림은 `RNN`의 구조를 보여줌.
 
-![](./img/simple_rnn.png){style="display: block; margin: 0 auto; width: 300px}
+![](./img/simple_rnn.png){style="display: block; margin: 0 auto; width: 300px"}
 
 * input $\textbf{x}$에 대해서 weight $U$가 곱해짐.
 * $\textbf{h}$는 hidden state라고 불려지며 **일종의 memory** 라고 볼 수 있음.
