@@ -1,4 +1,4 @@
-# BPTT: Backpropagation Through Time
+# Simple RNN: Forward Pass, BPTT, and Long-term Dependency Problem
 
 ## RNN의 Forward Pass
 
@@ -335,16 +335,20 @@ Recurrent step의 수가 많아질수록 이러한 product가 길어지므로 gr
       <feDropShadow dx="0" dy="3" stdDeviation="4" flood-opacity=".10"/>
     </filter>
   </defs>
+
   <rect width="1200" height="600" rx="24" fill="#f8fafc"/>
+
   <text x="60" y="55" font-family="Arial, 'Noto Sans KR', sans-serif" font-size="28" font-weight="700" fill="#0f172a">
     Long-term Dependency와 Vanishing Gradient
   </text>
+
   <g filter="url(#shadow)">
     <rect x="390" y="82" width="420" height="52" rx="26" fill="#ffffff" stroke="#86efac" stroke-width="2"/>
   </g>
   <text x="600" y="116" text-anchor="middle" font-family="Arial, 'Noto Sans KR', sans-serif" font-size="19" font-weight="700" fill="#15803d">
     Forward pass: 중요한 long-term dependency
   </text>
+
   <g filter="url(#shadow)">
     <rect x="70" y="180" width="220" height="110" rx="22" fill="#dbeafe" stroke="#2563eb" stroke-width="3"/>
     <rect x="910" y="180" width="220" height="110" rx="22" fill="#dcfce7" stroke="#16a34a" stroke-width="3"/>
@@ -355,7 +359,9 @@ Recurrent step의 수가 많아질수록 이러한 product가 길어지므로 gr
     <text x="1020" y="222" font-size="18" fill="#166534">current output</text>
     <text x="1020" y="263" font-size="30" font-weight="700" fill="#14532d">o<tspan baseline-shift="sub" font-size="18">t</tspan></text>
   </g>
+
   <path d="M290 205 C470 130 730 130 910 205" fill="none" stroke="#16a34a" stroke-width="5" marker-end="url(#green-arrow)"/>
+
   <path d="M910 270 Q600 486 290 270" fill="none" stroke="#c4b5fd" stroke-width="3"/>
   <g fill="#7c3aed" stroke="#ffffff" stroke-width="2">
     <circle cx="895" cy="280" r="18"/>
@@ -368,10 +374,12 @@ Recurrent step의 수가 많아질수록 이러한 product가 길어지므로 gr
     <circle cx="360" cy="318" r="3.5"/>
     <circle cx="305" cy="280" r="2"/>
   </g>
+
   <rect x="335" y="403" width="530" height="48" rx="24" fill="#ede9fe" stroke="#c4b5fd" stroke-width="2"/>
   <text x="600" y="434" text-anchor="middle" font-family="Arial, 'Noto Sans KR', sans-serif" font-size="18" font-weight="700" fill="#6d28d9">
     BPTT: current loss → distant earlier time step
   </text>
+
   <rect x="255" y="485" width="690" height="82" rx="20" fill="#fff7ed" stroke="#ea580c" stroke-width="3"/>
   <g font-family="Arial, 'Noto Sans KR', sans-serif" text-anchor="middle" fill="#9a3412">
     <text x="600" y="520" font-size="18">distant earlier time step의 gradient ≈ 0</text>
