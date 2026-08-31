@@ -156,7 +156,7 @@ $$
         - Vanishing Gradient가 발생하면 매우 이른 time step의 input이 현재의 loss와 weight update에 미치는 영향이 sequence가 길어질수록 매우 작아져 long-term dependency 학습이 어려워짐.
     - `tanh` activation은 hidden state의 값을 제한하여 activation의 폭주를 억제하는 데 도움을 주지만, **Vanishing/Exploding Gradient 문제 자체를 해결하지는 못함**.
         - 특히 `tanh`가 saturation 영역에 들어가면 derivative가 0에 가까워져 **Vanishing Gradient를 악화시킬 수 있음 (다만 logistic sigmoid보다 zero-centered이고 최대 derivative도 더 커서 일반적으로 gradient propagation에는 더 유리함.)**.
-    - **LSTM**과 **GRU** 같은 memory cell variants는 gating mechanism과 memory path를 통해 gradient와 정보를 더 오래 전달할 수 있도록 하여, 특히 **Vanishing Gradient와 long-term dependency 문제를 완화** 함. 다만 이를 완전히 제거하지는 못함.
+    - **LSTM** 과 **GRU** 같은 memory cell variants는 gating mechanism과 memory path를 통해 gradient와 정보를 더 오래 전달할 수 있도록 하여, 특히 **Vanishing Gradient와 long-term dependency 문제를 완화** 함. 다만 이를 완전히 제거하지는 못함.
 
 ---
 
