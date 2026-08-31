@@ -697,16 +697,57 @@ Y_last:     (batch_size, output_size)
 import torch
 from torch import nn
 
+
+# 재현 가능한 결과를 위해 random seed 고정
 torch.manual_seed(0)
 
+
+# 입력 sequence의 기본 크기 설정
 batch_size = 4
 sequence_length = 10
 input_size = 3
 hidden_size = 5
 
-X = torch.randn(batch_size, sequence_length, input_size)
-H_0 = torch.zeros(batch_size, hidden_size)
 
+# 입력 tensor
+#
+# shape:
+# (batch_size, sequence_length, input_size)
+#
+# 여기서는
+# (4, 10, 3)
+#
+# 각 batch에는 길이 10의 sequence가 있고,
+# 각 time step은 3개의 feature를 가짐.
+X = torch.randn(
+    batch_size,
+    sequence_length,
+    input_size,
+)
+
+
+# initial hidden state
+#
+# RNNCell은 한 time step씩 처리하므로
+# hidden state의 shape은 다음과 같음.
+#
+# (batch_size, hidden_size)
+#
+# 여기서는
+# (4, 5)
+H_0 = torch.zeros(
+    batch_size,
+    hidden_size,
+)
+
+
+# 전체 sequence를 한 번에 처리할 RNN
+#
+# batch_first=True 이므로 input shape은
+#
+# (batch_size, sequence_length, input_size)
+#
+# 형태를 사용함.
 rnn = nn.RNN(
     input_size=input_size,
     hidden_size=hidden_size,
@@ -717,6 +758,16 @@ rnn = nn.RNN(
     bidirectional=False,
 )
 
+
+# 한 time step씩 처리할 RNNCell
+#
+# RNN과 동일하게
+# input_size=3,
+# hidden_size=5,
+# tanh activation,
+# bias 사용
+#
+# 으로 구성함.
 rnn_cell = nn.RNNCell(
     input_size=input_size,
     hidden_size=hidden_size,
@@ -724,27 +775,214 @@ rnn_cell = nn.RNNCell(
     nonlinearity="tanh",
 )
 
-with torch.no_grad():
-    rnn_cell.weight_ih.copy_(rnn.weight_ih_l0)
-    rnn_cell.weight_hh.copy_(rnn.weight_hh_l0)
-    rnn_cell.bias_ih.copy_(rnn.bias_ih_l0)
-    rnn_cell.bias_hh.copy_(rnn.bias_hh_l0)
 
-# RNNCell로 시퀀스를 직접 순회
+# RNN과 RNNCell이 같은 계산 결과를 내는지 비교하려면
+# 두 module이 동일한 parameter를 사용해야 함.
+#
+# 따라서 RNN의 첫 번째 recurrent layer에 있는
+# weight와 bias를 RNNCell로 복사함.
+#
+# parameter 값을 직접 변경하는 작업이므로
+# gradient tracking은 필요하지 않음.
+with torch.no_grad():
+
+    # input → hidden weight 복사
+    #
+    # rnn.weight_ih_l0
+    # shape:
+    # (hidden_size, input_size)
+    #
+    # 여기서는
+    # (5, 3)
+    rnn_cell.weight_ih.copy_(
+        rnn.weight_ih_l0
+    )
+
+    # hidden → hidden weight 복사
+    #
+    # rnn.weight_hh_l0
+    # shape:
+    # (hidden_size, hidden_size)
+    #
+    # 여기서는
+    # (5, 5)
+    rnn_cell.weight_hh.copy_(
+        rnn.weight_hh_l0
+    )
+
+    # input → hidden bias 복사
+    #
+    # shape:
+    # (hidden_size,)
+    #
+    # 여기서는
+    # (5,)
+    rnn_cell.bias_ih.copy_(
+        rnn.bias_ih_l0
+    )
+
+    # hidden → hidden bias 복사
+    #
+    # shape:
+    # (hidden_size,)
+    #
+    # 여기서는
+    # (5,)
+    rnn_cell.bias_hh.copy_(
+        rnn.bias_hh_l0
+    )
+
+
+# ------------------------------------------------------------
+# RNNCell로 sequence를 직접 순회
+# ------------------------------------------------------------
+
+
+# initial hidden state를 복사하여 시작
+#
+# clone()을 사용한 이유는
+# H_0 자체를 그대로 참조하지 않고
+# 별도의 tensor에서 hidden state를 계속 갱신하기 위함.
 H_cell = H_0.clone()
+
+
+# 각 time step에서 계산된 hidden state를 저장할 list
 cell_hidden_states = []
 
+
+# X의 shape:
+#
+# (batch_size, sequence_length, input_size)
+#
+# unbind(dim=1)을 수행하면
+# sequence dimension을 따라 tensor를 분리함.
+#
+# 따라서 각 X_t의 shape은
+#
+# (batch_size, input_size)
+#
+# 여기서는
+# (4, 3)
 for X_t in X.unbind(dim=1):
-    H_cell = rnn_cell(X_t, H_cell)
+
+    # 현재 time step의 input과
+    # 이전 hidden state를 RNNCell에 전달
+    #
+    # X_t:
+    # (batch_size, input_size)
+    #
+    # H_cell:
+    # (batch_size, hidden_size)
+    #
+    # 반환되는 H_cell:
+    # (batch_size, hidden_size)
+    H_cell = rnn_cell(
+        X_t,
+        H_cell,
+    )
+
+    # 현재 time step의 hidden state 저장
     cell_hidden_states.append(H_cell)
 
-cell_output = torch.stack(cell_hidden_states, dim=1)
 
-# RNN으로 전체 시퀀스를 한 번에 처리
-rnn_output, H_rnn = rnn(X, H_0.unsqueeze(0))
+# cell_hidden_states는
+# length가 sequence_length인 Python list임.
+#
+# 각 원소의 shape은
+#
+# (batch_size, hidden_size)
+#
+# torch.stack(..., dim=1)을 사용하면
+# sequence dimension을 새로 만들어
+#
+# (batch_size, sequence_length, hidden_size)
+#
+# 형태로 결합됨.
+cell_output = torch.stack(
+    cell_hidden_states,
+    dim=1,
+)
 
-print(torch.allclose(cell_output, rnn_output))
-print(torch.allclose(H_cell.unsqueeze(0), H_rnn))
+
+# ------------------------------------------------------------
+# RNN으로 전체 sequence를 한 번에 처리
+# ------------------------------------------------------------
+
+
+# nn.RNN에 전달하는 initial hidden state는
+# layer dimension까지 포함해야 함.
+#
+# RNNCell용 H_0의 shape:
+#
+# (batch_size, hidden_size)
+#
+# unsqueeze(0) 후:
+#
+# (num_layers, batch_size, hidden_size)
+#
+# 여기서는
+# (1, 4, 5)
+rnn_output, H_rnn = rnn(
+    X,
+    H_0.unsqueeze(0),
+)
+
+
+# rnn_output에는
+# 모든 time step의 hidden state가 저장됨.
+#
+# shape:
+# (batch_size, sequence_length, hidden_size)
+#
+# 여기서는
+# (4, 10, 5)
+
+
+# H_rnn에는
+# 각 recurrent layer의 final hidden state가 저장됨.
+#
+# shape:
+# (num_layers, batch_size, hidden_size)
+#
+# 여기서는
+# (1, 4, 5)
+
+
+# ------------------------------------------------------------
+# 결과 비교
+# ------------------------------------------------------------
+
+
+# 모든 time step의 hidden state 비교
+#
+# cell_output:
+# RNNCell을 직접 반복하여 얻은 hidden-state sequence
+#
+# rnn_output:
+# nn.RNN이 내부적으로 sequence를 처리하여 얻은 hidden-state sequence
+print(
+    torch.allclose(
+        cell_output,
+        rnn_output,
+    )
+)
+
+
+# final hidden state 비교
+#
+# H_cell의 shape은
+# (batch_size, hidden_size)
+#
+# H_rnn의 shape은
+# (num_layers, batch_size, hidden_size)
+#
+# 따라서 H_cell에 layer dimension을 추가한 뒤 비교함.
+print(
+    torch.allclose(
+        H_cell.unsqueeze(0),
+        H_rnn,
+    )
+)
 ```
 
 실행 결과:
