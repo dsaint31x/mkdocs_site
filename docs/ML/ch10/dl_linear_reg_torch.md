@@ -567,9 +567,11 @@ Analytical gradient는
     * ReLU 같은 non-differentiable point에서는 정해진 subgradient/convention을 사용할 수 있음.
     * PyTorch autograd가 여기에 해당함.
 
-> `autograd`는
-> 미분 불가능한 지점에서는 정의된 subgradient 또는 framework convention을 사용할 수 있으므로, 
+> `autograd`는  
+> 미분 불가능한 지점에서는 정의된 subgradient 또는 framework convention을 사용할 수 있으므로,  
 > 엄밀하게는 automatic differentiation이라고 부르는 것이 가장 정확함.
+> 즉, autograd는 numerical computation을 수행하지만,
+> 보통 "numerical differentiation"이라고 부르지는 않음.
 
 ---
 
@@ -648,6 +650,7 @@ def a_d_pred_d_b(x, w, b):
 > `Symbolic differentiation`:  
 > `loss = (pred - y)^2` 같은 symbolic expression을 입력받아
 > `2(pred - y)` 같은 새 derivative expression을 자동으로 생성하는 과정임.
+> 대표적인 예로는 SymPy 등이 있음: [참고자료](https://ds31x.tistory.com/442)
 
 전체 gradient 계산 function은 다음과 같음:
 
