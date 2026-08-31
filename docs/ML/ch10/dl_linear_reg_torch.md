@@ -550,13 +550,26 @@ Numerical gradient는
 Analytical gradient는
 
 * 미분식을 직접 구해 gradient를 계산함.
+* Analytical gradient는 미분식을 수학적으로 구해 얻은 정확한 derivative를 가리키는 표현
 
-Numerical gradient는 미분식을 몰라도 사용할 수 있지만, parameter 수가 많으면 계산 비용이 큼.
+다음의 특징을 가짐:
 
-Analytical gradient는 수식이 맞다면 더 빠르고 정확함.
+* Numerical differentiation
+    * 보통 finite difference 기반
+    * gradient를 근사함.
+* Symbolic differentiation
+    * derivative expression을 직접 생성함.
+    * 전형적인 **analytical differentiation에 해당** 함.
+* Automatic differentiation
+    * derivative expression 전체를 새로 만들지는 않음.
+    * 각 primitive operation의 derivative와 chain rule을 이용함.
+    * 미분 가능한 지점에서는 analytical derivative와 동일한 값을 machine precision 수준에서 계산함.
+    * ReLU 같은 non-differentiable point에서는 정해진 subgradient/convention을 사용할 수 있음.
+    * PyTorch autograd가 여기에 해당함.
 
-> PyTorch에선 **AutoGrad** 를 통해  
-> gradient를 자동으로 계산함.
+> `autograd`는
+> 미분 불가능한 지점에서는 정의된 subgradient 또는 framework convention을 사용할 수 있으므로, 
+> 엄밀하게는 automatic differentiation이라고 부르는 것이 가장 정확함.
 
 ---
 
@@ -631,6 +644,10 @@ def a_d_pred_d_w(x, w, b):
 def a_d_pred_d_b(x, w, b):
     return 1.
 ```
+
+> `Symbolic differentiation`:  
+> `loss = (pred - y)^2` 같은 symbolic expression을 입력받아
+> `2(pred - y)` 같은 새 derivative expression을 자동으로 생성하는 과정임.
 
 전체 gradient 계산 function은 다음과 같음:
 
