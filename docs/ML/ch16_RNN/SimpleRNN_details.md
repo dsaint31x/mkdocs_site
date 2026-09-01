@@ -233,17 +233,14 @@ Product는 index `t`에서 시작하여 `k+1`에서 끝남. 행렬 곱은 non-co
     <text x="32" y="36" font-size="17" font-weight="700" fill="#0f172a">Backward: L 에서 earlier hidden state까지의 gradient 경로</text>
     <line x1="32" y1="62" x2="62" y2="62" stroke="#334155" stroke-width="1.6"/><text x="68" y="66" font-size="11" fill="#475569">forward</text>
     <line x1="140" y1="62" x2="170" y2="62" stroke="#ea580c" stroke-width="1.6"/><text x="176" y="66" font-size="11" fill="#ea580c">backward (gradient)</text>
-
     <rect x="480" y="86" width="130" height="40" rx="10" fill="#fee2e2" stroke="#dc2626" stroke-width="1.5"/>
     <text x="545" y="112" text-anchor="middle" font-size="15" font-weight="700" fill="#7f1d1d">L<tspan baseline-shift="sub" font-size="10">t</tspan></text>
-
     <g fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"><rect x="60" y="168" width="130" height="60" rx="12"/><rect x="270" y="168" width="130" height="60" rx="12"/><rect x="480" y="168" width="130" height="60" rx="12"/></g>
     <g text-anchor="middle" fill="#14532d"><text x="125" y="193" font-size="15" font-weight="700">o<tspan baseline-shift="sub" font-size="10">t−2</tspan></text><text x="335" y="193" font-size="15" font-weight="700">o<tspan baseline-shift="sub" font-size="10">t−1</tspan></text><text x="545" y="193" font-size="15" font-weight="700">o<tspan baseline-shift="sub" font-size="10">t</tspan></text>
     <text x="125" y="215" font-size="10">gradient 0</text><text x="335" y="215" font-size="10">gradient 0</text></g>
     <text x="545" y="211" text-anchor="middle" font-size="10" fill="#14532d">∂L<tspan baseline-shift="sub" font-size="8">t</tspan></text>
     <line x1="529" y1="216" x2="561" y2="216" stroke="#14532d" stroke-width="0.7"/>
     <text x="545" y="228" text-anchor="middle" font-size="10" fill="#14532d">∂o<tspan baseline-shift="sub" font-size="8">t</tspan></text>
-
     <g fill="#ede9fe" stroke="#7c3aed" stroke-width="1.5"><rect x="60" y="288" width="130" height="60" rx="12"/><rect x="270" y="288" width="130" height="60" rx="12"/><rect x="480" y="288" width="130" height="60" rx="12"/></g>
     <g text-anchor="middle" fill="#4c1d95" font-size="15" font-weight="700"><text x="125" y="311">h<tspan baseline-shift="sub" font-size="10">t−2</tspan></text><text x="335" y="311">h<tspan baseline-shift="sub" font-size="10">t−1</tspan></text><text x="545" y="311">h<tspan baseline-shift="sub" font-size="10">t</tspan></text></g>
     <g text-anchor="middle" fill="#4c1d95" font-size="10">
@@ -251,10 +248,8 @@ Product는 index `t`에서 시작하여 `k+1`에서 끝남. 행렬 곱은 non-co
       <text x="125" y="347">∂h<tspan baseline-shift="sub" font-size="8">t−2</tspan></text><text x="335" y="347">∂h<tspan baseline-shift="sub" font-size="8">t−1</tspan></text><text x="545" y="347">∂h<tspan baseline-shift="sub" font-size="8">t</tspan></text>
     </g>
     <g stroke="#4c1d95" stroke-width="0.7"><line x1="109" y1="336" x2="141" y2="336"/><line x1="319" y1="336" x2="351" y2="336"/><line x1="529" y1="336" x2="561" y2="336"/></g>
-
     <g fill="#dbeafe" stroke="#2563eb" stroke-width="1.5"><rect x="60" y="418" width="130" height="40" rx="10"/><rect x="270" y="418" width="130" height="40" rx="10"/><rect x="480" y="418" width="130" height="40" rx="10"/></g>
     <g text-anchor="middle" fill="#1e3a8a" font-size="15" font-weight="700"><text x="125" y="443">x<tspan baseline-shift="sub" font-size="10">t−2</tspan></text><text x="335" y="443">x<tspan baseline-shift="sub" font-size="10">t−1</tspan></text><text x="545" y="443">x<tspan baseline-shift="sub" font-size="10">t</tspan></text></g>
-
     <g stroke="#334155" stroke-width="1.6" fill="none" marker-end="url(#ar3)">
       <path d="M93 416V354"/><path d="M303 416V354"/><path d="M513 416V354"/>
       <path d="M93 286V234"/><path d="M303 286V234"/><path d="M513 286V234"/>
@@ -265,7 +260,6 @@ Product는 index `t`에서 시작하여 `k+1`에서 끝남. 행렬 곱은 non-co
       <g fill="#16a34a"><text x="85" y="264">W</text><text x="295" y="264">W</text><text x="505" y="264">W</text></g>
     </g>
     <g font-size="11" font-weight="700" text-anchor="middle" fill="#7c3aed"><text x="229" y="296">V</text><text x="439" y="296">V</text></g>
-
     <g stroke="#ea580c" stroke-width="1.6" fill="none" marker-end="url(#ac3)">
       <path d="M577 128V164"/><path d="M577 234V282"/>
       <path d="M478 334H406"/><path d="M268 334H196"/>
@@ -279,7 +273,6 @@ Product는 index `t`에서 시작하여 `k+1`에서 끝남. 행렬 곱은 non-co
     <text x="597" y="262" font-size="10" fill="#ea580c">∂o<tspan baseline-shift="sub" font-size="8">t</tspan></text>
     <line x1="591" y1="268" x2="623" y2="268" stroke="#ea580c" stroke-width="0.7"/>
     <text x="597" y="282" font-size="10" fill="#ea580c">∂h<tspan baseline-shift="sub" font-size="8">t</tspan></text>
-
     <rect x="40" y="502" width="600" height="84" rx="12" fill="#ffffff" stroke="#cbd5e1" stroke-width="1.5"/>
     <g fill="#0f172a" text-anchor="middle" font-size="10">
       <text x="62" y="536">∂L<tspan baseline-shift="sub" font-size="8">t</tspan></text><text x="62" y="560">∂h<tspan baseline-shift="sub" font-size="8">t−2</tspan></text>
@@ -336,17 +329,14 @@ $$
     <line x1="32" y1="62" x2="62" y2="62" stroke="#334155" stroke-width="1.6"/><text x="68" y="66" font-size="11" fill="#475569">forward</text>
     <line x1="140" y1="62" x2="170" y2="62" stroke="#ea580c" stroke-width="1.6"/><text x="176" y="66" font-size="11" fill="#ea580c">backward (gradient)</text>
     <line x1="330" y1="62" x2="360" y2="62" stroke="#0d9488" stroke-width="1.6"/><text x="366" y="66" font-size="11" fill="#0d9488">term 대응</text>
-
     <rect x="480" y="86" width="130" height="40" rx="10" fill="#fee2e2" stroke="#dc2626" stroke-width="1.5"/>
     <text x="545" y="112" text-anchor="middle" font-size="15" font-weight="700" fill="#7f1d1d">L<tspan baseline-shift="sub" font-size="10">t</tspan></text>
-
     <g fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"><rect x="60" y="168" width="130" height="60" rx="12"/><rect x="270" y="168" width="130" height="60" rx="12"/><rect x="480" y="168" width="130" height="60" rx="12"/></g>
     <g text-anchor="middle" fill="#14532d"><text x="125" y="193" font-size="15" font-weight="700">o<tspan baseline-shift="sub" font-size="10">t−2</tspan></text><text x="335" y="193" font-size="15" font-weight="700">o<tspan baseline-shift="sub" font-size="10">t−1</tspan></text><text x="545" y="193" font-size="15" font-weight="700">o<tspan baseline-shift="sub" font-size="10">t</tspan></text>
     <text x="125" y="215" font-size="10">gradient 0</text><text x="335" y="215" font-size="10">gradient 0</text></g>
     <text x="545" y="211" text-anchor="middle" font-size="10" fill="#14532d">∂L<tspan baseline-shift="sub" font-size="8">t</tspan></text>
     <line x1="529" y1="216" x2="561" y2="216" stroke="#14532d" stroke-width="0.7"/>
     <text x="545" y="228" text-anchor="middle" font-size="10" fill="#14532d">∂o<tspan baseline-shift="sub" font-size="8">t</tspan></text>
-
     <g fill="#ede9fe" stroke="#7c3aed" stroke-width="1.5"><rect x="60" y="288" width="130" height="60" rx="12"/><rect x="270" y="288" width="130" height="60" rx="12"/><rect x="480" y="288" width="130" height="60" rx="12"/></g>
     <g text-anchor="middle" fill="#4c1d95" font-size="15" font-weight="700"><text x="125" y="311">h<tspan baseline-shift="sub" font-size="10">t−2</tspan></text><text x="335" y="311">h<tspan baseline-shift="sub" font-size="10">t−1</tspan></text><text x="545" y="311">h<tspan baseline-shift="sub" font-size="10">t</tspan></text></g>
     <g text-anchor="middle" fill="#4c1d95" font-size="10">
@@ -354,10 +344,8 @@ $$
       <text x="125" y="347">∂h<tspan baseline-shift="sub" font-size="8">t−2</tspan></text><text x="335" y="347">∂h<tspan baseline-shift="sub" font-size="8">t−1</tspan></text><text x="545" y="347">∂h<tspan baseline-shift="sub" font-size="8">t</tspan></text>
     </g>
     <g stroke="#4c1d95" stroke-width="0.7"><line x1="109" y1="336" x2="141" y2="336"/><line x1="319" y1="336" x2="351" y2="336"/><line x1="529" y1="336" x2="561" y2="336"/></g>
-
     <g fill="#dbeafe" stroke="#2563eb" stroke-width="1.5"><rect x="60" y="418" width="130" height="40" rx="10"/><rect x="270" y="418" width="130" height="40" rx="10"/><rect x="480" y="418" width="130" height="40" rx="10"/></g>
     <g text-anchor="middle" fill="#1e3a8a" font-size="15" font-weight="700"><text x="125" y="443">x<tspan baseline-shift="sub" font-size="10">t−2</tspan></text><text x="335" y="443">x<tspan baseline-shift="sub" font-size="10">t−1</tspan></text><text x="545" y="443">x<tspan baseline-shift="sub" font-size="10">t</tspan></text></g>
-
     <g stroke="#334155" stroke-width="1.6" fill="none" marker-end="url(#ar4)">
       <path d="M93 416V354"/><path d="M303 416V354"/><path d="M513 416V354"/>
       <path d="M93 286V234"/><path d="M303 286V234"/><path d="M513 286V234"/>
@@ -368,15 +356,12 @@ $$
       <g fill="#16a34a"><text x="85" y="264">W</text><text x="295" y="264">W</text><text x="505" y="264">W</text></g>
     </g>
     <g font-size="11" font-weight="700" text-anchor="middle" fill="#7c3aed"><text x="229" y="296">V</text><text x="439" y="296">V</text></g>
-
     <g stroke="#ea580c" stroke-width="1.6" fill="none" marker-end="url(#ac4)">
       <path d="M577 128V164"/><path d="M577 234V282"/>
       <path d="M478 334H406"/><path d="M268 334H196"/>
     </g>
     <path d="M58 334H44" stroke="#ea580c" stroke-width="1.6" fill="none" stroke-dasharray="4 4" marker-end="url(#ac4)"/>
-
     <path d="M612 198H648V474H84V498" fill="none" stroke="#0d9488" stroke-width="1.6" marker-end="url(#at4)"/>
-
     <rect x="40" y="502" width="600" height="84" rx="12" fill="#ffffff" stroke="#cbd5e1" stroke-width="1.5"/>
     <g fill="#0f172a" text-anchor="middle" font-size="10">
       <text x="62" y="536">∂L<tspan baseline-shift="sub" font-size="8">t</tspan></text><text x="62" y="560">∂o<tspan baseline-shift="sub" font-size="8">t</tspan></text>
@@ -443,17 +428,14 @@ $$
     <line x1="32" y1="62" x2="62" y2="62" stroke="#334155" stroke-width="1.6"/><text x="68" y="66" font-size="11" fill="#475569">forward</text>
     <line x1="140" y1="62" x2="170" y2="62" stroke="#ea580c" stroke-width="1.6"/><text x="176" y="66" font-size="11" fill="#ea580c">backward (gradient)</text>
     <line x1="330" y1="62" x2="360" y2="62" stroke="#0d9488" stroke-width="1.6"/><text x="366" y="66" font-size="11" fill="#0d9488">term 대응</text>
-
     <rect x="480" y="86" width="130" height="40" rx="10" fill="#fee2e2" stroke="#dc2626" stroke-width="1.5"/>
     <text x="545" y="112" text-anchor="middle" font-size="15" font-weight="700" fill="#7f1d1d">L<tspan baseline-shift="sub" font-size="10">t</tspan></text>
-
     <g fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"><rect x="60" y="168" width="130" height="60" rx="12"/><rect x="270" y="168" width="130" height="60" rx="12"/><rect x="480" y="168" width="130" height="60" rx="12"/></g>
     <g text-anchor="middle" fill="#14532d"><text x="125" y="193" font-size="15" font-weight="700">o<tspan baseline-shift="sub" font-size="10">t−2</tspan></text><text x="335" y="193" font-size="15" font-weight="700">o<tspan baseline-shift="sub" font-size="10">t−1</tspan></text><text x="545" y="193" font-size="15" font-weight="700">o<tspan baseline-shift="sub" font-size="10">t</tspan></text>
     <text x="125" y="215" font-size="10">gradient 0</text><text x="335" y="215" font-size="10">gradient 0</text></g>
     <text x="545" y="211" text-anchor="middle" font-size="10" fill="#14532d">∂L<tspan baseline-shift="sub" font-size="8">t</tspan></text>
     <line x1="529" y1="216" x2="561" y2="216" stroke="#14532d" stroke-width="0.7"/>
     <text x="545" y="228" text-anchor="middle" font-size="10" fill="#14532d">∂o<tspan baseline-shift="sub" font-size="8">t</tspan></text>
-
     <g fill="#ede9fe" stroke="#7c3aed" stroke-width="1.5"><rect x="60" y="288" width="130" height="60" rx="12"/><rect x="270" y="288" width="130" height="60" rx="12"/><rect x="480" y="288" width="130" height="60" rx="12"/></g>
     <g text-anchor="middle" fill="#4c1d95" font-size="15" font-weight="700"><text x="125" y="311">h<tspan baseline-shift="sub" font-size="10">t−2</tspan></text><text x="335" y="311">h<tspan baseline-shift="sub" font-size="10">t−1</tspan></text><text x="545" y="311">h<tspan baseline-shift="sub" font-size="10">t</tspan></text></g>
     <g text-anchor="middle" fill="#4c1d95" font-size="10">
@@ -461,10 +443,8 @@ $$
       <text x="125" y="347">∂h<tspan baseline-shift="sub" font-size="8">t−2</tspan></text><text x="335" y="347">∂h<tspan baseline-shift="sub" font-size="8">t−1</tspan></text><text x="545" y="347">∂h<tspan baseline-shift="sub" font-size="8">t</tspan></text>
     </g>
     <g stroke="#4c1d95" stroke-width="0.7"><line x1="109" y1="336" x2="141" y2="336"/><line x1="319" y1="336" x2="351" y2="336"/><line x1="529" y1="336" x2="561" y2="336"/></g>
-
     <g fill="#dbeafe" stroke="#2563eb" stroke-width="1.5"><rect x="60" y="418" width="130" height="40" rx="10"/><rect x="270" y="418" width="130" height="40" rx="10"/><rect x="480" y="418" width="130" height="40" rx="10"/></g>
     <g text-anchor="middle" fill="#1e3a8a" font-size="15" font-weight="700"><text x="125" y="443">x<tspan baseline-shift="sub" font-size="10">t−2</tspan></text><text x="335" y="443">x<tspan baseline-shift="sub" font-size="10">t−1</tspan></text><text x="545" y="443">x<tspan baseline-shift="sub" font-size="10">t</tspan></text></g>
-
     <g stroke="#334155" stroke-width="1.6" fill="none" marker-end="url(#ar5)">
       <path d="M93 416V354"/><path d="M303 416V354"/><path d="M513 416V354"/>
       <path d="M93 286V234"/><path d="M303 286V234"/><path d="M513 286V234"/>
@@ -475,7 +455,6 @@ $$
       <g fill="#16a34a"><text x="85" y="264">W</text><text x="295" y="264">W</text><text x="505" y="264">W</text></g>
     </g>
     <g font-size="11" font-weight="700" text-anchor="middle" fill="#7c3aed"><text x="229" y="296">V</text><text x="439" y="296">V</text></g>
-
     <g stroke="#ea580c" stroke-width="1.6" fill="none" marker-end="url(#ac5)">
       <path d="M577 128V164"/><path d="M577 234V282"/>
       <path d="M478 334H406"/><path d="M268 334H196"/>
@@ -486,14 +465,12 @@ $$
       <text x="230" y="364">∂h<tspan baseline-shift="sub" font-size="8">t−1</tspan></text><text x="230" y="392">∂h<tspan baseline-shift="sub" font-size="8">t−2</tspan></text>
     </g>
     <g stroke="#ea580c" stroke-width="0.7"><line x1="424" y1="372" x2="456" y2="372"/><line x1="214" y1="372" x2="246" y2="372"/></g>
-
     <g stroke="#0d9488" stroke-width="1.6" fill="none" marker-end="url(#at5)">
       <path d="M575 350V404H636V474H478V498"/>
       <path d="M365 350V404H440V474H338V498"/>
       <path d="M155 350V404H230V474H164V498"/>
     </g>
     <path d="M45 356V498" stroke="#0d9488" stroke-width="1.6" fill="none" stroke-dasharray="4 4" marker-end="url(#at5)"/>
-
     <rect x="40" y="502" width="600" height="84" rx="12" fill="#ffffff" stroke="#cbd5e1" stroke-width="1.5"/>
     <g fill="#0f172a" text-anchor="middle" font-size="10">
       <text x="52" y="548" font-size="12">⋯</text><text x="66" y="548" font-size="12">+</text>
@@ -579,17 +556,14 @@ $$
     <line x1="32" y1="62" x2="62" y2="62" stroke="#334155" stroke-width="1.6"/><text x="68" y="66" font-size="11" fill="#475569">forward</text>
     <line x1="140" y1="62" x2="170" y2="62" stroke="#ea580c" stroke-width="1.6"/><text x="176" y="66" font-size="11" fill="#ea580c">backward (gradient)</text>
     <line x1="330" y1="62" x2="360" y2="62" stroke="#0d9488" stroke-width="1.6"/><text x="366" y="66" font-size="11" fill="#0d9488">term 대응</text>
-
     <rect x="480" y="86" width="130" height="40" rx="10" fill="#fee2e2" stroke="#dc2626" stroke-width="1.5"/>
     <text x="545" y="112" text-anchor="middle" font-size="15" font-weight="700" fill="#7f1d1d">L<tspan baseline-shift="sub" font-size="10">t</tspan></text>
-
     <g fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"><rect x="60" y="168" width="130" height="60" rx="12"/><rect x="270" y="168" width="130" height="60" rx="12"/><rect x="480" y="168" width="130" height="60" rx="12"/></g>
     <g text-anchor="middle" fill="#14532d"><text x="125" y="193" font-size="15" font-weight="700">o<tspan baseline-shift="sub" font-size="10">t−2</tspan></text><text x="335" y="193" font-size="15" font-weight="700">o<tspan baseline-shift="sub" font-size="10">t−1</tspan></text><text x="545" y="193" font-size="15" font-weight="700">o<tspan baseline-shift="sub" font-size="10">t</tspan></text>
     <text x="125" y="215" font-size="10">gradient 0</text><text x="335" y="215" font-size="10">gradient 0</text></g>
     <text x="545" y="211" text-anchor="middle" font-size="10" fill="#14532d">∂L<tspan baseline-shift="sub" font-size="8">t</tspan></text>
     <line x1="529" y1="216" x2="561" y2="216" stroke="#14532d" stroke-width="0.7"/>
     <text x="545" y="228" text-anchor="middle" font-size="10" fill="#14532d">∂o<tspan baseline-shift="sub" font-size="8">t</tspan></text>
-
     <g fill="#ede9fe" stroke="#7c3aed" stroke-width="1.5"><rect x="60" y="288" width="130" height="60" rx="12"/><rect x="270" y="288" width="130" height="60" rx="12"/><rect x="480" y="288" width="130" height="60" rx="12"/></g>
     <g text-anchor="middle" fill="#4c1d95" font-size="15" font-weight="700"><text x="125" y="311">h<tspan baseline-shift="sub" font-size="10">t−2</tspan></text><text x="335" y="311">h<tspan baseline-shift="sub" font-size="10">t−1</tspan></text><text x="545" y="311">h<tspan baseline-shift="sub" font-size="10">t</tspan></text></g>
     <g text-anchor="middle" fill="#4c1d95" font-size="10">
@@ -597,10 +571,8 @@ $$
       <text x="125" y="347">∂h<tspan baseline-shift="sub" font-size="8">t−2</tspan></text><text x="335" y="347">∂h<tspan baseline-shift="sub" font-size="8">t−1</tspan></text><text x="545" y="347">∂h<tspan baseline-shift="sub" font-size="8">t</tspan></text>
     </g>
     <g stroke="#4c1d95" stroke-width="0.7"><line x1="109" y1="336" x2="141" y2="336"/><line x1="319" y1="336" x2="351" y2="336"/><line x1="529" y1="336" x2="561" y2="336"/></g>
-
     <g fill="#dbeafe" stroke="#2563eb" stroke-width="1.5"><rect x="60" y="418" width="130" height="40" rx="10"/><rect x="270" y="418" width="130" height="40" rx="10"/><rect x="480" y="418" width="130" height="40" rx="10"/></g>
     <g text-anchor="middle" fill="#1e3a8a" font-size="15" font-weight="700"><text x="125" y="443">x<tspan baseline-shift="sub" font-size="10">t−2</tspan></text><text x="335" y="443">x<tspan baseline-shift="sub" font-size="10">t−1</tspan></text><text x="545" y="443">x<tspan baseline-shift="sub" font-size="10">t</tspan></text></g>
-
     <g stroke="#334155" stroke-width="1.6" fill="none" marker-end="url(#ar6)">
       <path d="M93 416V354"/><path d="M303 416V354"/><path d="M513 416V354"/>
       <path d="M93 286V234"/><path d="M303 286V234"/><path d="M513 286V234"/>
@@ -611,7 +583,6 @@ $$
       <g fill="#16a34a"><text x="85" y="264">W</text><text x="295" y="264">W</text><text x="505" y="264">W</text></g>
     </g>
     <g font-size="11" font-weight="700" text-anchor="middle" fill="#7c3aed"><text x="229" y="296">V</text><text x="439" y="296">V</text></g>
-
     <g stroke="#ea580c" stroke-width="1.6" fill="none" marker-end="url(#ac6)">
       <path d="M577 128V164"/><path d="M577 234V282"/>
       <path d="M478 334H406"/><path d="M268 334H196"/>
@@ -622,14 +593,12 @@ $$
       <text x="230" y="364">∂h<tspan baseline-shift="sub" font-size="8">t−1</tspan></text><text x="230" y="392">∂h<tspan baseline-shift="sub" font-size="8">t−2</tspan></text>
     </g>
     <g stroke="#ea580c" stroke-width="0.7"><line x1="424" y1="372" x2="456" y2="372"/><line x1="214" y1="372" x2="246" y2="372"/></g>
-
     <g stroke="#0d9488" stroke-width="1.6" fill="none" marker-end="url(#at6)">
       <path d="M575 350V404H636V474H478V498"/>
       <path d="M365 350V404H440V474H338V498"/>
       <path d="M155 350V404H230V474H164V498"/>
     </g>
     <path d="M45 356V498" stroke="#0d9488" stroke-width="1.6" fill="none" stroke-dasharray="4 4" marker-end="url(#at6)"/>
-
     <rect x="40" y="502" width="600" height="84" rx="12" fill="#ffffff" stroke="#cbd5e1" stroke-width="1.5"/>
     <g fill="#0f172a" text-anchor="middle" font-size="10">
       <text x="52" y="548" font-size="12">⋯</text><text x="66" y="548" font-size="12">+</text>
@@ -807,7 +776,6 @@ Earlier information은 successive recurrent state transition 동안 hidden-state
   <rect width="680" height="520" rx="20" fill="#f8fafc"/>
   <g font-family="Arial, 'Noto Sans KR', sans-serif">
     <text x="32" y="36" font-size="17" font-weight="700" fill="#0f172a">Long-term dependency problem</text>
-
     <rect x="28" y="58" width="624" height="186" rx="14" fill="#ffffff" stroke="#bfdbfe" stroke-width="1.5"/>
     <rect x="44" y="72" width="290" height="26" rx="13" fill="#dbeafe"/>
     <text x="189" y="90" text-anchor="middle" font-size="12" font-weight="700" fill="#1e40af">A. Forward pass · earlier information 유지</text>
@@ -820,7 +788,6 @@ Earlier information은 successive recurrent state transition 동안 hidden-state
     <g stroke="#334155" stroke-width="1.5" fill="none" marker-end="url(#ar10)"><path d="M136 142H174"/><path d="M264 142H302"/><path d="M392 142H430"/><path d="M520 142H558"/></g>
     <text x="411" y="116" text-anchor="middle" font-size="13" font-weight="700" fill="#64748b">···</text>
     <text x="340" y="212" text-anchor="middle" font-size="11" fill="#475569">서로 다른 earlier input을 담은 state representation이 later step에서 구분되기 어려워질 수 있음</text>
-
     <rect x="28" y="264" width="624" height="176" rx="14" fill="#ffffff" stroke="#fed7aa" stroke-width="1.5"/>
     <rect x="44" y="278" width="280" height="26" rx="13" fill="#ffedd5"/>
     <text x="184" y="296" text-anchor="middle" font-size="12" font-weight="700" fill="#9a3412">B. Backward pass · vanishing gradient</text>
@@ -831,7 +798,6 @@ Earlier information은 successive recurrent state transition 동안 hidden-state
     <path d="M534 352H148" stroke="#fdba74" stroke-width="1.6" fill="none" marker-end="url(#ap10)"/>
     <g fill="#ea580c" stroke="#ffffff" stroke-width="1"><circle cx="510" cy="352" r="11"/><circle cx="456" cy="352" r="9"/><circle cx="402" cy="352" r="7"/><circle cx="348" cy="352" r="5.5"/><circle cx="294" cy="352" r="4"/><circle cx="240" cy="352" r="2.5"/><circle cx="186" cy="352" r="1.5"/></g>
     <text x="340" y="410" text-anchor="middle" font-size="11" fill="#9a3412">항에 포함된 반복 곱이 길어질수록 그 항의 기여가 작아짐</text>
-
     <rect x="120" y="464" width="440" height="30" rx="15" fill="#fff7ed" stroke="#fdba74" stroke-width="1.5"/>
     <text x="340" y="484" text-anchor="middle" font-size="12" font-weight="700" fill="#9a3412">Forward의 information 유지와 backward의 vanishing gradient는 구분해야 함</text>
   </g>
