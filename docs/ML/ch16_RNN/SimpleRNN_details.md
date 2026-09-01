@@ -508,8 +508,22 @@ Time step $i$의 usage에서 발생하는 항은 2.3에서 구한 $\partial L_t 
 $$
 \frac{\partial L_t}{\partial h_i}
 \frac{\partial h_i}{\partial a_i}
-\frac{\partial a_i}{\partial U}
+\frac{\partial^{+} a_i}{\partial U}
 $$
+
+마지막 factor에 $\partial^{+}$ 를 쓴 이유는 다음과 같음. $a_i = U x_i + V h_{i-1} + b_h$ 에서 $h_{i-1}$ 도 $U$에 의존하므로, $\partial a_i / \partial U$ 를 글자 그대로 읽으면 $h_{i-1}$ 을 거치는 경로까지 포함하게 됨. 그 경로는 이미 $i-1$ 의 항이 담당하고 있으므로 중복이 됨.
+
+따라서 여기서는 $h_{i-1}$ 을 상수로 두는 immediate partial만 사용하며, 이를 $\partial^{+}$ 로 표기함.
+
+$$
+\frac{\partial^{+} a_i}{\partial U} = x_i
+$$
+
+$$
+\frac{\partial^{+} a_i}{\partial V} = h_{i-1}
+$$
+
+$h_{i-1}$ 을 거치는 경로를 따로 떼어 다른 항으로 두는 것이 곧 usage별로 항을 나누는 것이며, 그 경로의 길이가 항마다 달라짐.
 
 $i$가 작아질수록 $\partial L_t / \partial h_i$ 안에 2.3의 반복 곱 $D_i V$ 가 하나씩 더 들어가므로, 아래 식에서 뒤쪽 항일수록 길어짐.
 
@@ -542,9 +556,9 @@ $$
 $$
 \begin{aligned}
 \frac{\partial L_t}{\partial U}
-&= \frac{\partial L_t}{\partial h_t} \frac{\partial h_t}{\partial a_t} \frac{\partial a_t}{\partial U} \\
-&\quad + \frac{\partial L_t}{\partial h_t} \frac{\partial h_t}{\partial h_{t-1}} \frac{\partial h_{t-1}}{\partial a_{t-1}} \frac{\partial a_{t-1}}{\partial U} \\
-&\quad + \frac{\partial L_t}{\partial h_t} \frac{\partial h_t}{\partial h_{t-1}} \frac{\partial h_{t-1}}{\partial h_{t-2}} \frac{\partial h_{t-2}}{\partial a_{t-2}} \frac{\partial a_{t-2}}{\partial U} \\
+&= \frac{\partial L_t}{\partial h_t} \frac{\partial h_t}{\partial a_t} \frac{\partial^{+} a_t}{\partial U} \\
+&\quad + \frac{\partial L_t}{\partial h_t} \frac{\partial h_t}{\partial h_{t-1}} \frac{\partial h_{t-1}}{\partial a_{t-1}} \frac{\partial^{+} a_{t-1}}{\partial U} \\
+&\quad + \frac{\partial L_t}{\partial h_t} \frac{\partial h_t}{\partial h_{t-1}} \frac{\partial h_{t-1}}{\partial h_{t-2}} \frac{\partial h_{t-2}}{\partial a_{t-2}} \frac{\partial^{+} a_{t-2}}{\partial U} \\
 &\quad + \cdots
 \end{aligned}
 $$
@@ -559,8 +573,8 @@ $$
 \end{aligned}
 $$
 
-- vector에서 $\partial a_i / \partial U$ 는 3차 tensor라 곱셈 표기로 쓸 수 없어 $x_i^{\top}$ 로 남김
-- scalar에서는 $\partial a_i / \partial U = x_i$ 이며 transpose 없이 그대로 곱해짐
+- vector에서 $\partial^{+} a_i / \partial U$ 는 3차 tensor라 곱셈 표기로 쓸 수 없어 $x_i^{\top}$ 로 남김
+- scalar에서는 $\partial^{+} a_i / \partial U = x_i$ 이며 transpose 없이 그대로 곱해짐
 - $V h_{i-1}$ 과 $b_h$는 $U$와 무관하므로 이 미분에서 사라짐
 - 항의 index가 작아질수록 $D_i V$ 가 하나씩 더 곱해져 항이 길어짐
 
@@ -653,12 +667,12 @@ $$
 
 ### 2.6 V에 대한 Gradient
 
-$V$ 역시 모든 time step의 $a_i$ 에서 반복해서 사용되므로 구조는 2.5와 같음. 다른 점은 $\partial a_i / \partial U$ 자리에 $\partial a_i / \partial V$ 가 들어간다는 것뿐임:
+$V$ 역시 모든 time step의 $a_i$ 에서 반복해서 사용되므로 구조는 2.5와 같음. 다른 점은 $\partial^{+} a_i / \partial U$ 자리에 $\partial^{+} a_i / \partial V$ 가 들어간다는 것뿐임:
 
 $$
 \frac{\partial L_t}{\partial h_i}
 \frac{\partial h_i}{\partial a_i}
-\frac{\partial a_i}{\partial V}
+\frac{\partial^{+} a_i}{\partial V}
 $$
 
 **vector 경우**
@@ -688,9 +702,9 @@ $$
 $$
 \begin{aligned}
 \frac{\partial L_t}{\partial V}
-&= \frac{\partial L_t}{\partial h_t} \frac{\partial h_t}{\partial a_t} \frac{\partial a_t}{\partial V} \\
-&\quad + \frac{\partial L_t}{\partial h_t} \frac{\partial h_t}{\partial h_{t-1}} \frac{\partial h_{t-1}}{\partial a_{t-1}} \frac{\partial a_{t-1}}{\partial V} \\
-&\quad + \frac{\partial L_t}{\partial h_t} \frac{\partial h_t}{\partial h_{t-1}} \frac{\partial h_{t-1}}{\partial h_{t-2}} \frac{\partial h_{t-2}}{\partial a_{t-2}} \frac{\partial a_{t-2}}{\partial V} \\
+&= \frac{\partial L_t}{\partial h_t} \frac{\partial h_t}{\partial a_t} \frac{\partial^{+} a_t}{\partial V} \\
+&\quad + \frac{\partial L_t}{\partial h_t} \frac{\partial h_t}{\partial h_{t-1}} \frac{\partial h_{t-1}}{\partial a_{t-1}} \frac{\partial^{+} a_{t-1}}{\partial V} \\
+&\quad + \frac{\partial L_t}{\partial h_t} \frac{\partial h_t}{\partial h_{t-1}} \frac{\partial h_{t-1}}{\partial h_{t-2}} \frac{\partial h_{t-2}}{\partial a_{t-2}} \frac{\partial^{+} a_{t-2}}{\partial V} \\
 &\quad + \cdots
 \end{aligned}
 $$
@@ -705,8 +719,8 @@ $$
 \end{aligned}
 $$
 
-- vector에서 $\partial a_i / \partial V$ 는 3차 tensor라 곱셈 표기로 쓸 수 없어 $h_{i-1}^{\top}$ 로 남김
-- scalar에서는 $\partial a_i / \partial V = h_{i-1}$ 이며 transpose 없이 그대로 곱해짐
+- vector에서 $\partial^{+} a_i / \partial V$ 는 3차 tensor라 곱셈 표기로 쓸 수 없어 $h_{i-1}^{\top}$ 로 남김
+- scalar에서는 $\partial^{+} a_i / \partial V = h_{i-1}$ 이며 transpose 없이 그대로 곱해짐
 - $U x_i$ 와 $b_h$는 $V$와 무관하므로 이 미분에서 사라짐
 - $U$의 경우와 비교하면 각 항 끝의 $x_i$ 자리에 $h_{i-1}$ 이 들어간 것만 다름
 
@@ -803,14 +817,16 @@ $$
 
 첫 번째는 **usage에 대한 합** 임. 하나의 loss $L_t$ 안에서 $U$와 $V$가 여러 time step에 반복 사용되므로 usage마다 항이 하나씩 생기고, 그 항들을 더한 것이 2.5와 2.6의 결과였음.
 
+아래 두 식은 scalar 표기임. vector 경우의 형태는 2.5와 2.6에 있음. 합의 범위는 truncation 없이 sequence 처음까지 역전파하는 경우이며, truncated BPTT에서는 $i = t-\tau+1$ 부터가 됨.
+
 $$
 \frac{\partial L_t}{\partial U}
-= \sum_{i} \frac{\partial L_t}{\partial h_i} \frac{\partial h_i}{\partial a_i} \frac{\partial a_i}{\partial U}
+= \sum_{i=1}^{t} \frac{\partial L_t}{\partial h_i} \frac{\partial h_i}{\partial a_i} \frac{\partial^{+} a_i}{\partial U}
 $$
 
 $$
 \frac{\partial L_t}{\partial V}
-= \sum_{i} \frac{\partial L_t}{\partial h_i} \frac{\partial h_i}{\partial a_i} \frac{\partial a_i}{\partial V}
+= \sum_{i=1}^{t} \frac{\partial L_t}{\partial h_i} \frac{\partial h_i}{\partial a_i} \frac{\partial^{+} a_i}{\partial V}
 $$
 
 $W$는 usage가 하나뿐이므로 이 합이 나타나지 않고 항 하나로 끝남.
@@ -849,7 +865,7 @@ $$
     <text x="228" y="136" font-size="9" fill="#6d28d9">i = t</text>
     <text x="228" y="188" font-size="9" fill="#6d28d9">i = t−1</text>
     <text x="228" y="240" font-size="9" fill="#6d28d9">i = t−2</text>
-    <text x="89" y="126" text-anchor="middle" font-size="9" fill="#4c1d95">∂L<tspan baseline-shift="sub" font-size="7">t</tspan></text><line x1="73" y1="132" x2="105" y2="132" stroke="#4c1d95" stroke-width="0.6"/><text x="89" y="146" text-anchor="middle" font-size="9" fill="#4c1d95">∂h<tspan baseline-shift="sub" font-size="7">t</tspan></text><text x="125" y="126" text-anchor="middle" font-size="9" fill="#4c1d95">∂h<tspan baseline-shift="sub" font-size="7">t</tspan></text><line x1="109" y1="132" x2="141" y2="132" stroke="#4c1d95" stroke-width="0.6"/><text x="125" y="146" text-anchor="middle" font-size="9" fill="#4c1d95">∂a<tspan baseline-shift="sub" font-size="7">t</tspan></text><text x="161" y="126" text-anchor="middle" font-size="9" fill="#4c1d95">∂a<tspan baseline-shift="sub" font-size="7">t</tspan></text><line x1="145" y1="132" x2="177" y2="132" stroke="#4c1d95" stroke-width="0.6"/><text x="161" y="146" text-anchor="middle" font-size="9" fill="#4c1d95">∂V</text><text x="89" y="178" text-anchor="middle" font-size="9" fill="#4c1d95">∂L<tspan baseline-shift="sub" font-size="7">t</tspan></text><line x1="73" y1="184" x2="105" y2="184" stroke="#4c1d95" stroke-width="0.6"/><text x="89" y="198" text-anchor="middle" font-size="9" fill="#4c1d95">∂h<tspan baseline-shift="sub" font-size="7">t−1</tspan></text><text x="125" y="178" text-anchor="middle" font-size="9" fill="#4c1d95">∂h<tspan baseline-shift="sub" font-size="7">t−1</tspan></text><line x1="109" y1="184" x2="141" y2="184" stroke="#4c1d95" stroke-width="0.6"/><text x="125" y="198" text-anchor="middle" font-size="9" fill="#4c1d95">∂a<tspan baseline-shift="sub" font-size="7">t−1</tspan></text><text x="161" y="178" text-anchor="middle" font-size="9" fill="#4c1d95">∂a<tspan baseline-shift="sub" font-size="7">t−1</tspan></text><line x1="145" y1="184" x2="177" y2="184" stroke="#4c1d95" stroke-width="0.6"/><text x="161" y="198" text-anchor="middle" font-size="9" fill="#4c1d95">∂V</text><text x="89" y="230" text-anchor="middle" font-size="9" fill="#4c1d95">∂L<tspan baseline-shift="sub" font-size="7">t</tspan></text><line x1="73" y1="236" x2="105" y2="236" stroke="#4c1d95" stroke-width="0.6"/><text x="89" y="250" text-anchor="middle" font-size="9" fill="#4c1d95">∂h<tspan baseline-shift="sub" font-size="7">t−2</tspan></text><text x="125" y="230" text-anchor="middle" font-size="9" fill="#4c1d95">∂h<tspan baseline-shift="sub" font-size="7">t−2</tspan></text><line x1="109" y1="236" x2="141" y2="236" stroke="#4c1d95" stroke-width="0.6"/><text x="125" y="250" text-anchor="middle" font-size="9" fill="#4c1d95">∂a<tspan baseline-shift="sub" font-size="7">t−2</tspan></text><text x="161" y="230" text-anchor="middle" font-size="9" fill="#4c1d95">∂a<tspan baseline-shift="sub" font-size="7">t−2</tspan></text><line x1="145" y1="236" x2="177" y2="236" stroke="#4c1d95" stroke-width="0.6"/><text x="161" y="250" text-anchor="middle" font-size="9" fill="#4c1d95">∂V</text>
+    <text x="89" y="126" text-anchor="middle" font-size="9" fill="#4c1d95">∂L<tspan baseline-shift="sub" font-size="7">t</tspan></text><line x1="73" y1="132" x2="105" y2="132" stroke="#4c1d95" stroke-width="0.6"/><text x="89" y="146" text-anchor="middle" font-size="9" fill="#4c1d95">∂h<tspan baseline-shift="sub" font-size="7">t</tspan></text><text x="125" y="126" text-anchor="middle" font-size="9" fill="#4c1d95">∂h<tspan baseline-shift="sub" font-size="7">t</tspan></text><line x1="109" y1="132" x2="141" y2="132" stroke="#4c1d95" stroke-width="0.6"/><text x="125" y="146" text-anchor="middle" font-size="9" fill="#4c1d95">∂a<tspan baseline-shift="sub" font-size="7">t</tspan></text><text x="161" y="126" text-anchor="middle" font-size="9" fill="#4c1d95">∂<tspan baseline-shift="super" font-size="6">+</tspan>a<tspan baseline-shift="sub" font-size="7">t</tspan></text><line x1="145" y1="132" x2="177" y2="132" stroke="#4c1d95" stroke-width="0.6"/><text x="161" y="146" text-anchor="middle" font-size="9" fill="#4c1d95">∂V</text><text x="89" y="178" text-anchor="middle" font-size="9" fill="#4c1d95">∂L<tspan baseline-shift="sub" font-size="7">t</tspan></text><line x1="73" y1="184" x2="105" y2="184" stroke="#4c1d95" stroke-width="0.6"/><text x="89" y="198" text-anchor="middle" font-size="9" fill="#4c1d95">∂h<tspan baseline-shift="sub" font-size="7">t−1</tspan></text><text x="125" y="178" text-anchor="middle" font-size="9" fill="#4c1d95">∂h<tspan baseline-shift="sub" font-size="7">t−1</tspan></text><line x1="109" y1="184" x2="141" y2="184" stroke="#4c1d95" stroke-width="0.6"/><text x="125" y="198" text-anchor="middle" font-size="9" fill="#4c1d95">∂a<tspan baseline-shift="sub" font-size="7">t−1</tspan></text><text x="161" y="178" text-anchor="middle" font-size="9" fill="#4c1d95">∂<tspan baseline-shift="super" font-size="6">+</tspan>a<tspan baseline-shift="sub" font-size="7">t−1</tspan></text><line x1="145" y1="184" x2="177" y2="184" stroke="#4c1d95" stroke-width="0.6"/><text x="161" y="198" text-anchor="middle" font-size="9" fill="#4c1d95">∂V</text><text x="89" y="230" text-anchor="middle" font-size="9" fill="#4c1d95">∂L<tspan baseline-shift="sub" font-size="7">t</tspan></text><line x1="73" y1="236" x2="105" y2="236" stroke="#4c1d95" stroke-width="0.6"/><text x="89" y="250" text-anchor="middle" font-size="9" fill="#4c1d95">∂h<tspan baseline-shift="sub" font-size="7">t−2</tspan></text><text x="125" y="230" text-anchor="middle" font-size="9" fill="#4c1d95">∂h<tspan baseline-shift="sub" font-size="7">t−2</tspan></text><line x1="109" y1="236" x2="141" y2="236" stroke="#4c1d95" stroke-width="0.6"/><text x="125" y="250" text-anchor="middle" font-size="9" fill="#4c1d95">∂a<tspan baseline-shift="sub" font-size="7">t−2</tspan></text><text x="161" y="230" text-anchor="middle" font-size="9" fill="#4c1d95">∂<tspan baseline-shift="super" font-size="6">+</tspan>a<tspan baseline-shift="sub" font-size="7">t−2</tspan></text><line x1="145" y1="236" x2="177" y2="236" stroke="#4c1d95" stroke-width="0.6"/><text x="161" y="250" text-anchor="middle" font-size="9" fill="#4c1d95">∂V</text>
     <text x="125" y="284" text-anchor="middle" font-size="13" font-weight="700" fill="#7c3aed">⋮</text>
     <g stroke="#64748b" stroke-width="1.6" fill="none" marker-end="url(#ar7)"><path d="M266 132C286 132 286 172 278 180"/><path d="M266 184H278"/><path d="M266 236C286 236 286 196 278 188"/></g>
     <circle cx="300" cy="184" r="20" fill="#fff7ed" stroke="#ea580c" stroke-width="2"/>
@@ -1002,15 +1018,16 @@ Earlier information은 successive recurrent state transition 동안 hidden-state
     <text x="184" y="296" text-anchor="middle" font-size="12" font-weight="700" fill="#9a3412">B. Backward pass · vanishing gradient</text>
     <rect x="536" y="326" width="96" height="40" rx="10" fill="#fee2e2" stroke="#dc2626" stroke-width="1.5"/>
     <text x="584" y="351" text-anchor="middle" font-size="14" font-weight="700" fill="#7f1d1d">L<tspan baseline-shift="sub" font-size="9">t</tspan></text>
-    <path d="M534 346H366" stroke="#fdba74" stroke-width="1.6" fill="none" marker-end="url(#ap10)"/>
-    <g fill="#ea580c" stroke="#ffffff" stroke-width="1"><circle cx="512" cy="346" r="10"/><circle cx="472" cy="346" r="7.5"/><circle cx="432" cy="346" r="5"/><circle cx="396" cy="346" r="3"/></g>
-    <text x="452" y="318" text-anchor="middle" font-size="10" fill="#9a3412">반복 곱이 길수록 작아짐</text>
-    <rect x="212" y="326" width="148" height="40" rx="10" fill="#ede9fe" stroke="#7c3aed" stroke-width="1.5"/>
-    <text x="286" y="351" text-anchor="middle" font-size="12" font-weight="700" fill="#4c1d95">usage at i = k</text>
-    <g stroke="#64748b" stroke-width="1.5" fill="none" marker-end="url(#ar10)"><path d="M210 340C192 340 180 324 152 320"/><path d="M210 352C192 352 180 368 152 372"/></g>
-    <g fill="#ffffff" stroke="#7c3aed" stroke-width="1.5"><rect x="46" y="304" width="104" height="30" rx="8"/><rect x="46" y="356" width="104" height="30" rx="8"/></g>
-    <g text-anchor="middle" fill="#4c1d95" font-size="12" font-weight="700"><text x="98" y="324">∂L<tspan baseline-shift="sub" font-size="9">t</tspan> / ∂U</text><text x="98" y="376">∂L<tspan baseline-shift="sub" font-size="9">t</tspan> / ∂V</text></g>
-    <text x="340" y="416" text-anchor="middle" font-size="11" fill="#9a3412">distant usage의 항이 0에 가까워지면 그 dependency가 U 와 V 의 update에 반영되지 않음</text>
+    <path d="M534 346H392" stroke="#fdba74" stroke-width="1.6" fill="none" marker-end="url(#ap10)"/>
+    <g fill="#ea580c" stroke="#ffffff" stroke-width="1"><circle cx="512" cy="346" r="10"/><circle cx="476" cy="346" r="7.5"/><circle cx="440" cy="346" r="5"/><circle cx="410" cy="346" r="3"/></g>
+    <text x="466" y="318" text-anchor="middle" font-size="10" fill="#9a3412">반복 곱이 길수록 작아짐</text>
+    <rect x="196" y="322" width="180" height="52" rx="10" fill="#ede9fe" stroke="#7c3aed" stroke-width="1.5"/>
+    <text x="250" y="340" text-anchor="middle" font-size="9" fill="#4c1d95">∂L<tspan baseline-shift="sub" font-size="7">t</tspan></text><line x1="234" y1="346" x2="266" y2="346" stroke="#4c1d95" stroke-width="0.6"/><text x="250" y="360" text-anchor="middle" font-size="9" fill="#4c1d95">∂h<tspan baseline-shift="sub" font-size="7">k</tspan></text><text x="286" y="340" text-anchor="middle" font-size="9" fill="#4c1d95">∂h<tspan baseline-shift="sub" font-size="7">k</tspan></text><line x1="270" y1="346" x2="302" y2="346" stroke="#4c1d95" stroke-width="0.6"/><text x="286" y="360" text-anchor="middle" font-size="9" fill="#4c1d95">∂a<tspan baseline-shift="sub" font-size="7">k</tspan></text><text x="322" y="340" text-anchor="middle" font-size="9" fill="#4c1d95">∂<tspan baseline-shift="super" font-size="6">+</tspan>a<tspan baseline-shift="sub" font-size="7">k</tspan></text><line x1="306" y1="346" x2="338" y2="346" stroke="#4c1d95" stroke-width="0.6"/><text x="322" y="360" text-anchor="middle" font-size="9" fill="#4c1d95">∂V</text>
+    <text x="286" y="314" text-anchor="middle" font-size="9" fill="#6d28d9">usage at i = k</text>
+    <g stroke="#64748b" stroke-width="1.5" fill="none" marker-end="url(#ar10)"><path d="M194 336C178 336 172 327 152 325"/><path d="M194 360C178 360 172 369 152 371"/></g>
+    <g fill="#ffffff" stroke="#7c3aed" stroke-width="1.5"><rect x="46" y="310" width="104" height="30" rx="8"/><rect x="46" y="356" width="104" height="30" rx="8"/></g>
+    <g text-anchor="middle" fill="#4c1d95" font-size="12" font-weight="700"><text x="98" y="330">∂L<tspan baseline-shift="sub" font-size="9">t</tspan> / ∂U</text><text x="98" y="376">∂L<tspan baseline-shift="sub" font-size="9">t</tspan> / ∂V</text></g>
+    <text x="340" y="418" text-anchor="middle" font-size="11" fill="#9a3412">이 항이 0에 가까워지면 그 dependency가 U 와 V 의 update에 반영되지 않음</text>
     <rect x="120" y="464" width="440" height="30" rx="15" fill="#fff7ed" stroke="#fdba74" stroke-width="1.5"/>
     <text x="340" y="484" text-anchor="middle" font-size="12" font-weight="700" fill="#9a3412">Forward의 information 유지와 backward의 vanishing gradient는 구분해야 함</text>
   </g>
