@@ -21,6 +21,7 @@ tags:
   - long-term dependency
   - LSTM
   - GRU
+date: 2026-09-01
 ---
 
 # Simple RNN: Forward Pass, BPTT, and Long-term Dependency Problem
@@ -851,43 +852,42 @@ $$
 $$
 
 <!-- 각 time step loss의 gradient가 하나의 shared parameter gradient로 합산되는 과정 | source: ./figures/07_accumulation.svg -->
-<svg xmlns="http://www.w3.org/2000/svg" width="100%" viewBox="0 0 680 552" role="img" aria-labelledby="f7t f7d">
+<svg xmlns="http://www.w3.org/2000/svg" width="100%" viewBox="0 0 680 604" role="img" aria-labelledby="f7t f7d">
   <title id="f7t">두 종류의 합</title>
   <desc id="f7d">하나의 loss 안에서 usage에 대한 합과, 모든 time step의 loss에 대한 합을 구분해 나타낸 그림</desc>
   <defs><marker id="ar7" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0L10 5L0 10Z" fill="#64748b"/></marker></defs>
-  <rect width="680" height="552" rx="20" fill="#f8fafc"/>
+  <rect width="680" height="604" rx="20" fill="#f8fafc"/>
   <g font-family="Arial, 'Noto Sans KR', sans-serif">
     <text x="32" y="36" font-size="17" font-weight="700" fill="#0f172a">두 종류의 합</text>
-    <rect x="28" y="58" width="624" height="250" rx="14" fill="#ffffff" stroke="#ddd6fe" stroke-width="1.5"/>
+    <rect x="28" y="58" width="624" height="302" rx="14" fill="#ffffff" stroke="#ddd6fe" stroke-width="1.5"/>
     <rect x="44" y="72" width="278" height="26" rx="13" fill="#ede9fe"/>
     <text x="183" y="90" text-anchor="middle" font-size="12" font-weight="700" fill="#6d28d9">A. usage에 대한 합 · 하나의 L<tspan baseline-shift="sub" font-size="9">t</tspan> 안에서</text>
-    <g fill="#ede9fe" stroke="#7c3aed" stroke-width="1.5"><rect x="40" y="110" width="170" height="44" rx="8"/><rect x="40" y="162" width="170" height="44" rx="8"/><rect x="40" y="214" width="170" height="44" rx="8"/></g>
-    <text x="228" y="136" font-size="9" fill="#6d28d9">i = t</text>
-    <text x="228" y="188" font-size="9" fill="#6d28d9">i = t−1</text>
-    <text x="228" y="240" font-size="9" fill="#6d28d9">i = t−2</text>
-    <text x="89" y="126" text-anchor="middle" font-size="9" fill="#4c1d95">∂L<tspan baseline-shift="sub" font-size="7">t</tspan></text><line x1="73" y1="132" x2="105" y2="132" stroke="#4c1d95" stroke-width="0.6"/><text x="89" y="146" text-anchor="middle" font-size="9" fill="#4c1d95">∂h<tspan baseline-shift="sub" font-size="7">t</tspan></text><text x="125" y="126" text-anchor="middle" font-size="9" fill="#4c1d95">∂h<tspan baseline-shift="sub" font-size="7">t</tspan></text><line x1="109" y1="132" x2="141" y2="132" stroke="#4c1d95" stroke-width="0.6"/><text x="125" y="146" text-anchor="middle" font-size="9" fill="#4c1d95">∂a<tspan baseline-shift="sub" font-size="7">t</tspan></text><text x="161" y="126" text-anchor="middle" font-size="9" fill="#4c1d95">∂<tspan baseline-shift="super" font-size="6">+</tspan>a<tspan baseline-shift="sub" font-size="7">t</tspan></text><line x1="145" y1="132" x2="177" y2="132" stroke="#4c1d95" stroke-width="0.6"/><text x="161" y="146" text-anchor="middle" font-size="9" fill="#4c1d95">∂V</text><text x="89" y="178" text-anchor="middle" font-size="9" fill="#4c1d95">∂L<tspan baseline-shift="sub" font-size="7">t</tspan></text><line x1="73" y1="184" x2="105" y2="184" stroke="#4c1d95" stroke-width="0.6"/><text x="89" y="198" text-anchor="middle" font-size="9" fill="#4c1d95">∂h<tspan baseline-shift="sub" font-size="7">t−1</tspan></text><text x="125" y="178" text-anchor="middle" font-size="9" fill="#4c1d95">∂h<tspan baseline-shift="sub" font-size="7">t−1</tspan></text><line x1="109" y1="184" x2="141" y2="184" stroke="#4c1d95" stroke-width="0.6"/><text x="125" y="198" text-anchor="middle" font-size="9" fill="#4c1d95">∂a<tspan baseline-shift="sub" font-size="7">t−1</tspan></text><text x="161" y="178" text-anchor="middle" font-size="9" fill="#4c1d95">∂<tspan baseline-shift="super" font-size="6">+</tspan>a<tspan baseline-shift="sub" font-size="7">t−1</tspan></text><line x1="145" y1="184" x2="177" y2="184" stroke="#4c1d95" stroke-width="0.6"/><text x="161" y="198" text-anchor="middle" font-size="9" fill="#4c1d95">∂V</text><text x="89" y="230" text-anchor="middle" font-size="9" fill="#4c1d95">∂L<tspan baseline-shift="sub" font-size="7">t</tspan></text><line x1="73" y1="236" x2="105" y2="236" stroke="#4c1d95" stroke-width="0.6"/><text x="89" y="250" text-anchor="middle" font-size="9" fill="#4c1d95">∂h<tspan baseline-shift="sub" font-size="7">t−2</tspan></text><text x="125" y="230" text-anchor="middle" font-size="9" fill="#4c1d95">∂h<tspan baseline-shift="sub" font-size="7">t−2</tspan></text><line x1="109" y1="236" x2="141" y2="236" stroke="#4c1d95" stroke-width="0.6"/><text x="125" y="250" text-anchor="middle" font-size="9" fill="#4c1d95">∂a<tspan baseline-shift="sub" font-size="7">t−2</tspan></text><text x="161" y="230" text-anchor="middle" font-size="9" fill="#4c1d95">∂<tspan baseline-shift="super" font-size="6">+</tspan>a<tspan baseline-shift="sub" font-size="7">t−2</tspan></text><line x1="145" y1="236" x2="177" y2="236" stroke="#4c1d95" stroke-width="0.6"/><text x="161" y="250" text-anchor="middle" font-size="9" fill="#4c1d95">∂V</text>
-    <text x="125" y="284" text-anchor="middle" font-size="13" font-weight="700" fill="#7c3aed">⋮</text>
-    <g stroke="#64748b" stroke-width="1.6" fill="none" marker-end="url(#ar7)"><path d="M266 132C286 132 286 172 278 180"/><path d="M266 184H278"/><path d="M266 236C286 236 286 196 278 188"/></g>
-    <circle cx="300" cy="184" r="20" fill="#fff7ed" stroke="#ea580c" stroke-width="2"/>
-    <text x="300" y="191" text-anchor="middle" font-size="18" font-weight="700" fill="#ea580c">Σ</text>
-    <path d="M322 184H368" stroke="#64748b" stroke-width="1.6" fill="none" marker-end="url(#ar7)"/>
-    <rect x="372" y="160" width="180" height="48" rx="10" fill="#ede9fe" stroke="#7c3aed" stroke-width="1.5"/>
-    <text x="462" y="191" text-anchor="middle" font-size="15" font-weight="700" fill="#4c1d95">∂L<tspan baseline-shift="sub" font-size="10">t</tspan> / ∂V</text>
-    <text x="462" y="240" text-anchor="middle" font-size="10" fill="#6d28d9">W 는 usage가 하나뿐이라 이 합이 나타나지 않음</text>
-    <rect x="28" y="328" width="624" height="180" rx="14" fill="#ffffff" stroke="#bbf7d0" stroke-width="1.5"/>
-    <rect x="44" y="342" width="278" height="26" rx="13" fill="#dcfce7"/>
-    <text x="183" y="360" text-anchor="middle" font-size="12" font-weight="700" fill="#166534">B. loss에 대한 합 · 모든 time step</text>
-    <g fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"><rect x="48" y="372" width="152" height="30" rx="8"/><rect x="48" y="408" width="152" height="30" rx="8"/><rect x="48" y="444" width="152" height="30" rx="8"/></g>
-    <g text-anchor="middle" fill="#14532d" font-size="13" font-weight="700"><text x="124" y="392">∂L<tspan baseline-shift="sub" font-size="9">t−1</tspan> / ∂V</text><text x="124" y="428">∂L<tspan baseline-shift="sub" font-size="9">t</tspan> / ∂V</text><text x="124" y="464">∂L<tspan baseline-shift="sub" font-size="9">t+1</tspan> / ∂V</text></g>
-    <text x="124" y="490" text-anchor="middle" font-size="13" font-weight="700" fill="#16a34a">⋮</text>
-    <g stroke="#64748b" stroke-width="1.6" fill="none" marker-end="url(#ar7)"><path d="M202 387C248 387 248 415 276 420"/><path d="M202 423H276"/><path d="M202 459C248 459 248 432 276 426"/></g>
-    <circle cx="298" cy="423" r="20" fill="#fff7ed" stroke="#ea580c" stroke-width="2"/>
-    <text x="298" y="430" text-anchor="middle" font-size="18" font-weight="700" fill="#ea580c">Σ</text>
-    <path d="M320 423H368" stroke="#64748b" stroke-width="1.6" fill="none" marker-end="url(#ar7)"/>
-    <rect x="372" y="399" width="220" height="48" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
-    <text x="482" y="420" text-anchor="middle" font-size="15" font-weight="700" fill="#14532d">∂L / ∂V</text>
-    <text x="482" y="438" text-anchor="middle" font-size="10" fill="#166534">optimizer가 V 를 한 번 update</text>
-    <text x="340" y="532" text-anchor="middle" font-size="11" fill="#475569">U 와 W 에도 같은 원리가 적용되며, W 는 A 단계가 없음</text>
+    <g fill="#ede9fe" stroke="#7c3aed" stroke-width="1.5"><rect x="40" y="116" width="200" height="52" rx="8"/><rect x="40" y="186" width="200" height="52" rx="8"/><rect x="40" y="256" width="200" height="52" rx="8"/></g>
+    <g font-size="9" fill="#6d28d9"><text x="44" y="110">i = t</text><text x="44" y="180">i = t−1</text><text x="44" y="250">i = t−2</text></g>
+    <text x="68" y="136" text-anchor="middle" font-size="9" fill="#4c1d95">∂L<tspan baseline-shift="sub" font-size="7">t</tspan></text><line x1="52" y1="142" x2="84" y2="142" stroke="#4c1d95" stroke-width="0.6"/><text x="68" y="156" text-anchor="middle" font-size="9" fill="#4c1d95">∂h<tspan baseline-shift="sub" font-size="7">t</tspan></text><text x="104" y="136" text-anchor="middle" font-size="9" fill="#4c1d95">∂h<tspan baseline-shift="sub" font-size="7">t</tspan></text><line x1="88" y1="142" x2="120" y2="142" stroke="#4c1d95" stroke-width="0.6"/><text x="104" y="156" text-anchor="middle" font-size="9" fill="#4c1d95">∂a<tspan baseline-shift="sub" font-size="7">t</tspan></text><text x="140" y="136" text-anchor="middle" font-size="9" fill="#4c1d95">∂<tspan baseline-shift="super" font-size="6">+</tspan>a<tspan baseline-shift="sub" font-size="7">t</tspan></text><line x1="124" y1="142" x2="156" y2="142" stroke="#4c1d95" stroke-width="0.6"/><text x="140" y="156" text-anchor="middle" font-size="9" fill="#4c1d95">∂V</text><text x="68" y="206" text-anchor="middle" font-size="9" fill="#4c1d95">∂L<tspan baseline-shift="sub" font-size="7">t</tspan></text><line x1="52" y1="212" x2="84" y2="212" stroke="#4c1d95" stroke-width="0.6"/><text x="68" y="226" text-anchor="middle" font-size="9" fill="#4c1d95">∂h<tspan baseline-shift="sub" font-size="7">t</tspan></text><text x="104" y="206" text-anchor="middle" font-size="9" fill="#4c1d95">∂h<tspan baseline-shift="sub" font-size="7">t</tspan></text><line x1="88" y1="212" x2="120" y2="212" stroke="#4c1d95" stroke-width="0.6"/><text x="104" y="226" text-anchor="middle" font-size="9" fill="#4c1d95">∂h<tspan baseline-shift="sub" font-size="7">t-1</tspan></text><text x="140" y="206" text-anchor="middle" font-size="9" fill="#4c1d95">∂h<tspan baseline-shift="sub" font-size="7">t-1</tspan></text><line x1="124" y1="212" x2="156" y2="212" stroke="#4c1d95" stroke-width="0.6"/><text x="140" y="226" text-anchor="middle" font-size="9" fill="#4c1d95">∂a<tspan baseline-shift="sub" font-size="7">t-1</tspan></text><text x="176" y="206" text-anchor="middle" font-size="9" fill="#4c1d95">∂<tspan baseline-shift="super" font-size="6">+</tspan>a<tspan baseline-shift="sub" font-size="7">t-1</tspan></text><line x1="160" y1="212" x2="192" y2="212" stroke="#4c1d95" stroke-width="0.6"/><text x="176" y="226" text-anchor="middle" font-size="9" fill="#4c1d95">∂V</text><text x="68" y="276" text-anchor="middle" font-size="9" fill="#4c1d95">∂L<tspan baseline-shift="sub" font-size="7">t</tspan></text><line x1="52" y1="282" x2="84" y2="282" stroke="#4c1d95" stroke-width="0.6"/><text x="68" y="296" text-anchor="middle" font-size="9" fill="#4c1d95">∂h<tspan baseline-shift="sub" font-size="7">t</tspan></text><text x="104" y="276" text-anchor="middle" font-size="9" fill="#4c1d95">∂h<tspan baseline-shift="sub" font-size="7">t</tspan></text><line x1="88" y1="282" x2="120" y2="282" stroke="#4c1d95" stroke-width="0.6"/><text x="104" y="296" text-anchor="middle" font-size="9" fill="#4c1d95">∂h<tspan baseline-shift="sub" font-size="7">t-1</tspan></text><text x="140" y="276" text-anchor="middle" font-size="9" fill="#4c1d95">∂h<tspan baseline-shift="sub" font-size="7">t-1</tspan></text><line x1="124" y1="282" x2="156" y2="282" stroke="#4c1d95" stroke-width="0.6"/><text x="140" y="296" text-anchor="middle" font-size="9" fill="#4c1d95">∂h<tspan baseline-shift="sub" font-size="7">t-2</tspan></text><text x="176" y="276" text-anchor="middle" font-size="9" fill="#4c1d95">∂h<tspan baseline-shift="sub" font-size="7">t-2</tspan></text><line x1="160" y1="282" x2="192" y2="282" stroke="#4c1d95" stroke-width="0.6"/><text x="176" y="296" text-anchor="middle" font-size="9" fill="#4c1d95">∂a<tspan baseline-shift="sub" font-size="7">t-2</tspan></text><text x="212" y="276" text-anchor="middle" font-size="9" fill="#4c1d95">∂<tspan baseline-shift="super" font-size="6">+</tspan>a<tspan baseline-shift="sub" font-size="7">t-2</tspan></text><line x1="196" y1="282" x2="228" y2="282" stroke="#4c1d95" stroke-width="0.6"/><text x="212" y="296" text-anchor="middle" font-size="9" fill="#4c1d95">∂V</text>
+    <text x="140" y="332" text-anchor="middle" font-size="13" font-weight="700" fill="#7c3aed">⋮</text>
+    <g stroke="#64748b" stroke-width="1.6" fill="none" marker-end="url(#ar7)"><path d="M242 142C266 142 266 196 278 208"/><path d="M242 212H278"/><path d="M242 282C266 282 266 228 278 216"/></g>
+    <circle cx="300" cy="212" r="20" fill="#fff7ed" stroke="#ea580c" stroke-width="2"/>
+    <text x="300" y="219" text-anchor="middle" font-size="18" font-weight="700" fill="#ea580c">Σ</text>
+    <path d="M322 212H368" stroke="#64748b" stroke-width="1.6" fill="none" marker-end="url(#ar7)"/>
+    <rect x="372" y="188" width="180" height="48" rx="10" fill="#ede9fe" stroke="#7c3aed" stroke-width="1.5"/>
+    <text x="462" y="219" text-anchor="middle" font-size="15" font-weight="700" fill="#4c1d95">∂L<tspan baseline-shift="sub" font-size="10">t</tspan> / ∂V</text>
+    <text x="462" y="268" text-anchor="middle" font-size="10" fill="#6d28d9">W 는 usage가 하나뿐이라 이 합이 나타나지 않음</text>
+    <text x="462" y="288" text-anchor="middle" font-size="10" fill="#6d28d9">i 가 작아질수록 항에 곱해지는 factor가 하나씩 늘어남</text>
+    <rect x="28" y="380" width="624" height="180" rx="14" fill="#ffffff" stroke="#bbf7d0" stroke-width="1.5"/>
+    <rect x="44" y="394" width="278" height="26" rx="13" fill="#dcfce7"/>
+    <text x="183" y="412" text-anchor="middle" font-size="12" font-weight="700" fill="#166534">B. loss에 대한 합 · 모든 time step</text>
+    <g fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"><rect x="48" y="424" width="152" height="30" rx="8"/><rect x="48" y="460" width="152" height="30" rx="8"/><rect x="48" y="496" width="152" height="30" rx="8"/></g>
+    <g text-anchor="middle" fill="#14532d" font-size="13" font-weight="700"><text x="124" y="444">∂L<tspan baseline-shift="sub" font-size="9">t−1</tspan> / ∂V</text><text x="124" y="480">∂L<tspan baseline-shift="sub" font-size="9">t</tspan> / ∂V</text><text x="124" y="516">∂L<tspan baseline-shift="sub" font-size="9">t+1</tspan> / ∂V</text></g>
+    <text x="124" y="542" text-anchor="middle" font-size="13" font-weight="700" fill="#16a34a">⋮</text>
+    <g stroke="#64748b" stroke-width="1.6" fill="none" marker-end="url(#ar7)"><path d="M202 439C248 439 248 467 276 472"/><path d="M202 475H276"/><path d="M202 511C248 511 248 484 276 478"/></g>
+    <circle cx="298" cy="475" r="20" fill="#fff7ed" stroke="#ea580c" stroke-width="2"/>
+    <text x="298" y="482" text-anchor="middle" font-size="18" font-weight="700" fill="#ea580c">Σ</text>
+    <path d="M320 475H368" stroke="#64748b" stroke-width="1.6" fill="none" marker-end="url(#ar7)"/>
+    <rect x="372" y="451" width="220" height="48" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+    <text x="482" y="472" text-anchor="middle" font-size="15" font-weight="700" fill="#14532d">∂L / ∂V</text>
+    <text x="482" y="490" text-anchor="middle" font-size="10" fill="#166534">optimizer가 V 를 한 번 update</text>
+    <text x="340" y="584" text-anchor="middle" font-size="11" fill="#475569">U 와 W 에도 같은 원리가 적용되며, W 는 A 단계가 없음</text>
   </g>
 </svg>
 
