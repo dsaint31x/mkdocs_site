@@ -64,6 +64,39 @@ $$
 
 Pre-activation $a_t$와 $z_t$를 명시적으로 분리해 둔 이유는 BPTT를 유도할 때 activation을 통과하는 local derivative와 weight를 통과하는 local derivative를 각각 따로 다루기 위함임.
 
+<!-- 한 time step의 계산을 pre-activation 단위로 분리한 그림 | source: ./figures/00_single_step.svg -->
+<svg xmlns="http://www.w3.org/2000/svg" width="100%" viewBox="0 0 680 290" role="img" aria-labelledby="f0t f0d">
+  <title id="f0t">한 time step의 계산 단계</title>
+  <desc id="f0d">입력과 이전 hidden state가 weight를 통과해 pre-activation이 되고, activation을 통과해 hidden state와 output이 되는 과정을 단계별로 나눈 그림</desc>
+  <defs><marker id="ar0" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0L10 5L0 10Z" fill="#334155"/></marker></defs>
+  <rect width="680" height="290" rx="20" fill="#f8fafc"/>
+  <g font-family="Arial, 'Noto Sans KR', sans-serif">
+    <text x="32" y="36" font-size="17" font-weight="700" fill="#0f172a">한 time step: weight 단계와 activation 단계의 분리</text>
+    <rect x="162" y="62" width="80" height="40" rx="10" fill="#ede9fe" stroke="#7c3aed" stroke-width="1.5"/>
+    <text x="202" y="87" text-anchor="middle" font-size="15" font-weight="700" fill="#4c1d95">h<tspan baseline-shift="sub" font-size="10">t−1</tspan></text>
+    <rect x="32" y="150" width="80" height="44" rx="10" fill="#dbeafe" stroke="#2563eb" stroke-width="1.5"/>
+    <text x="72" y="177" text-anchor="middle" font-size="15" font-weight="700" fill="#1e3a8a">x<tspan baseline-shift="sub" font-size="10">t</tspan></text>
+    <rect x="162" y="150" width="80" height="44" rx="10" fill="#f1f5f9" stroke="#64748b" stroke-width="1.5"/>
+    <text x="202" y="177" text-anchor="middle" font-size="15" font-weight="700" fill="#334155">a<tspan baseline-shift="sub" font-size="10">t</tspan></text>
+    <rect x="292" y="150" width="80" height="44" rx="10" fill="#ede9fe" stroke="#7c3aed" stroke-width="1.5"/>
+    <text x="332" y="177" text-anchor="middle" font-size="15" font-weight="700" fill="#4c1d95">h<tspan baseline-shift="sub" font-size="10">t</tspan></text>
+    <rect x="422" y="150" width="80" height="44" rx="10" fill="#f1f5f9" stroke="#64748b" stroke-width="1.5"/>
+    <text x="462" y="177" text-anchor="middle" font-size="15" font-weight="700" fill="#334155">z<tspan baseline-shift="sub" font-size="10">t</tspan></text>
+    <rect x="552" y="150" width="80" height="44" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+    <text x="592" y="177" text-anchor="middle" font-size="15" font-weight="700" fill="#14532d">o<tspan baseline-shift="sub" font-size="10">t</tspan></text>
+    <g stroke="#334155" stroke-width="1.6" fill="none" marker-end="url(#ar0)"><path d="M114 172H158"/><path d="M244 172H288"/><path d="M374 172H418"/><path d="M504 172H548"/><path d="M202 104V146"/></g>
+    <g text-anchor="middle" font-size="12" font-weight="700">
+      <text x="136" y="162" fill="#2563eb">U</text>
+      <text x="216" y="128" fill="#7c3aed">V</text>
+      <text x="266" y="162" fill="#334155">f</text>
+      <text x="396" y="162" fill="#16a34a">W</text>
+      <text x="526" y="162" fill="#334155">g</text>
+    </g>
+    <g text-anchor="middle" font-size="10" fill="#64748b"><text x="202" y="212">pre-activation</text><text x="462" y="212">pre-activation</text></g>
+    <text x="340" y="256" text-anchor="middle" font-size="11" fill="#475569">weight를 통과하는 단계(U, V, W)와 activation을 통과하는 단계(f, g)가 서로 다른 local derivative를 만듦</text>
+  </g>
+</svg>
+
 <!-- Unfolded RNN에서 x_t, h_t, o_t와 shared U, V, W | source: ./figures/01_unfolded_rnn.svg -->
 <svg xmlns="http://www.w3.org/2000/svg" width="100%" viewBox="0 0 680 430" role="img" aria-labelledby="f1t f1d">
   <title id="f1t">Unfolded RNN과 shared parameter</title>
