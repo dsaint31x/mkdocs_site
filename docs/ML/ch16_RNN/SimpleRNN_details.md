@@ -1,3 +1,28 @@
+---
+title: Simple RNN의 Forward Pass, BPTT, 그리고 Long-term Dependency Problem
+description: >
+  Simple RNN의 forward computation과 parameter sharing에서 시작하여 BPTT로 W, U, V의
+  gradient를 vector 경우와 scalar 경우로 각각 유도하고, 반복 곱 D_i V가 vanishing gradient와
+  exploding gradient로 이어지는 과정과 long-term dependency problem을 정리함.
+tags:
+  - RNN
+  - Simple RNN
+  - forward pass
+  - parameter sharing
+  - BPTT
+  - backpropagation through time
+  - chain rule
+  - Jacobian
+  - local derivative
+  - gradient accumulation
+  - vanishing gradient
+  - exploding gradient
+  - gradient clipping
+  - long-term dependency
+  - LSTM
+  - GRU
+---
+
 # Simple RNN: Forward Pass, BPTT, and Long-term Dependency Problem
 
 ## 1. Simple RNN의 Forward Pass
@@ -6,16 +31,16 @@
 
 이 글에서 사용하는 symbol은 다음과 같음.
 
-- `x_t`: time step `t`의 input vector
-- `h_t`: time step `t`의 hidden state vector
-- `a_t`: hidden state의 pre-activation vector
-- `z_t`: output의 pre-activation vector
-- `o_t`: time step `t`의 output vector
-- `U`: input-to-hidden weight matrix
-- `V`: hidden-to-hidden recurrent weight matrix
-- `W`: hidden-to-output weight matrix
-- `b_h`: hidden state의 bias vector
-- `b_o`: output의 bias vector
+- $x_t$: time step $t$의 input vector
+- $h_t$: time step $t$의 hidden state vector
+- $a_t$: hidden state의 pre-activation vector
+- $z_t$: output의 pre-activation vector
+- $o_t$: time step $t$의 output vector
+- $U$: input-to-hidden weight matrix
+- $V$: hidden-to-hidden recurrent weight matrix
+- $W$: hidden-to-output weight matrix
+- $b_h$: hidden state의 bias vector
+- $b_o$: output의 bias vector
 
 Simple RNN의 hidden state update는 다음과 같음:
 
@@ -33,7 +58,7 @@ z_t = Wh_t + b_o
 o_t = g(z_t)
 $$
 
-Pre-activation `a_t`와 `z_t`를 명시적으로 분리해 둔 이유는 BPTT를 유도할 때 activation을 통과하는 local derivative와 weight를 통과하는 local derivative를 각각 따로 다루기 위함임.
+Pre-activation $a_t$와 $z_t$를 명시적으로 분리해 둔 이유는 BPTT를 유도할 때 activation을 통과하는 local derivative와 weight를 통과하는 local derivative를 각각 따로 다루기 위함임.
 
 <!-- Unfolded RNN에서 x_t, h_t, o_t와 shared U, V, W | source: ./figures/01_unfolded_rnn.svg -->
 <svg xmlns="http://www.w3.org/2000/svg" width="100%" viewBox="0 0 680 430" role="img" aria-labelledby="f1t f1d">
@@ -47,9 +72,9 @@ Pre-activation `a_t`와 `z_t`를 명시적으로 분리해 둔 이유는 BPTT를
     <g fill="#ede9fe" stroke="#7c3aed" stroke-width="1.5"><rect x="60" y="196" width="130" height="52" rx="12"/><rect x="270" y="196" width="130" height="52" rx="12"/><rect x="480" y="196" width="130" height="52" rx="12"/></g>
     <g fill="#dbeafe" stroke="#2563eb" stroke-width="1.5"><rect x="60" y="314" width="130" height="44" rx="10"/><rect x="270" y="314" width="130" height="44" rx="10"/><rect x="480" y="314" width="130" height="44" rx="10"/></g>
     <g text-anchor="middle" font-size="15" font-weight="700">
-      <g fill="#14532d"><text x="125" y="113">o<tspan baseline-shift="sub" font-size="10">t−1</tspan></text><text x="335" y="113">o<tspan baseline-shift="sub" font-size="10">t</tspan></text><text x="545" y="113">o<tspan baseline-shift="sub" font-size="10">t+1</tspan></text></g>
-      <g fill="#4c1d95"><text x="125" y="228">h<tspan baseline-shift="sub" font-size="10">t−1</tspan></text><text x="335" y="228">h<tspan baseline-shift="sub" font-size="10">t</tspan></text><text x="545" y="228">h<tspan baseline-shift="sub" font-size="10">t+1</tspan></text></g>
-      <g fill="#1e3a8a"><text x="125" y="341">x<tspan baseline-shift="sub" font-size="10">t−1</tspan></text><text x="335" y="341">x<tspan baseline-shift="sub" font-size="10">t</tspan></text><text x="545" y="341">x<tspan baseline-shift="sub" font-size="10">t+1</tspan></text></g>
+      <g fill="#14532d"><text x="125" y="113">o<tspan baseline-shift="sub" font-size="10">t−2</tspan></text><text x="335" y="113">o<tspan baseline-shift="sub" font-size="10">t−1</tspan></text><text x="545" y="113">o<tspan baseline-shift="sub" font-size="10">t</tspan></text></g>
+      <g fill="#4c1d95"><text x="125" y="228">h<tspan baseline-shift="sub" font-size="10">t−2</tspan></text><text x="335" y="228">h<tspan baseline-shift="sub" font-size="10">t−1</tspan></text><text x="545" y="228">h<tspan baseline-shift="sub" font-size="10">t</tspan></text></g>
+      <g fill="#1e3a8a"><text x="125" y="341">x<tspan baseline-shift="sub" font-size="10">t−2</tspan></text><text x="335" y="341">x<tspan baseline-shift="sub" font-size="10">t−1</tspan></text><text x="545" y="341">x<tspan baseline-shift="sub" font-size="10">t</tspan></text></g>
     </g>
     <g stroke="#334155" stroke-width="1.6" fill="none" marker-end="url(#ar1)">
       <path d="M125 312V250"/><path d="M335 312V250"/><path d="M545 312V250"/>
@@ -69,30 +94,30 @@ Pre-activation `a_t`와 `z_t`를 명시적으로 분리해 둔 이유는 BPTT를
 
 모든 time step에서 동일한 parameter를 반복해서 사용함.
 
-- 모든 time step에서 동일한 `U`를 사용함.
-- 모든 time step에서 동일한 `V`를 사용함.
-- 모든 time step에서 동일한 `W`를 사용함.
+- 모든 time step에서 동일한 $U$를 사용함.
+- 모든 time step에서 동일한 $V$를 사용함.
+- 모든 time step에서 동일한 $W$를 사용함.
 
 따라서 RNN을 time dimension을 따라 unfold하더라도 새로운 weight가 생성되는 것이 아님.
 
-Unfolded computational graph에서 `U_t`, `V_t`, `W_t`처럼 표시할 수는 있지만, 이는 서로 다른 parameter가 아니라 동일한 shared parameter의 서로 다른 **usage** 를 나타냄.
+Unfolded computational graph에서 $U_t$, $V_t$, $W_t$처럼 표시할 수는 있지만, 이는 서로 다른 parameter가 아니라 동일한 shared parameter의 서로 다른 **usage** 를 나타냄.
 
-`U`의 usage 사이에 성립하는 관계는 다음과 같음:
-
-$$
-U_{t-1} = U_t = U_{t+1} = U
-$$
-
-`V`의 usage 사이에 성립하는 관계는 다음과 같음:
+$U$의 usage 사이에 성립하는 관계는 다음과 같음:
 
 $$
-V_{t-1} = V_t = V_{t+1} = V
+U_{t-2} = U_{t-1} = U_t = U
 $$
 
-`W`의 usage 사이에 성립하는 관계는 다음과 같음:
+$V$의 usage 사이에 성립하는 관계는 다음과 같음:
 
 $$
-W_{t-1} = W_t = W_{t+1} = W
+V_{t-2} = V_{t-1} = V_t = V
+$$
+
+$W$의 usage 사이에 성립하는 관계는 다음과 같음:
+
+$$
+W_{t-2} = W_{t-1} = W_t = W
 $$
 
 이 parameter sharing이 이후 BPTT에서 하나의 parameter gradient가 **여러 개의 항의 합** 으로 나타나는 직접적인 이유가 됨.
@@ -101,7 +126,7 @@ $$
 
 ### 1.3 Earlier Information이 Hidden State에 유지되는 과정
 
-Time step `k`의 input information은 later time step으로 직접 연결되는 것이 아니라, successive hidden states를 통해 간접적으로 반영됨.
+Time step $k$의 input information은 later time step으로 직접 연결되는 것이 아니라, successive hidden states를 통해 간접적으로 반영됨.
 
 Forward path는 다음과 같음:
 
@@ -139,9 +164,9 @@ $$
 
 각 recurrent step에서는 previous hidden state와 current input을 사용하여 next hidden state를 계산함. 따라서 earlier information은 별도의 storage에 독립적으로 보존되는 것이 아니라, 매 time step에서 새로 계산되는 hidden-state representation 안에 유지되어야 함.
 
-Simple RNN에는 earlier information을 선택적으로 preserve하거나 update하는 gating mechanism과 별도의 memory cell이 없음. Earlier information이 later hidden state까지 유지되는지는 recurrent weight `V`, subsequent input, activation function, 그리고 전체 recurrent state dynamics에 의해 결정됨.
+Simple RNN에는 earlier information을 선택적으로 preserve하거나 update하는 gating mechanism과 별도의 memory cell이 없음. Earlier information이 later hidden state까지 유지되는지는 recurrent weight $V$, subsequent input, activation function, 그리고 전체 recurrent state dynamics에 의해 결정됨.
 
-`tanh`와 같은 nonlinear activation이 saturation 영역에 들어가면 서로 다른 pre-activation이 비슷한 hidden-state value로 mapping될 수 있음. 또한 recurrent state transition이 반복되면서 earlier input이 달랐던 두 sequence의 hidden-state representation이 later time step에서 서로 유사해질 수 있음.
+$\tanh$와 같은 nonlinear activation이 saturation 영역에 들어가면 서로 다른 pre-activation이 비슷한 hidden-state value로 mapping될 수 있음. 또한 recurrent state transition이 반복되면서 earlier input이 달랐던 두 sequence의 hidden-state representation이 later time step에서 서로 유사해질 수 있음.
 
 이 경우 current hidden state만으로는 earlier input의 차이를 충분히 구분하기 어려우며, current output이 해당 earlier information을 사용하는 것도 어려워짐.
 
@@ -161,7 +186,9 @@ Forward pass에서는 input과 hidden state가 time step 순서대로 계산됨.
 
 일반적인 neural network의 backpropagation과 원리는 같지만, RNN에서는 backpropagation이 time dimension을 따라 수행되므로 이를 **Backpropagation Through Time, BPTT** 라고 부름.
 
-이 장에서는 하나의 time step loss `L_t`를 기준으로 `W`, `U`, `V` 각각에 대한 gradient를 끝까지 전개함. 전체 loss에 대한 gradient는 마지막 절에서 각 time step의 loss에 대해 합산하여 얻음.
+이 장은 하나의 time step loss $L_t$를 기준으로 다음 순서를 따름. 먼저 반복해서 등장하는 local derivative를 정의하고(2.2), loss에서 출발한 gradient가 각 node에 도달할 때의 값을 구함(2.3). 그 값을 출발점으로 $W$, $U$, $V$의 gradient를 차례로 전개하고(2.4~2.6), 마지막에 서로 다른 두 종류의 합을 정리함(2.7).
+
+$W$를 먼저 다루는 이유는 $W$가 recurrent 경로를 지나지 않아 항이 하나로 끝나기 때문이며, $U$와 $V$는 recurrent 경로를 따라 여러 항의 합이 됨.
 
 ### 2.2 Local Derivative의 정의
 
@@ -197,11 +224,39 @@ $$
 \frac{\partial o_t}{\partial h_t} = G_t W
 $$
 
-여기서 `V`는 모든 time step에서 동일하지만 `D_i`는 해당 step의 activation에 따라 달라지므로, 매 step의 local derivative가 완전히 동일하지는 않음.
+여기서 $V$는 모든 time step에서 동일하지만 $D_i$는 해당 step의 activation에 따라 달라지므로, 매 step의 local derivative가 완전히 동일하지는 않음.
 
-### 2.3 Hidden State로 전파되는 Gradient
+세 weight 중 $V$ 만 특별한 위치에 있다는 점도 미리 확인해 둘 필요가 있음. Backward path에서 여러 번 지나게 되는 edge는 $h_{i-1} \rightarrow h_i$ 하나뿐이고, 그 edge의 local derivative가 $D_i V$ 임. 즉 $V$ 는 gradient가 통과할 때마다 다시 곱해짐.
 
-Time step `t`의 loss가 time step `k`의 hidden state에 미치는 gradient는 chain rule에 의해 다음과 같음:
+반면 $U$ 가 놓인 $x_i \rightarrow h_i$ edge는 $x_i$ 가 외부 입력이라 gradient가 들어가면 다시 나오지 않는 leaf edge이고, $W$ 가 놓인 $h_t \rightarrow o_t$ edge도 마찬가지임. 두 edge는 하나의 경로에서 한 번만 지나감.
+
+따라서 이후 전개에서 반복해서 곱해지는 것은 $D_i V$ 뿐이며, $U$ 와 $W$ 는 각 항에 한 번씩만 등장함.
+
+### 2.3 Loss에서 각 Node로 전파되는 Gradient
+
+Backward pass의 출발점은 loss를 output으로 미분한 값임. 이 값은 loss의 정의에 따라 결정되며 recurrent 구조와는 무관함:
+
+$$
+\frac{\partial L_t}{\partial o_t}
+$$
+
+Output layer를 지나면 같은 time step의 hidden state에 도달함:
+
+$$
+\frac{\partial L_t}{\partial h_t}
+= \frac{\partial L_t}{\partial o_t} \frac{\partial o_t}{\partial h_t}
+= \frac{\partial L_t}{\partial o_t} G_t W
+$$
+
+여기서부터는 recurrent 경로를 따라 한 step씩 거슬러 올라감:
+
+$$
+\frac{\partial L_t}{\partial h_{i-1}}
+= \frac{\partial L_t}{\partial h_i} \frac{\partial h_i}{\partial h_{i-1}}
+= \frac{\partial L_t}{\partial h_i} D_i V
+$$
+
+이를 $k$까지 반복하면 chain rule에 의해 다음과 같음:
 
 $$
 \frac{\partial L_t}{\partial h_k}
@@ -221,7 +276,7 @@ $$
 = \frac{\partial L_t}{\partial h_t} \prod_{i=k+1}^{t} D_i V
 $$
 
-Product는 index `t`에서 시작하여 `k+1`에서 끝남. 행렬 곱은 non-commutative이므로 순서를 바꿀 수 없으며, gradient를 row vector로 두는 numerator layout에서는 index가 큰 쪽이 왼쪽에 옴.
+Product는 index $t$에서 시작하여 $k+1$에서 끝남. 행렬 곱은 non-commutative이므로 순서를 바꿀 수 없으며, gradient를 row vector로 두는 numerator layout에서는 index가 큰 쪽이 왼쪽에 옴.
 
 <!-- Loss에서 earlier hidden state로 gradient가 전파되는 경로 | source: ./figures/03_backward_path.svg -->
 <svg xmlns="http://www.w3.org/2000/svg" width="100%" viewBox="0 0 680 612" role="img" aria-labelledby="f3t f3d">
@@ -235,24 +290,24 @@ Product는 index `t`에서 시작하여 `k+1`에서 끝남. 행렬 곱은 non-co
     <line x1="140" y1="62" x2="170" y2="62" stroke="#ea580c" stroke-width="1.6"/><text x="176" y="66" font-size="11" fill="#ea580c">backward (gradient)</text>
     <rect x="480" y="86" width="130" height="40" rx="10" fill="#fee2e2" stroke="#dc2626" stroke-width="1.5"/>
     <text x="545" y="112" text-anchor="middle" font-size="15" font-weight="700" fill="#7f1d1d">L<tspan baseline-shift="sub" font-size="10">t</tspan></text>
-    <g fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"><rect x="60" y="168" width="130" height="60" rx="12"/><rect x="270" y="168" width="130" height="60" rx="12"/><rect x="480" y="168" width="130" height="60" rx="12"/></g>
+    <g fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"><rect x="60" y="168" width="130" height="68" rx="12"/><rect x="270" y="168" width="130" height="68" rx="12"/><rect x="480" y="168" width="130" height="68" rx="12"/></g>
     <g text-anchor="middle" fill="#14532d"><text x="125" y="193" font-size="15" font-weight="700">o<tspan baseline-shift="sub" font-size="10">t−2</tspan></text><text x="335" y="193" font-size="15" font-weight="700">o<tspan baseline-shift="sub" font-size="10">t−1</tspan></text><text x="545" y="193" font-size="15" font-weight="700">o<tspan baseline-shift="sub" font-size="10">t</tspan></text>
-    <text x="125" y="215" font-size="10">gradient 0</text><text x="335" y="215" font-size="10">gradient 0</text></g>
-    <text x="545" y="211" text-anchor="middle" font-size="10" fill="#14532d">∂L<tspan baseline-shift="sub" font-size="8">t</tspan></text>
+    <text x="125" y="212" font-size="10">gradient 0</text><text x="335" y="212" font-size="10">gradient 0</text></g>
+    <text x="545" y="210" text-anchor="middle" font-size="10" fill="#14532d">∂L<tspan baseline-shift="sub" font-size="8">t</tspan></text>
     <line x1="529" y1="216" x2="561" y2="216" stroke="#14532d" stroke-width="0.7"/>
     <text x="545" y="228" text-anchor="middle" font-size="10" fill="#14532d">∂o<tspan baseline-shift="sub" font-size="8">t</tspan></text>
-    <g fill="#ede9fe" stroke="#7c3aed" stroke-width="1.5"><rect x="60" y="288" width="130" height="60" rx="12"/><rect x="270" y="288" width="130" height="60" rx="12"/><rect x="480" y="288" width="130" height="60" rx="12"/></g>
+    <g fill="#ede9fe" stroke="#7c3aed" stroke-width="1.5"><rect x="60" y="288" width="130" height="68" rx="12"/><rect x="270" y="288" width="130" height="68" rx="12"/><rect x="480" y="288" width="130" height="68" rx="12"/></g>
     <g text-anchor="middle" fill="#4c1d95" font-size="15" font-weight="700"><text x="125" y="311">h<tspan baseline-shift="sub" font-size="10">t−2</tspan></text><text x="335" y="311">h<tspan baseline-shift="sub" font-size="10">t−1</tspan></text><text x="545" y="311">h<tspan baseline-shift="sub" font-size="10">t</tspan></text></g>
     <g text-anchor="middle" fill="#4c1d95" font-size="10">
-      <text x="125" y="331">∂L<tspan baseline-shift="sub" font-size="8">t</tspan></text><text x="335" y="331">∂L<tspan baseline-shift="sub" font-size="8">t</tspan></text><text x="545" y="331">∂L<tspan baseline-shift="sub" font-size="8">t</tspan></text>
-      <text x="125" y="347">∂h<tspan baseline-shift="sub" font-size="8">t−2</tspan></text><text x="335" y="347">∂h<tspan baseline-shift="sub" font-size="8">t−1</tspan></text><text x="545" y="347">∂h<tspan baseline-shift="sub" font-size="8">t</tspan></text>
+      <text x="125" y="330">∂L<tspan baseline-shift="sub" font-size="8">t</tspan></text><text x="335" y="330">∂L<tspan baseline-shift="sub" font-size="8">t</tspan></text><text x="545" y="330">∂L<tspan baseline-shift="sub" font-size="8">t</tspan></text>
+      <text x="125" y="348">∂h<tspan baseline-shift="sub" font-size="8">t−2</tspan></text><text x="335" y="348">∂h<tspan baseline-shift="sub" font-size="8">t−1</tspan></text><text x="545" y="348">∂h<tspan baseline-shift="sub" font-size="8">t</tspan></text>
     </g>
     <g stroke="#4c1d95" stroke-width="0.7"><line x1="109" y1="336" x2="141" y2="336"/><line x1="319" y1="336" x2="351" y2="336"/><line x1="529" y1="336" x2="561" y2="336"/></g>
     <g fill="#dbeafe" stroke="#2563eb" stroke-width="1.5"><rect x="60" y="418" width="130" height="40" rx="10"/><rect x="270" y="418" width="130" height="40" rx="10"/><rect x="480" y="418" width="130" height="40" rx="10"/></g>
     <g text-anchor="middle" fill="#1e3a8a" font-size="15" font-weight="700"><text x="125" y="443">x<tspan baseline-shift="sub" font-size="10">t−2</tspan></text><text x="335" y="443">x<tspan baseline-shift="sub" font-size="10">t−1</tspan></text><text x="545" y="443">x<tspan baseline-shift="sub" font-size="10">t</tspan></text></g>
     <g stroke="#334155" stroke-width="1.6" fill="none" marker-end="url(#ar3)">
-      <path d="M93 416V354"/><path d="M303 416V354"/><path d="M513 416V354"/>
-      <path d="M93 286V234"/><path d="M303 286V234"/><path d="M513 286V234"/>
+      <path d="M93 416V362"/><path d="M303 416V362"/><path d="M513 416V362"/>
+      <path d="M93 286V240"/><path d="M303 286V240"/><path d="M513 286V240"/>
       <path d="M192 306H266"/><path d="M402 306H476"/>
     </g>
     <g font-size="11" font-weight="700" text-anchor="end">
@@ -261,7 +316,7 @@ Product는 index `t`에서 시작하여 `k+1`에서 끝남. 행렬 곱은 non-co
     </g>
     <g font-size="11" font-weight="700" text-anchor="middle" fill="#7c3aed"><text x="229" y="296">V</text><text x="439" y="296">V</text></g>
     <g stroke="#ea580c" stroke-width="1.6" fill="none" marker-end="url(#ac3)">
-      <path d="M577 128V164"/><path d="M577 234V282"/>
+      <path d="M577 128V164"/><path d="M577 240V282"/>
       <path d="M478 334H406"/><path d="M268 334H196"/>
     </g>
     <path d="M58 334H44" stroke="#ea580c" stroke-width="1.6" fill="none" stroke-dasharray="4 4" marker-end="url(#ac3)"/>
@@ -289,13 +344,15 @@ Product는 index `t`에서 시작하여 `k+1`에서 끝남. 행렬 곱은 non-co
   </g>
 </svg>
 
-`o_{t-1}`과 `o_{t-2}`에 gradient가 없는 것은 지금 `L_t` 하나만 보고 있기 때문임. 다른 time step의 output은 이 loss에 대한 gradient를 받지 않음.
+$o_{t-1}$과 $o_{t-2}$에 gradient가 없는 것은 지금 $L_t$ 하나만 보고 있기 때문임. 다른 time step의 output은 이 loss에 대한 gradient를 받지 않음.
 
-이 경로에서 얻은 각 `∂L_t/∂h_i`가 다음 세 절에서 parameter gradient의 출발점이 됨.
+이 절에서 얻은 두 값이 이후 세 절의 출발점이 됨. $W$는 recurrent 경로를 지나지 않으므로 $\partial L_t / \partial o_t$ 에서, $U$와 $V$는 recurrent 경로 위에 있으므로 각 step의 $\partial L_t / \partial h_i$ 에서 시작함.
 
 ---
 
 ### 2.4 W에 대한 Gradient
+
+$W$는 $z_t = W h_t + b_o$ 에서 한 번만 사용되고 recurrent 경로를 지나지 않음. 따라서 2.3의 출발점 $\partial L_t / \partial o_t$ 에 output layer의 local derivative만 곱하면 끝남.
 
 **vector 경우**
 
@@ -315,8 +372,8 @@ $$
 
 - vector에서 $\partial z_t / \partial W$ 는 matrix를 matrix로 미분한 3차 tensor라 곱셈 표기로 쓸 수 없어 $h_t^{\top}$ 로 남김
 - scalar에서는 $\partial z_t / \partial W = h_t$ 이며 transpose 없이 그대로 곱해짐
-- `b_o`는 `W`와 무관하므로 이 미분에서 사라짐
-- `W`는 `h`를 거치지 않고 `z_t`에만 들어가므로 항이 하나이며, 따라서 `D_i V`의 반복 곱이 나타나지 않음
+- $b_o$는 $W$와 무관하므로 이 미분에서 사라짐
+- $W$는 $h$를 거치지 않고 $z_t$에만 들어가므로 항이 하나이며, 따라서 $D_i V$의 반복 곱이 나타나지 않음
 
 <!-- W에 대한 gradient와 대응하는 항 | source: ./figures/04_grad_W.svg -->
 <svg xmlns="http://www.w3.org/2000/svg" width="100%" viewBox="0 0 680 612" role="img" aria-labelledby="f4t f4d">
@@ -331,24 +388,24 @@ $$
     <line x1="330" y1="62" x2="360" y2="62" stroke="#0d9488" stroke-width="1.6"/><text x="366" y="66" font-size="11" fill="#0d9488">term 대응</text>
     <rect x="480" y="86" width="130" height="40" rx="10" fill="#fee2e2" stroke="#dc2626" stroke-width="1.5"/>
     <text x="545" y="112" text-anchor="middle" font-size="15" font-weight="700" fill="#7f1d1d">L<tspan baseline-shift="sub" font-size="10">t</tspan></text>
-    <g fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"><rect x="60" y="168" width="130" height="60" rx="12"/><rect x="270" y="168" width="130" height="60" rx="12"/><rect x="480" y="168" width="130" height="60" rx="12"/></g>
+    <g fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"><rect x="60" y="168" width="130" height="68" rx="12"/><rect x="270" y="168" width="130" height="68" rx="12"/><rect x="480" y="168" width="130" height="68" rx="12"/></g>
     <g text-anchor="middle" fill="#14532d"><text x="125" y="193" font-size="15" font-weight="700">o<tspan baseline-shift="sub" font-size="10">t−2</tspan></text><text x="335" y="193" font-size="15" font-weight="700">o<tspan baseline-shift="sub" font-size="10">t−1</tspan></text><text x="545" y="193" font-size="15" font-weight="700">o<tspan baseline-shift="sub" font-size="10">t</tspan></text>
-    <text x="125" y="215" font-size="10">gradient 0</text><text x="335" y="215" font-size="10">gradient 0</text></g>
-    <text x="545" y="211" text-anchor="middle" font-size="10" fill="#14532d">∂L<tspan baseline-shift="sub" font-size="8">t</tspan></text>
+    <text x="125" y="212" font-size="10">gradient 0</text><text x="335" y="212" font-size="10">gradient 0</text></g>
+    <text x="545" y="210" text-anchor="middle" font-size="10" fill="#14532d">∂L<tspan baseline-shift="sub" font-size="8">t</tspan></text>
     <line x1="529" y1="216" x2="561" y2="216" stroke="#14532d" stroke-width="0.7"/>
     <text x="545" y="228" text-anchor="middle" font-size="10" fill="#14532d">∂o<tspan baseline-shift="sub" font-size="8">t</tspan></text>
-    <g fill="#ede9fe" stroke="#7c3aed" stroke-width="1.5"><rect x="60" y="288" width="130" height="60" rx="12"/><rect x="270" y="288" width="130" height="60" rx="12"/><rect x="480" y="288" width="130" height="60" rx="12"/></g>
+    <g fill="#ede9fe" stroke="#7c3aed" stroke-width="1.5"><rect x="60" y="288" width="130" height="68" rx="12"/><rect x="270" y="288" width="130" height="68" rx="12"/><rect x="480" y="288" width="130" height="68" rx="12"/></g>
     <g text-anchor="middle" fill="#4c1d95" font-size="15" font-weight="700"><text x="125" y="311">h<tspan baseline-shift="sub" font-size="10">t−2</tspan></text><text x="335" y="311">h<tspan baseline-shift="sub" font-size="10">t−1</tspan></text><text x="545" y="311">h<tspan baseline-shift="sub" font-size="10">t</tspan></text></g>
     <g text-anchor="middle" fill="#4c1d95" font-size="10">
-      <text x="125" y="331">∂L<tspan baseline-shift="sub" font-size="8">t</tspan></text><text x="335" y="331">∂L<tspan baseline-shift="sub" font-size="8">t</tspan></text><text x="545" y="331">∂L<tspan baseline-shift="sub" font-size="8">t</tspan></text>
-      <text x="125" y="347">∂h<tspan baseline-shift="sub" font-size="8">t−2</tspan></text><text x="335" y="347">∂h<tspan baseline-shift="sub" font-size="8">t−1</tspan></text><text x="545" y="347">∂h<tspan baseline-shift="sub" font-size="8">t</tspan></text>
+      <text x="125" y="330">∂L<tspan baseline-shift="sub" font-size="8">t</tspan></text><text x="335" y="330">∂L<tspan baseline-shift="sub" font-size="8">t</tspan></text><text x="545" y="330">∂L<tspan baseline-shift="sub" font-size="8">t</tspan></text>
+      <text x="125" y="348">∂h<tspan baseline-shift="sub" font-size="8">t−2</tspan></text><text x="335" y="348">∂h<tspan baseline-shift="sub" font-size="8">t−1</tspan></text><text x="545" y="348">∂h<tspan baseline-shift="sub" font-size="8">t</tspan></text>
     </g>
     <g stroke="#4c1d95" stroke-width="0.7"><line x1="109" y1="336" x2="141" y2="336"/><line x1="319" y1="336" x2="351" y2="336"/><line x1="529" y1="336" x2="561" y2="336"/></g>
     <g fill="#dbeafe" stroke="#2563eb" stroke-width="1.5"><rect x="60" y="418" width="130" height="40" rx="10"/><rect x="270" y="418" width="130" height="40" rx="10"/><rect x="480" y="418" width="130" height="40" rx="10"/></g>
     <g text-anchor="middle" fill="#1e3a8a" font-size="15" font-weight="700"><text x="125" y="443">x<tspan baseline-shift="sub" font-size="10">t−2</tspan></text><text x="335" y="443">x<tspan baseline-shift="sub" font-size="10">t−1</tspan></text><text x="545" y="443">x<tspan baseline-shift="sub" font-size="10">t</tspan></text></g>
     <g stroke="#334155" stroke-width="1.6" fill="none" marker-end="url(#ar4)">
-      <path d="M93 416V354"/><path d="M303 416V354"/><path d="M513 416V354"/>
-      <path d="M93 286V234"/><path d="M303 286V234"/><path d="M513 286V234"/>
+      <path d="M93 416V362"/><path d="M303 416V362"/><path d="M513 416V362"/>
+      <path d="M93 286V240"/><path d="M303 286V240"/><path d="M513 286V240"/>
       <path d="M192 306H266"/><path d="M402 306H476"/>
     </g>
     <g font-size="11" font-weight="700" text-anchor="end">
@@ -357,7 +414,7 @@ $$
     </g>
     <g font-size="11" font-weight="700" text-anchor="middle" fill="#7c3aed"><text x="229" y="296">V</text><text x="439" y="296">V</text></g>
     <g stroke="#ea580c" stroke-width="1.6" fill="none" marker-end="url(#ac4)">
-      <path d="M577 128V164"/><path d="M577 234V282"/>
+      <path d="M577 128V164"/><path d="M577 240V282"/>
       <path d="M478 334H406"/><path d="M268 334H196"/>
     </g>
     <path d="M58 334H44" stroke="#ea580c" stroke-width="1.6" fill="none" stroke-dasharray="4 4" marker-end="url(#ac4)"/>
@@ -377,6 +434,20 @@ $$
 ---
 
 ### 2.5 U에 대한 Gradient
+
+$U$는 모든 time step의 $a_i = U x_i + V h_{i-1} + b_h$ 에서 반복해서 사용됨(1.2). 따라서 각 usage마다 하나의 항이 생기고, $U$의 gradient는 그 항들의 합이 됨.
+
+Time step $i$의 usage에서 발생하는 항은 2.3에서 구한 $\partial L_t / \partial h_i$ 에 activation과 weight의 local derivative를 곱한 것임:
+
+$$
+\frac{\partial L_t}{\partial h_i}
+\frac{\partial h_i}{\partial a_i}
+\frac{\partial a_i}{\partial U}
+$$
+
+$i$가 작아질수록 $\partial L_t / \partial h_i$ 안에 2.3의 반복 곱 $D_i V$ 가 하나씩 더 들어가므로, 아래 식에서 뒤쪽 항일수록 길어짐.
+
+이때 길어지는 것은 $D_i V$ 부분이고 $U$ 자체는 각 항에 한 번씩만 나타남. 2.2에서 본 것처럼 $U$ 가 놓인 edge는 한 번만 지나가기 때문임.
 
 **vector 경우**
 
@@ -414,7 +485,7 @@ $$
 
 - vector에서 $\partial a_i / \partial U$ 는 3차 tensor라 곱셈 표기로 쓸 수 없어 $x_i^{\top}$ 로 남김
 - scalar에서는 $\partial a_i / \partial U = x_i$ 이며 transpose 없이 그대로 곱해짐
-- $V h_{i-1}$ 과 `b_h`는 `U`와 무관하므로 이 미분에서 사라짐
+- $V h_{i-1}$ 과 $b_h$는 $U$와 무관하므로 이 미분에서 사라짐
 - 항의 index가 작아질수록 $D_i V$ 가 하나씩 더 곱해져 항이 길어짐
 
 <!-- U에 대한 gradient와 각 항의 대응 | source: ./figures/05_grad_U.svg -->
@@ -430,24 +501,24 @@ $$
     <line x1="330" y1="62" x2="360" y2="62" stroke="#0d9488" stroke-width="1.6"/><text x="366" y="66" font-size="11" fill="#0d9488">term 대응</text>
     <rect x="480" y="86" width="130" height="40" rx="10" fill="#fee2e2" stroke="#dc2626" stroke-width="1.5"/>
     <text x="545" y="112" text-anchor="middle" font-size="15" font-weight="700" fill="#7f1d1d">L<tspan baseline-shift="sub" font-size="10">t</tspan></text>
-    <g fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"><rect x="60" y="168" width="130" height="60" rx="12"/><rect x="270" y="168" width="130" height="60" rx="12"/><rect x="480" y="168" width="130" height="60" rx="12"/></g>
+    <g fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"><rect x="60" y="168" width="130" height="68" rx="12"/><rect x="270" y="168" width="130" height="68" rx="12"/><rect x="480" y="168" width="130" height="68" rx="12"/></g>
     <g text-anchor="middle" fill="#14532d"><text x="125" y="193" font-size="15" font-weight="700">o<tspan baseline-shift="sub" font-size="10">t−2</tspan></text><text x="335" y="193" font-size="15" font-weight="700">o<tspan baseline-shift="sub" font-size="10">t−1</tspan></text><text x="545" y="193" font-size="15" font-weight="700">o<tspan baseline-shift="sub" font-size="10">t</tspan></text>
-    <text x="125" y="215" font-size="10">gradient 0</text><text x="335" y="215" font-size="10">gradient 0</text></g>
-    <text x="545" y="211" text-anchor="middle" font-size="10" fill="#14532d">∂L<tspan baseline-shift="sub" font-size="8">t</tspan></text>
+    <text x="125" y="212" font-size="10">gradient 0</text><text x="335" y="212" font-size="10">gradient 0</text></g>
+    <text x="545" y="210" text-anchor="middle" font-size="10" fill="#14532d">∂L<tspan baseline-shift="sub" font-size="8">t</tspan></text>
     <line x1="529" y1="216" x2="561" y2="216" stroke="#14532d" stroke-width="0.7"/>
     <text x="545" y="228" text-anchor="middle" font-size="10" fill="#14532d">∂o<tspan baseline-shift="sub" font-size="8">t</tspan></text>
-    <g fill="#ede9fe" stroke="#7c3aed" stroke-width="1.5"><rect x="60" y="288" width="130" height="60" rx="12"/><rect x="270" y="288" width="130" height="60" rx="12"/><rect x="480" y="288" width="130" height="60" rx="12"/></g>
+    <g fill="#ede9fe" stroke="#7c3aed" stroke-width="1.5"><rect x="60" y="288" width="130" height="68" rx="12"/><rect x="270" y="288" width="130" height="68" rx="12"/><rect x="480" y="288" width="130" height="68" rx="12"/></g>
     <g text-anchor="middle" fill="#4c1d95" font-size="15" font-weight="700"><text x="125" y="311">h<tspan baseline-shift="sub" font-size="10">t−2</tspan></text><text x="335" y="311">h<tspan baseline-shift="sub" font-size="10">t−1</tspan></text><text x="545" y="311">h<tspan baseline-shift="sub" font-size="10">t</tspan></text></g>
     <g text-anchor="middle" fill="#4c1d95" font-size="10">
-      <text x="125" y="331">∂L<tspan baseline-shift="sub" font-size="8">t</tspan></text><text x="335" y="331">∂L<tspan baseline-shift="sub" font-size="8">t</tspan></text><text x="545" y="331">∂L<tspan baseline-shift="sub" font-size="8">t</tspan></text>
-      <text x="125" y="347">∂h<tspan baseline-shift="sub" font-size="8">t−2</tspan></text><text x="335" y="347">∂h<tspan baseline-shift="sub" font-size="8">t−1</tspan></text><text x="545" y="347">∂h<tspan baseline-shift="sub" font-size="8">t</tspan></text>
+      <text x="125" y="330">∂L<tspan baseline-shift="sub" font-size="8">t</tspan></text><text x="335" y="330">∂L<tspan baseline-shift="sub" font-size="8">t</tspan></text><text x="545" y="330">∂L<tspan baseline-shift="sub" font-size="8">t</tspan></text>
+      <text x="125" y="348">∂h<tspan baseline-shift="sub" font-size="8">t−2</tspan></text><text x="335" y="348">∂h<tspan baseline-shift="sub" font-size="8">t−1</tspan></text><text x="545" y="348">∂h<tspan baseline-shift="sub" font-size="8">t</tspan></text>
     </g>
     <g stroke="#4c1d95" stroke-width="0.7"><line x1="109" y1="336" x2="141" y2="336"/><line x1="319" y1="336" x2="351" y2="336"/><line x1="529" y1="336" x2="561" y2="336"/></g>
     <g fill="#dbeafe" stroke="#2563eb" stroke-width="1.5"><rect x="60" y="418" width="130" height="40" rx="10"/><rect x="270" y="418" width="130" height="40" rx="10"/><rect x="480" y="418" width="130" height="40" rx="10"/></g>
     <g text-anchor="middle" fill="#1e3a8a" font-size="15" font-weight="700"><text x="125" y="443">x<tspan baseline-shift="sub" font-size="10">t−2</tspan></text><text x="335" y="443">x<tspan baseline-shift="sub" font-size="10">t−1</tspan></text><text x="545" y="443">x<tspan baseline-shift="sub" font-size="10">t</tspan></text></g>
     <g stroke="#334155" stroke-width="1.6" fill="none" marker-end="url(#ar5)">
-      <path d="M93 416V354"/><path d="M303 416V354"/><path d="M513 416V354"/>
-      <path d="M93 286V234"/><path d="M303 286V234"/><path d="M513 286V234"/>
+      <path d="M93 416V362"/><path d="M303 416V362"/><path d="M513 416V362"/>
+      <path d="M93 286V240"/><path d="M303 286V240"/><path d="M513 286V240"/>
       <path d="M192 306H266"/><path d="M402 306H476"/>
     </g>
     <g font-size="11" font-weight="700" text-anchor="end">
@@ -456,7 +527,7 @@ $$
     </g>
     <g font-size="11" font-weight="700" text-anchor="middle" fill="#7c3aed"><text x="229" y="296">V</text><text x="439" y="296">V</text></g>
     <g stroke="#ea580c" stroke-width="1.6" fill="none" marker-end="url(#ac5)">
-      <path d="M577 128V164"/><path d="M577 234V282"/>
+      <path d="M577 128V164"/><path d="M577 240V282"/>
       <path d="M478 334H406"/><path d="M268 334H196"/>
     </g>
     <path d="M58 334H44" stroke="#ea580c" stroke-width="1.6" fill="none" stroke-dasharray="4 4" marker-end="url(#ac5)"/>
@@ -466,11 +537,11 @@ $$
     </g>
     <g stroke="#ea580c" stroke-width="0.7"><line x1="424" y1="372" x2="456" y2="372"/><line x1="214" y1="372" x2="246" y2="372"/></g>
     <g stroke="#0d9488" stroke-width="1.6" fill="none" marker-end="url(#at5)">
-      <path d="M575 350V404H636V474H478V498"/>
-      <path d="M365 350V404H440V474H338V498"/>
-      <path d="M155 350V404H230V474H164V498"/>
+      <path d="M575 358V404H636V474H478V498"/>
+      <path d="M365 358V404H440V474H338V498"/>
+      <path d="M155 358V404H230V474H164V498"/>
     </g>
-    <path d="M45 356V498" stroke="#0d9488" stroke-width="1.6" fill="none" stroke-dasharray="4 4" marker-end="url(#at5)"/>
+    <path d="M45 362V498" stroke="#0d9488" stroke-width="1.6" fill="none" stroke-dasharray="4 4" marker-end="url(#at5)"/>
     <rect x="40" y="502" width="600" height="84" rx="12" fill="#ffffff" stroke="#cbd5e1" stroke-width="1.5"/>
     <g fill="#0f172a" text-anchor="middle" font-size="10">
       <text x="52" y="548" font-size="12">⋯</text><text x="66" y="548" font-size="12">+</text>
@@ -505,6 +576,14 @@ $$
 ---
 
 ### 2.6 V에 대한 Gradient
+
+$V$ 역시 모든 time step의 $a_i$ 에서 반복해서 사용되므로 구조는 2.5와 같음. 다른 점은 $\partial a_i / \partial U$ 자리에 $\partial a_i / \partial V$ 가 들어간다는 것뿐임:
+
+$$
+\frac{\partial L_t}{\partial h_i}
+\frac{\partial h_i}{\partial a_i}
+\frac{\partial a_i}{\partial V}
+$$
 
 **vector 경우**
 
@@ -542,8 +621,8 @@ $$
 
 - vector에서 $\partial a_i / \partial V$ 는 3차 tensor라 곱셈 표기로 쓸 수 없어 $h_{i-1}^{\top}$ 로 남김
 - scalar에서는 $\partial a_i / \partial V = h_{i-1}$ 이며 transpose 없이 그대로 곱해짐
-- $U x_i$ 와 `b_h`는 `V`와 무관하므로 이 미분에서 사라짐
-- `U`의 경우와 비교하면 각 항 끝의 $x_i$ 자리에 $h_{i-1}$ 이 들어간 것만 다름
+- $U x_i$ 와 $b_h$는 $V$와 무관하므로 이 미분에서 사라짐
+- $U$의 경우와 비교하면 각 항 끝의 $x_i$ 자리에 $h_{i-1}$ 이 들어간 것만 다름
 
 <!-- V에 대한 gradient와 각 항의 대응 | source: ./figures/06_grad_V.svg -->
 <svg xmlns="http://www.w3.org/2000/svg" width="100%" viewBox="0 0 680 612" role="img" aria-labelledby="f6t f6d">
@@ -558,24 +637,24 @@ $$
     <line x1="330" y1="62" x2="360" y2="62" stroke="#0d9488" stroke-width="1.6"/><text x="366" y="66" font-size="11" fill="#0d9488">term 대응</text>
     <rect x="480" y="86" width="130" height="40" rx="10" fill="#fee2e2" stroke="#dc2626" stroke-width="1.5"/>
     <text x="545" y="112" text-anchor="middle" font-size="15" font-weight="700" fill="#7f1d1d">L<tspan baseline-shift="sub" font-size="10">t</tspan></text>
-    <g fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"><rect x="60" y="168" width="130" height="60" rx="12"/><rect x="270" y="168" width="130" height="60" rx="12"/><rect x="480" y="168" width="130" height="60" rx="12"/></g>
+    <g fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"><rect x="60" y="168" width="130" height="68" rx="12"/><rect x="270" y="168" width="130" height="68" rx="12"/><rect x="480" y="168" width="130" height="68" rx="12"/></g>
     <g text-anchor="middle" fill="#14532d"><text x="125" y="193" font-size="15" font-weight="700">o<tspan baseline-shift="sub" font-size="10">t−2</tspan></text><text x="335" y="193" font-size="15" font-weight="700">o<tspan baseline-shift="sub" font-size="10">t−1</tspan></text><text x="545" y="193" font-size="15" font-weight="700">o<tspan baseline-shift="sub" font-size="10">t</tspan></text>
-    <text x="125" y="215" font-size="10">gradient 0</text><text x="335" y="215" font-size="10">gradient 0</text></g>
-    <text x="545" y="211" text-anchor="middle" font-size="10" fill="#14532d">∂L<tspan baseline-shift="sub" font-size="8">t</tspan></text>
+    <text x="125" y="212" font-size="10">gradient 0</text><text x="335" y="212" font-size="10">gradient 0</text></g>
+    <text x="545" y="210" text-anchor="middle" font-size="10" fill="#14532d">∂L<tspan baseline-shift="sub" font-size="8">t</tspan></text>
     <line x1="529" y1="216" x2="561" y2="216" stroke="#14532d" stroke-width="0.7"/>
     <text x="545" y="228" text-anchor="middle" font-size="10" fill="#14532d">∂o<tspan baseline-shift="sub" font-size="8">t</tspan></text>
-    <g fill="#ede9fe" stroke="#7c3aed" stroke-width="1.5"><rect x="60" y="288" width="130" height="60" rx="12"/><rect x="270" y="288" width="130" height="60" rx="12"/><rect x="480" y="288" width="130" height="60" rx="12"/></g>
+    <g fill="#ede9fe" stroke="#7c3aed" stroke-width="1.5"><rect x="60" y="288" width="130" height="68" rx="12"/><rect x="270" y="288" width="130" height="68" rx="12"/><rect x="480" y="288" width="130" height="68" rx="12"/></g>
     <g text-anchor="middle" fill="#4c1d95" font-size="15" font-weight="700"><text x="125" y="311">h<tspan baseline-shift="sub" font-size="10">t−2</tspan></text><text x="335" y="311">h<tspan baseline-shift="sub" font-size="10">t−1</tspan></text><text x="545" y="311">h<tspan baseline-shift="sub" font-size="10">t</tspan></text></g>
     <g text-anchor="middle" fill="#4c1d95" font-size="10">
-      <text x="125" y="331">∂L<tspan baseline-shift="sub" font-size="8">t</tspan></text><text x="335" y="331">∂L<tspan baseline-shift="sub" font-size="8">t</tspan></text><text x="545" y="331">∂L<tspan baseline-shift="sub" font-size="8">t</tspan></text>
-      <text x="125" y="347">∂h<tspan baseline-shift="sub" font-size="8">t−2</tspan></text><text x="335" y="347">∂h<tspan baseline-shift="sub" font-size="8">t−1</tspan></text><text x="545" y="347">∂h<tspan baseline-shift="sub" font-size="8">t</tspan></text>
+      <text x="125" y="330">∂L<tspan baseline-shift="sub" font-size="8">t</tspan></text><text x="335" y="330">∂L<tspan baseline-shift="sub" font-size="8">t</tspan></text><text x="545" y="330">∂L<tspan baseline-shift="sub" font-size="8">t</tspan></text>
+      <text x="125" y="348">∂h<tspan baseline-shift="sub" font-size="8">t−2</tspan></text><text x="335" y="348">∂h<tspan baseline-shift="sub" font-size="8">t−1</tspan></text><text x="545" y="348">∂h<tspan baseline-shift="sub" font-size="8">t</tspan></text>
     </g>
     <g stroke="#4c1d95" stroke-width="0.7"><line x1="109" y1="336" x2="141" y2="336"/><line x1="319" y1="336" x2="351" y2="336"/><line x1="529" y1="336" x2="561" y2="336"/></g>
     <g fill="#dbeafe" stroke="#2563eb" stroke-width="1.5"><rect x="60" y="418" width="130" height="40" rx="10"/><rect x="270" y="418" width="130" height="40" rx="10"/><rect x="480" y="418" width="130" height="40" rx="10"/></g>
     <g text-anchor="middle" fill="#1e3a8a" font-size="15" font-weight="700"><text x="125" y="443">x<tspan baseline-shift="sub" font-size="10">t−2</tspan></text><text x="335" y="443">x<tspan baseline-shift="sub" font-size="10">t−1</tspan></text><text x="545" y="443">x<tspan baseline-shift="sub" font-size="10">t</tspan></text></g>
     <g stroke="#334155" stroke-width="1.6" fill="none" marker-end="url(#ar6)">
-      <path d="M93 416V354"/><path d="M303 416V354"/><path d="M513 416V354"/>
-      <path d="M93 286V234"/><path d="M303 286V234"/><path d="M513 286V234"/>
+      <path d="M93 416V362"/><path d="M303 416V362"/><path d="M513 416V362"/>
+      <path d="M93 286V240"/><path d="M303 286V240"/><path d="M513 286V240"/>
       <path d="M192 306H266"/><path d="M402 306H476"/>
     </g>
     <g font-size="11" font-weight="700" text-anchor="end">
@@ -584,7 +663,7 @@ $$
     </g>
     <g font-size="11" font-weight="700" text-anchor="middle" fill="#7c3aed"><text x="229" y="296">V</text><text x="439" y="296">V</text></g>
     <g stroke="#ea580c" stroke-width="1.6" fill="none" marker-end="url(#ac6)">
-      <path d="M577 128V164"/><path d="M577 234V282"/>
+      <path d="M577 128V164"/><path d="M577 240V282"/>
       <path d="M478 334H406"/><path d="M268 334H196"/>
     </g>
     <path d="M58 334H44" stroke="#ea580c" stroke-width="1.6" fill="none" stroke-dasharray="4 4" marker-end="url(#ac6)"/>
@@ -594,11 +673,11 @@ $$
     </g>
     <g stroke="#ea580c" stroke-width="0.7"><line x1="424" y1="372" x2="456" y2="372"/><line x1="214" y1="372" x2="246" y2="372"/></g>
     <g stroke="#0d9488" stroke-width="1.6" fill="none" marker-end="url(#at6)">
-      <path d="M575 350V404H636V474H478V498"/>
-      <path d="M365 350V404H440V474H338V498"/>
-      <path d="M155 350V404H230V474H164V498"/>
+      <path d="M575 358V404H636V474H478V498"/>
+      <path d="M365 358V404H440V474H338V498"/>
+      <path d="M155 358V404H230V474H164V498"/>
     </g>
-    <path d="M45 356V498" stroke="#0d9488" stroke-width="1.6" fill="none" stroke-dasharray="4 4" marker-end="url(#at6)"/>
+    <path d="M45 362V498" stroke="#0d9488" stroke-width="1.6" fill="none" stroke-dasharray="4 4" marker-end="url(#at6)"/>
     <rect x="40" y="502" width="600" height="84" rx="12" fill="#ffffff" stroke="#cbd5e1" stroke-width="1.5"/>
     <g fill="#0f172a" text-anchor="middle" font-size="10">
       <text x="52" y="548" font-size="12">⋯</text><text x="66" y="548" font-size="12">+</text>
@@ -632,9 +711,13 @@ $$
 
 ---
 
-### 2.7 전체 Loss에 대한 Accumulation
+### 2.7 두 종류의 합
 
-지금까지는 하나의 time step loss `L_t`만 보았음. 전체 loss는 각 time step loss의 합이므로, shared parameter의 gradient는 각 loss에 대한 gradient를 다시 합산하여 얻음.
+여기까지 합이 두 번 등장했으므로 구분해 둘 필요가 있음.
+
+첫 번째는 **usage에 대한 합** 임. 2.5와 2.6에서 하나의 loss $L_t$ 안에서 $U$와 $V$가 여러 time step에 반복 사용되어 항이 여러 개 생겼고, 그 항들을 더한 것이 $\partial L_t / \partial U$ 와 $\partial L_t / \partial V$ 였음. $W$는 usage가 하나뿐이라 이 합이 나타나지 않았음.
+
+두 번째는 **loss에 대한 합** 임. 전체 loss는 각 time step loss의 합이므로, shared parameter의 최종 gradient는 각 $L_t$에 대한 gradient를 다시 합산하여 얻음.
 
 $$
 \frac{\partial L}{\partial U} = \sum_{t=1}^{T} \frac{\partial L_t}{\partial U}
@@ -645,24 +728,40 @@ $$
 $$
 
 <!-- 각 time step loss의 gradient가 하나의 shared parameter gradient로 합산되는 과정 | source: ./figures/07_accumulation.svg -->
-<svg xmlns="http://www.w3.org/2000/svg" width="100%" viewBox="0 0 680 320" role="img" aria-labelledby="f7t f7d">
-  <title id="f7t">Shared parameter gradient accumulation</title>
-  <desc id="f7d">각 time step loss에 대한 gradient가 합산되어 하나의 shared parameter gradient가 되는 과정</desc>
+<svg xmlns="http://www.w3.org/2000/svg" width="100%" viewBox="0 0 680 480" role="img" aria-labelledby="f7t f7d">
+  <title id="f7t">두 종류의 합</title>
+  <desc id="f7d">하나의 loss 안에서 usage에 대한 합과, 모든 time step의 loss에 대한 합을 구분해 나타낸 그림</desc>
   <defs><marker id="ar7" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0L10 5L0 10Z" fill="#64748b"/></marker></defs>
-  <rect width="680" height="320" rx="20" fill="#f8fafc"/>
+  <rect width="680" height="480" rx="20" fill="#f8fafc"/>
   <g font-family="Arial, 'Noto Sans KR', sans-serif">
-    <text x="32" y="36" font-size="17" font-weight="700" fill="#0f172a">전체 loss에 대한 shared parameter gradient</text>
-    <g fill="#ede9fe" stroke="#7c3aed" stroke-width="1.5"><rect x="40" y="76" width="150" height="46" rx="10"/><rect x="40" y="138" width="150" height="46" rx="10"/><rect x="40" y="200" width="150" height="46" rx="10"/></g>
-    <g text-anchor="middle" fill="#4c1d95" font-size="13" font-weight="700"><text x="115" y="105">∂L<tspan baseline-shift="sub" font-size="9">1</tspan> / ∂V</text><text x="115" y="167">∂L<tspan baseline-shift="sub" font-size="9">2</tspan> / ∂V</text><text x="115" y="229">⋮   ∂L<tspan baseline-shift="sub" font-size="9">T</tspan> / ∂V</text></g>
-    <g stroke="#64748b" stroke-width="1.6" fill="none" marker-end="url(#ar7)"><path d="M192 99C260 99 260 152 300 158"/><path d="M192 161H300"/><path d="M192 223C260 223 260 172 300 166"/></g>
-    <circle cx="336" cy="161" r="30" fill="#fff7ed" stroke="#ea580c" stroke-width="2"/>
-    <text x="336" y="170" text-anchor="middle" font-size="26" font-weight="700" fill="#ea580c">Σ</text>
-    <path d="M368 161H430" stroke="#64748b" stroke-width="1.6" marker-end="url(#ar7)"/>
-    <rect x="432" y="116" width="208" height="90" rx="14" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
-    <text x="536" y="144" text-anchor="middle" font-size="11" fill="#166534">one shared parameter</text>
-    <text x="536" y="172" text-anchor="middle" font-size="18" font-weight="700" fill="#14532d">∂L / ∂V</text>
-    <text x="536" y="192" text-anchor="middle" font-size="11" fill="#166534">optimizer가 V를 한 번 update</text>
-    <text x="340" y="288" text-anchor="middle" font-size="11" fill="#475569">U 와 W 에도 같은 accumulation 원리가 적용됨</text>
+    <text x="32" y="36" font-size="17" font-weight="700" fill="#0f172a">두 종류의 합</text>
+    <rect x="28" y="58" width="624" height="186" rx="14" fill="#ffffff" stroke="#ddd6fe" stroke-width="1.5"/>
+    <rect x="44" y="72" width="278" height="26" rx="13" fill="#ede9fe"/>
+    <text x="183" y="90" text-anchor="middle" font-size="12" font-weight="700" fill="#6d28d9">A. usage에 대한 합 · 하나의 L<tspan baseline-shift="sub" font-size="9">t</tspan> 안에서</text>
+    <g fill="#ede9fe" stroke="#7c3aed" stroke-width="1.5"><rect x="48" y="110" width="152" height="30" rx="8"/><rect x="48" y="148" width="152" height="30" rx="8"/><rect x="48" y="186" width="152" height="30" rx="8"/></g>
+    <g text-anchor="middle" fill="#4c1d95" font-size="12" font-weight="700"><text x="124" y="130">usage at i = t</text><text x="124" y="168">usage at i = t−1</text><text x="124" y="206">usage at i = t−2</text></g>
+    <text x="124" y="232" text-anchor="middle" font-size="13" font-weight="700" fill="#7c3aed">⋮</text>
+    <g stroke="#64748b" stroke-width="1.6" fill="none" marker-end="url(#ar7)"><path d="M202 125C248 125 248 155 276 160"/><path d="M202 163H276"/><path d="M202 201C248 201 248 172 276 166"/></g>
+    <circle cx="298" cy="163" r="20" fill="#fff7ed" stroke="#ea580c" stroke-width="2"/>
+    <text x="298" y="170" text-anchor="middle" font-size="18" font-weight="700" fill="#ea580c">Σ</text>
+    <path d="M320 163H368" stroke="#64748b" stroke-width="1.6" fill="none" marker-end="url(#ar7)"/>
+    <rect x="372" y="139" width="180" height="48" rx="10" fill="#ede9fe" stroke="#7c3aed" stroke-width="1.5"/>
+    <text x="462" y="170" text-anchor="middle" font-size="15" font-weight="700" fill="#4c1d95">∂L<tspan baseline-shift="sub" font-size="10">t</tspan> / ∂V</text>
+    <text x="462" y="214" text-anchor="middle" font-size="10" fill="#6d28d9">W 는 usage가 하나뿐이라 이 합이 나타나지 않음</text>
+    <rect x="28" y="264" width="624" height="180" rx="14" fill="#ffffff" stroke="#bbf7d0" stroke-width="1.5"/>
+    <rect x="44" y="278" width="278" height="26" rx="13" fill="#dcfce7"/>
+    <text x="183" y="296" text-anchor="middle" font-size="12" font-weight="700" fill="#166534">B. loss에 대한 합 · 모든 time step</text>
+    <g fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"><rect x="48" y="312" width="152" height="30" rx="8"/><rect x="48" y="348" width="152" height="30" rx="8"/><rect x="48" y="384" width="152" height="30" rx="8"/></g>
+    <g text-anchor="middle" fill="#14532d" font-size="13" font-weight="700"><text x="124" y="332">∂L<tspan baseline-shift="sub" font-size="9">t−1</tspan> / ∂V</text><text x="124" y="368">∂L<tspan baseline-shift="sub" font-size="9">t</tspan> / ∂V</text><text x="124" y="404">∂L<tspan baseline-shift="sub" font-size="9">t+1</tspan> / ∂V</text></g>
+    <text x="124" y="428" text-anchor="middle" font-size="13" font-weight="700" fill="#16a34a">⋮</text>
+    <g stroke="#64748b" stroke-width="1.6" fill="none" marker-end="url(#ar7)"><path d="M202 327C248 327 248 355 276 360"/><path d="M202 363H276"/><path d="M202 399C248 399 248 372 276 366"/></g>
+    <circle cx="298" cy="363" r="20" fill="#fff7ed" stroke="#ea580c" stroke-width="2"/>
+    <text x="298" y="370" text-anchor="middle" font-size="18" font-weight="700" fill="#ea580c">Σ</text>
+    <path d="M320 363H368" stroke="#64748b" stroke-width="1.6" fill="none" marker-end="url(#ar7)"/>
+    <rect x="372" y="339" width="220" height="48" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+    <text x="482" y="360" text-anchor="middle" font-size="15" font-weight="700" fill="#14532d">∂L / ∂V</text>
+    <text x="482" y="378" text-anchor="middle" font-size="10" fill="#166534">optimizer가 V 를 한 번 update</text>
+    <text x="340" y="464" text-anchor="middle" font-size="11" fill="#475569">U 와 W 에도 같은 원리가 적용되며, W 는 A 단계가 없음</text>
   </g>
 </svg>
 
@@ -672,19 +771,19 @@ Loss를 time step에 대해 mean으로 정의했다면 gradient의 전체 scale�
 
 ## 3. Gradient Problems
 
-2.6에서 본 것처럼 `V`에 대한 gradient의 각 항에는 $D_i V$ 가 반복해서 곱해짐. 이 반복 곱이 gradient problem의 직접적인 원인임.
+2.6에서 본 것처럼 $V$에 대한 gradient의 각 항에는 $D_i V$ 가 반복해서 곱해짐. 이 반복 곱이 gradient problem의 직접적인 원인임.
 
 ### 3.1 Vanishing Gradient
 
-`tanh`의 derivative가 가지는 범위는 다음과 같음:
+$\tanh$의 derivative가 가지는 범위는 다음과 같음:
 
 $$
 0 < \tanh'(a_t) \le 1
 $$
 
-`tanh`가 saturation 영역에 들어가면 derivative가 0에 가까워짐. 따라서 `D_t`는 많은 경우 local gradient의 magnitude를 감소시키는 방향으로 작용함.
+$\tanh$가 saturation 영역에 들어가면 derivative가 0에 가까워짐. 따라서 $D_t$는 많은 경우 local gradient의 magnitude를 감소시키는 방향으로 작용함.
 
-Recurrent weight `V`도 해당 direction에서 gradient를 충분히 증폭시키지 못하면 recurrent local Jacobian이 gradient를 줄이는 방향으로 작용함.
+Recurrent weight $V$도 해당 direction에서 gradient를 충분히 증폭시키지 못하면 recurrent local Jacobian이 gradient를 줄이는 방향으로 작용함.
 
 이러한 local gradient가 chain rule에 의해 많은 recurrent step에 걸쳐 계속 곱해지면 distant earlier time step에 대한 gradient가 매우 작아질 수 있음. 이를 **vanishing gradient** 라고 함.
 
@@ -717,7 +816,7 @@ Recurrent weight `V`도 해당 direction에서 gradient를 충분히 증폭시�
 
 ### 3.2 Exploding Gradient
 
-Recurrent weight `V`가 특정 direction에서 gradient를 크게 증폭시키고 그 효과가 activation derivative에 의한 감소보다 크면, recurrent local Jacobian이 gradient를 증폭시키는 방향으로 작용할 수 있음.
+Recurrent weight $V$가 특정 direction에서 gradient를 크게 증폭시키고 그 효과가 activation derivative에 의한 감소보다 크면, recurrent local Jacobian이 gradient를 증폭시키는 방향으로 작용할 수 있음.
 
 이러한 local gradient가 여러 recurrent step에 걸쳐 계속 곱해지면 전체 gradient magnitude가 매우 커질 수 있음. 이를 **exploding gradient** 라고 함.
 
@@ -766,7 +865,7 @@ Earlier information은 successive recurrent state transition 동안 hidden-state
 
 ### 4.3 Backward Pass의 Vanishing Gradient
 
-2.5와 2.6에서 유도한 것처럼 `U`와 `V`의 gradient는 길이가 서로 다른 항들의 합이며, distant earlier time step에 대응하는 항일수록 $D_i V$ 가 더 많이 곱해짐. Vanishing gradient가 발생하면 이 긴 항들이 거의 0이 되어 해당 dependency의 gradient contribution이 parameter update에 반영되지 못함.
+2.5와 2.6에서 유도한 것처럼 $U$와 $V$의 gradient는 길이가 서로 다른 항들의 합이며, distant earlier time step에 대응하는 항일수록 $D_i V$ 가 더 많이 곱해짐. Vanishing gradient가 발생하면 이 긴 항들이 거의 0이 되어 해당 dependency의 gradient contribution이 parameter update에 반영되지 못함.
 
 <!-- Forward pass에서 earlier information을 유지하는 문제와 backward vanishing gradient의 구분 | source: ./figures/10_long_term_dependency.svg -->
 <svg xmlns="http://www.w3.org/2000/svg" width="100%" viewBox="0 0 680 520" role="img" aria-labelledby="f10t f10d">
@@ -788,16 +887,20 @@ Earlier information은 successive recurrent state transition 동안 hidden-state
     <g stroke="#334155" stroke-width="1.5" fill="none" marker-end="url(#ar10)"><path d="M136 142H174"/><path d="M264 142H302"/><path d="M392 142H430"/><path d="M520 142H558"/></g>
     <text x="411" y="116" text-anchor="middle" font-size="13" font-weight="700" fill="#64748b">···</text>
     <text x="340" y="212" text-anchor="middle" font-size="11" fill="#475569">서로 다른 earlier input을 담은 state representation이 later step에서 구분되기 어려워질 수 있음</text>
-    <rect x="28" y="264" width="624" height="176" rx="14" fill="#ffffff" stroke="#fed7aa" stroke-width="1.5"/>
+    <rect x="28" y="264" width="624" height="180" rx="14" fill="#ffffff" stroke="#fed7aa" stroke-width="1.5"/>
     <rect x="44" y="278" width="280" height="26" rx="13" fill="#ffedd5"/>
     <text x="184" y="296" text-anchor="middle" font-size="12" font-weight="700" fill="#9a3412">B. Backward pass · vanishing gradient</text>
-    <rect x="48" y="330" width="96" height="44" rx="10" fill="#f5f3ff" stroke="#7c3aed" stroke-width="1.5"/>
-    <text x="96" y="358" text-anchor="middle" font-size="14" font-weight="700" fill="#4c1d95">h<tspan baseline-shift="sub" font-size="9">k</tspan></text>
-    <rect x="536" y="330" width="96" height="44" rx="10" fill="#fee2e2" stroke="#dc2626" stroke-width="1.5"/>
-    <text x="584" y="358" text-anchor="middle" font-size="14" font-weight="700" fill="#7f1d1d">L<tspan baseline-shift="sub" font-size="9">t</tspan></text>
-    <path d="M534 352H148" stroke="#fdba74" stroke-width="1.6" fill="none" marker-end="url(#ap10)"/>
-    <g fill="#ea580c" stroke="#ffffff" stroke-width="1"><circle cx="510" cy="352" r="11"/><circle cx="456" cy="352" r="9"/><circle cx="402" cy="352" r="7"/><circle cx="348" cy="352" r="5.5"/><circle cx="294" cy="352" r="4"/><circle cx="240" cy="352" r="2.5"/><circle cx="186" cy="352" r="1.5"/></g>
-    <text x="340" y="410" text-anchor="middle" font-size="11" fill="#9a3412">항에 포함된 반복 곱이 길어질수록 그 항의 기여가 작아짐</text>
+    <rect x="536" y="326" width="96" height="40" rx="10" fill="#fee2e2" stroke="#dc2626" stroke-width="1.5"/>
+    <text x="584" y="351" text-anchor="middle" font-size="14" font-weight="700" fill="#7f1d1d">L<tspan baseline-shift="sub" font-size="9">t</tspan></text>
+    <path d="M534 346H366" stroke="#fdba74" stroke-width="1.6" fill="none" marker-end="url(#ap10)"/>
+    <g fill="#ea580c" stroke="#ffffff" stroke-width="1"><circle cx="512" cy="346" r="10"/><circle cx="472" cy="346" r="7.5"/><circle cx="432" cy="346" r="5"/><circle cx="396" cy="346" r="3"/></g>
+    <text x="452" y="318" text-anchor="middle" font-size="10" fill="#9a3412">반복 곱이 길수록 작아짐</text>
+    <rect x="212" y="326" width="148" height="40" rx="10" fill="#ede9fe" stroke="#7c3aed" stroke-width="1.5"/>
+    <text x="286" y="351" text-anchor="middle" font-size="12" font-weight="700" fill="#4c1d95">usage at i = k</text>
+    <g stroke="#64748b" stroke-width="1.5" fill="none" marker-end="url(#ar10)"><path d="M210 340C192 340 180 324 152 320"/><path d="M210 352C192 352 180 368 152 372"/></g>
+    <g fill="#ffffff" stroke="#7c3aed" stroke-width="1.5"><rect x="46" y="304" width="104" height="30" rx="8"/><rect x="46" y="356" width="104" height="30" rx="8"/></g>
+    <g text-anchor="middle" fill="#4c1d95" font-size="12" font-weight="700"><text x="98" y="324">∂L<tspan baseline-shift="sub" font-size="9">t</tspan> / ∂U</text><text x="98" y="376">∂L<tspan baseline-shift="sub" font-size="9">t</tspan> / ∂V</text></g>
+    <text x="340" y="416" text-anchor="middle" font-size="11" fill="#9a3412">distant usage의 항이 0에 가까워지면 그 dependency가 U 와 V 의 update에 반영되지 않음</text>
     <rect x="120" y="464" width="440" height="30" rx="15" fill="#fff7ed" stroke="#fdba74" stroke-width="1.5"/>
     <text x="340" y="484" text-anchor="middle" font-size="12" font-weight="700" fill="#9a3412">Forward의 information 유지와 backward의 vanishing gradient는 구분해야 함</text>
   </g>
