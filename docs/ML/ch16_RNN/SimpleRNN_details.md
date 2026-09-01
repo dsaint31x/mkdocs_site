@@ -46,7 +46,9 @@ Simple RNN의 hidden state update는 다음과 같음:
 
 $$
 a_t = Ux_t + Vh_{t-1} + b_h
-\qquad
+$$
+
+$$
 h_t = f(a_t)
 $$
 
@@ -54,7 +56,9 @@ Output의 계산은 다음과 같음:
 
 $$
 z_t = Wh_t + b_o
-\qquad
+$$
+
+$$
 o_t = g(z_t)
 $$
 
@@ -196,7 +200,9 @@ $W$를 먼저 다루는 이유는 $W$가 recurrent 경로를 지나지 않아 �
 
 $$
 D_i = \frac{\partial h_i}{\partial a_i}
-\qquad
+$$
+
+$$
 G_i = \frac{\partial o_i}{\partial z_i}
 $$
 
@@ -204,7 +210,9 @@ vector 경우에는 activation이 element-wise이므로 두 local derivative가 
 
 $$
 D_i = \operatorname{diag}\!\left(f'(a_i)\right)
-\qquad
+$$
+
+$$
 G_i = \operatorname{diag}\!\left(g'(z_i)\right)
 $$
 
@@ -212,7 +220,9 @@ scalar 경우에는 단순한 실수임:
 
 $$
 D_i = f'(a_i)
-\qquad
+$$
+
+$$
 G_i = g'(z_i)
 $$
 
@@ -220,7 +230,9 @@ $$
 
 $$
 \frac{\partial h_i}{\partial h_{i-1}} = D_i V
-\qquad
+$$
+
+$$
 \frac{\partial o_t}{\partial h_t} = G_t W
 $$
 
@@ -243,17 +255,21 @@ $$
 Output layer를 지나면 같은 time step의 hidden state에 도달함:
 
 $$
+\begin{aligned}
 \frac{\partial L_t}{\partial h_t}
-= \frac{\partial L_t}{\partial o_t} \frac{\partial o_t}{\partial h_t}
-= \frac{\partial L_t}{\partial o_t} G_t W
+&= \frac{\partial L_t}{\partial o_t} \frac{\partial o_t}{\partial h_t} \\
+&= \frac{\partial L_t}{\partial o_t} G_t W
+\end{aligned}
 $$
 
 여기서부터는 recurrent 경로를 따라 한 step씩 거슬러 올라감:
 
 $$
+\begin{aligned}
 \frac{\partial L_t}{\partial h_{i-1}}
-= \frac{\partial L_t}{\partial h_i} \frac{\partial h_i}{\partial h_{i-1}}
-= \frac{\partial L_t}{\partial h_i} D_i V
+&= \frac{\partial L_t}{\partial h_i} \frac{\partial h_i}{\partial h_{i-1}} \\
+&= \frac{\partial L_t}{\partial h_i} D_i V
+\end{aligned}
 $$
 
 이를 $k$까지 반복하면 chain rule에 의해 다음과 같음:
@@ -270,10 +286,11 @@ $$
 local derivative를 대입하면 다음과 같음:
 
 $$
+\begin{aligned}
 \frac{\partial L_t}{\partial h_k}
-= \frac{\partial L_t}{\partial h_t}
-  (D_t V)(D_{t-1} V) \cdots (D_{k+1} V)
-= \frac{\partial L_t}{\partial h_t} \prod_{i=k+1}^{t} D_i V
+&= \frac{\partial L_t}{\partial h_t} (D_t V)(D_{t-1} V) \cdots (D_{k+1} V) \\
+&= \frac{\partial L_t}{\partial h_t} \prod_{i=k+1}^{t} D_i V
+\end{aligned}
 $$
 
 Product는 index $t$에서 시작하여 $k+1$에서 끝남. 행렬 곱은 non-commutative이므로 순서를 바꿀 수 없으며, gradient를 row vector로 두는 numerator layout에서는 index가 큰 쪽이 왼쪽에 옴.
@@ -357,17 +374,21 @@ $W$는 $z_t = W h_t + b_o$ 에서 한 번만 사용되고 recurrent 경로를 �
 **vector 경우**
 
 $$
+\begin{aligned}
 \frac{\partial L_t}{\partial W}
-= \left( \frac{\partial L_t}{\partial o_t} \frac{\partial o_t}{\partial z_t} \right)^{\top} h_t^{\top}
-= \left( \frac{\partial L_t}{\partial o_t} G_t \right)^{\top} h_t^{\top}
+&= \left( \frac{\partial L_t}{\partial o_t} \frac{\partial o_t}{\partial z_t} \right)^{\top} h_t^{\top} \\
+&= \left( \frac{\partial L_t}{\partial o_t} G_t \right)^{\top} h_t^{\top}
+\end{aligned}
 $$
 
 **scalar 경우**
 
 $$
+\begin{aligned}
 \frac{\partial L_t}{\partial W}
-= \frac{\partial L_t}{\partial o_t} \frac{\partial o_t}{\partial z_t} \frac{\partial z_t}{\partial W}
-= \frac{\partial L_t}{\partial o_t} G_t \, h_t
+&= \frac{\partial L_t}{\partial o_t} \frac{\partial o_t}{\partial z_t} \frac{\partial z_t}{\partial W} \\
+&= \frac{\partial L_t}{\partial o_t} G_t \, h_t
+\end{aligned}
 $$
 
 - vector에서 $\partial z_t / \partial W$ 는 matrix를 matrix로 미분한 3차 tensor라 곱셈 표기로 쓸 수 없어 $h_t^{\top}$ 로 남김
@@ -452,35 +473,45 @@ $i$가 작아질수록 $\partial L_t / \partial h_i$ 안에 2.3의 반복 곱 $D
 **vector 경우**
 
 $$
+\begin{aligned}
 \frac{\partial L_t}{\partial U}
-= \left( \frac{\partial L_t}{\partial h_t} \frac{\partial h_t}{\partial a_t} \right)^{\top} x_t^{\top}
-+ \left( \frac{\partial L_t}{\partial h_t} \frac{\partial h_t}{\partial h_{t-1}} \frac{\partial h_{t-1}}{\partial a_{t-1}} \right)^{\top} x_{t-1}^{\top}
-+ \left( \frac{\partial L_t}{\partial h_t} \frac{\partial h_t}{\partial h_{t-1}} \frac{\partial h_{t-1}}{\partial h_{t-2}} \frac{\partial h_{t-2}}{\partial a_{t-2}} \right)^{\top} x_{t-2}^{\top}
-+ \cdots
+&= \left( \frac{\partial L_t}{\partial h_t} \frac{\partial h_t}{\partial a_t} \right)^{\top} x_t^{\top} \\
+&\quad + \left( \frac{\partial L_t}{\partial h_t} \frac{\partial h_t}{\partial h_{t-1}} \frac{\partial h_{t-1}}{\partial a_{t-1}} \right)^{\top} x_{t-1}^{\top} \\
+&\quad + \left( \frac{\partial L_t}{\partial h_t} \frac{\partial h_t}{\partial h_{t-1}} \frac{\partial h_{t-1}}{\partial h_{t-2}} \frac{\partial h_{t-2}}{\partial a_{t-2}} \right)^{\top} x_{t-2}^{\top} \\
+&\quad + \cdots
+\end{aligned}
 $$
 
 $$
-= \left( \frac{\partial L_t}{\partial h_t} D_t \right)^{\top} x_t^{\top}
-+ \left( \frac{\partial L_t}{\partial h_t} D_t V D_{t-1} \right)^{\top} x_{t-1}^{\top}
-+ \left( \frac{\partial L_t}{\partial h_t} D_t V D_{t-1} V D_{t-2} \right)^{\top} x_{t-2}^{\top}
-+ \cdots
+\begin{aligned}
+\frac{\partial L_t}{\partial U}
+&= \left( \frac{\partial L_t}{\partial h_t} D_t \right)^{\top} x_t^{\top} \\
+&\quad + \left( \frac{\partial L_t}{\partial h_t} D_t V D_{t-1} \right)^{\top} x_{t-1}^{\top} \\
+&\quad + \left( \frac{\partial L_t}{\partial h_t} D_t V D_{t-1} V D_{t-2} \right)^{\top} x_{t-2}^{\top} \\
+&\quad + \cdots
+\end{aligned}
 $$
 
 **scalar 경우**
 
 $$
+\begin{aligned}
 \frac{\partial L_t}{\partial U}
-= \frac{\partial L_t}{\partial h_t} \frac{\partial h_t}{\partial a_t} \frac{\partial a_t}{\partial U}
-+ \frac{\partial L_t}{\partial h_t} \frac{\partial h_t}{\partial h_{t-1}} \frac{\partial h_{t-1}}{\partial a_{t-1}} \frac{\partial a_{t-1}}{\partial U}
-+ \frac{\partial L_t}{\partial h_t} \frac{\partial h_t}{\partial h_{t-1}} \frac{\partial h_{t-1}}{\partial h_{t-2}} \frac{\partial h_{t-2}}{\partial a_{t-2}} \frac{\partial a_{t-2}}{\partial U}
-+ \cdots
+&= \frac{\partial L_t}{\partial h_t} \frac{\partial h_t}{\partial a_t} \frac{\partial a_t}{\partial U} \\
+&\quad + \frac{\partial L_t}{\partial h_t} \frac{\partial h_t}{\partial h_{t-1}} \frac{\partial h_{t-1}}{\partial a_{t-1}} \frac{\partial a_{t-1}}{\partial U} \\
+&\quad + \frac{\partial L_t}{\partial h_t} \frac{\partial h_t}{\partial h_{t-1}} \frac{\partial h_{t-1}}{\partial h_{t-2}} \frac{\partial h_{t-2}}{\partial a_{t-2}} \frac{\partial a_{t-2}}{\partial U} \\
+&\quad + \cdots
+\end{aligned}
 $$
 
 $$
-= \frac{\partial L_t}{\partial h_t} D_t \, x_t
-+ \frac{\partial L_t}{\partial h_t} D_t V D_{t-1} \, x_{t-1}
-+ \frac{\partial L_t}{\partial h_t} D_t V D_{t-1} V D_{t-2} \, x_{t-2}
-+ \cdots
+\begin{aligned}
+\frac{\partial L_t}{\partial U}
+&= \frac{\partial L_t}{\partial h_t} D_t \, x_t \\
+&\quad + \frac{\partial L_t}{\partial h_t} D_t V D_{t-1} \, x_{t-1} \\
+&\quad + \frac{\partial L_t}{\partial h_t} D_t V D_{t-1} V D_{t-2} \, x_{t-2} \\
+&\quad + \cdots
+\end{aligned}
 $$
 
 - vector에서 $\partial a_i / \partial U$ 는 3차 tensor라 곱셈 표기로 쓸 수 없어 $x_i^{\top}$ 로 남김
@@ -588,35 +619,45 @@ $$
 **vector 경우**
 
 $$
+\begin{aligned}
 \frac{\partial L_t}{\partial V}
-= \left( \frac{\partial L_t}{\partial h_t} \frac{\partial h_t}{\partial a_t} \right)^{\top} h_{t-1}^{\top}
-+ \left( \frac{\partial L_t}{\partial h_t} \frac{\partial h_t}{\partial h_{t-1}} \frac{\partial h_{t-1}}{\partial a_{t-1}} \right)^{\top} h_{t-2}^{\top}
-+ \left( \frac{\partial L_t}{\partial h_t} \frac{\partial h_t}{\partial h_{t-1}} \frac{\partial h_{t-1}}{\partial h_{t-2}} \frac{\partial h_{t-2}}{\partial a_{t-2}} \right)^{\top} h_{t-3}^{\top}
-+ \cdots
+&= \left( \frac{\partial L_t}{\partial h_t} \frac{\partial h_t}{\partial a_t} \right)^{\top} h_{t-1}^{\top} \\
+&\quad + \left( \frac{\partial L_t}{\partial h_t} \frac{\partial h_t}{\partial h_{t-1}} \frac{\partial h_{t-1}}{\partial a_{t-1}} \right)^{\top} h_{t-2}^{\top} \\
+&\quad + \left( \frac{\partial L_t}{\partial h_t} \frac{\partial h_t}{\partial h_{t-1}} \frac{\partial h_{t-1}}{\partial h_{t-2}} \frac{\partial h_{t-2}}{\partial a_{t-2}} \right)^{\top} h_{t-3}^{\top} \\
+&\quad + \cdots
+\end{aligned}
 $$
 
 $$
-= \left( \frac{\partial L_t}{\partial h_t} D_t \right)^{\top} h_{t-1}^{\top}
-+ \left( \frac{\partial L_t}{\partial h_t} D_t V D_{t-1} \right)^{\top} h_{t-2}^{\top}
-+ \left( \frac{\partial L_t}{\partial h_t} D_t V D_{t-1} V D_{t-2} \right)^{\top} h_{t-3}^{\top}
-+ \cdots
+\begin{aligned}
+\frac{\partial L_t}{\partial V}
+&= \left( \frac{\partial L_t}{\partial h_t} D_t \right)^{\top} h_{t-1}^{\top} \\
+&\quad + \left( \frac{\partial L_t}{\partial h_t} D_t V D_{t-1} \right)^{\top} h_{t-2}^{\top} \\
+&\quad + \left( \frac{\partial L_t}{\partial h_t} D_t V D_{t-1} V D_{t-2} \right)^{\top} h_{t-3}^{\top} \\
+&\quad + \cdots
+\end{aligned}
 $$
 
 **scalar 경우**
 
 $$
+\begin{aligned}
 \frac{\partial L_t}{\partial V}
-= \frac{\partial L_t}{\partial h_t} \frac{\partial h_t}{\partial a_t} \frac{\partial a_t}{\partial V}
-+ \frac{\partial L_t}{\partial h_t} \frac{\partial h_t}{\partial h_{t-1}} \frac{\partial h_{t-1}}{\partial a_{t-1}} \frac{\partial a_{t-1}}{\partial V}
-+ \frac{\partial L_t}{\partial h_t} \frac{\partial h_t}{\partial h_{t-1}} \frac{\partial h_{t-1}}{\partial h_{t-2}} \frac{\partial h_{t-2}}{\partial a_{t-2}} \frac{\partial a_{t-2}}{\partial V}
-+ \cdots
+&= \frac{\partial L_t}{\partial h_t} \frac{\partial h_t}{\partial a_t} \frac{\partial a_t}{\partial V} \\
+&\quad + \frac{\partial L_t}{\partial h_t} \frac{\partial h_t}{\partial h_{t-1}} \frac{\partial h_{t-1}}{\partial a_{t-1}} \frac{\partial a_{t-1}}{\partial V} \\
+&\quad + \frac{\partial L_t}{\partial h_t} \frac{\partial h_t}{\partial h_{t-1}} \frac{\partial h_{t-1}}{\partial h_{t-2}} \frac{\partial h_{t-2}}{\partial a_{t-2}} \frac{\partial a_{t-2}}{\partial V} \\
+&\quad + \cdots
+\end{aligned}
 $$
 
 $$
-= \frac{\partial L_t}{\partial h_t} D_t \, h_{t-1}
-+ \frac{\partial L_t}{\partial h_t} D_t V D_{t-1} \, h_{t-2}
-+ \frac{\partial L_t}{\partial h_t} D_t V D_{t-1} V D_{t-2} \, h_{t-3}
-+ \cdots
+\begin{aligned}
+\frac{\partial L_t}{\partial V}
+&= \frac{\partial L_t}{\partial h_t} D_t \, h_{t-1} \\
+&\quad + \frac{\partial L_t}{\partial h_t} D_t V D_{t-1} \, h_{t-2} \\
+&\quad + \frac{\partial L_t}{\partial h_t} D_t V D_{t-1} V D_{t-2} \, h_{t-3} \\
+&\quad + \cdots
+\end{aligned}
 $$
 
 - vector에서 $\partial a_i / \partial V$ 는 3차 tensor라 곱셈 표기로 쓸 수 없어 $h_{i-1}^{\top}$ 로 남김
@@ -715,53 +756,77 @@ $$
 
 여기까지 합이 두 번 등장했으므로 구분해 둘 필요가 있음.
 
-첫 번째는 **usage에 대한 합** 임. 2.5와 2.6에서 하나의 loss $L_t$ 안에서 $U$와 $V$가 여러 time step에 반복 사용되어 항이 여러 개 생겼고, 그 항들을 더한 것이 $\partial L_t / \partial U$ 와 $\partial L_t / \partial V$ 였음. $W$는 usage가 하나뿐이라 이 합이 나타나지 않았음.
+첫 번째는 **usage에 대한 합** 임. 하나의 loss $L_t$ 안에서 $U$와 $V$가 여러 time step에 반복 사용되므로 usage마다 항이 하나씩 생기고, 그 항들을 더한 것이 2.5와 2.6의 결과였음.
+
+$$
+\frac{\partial L_t}{\partial U}
+= \sum_{i} \frac{\partial L_t}{\partial h_i} \frac{\partial h_i}{\partial a_i} \frac{\partial a_i}{\partial U}
+$$
+
+$$
+\frac{\partial L_t}{\partial V}
+= \sum_{i} \frac{\partial L_t}{\partial h_i} \frac{\partial h_i}{\partial a_i} \frac{\partial a_i}{\partial V}
+$$
+
+$W$는 usage가 하나뿐이므로 이 합이 나타나지 않고 항 하나로 끝남.
+
+$$
+\frac{\partial L_t}{\partial W}
+= \frac{\partial L_t}{\partial o_t} \frac{\partial o_t}{\partial W}
+$$
 
 두 번째는 **loss에 대한 합** 임. 전체 loss는 각 time step loss의 합이므로, shared parameter의 최종 gradient는 각 $L_t$에 대한 gradient를 다시 합산하여 얻음.
 
 $$
 \frac{\partial L}{\partial U} = \sum_{t=1}^{T} \frac{\partial L_t}{\partial U}
-\qquad
+$$
+
+$$
 \frac{\partial L}{\partial V} = \sum_{t=1}^{T} \frac{\partial L_t}{\partial V}
-\qquad
+$$
+
+$$
 \frac{\partial L}{\partial W} = \sum_{t=1}^{T} \frac{\partial L_t}{\partial W}
 $$
 
 <!-- 각 time step loss의 gradient가 하나의 shared parameter gradient로 합산되는 과정 | source: ./figures/07_accumulation.svg -->
-<svg xmlns="http://www.w3.org/2000/svg" width="100%" viewBox="0 0 680 480" role="img" aria-labelledby="f7t f7d">
+<svg xmlns="http://www.w3.org/2000/svg" width="100%" viewBox="0 0 680 552" role="img" aria-labelledby="f7t f7d">
   <title id="f7t">두 종류의 합</title>
   <desc id="f7d">하나의 loss 안에서 usage에 대한 합과, 모든 time step의 loss에 대한 합을 구분해 나타낸 그림</desc>
   <defs><marker id="ar7" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0L10 5L0 10Z" fill="#64748b"/></marker></defs>
-  <rect width="680" height="480" rx="20" fill="#f8fafc"/>
+  <rect width="680" height="552" rx="20" fill="#f8fafc"/>
   <g font-family="Arial, 'Noto Sans KR', sans-serif">
     <text x="32" y="36" font-size="17" font-weight="700" fill="#0f172a">두 종류의 합</text>
-    <rect x="28" y="58" width="624" height="186" rx="14" fill="#ffffff" stroke="#ddd6fe" stroke-width="1.5"/>
+    <rect x="28" y="58" width="624" height="250" rx="14" fill="#ffffff" stroke="#ddd6fe" stroke-width="1.5"/>
     <rect x="44" y="72" width="278" height="26" rx="13" fill="#ede9fe"/>
     <text x="183" y="90" text-anchor="middle" font-size="12" font-weight="700" fill="#6d28d9">A. usage에 대한 합 · 하나의 L<tspan baseline-shift="sub" font-size="9">t</tspan> 안에서</text>
-    <g fill="#ede9fe" stroke="#7c3aed" stroke-width="1.5"><rect x="48" y="110" width="152" height="30" rx="8"/><rect x="48" y="148" width="152" height="30" rx="8"/><rect x="48" y="186" width="152" height="30" rx="8"/></g>
-    <g text-anchor="middle" fill="#4c1d95" font-size="12" font-weight="700"><text x="124" y="130">usage at i = t</text><text x="124" y="168">usage at i = t−1</text><text x="124" y="206">usage at i = t−2</text></g>
-    <text x="124" y="232" text-anchor="middle" font-size="13" font-weight="700" fill="#7c3aed">⋮</text>
-    <g stroke="#64748b" stroke-width="1.6" fill="none" marker-end="url(#ar7)"><path d="M202 125C248 125 248 155 276 160"/><path d="M202 163H276"/><path d="M202 201C248 201 248 172 276 166"/></g>
-    <circle cx="298" cy="163" r="20" fill="#fff7ed" stroke="#ea580c" stroke-width="2"/>
-    <text x="298" y="170" text-anchor="middle" font-size="18" font-weight="700" fill="#ea580c">Σ</text>
-    <path d="M320 163H368" stroke="#64748b" stroke-width="1.6" fill="none" marker-end="url(#ar7)"/>
-    <rect x="372" y="139" width="180" height="48" rx="10" fill="#ede9fe" stroke="#7c3aed" stroke-width="1.5"/>
-    <text x="462" y="170" text-anchor="middle" font-size="15" font-weight="700" fill="#4c1d95">∂L<tspan baseline-shift="sub" font-size="10">t</tspan> / ∂V</text>
-    <text x="462" y="214" text-anchor="middle" font-size="10" fill="#6d28d9">W 는 usage가 하나뿐이라 이 합이 나타나지 않음</text>
-    <rect x="28" y="264" width="624" height="180" rx="14" fill="#ffffff" stroke="#bbf7d0" stroke-width="1.5"/>
-    <rect x="44" y="278" width="278" height="26" rx="13" fill="#dcfce7"/>
-    <text x="183" y="296" text-anchor="middle" font-size="12" font-weight="700" fill="#166534">B. loss에 대한 합 · 모든 time step</text>
-    <g fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"><rect x="48" y="312" width="152" height="30" rx="8"/><rect x="48" y="348" width="152" height="30" rx="8"/><rect x="48" y="384" width="152" height="30" rx="8"/></g>
-    <g text-anchor="middle" fill="#14532d" font-size="13" font-weight="700"><text x="124" y="332">∂L<tspan baseline-shift="sub" font-size="9">t−1</tspan> / ∂V</text><text x="124" y="368">∂L<tspan baseline-shift="sub" font-size="9">t</tspan> / ∂V</text><text x="124" y="404">∂L<tspan baseline-shift="sub" font-size="9">t+1</tspan> / ∂V</text></g>
-    <text x="124" y="428" text-anchor="middle" font-size="13" font-weight="700" fill="#16a34a">⋮</text>
-    <g stroke="#64748b" stroke-width="1.6" fill="none" marker-end="url(#ar7)"><path d="M202 327C248 327 248 355 276 360"/><path d="M202 363H276"/><path d="M202 399C248 399 248 372 276 366"/></g>
-    <circle cx="298" cy="363" r="20" fill="#fff7ed" stroke="#ea580c" stroke-width="2"/>
-    <text x="298" y="370" text-anchor="middle" font-size="18" font-weight="700" fill="#ea580c">Σ</text>
-    <path d="M320 363H368" stroke="#64748b" stroke-width="1.6" fill="none" marker-end="url(#ar7)"/>
-    <rect x="372" y="339" width="220" height="48" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
-    <text x="482" y="360" text-anchor="middle" font-size="15" font-weight="700" fill="#14532d">∂L / ∂V</text>
-    <text x="482" y="378" text-anchor="middle" font-size="10" fill="#166534">optimizer가 V 를 한 번 update</text>
-    <text x="340" y="464" text-anchor="middle" font-size="11" fill="#475569">U 와 W 에도 같은 원리가 적용되며, W 는 A 단계가 없음</text>
+    <g fill="#ede9fe" stroke="#7c3aed" stroke-width="1.5"><rect x="40" y="110" width="170" height="44" rx="8"/><rect x="40" y="162" width="170" height="44" rx="8"/><rect x="40" y="214" width="170" height="44" rx="8"/></g>
+    <text x="228" y="136" font-size="9" fill="#6d28d9">i = t</text>
+    <text x="228" y="188" font-size="9" fill="#6d28d9">i = t−1</text>
+    <text x="228" y="240" font-size="9" fill="#6d28d9">i = t−2</text>
+    <text x="89" y="126" text-anchor="middle" font-size="9" fill="#4c1d95">∂L<tspan baseline-shift="sub" font-size="7">t</tspan></text><line x1="73" y1="132" x2="105" y2="132" stroke="#4c1d95" stroke-width="0.6"/><text x="89" y="146" text-anchor="middle" font-size="9" fill="#4c1d95">∂h<tspan baseline-shift="sub" font-size="7">t</tspan></text><text x="125" y="126" text-anchor="middle" font-size="9" fill="#4c1d95">∂h<tspan baseline-shift="sub" font-size="7">t</tspan></text><line x1="109" y1="132" x2="141" y2="132" stroke="#4c1d95" stroke-width="0.6"/><text x="125" y="146" text-anchor="middle" font-size="9" fill="#4c1d95">∂a<tspan baseline-shift="sub" font-size="7">t</tspan></text><text x="161" y="126" text-anchor="middle" font-size="9" fill="#4c1d95">∂a<tspan baseline-shift="sub" font-size="7">t</tspan></text><line x1="145" y1="132" x2="177" y2="132" stroke="#4c1d95" stroke-width="0.6"/><text x="161" y="146" text-anchor="middle" font-size="9" fill="#4c1d95">∂V</text><text x="89" y="178" text-anchor="middle" font-size="9" fill="#4c1d95">∂L<tspan baseline-shift="sub" font-size="7">t</tspan></text><line x1="73" y1="184" x2="105" y2="184" stroke="#4c1d95" stroke-width="0.6"/><text x="89" y="198" text-anchor="middle" font-size="9" fill="#4c1d95">∂h<tspan baseline-shift="sub" font-size="7">t−1</tspan></text><text x="125" y="178" text-anchor="middle" font-size="9" fill="#4c1d95">∂h<tspan baseline-shift="sub" font-size="7">t−1</tspan></text><line x1="109" y1="184" x2="141" y2="184" stroke="#4c1d95" stroke-width="0.6"/><text x="125" y="198" text-anchor="middle" font-size="9" fill="#4c1d95">∂a<tspan baseline-shift="sub" font-size="7">t−1</tspan></text><text x="161" y="178" text-anchor="middle" font-size="9" fill="#4c1d95">∂a<tspan baseline-shift="sub" font-size="7">t−1</tspan></text><line x1="145" y1="184" x2="177" y2="184" stroke="#4c1d95" stroke-width="0.6"/><text x="161" y="198" text-anchor="middle" font-size="9" fill="#4c1d95">∂V</text><text x="89" y="230" text-anchor="middle" font-size="9" fill="#4c1d95">∂L<tspan baseline-shift="sub" font-size="7">t</tspan></text><line x1="73" y1="236" x2="105" y2="236" stroke="#4c1d95" stroke-width="0.6"/><text x="89" y="250" text-anchor="middle" font-size="9" fill="#4c1d95">∂h<tspan baseline-shift="sub" font-size="7">t−2</tspan></text><text x="125" y="230" text-anchor="middle" font-size="9" fill="#4c1d95">∂h<tspan baseline-shift="sub" font-size="7">t−2</tspan></text><line x1="109" y1="236" x2="141" y2="236" stroke="#4c1d95" stroke-width="0.6"/><text x="125" y="250" text-anchor="middle" font-size="9" fill="#4c1d95">∂a<tspan baseline-shift="sub" font-size="7">t−2</tspan></text><text x="161" y="230" text-anchor="middle" font-size="9" fill="#4c1d95">∂a<tspan baseline-shift="sub" font-size="7">t−2</tspan></text><line x1="145" y1="236" x2="177" y2="236" stroke="#4c1d95" stroke-width="0.6"/><text x="161" y="250" text-anchor="middle" font-size="9" fill="#4c1d95">∂V</text>
+    <text x="125" y="284" text-anchor="middle" font-size="13" font-weight="700" fill="#7c3aed">⋮</text>
+    <g stroke="#64748b" stroke-width="1.6" fill="none" marker-end="url(#ar7)"><path d="M266 132C286 132 286 172 278 180"/><path d="M266 184H278"/><path d="M266 236C286 236 286 196 278 188"/></g>
+    <circle cx="300" cy="184" r="20" fill="#fff7ed" stroke="#ea580c" stroke-width="2"/>
+    <text x="300" y="191" text-anchor="middle" font-size="18" font-weight="700" fill="#ea580c">Σ</text>
+    <path d="M322 184H368" stroke="#64748b" stroke-width="1.6" fill="none" marker-end="url(#ar7)"/>
+    <rect x="372" y="160" width="180" height="48" rx="10" fill="#ede9fe" stroke="#7c3aed" stroke-width="1.5"/>
+    <text x="462" y="191" text-anchor="middle" font-size="15" font-weight="700" fill="#4c1d95">∂L<tspan baseline-shift="sub" font-size="10">t</tspan> / ∂V</text>
+    <text x="462" y="240" text-anchor="middle" font-size="10" fill="#6d28d9">W 는 usage가 하나뿐이라 이 합이 나타나지 않음</text>
+    <rect x="28" y="328" width="624" height="180" rx="14" fill="#ffffff" stroke="#bbf7d0" stroke-width="1.5"/>
+    <rect x="44" y="342" width="278" height="26" rx="13" fill="#dcfce7"/>
+    <text x="183" y="360" text-anchor="middle" font-size="12" font-weight="700" fill="#166534">B. loss에 대한 합 · 모든 time step</text>
+    <g fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"><rect x="48" y="372" width="152" height="30" rx="8"/><rect x="48" y="408" width="152" height="30" rx="8"/><rect x="48" y="444" width="152" height="30" rx="8"/></g>
+    <g text-anchor="middle" fill="#14532d" font-size="13" font-weight="700"><text x="124" y="392">∂L<tspan baseline-shift="sub" font-size="9">t−1</tspan> / ∂V</text><text x="124" y="428">∂L<tspan baseline-shift="sub" font-size="9">t</tspan> / ∂V</text><text x="124" y="464">∂L<tspan baseline-shift="sub" font-size="9">t+1</tspan> / ∂V</text></g>
+    <text x="124" y="490" text-anchor="middle" font-size="13" font-weight="700" fill="#16a34a">⋮</text>
+    <g stroke="#64748b" stroke-width="1.6" fill="none" marker-end="url(#ar7)"><path d="M202 387C248 387 248 415 276 420"/><path d="M202 423H276"/><path d="M202 459C248 459 248 432 276 426"/></g>
+    <circle cx="298" cy="423" r="20" fill="#fff7ed" stroke="#ea580c" stroke-width="2"/>
+    <text x="298" y="430" text-anchor="middle" font-size="18" font-weight="700" fill="#ea580c">Σ</text>
+    <path d="M320 423H368" stroke="#64748b" stroke-width="1.6" fill="none" marker-end="url(#ar7)"/>
+    <rect x="372" y="399" width="220" height="48" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+    <text x="482" y="420" text-anchor="middle" font-size="15" font-weight="700" fill="#14532d">∂L / ∂V</text>
+    <text x="482" y="438" text-anchor="middle" font-size="10" fill="#166534">optimizer가 V 를 한 번 update</text>
+    <text x="340" y="532" text-anchor="middle" font-size="11" fill="#475569">U 와 W 에도 같은 원리가 적용되며, W 는 A 단계가 없음</text>
   </g>
 </svg>
 
