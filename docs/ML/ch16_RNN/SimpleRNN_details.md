@@ -159,6 +159,8 @@ $$
 
 이 parameter sharing이 이후 BPTT에서 하나의 parameter gradient가 **여러 개의 항의 합** 으로 나타나는 직접적인 이유가 됨.
 
+동일한 parameter가 여러 time step에서 사용되므로 loss에 영향을 주는 경로가 여러 개이고, chain rule에 의해 각 경로의 gradient contribution이 더해짐. 각 time step의 parameter는 같지만 그 usage에서 발생하는 contribution은 time step마다 다르므로, 항들을 하나로 묶을 수 없음.
+
 ---
 
 ### 1.3 Earlier Information이 Hidden State에 유지되는 과정
