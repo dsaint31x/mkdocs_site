@@ -511,7 +511,7 @@ $$
 \frac{\partial^{+} a_i}{\partial U}
 $$
 
-마지막 factor에 $\partial^{+}$ 를 쓴 이유는 다음과 같음. $a_i = U x_i + V h_{i-1} + b_h$ 에서 $h_{i-1}$ 도 $U$에 의존하므로, $\partial a_i / \partial U$ 를 글자 그대로 읽으면 $h_{i-1}$ 을 거치는 경로까지 포함하게 됨. 그 경로는 이미 $i-1$ 의 항이 담당하고 있으므로 중복이 됨.
+마지막 factor에 $\partial^{+}$ 를 쓴 이유는 다음과 같음. $a_i = U x_i + V h_{i-1} + b_h$ 에서 $h_{i-1}$ 도 $U$에 의존하므로, $\partial a_i / \partial U$ 를 글자 그대로 읽으면 $h_{i-1}$ 을 거치는 경로까지 포함하게 됨. 그 경로는 이미 $i-1$ 의 항이 담당하고 있으므로 $i$ 항에서 다시 처리하면 중복이 됨.
 
 따라서 여기서는 $h_{i-1}$ 을 상수로 두는 immediate partial만 사용하며, 이를 $\partial^{+}$ 로 표기함.
 
@@ -534,9 +534,9 @@ $i$가 작아질수록 $\partial L_t / \partial h_i$ 안에 2.3의 반복 곱 $D
 $$
 \begin{aligned}
 \frac{\partial L_t}{\partial U}
-&= \left( \frac{\partial L_t}{\partial h_t} \frac{\partial h_t}{\partial a_t} \right)^{\top} x_t^{\top} \\
-&\quad + \left( \frac{\partial L_t}{\partial h_t} \frac{\partial h_t}{\partial h_{t-1}} \frac{\partial h_{t-1}}{\partial a_{t-1}} \right)^{\top} x_{t-1}^{\top} \\
-&\quad + \left( \frac{\partial L_t}{\partial h_t} \frac{\partial h_t}{\partial h_{t-1}} \frac{\partial h_{t-1}}{\partial h_{t-2}} \frac{\partial h_{t-2}}{\partial a_{t-2}} \right)^{\top} x_{t-2}^{\top} \\
+&= \left( \frac{\partial L_t}{\partial h_t} \frac{\partial h_t}{\partial a_t} \right)^{\top} x_t^{\top} && (i = t) \\
+&\quad + \left( \frac{\partial L_t}{\partial h_t} \frac{\partial h_t}{\partial h_{t-1}} \frac{\partial h_{t-1}}{\partial a_{t-1}} \right)^{\top} x_{t-1}^{\top} && (i = t-1) \\
+&\quad + \left( \frac{\partial L_t}{\partial h_t} \frac{\partial h_t}{\partial h_{t-1}} \frac{\partial h_{t-1}}{\partial h_{t-2}} \frac{\partial h_{t-2}}{\partial a_{t-2}} \right)^{\top} x_{t-2}^{\top} && (i = t-2) \\
 &\quad + \cdots
 \end{aligned}
 $$
@@ -544,9 +544,9 @@ $$
 $$
 \begin{aligned}
 \frac{\partial L_t}{\partial U}
-&= \left( \frac{\partial L_t}{\partial h_t} D_t \right)^{\top} x_t^{\top} \\
-&\quad + \left( \frac{\partial L_t}{\partial h_t} D_t V D_{t-1} \right)^{\top} x_{t-1}^{\top} \\
-&\quad + \left( \frac{\partial L_t}{\partial h_t} D_t V D_{t-1} V D_{t-2} \right)^{\top} x_{t-2}^{\top} \\
+&= \left( \frac{\partial L_t}{\partial h_t} D_t \right)^{\top} x_t^{\top} && (i = t) \\
+&\quad + \left( \frac{\partial L_t}{\partial h_t} D_t V D_{t-1} \right)^{\top} x_{t-1}^{\top} && (i = t-1) \\
+&\quad + \left( \frac{\partial L_t}{\partial h_t} D_t V D_{t-1} V D_{t-2} \right)^{\top} x_{t-2}^{\top} && (i = t-2) \\
 &\quad + \cdots
 \end{aligned}
 $$
@@ -556,9 +556,9 @@ $$
 $$
 \begin{aligned}
 \frac{\partial L_t}{\partial U}
-&= \frac{\partial L_t}{\partial h_t} \frac{\partial h_t}{\partial a_t} \frac{\partial^{+} a_t}{\partial U} \\
-&\quad + \frac{\partial L_t}{\partial h_t} \frac{\partial h_t}{\partial h_{t-1}} \frac{\partial h_{t-1}}{\partial a_{t-1}} \frac{\partial^{+} a_{t-1}}{\partial U} \\
-&\quad + \frac{\partial L_t}{\partial h_t} \frac{\partial h_t}{\partial h_{t-1}} \frac{\partial h_{t-1}}{\partial h_{t-2}} \frac{\partial h_{t-2}}{\partial a_{t-2}} \frac{\partial^{+} a_{t-2}}{\partial U} \\
+&= \frac{\partial L_t}{\partial h_t} \frac{\partial h_t}{\partial a_t} \frac{\partial^{+} a_t}{\partial U} && (i = t) \\
+&\quad + \frac{\partial L_t}{\partial h_t} \frac{\partial h_t}{\partial h_{t-1}} \frac{\partial h_{t-1}}{\partial a_{t-1}} \frac{\partial^{+} a_{t-1}}{\partial U} && (i = t-1) \\
+&\quad + \frac{\partial L_t}{\partial h_t} \frac{\partial h_t}{\partial h_{t-1}} \frac{\partial h_{t-1}}{\partial h_{t-2}} \frac{\partial h_{t-2}}{\partial a_{t-2}} \frac{\partial^{+} a_{t-2}}{\partial U} && (i = t-2) \\
 &\quad + \cdots
 \end{aligned}
 $$
@@ -566,9 +566,9 @@ $$
 $$
 \begin{aligned}
 \frac{\partial L_t}{\partial U}
-&= \frac{\partial L_t}{\partial h_t} D_t \, x_t \\
-&\quad + \frac{\partial L_t}{\partial h_t} D_t V D_{t-1} \, x_{t-1} \\
-&\quad + \frac{\partial L_t}{\partial h_t} D_t V D_{t-1} V D_{t-2} \, x_{t-2} \\
+&= \frac{\partial L_t}{\partial h_t} D_t \, x_t && (i = t) \\
+&\quad + \frac{\partial L_t}{\partial h_t} D_t V D_{t-1} \, x_{t-1} && (i = t-1) \\
+&\quad + \frac{\partial L_t}{\partial h_t} D_t V D_{t-1} V D_{t-2} \, x_{t-2} && (i = t-2) \\
 &\quad + \cdots
 \end{aligned}
 $$
@@ -680,9 +680,9 @@ $$
 $$
 \begin{aligned}
 \frac{\partial L_t}{\partial V}
-&= \left( \frac{\partial L_t}{\partial h_t} \frac{\partial h_t}{\partial a_t} \right)^{\top} h_{t-1}^{\top} \\
-&\quad + \left( \frac{\partial L_t}{\partial h_t} \frac{\partial h_t}{\partial h_{t-1}} \frac{\partial h_{t-1}}{\partial a_{t-1}} \right)^{\top} h_{t-2}^{\top} \\
-&\quad + \left( \frac{\partial L_t}{\partial h_t} \frac{\partial h_t}{\partial h_{t-1}} \frac{\partial h_{t-1}}{\partial h_{t-2}} \frac{\partial h_{t-2}}{\partial a_{t-2}} \right)^{\top} h_{t-3}^{\top} \\
+&= \left( \frac{\partial L_t}{\partial h_t} \frac{\partial h_t}{\partial a_t} \right)^{\top} h_{t-1}^{\top} && (i = t) \\
+&\quad + \left( \frac{\partial L_t}{\partial h_t} \frac{\partial h_t}{\partial h_{t-1}} \frac{\partial h_{t-1}}{\partial a_{t-1}} \right)^{\top} h_{t-2}^{\top} && (i = t-1) \\
+&\quad + \left( \frac{\partial L_t}{\partial h_t} \frac{\partial h_t}{\partial h_{t-1}} \frac{\partial h_{t-1}}{\partial h_{t-2}} \frac{\partial h_{t-2}}{\partial a_{t-2}} \right)^{\top} h_{t-3}^{\top} && (i = t-2) \\
 &\quad + \cdots
 \end{aligned}
 $$
@@ -690,9 +690,9 @@ $$
 $$
 \begin{aligned}
 \frac{\partial L_t}{\partial V}
-&= \left( \frac{\partial L_t}{\partial h_t} D_t \right)^{\top} h_{t-1}^{\top} \\
-&\quad + \left( \frac{\partial L_t}{\partial h_t} D_t V D_{t-1} \right)^{\top} h_{t-2}^{\top} \\
-&\quad + \left( \frac{\partial L_t}{\partial h_t} D_t V D_{t-1} V D_{t-2} \right)^{\top} h_{t-3}^{\top} \\
+&= \left( \frac{\partial L_t}{\partial h_t} D_t \right)^{\top} h_{t-1}^{\top} && (i = t) \\
+&\quad + \left( \frac{\partial L_t}{\partial h_t} D_t V D_{t-1} \right)^{\top} h_{t-2}^{\top} && (i = t-1) \\
+&\quad + \left( \frac{\partial L_t}{\partial h_t} D_t V D_{t-1} V D_{t-2} \right)^{\top} h_{t-3}^{\top} && (i = t-2) \\
 &\quad + \cdots
 \end{aligned}
 $$
@@ -702,9 +702,9 @@ $$
 $$
 \begin{aligned}
 \frac{\partial L_t}{\partial V}
-&= \frac{\partial L_t}{\partial h_t} \frac{\partial h_t}{\partial a_t} \frac{\partial^{+} a_t}{\partial V} \\
-&\quad + \frac{\partial L_t}{\partial h_t} \frac{\partial h_t}{\partial h_{t-1}} \frac{\partial h_{t-1}}{\partial a_{t-1}} \frac{\partial^{+} a_{t-1}}{\partial V} \\
-&\quad + \frac{\partial L_t}{\partial h_t} \frac{\partial h_t}{\partial h_{t-1}} \frac{\partial h_{t-1}}{\partial h_{t-2}} \frac{\partial h_{t-2}}{\partial a_{t-2}} \frac{\partial^{+} a_{t-2}}{\partial V} \\
+&= \frac{\partial L_t}{\partial h_t} \frac{\partial h_t}{\partial a_t} \frac{\partial^{+} a_t}{\partial V} && (i = t) \\
+&\quad + \frac{\partial L_t}{\partial h_t} \frac{\partial h_t}{\partial h_{t-1}} \frac{\partial h_{t-1}}{\partial a_{t-1}} \frac{\partial^{+} a_{t-1}}{\partial V} && (i = t-1) \\
+&\quad + \frac{\partial L_t}{\partial h_t} \frac{\partial h_t}{\partial h_{t-1}} \frac{\partial h_{t-1}}{\partial h_{t-2}} \frac{\partial h_{t-2}}{\partial a_{t-2}} \frac{\partial^{+} a_{t-2}}{\partial V} && (i = t-2) \\
 &\quad + \cdots
 \end{aligned}
 $$
@@ -712,9 +712,9 @@ $$
 $$
 \begin{aligned}
 \frac{\partial L_t}{\partial V}
-&= \frac{\partial L_t}{\partial h_t} D_t \, h_{t-1} \\
-&\quad + \frac{\partial L_t}{\partial h_t} D_t V D_{t-1} \, h_{t-2} \\
-&\quad + \frac{\partial L_t}{\partial h_t} D_t V D_{t-1} V D_{t-2} \, h_{t-3} \\
+&= \frac{\partial L_t}{\partial h_t} D_t \, h_{t-1} && (i = t) \\
+&\quad + \frac{\partial L_t}{\partial h_t} D_t V D_{t-1} \, h_{t-2} && (i = t-1) \\
+&\quad + \frac{\partial L_t}{\partial h_t} D_t V D_{t-1} V D_{t-2} \, h_{t-3} && (i = t-2) \\
 &\quad + \cdots
 \end{aligned}
 $$
