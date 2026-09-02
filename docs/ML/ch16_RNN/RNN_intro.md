@@ -106,7 +106,7 @@ $$
 * 참고로 이 그림에서 한번에 들어가는 input (특정 시점의 input vector)가 바로 $\textbf{x}_{t-1}$임.
 
 > 이론상이라고 한 이유는
-> `RNN`에서 **현재 output 또는 state를 결정할 때 오래전에 입력된 input일수록 영향력이 줄어든다는 문제점 (long-term dependency problem)**을 가지고 있기 때문임.  
+> `RNN`에서 **현재 output 또는 state를 결정할 때 오래전에 입력된 input일수록 영향력이 줄어든다는 문제점 (long-term dependency problem)** 을 가지고 있기 때문임.  
 > 오래전 input이라도 현재의 output을 결정하는데 매우 중요한 정보(long-term dependency가 존재)일 수 있는데,  
 > `RNN`에서는 input이 들어온 시점이 오래될수록 현재 output에 대한 영향력이 줄어듦  
 > (오래된 일에 대한 기억력이 좋지 못하다고 볼 수 있음)
