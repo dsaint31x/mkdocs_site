@@ -47,7 +47,10 @@ $$
 * $z$ : linear combination 결과
 * $f(z)$ : class를 결정하는 activation 또는 decision function
 
-Perceptron은 hidden layer가 없음.
+Perceptron은 hidden layer가 없음:
+
+<img width="145" height="256" alt="image" src="https://github.com/user-attachments/assets/a5aac3bf-d7f3-4a0a-a140-b8c0a375e8e2" />
+
 
 * input layer에서 output으로 바로 연결되는 구조임.
 * 이 때문에 Perceptron은 Single-Layer Perceptron, 즉 SLP의 구현물로 볼 수 있음.
