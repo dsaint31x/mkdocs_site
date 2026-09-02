@@ -1,3 +1,13 @@
+---
+title: Recurrent Neural Network
+description: Recurrent Neural Network의 구조, hidden state, recurrent connection, unrolling, long-term dependency, 장단점 및 응용 분야를 설명합니다.
+tags:
+  - Deep Learning
+  - Neural Network
+  - RNN
+  - Sequential Data
+---
+
 # Recurrent Neural Network (순환신경망, `RNN`)
 
 > time series data와 같은 (임의의 길이를 가지는) sequential data를 다루는데 적합한 ANN.  
@@ -24,26 +34,36 @@ ANN은 node들을 edge로 연결한 *일종의 system* 이라고 볼 수 있다.
 > input과 output을 가지는 sub-system의 연결 방식에 따라 구분되기도 한다. 
 
 ANN의 연결방식에서  
-input에서 output으로 연결이 하나의 방향으로만 이루어진 경우, `feed-forward network`라고 부른다. 
+input에서 output으로 연결이 향하는 computational graph에 **recurrent cycle이 없는 network** 를 feed-forward network라고 부름.
 
 * feed-forward network는 일종의 memoryless system (or ***instantaneous system*** )임.
 * 이전 결과에 상관없이 현재의 input에 의해서만 output이 결정됨.
-* sequence type의 input을 처리할 때, input의 전체 length가 한번에 feed-forward network에 주어져야함.
-    * 이는 input의 크기가 고정됨을 의미.
+* 대표적인 예가 dense feed-forward network임
+    * Fixed-size input을 사용하는 dense feed-forward network로 sequence를 처리하려면 sequence를 고정 길이 vector로 변환해야 함.
+    * 엄격히 애기하면 모든 feed-forward architecture에 적용되는 제약은 아니나 일반적으로는 제한되는 경우가 대다수임.
 
 Feed-forward network에 해당하는 instantaneous system과 대조되는 것이  
 바로 ***dynamic system (memory system, state machine)*** 임.  
-dynamic systems에서는 ***feedback connection이 존재*** 한다.  
+Dynamic system은 
+
+* internal state 또는 delay를 가지므로 output이 현재 input만으로 결정되지 않음. 
+* 이를 위해 dynamic systems에서는 ***feedback connection이 존재*** 하는 경우가 많음.
+* Feedback connection은 dynamic systems를 구현하거나 표현하는 한 가지 방식임.
 
 ANN 의 경우, feedback connection이 있는 구조를 `Recurrent Neural Network` (`RNN`) 라고 칭함.
 
 * feedback connection은 system이나 subsystem에서의 ***output을 앞단이나 자신의 input으로 사용되도록 연결*** 된 것을 가리킴.
     * feedback connection이 있는 경우, network는 일종의 loop를 이루게 됨.
-* dynamic system은 feedback connection을 통해 과거의 output이 현재의 output에 영향을 주도록 구현됨.
+* dynamic system은 일반적으로 feedback connection을 통해 과거의 output이 현재의 output에 영향을 주도록 구현됨.
     * dynamic system은 과거의 `input`과 `output`에 대한 기억에 해당하는 `state`를 가지고 있으며,
     * ***`state`와 `input`에 의해 `output`이 결정*** 된다.
     * 현재의 `state`는 과거의 `state`와 현재의 `input`에 의해 결정됨.
-* 과거의 output을 기억하여 이를 이용한다고 볼 수 있으며 때문에 ***memory를 가진 system*** 이라고 부름.
+* hidden state를 통해 earlier input과 previous hidden state의 information을 기억하여 이를 이용한다고 볼 수 있으며 때문에 ***memory를 가진 system*** 이라고 부름.
+
+Simple RNN에서는 
+
+* previous hidden state가 current hidden state에 recurrently 반영되며,
+* 이를 통해 earlier input의 information이 current output에 영향을 줄 수 있음.
 
 참고 : [feedback connection 요약자료](https://dsaint31.tistory.com/600)  
 참고 : [Dynamic System and Instantaneous System](https://bme808.blogspot.com/2022/10/dynamic-system.html)
@@ -68,15 +88,18 @@ ANN 의 경우, feedback connection이 있는 구조를 `Recurrent Neural Networ
 이를 수식적으로 표현하면 다음과 같음.
 
 $$ 
-\textbf{h}_t = f(U \textbf{x}_t + W \textbf{h}_{t-1} + \textbf{b})\\ 
-\textbf{y}_t = g(V \textbf{h}_t + \textbf{c})
+\textbf{h}_t = f(U \textbf{x}_t + V \textbf{h}_{t-1} + \textbf{b}_h)\\ 
+\textbf{y}_t = g(W \textbf{h}_t + \textbf{b}_o)
 $$
 
 * 위 그림에서는 bias 에 해당하는 $\textbf{b}, \textbf{c}$는 빠져 있음.
 * $f(...)$ : non-linear activation function, (`tanh`, `ReLU` 등)
-* $g(...)$ : non-linear output function, (`softmax`, `sigmoid` 등)
-* $W, V, U$: parameters (=weight matrix)
-* $\textbf{c}, \textbf{b}$: bias vector
+* $g(...)$ : output function, (`identity`, `softmax`, `sigmoid` 등)
+* $U, V, W$: parameters (=weight matrix)
+    * `U`: input-to-hidden weight matrix
+    * `V`: hidden-to-hidden recurrent weight matrix
+    * `W`: hidden-to-output weight matrix
+* $\textbf{b}_h, \textbf{b}_o$: bias vector
   
 
 > `RNN` 의 구조적 특징은 feedback connection을 가지고 있다는 것임.  
@@ -84,9 +107,10 @@ $$
 > 동시에 임의의 길이의 input data를 다룰 수 있음.
 
 `RNN`은 이전 input에 대한 정보를 가지고 있는 state가 있기 때문에  
-이론상으로는 무한히 긴 input sequence 을 처리할 수 있다 (매 time에 입력받는 데이터 사이즈는 고정됨).
+NN은 parameter 수를 변경하지 않고 variable-length sequence를 처리할 수 있음  
+(매 time에 입력받는 데이터 사이즈인 feature dimension은 고정됨).
 
-* sequence에서 특정 time의 data point에 해당하는 vector (이 vector의 최대길이는 고정)가 `RNN`에 입력됨.
+* Sequence의 각 time step에서는 고정된 feature dimension을 가진 input vector가 `RNN`에 입력됨.
 * 이후 다음 time의 data point에 해당하는 vector가 `RNN`에 입력됨.
 * 이 경우 input들은 각각이 입력된 시간을 가지며, state들도 어느 시점의 state인지가 구분됨.
 
@@ -106,9 +130,11 @@ $$
 * 참고로 이 그림에서 한번에 들어가는 input (특정 시점의 input vector)가 바로 $\textbf{x}_{t-1}$임.
 
 > 이론상이라고 한 이유는
-> `RNN`에서 **현재 output 또는 state를 결정할 때 오래전에 입력된 input일수록 영향력이 줄어든다는 문제점 (long-term dependency problem)** 을 가지고 있기 때문임.  
+> RNN에서는 earlier input의 information이 successive hidden states를 거쳐 later hidden state에 유지되어야 함.
+> 그러나 recurrent state transition이 반복되면서 earlier information을 구분하는 hidden-state representation이 충분히 유지되지 않을 수 있음.  
 > 오래전 input이라도 현재의 output을 결정하는데 매우 중요한 정보(long-term dependency가 존재)일 수 있는데,  
-> `RNN`에서는 input이 들어온 시점이 오래될수록 현재 output에 대한 영향력이 줄어듦  
+> `RNN`에서는 input이 들어온 시점이 오래될수록 현재 output에 대한 영향력이 감소하기 쉬운 구조인지라
+> distant time steps 사이의 long-term dependency를 학습하기 어렵다는 한계를 가짐.
 > (오래된 일에 대한 기억력이 좋지 못하다고 볼 수 있음)
 > 
 > 달라 말하면, RNN은 "멀리 떨어진 time step들 사이의 의존 관계(=long-term dependency)" 를 제대로 모델링하기 어려움.  
