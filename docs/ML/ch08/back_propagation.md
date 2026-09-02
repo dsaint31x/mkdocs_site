@@ -13,7 +13,7 @@
 computational graph를 역방향으로 따라가며 gradient를 계산하는 Reverse-mode AD 과정을  
 주로 가리킴.
 
-<img width="926" height="501" alt="image" src="https://github.com/user-attachments/assets/1b0c038b-3e1f-4d06-bf58-deec2c608847" />
+<img width="740" height="400" alt="image" src="https://github.com/user-attachments/assets/1b0c038b-3e1f-4d06-bf58-deec2c608847" />
 
 * ref. : Anlaytics Vidhya
 
