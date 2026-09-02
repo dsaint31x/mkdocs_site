@@ -21,7 +21,6 @@ tags:
   - long-term dependency
   - LSTM
   - GRU
-date: 2026-09-01
 ---
 
 # Simple RNN: Forward Pass, BPTT, and Long-term Dependency Problem
@@ -30,7 +29,7 @@ date: 2026-09-01
 
 ### 1.1 Forward Computation
 
-이 글에서 사용하는 symbol은 다음과 같음.
+이 글에서 사용하는 symbol은 다음과 같음:
 
 - $x_t$: time step $t$의 input vector
 - $h_t$: time step $t$의 hidden state vector
@@ -62,8 +61,9 @@ o_t &= g(z_t)
 $$
 
 Pre-activation $a_t$와 $z_t$를 명시적으로 분리해 둔 이유는  
-이후 BPTT를 유도할 때 activation을 통과하는 local derivative와   
-weight를 통과하는 local derivative를 각각 따로 다루기 위함임.
+
+* 이후 BPTT를 유도할 때 activation을 통과하는 local derivative와   
+* weight를 통과하는 local derivative를 각각 따로 다루기 위함임.
 
 <!-- 한 time step의 계산을 pre-activation 단위로 분리한 그림 | source: ./figures/00_single_step.svg -->
 <svg xmlns="http://www.w3.org/2000/svg" width="100%" viewBox="0 0 680 500" role="img" aria-labelledby="f0t f0d">
@@ -1172,3 +1172,9 @@ Earlier information은 successive recurrent state transition 동안 hidden-state
 ### 4.4 LSTM과 GRU
 
 LSTM과 GRU는 information을 선택적으로 preserve하고 update하는 **gating mechanism** 을 도입하여 Simple RNN의 long-term dependency problem을 완화하는 RNN architecture임.
+
+## 같이보면 좋은 자료들
+
+* [혁펜하임님의 RNN 리뷰](https://youtu.be/50Miugxkmgo?si=KrH0SHftSVsGX1gm)
+* [혁펜하임님의 보다 긴 동영상. TeddyNote와 같이 진행되는 거라 좀 길긴 함](https://www.youtube.com/live/slqdel6HoCI?si=9ToG_oLtOA5oY2g6)
+* [고려대 오승상 딥러닝 Deep Learning 28 RNN Backpropagation through time](https://youtu.be/-QYPDtDQf_U?si=7_0oFGr9a1i36-Ka)
