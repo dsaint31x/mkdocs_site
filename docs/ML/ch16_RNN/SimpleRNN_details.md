@@ -63,7 +63,9 @@ $$
 o_t = g(z_t)
 $$
 
-Pre-activation $a_t$와 $z_t$를 명시적으로 분리해 둔 이유는 BPTT를 유도할 때 activation을 통과하는 local derivative와 weight를 통과하는 local derivative를 각각 따로 다루기 위함임.
+Pre-activation $a_t$와 $z_t$를 명시적으로 분리해 둔 이유는  
+이후 BPTT를 유도할 때 activation을 통과하는 local derivative와   
+weight를 통과하는 local derivative를 각각 따로 다루기 위함임.
 
 <!-- 한 time step의 계산을 pre-activation 단위로 분리한 그림 | source: ./figures/00_single_step.svg -->
 <svg xmlns="http://www.w3.org/2000/svg" width="100%" viewBox="0 0 680 500" role="img" aria-labelledby="f0t f0d">
@@ -98,7 +100,10 @@ Pre-activation $a_t$와 $z_t$를 명시적으로 분리해 둔 이유는 BPTT를
   </g>
 </svg>
 
-이후 그림에서는 표기를 간단히 하기 위해 $a_t$와 $z_t$를 생략하고 $x_t \rightarrow h_t \rightarrow o_t$ 로만 나타냄. 생략된 두 단계는 2.2에서 local derivative를 정의할 때 다시 등장함.
+이후 그림에서는 표기를 간단히 하기 위해 $a_t$와 $z_t$를 생략하고  
+$x_t \rightarrow h_t \rightarrow o_t$ 로만 나타냄.  
+
+단, 생략된 두 단계는 2.2에서 local derivative를 정의할 때 다시 등장함.
 
 <!-- Unfolded RNN에서 x_t, h_t, o_t와 shared U, V, W | source: ./figures/01_unfolded_rnn.svg -->
 <svg xmlns="http://www.w3.org/2000/svg" width="100%" viewBox="0 0 680 430" role="img" aria-labelledby="f1t f1d">
@@ -140,7 +145,15 @@ Pre-activation $a_t$와 $z_t$를 명시적으로 분리해 둔 이유는 BPTT를
 
 따라서 RNN을 time dimension을 따라 unfold하더라도 새로운 weight가 생성되는 것이 아님.
 
-Unfolded computational graph에서 $U_t$, $V_t$, $W_t$처럼 표시할 수는 있지만, 이는 서로 다른 parameter가 아니라 동일한 shared parameter의 서로 다른 **usage** 를 나타냄.
+Unrolled (or unfolded) computational graph에서 
+
+* $U_t$, $V_t$, $W_t$처럼 time step별로 구분하여 표시할 수는 있지만,  
+* 이는 서로 다른 parameter를 의미하는 것이 아님.
+
+동일한 shared parameter U, V, W가 
+
+* 각 time step의 연산에 반복해서 사용되며,
+* $t$는 그 parameter가 사용된 time step을 구분하기 위한 표기일 뿐임.
 
 $U$의 usage 사이에 성립하는 관계는 다음과 같음:
 
@@ -160,15 +173,32 @@ $$
 W_{t-2} = W_{t-1} = W_t = W
 $$
 
+즉, 다음이 성립:
+
+* $W_1$, $W_2$, $\ldots$, $W_T$가 각각 독립적으로 존재하는 것이 아님.
+* 실제로는 하나의 $W$ 가 존재함 (각 iteration 당 또는 각 update step 당).
+* unfolded graph에서는 이 하나의 $W$가 여러 위치의 연산에 반복해서 등장함.
+* 따라서 $W_t$는 엄밀히 말하면 parameter 자체의 time-indexed version이라기보다 time step $t$에서 W가 사용되는 occurrence를 나타내는 표기임.
+
+> 이 문서에서  
+> ***usage*** 는
+> 동일한 shared parameter (각각 다음 3개:$U$,$V$,$W$)가  
+> unrolled computational graph의 **각 time step에서 사용되는 각각의 경우** 를 의미함.
+
 이 parameter sharing이 이후 BPTT에서 하나의 parameter gradient가 **여러 개의 항의 합** 으로 나타나는 직접적인 이유가 됨.
 
-동일한 parameter가 여러 time step에서 사용되므로 loss에 영향을 주는 경로가 여러 개이고, chain rule에 의해 각 경로의 gradient contribution이 더해짐. 각 time step의 parameter는 같지만 그 usage에서 발생하는 contribution은 time step마다 다르므로, 항들을 하나로 묶을 수 없음.
+* 동일한 parameter가 여러 time step에서 사용되므로 loss에 영향을 주는 경로가 여러 개이고,
+* chain rule에 의해 각 경로의 gradient contribution이 더해짐.
+* 각 time step의 parameter는 같지만 그 usage에서 발생하는 contribution은 time step마다 다르므로, 항들을 하나로 묶을 수 없음.
 
 ---
 
 ### 1.3 Earlier Information이 Hidden State에 유지되는 과정
 
-Time step $k$의 input information은 later time step으로 직접 연결되는 것이 아니라, successive hidden states를 통해 간접적으로 반영됨.
+Time step $k$의 input information $x_k$는 
+
+* later time step으로 직접 연결되는 것이 아니라,
+* successive hidden states $h_k$를 통해 간접적으로 반영됨.
 
 Forward path는 다음과 같음:
 
@@ -204,17 +234,39 @@ $$
   </g>
 </svg>
 
-각 recurrent step에서는 previous hidden state와 current input을 사용하여 next hidden state를 계산함. 따라서 earlier information은 별도의 storage에 독립적으로 보존되는 것이 아니라, 매 time step에서 새로 계산되는 hidden-state representation 안에 유지되어야 함.
+주의할 점은 다음과 같음:
 
-Simple RNN에는 earlier information을 선택적으로 preserve하거나 update하는 gating mechanism과 별도의 memory cell이 없음. Earlier information이 later hidden state까지 유지되는지는 recurrent weight $V$, subsequent input, activation function, 그리고 전체 recurrent state dynamics에 의해 결정됨.
+* 각 recurrent step에서는 previous hidden state와 current input을 사용하여 next hidden state를 계산함. 
+* 따라서 earlier information은 별도의 storage에 독립적으로 보존되는 것이 아니라, 매 time step에서 **새로 계산되는 hidden-state representation 안에 유지** 되어야 함.
 
-$\tanh$와 같은 nonlinear activation이 saturation 영역에 들어가면 서로 다른 pre-activation이 비슷한 hidden-state value로 mapping될 수 있음. 또한 recurrent state transition이 반복되면서 earlier input이 달랐던 두 sequence의 hidden-state representation이 later time step에서 서로 유사해질 수 있음.
+문제는 
 
-이 경우 current hidden state만으로는 earlier input의 차이를 충분히 구분하기 어려우며, current output이 해당 earlier information을 사용하는 것도 어려워짐.
+* Simple RNN에는 earlier information을
+* 선택적으로 preserve하거나 update하는
+* gating mechanism과 별도의 memory cell이 없다는 것임.
+   
+결국, Earlier information이 later hidden state까지 유지되는지는 recurrent weight $V$, subsequent input, activation function, 그리고 전체 recurrent state dynamics에 의해 결정됨.
 
-즉 forward pass의 핵심 문제는 **earlier information을 구분하고 사용하는 데 필요한 state representation이 successive recurrent state transition 동안 안정적으로 유지되지 않을 수 있다는 것** 임.
+일반적으로 다음과 같은 현상이 SimpleRNN에선 발생:
 
-여기까지는 output이 earlier input의 차이에 반응하지 못할 수 있다는 forward 쪽 이야기임. 다음 장에서는 같은 구조를 backward 쪽에서 보았을 때 왜 그 dependency를 **학습** 하는 것까지 어려워지는지를 다룸.
+* $\tanh$와 같은 nonlinear activation이 **saturation 영역** 에 들어가면
+  서로 다른 pre-activation이 비슷한 hidden-state value로 mapping될 수 있음. 
+* 또한 recurrent state transition이 반복되면서
+  **earlier input이 달랐던 두 sequence** 각각의 hidden-state representation이 ***later time step에서 서로 유사*** 해질 수 있음.
+
+이같은 이유로 인해
+
+* current hidden state만으로는 earlier input의 차이를 충분히 구분하기 어려우며,
+* current output이 해당 earlier information을 사용하는 것도 어려워짐.
+
+> 즉 forward pass의 핵심 문제는  
+> **earlier information을 구분하고 사용하는 데 필요한 *state representation* 이 *successive recurrent state transition 동안 안정적으로 유지되지 않을 수 있다* 는 것** 임.
+
+이 절에선 SimpleRNN 에서 output이 earlier input에서의 차이에 제대로 반응하지 못할 수 있다는 단점을 forward pass 관점에서 살펴봤음:
+
+* 당연히 earlier input이 현재 time step 과 차이가 클수록 이 문제점은 정도가 심해짐.
+
+아래에서는 같은 SimpleRNN구조를 backward pass 관점에서 보았을 때 왜 그 dependency를 **학습** 하는 것까지 어려워지는지를 다룸.
 
 ---
 
@@ -222,15 +274,26 @@ $\tanh$와 같은 nonlinear activation이 saturation 영역에 들어가면 서�
 
 ### 2.1 Unfolded Computational Graph와 Backward Pass
 
-RNN을 time dimension을 따라 unfold하면 하나의 깊은 computational graph처럼 볼 수 있음.
+RNN을 time dimension을 따라 unfold (= unroll)하면 하나의 깊은 computational graph처럼 볼 수 있음.
 
-Forward pass에서는 input과 hidden state가 time step 순서대로 계산됨. Backward pass에서는 loss에서 시작하여 unfolded computational graph에 **backpropagation** 을 적용함.
+* Forward pass에서는 input과 hidden state가 time step 순서대로 계산됨.
+* Backward pass에서는 loss에서 시작하여 unrolled computational graph에 **backpropagation** 을 적용함.
 
-일반적인 neural network의 backpropagation과 원리는 같지만, RNN에서는 backpropagation이 time dimension을 따라 수행되므로 이를 **Backpropagation Through Time, BPTT** 라고 부름.
+이같은 방식은 일반적인 neural network의 backpropagation과 원리는 같지만,  
+*RNN에서는 backpropagation이 time dimension을 따라 수행* 되므로 이를 **Backpropagation Through Time, BPTT** 라고 부름.
 
-이 장은 하나의 time step loss $L_t$를 기준으로 다음 순서를 따름. 먼저 반복해서 등장하는 local derivative를 정의하고(2.2), loss에서 출발한 gradient가 각 node에 도달할 때의 값을 구함(2.3). 그 값을 출발점으로 $W$, $U$, $V$의 gradient를 차례로 전개하고(2.4~2.6), 마지막에 서로 다른 두 종류의 합을 정리함(2.7).
+* 실제로 사용하는 parameters는 공유되지만 매우 깊게 쌓은 ANN이라고 볼 수 있음.
+* 그림으로 표현시 왼쪽(upstream) 에서 오른쪽(downstream)으로 쌓여(?)지는 ANN이라고 생각해도 됨.
 
-$W$를 먼저 다루는 이유는 $W$가 recurrent 경로를 지나지 않아 항이 하나로 끝나기 때문이며, $U$와 $V$는 recurrent 경로를 따라 여러 항의 합이 됨.
+이 장은 하나의 time step loss $L_t$를 기준으로 다음 순서를 따름. 
+
+* 먼저 반복해서 등장하는 local derivative를 정의하고(2.2),
+* loss에서 출발한 gradient가 각 node에 도달할 때의 값을 구함(2.3).
+* 그 값을 출발점으로 $W$, $U$, $V$의 gradient를 차례로 전개하고(2.4~2.6),
+* 마지막에 서로 다른 두 종류의 합을 정리함(2.7).
+
+$W$를 먼저 다루는 이유는 $W$가 여러 recurrent 경로를 지나지 않아 항이 하나로 끝나는 가장 간단한 경우이기 때이임.  
+$U$와 $V$는 recurrent 경로를 따라 여러 항의 합이 됨.
 
 ### 2.2 Local Derivative의 정의
 
@@ -282,17 +345,33 @@ $$
 \frac{\partial o_t}{\partial h_t} = G_t W
 $$
 
-여기서 $V$는 모든 time step에서 동일하지만 $D_i$는 해당 step의 activation에 따라 달라지므로, 매 step의 local derivative가 완전히 동일하지는 않음.
+여기서 다음을 주의할 것:
 
-세 weight 중 $V$ 만 특별한 위치에 있다는 점도 미리 확인해 둘 필요가 있음. Backward path에서 여러 번 지나게 되는 edge는 $h_{i-1} \rightarrow h_i$ 하나뿐이고, 그 edge의 local derivative가 $D_i V$ 임. 즉 $V$ 는 gradient가 통과할 때마다 다시 곱해짐.
+* $V$는 모든 time step에서 동일하지만
+* $D_i$는 해당 time step의 activation에 따라 달라짐.
+* 즉, 매 time step의 local derivative가 완전히 동일하지는 않음!!
 
-반면 $U$ 가 놓인 $x_i \rightarrow h_i$ edge는 $x_i$ 가 외부 입력이라 gradient가 들어가면 다시 나오지 않는 leaf edge이고, $W$ 가 놓인 $h_t \rightarrow o_t$ edge도 마찬가지임. 두 edge는 하나의 경로에서 한 번만 지나감.
+세 weight $U,V,W$ 중에서 $V$는 recurrent connection에 사용되는 shared parameter이며, 실제로 RNN의 time step들을 연결하는 특별한 위치에 있음.
 
-따라서 이후 전개에서 반복해서 곱해지는 것은 $D_i V$ 뿐이며, $U$ 와 $W$ 는 각 항에 한 번씩만 등장함.
+* Backward path에서 time step을 하나씩 거슬러 올라갈 때 통과하는 edge는 $h_{i-1} \rightarrow h_i$ 형태의 recurrent transition임.
+* 이 edge에 대한 local derivative는 activation derivative와 $V$가 결합된 Jacobian(=1차미분에 해당)으로 구해지며, 이 문서의 표기에서는 $D_iV$로 나타남.
+* 따라서 gradient가 여러 time step을 역으로 거슬러 올라갈수록 chain rule에 의해 이러한 local derivative들이 계속 곱해지고, 그 안에 포함된 동일한 shared parameter $V$가 반복해서 등장함.
+* 직관적으로 보면, 각 time step마다 동일한 $V$를 weight로 사용하는 dense transformation에 대해 local gradient 계산이 반복해서 이루어지는 셈임.
+* 즉, unfolded computational graph에서 여러 $V_i$가 보이더라도 서로 다른 parameter가 아니라, 동일한 $V$가 각 time step에서 반복해서 사용되는 서로 다른 usage를 나타냄.
+
+반면 $U$, $W$는 차이가 있음:
+
+* $U$는 각 time step에서 input을 hidden state로 전달할 때 한 번 사용됨.
+* $W$는 각 time step에서 hidden state를 output으로 전달할 때 한 번 사용됨.
+* 따라서 하나의 backward path에서 $U$와 $W$는 해당 time step에서 한 번만 등장함.
+* 반면 $V$는 time step들을 연결하는 recurrent connection에 있으므로, 여러 time step을 거슬러 올라갈수록 반복해서 등장하고 곱해짐.
+
+따라서 이후 전개에서 반복해서 곱해지는 것은 $D_i V$ 뿐이며, $U$ 와 $W$ 는 각 time step에서 한 번씩만 등장함.
 
 ### 2.3 Loss에서 각 Node로 전파되는 Gradient
 
-Backward pass의 출발점은 loss를 output으로 미분한 값임. 이 값은 loss의 정의에 따라 결정되며 recurrent 구조와는 무관함:
+Backward pass의 출발점은 loss를 output으로 미분한 값임.  
+이 값은 loss의 정의에 따라 결정되며 recurrent 구조와는 무관함:
 
 $$
 \frac{\partial L_t}{\partial o_t}
@@ -318,7 +397,10 @@ $$
 \end{aligned}
 $$
 
-이를 $k$까지 반복하면 chain rule에 의해 다음과 같음:
+* 여기서 $i$로 한 이유는 여러  time step $i$ 이 사용될 수 있기 때문임.
+* $i$는 $t$와 같거나 작은 time step index임.
+
+$i=k$ 인 경우에 chain rule에 의해 다음과 웅이 전개됨:
 
 $$
 \frac{\partial L_t}{\partial h_k}
@@ -329,7 +411,7 @@ $$
   \frac{\partial h_{k+1}}{\partial h_k}
 $$
 
-local derivative를 대입하면 다음과 같음:
+이를 local derivative를 대입하면 다음과 같음:
 
 $$
 \begin{aligned}
@@ -339,7 +421,10 @@ $$
 \end{aligned}
 $$
 
-Product는 index $t$에서 시작하여 $k+1$에서 끝남. 행렬 곱은 non-commutative이므로 순서를 바꿀 수 없으며, gradient를 row vector로 두는 numerator layout에서는 index가 큰 쪽이 왼쪽에 옴.
+Product는 index $t$에서 시작하여 $k+1$에서 끝남. 
+
+* 행렬 곱은 non-commutative이므로 순서를 바꿀 수 없음에 유의.
+* gradient를 row vector로 두는 numerator layout에서는 index가 큰 쪽이 왼쪽에 옴.
 
 <!-- Loss에서 earlier hidden state로 gradient가 전파되는 경로 | source: ./figures/03_backward_path.svg -->
 <svg xmlns="http://www.w3.org/2000/svg" width="100%" viewBox="0 0 680 612" role="img" aria-labelledby="f3t f3d">
@@ -407,15 +492,26 @@ Product는 index $t$에서 시작하여 $k+1$에서 끝남. 행렬 곱은 non-co
   </g>
 </svg>
 
-$o_{t-1}$과 $o_{t-2}$에 gradient가 없는 것은 지금 $L_t$ 하나만 보고 있기 때문임. 다른 time step의 output은 이 loss에 대한 gradient를 받지 않음.
+* $o_{t-1}$과 $o_{t-2}$에 gradient가 없는 것은 지금 $L_t$ 하나만 보고 있기 때문임. 
+* 다른 time step의 output은 다른 time step의 loss에 대한 gradient 에 영향을 받지 않음.
 
-이 절에서 얻은 두 값이 이후 세 절의 출발점이 됨. $W$는 recurrent 경로를 지나지 않으므로 $\partial L_t / \partial o_t$ 에서, $U$와 $V$는 recurrent 경로 위에 있으므로 각 step의 $\partial L_t / \partial h_i$ 에서 시작함.
+이 절에서 얻은 두 값이 이후 전개에서 출발점이 되니 기억할 것. 
+
+* $W$는 recurrent 경로를 지나지 않으므로 $\partial L_t / \partial o_t$ 에서, 
+* $U$와 $V$는 recurrent 경로를 지나므로 각 step의 $\partial L_t / \partial h_i$ 에서 시작함.
 
 ---
 
 ### 2.4 W에 대한 Gradient
 
-$W$는 $z_t = W h_t + b_o$ 에서 한 번만 사용되고 recurrent 경로를 지나지 않음. 따라서 2.3의 출발점 $\partial L_t / \partial o_t$ 에 output layer의 local derivative만 곱하면 끝남.
+$W$는 $z_t = W h_t + b_o$ 에서 한 번만 사용되고 recurrent 경로를 지나지 않음. 
+
+따라서 2.3의 출발점 $\partial L_t / \partial o_t$ 에 output layer의 local derivative만 곱하면 끝남.
+
+> matrix와 vector form에 대한 미적분을 배운 경우라면,
+> **vector 경우** 의 수식을 참고할 것.
+> 단,
+> SimpleRNN의 BPTT에 대한 동작만 파악하려면 **scalar 경우** 의 수식으로도 충분함.
 
 **vector 경우**
 
@@ -425,7 +521,7 @@ $$
 &= \left( \frac{\partial L_t}{\partial o_t} \frac{\partial o_t}{\partial z_t} \right)^{\top} h_t^{\top} \\
 &= \left( \frac{\partial L_t}{\partial o_t} G_t \right)^{\top} h_t^{\top}
 \end{aligned}
-$$
+$
 
 **scalar 경우**
 
@@ -440,7 +536,7 @@ $$
 - vector에서 $\partial z_t / \partial W$ 는 matrix를 matrix로 미분한 3차 tensor라 곱셈 표기로 쓸 수 없어 $h_t^{\top}$ 로 남김
 - scalar에서는 $\partial z_t / \partial W = h_t$ 이며 transpose 없이 그대로 곱해짐
 - $b_o$는 $W$와 무관하므로 이 미분에서 사라짐
-- $W$는 $h$를 거치지 않고 $z_t$에만 들어가므로 항이 하나이며, 따라서 $D_i V$의 반복 곱이 나타나지 않음
+- $W$는 $h$를 거치지 않고(recurrent connection을 통과하지 않음) $z_t$에만 들어가므로 항이 하나이며, 따라서 $D_i V$의 반복 곱이 나타나지 않음
 
 <!-- W에 대한 gradient와 대응하는 항 | source: ./figures/04_grad_W.svg -->
 <svg xmlns="http://www.w3.org/2000/svg" width="100%" viewBox="0 0 680 612" role="img" aria-labelledby="f4t f4d">
@@ -502,7 +598,12 @@ $$
 
 ### 2.5 U에 대한 Gradient
 
-$U$는 모든 time step의 $a_i = U x_i + V h_{i-1} + b_h$ 에서 반복해서 사용됨(1.2). 따라서 각 usage마다 하나의 항이 생기고, $U$의 gradient는 그 항들의 합이 됨.
+$U$는 모든 time step의 $a_i = U x_i + V h_{i-1} + b_h$ 에서 반복해서 사용됨(1.2 참고). 
+
+따라서 각 usage마다 하나의 항이 생기고, $U$의 gradient는 그 항들의 합으로 구해진다.
+
+* 단, 각 time step 들의 항에선 한번만 등장함.
+* 이는 recurrent connection 자체인 $V$와 차이점임.
 
 Time step $i$의 usage에서 발생하는 항은 2.3에서 구한 $\partial L_t / \partial h_i$ 에 activation과 weight의 local derivative를 곱한 것임:
 
@@ -512,9 +613,11 @@ $$
 \frac{\partial^{+} a_i}{\partial U}
 $$
 
-마지막 factor에 $\partial^{+}$ 를 쓴 이유는 다음과 같음. $a_i = U x_i + V h_{i-1} + b_h$ 에서 $h_{i-1}$ 도 $U$에 의존하므로, $\partial a_i / \partial U$ 를 글자 그대로 읽으면 $h_{i-1}$ 을 거치는 경로까지 포함하게 됨. 그 경로는 이미 $i-1$ 의 항이 담당하고 있으므로 $i$ 항에서 다시 처리하면 중복이 됨.
+마지막 factor에 $\partial^{+}$ 를 쓴 이유는 다음과 같음. 
 
-따라서 여기서는 $h_{i-1}$ 을 상수로 두는 immediate partial만 사용하며, 이를 $\partial^{+}$ 로 표기함.
+* $a_i = U x_i + V h_{i-1} + b_h$ 에서 $h_{i-1}$ 도 $U$에 의존하므로, $\partial a_i / \partial U$ 를 글자 그대로 읽으면 $h_{i-1}$ 을 거치는 경로까지 포함하게 됨. * 그 경로는 이미 $i-1$ 의 항이 담당하고 있으므로 $i$ 항에서 다시 처리하면 중복이 됨.
+
+따라서 여기서는 ***$h_{i-1}$ 을 상수로 두는 immediate partial만 사용*** 하며, 이를 $\partial^{+}$ 로 표기함.
 
 $$
 \frac{\partial^{+} a_i}{\partial U} = x_i
@@ -524,7 +627,8 @@ $$
 \frac{\partial^{+} a_i}{\partial V} = h_{i-1}
 $$
 
-$h_{i-1}$ 을 거치는 경로를 따로 떼어 다른 항으로 두는 것이 곧 usage별로 항을 나누는 것이며, 그 경로의 길이가 항마다 달라짐.
+* $h_{i-1}$ 을 거치는 경로를 따로 떼어 다른 항으로 두는 것이 곧 usage별로 항을 나누는 것이며,
+* 그 경로의 길이가 항마다 달라짐.
 
 $i$가 작아질수록 $\partial L_t / \partial h_i$ 안에 2.3의 반복 곱 $D_i V$ 가 하나씩 더 들어가므로, 아래 식에서 뒤쪽 항일수록 길어짐.
 
@@ -662,13 +766,16 @@ $$
   </g>
 </svg>
 
-주황색 화살표는 gradient가 실제로 전파되는 경로이고, 아래로 꺾여 내려가는 청록색 선은 전파가 아니라 각 hidden state의 gradient가 식의 어느 항에 대응하는지를 가리키는 지시선임.
+* 주황색 화살표는 gradient가 실제로 전파되는 경로이고,
+* 아래로 꺾여 내려가는 청록색 선은 전파가 아니라 각 hidden state의 gradient가 식의 어느 항에 대응하는지를 가리키는 지시선임.
 
 ---
 
 ### 2.6 V에 대한 Gradient
 
-$V$ 역시 모든 time step의 $a_i$ 에서 반복해서 사용되므로 구조는 2.5와 같음. 다른 점은 $\partial^{+} a_i / \partial U$ 자리에 $\partial^{+} a_i / \partial V$ 가 들어간다는 것뿐임:
+$V$ 역시 모든 time step의 $a_i$ 에서 반복해서 사용되므로 구조는 2.5와 같음. 
+
+가장 큰 차창점은 $\partial^{+} a_i / \partial U$ 자리에 $\partial^{+} a_i / \partial V$ 가 들어간다는 것임:
 
 $$
 \frac{\partial L_t}{\partial h_i}
@@ -808,17 +915,24 @@ $$
   </g>
 </svg>
 
-세 항을 나란히 놓고 보면 왼쪽 항일수록 곱해지는 분수의 수가 하나씩 늘어남. 각 항의 길이 차이가 곧 그 항의 크기가 얼마나 줄어들거나 커지는지를 결정함.
+* 위의 각 항들을 나란히 놓고 보면 왼쪽 항일수록 곱해지는 분수의 수가 하나씩 늘어남.
+* 각 항의 길이 차이가 곧 그 항의 크기가 얼마나 줄어들거나 커지는지를 결정함.
 
 ---
 
 ### 2.7 두 종류의 합
 
-여기까지 합이 두 번 등장했으므로 구분해 둘 필요가 있음.
+여기까지 나온 gradient 들이 합해지는 경우는 크게 두가지로 주의해서 구분해 둘 필요가 있음.
 
-첫 번째는 **usage에 대한 합** 임. 하나의 loss $L_t$ 안에서 $U$와 $V$가 여러 time step에 반복 사용되므로 usage마다 항이 하나씩 생기고, 그 항들을 더한 것이 2.5와 2.6의 결과였음.
+첫 번째는 **usage에 대한 합** 임. 
 
-아래 두 식은 scalar 표기임. vector 경우의 형태는 2.5와 2.6에 있음. 합의 범위는 truncation 없이 sequence 처음까지 역전파하는 경우이며, truncated BPTT에서는 $i = t-\tau+1$ 부터가 됨.
+* 하나의 loss $L_t$ 안에서 $U$와 $V$가 여러 time step 의 경로에서 반복 사용되므로
+* usage마다 항이 하나씩 생기고, 그 항들을 더한 것이 2.5와 2.6의 결과였음.
+
+아래 두 식은 scalar 표기만 나타냄(간략하게 기재하기 위해서임. vector 경우의 형태는 2.5와 2.6에 참고) 
+
+합의 범위는 truncation 없이 sequence 처음까지 역전파하는 경우이며, truncated BPTT에서는 $i = t-\tau+1$ 부터가 됨.  
+(참고로 Truncated BPTT에선 범위가 제함됨되)
 
 $$
 \frac{\partial L_t}{\partial U}
@@ -830,14 +944,17 @@ $$
 = \sum_{i=1}^{t} \frac{\partial L_t}{\partial h_i} \frac{\partial h_i}{\partial a_i} \frac{\partial^{+} a_i}{\partial V}
 $$
 
-$W$는 usage가 하나뿐이므로 이 합이 나타나지 않고 항 하나로 끝남.
+$W$는 usage가 하나뿐이므로 위와같은 합의 형태택 나타나지 않고 항 하나로 끝남.
 
 $$
 \frac{\partial L_t}{\partial W}
 = \frac{\partial L_t}{\partial o_t} \frac{\partial o_t}{\partial W}
 $$
 
-두 번째는 **loss에 대한 합** 임. 전체 loss는 각 time step loss의 합이므로, shared parameter의 최종 gradient는 각 $L_t$에 대한 gradient를 다시 합산하여 얻음.
+두 번째는 **loss에 대한 합** 임. 
+
+* BPTT 에서 unrolled network 통해 구해지는 전체 loss는 각 time step loss의 합이라는 점을 기억할 것.
+* 때문에 shared parameter의 최종 gradient는 각 time step의 loss $L_t$에 대한 gradient 들을 다시 합산하여 얻음.
 
 $$
 \frac{\partial L}{\partial U} = \sum_{t=1}^{T} \frac{\partial L_t}{\partial U}
@@ -891,13 +1008,18 @@ $$
   </g>
 </svg>
 
-Loss를 time step에 대해 mean으로 정의했다면 gradient의 전체 scale은 달라질 수 있지만, 각 usage에서 발생한 contribution이 하나의 parameter gradient로 accumulation된다는 원리는 동일함.
+Loss를 time step에 대해 mean으로 정의하기도 함.  
+이 경우 gradient의 전체 scale은 달라질 수 있지만, 각 usage에서 발생한 contribution이 하나의 parameter gradient로 accumulation된다는 원리는 동일함.
+
+실제 구현물에선 대부분 그냥 더하는 구현이 더 많은 편임(개인적 경험)
 
 ---
 
 ## 3. Gradient Problems
 
-2.6에서 본 것처럼 $V$에 대한 gradient의 각 항에는 $D_i V$ 가 반복해서 곱해짐. 이 반복 곱이 gradient problem의 직접적인 원인임.
+2.6에서 본 것처럼 $V$에 대한 gradient의 각 항에는 $D_i V$ 가 반복해서 곱해짐. 
+
+이 반복 곱이 gradient problem 의 직접적인 원인임.
 
 ### 3.1 Vanishing Gradient
 
