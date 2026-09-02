@@ -46,21 +46,19 @@ date: 2026-09-01
 Simple RNN의 hidden state update는 다음과 같음:
 
 $$
-a_t = Ux_t + Vh_{t-1} + b_h
-$$
-
-$$
-h_t = f(a_t)
+\begin{aligned}
+a_t &= Ux_t + Vh_{t-1} + b_h \\
+h_t &= f(a_t)
+\end{aligned}
 $$
 
 Output의 계산은 다음과 같음:
 
 $$
-z_t = Wh_t + b_o
-$$
-
-$$
-o_t = g(z_t)
+\begin{aligned}
+z_t &= Wh_t + b_o \\
+o_t &= g(z_t)
+\end{aligned}
 $$
 
 Pre-activation $a_t$와 $z_t$를 명시적으로 분리해 둔 이유는  
@@ -103,7 +101,7 @@ weight를 통과하는 local derivative를 각각 따로 다루기 위함임.
 이후 그림에서는 표기를 간단히 하기 위해 $a_t$와 $z_t$를 생략하고  
 $x_t \rightarrow h_t \rightarrow o_t$ 로만 나타냄.  
 
-단, 생략된 두 단계는 2.2에서 local derivative를 정의할 때 다시 등장함.
+* 생략된 두 단계는 2.2에서 local derivative를 정의할 때 다시 등장하긴 함.
 
 <!-- Unfolded RNN에서 x_t, h_t, o_t와 shared U, V, W | source: ./figures/01_unfolded_rnn.svg -->
 <svg xmlns="http://www.w3.org/2000/svg" width="100%" viewBox="0 0 680 430" role="img" aria-labelledby="f1t f1d">
@@ -137,13 +135,13 @@ $x_t \rightarrow h_t \rightarrow o_t$ 로만 나타냄.
 
 ### 1.2 Parameter Sharing
 
-모든 time step에서 동일한 parameter를 반복해서 사용함.
+모든 time step에서 ***동일한 parameter를 반복*** 해서 사용함.
 
 - 모든 time step에서 동일한 $U$를 사용함.
 - 모든 time step에서 동일한 $V$를 사용함.
 - 모든 time step에서 동일한 $W$를 사용함.
 
-따라서 RNN을 time dimension을 따라 unfold하더라도 새로운 weight가 생성되는 것이 아님.
+따라서 RNN을 time dimension을 따라 unroll 하더라도 새로운 weight가 생성되는 것이 아님.
 
 Unrolled (or unfolded) computational graph에서 
 
@@ -180,7 +178,8 @@ $$
 * unfolded graph에서는 이 하나의 $W$가 여러 위치의 연산에 반복해서 등장함.
 * 따라서 $W_t$는 엄밀히 말하면 parameter 자체의 time-indexed version이라기보다 time step $t$에서 W가 사용되는 occurrence를 나타내는 표기임.
 
-> 이 문서에서  
+> 이 문서에서
+> 
 > ***usage*** 는
 > 동일한 shared parameter (각각 다음 3개:$U$,$V$,$W$)가  
 > unrolled computational graph의 **각 time step에서 사용되는 각각의 경우** 를 의미함.
@@ -198,7 +197,7 @@ $$
 Time step $k$의 input information $x_k$는 
 
 * later time step으로 직접 연결되는 것이 아니라,
-* successive hidden states $h_k$를 통해 간접적으로 반영됨.
+* successive hidden states $h_k$를 통해 ***간접적으로 반영*** 됨.
 
 Forward path는 다음과 같음:
 
