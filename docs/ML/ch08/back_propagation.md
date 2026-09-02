@@ -66,18 +66,18 @@ computational graph를 역방향으로 따라가며 gradient를 계산하는 Rev
 
 컴퓨터를 사용하여 Differentiation(미분)을 수행하는 방법은 크게 다음의 3가지로 나뉨.
 
-1. Symbolic Differentiation
-2. Numerical Differentiation
-3. Forward-Mode or [Reverse-Mode Auto Differentiation](./reverse_mode_autodiff.md)
+1. [Symbolic Differentiation](https://dsaint31.tistory.com/971)
+2. Numerical Differentiation (주로 [finite difference](https://dsaint31.tistory.com/540#Finite%20Difference%20(%EC%9C%A0%ED%95%9C%EC%B0%A8%EB%B6%84)%20%EC%A2%85%EB%A5%98-1-3) 을 주로 사용)
+3. [Forward-Mode](https://dsaint31.tistory.com/971) or [Reverse-Mode Auto Differentiation](./reverse_mode_autodiff.md)
 
-위의 1번과 3번의 경우는 ***Computation Graph 기법*** 에 의존하고 있음.
+위의 1번과 3번의 경우는 ***Computational Graph 기법*** 에 의존하고 있음.
 
 * [Tree와 Graph](https://dsaint31.tistory.com/463)
 * [Graph란](./datastructure_graph.md)
 
-특히 3번에서 Reverse-mode Auto Diff.는 Deep ANN을 학습시키기 위해 사용되는 대표적 기법임.
+특히 3번에서 [Reverse-Mode Auto Differentiation](./reverse_mode_autodiff.md) 는 Deep ANN을 학습시키기 위해 사용되는 대표적 기법임.
 
-> Back-propagation은 Computation Graph를 사용하여 
+> Back-propagation은 Computational Graph를 사용하여 
 > 
 > * 수많은 연산을 node로 표현하고 
 > * ***국소(local)적 계산*** 인 각 node에서의 ***input과 output*** 만을 사용하여 ***"partial derivative를 구하는 문제"를 단순화*** 할 수 있기 때문에
@@ -107,7 +107,7 @@ computational graph를 역방향으로 따라가며 gradient를 계산하는 Rev
 >     * edge 시작점에 input variable이, 끝점에 output variable(=input과 weight의 곱)이 위치.    
 >     * 단순히 데이터의 흐름 표시 외에 weight와의 곱과 activation  function을 거친 경우까지 표시하기도 함.
     
-**참고** : [Reverse-Mode Autodiff (Auto-Differentiation) 관련자료](./reverse_mode_autodiff.md) 
+**참고** : [Reverse-Mode Autodiff. (Auto-Differentiation) 관련자료](./reverse_mode_autodiff.md) 
 
 ---
 
