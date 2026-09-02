@@ -236,7 +236,8 @@ $$
 주의할 점은 다음과 같음:
 
 * 각 recurrent step에서는 previous hidden state와 current input을 사용하여 next hidden state를 계산함. 
-* 따라서 earlier information은 별도의 storage에 독립적으로 보존되는 것이 아니라, 매 time step에서 **새로 계산되는 hidden-state representation 안에 유지** 되어야 함.
+* 따라서 earlier information은 별도의 storage에 독립적으로 보존되는 것이 아니라,
+* 매 time step에서 **새로 계산되는 hidden-state representation 안에 유지** 되어야 함.
 
 문제는 
 
@@ -291,8 +292,10 @@ RNN을 time dimension을 따라 unfold (= unroll)하면 하나의 깊은 computa
 * 그 값을 출발점으로 $W$, $U$, $V$의 gradient를 차례로 전개하고(2.4~2.6),
 * 마지막에 서로 다른 두 종류의 합을 정리함(2.7).
 
-$W$를 먼저 다루는 이유는 $W$가 여러 recurrent 경로를 지나지 않아 항이 하나로 끝나는 가장 간단한 경우이기 때이임.  
-$U$와 $V$는 recurrent 경로를 따라 여러 항의 합이 됨.
+$W$를 먼저 다루는 이유는 
+
+* $W$가 여러 recurrent 경로를 지나지 않아 항이 하나로 끝나는 가장 간단한 경우이기 때문임.  
+* $U$와 $V$는 recurrent 경로를 따라 여러 항의 합이 됨.
 
 ### 2.2 Local Derivative의 정의
 
@@ -350,7 +353,10 @@ $$
 * $D_i$는 해당 time step의 activation에 따라 달라짐.
 * 즉, 매 time step의 local derivative가 완전히 동일하지는 않음!!
 
-세 weight $U,V,W$ 중에서 $V$는 recurrent connection에 사용되는 shared parameter이며, 실제로 RNN의 time step들을 연결하는 특별한 위치에 있음.
+세 weight $U,V,W$ 중에서,  
+
+**$V$는**  
+recurrent connection에 사용되는 shared parameter이며, 실제로 RNN의 time step들을 연결하는 특별한 위치에 있음.
 
 * Backward path에서 time step을 하나씩 거슬러 올라갈 때 통과하는 edge는 $h_{i-1} \rightarrow h_i$ 형태의 recurrent transition임.
 * 이 edge에 대한 local derivative는 activation derivative와 $V$가 결합된 Jacobian(=1차미분에 해당)으로 구해지며, 이 문서의 표기에서는 $D_iV$로 나타남.
@@ -358,7 +364,8 @@ $$
 * 직관적으로 보면, 각 time step마다 동일한 $V$를 weight로 사용하는 dense transformation에 대해 local gradient 계산이 반복해서 이루어지는 셈임.
 * 즉, unfolded computational graph에서 여러 $V_i$가 보이더라도 서로 다른 parameter가 아니라, 동일한 $V$가 각 time step에서 반복해서 사용되는 서로 다른 usage를 나타냄.
 
-반면 $U$, $W$는 차이가 있음:
+반면, 
+**$U$, $W$** 는 차이가 있음:
 
 * $U$는 각 time step에서 input을 hidden state로 전달할 때 한 번 사용됨.
 * $W$는 각 time step에서 hidden state를 output으로 전달할 때 한 번 사용됨.
@@ -520,7 +527,7 @@ $$
 &= \left( \frac{\partial L_t}{\partial o_t} \frac{\partial o_t}{\partial z_t} \right)^{\top} h_t^{\top} \\
 &= \left( \frac{\partial L_t}{\partial o_t} G_t \right)^{\top} h_t^{\top}
 \end{aligned}
-$
+$$
 
 **scalar 경우**
 
