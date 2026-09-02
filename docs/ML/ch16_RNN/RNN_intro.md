@@ -95,20 +95,24 @@ $$
 > 
 > * 여기서 sequence는 vector을 한 timestep의 item으로 가지는 sequence임.
 
-### unrolling RNN 
+### unrolling an RNN (Unrolled RNN)
 
-위의 `RNN` 그림을 풀어서(unrolling)로 표시하면 다음과 같음
+위의 `RNN` 그림을 풀어서(unrolling  or unfolding)로 표시하면 다음과 같음
 
 ![](./img/unfolded_rnn.png)
 
 * feedback connection을 time별로 풀어서 표현함.
-* 무한한 길이의 sequence type이 input으로 주어지면 unrolling로 그릴 경우 역시 무한한 길이로 표현됨.
+* 무한한 길이의 sequence type이 input으로 주어지면 unrolled RNN으로 그릴 경우 역시 무한한 길이로 표현됨.
 * 참고로 이 그림에서 한번에 들어가는 input (특정 시점의 input vector)가 바로 $\textbf{x}_{t-1}$임.
 
-> 이론상이라고 한 이유는 `RNN`에서 현재 output 또는 state를 결정할 때 오래전에 입력된 input일수록 영향력이 줄어든다는 문제점을 가지고 있기 때문임.  
-> 오래전 input이라도 현재의 output을 결정하는데 매우 중요한 정보일 수 있는데, `RNN`에서는 input이 들어온 시점이 오래될수록 현재 output에 대한 영향력이 줄어듬 (오래된 일에 대한 기억력이 좋지 못하다고 볼 수 있음)
-> 달라 말하면, RNN은 "멀리 떨어진 time step들 사이의 의존 관계(=long-term dependency)" 를 제대로 모델링하기 어려움.
-> 이를 해결하기 위해 `LSTM`, `GRU` 등이 제안되었지만 완전히 해결이 된 것은 아님.
+> 이론상이라고 한 이유는
+> `RNN`에서 **현재 output 또는 state를 결정할 때 오래전에 입력된 input일수록 영향력이 줄어든다는 문제점 (long-term dependency problem)**을 가지고 있기 때문임.  
+> 오래전 input이라도 현재의 output을 결정하는데 매우 중요한 정보(long-term dependency가 존재)일 수 있는데,  
+> `RNN`에서는 input이 들어온 시점이 오래될수록 현재 output에 대한 영향력이 줄어듦  
+> (오래된 일에 대한 기억력이 좋지 못하다고 볼 수 있음)
+> 
+> 달라 말하면, RNN은 "멀리 떨어진 time step들 사이의 의존 관계(=long-term dependency)" 를 제대로 모델링하기 어려움.  
+> 이를 해결하기 위해 `LSTM`, `GRU` 등이 다양한 memory cell varaints가 제안되었지만 완전히 해결이 된 것은 아님.
 
 ---
 
