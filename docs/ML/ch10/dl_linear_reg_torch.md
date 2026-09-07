@@ -169,6 +169,7 @@ y_ideal = torch.tensor(y_ideal).float().reshape(-1, 1)
 * `.float()`는 dtype을 `torch.float32`로 변환함.
 
 참고로, `.reshape(-1, 1)`은 data shape을 다음 형태로 맞춤.
+
 $$(\text{sample 수}, \text{feature 수})$$
 
 이번 예제에서는 feature가 
@@ -182,7 +183,7 @@ torch.Size([200, 1])
 
 ---
 
-### 2.3 Train, Test, Validation 데이터 분리
+### 2.4 Train, Test, Validation 데이터 분리
 
 전체 데이터를 train set과 test set으로 나눔.
 
@@ -236,7 +237,7 @@ def ds_linear_model(x, w, b):
 
 이 함수는 기본적으로 다음 식을 계산함:
 $$
-\hat{y} = xw + b
+\hat{y} = xw^\top + b
 $$
 
 `@`는 matrix multiplication 연산자임.
