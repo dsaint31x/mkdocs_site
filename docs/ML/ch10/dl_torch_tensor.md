@@ -19,4 +19,5 @@ Autograd는
 참고: [backpropagation](https://dsaint31.me/mkdocs_site/ML/ch08/back_propagation/)
 
 * [PyTorch: Autograd](https://ds31x.tistory.com/227)
+* [Autograd : In-place 연산](https://ds31x.tistory.com/690)
 * [autograd 심화: grad_fn 과 custom operation 만들기](https://ds31x.tistory.com/408)
