@@ -1,18 +1,27 @@
 # Root Mean Square Propagation (RMSProp)
 
-이 알고리즘은 publish가 되지않고, Hinton 교수님의 Coursera 강의에서 소개된 알고리즘임.
+이 알고리즘은 publish가 되지않고, Hinton 교수님의 Coursera 강의(2012)에서 소개된 알고리즘임.
+
+아래 이미지가 해당 슬라이드임
+<img width="514" height="242" alt="image" src="https://github.com/user-attachments/assets/33d2ae2f-21c0-442b-9a4f-56e0c347e1c1" />
+
+* [슬라이드 pdf](https://www.cs.toronto.edu/~hinton/coursera/lecture6/lec6.pdf)
 
 `AdaGrad`와 거의 비슷하지만, 
 
 * 지금까지의 모든 squared gradient의 누적합으로 $\textbf{s}$를 구하는 것이 아닌, 
 * 과거 squared gradient들의 ***Exponential Moving Average*** 를 통해 
-* 과거의 gradient의 영향을 지수함수로 감소시키고 
-* 최근의 gradient들을 중심으로 누적시켜 
+    * ***과거의 gradient의 영향을 지수함수로 감소*** 시키고 
+    * ***최근의 gradient들을 중심으로 누적*** 시켜 
 * 지나치게 learning rate가 빠르게 감소하는 문제를 해결함. 
 
 참고: [Exponential Moving Average](https://dsaint31.tistory.com/860)
 
-즉, `RMSProp`은 `AdaGrad`의 문제점을 개선한 adaptive learning rate 기반의 optimizer임.
+즉, `RMSProp`은 `AdaGrad`의 문제점을 개선한 ***adaptive learning rate*** 기반의 optimizer임.
+
+* 각각의 parameter별로 과거 squared gradient의 EMA의 square root에 반비례하는 learning rate를 따로 적용하는 셈.
+* 과거 squared gradient의 EMA의 square root가 크다는 것은 해당 parameter에서 최근까지 gradient가 크게 나타났다는 의미이므로 작은 learning rate로 움직임.
+* 반대로 과거 squared gradient의 EMA의 square root가 작다는 것은 해당 parameter에서 최근까지 gradient가 작게 나타났다는 의미이므로 큰 learning rate로 움직임.
 
 수식은 다음과 같음.
 
@@ -34,7 +43,8 @@ s_{t+1}
 $$
 
 * Exponential Decaying Factor인 $\beta$ (forgetting factor, decaying factor, smoothing factor)는 `0.9`를 기본값으로 가지며, 일종의 hyperparameter로 0.9~0.999의 값을 취함.
-* $\frac{1}{1-\beta}$의 gradient들에 대한 평균으로 근사하기도 함. (즉 $\beta$가 클 수록 오래전의 gradient들을 고려하여 누적시켜 learning rate를 감소시킴)
+* $\frac{1}{1-\beta}$의 gradient들에 대한 평균으로 근사하기도 함.
+  (즉 $\beta$가 클 수록 오래전의 gradient들을 고려하여 누적시켜 learning rate를 감소시킴)
 * $\otimes$는 element-wise multiplication (Hadamard product) 임.
 * $\oslash$는 element-wise division (Hadamard division)임.
 
