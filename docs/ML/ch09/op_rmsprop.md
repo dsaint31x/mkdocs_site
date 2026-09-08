@@ -43,7 +43,7 @@ $$
 $$
 s_{t+1} = \beta v_{t} + (1-\beta)g_t^2
 \\
-\theta_t+1 = \theta_{t} - \eta \frac{g_t+1}{\sqrt{v_{t+1}}+\epsilon}
+\theta_{t+1} = \theta_{t} - \eta \frac{g_{t+1}}{\sqrt{v_{t+1}}+\epsilon}
 $$
 
 * $g_t$ 는 $t$ 시점의 gradient임!
