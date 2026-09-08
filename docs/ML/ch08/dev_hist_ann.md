@@ -15,7 +15,8 @@ McCulloch (의사, 신경생리학자)와 Pitts (논리학자)가 쓴 다음의 
 
 [A logical calculus of ideas immanent in nervous activity, 1943](https://link.springer.com/article/10.1007/BF02478259)
 
-on-off로 동작(=switch)하는 기능을 가진 artificial neuron들을 그물망 형태로 연결(network)하면 사람의 뇌에서 이루어지는 논리적 연산을 흉내낼 수 있음을 제안.
+on-off로 동작(=switch)하는 기능을 가진 artificial neuron들을 그물망 형태로 연결(network)하면  
+사람의 뇌에서 이루어지는 논리적 연산을 흉내낼 수 있음을 제안.
 
 이는 달리 말할 경우, 
 
@@ -24,7 +25,7 @@ on-off로 동작(=switch)하는 기능을 가진 artificial neuron들을 그물�
 
 > McCulloch과 Pitts의 이론은 실제 인간 두뇌 활동에 대한 정확한 모델링은 아닌 것으로 판명되었으나,
 > 현대 digital computer의 기본인 stored-program computer를 정리한 John von Neumann (1945, First Draft of a Report on the EDVAC)에게까지 영향을 주었고
-> ANN의 탄생(Frank Rosenblatt, 1957)에도 큰 영향을 미침.  
+> ANN의 탄생 (Frank Rosenblatt, 1957 )에도 큰 영향을 미침.  
 > 
 > * [The von Neumann Architecture](../../CE/ch00/history_of_computers.md#the-von-neumann-architecture)
 
@@ -52,13 +53,20 @@ logical proposition (논리 명제)를 계산 (and, or, not 등의)함.
 
 1. Neuron : 1 or 0 (= all-or-none process) 
     * binary inputs (`1` or `0`)을 처리하여 binary output (`1` or `0`)을 내보냄.
-2. 특정 Neuron이 **activation** (= output이  `1`)이 되려면 ^^2개 이상의 고정된 갯수의 synapse가 activation^^ 되어야 함 (일정한 시간내에)
-3. delay는 synaptic delay만 고려. (= Neural network에서 다른 시간 지연을 고려하지 않음.)
-4. absolute inhibitory input(=synapse)가 존재. 
-    * inhibitory synapse (위 그림에서 open circle)가 activation 될 경우 그 때의 특정 neuron은 절대로 activation이 되지 못함.
-5. Neural network의 구조는 time-invariant (Weighting 및 ***학습에 대한 개념이 없었음*** ).
+2. 특정 Neuron이 **activation** (= output이  `1`)이 되려면  
+   ^^2개 이상의 고정된 갯수의 synapse가 activation^^ 되어야 함 (일정한 시간내에)
+4. delay는 synaptic delay만 고려.
+   (= Neural network에서 다른 시간 지연을 고려하지 않음.)
+6. absolute inhibitory input(=synapse)가 존재. 
+    * inhibitory synapse (위 그림에서 open circle)가 activation 될 경우
+    * 그 때의 특정 neuron은 절대로 activation이 되지 못함.
+7. Neural network의 구조는 time-invariant
+   (Weighting 및 ***학습에 대한 개념이 없었음*** ).
 
-> ML에서 training이란 결국, task에 최적화된 weights (or parameters)의 값을 구하는 것인데, 위의 5번 가정에 위배된다. (이후 Hebb's rule을 반영하면서 weights의 값을 변경하는 개념이 도입됨.)
+> ML에서 training이란  
+> 결국, task에 최적화된 weights (or parameters)의 값을 구하는 것인데,  
+> 위의 5번 가정에 위배된다.  
+> (이후 Hebb's rule을 반영하면서 weights의 값을 변경하는 개념이 도입됨.)
 
 ---
 
@@ -66,7 +74,10 @@ logical proposition (논리 명제)를 계산 (and, or, not 등의)함.
 
 ![](./img/hebb.png){style="display: block; margin: 0 auto; width: 500px"}
 
-Donald Olding Hebb (캐나다, 심리학자)이 [The Organization of Behavior: A Neuropsychological Theory(1949)](https://pure.mpg.de/rest/items/item_2346268_3/component/file_2346267/content)을 통해 Neural network (생물의)에서 반복적인 signal이 발생(=firing)할 경우, 해당 signal과 관련된 neurons의 synapse 연결이 강화되는 일종의 학습효과가 있다는 "학습 및 기억과 관련된 가설"을 제안 (이를 `Hebb's rule`이라고 지칭).
+Donald Olding Hebb (캐나다, 심리학자)이 [The Organization of Behavior: A Neuropsychological Theory(1949)](https://pure.mpg.de/rest/items/item_2346268_3/component/file_2346267/content)을 통해   
+Neural network (생물의)에서 반복적인 signal이 발생(=firing)할 경우,  
+해당 signal과 관련된 neurons의 synapse 연결이 강화되는 일종의 학습효과가 있다는 "학습 및 기억과 관련된 가설"을 제안  
+(이를 `Hebb's rule`이라고 지칭).
 
 * ***Long-term Memory의 경우***, Short-term Memory와 달리 연결된 Neuron에 물리적 변화(연결된 synapse의 강화 등등)가 이뤄짐.
 
@@ -118,8 +129,6 @@ $$
 * $y_j$ : target value of node $j$.
 * $\hat{y}_{j}$ : node $j$의 출력.
 * $\eta$ : learning rate.
-
-
 
 ---
 
