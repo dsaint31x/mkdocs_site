@@ -66,7 +66,7 @@ parameters의 수가 적은 비교적 단순한 모델들의 경우,
 * 여러 샘플을 묶은 mini-batch 단위로 업데이트 수행.
 * 현재 DL 의 사실상 표준 방식.
 
-### [Momentum](op_momentum.md) : 1986 (Rumelhart et al.) 
+### [Momentum](op_momentum.md) : 1986 (Rumelhart et al.) *
 
 * 이전 업데이트 방향을 누적하여 현재 gradient에 반영.
 * 업데이트 방향의 안정화
@@ -90,7 +90,7 @@ parameters의 수가 적은 비교적 단순한 모델들의 경우,
 - **parameter-wise adaptive learning rate** 를 본격적으로 도입한 초기 대표 알고리즘 중 하나임.
 - Sparse feature에 강점이 있으나, squared gradient를 계속 누적하므로 **learning rate가 지나치게 빠르게 감소** 할 수 있다는 단점이 있음.
 
-### [RMSProp](./op_rmsprop.md) : 2012 (Hinton's Lecture note)
+### [RMSProp](./op_rmsprop.md) : 2012 (Hinton's Lecture note) *
 
 - Adagrad에서 squared gradient의 **누적합** 이 계속 증가하면서 learning rate가 지나치게 빠르게 작아지는 문제를 완화하기 위해 제안됨.
     - squared gradient의 누적합 대신 squared gradient의 **exponential moving average (EMA)** 를 사용함
