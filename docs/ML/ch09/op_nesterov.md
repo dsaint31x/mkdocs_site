@@ -8,7 +8,7 @@ Momentum과 비교하면 다음의 차이를 보임.
 
 * Gradient를 구할 때, 다음 step으로 우선 momentum에 따라 inertia의 방향으로 먼저 이동한 후 gradient를 구한다는 차이가 있음.
     * 기존의 momentum : $\nabla_{\boldsymbol{\theta}}J(\boldsymbol{\theta}_t)$
-    * NAG : $\nabla_{\boldsymbol{\theta}}J(\boldsymbol{\theta}_t+\gamma \textbf{m}_{t})$
+    * NAG : $\nabla\_{\boldsymbol{\theta}}J(\boldsymbol{\theta}\_t+\gamma \textbf{m}\_{t})$
 * 이 같은 gradient를 ***look-ahead gradient*** 라고 부름.
 * 이경우 최적값에 해당하는 minimum에서 기존 Momentum 방법이 요동치는 단점이 줄어드는 효과를 가져옴.
 
@@ -28,7 +28,7 @@ $$
 
 위의 식은 Nesterov가 제안한 accelerated gradient의 look-ahead 방식을 momentum notation으로 표기한 것으로,  
 NAG의 look-ahead 동작을 직접 보여주는 형태이며 [Sebastian Ruder 등의 자료](https://www.ruder.io/optimizing-gradient-descent/#nesterovacceleratedgradient)에서 NAG의 동작을 설명할 때 사용됨  
-(사실 Ruder 역시 기호를 $m$대신에 $\textbf{v}$로 씀. 이후 Sutskever의 식과 구분하기 위해 이 문서에선 $\textbf{m}$을 사용했음.)  
+(사실 Ruder 역시 기호를 $\textbf{m}$대신에 $\textbf{v}$로 씀. 이후 Sutskever의 식과 구분하기 위해 이 문서에선 $\textbf{m}$을 사용했음.)  
 
 개인적으로도 NAG의 동작을 이해하기에는 이 표현이 가장 직관적임.
 (Bengio도 위의 식의 index에 맞춰 Sutskever의 식을 다시 표기하기도 함).
@@ -41,7 +41,7 @@ $$
 \boldsymbol{\theta_{t+1}} = \boldsymbol{\theta_{t}} - \textbf{v}_{t}
 $$
 
-즉, lookahead로 이동할 moment를 $\textbf{m}_t$로 표현하느냐, $-\textbf{v}_{t-1}$로 표현하느냐의 차이임.
+즉, lookahead로 이동할 moment를 $\textbf{m}\_t$ 로 표현하느냐, $-\textbf{v}\_{t-1}$로 표현하느냐의 차이임.
 
 다만 실제 library 구현에서는 look-ahead parameter를 별도로 만든 뒤 그 위치에서 gradient를 다시 계산하는 방식보다는,  
 현재 parameter에서 계산한 gradient와 momentum buffer를 조합하는 형태가 주로 사용됨.
