@@ -77,7 +77,7 @@ parameters의 수가 적은 비교적 단순한 모델들의 경우,
 
 * 수학적 최적화 이론(Convex Optimization)에서는 Momentum보다 먼저 등장했으나,
 * DL 에서는 Momentum이 먼저 도입됨(Rumelhart 라는 이름이...)
-* 이후 Momentum의 개선형으로 재해석되어 DL등에서 도입됨 배경을 가짐.
+* 이후 Momentum의 개선형으로 재해석되어 DL등에서 도입된 독특한 배경을 가짐.
 * Momentum 방향으로 미리 이동한 미래 위치에서 gradient를 계산.
 * 해당 gradient와 기존 momentum을 결합하여 현재 위치에서 업데이트 수행.
 * [Momentum](op_momentum.md) 대비 수렴 근처에서의 요동이 줄어들며 안정성이 향상됨: Convex optimization 이론에서 보다 강한 수렴 보장을 가짐.
