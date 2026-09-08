@@ -2,10 +2,8 @@
 
 이 알고리즘은 publish가 되지않고, Hinton 교수님의 Coursera 강의(2012)에서 소개된 알고리즘임.
 
-아래 이미지가 해당 슬라이드임
+아래 이미지가 해당 슬라이드 (아래 참고자료에 url로 다운로드 가능)임
 <img width="514" height="242" alt="image" src="https://github.com/user-attachments/assets/33d2ae2f-21c0-442b-9a4f-56e0c347e1c1" />
-
-* [슬라이드 pdf](https://www.cs.toronto.edu/~hinton/coursera/lecture6/lec6.pdf)
 
 `AdaGrad`와 거의 비슷하지만, 
 
