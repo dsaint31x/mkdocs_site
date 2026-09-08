@@ -1,18 +1,39 @@
 # Momentum 
 
-momentum은 운동량이라는 뜻으로 기존의 gradient decent에서 이전의 gradient 정보를 이용하여 보다 빠르게 training이 converge하도록 도와주는 방법임.
+![](https://github.com/user-attachments/assets/f0b2929c-f128-4e44-b38e-c8b8faaf1194){style="display:block; margin: 0 auto; width: 310px"}
 
-> Gradient Decent의 역사가 워낙 오래된 터라, momentum optimizer도 1960년대부터 사용이 된 정말 오래된 알고리즘이다. 그래도 정말 효과적이며 아직까지도 많이 사용된다.
+momentum은 **운동량** 이라는 뜻으로 
 
-model의 parameter vector $\boldsymbol{\theta}$를 업데이트 하는 방향으로 현재의 gradient $-\nabla_{\boldsymbol{\theta}}J(\theta)$만을 사용하는 ***regular gradient*** 와 달리 ***이전의 업데이트 방향의 gradient vector와의 vector sum*** 을 통해 parameters의 업데이트 방향을 결정함.
+* 기존의 gradient decent에서
+* 이전의 gradient 정보를 추가적으로 이용하여
+* 보다 빠르게 training이 converge하도록 도와주는 방법임.
 
-***inertia (관성)의 개념을 도입*** 하여 parameters를 업데이트할 vector의 방향이 결정된다. (여기서 계속 방향이라고 애기하는 이유는 parameters를 vector라고 볼 경우, 해당 vector의 각 elements가 어떻게 변경될지를 나타내는 것도 일종의 vector로 표현되며, vector이므로 방향과 크기를 가짐. 크기의 조절은 learning ratio로 이루어지며 방향은 gradient로 결정됨).
+> Gradient Decent의 역사가 워낙 오래된 터라,  
+> 이의 개선판인 momentum optimizer도  
+> 1960년대부터 사용이 된 정말 오래된 알고리즘이다.  
+> 그래도 정말 효과적이며 아직까지도 많이 사용된다.
+
+model의 parameter vector $\boldsymbol{\theta}$를 업데이트 하는 방향으로 
+
+* 현재의 gradient $-\nabla_{\boldsymbol{\theta}}J(\theta)$만을 사용하는 ***regular gradient*** 와 달리
+* ***이전의 업데이트 방향의 gradient vector와의 vector sum*** 을 통해 parameters의 업데이트 방향을 결정함.
+
+***inertia (관성)의 개념을 도입*** 하여 parameters를 업데이트할 vector의 방향이 결정된다.  
+
+* 여기서 계속 방향이라고 이야기하는 이유는
+* parameters를 vector라고 볼 경우,
+* 해당 vector의 각 elements가 어떻게 변경될 지를 나타내는 것도 일종의 vector로 표현되며,
+* vector이므로 방향과 크기를 가짐.
+* 이 때, 크기 조절은 learning ratio로 이루어지며 방향은 gradient로 결정됨.
 
 parameter vector $\boldsymbol{\theta}$의 업데이트는 다음과 같이 이루어짐.
 
 $$\boldsymbol{\theta}_{t+1}=\boldsymbol{\theta}_{t}+ \textbf{m}_{t+1}$$
 
-여기서 momentum $\textbf{m}_{t+1}$은 `inertia coef.` (or `momentum coef.`) ***$\gamma$를 통해 inertia의 정도가 결정*** (inertia coef가 클수록 관성이 커서 기존의 update 방향이 잘 안 변함. 만약 inertia coef.가 0일 경우 regular gradient와 같음).
+여기서 momentum $\textbf{m}_{t+1}$은 `inertia coef.` (or `momentum coef.`) ***$\gamma$를 통해 inertia의 정도가 결정*** 
+
+* inertia coef가 클수록 관성이 커서 기존의 update 방향이 잘 안 변함.
+* 만약 inertia coef.가 0일 경우 regular gradient와 같음.
 
 $$\begin{aligned} \textbf{m}_{t+1}&=\gamma \textbf{m}_t - \eta\nabla_{\boldsymbol{\theta}}J(\boldsymbol{\theta}_t)\\ \\ \textbf{m}_0 &= \textbf{0}\end{aligned}$$
 
@@ -31,7 +52,9 @@ Momentum의 ***장점*** 은 다음과 같음.
 
 ***단점*** 으로는 inertia의 도입으로 인해 ***최적의 값*** 에서도 업데이트가 이루어져 지나칠 수 있음 (oscilaation).
 
-> tunning을 해야할 hyper-parameter $\gamma$가 하나 늘어나기는 하지만, 일반적으로 `0.9`정도면 ***거의 대부분 regular gradient decent보다 잘 동작*** 하기 때문에 단점이라고 보기 어려움.
+> tunning을 해야할 hyper-parameter $\gamma$가 하나 늘어나기는 하지만,  
+> 일반적으로 `0.9`정도면  
+> ***거의 대부분 regular gradient decent보다 잘 동작*** 하기 때문에 단점이라고 보기 어려움.
 
 ---
 
