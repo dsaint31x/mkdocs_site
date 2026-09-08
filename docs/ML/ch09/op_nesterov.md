@@ -26,6 +26,70 @@ $$
 
 ![](https://github.com/user-attachments/assets/8402499e-c1e2-4c7c-bbf5-049d6a6d5206){style="display: block; margin: 0 auto; width: 500px"}
 
+위의 식은 Nesterov가 제안한 accelerated gradient의 look-ahead 방식을 momentum notation으로 표기한 것으로,  
+NAG의 look-ahead 동작을 직접 보여주는 형태이며 [Sebastian Ruder 등의 자료](https://www.ruder.io/optimizing-gradient-descent/#nesterovacceleratedgradient)에서 NAG의 동작을 설명할 때 사용됨  
+(사실 Ruder 역시 기호를 $m$대신에 $\textbf{v}$로 씀. 이후 Sutskever의 식과 구분하기 위해 이 문서에선 $\textbf{m}$을 사용했음.)  
+
+개인적으로도 NAG의 동작을 이해하기에는 이 표현이 가장 직관적임.
+(Bengio도 위의 식의 index에 맞춰 Sutskever의 식을 다시 표기하기도 함).
+  
+하지만, $\textbf{m}_t = -\textbf{v}_{t-1}$의 관계를 이용하여 다음과 같이 $\textbf{v}_t$를 이용한 식으로 표현할 수도 있음:
+(널리 알려진 Sutskever 등의 자료 및 CS231n에서 사용하는 형태)
+
+$$
+\textbf{v}_{t} = \gamma \textbf{v}_{t-1} + \eta \nabla_\theta J (\boldsymbol{\theta}_t - \gamma \textbf{v}_{t-1}) \\
+\boldsymbol{\theta_{t+1}} = \boldsymbol{\theta_{t}} - \textbf{v}_{t}
+$$
+
+즉, lookahead로 이동할 moment를 $\textbf{m}_t$로 표현하느냐, $-\textbf{v}_{t-1}$로 표현하느냐의 차이임.
+
+다만 실제 library 구현에서는 look-ahead parameter를 별도로 만든 뒤 그 위치에서 gradient를 다시 계산하는 방식보다는,  
+현재 parameter에서 계산한 gradient와 momentum buffer를 조합하는 형태가 주로 사용됨.
+
+PyTorch의 `SGD(..., nesterov=True)`도 다음과 같은 방식임.
+
+```python
+buf = momentum_buffer_list[i]
+if buf is None:
+    buf = grad.detach().clone()  # <-- 361라인: 최초 버퍼에 첫 grad 복사
+    momentum_buffer_list[i] = buf
+else:
+    buf.mul_(momentum).add_(grad, alpha=1 - dampening)
+
+if nesterov:
+    grad = grad.add(buf, alpha=momentum)  # <-- 368라인: nesterov=True 일 때 grad 중첩 갱신
+else:
+    grad = buf
+```
+
+PyTorch에서는 먼저 momentum buffer를 다음과 같이 갱신함.
+
+$$
+\mathbf v_t = \gamma \mathbf v_{t-1} + \nabla_\theta J(\boldsymbol{\theta}_t)
+$$
+
+`nesterov=True`이면 parameter update는 다음과 같음.
+
+$$
+\boldsymbol{\theta}_{t+1} = \boldsymbol{\theta}_t - \eta \left[ \nabla_\theta J(\boldsymbol{\theta}_t) + \gamma \mathbf v_t \right]
+$$
+
+즉, PyTorch에서는 look-ahead 위치에서 gradient를 직접 계산하지 않고, **현재 parameter에서 계산한 gradient와 momentum buffer를 조합하여 NAG를 구현함**.
+
+참고로 PyTorch에서는 첫 momentum buffer를 zero vector로 시작하지 않고 첫 gradient로 초기화함.
+
+```python
+if buf is None:
+    buf = grad.detach().clone()
+```
+
+따라서 첫 step에서 momentum buffer에 gradient가 바로 들어가도록 구현됨.
+이는 [PyTorch 공식 문서](https://docs.pytorch.org/docs/main/generated/torch.optim.SGD.html?utm_source=chatgpt.com)에도 명시되어 있음
+  
+> 실제로 Sutskever의 식에서도, 앞서 $\textbf{m}_t$ 전개한 NAG 식과 맞추려면, 첫 velocity $\textbf{v}_1=\eta \nabla_theta J(\boldsymbol{\theta}_1}$이어야 함.
+> PyTorch 구현(NAG의 원래 식보다는 Sutskever의 식에 가까움)에서는 learning rate를 momentum buffer에 포함시키지 않고,
+> 첫 momentum buffer에 gradient 자체를 복사해 넣는 방식으로 처리함.
+> [https://github.com/pytorch/pytorch/blob/main/torch/optim/sgd.py](https://github.com/pytorch/pytorch/blob/main/torch/optim/sgd.py) 의 360-367라인 참고
 
 
 ## Keras에서의 구현.
