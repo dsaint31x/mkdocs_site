@@ -84,17 +84,19 @@ parameters의 수가 적은 비교적 단순한 모델들의 경우,
 
 ### [Adagrad](./op_adagrad.md) : 2011
 
-* 학습이 진행되면서 parameter들의 업데이트되는 크기가 각기 다른 점을 반영하여,
-* 각 parameter별로 과거 gradient 제곱합을 누적하여 업데이트가 크게 일어난 parameter일수록 learning rate를 감소시킴.
-* Adaptive learning rate를 최초로 본격 도입한 알고리즘.
-* Sparse feature 에는 강하나, **learning rate 가 지나치게 빠르게 감소** 하는 단점 존재.
+- 학습이 진행되면서 각 parameter마다 gradient의 크기와 update 정도가 다를 수 있다는 점을 반영함.
+- 각 parameter별로 **squared gradient의 누적합**을 계산하고, 이 값의 square root로 현재 gradient를 나누어 update 크기를 조절함.
+- 따라서 과거에 큰 gradient가 자주 발생한 parameter일수록 effective learning rate가 감소함.
+- **parameter-wise adaptive learning rate**를 본격적으로 도입한 초기 대표 알고리즘 중 하나임.
+- Sparse feature에 강점이 있으나, squared gradient를 계속 누적하므로 **learning rate가 지나치게 빠르게 감소**할 수 있다는 단점이 있음.
 
 ### [RMSprop](./op_rmsprop.md) : 2012 (Hinton's Lecture note)
 
-* Adagrad의 learning rate가 지나치게 이른 학습 단계에서 소실되는 문제 (누적합 방식의 문제)를 해결하기 위해
-* "gradient의 square"(2nd moment)의 exponential moving average 으로 누접합 을 대체한 알고리즘.  
-* Parameter-wise step scaling (~adaptive learning rate) 를 통해 보다 안정적인 lr을 제공.
-* fine-tuning 등에서 많이 애용됨.  
+- Adagrad에서 squared gradient의 **누적합**이 계속 증가하면서 learning rate가 지나치게 빠르게 작아지는 문제를 완화하기 위해 제안됨.
+- squared gradient의 누적합 대신 **exponential moving average (EMA)** 를 사용하여 최근 gradient 정보를 더 크게 반영함.
+- 현재 gradient를 이 EMA의 square root로 나누어 각 parameter의 update 크기를 조절함.
+- 즉, gradient가 지속적으로 큰 parameter는 step size를 줄이고, 작은 parameter는 상대적으로 크게 유지하는 **parameter-wise adaptive scaling**을 수행함.
+- 이를 통해 Adagrad에 비해 learning rate가 지나치게 빠르게 감소하는 것을 방지하고 보다 안정적인 optimization을 수행함. 
 
 ### Adadelta : 2012
 
