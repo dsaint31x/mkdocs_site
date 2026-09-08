@@ -4,8 +4,7 @@ Yurii Nesterov가 1983년 momentum을 개선한 Nesterov Accelerated Gradient를
 `NAG`로 많이 불림.
 
 Momentum과 비교하면 다음의 차이를 보임.
-![](https://github.com/user-attachments/assets/4a3999db-05df-4509-9586-367e499e88ab){style="display: block; margin: 0 auto; width: 500px"
-}
+![](https://github.com/user-attachments/assets/4a3999db-05df-4509-9586-367e499e88ab){style="display: block; margin: 0 auto; width: 500px"}
 
 * Gradient를 구할 때, 다음 step으로 우선 momentum에 따라 inertia의 방향으로 먼저 이동한 후 gradient를 구한다는 차이가 있음.
     * 기존의 momentum : $\nabla_{\boldsymbol{\theta}}J(\boldsymbol{\theta}_t)$
@@ -22,11 +21,10 @@ $$\begin{aligned} \textbf{m}_0 &= \textbf{0} \\ \textbf{m}_{t+1}&=\gamma \textbf
 model의 parameter vector의 업데이트는 다음과 같음:
 
 $$
-\boldsymbol{\theta}_{t+1} = \boldsymbol{\theta}_{t} + \textbf{m}_t 
+\boldsymbol{\theta}_{t+1} = \boldsymbol{\theta}_{t} + \textbf{m}_{t+1} 
 $$
 
-![](https://github.com/user-attachments/assets/5026b310-5ac4-4efb-ab7c-149bf939f077){style="display: block; margin: 0 auto; width: 500px"
-}
+![](https://github.com/user-attachments/assets/8402499e-c1e2-4c7c-bbf5-049d6a6d5206){style="display: block; margin: 0 auto; width: 500px"}
 
 
 
