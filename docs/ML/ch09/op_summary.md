@@ -85,10 +85,10 @@ parameters의 수가 적은 비교적 단순한 모델들의 경우,
 ### [Adagrad](./op_adagrad.md) : 2011
 
 - 학습이 진행되면서 각 parameter마다 gradient의 크기와 update 정도가 다를 수 있다는 점을 반영함.
-- 각 parameter별로 **squared gradient의 누적합**을 계산하고, 이 값의 square root로 현재 gradient를 나누어 update 크기를 조절함.
+- 각 parameter별로 **squared gradient의 누적합** 을 계산하고, 이 값의 square root로 현재 gradient를 나누어 update 크기를 조절함.
 - 따라서 과거에 큰 gradient가 자주 발생한 parameter일수록 effective learning rate가 감소함.
-- **parameter-wise adaptive learning rate**를 본격적으로 도입한 초기 대표 알고리즘 중 하나임.
-- Sparse feature에 강점이 있으나, squared gradient를 계속 누적하므로 **learning rate가 지나치게 빠르게 감소**할 수 있다는 단점이 있음.
+- **parameter-wise adaptive learning rate** 를 본격적으로 도입한 초기 대표 알고리즘 중 하나임.
+- Sparse feature에 강점이 있으나, squared gradient를 계속 누적하므로 **learning rate가 지나치게 빠르게 감소** 할 수 있다는 단점이 있음.
 
 ### [RMSProp](./op_rmsprop.md) : 2012 (Hinton's Lecture note)
 
