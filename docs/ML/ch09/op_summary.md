@@ -90,10 +90,12 @@ parameters의 수가 적은 비교적 단순한 모델들의 경우,
 - **parameter-wise adaptive learning rate**를 본격적으로 도입한 초기 대표 알고리즘 중 하나임.
 - Sparse feature에 강점이 있으나, squared gradient를 계속 누적하므로 **learning rate가 지나치게 빠르게 감소**할 수 있다는 단점이 있음.
 
-### [RMSprop](./op_rmsprop.md) : 2012 (Hinton's Lecture note)
+### [RMSProp](./op_rmsprop.md) : 2012 (Hinton's Lecture note)
 
 - Adagrad에서 squared gradient의 **누적합**이 계속 증가하면서 learning rate가 지나치게 빠르게 작아지는 문제를 완화하기 위해 제안됨.
-- squared gradient의 누적합 대신 **exponential moving average (EMA)** 를 사용하여 최근 gradient 정보를 더 크게 반영함.
+    - squared gradient의 누적합 대신 squared gradient의 **exponential moving average (EMA)** 를 사용함
+    - 이같은 차이로 Adagrad보다 RMSprop은 최근 gradient 정보를 보다 더 크게 반영함.
+    - 이 동작을 의미하는 Root Mean Square Propagation 의 약어가 바로 이름인 RMSProp임.
 - 현재 gradient를 이 EMA의 square root로 나누어 각 parameter의 update 크기를 조절함.
 - 즉, gradient가 지속적으로 큰 parameter는 step size를 줄이고, 작은 parameter는 상대적으로 크게 유지하는 **parameter-wise adaptive scaling**을 수행함.
 - 이를 통해 Adagrad에 비해 learning rate가 지나치게 빠르게 감소하는 것을 방지하고 보다 안정적인 optimization을 수행함. 
