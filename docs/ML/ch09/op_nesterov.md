@@ -83,12 +83,14 @@ if buf is None:
     buf = grad.detach().clone()
 ```
 
-따라서 첫 step에서 momentum buffer에 gradient가 바로 들어가도록 구현됨.
+따라서 첫 step에서 momentum buffer에 gradient가 바로 들어가도록 구현됨.  
 이는 [PyTorch 공식 문서](https://docs.pytorch.org/docs/main/generated/torch.optim.SGD.html?utm_source=chatgpt.com)에도 명시되어 있음
   
-> 실제로 Sutskever의 식에서도, 앞서 $\textbf{m}_t$ 전개한 NAG 식과 맞추려면, 첫 velocity $\textbf{v}_1=\eta \nabla_theta J(\boldsymbol{\theta}_1}$이어야 함.
-> PyTorch 구현(NAG의 원래 식보다는 Sutskever의 식에 가까움)에서는 learning rate를 momentum buffer에 포함시키지 않고,
+> 실제로 Sutskever의 식에서도,
+> 앞서 $\textbf{m}_t$ 전개한 NAG 식과 맞추려면, 첫 velocity 가 $\textbf{v}\_1=\eta \nabla_theta J(\boldsymbol{\theta}\_1}$ 이어야 함.  
+> PyTorch 구현(NAG의 원래 식보다는 Sutskever의 식에 가까움)에서는 learning rate를 momentum buffer에 포함시키지 않고,  
 > 첫 momentum buffer에 gradient 자체를 복사해 넣는 방식으로 처리함.
+> 
 > [https://github.com/pytorch/pytorch/blob/main/torch/optim/sgd.py](https://github.com/pytorch/pytorch/blob/main/torch/optim/sgd.py) 의 360-367라인 참고
 
 
