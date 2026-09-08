@@ -4,8 +4,8 @@
 
 `AdaGrad`와 거의 비슷하지만, 
 
-* 지금까지의 모든 gradient를 accumulate하여 $\textbf{s}$를 구하는 것이 아닌, 
-* ***Exponential Moving Average*** 를 통해 
+* 지금까지의 모든 squared gradient의 누적합으로 $\textbf{s}$를 구하는 것이 아닌, 
+* 과거 squared gradient들의 ***Exponential Moving Average*** 를 통해 
 * 과거의 gradient의 영향을 지수함수로 감소시키고 
 * 최근의 gradient들을 중심으로 누적시켜 
 * 지나치게 learning rate가 빠르게 감소하는 문제를 해결함. 
@@ -38,6 +38,16 @@ $$
 * $\otimes$는 element-wise multiplication (Hadamard product) 임.
 * $\oslash$는 element-wise division (Hadamard division)임.
 
+다음의 형태로 기재하는 문헌도 많음 (같은 의미임):
+
+$$
+s_{t+1} = \beta v_{t} + (1-\beta)g_t^2
+\\
+\theta_t+1 = \theta_{t} - \eta \frac{g_t+1}{\sqrt{v_{t+1}}+\epsilon}
+$$
+
+* $g_t$ 는 $t$ 시점의 gradient임!
+* $\epsilon$ 은 numerical stability term 으로 division by zero를 방지하고 numerical stability를 확보하기 위한 작은 상수임.
 
 ## Pseudo code
 
@@ -48,6 +58,21 @@ x += - learning_rate * dx / (np.sqrt(cache) + eps)
 
 * `decay_rate` is a hyperparameter and typical values are [0.9, 0.99, 0.999]
 * `x+=` update is identical to `Adagrad`, but the cache variable is a “leaky”
+
+## PyTorch에서의 구현
+
+아래와 같이 `torch.optim.RMSprop` optimizer 객체를 생성하면 됨.
+
+```python
+optimizer = torch.optim.RMSprop(
+    model.parameters(),
+    lr=0.001,
+    alpha=0.9
+)
+```
+
+- `lr`: learning rate
+- `alpha`: squared gradient의 exponential moving average에 사용되는 decay factor로, Keras의 `rho` (앞서 수식의 `beta`)에 대응함.
 
 ## Keras에서의 구현.
 
