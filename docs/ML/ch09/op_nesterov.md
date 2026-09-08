@@ -8,7 +8,7 @@ Momentum과 비교하면 다음의 차이를 보임.
 
 * Gradient를 구할 때, 다음 step으로 우선 momentum에 따라 inertia의 방향으로 먼저 이동한 후 gradient를 구한다는 차이가 있음.
     * 기존의 momentum : $\nabla_{\boldsymbol{\theta}}J(\boldsymbol{\theta}_t)$
-    * NAG : $\nabla\_{\boldsymbol{\theta}}J(\boldsymbol{\theta}\_t+\gamma \textbf{m}\_{t})$
+    * NAG : $\nabla_{\boldsymbol{\theta}}J(\boldsymbol{\theta}_t+\gamma \textbf{m}_{t})$
 * 이 같은 gradient를 ***look-ahead gradient*** 라고 부름.
 * 이경우 최적값에 해당하는 minimum에서 기존 Momentum 방법이 요동치는 단점이 줄어드는 효과를 가져옴.
 
@@ -41,7 +41,7 @@ $$
 \boldsymbol{\theta_{t+1}} = \boldsymbol{\theta_{t}} - \textbf{v}_{t}
 $$
 
-즉, lookahead로 이동할 moment를 $\textbf{m}\_t$ 로 표현하느냐, $-\textbf{v}\_{t-1}$로 표현하느냐의 차이임.
+즉, lookahead로 이동할 moment를 $\textbf{m}_t$ 로 표현하느냐, $-\textbf{v}_{t-1}$로 표현하느냐의 차이임.
 
 다만 실제 library 구현에서는 look-ahead parameter를 별도로 만든 뒤 그 위치에서 gradient를 다시 계산하는 방식보다는,  
 현재 parameter에서 계산한 gradient와 momentum buffer를 조합하는 형태가 주로 사용됨.
@@ -87,7 +87,7 @@ if buf is None:
 이는 [PyTorch 공식 문서](https://docs.pytorch.org/docs/main/generated/torch.optim.SGD.html?utm_source=chatgpt.com)에도 명시되어 있음
   
 > 실제로 Sutskever의 식에서도,
-> 앞서 $\textbf{m}_t$ 전개한 NAG 식과 맞추려면, 첫 velocity 가 $\textbf{v}\_1=\eta \nabla_theta J(\boldsymbol{\theta}\_1}$ 이어야 함.  
+> 앞서 $\textbf{m}_t$ 전개한 NAG 식과 맞추려면, 첫 velocity 가 $\textbf{v}_1=\eta \nabla_theta J(\boldsymbol{\theta}_1}$ 이어야 함.  
 > PyTorch 구현(NAG의 원래 식보다는 Sutskever의 식에 가까움)에서는 learning rate를 momentum buffer에 포함시키지 않고,  
 > 첫 momentum buffer에 gradient 자체를 복사해 넣는 방식으로 처리함.
 > 
