@@ -48,19 +48,19 @@ parameters의 수가 적은 비교적 단순한 모델들의 경우,
 
 대표적인 알고리즘의 요약은 다음과 같음:
 
-### [Batch Gradient Decent](https://dsaint31.tistory.com/860) (or Vanilla Gradient Decent, Batch GD) : 1950s ~
+### [Batch Gradient Decent](https://dsaint31.tistory.com/633) (or Vanilla Gradient Decent, Batch GD) : 1950s ~
 
 * Gradient 기반 최적화의 가장 기본적인 형태
 * 전체 데이터셋을 사용하여 한 번의 파라미터 업데이트를 수행함 (1epoch = 1step).
 * 수렴은 안정적이나 데이터 규모가 커질수록 계산 비용이 큼.
 
-### [Stochastic Gradient Decent (SGD)](https://dsaint31.tistory.com/860) : 1951 (Robbins-Monro)
+### [Stochastic Gradient Decent (SGD)](https://dsaint31.tistory.com/633) : 1951 (Robbins-Monro)
 
 * 하나의 데이터 샘플만을 사용하여 파라미터 업데이트 수행.
 * Batch GD의 느린 업데이트 문제를 해결함.
 * 업데이트 분산이 크고 noisy하나 빠른 탐색이 가능함.
 
-### [Mini-batch GD](https://dsaint31.tistory.com/860) : 1980s
+### [Mini-batch GD](https://dsaint31.tistory.com/633) : 1980s
     
 * Batch GD와 SGD의 중간형.
 * 여러 샘플을 묶은 mini-batch 단위로 업데이트 수행.
