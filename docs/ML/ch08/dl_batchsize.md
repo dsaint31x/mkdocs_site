@@ -45,10 +45,10 @@ Batch size를 이해하려면 다음 용어들을 같이 구분해야 함.
 * **epoch**: training dataset 전체를 한 번 모두 사용하는 과정.
 
 training dataset의 크기가 $N$, batch size가 $B$라면,  
-한 epoch에서 이루어지는 update 횟수는 대략 다음과 같음.
+한 epoch에서 이루어지는 update 횟수는 대략 다음과 같음:
 
 $$
-\text{# of updates per epoch}\left\lceil \frac{N}{B} \right\rceil
+\text{number of updates per epoch}\left\lceil \frac{N}{B} \right\rceil
 $$
 
 예를 들어 $N = 50{,}000$, $B = 32$이면,
