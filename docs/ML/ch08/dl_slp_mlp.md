@@ -44,22 +44,26 @@ $$
 * $\mathbf{x}$ : input feature vector
 * $\mathbf{w}$ : weight vector
 * $b$ : bias
-* $z$ : linear combination 결과
+* $z$ : [linear combination](https://dsaint31.tistory.com/660) 결과
 * $f(z)$ : class를 결정하는 activation 또는 decision function
 
-Perceptron은 hidden layer가 없음:
+> 엄격하게 애기하면
+> Perceptron에서 activation function이
+> [step function](https://dsaint31.tistory.com/553) 또는 [hyperbolic tangent](https://dsaint31.tistory.com/577)만 가능함.
 
-<img width="145" height="256" alt="image" src="https://github.com/user-attachments/assets/a5aac3bf-d7f3-4a0a-a140-b8c0a375e8e2" />
+Single Layer Perceptron (SLP)은 hidden layer가 없음:
+
+<!--img width="145" height="256" alt="image" src="https://github.com/user-attachments/assets/a5aac3bf-d7f3-4a0a-a140-b8c0a375e8e2" /-->
+![](https://github.com/user-attachments/assets/a5aac3bf-d7f3-4a0a-a140-b8c0a375e8e2){style="display: block; margin:0 auto; width:140px"}
 
 
-* input layer에서 output으로 바로 연결되는 구조임.
-* 이 때문에 Perceptron은 Single-Layer Perceptron, 즉 SLP의 구현물로 볼 수 있음.
+* input 에서 output 으로 바로 연결되는 구조 (Hidden layer 가 없음)임.
 
 ---
 
 ### Perceptron의 특징
 
-Perceptron은 매우 단순한 classification model임.
+Perceptron (SLP를 가리킴)은 매우 단순한 classification model임.
 
 주요 특징은 다음과 같음.
 
@@ -106,7 +110,7 @@ scikit-learn에서
 
 ### Perceptron의 한계
 
-Perceptron은 linear decision boundary만 학습할 수 있음.
+Perceptron은 ***linear decision boundary만 학습*** 할 수 있음.
 
 즉, 다음과 같은 형태의 결정 경계를 가짐.
 
@@ -119,7 +123,7 @@ $$
 
 > Perceptron은 
 > 
-> * data가 선형적으로 구분 가능한 경우에는 사용할 수 있지만,
+> * data가 [선형적으로 구분 가능(linearly separable)](https://dsaint31.tistory.com/847)한 경우에는 사용할 수 있지만,
 > * 복잡한 non-linear pattern을 가진 data에는 한계가 있음.
 > 
 > 대표적인 예가 **XOR 문제** 임.
@@ -178,7 +182,7 @@ print("Accuracy:", accuracy)
 `Perceptron`은 
 
 * feature scale의 영향이 크기 때문에
-* 일반적으로 `StandardScaler`와 같은 Feature Scaling이 함께 사용되어야 함.
+* 일반적으로 [`StandardScaler`](https://ds31x.tistory.com/249)와 같은 [Feature Scaling](https://dsaint31.tistory.com/720)이 함께 사용되어야 함.
 
 ---
 
@@ -190,12 +194,16 @@ print("Accuracy:", accuracy)
 > 
 > * hidden layer를 포함하는
 > * Multi-Layer Perceptron 기반 classification model임.
+> * sickit-learn에선 `sklearn.neural_network.MLPClassifier` 로 제공.
 
 MLPClassifier는 
 
 * Perceptron과 달리
 * input layer와 output layer 사이에 
 * 하나 이상의 hidden layer를 둘 수 있음.
+
+> Regression 을 MLP로 풀기 위해선 MLPRegressor를 사용:  
+> `sklearn.neural_network.MLPRegressor` 을 scikit-learn에서 제공.
 
 기본 구조는 다음과 같음.
 
@@ -256,7 +264,7 @@ negative log-likelihood, NLL을 가리킴.
 주의할 점은
 
 * `activation="relu"`와 같은 parameter는
-* hidden layer의 activation function을 지정하는 parameter라는 점임.
+* **hidden layer의 activation function을 지정** 하는 parameter라는 점임.
 
 다음 코드에서 `activation="relu"`라고 하더라도  
 output layer가 ReLU를 사용하는 것은 아님.
@@ -272,9 +280,9 @@ MLPClassifier(
 
 | task                       | output activation | loss                                                            | 출력 의미                          |
 | -------------------------- | ----------------- | --------------------------------------------------------------- | ------------------------------ |
-| binary classification      | logistic func.  | log loss<br/>binary cross-entropy / negative log-likelihood      | positive class에 속할 probability |
-| multi-class classification | softmax           | log lossb<br/>categorical cross-entropy / negative log-likelihood | 각 class에 속할 probability        |
-| multi-label classification | logistic func.  | label-wise binary cross-entropy / negative log-likelihood       | 각 label이 1일 probability        |
+| binary classification      | [logistic func.](https://dsaint31.tistory.com/320)  | log loss<br/>binary cross-entropy / negative log-likelihood      | positive class에 속할 probability |
+| multi-class classification | [softmax](https://dsaint31.tistory.com/294)           | log lossb<br/>categorical cross-entropy / negative log-likelihood | 각 class에 속할 probability        |
+| multi-label classification | [logistic func.](https://dsaint31.tistory.com/320)  | label-wise binary cross-entropy / negative log-likelihood       | 각 label이 1일 probability        |
 
 ---
 
@@ -327,9 +335,9 @@ where
 
 ### multi-class classification에서의 log loss
 
-multi-class classification에서는 여러 class 중 하나만 정답이 됨.
+**multi-class classification에서는 여러 class 중 하나만 정답이 됨.**
 
-이때 output layer에서는 softmax를 통해 각 class에 속할 probability를 계산함.
+이때 output layer에서는 [softmax](https://dsaint31.tistory.com/294)를 통해 각 class에 속할 probability를 계산함.
 
 수식을 살펴보면
 
@@ -383,7 +391,7 @@ multi-label classification에서는 하나의 sample이 여러 label에 동시�
 > multi-label classification에서는  
 > 각 label을 독립적인 binary classification 문제처럼 다룸.
 
-따라서 각 label마다 logistic sigmoid를 적용하여 해당 label이 1일 probability를 계산함.
+따라서 각 label마다 [logistic sigmoid](https://dsaint31.tistory.com/430)를 적용하여 해당 label이 1일 probability를 계산함.
 
 수식으로 보면
 
