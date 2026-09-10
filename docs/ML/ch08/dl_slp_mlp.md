@@ -135,8 +135,8 @@ XOR 문제는 하나의 직선 또는 hyperplane으로 class를 구분할 수 �
 
 ### Perceptron 사용 예
 
-아래 예제는 scikit-learn의 `Perceptron`을 이용하여
-Iris dataset을 classification하는 간단한 코드임:
+아래 예제는 scikit-learn의 `Perceptron`을 이용하여  
+[Iris dataset](https://ds31x.tistory.com/288)을 classification하는 간단한 코드임:
 
 ```python
 from sklearn.datasets import load_iris
