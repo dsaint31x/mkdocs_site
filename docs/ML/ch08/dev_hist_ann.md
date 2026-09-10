@@ -138,13 +138,18 @@ $$
 
 [Principles of Neurodynamics: Perceptrons and the Theory of Brain Mechanisms, 1962](https://safari.ethz.ch/digitaltechnik/spring2018/lib/exe/fetch.php?media=neurodynamics1962rosenblatt.pdf)
 
-> 해당 논문은 매우 읽기 어렵고, 여러 형태의 perceptron에 각각의 이름을 붙여 혼란스러운 것으로 유명하다. 게다가 학습이 당시로서는 불가했는데도 이에 대한 인식이 없었기 때문에 여러가지로 아쉬운 점이 많은 논문이다.)
+> 해당 논문은 매우 읽기 어렵고, 여러 형태의 perceptron에 각각의 이름을 붙여 혼란스러운 것으로 유명하다.
+> 게다가 학습이 당시로서는 불가했는데도 이에 대한 인식이 없었기 때문에 여러가지로 아쉬운 점이 많은 논문이다.
 
 * 참고 : Perceptron convergence theorem을 통해 linearly separable 한 문제에 대해서 perceptron은 정답에 수렴할 수 있음 (단, solution은 여러개 존재할 수 있으며 training data에 대한 정답으로 SVM처럼 최적의 해라는 보장이 없음).  
 
 
 그 중 하나가 아래에 보이는 Multi-Layer Perceptron으로 일종의 feed-forward ANN이며 2개 이상의 layers를 쌓아 만들어짐.  
 (일반적으로 weight들이 있는 edge들이 몇 단계로 쌓였는지 또는 `TLU`로 구성된 layer의 개수를 센다. 아래 그림의 3개층으로 구성된 MLP임)
+
+> Layer 는 neural network에서
+> input을 받아 정해진 연산과 parameters를 적용(대응되는 input과 paramter를 곱한 후 이들 결과를 summation)한 뒤
+> activation function을 거쳐 그 출력으로 output을 생성하는 하나의 처리 단위임.
 
 ![](./img/multi_layer_perceptron.png){style="display: block; margin: 0 auto; width: 500px"}
 
