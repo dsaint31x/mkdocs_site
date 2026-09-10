@@ -17,7 +17,7 @@ tags: [perceptron, slp, mlpclassifier, mlp, classification, scikit-learn]
 
 여기서 중요한 점은
 
-* `Perceptron`은 classification만 수행하는 단순한 linear classifier이고,
+* `Perceptron`은 classification만 수행하는 단순한 [linear classifier model](https://dsaint31.tistory.com/847)이고,
 * `MLPClassifier`는 hidden layer를 통해 non-linear classification boundary를 학습할 수 있는 classifier라는 점임.
 
 ---
