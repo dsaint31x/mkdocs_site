@@ -140,12 +140,16 @@ $$
 따라서 SGD update는 다음과 같음:
 
 $$
-w_i^{(\mathrm{next})} = w_i+\eta(y-\hat y)x_i
+w_i^{(\mathrm{next})} = w_i - \eta \frac{\partial L}{\partial w_i} = w_i+\eta(y-\hat y)x_i
 $$
 
 위의 식의 형태만 보면 Linear Regression을 SGD로 학습할 때의 update와 동일함.
 
 차이는 prediction error의 의미에 있음.
+
+> 벡터인 경우의 자세한 gradient의 유도는 다음을 참고:
+> 
+> * [최소제곱 손실함수의 gradient 유도](https://dsaint31.tistory.com/977)
 
 **Linear Regression:**
 
