@@ -266,11 +266,11 @@ MLP가 학습이 되기 시작했으나 다른 Machine Learning 기법에 비해
 
 ---
 
-## Key Change to the MLP from Back-propagation : Activation Function
+## Key Change of the MLP from Back-propagation : Activation Function
 
 Rumelhart가 Back-propagation을 MLP 학습에 효과적으로 사용하기 위해 MLP의 activation function을 기존의 [Heaviside step function](https://dsaint31.tistory.com/553)을 [`logistic function`](https://dsaint31.tistory.com/320)으로 변경 (`logistic function`은 [sigmoid functions](https://dsaint31.tistory.com/430)의 대표)함.
 
-* Back-propagation은 Gradient decent와 Reverse-mode Autodiff.의 조합이기 때문에 결국 differentiation에 기반함.
+* Back-propagation Learning 은 Gradient decent와 Reverse-mode Autodiff.의 조합이기 때문에 결국 differentiation에 기반함.
 * 때문에 미분가능하면서 step function과 유사한 `logistic function`으로 activation function을 삼음.
 
 Scikit-Learn에서 제공하는 `sklearn.neural_network.MLPRegressor` 와 `sklearn.neural_network.MLPClassifier` 의 hidden layer에서 사용되는 Activation functions는 다음과 같음.
