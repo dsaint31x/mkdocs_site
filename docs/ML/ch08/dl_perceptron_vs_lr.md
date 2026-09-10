@@ -41,8 +41,11 @@ $$
 대표적인 loss는 Mean Squared Error, MSE 임 (아래는 단일 sample에서의 MSE):
 
 $$
-L_{\mathrm{MSE}} = \frac{1}{2}(y-\hat y)^2
+L_{\mathrm{MSE}} = \frac{1}{2}(\hat y - y)^2
 $$
+
+* error를 구할 때, 구하고자 하는 대상에서 참값으로 빼주는 순서가 보통이므로 그 순서로 기재.
+* square 또는 absolute 처리가 있다보니 순서가 중요하진 않을 수 있으나, 기억해 두는 게 편함.
 
 주의할 점은 Linear Regression 자체가 sample-wise update를 반드시 요구하는 것은 아님.
 
@@ -57,7 +60,9 @@ $$
 w_i^{(\mathrm{next})} = w_i+\eta(y-\hat y)x_i
 $$
 
-여기서 prediction error는 continuous value이므로 ***error magnitude $y-hat y$ 가 update 크기에 직접 반영됨.***
+* 여기서 prediction error는 continuous value이므로 ***error magnitude $y-hat y$ 가 update 크기에 직접 반영됨.***
+* $hat y$가 원래 값보다 크면, 위의 식에선 마이너스 값이 나와서 weight를 감소시킴.
+* $hat y$가 원래 값보다 작으면, 반대로 weight를 증가시키게 됨.
 
 ---
 
