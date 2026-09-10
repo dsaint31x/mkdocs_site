@@ -141,7 +141,7 @@ $$
 > 해당 논문은 매우 읽기 어렵고, 여러 형태의 perceptron에 각각의 이름을 붙여 혼란스러운 것으로 유명하다.
 > 게다가 학습이 당시로서는 불가했는데도 이에 대한 인식이 없었기 때문에 여러가지로 아쉬운 점이 많은 논문이다.
 
-* 참고 : Perceptron convergence theorem을 통해 linearly separable 한 문제에 대해서 perceptron은 정답에 수렴할 수 있음 (단, solution은 여러개 존재할 수 있으며 training data에 대한 정답으로 SVM처럼 최적의 해라는 보장이 없음).  
+* 참고 : Perceptron convergence theorem을 통해 [linearly separable](https://dsaint31.tistory.com/847#0.%20linearly%20separable%20%EC%9D%B4%EB%9E%80%3F-1) 한 문제에 대해서 perceptron은 정답에 수렴할 수 있음 (단, solution은 여러개 존재할 수 있으며 training data에 대한 정답으로 SVM처럼 최적의 해라는 보장이 없음).  
 
 
 그 중 하나가 아래에 보이는 Multi-Layer Perceptron으로 일종의 feed-forward ANN이며 2개 이상의 layers를 쌓아 만들어짐.  
@@ -167,7 +167,7 @@ $$
 
 1969년 Marvin Minsky 와 Seymour Papert는 [Perceptrons: An Introduction to Computational Geometry](https://en.wikipedia.org/wiki/Perceptrons_(book))라는 책을 통해 SLP의 한계를 수학적으로 증명함.
 
-* ***`SLP`는 linear classifier에 불과*** → 단순한 `XOR` 문제(linearly separable하지 않은 문제 중 가장 단순한 형태.)도 풀 수 없음을 수학적으로 증명.
+* ***`SLP`는 linear classifier에 불과*** → 단순한 `XOR` 문제([linearly separable](https://dsaint31.tistory.com/847#0.%20linearly%20separable%20%EC%9D%B4%EB%9E%80%3F-1)하지 않은 문제 중 가장 단순한 형태.)도 풀 수 없음을 수학적으로 증명.
 * MLP 사용할 경우엔 이를 해결할 수 있으나 weight과 bias의 값을 어떻게 구할지 (=학습알고리즘)가 제시되지 못함.
 * 즉, 학습 방법이 제시되어 있지 못함.
 * 결국, 당시 수준으론 실제 문제를 풀 수준의 ANN 구축이 불가함을 Minsky가 증명한 셈이 되었다.
