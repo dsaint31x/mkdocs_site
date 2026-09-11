@@ -1,5 +1,9 @@
 # Back propagation (역전파, 오차 역전파)
 
+![](https://github.com/user-attachments/assets/1b0c038b-3e1f-4d06-bf58-deec2c608847){style="display:block; margin:0 auto; width:600px"}
+
+* ref. : Anlaytics Vidhya
+
 ***딥러닝 모델을 학습시키기 위한 핵심 알고리즘.***
 
 넓은 의미의 **Back-propagation learning** 은 다음 두 과정을 반복하여 ANN을 학습시킴.
@@ -13,9 +17,7 @@
 computational graph를 역방향으로 따라가며 gradient를 계산하는 Reverse-mode AD 과정을  
 주로 가리킴.
 
-<img width="740" height="400" alt="image" src="https://github.com/user-attachments/assets/1b0c038b-3e1f-4d06-bf58-deec2c608847" />
 
-* ref. : Anlaytics Vidhya
 
 ## Reverse-mode AutoDiff
  
@@ -28,7 +30,7 @@ computational graph를 역방향으로 따라가며 gradient를 계산하는 Rev
 > 한 연산의 입/출력을 이용하여 local gradient를 구하고,  
 > 이를 chain rule로 결합하여 전체 도함수의 값을 구해냄.
 >
-> 아쉬운 건, 인터넷 검색도 없던 1970년대의 북유럽에서 핀란드어로 쓰인 석사 논문이었다는 것임.
+> 아쉬운 건, 인터넷 검색도 없던 1970년대의 북유럽에서 핀란드어로 쓰인 석사 논문이었다는 것임.  
 > 이 논문이 미국이나 영국의 주류 컴퓨터 공학 및 AI 연구자들에게 전달될 가능성은 거의 제로에 가까웠을 것으로 보임.  
 > 반면, 이후 다룰 Paul J. Werbos의 1974년 논문은 미국 하버드 대학교에서 영어로 작성되었고,
 > 이후 대중화에 기여한 Rumelhart와 Hinton(1986)의 논문 역시 영어를 기반으로 최고 권위의 학술지(Nature)에 실림.
