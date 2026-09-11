@@ -1,6 +1,7 @@
 # Rectified Linear Unit (ReLU)
 
-초기 perceptron의 Unit step에서 logistic 으로 activation function으로 바꾸어진 이후, 가장 효과적인 activation function으로 부상한 것이 `ReLU` 이다.
+초기 perceptron의 Unit step에서 logistic 으로 activation function으로 바꾸어진 이후, 
+가장 효과적인 activation function으로 부상한 것이 `ReLU` 이다.
 
 $$ \text{ReLU}(x) = \text{max}(x,0)$$
 
@@ -16,6 +17,12 @@ GPU를 효과적으로 활용할 수 있는 구현물이 기본으로 제공되�
 ### ReLU 미분
 
 $$ \dfrac{d}{dx}\text{ReLU}(x) = \left\{ \begin{matrix}1 & \text{ if } x \ge 0 \\ 0 & \text{ if } x < 0 \end{matrix}\right.$$
+
+다른 이름으로 ramp function이라고도 ReLU는 불림(신호처리분야).
+
+여기 관점으로 보면 ReLU는 Unit Step Function의 integral 임.
+
+* (Ramp Function](https://dsaint31.tistory.com/556)
 
 ---
 
