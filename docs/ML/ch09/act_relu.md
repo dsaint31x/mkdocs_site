@@ -32,6 +32,10 @@ GPU를 효과적으로 활용할 수 있는 구현물이 기본으로 제공되�
 * 이들도 ReLU처럼 양수 영역에서 쉽게 포화되지 않는(non-saturating) 특성을 가짐.
 * 단, 더 부드러운 gradient를 제공.
 
+> 선형 함수(Linear function, $f(x)=x$)에 대해  
+> 음수 영역을 0으로 잘라내고 양수 영역만 통과시키는 **정류(Rectification, 전자공학의 반파 정류 작용)**를  
+> 수행한 유닛이라는 의미에서 Rectified Linear Unit (ReLU)이라고 이름이 붙음.
+
 ---
 
 ### ReLU 미분
