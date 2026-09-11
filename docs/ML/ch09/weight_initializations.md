@@ -59,7 +59,7 @@ Weight Initialization은 Gradient Vanishing/Exploding Problem을 개선하기 �
   * logistic 출력은 mean이 0.5이고 항상 양수임. (참고로 normal distribution의 mean은 0임.)
 * mean activation이 0이 아닌 unit은 다음 layer 입장에서 일종의 bias처럼 작용함.
   * 이런 unit들의 출력이 서로 상쇄되지 않으면, 학습이 진행될수록 다음 layer의 unit들에 그 영향이 누적됨.
-  * 이를 **bias shift**라 부름.
+  * 이를 **bias shift** 라 부름.
       * bias shift는 mean activation이
       * 0이 아닌 unit이 다음 layer에 bias처럼 작용하고,
       * 이런 unit들이 서로 상쇄되지 않을 경우 다음 layer의 unit들에 누적되어 나타나는 효과를 가리키는 용어
