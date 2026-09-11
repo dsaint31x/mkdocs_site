@@ -1,4 +1,24 @@
+---
+title: "Rectified Linear Unit (ReLU) 및 변형 활성화 함수 정리"
+description: "ReLU의 개념, 장단점(Dying ReLU), He 초기화와의 관계 및 Leaky ReLU, PReLU, RReLU 등 주요 변형 활성화 함수 완벽 정리"
+categories:
+  - Deep Learning
+  - Machine Learning
+tags:
+  - Activation Function
+  - ReLU
+  - Leaky ReLU
+  - PReLU
+  - RReLU
+  - He Initialization
+math: true
+comments: true
+toc: true
+---
+
 # Rectified Linear Unit (ReLU)
+
+![](https://github.com/user-attachments/assets/42623c9f-9164-4d8f-98a8-0592b1eddb11){style="display: block; margin: 0 auto; width: 600px"}
 
 초기 perceptron의 Unit step에서 logistic 으로 activation function으로 바꾸어진 이후, 
 가장 효과적인 activation function으로 부상한 것이 `ReLU` 이다.
@@ -18,11 +38,13 @@ GPU를 효과적으로 활용할 수 있는 구현물이 기본으로 제공되�
 
 $$ \dfrac{d}{dx}\text{ReLU}(x) = \left\{ \begin{matrix}1 & \text{ if } x \ge 0 \\ 0 & \text{ if } x < 0 \end{matrix}\right.$$
 
+> 사실 $x=0$에서는 미분 불가능하나, 서브그래디언트 규약에 따라 대개 $1$ 또는 $0$으로 처리한다.
+
 다른 이름으로 ramp function이라고도 ReLU는 불림(신호처리분야).
 
 여기 관점으로 보면 ReLU는 Unit Step Function의 integral 임.
 
-* (Ramp Function](https://dsaint31.tistory.com/556)
+* [Ramp Function](https://dsaint31.tistory.com/556)
 
 ---
 
@@ -40,7 +62,7 @@ logistic과 같은 sigmoid function 계열의 activation function의 가장 큰 
 * `ReLU`는 positive input에 대해 기울기가 1을 유지하기 때문에 deep ANN 에서도 gradient가 소실되는 단점이 sigmoid 계열에 비해 획기적으로 개선됨.
     * 양으로 큰 input에 대해서도 기울기가 1로 유지됨.
     * 앞서 말한대로 sigmoid, tanh는 출력 상한이 있어 큰 입력에서 포화(saturation)되고 gradient가 거의 0이 됨.
-    * ReLU는 positive regision에선 출력에 상한이 없으므로 이 영역에서는 gradient가 항상 1로 유지되어 vanishing gradient를 크게 완화함.
+    * ReLU는 positive region에선 출력에 상한이 없으므로 이 영역에서는 gradient가 항상 1로 유지되어 vanishing gradient를 크게 완화함.
 * `ReLU`는 negative input에 대해선 기울기가 0이 되는 non-linearity를 가지고 있기 때문에 identity function과 달리 ANN에 non-linearity를 부가해주는 activation function의 역할을 함.
     * ***Activation function은 반드시 non-linear function이어야 함.***
     * ReLU는 음수 영역에서 gradient가 막히는 비용(dying ReLU)을 치르지만,
@@ -57,8 +79,8 @@ logistic과 같은 sigmoid function 계열의 activation function의 가장 큰 
 * Sparse activation이 지나치게 심해질 경우, 절반 이상의 node가 0이 되버리는 `dying ReLUs` 가 발생하게 됨. 
     * ANN이 깊어질수록 이같은 경향이 심해진다 (input이 0 이하가 되기만 하면 그 이후는 출력이 0으로 고정되버리기 때문) 
     * `leaky ReLU` 를 통해 개선됨.
-* 미분이 가능한 smooth function이 아니기 때문에 Lasso loss를 Gradient Decent에서 사용할 때의 문제점을 그대로 `ReLU` 도 가짐.
-    * 0에서의 discontinuity를 가지는 경우 최적의 값 근처에서 gradient decent bounce가 발생.
+* 미분이 가능한 smooth function이 아니기 때문에 Lasso loss를 Gradient Descent에서 사용할 때의 문제점을 그대로 `ReLU` 도 가짐.
+    * 0에서의 discontinuity를 가지는 경우 최적의 값 근처에서 gradient descent bounce가 발생.
     * converge 속도가 느려지는 단점을 보임 
     * 이는 the variants of `ReLU`들이 가지는 문제점으로 smooth하게 변경한 ***Exponential Linear Unit*** (`ELU`)등을 통해 개선됨. 
 
@@ -90,7 +112,7 @@ Ref. : [Bing Xu et al., “Empirical Evaluation of Rectified Activations in Conv
 
 #### Leaky ReLU 미분
 
-$$ \dfrac{d}{dx}\text{leakyReLU}(x)=\text{max}(1,\alpha)$$
+$$ \dfrac{d}{dx}\text{leakyReLU}(x)= \left\{ \begin{matrix} 1 & \text{if } x \ge 0 \\ \alpha & \text{if } x<0 \end{matrixk} \right.$$
 
 where
 
@@ -100,7 +122,7 @@ where
 
 Leaky ReLU의 $\alpha$를 trainable parameter로 삼아서 dataset을 기반으로 최적의 값을 찾도록 한 변형이 `PReLU`이다.
 
-* 단점은 적은 수의 training dataset에서 over-fit하기 싶다는 점임.
+* 단점은 적은 수의 training dataset에서 over-fit하기 쉽다는 점임.
 * over-fit이 일어나기 쉬운 적은 수의 training dataset에서는 $\alpha$를 일정값의 범위에서 random하게 선택하여 training시키고, 이후 사용된 값의 평균으로 지정하여 inference를 수행하는 ***Randomized Leaky ReLU*** (`RReLU`)를 사용하는게 보다 나음.
  
     
