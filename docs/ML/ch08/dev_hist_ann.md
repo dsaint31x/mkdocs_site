@@ -120,7 +120,7 @@ ANN에서는 이를 edge에 weight을 할당하여 강화될수록 weight가 커
 > (Scikit-Learn에서 `sklearn.linear_model.Perceptron`으로 제공되고 있다.)  
 > package 명에서도 알 수 있듯이 **Perceptron은 linear model에 불과** 하다.
 
-다음은 Perceptron에서 node $i$와 $j$를 잇는 weight $w_{i,j}$의 update가 어떻게 이루어지는지를 보여주는 식으로 Gradient Descent와 매우 유사함을 알 수 있다.
+다음은 Perceptron에서 node $i$와 $j$를 잇는 weight $w_{i,j}$의 update가 어떻게 이루어지는지를 보여주는 식으로 [Gradient Descent](https://dsaint31.tistory.com/633)와 매우 유사함을 알 수 있다.
 
 $$
 w_{i,j}^{(\text{next step})}=w_{i,j}+\eta(y_i-\hat{y}_j)x_i
@@ -188,21 +188,21 @@ $$
 
 ## Back-propagation의 등장 (MLP의 학습알고리즘)
 
-1960년대에 Gradient Descent를 통해 MLP를 학습시키기 위한 여러 시도가 있었으나 3층 수준의 MLP에서 모델의 error에 대한 gradients를 효과적으로 구하는 것이 쉽지 않았기 때문에 성공적인 결과를 이끌어내지 못함.
+1960년대에 [Gradient Descent](https://dsaint31.tistory.com/633)를 통해 MLP를 학습시키기 위한 여러 시도가 있었으나 3층 수준의 MLP에서 모델의 error에 대한 [gradients](https://dsaint31.tistory.com/543)를 효과적으로 구하는 것이 쉽지 않았기 때문에 성공적인 결과를 이끌어내지 못함.
 
 > MLP에서 필요한 parameters는 weights (bias 포함)의 값들이며, 주어진 학습데이터에 대해 최적의 weights를 찾는 것을 training이라고 함.  
-> 많은 machine learning에서 training (cost function을 최소화할 수 있는 weights를 찾는 과정)에 Gradient decent를 적용하기 때문에 MLP에도 이를 적용하고자 하는 시도는 매우 자연스런 현상이라고 볼 수 있음.
+> 많은 machine learning에서 training (cost function을 최소화할 수 있는 weights를 찾는 과정)에 [Gradient Descent](https://dsaint31.tistory.com/633)를 적용하기 때문에 MLP에도 이를 적용하고자 하는 시도는 매우 자연스런 현상이라고 볼 수 있음.
 
 ![](./img/dev_backpropagation.png){style="display: block; margin: 0 auto; width: 500px"}
 
 
-그러던 중 1970년 Seppo Linnainmaa가 석사 논문으로 gradients 를 컴퓨터에서 효과적으로 계산해낼 수 있는 `reverse-mode automatic differentiation` 기법 (computational graph를 이용)을 제안한다.
+그러던 중 1970년 Seppo Linnainmaa가 석사 논문으로 [gradients](https://dsaint31.tistory.com/543) 를 컴퓨터에서 효과적으로 계산해낼 수 있는 `reverse-mode automatic differentiation` 기법 (computational graph를 이용)을 제안한다.
 
 [The representation of the cumulative rounding error of an algorithm as a Taylor expansion of the local rounding errors](https://people.idsia.ch/~juergen/linnainmaa1970thesis.pdf) : 핀란드어로 쓰여 있다. --;;
 
 > 흔히 `reverse-mode autodiff`라고 불림.
 
-뒤이어 1974년 Paul J. Werbos가 박사학위 논문에서 `reverse-mode autodiff`에 해당하는 아이디어와 gradient descent를 결합한 `Back-propagation` 계열의 개념을 제안한다.  
+뒤이어 1974년 Paul J. Werbos가 박사학위 논문에서 `reverse-mode autodiff`에 해당하는 아이디어와 [gradient descent](https://dsaint31.tistory.com/633)를 결합한 `Back-propagation learning` 계열의 개념을 제안한다.  
 [Beyond regression: New tools for prediction and analysis in the behavioral sciences, 1974 (Paul J. Werbos, Ph.D. dissertation)](https://www.researchgate.net/publication/35055330_Beyond_regression_new_tools_for_prediction_and_analysis_in_the_behavior_sciences_microform)
 
 * `Back-propagation`은 Error (목표값과 추정값과의 차이)를 이용하여 Hidden Layer의 weight들을 학습시킬 수 있음.
@@ -245,8 +245,8 @@ MLP가 학습이 되기 시작했으나 다른 Machine Learning 기법에 비해
 * 엄청난 양의 Labeled data가 필요함. 
     * 1990년 10개 숫자 구분에 10,000 여개의 학습데이터 이용됨.
     * Internet과 검색엔진의 발전에 힘입어 Big Data시대가 되면서 이에 대한 개선이 이루어졌고, Generative model의 발전과 함께 Knowledge transfer 기법의 개발 등으로 이 문제도 상당부분 해결됨. 
-* Vanishing gradient problem.
-    * Layer가 깊어질 경우, training이 진행되면서 gradient가 0에 가까워져 학습이 제대로 이뤄지지 못하는 문제점.
+* [Vanishing gradient problem](https://dsaint31.me/mkdocs_site/ML/ch09/weight_initializations/#1-variance).
+    * Layer가 깊어질 경우, training이 진행되면서 [gradients](https://dsaint31.tistory.com/543)가 0에 가까워져 학습이 제대로 이뤄지지 못하는 문제점.
     * 특정 깊이 이상의 layer를 사용하지 못하는 제한점이었음.
         * 2004년 Restricted Boltzmann Machine (RBM, Hinton)과 2006년 Deep belief net 등을 통해 unsupervised layer-wise pre-training을 이용하여 deep network의 학습이 가능함을 보임.
         * Xavier 등이 제안한 weight initialization 등의 여러 기법을 통해 해결됨.
@@ -270,7 +270,7 @@ MLP가 학습이 되기 시작했으나 다른 Machine Learning 기법에 비해
 
 Rumelhart가 Back-propagation을 MLP 학습에 효과적으로 사용하기 위해 MLP의 activation function을 기존의 [Heaviside step function](https://dsaint31.tistory.com/553)을 [`logistic function`](https://dsaint31.tistory.com/320)으로 변경 (`logistic function`은 [sigmoid functions](https://dsaint31.tistory.com/430)의 대표)함.
 
-* Back-propagation Learning 은 Gradient decent와 Reverse-mode Autodiff.의 조합이기 때문에 결국 differentiation에 기반함.
+* Back-propagation Learning 은 [Gradient Descent](https://dsaint31.tistory.com/633)와 Reverse-mode Autodiff.의 조합이기 때문에 결국 differentiation에 기반함.
 * 때문에 미분가능하면서 step function과 유사한 `logistic function`으로 activation function을 삼음.
 
 Scikit-Learn에서 제공하는 `sklearn.neural_network.MLPRegressor` 와 `sklearn.neural_network.MLPClassifier` 의 hidden layer에서 사용되는 Activation functions는 다음과 같음.
@@ -284,7 +284,7 @@ Scikit-Learn에서 제공하는 `sklearn.neural_network.MLPRegressor` 와 `sklea
 ### SLP와 MLP의 activation function 차이점
 
 * SLP를 보통 Perceptron이라고 부르며, activation function이 step function임.
-* MLP는 학습이 되기 위해서 back-propagation으로 gradient를 구해야 하기 때문에 미분 가능한 activation function인 sigmoid functions과 여러 다른 functions (적어도 sub-gradient를 구할 수 있어야함)로 변경이 이루어짐.
+* MLP는 학습이 되기 위해서 back-propagation으로 [gradients](https://dsaint31.tistory.com/543)를 구해야 하기 때문에 미분 가능한 activation function인 sigmoid functions과 여러 다른 functions (적어도 [sub-gradient](https://dsaint31.tistory.com/946)를 구할 수 있어야함)로 변경이 이루어짐.
 
 참고자료 1: [Perceptron vs. MLPClassifier](./dl_slp_mlp.md)
 
