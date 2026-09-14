@@ -264,9 +264,7 @@ print(sklearn.__version__)
 
 ---
 
----
-
-## hidden_layer_sizes
+### hidden_layer_sizes
 
 `hidden_layer_sizes`는 hidden layer의 구조를 지정하는 parameter임.
 
@@ -327,7 +325,7 @@ hidden layer 구조를 정했다면,
 
 ---
 
-## activation
+### activation
 
 `activation`은 ***hidden layer에서 사용할 activation function을 지정*** 함.
 
@@ -375,9 +373,8 @@ activation="relu"
 
 ---
 
----
 
-## loss
+### loss
 
 `loss`는 학습에 사용할 loss function을 지정함.
 
@@ -424,7 +421,7 @@ loss function을 정했다면,
 
 ---
 
-## solver
+### solver
 
 `solver`는 weight를 최적화하는 방법을 지정함.
 
@@ -467,7 +464,7 @@ solver="adam"
 
 ---
 
-## learning_rate_init
+### learning_rate_init
 
 `learning_rate_init`은 초기 learning rate를 의미함.
 
@@ -498,7 +495,7 @@ learning_rate_init=0.001
 
 ---
 
-## learning_rate
+### learning_rate
 
 `learning_rate`는 learning rate 변화 방식을 지정함.
 
@@ -528,7 +525,7 @@ learning rate를 정했다면,
 
 ---
 
-## max_iter
+### max_iter
 
 `max_iter`는 최대 반복 횟수를 의미함.
 
@@ -559,11 +556,12 @@ max_iter=1000
 
 ---
 
----
 
-## alpha
+### alpha
 
 `alpha`는 L2 regularization 강도를 의미함.
+
+* 참고자료: [regularization 이란](https://dsaint31.tistory.com/848)
 
 ```python
 alpha=0.0001
@@ -572,8 +570,8 @@ alpha=0.0001
 역할:
 
 * weight가 지나치게 커지는 것을 억제함.
-* overfitting을 줄이는 데 사용할 수 있음.
-* 값이 커질수록 model이 더 단순해지는 방향으로 학습됨.
+* [overfitting](https://dsaint31.tistory.com/951)을 줄이는 데 사용할 수 있음 (<= regularization의 목표).
+* alpha 값이 커질수록 model이 더 단순해지는 방향으로 학습됨.
 
 예:
 
@@ -583,8 +581,8 @@ alpha=0.001
 
 주의할 점:
 
-* 너무 작으면 regularization 효과가 약함.
-* 너무 크면 underfitting이 발생할 수 있음.
+* 너무 작으면 regularization 효과가 약함: [overfitting](https://dsaint31.tistory.com/951) 이 될 수 있음.
+* 너무 크면 [underfitting](https://dsaint31.tistory.com/610)이 발생할 수 있음.
 
 `alpha`는 weight 크기를 직접 제약해서  
 model이 단순한 방향으로 학습되도록 만드는 장치임.
@@ -595,7 +593,7 @@ model이 단순한 방향으로 학습되도록 만드는 장치임.
 
 ---
 
-## early_stopping
+### early_stopping
 
 * 참고자료: [ML에서 ealry stopping이란](../ch09/dl_earlystopping)
 
@@ -653,6 +651,8 @@ model.loss_curve_
 
 여기까지가 학습을 직접 제어하는 parameter들이고,
 이제부터는 `MLPRegressor` 구조 자체가 가지는 근본적인 한계를 살펴봄.
+
+---
 
 ---
 
