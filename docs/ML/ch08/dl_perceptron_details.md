@@ -164,6 +164,7 @@ $$
 
 실제로 각 경우를 살펴보자.
 
+
 **Positive sample의 misclassification:**
 $$
 t=+1
@@ -173,6 +174,7 @@ Positive sample에서 misclassification이라면 Weight update는 다음과 같�
 $$
 \mathbf{w}^{(\mathrm{next})} = \mathbf{w}+\eta\mathbf{x}
 $$
+
 
 **Negative sample의 misclassification:**
 $$
@@ -185,6 +187,7 @@ $$
 $$
 
 따라서 0/1 notation과 -1/+1 notation은 표현 방식만 다를 뿐 동일한 Perceptron learning rule을 나타냄.
+
 
 두 notation의 mapping은 다음과 같음:
 $$
