@@ -309,5 +309,7 @@ def synchronize(device):
 
 이를 호출하여 GPU 계산이 완료된 시점까지 기다려야 실제 실행 시간이 측정됨.
 
+참고자료: [관련 ipynb파일](https://gist.github.com/dsaint31x/7cb4047ec14526f1d26286b33522e325)
+
 
 
