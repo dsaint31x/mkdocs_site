@@ -26,19 +26,16 @@ Perceptron은 binary classification을 위한 linear classifier 임.
 ## 1. 0/1 notation
 
 Target과 prediction은 다음과 같음:
-
 $$
 y,\hat y\in \{0,1\}
 $$
 
 Perceptron의 weighted sum은 다음과 같음:
-
 $$
 z=\mathbf{w}^{\top}\mathbf{x}+b
 $$
 
-Prediction은 step activation을 통해 결정됨:
-
+Prediction은 [step activation](https://dsaint31.tistory.com/553)을 통해 결정됨:
 $$
 \hat y=
 \begin{cases}
@@ -48,13 +45,14 @@ $$
 $$
 
 Perceptron loss는 다음과 같이 표현할 수 있음:
+$$
+\begin{matrix}L_{\mathrm{Perceptron}} &= \max\left(0,-(2y-1)z\right) \\ &=\max\left(0,-tz)\right)\end{matrix}
+$$
 
-$$
-L_{\mathrm{Perceptron}} = \max\left(0,-(2y-1)z\right)
-$$
+* $t=2y-1$
+* 즉, 정답을 맞추는 경우에 $tz$는 양수가 됨.
 
 Target별 표현은 다음과 같음:
-
 $$
 L_{\mathrm{Perceptron}} = \begin{cases}
 \max(0,-z), & y=1 \\
@@ -67,7 +65,6 @@ $$
 * misclassified sample에 대해서만 penalty가 발생.
 
 Weight update는 다음과 같음:
-
 $$
 \boxed{
 w_i^{(\mathrm{next})} = w_i+\eta(y-\hat y)x_i
@@ -75,37 +72,31 @@ w_i^{(\mathrm{next})} = w_i+\eta(y-\hat y)x_i
 $$
 
 각 경우의 update는 다음과 같음.
-
 * correct classification: no update.
 * false negative: positive direction으로 update.
 * false positive: negative direction으로 update.
 
 False negative의 경우:
-
 $$
 y=1,\qquad \hat y=0
 $$
 
 Weight update는 다음과 같음:
-
 $$
 w_i^{(\mathrm{next})} = w_i+\eta x_i
 $$
 
 False positive의 경우:
-
 $$
 y=0,\qquad \hat y=1
 $$
 
 Weight update는 다음과 같음:
-
 $$
 w_i^{(\mathrm{next})} = w_i-\eta x_i
 $$
 
 Bias update는 다음과 같음:
-
 $$
 b^{(\mathrm{next})} = b+\eta(y-\hat y)
 $$
@@ -117,25 +108,24 @@ $$
 Perceptron을 수학적으로 표현할 때는 -1/+1 notation이 더 간단함.
 
 Target은 다음과 같음:
-
 $$
 t\in \{-1,+1\}
 $$
 
-Weighted sum은 동일함:
+> 앞서 살펴본 $t=2y-1$의 관계는 $y\in \{0,1\}$인 경우임.
+> 여기서 라벨값이 $t$로 처리한 경우.
 
+Weighted sum은 동일함:
 $$
 z=\mathbf{w}^{\top}\mathbf{x}+b
 $$
 
-Prediction은 sign function으로 표현됨:
-
+Prediction은 [sign function](https://dsaint31.tistory.com/555)으로 표현됨:
 $$
 \hat t=\operatorname{sign}(z)
 $$
 
-Classification의 correctness는 signed margin 형태로 표현할 수 있음:
-
+Classification의 correctness는 다음과 같은 signed margin 형태로 표현할 수 있음:
 $$
 tz
 $$
@@ -145,17 +135,18 @@ $$
 * magnitude: decision boundary로부터 떨어진 정도.
 
 Perceptron loss는 다음과 같음:
-
 $$
 \boxed{
 L_{\mathrm{Perceptron}} = \max(0,-tz)
 }
 $$
 
-Correct classification에서는 loss가 0이고, misclassification에서만 loss가 발생함.
+* 즉, correct classification인 경우, $-tz$는 무조건 negative이므로, $L$은 0이 됨.
+* 틀린 경우엔 $tz<0$이고, $-tz$는 positive이므로 $L>0$이 됨.
+
+> Correct classification에서는 loss가 0이고, misclassification에서만 loss가 발생함.
 
 Misclassified sample에 대한 weight update는 다음과 같음:
-
 $$
 \boxed{
 \mathbf{w}^{(\mathrm{next})} = \mathbf{w}+\eta t\mathbf{x}
@@ -163,31 +154,26 @@ $$
 $$
 
 Bias update는 다음과 같음:
-
 $$
 b^{(\mathrm{next})} = b+\eta t
 $$
 
 Positive sample의 misclassification:
-
 $$
 t=+1
 $$
 
-Weight update는 다음과 같음:
-
+Positive sample에서 misclassification이라면 Weight update는 다음과 같음:
 $$
 \mathbf{w}^{(\mathrm{next})} = \mathbf{w}+\eta\mathbf{x}
 $$
 
 Negative sample의 misclassification:
-
 $$
 t=-1
 $$
 
-Weight update는 다음과 같음:
-
+Negative sample에서 misclassification이라면 Weight update는 다음과 같음:
 $$
 \mathbf{w}^{(\mathrm{next})} = \mathbf{w}-\eta\mathbf{x}
 $$
@@ -195,13 +181,11 @@ $$
 따라서 0/1 notation과 -1/+1 notation은 표현 방식만 다를 뿐 동일한 Perceptron learning rule을 나타냄.
 
 두 notation의 mapping은 다음과 같음:
-
 $$
 t=2y-1
 $$
 
 따라서 다음과 같이 대응됨:
-
 $$
 y=0 \rightarrow t=-1 \\
 y=1 \rightarrow t=+1
@@ -211,29 +195,25 @@ $$
 
 Perceptron learning은 
 
-* sample 단위로 parameter를 update한다는 점에서
+* **sample 단위로 parameter를 update한다** 는 점에서
 * Stochastic Gradient Descent와 직접 연결할 수 있음.
 
 일반적인 single-sample SGD update는 다음과 같음:
-
 $$
 \mathbf{w}^{(\mathrm{next})} = \mathbf{w} - \eta \nabla_{\mathbf w}L_i
 $$
 
 Perceptron loss를 signed label notation으로 표현하면 다음과 같음:
-
 $$
 L_i = \max(0,-t_i z_i)
 $$
 
 Misclassified sample에서 gradient는 다음과 같음:
-
 $$
 \nabla_{\mathbf w}L_i = -t_i\mathbf{x}_i
 $$
 
 SGD update는 다음과 같음:
-
 $$
 \mathbf{w}^{(\mathrm{next})} = \mathbf{w} + \eta t_i\mathbf{x}_i
 $$
@@ -245,13 +225,11 @@ $$
 Binary classification에서는 0/1 label을 그대로 입력할 수 있음.
 
 이 경우, 실제 input label은 다음과 같음:
-
 $$
 y\in \{0,1\}
 $$
 
 수식 전개에서는 signed label로 변환하여 표현할 수 있음:
-
 $$
 t=2y-1
 $$
@@ -260,16 +238,17 @@ $$
 Perceptron loss와 update를 수학적으로 설명할 때는 -1/+1 notation을 사용할 수 있음.
 
 0/1 notation에서의 classical Perceptron update는 다음과 같음:
-
 $$
 \mathbf{w}^{(\mathrm{next})} = \mathbf{w} + \eta(y-\hat y)\mathbf{x}
 $$
 
 Signed label notation에서의 update는 다음과 같음:
+$$
+\mathbf{w}^{(\mathrm{next})} = \mathbf{w} + \eta t\mathbf{x} \quad \text{ if } t\hat y < 0
+$$
 
-$$
-\mathbf{w}^{(\mathrm{next})} = \mathbf{w} + \eta t\mathbf{x}
-$$
+* $t \in \{-1, 1\}$ 임.
+* 주의할 점은 Update 식이 항상 적용되는 것이 아니라는 점임. 
 
 두 식은 label coding만 다를 뿐 같은 learning rule을 표현함.
 
@@ -294,13 +273,11 @@ SGDClassifier(
 * `penalty=None`: regularization을 사용하지 않음.
 
 Learning rate는 다음과 같음:
-
 $$
 \eta=1
 $$
 
-Misclassified sample에 대한 update는 다음과 같음:
-
+**Misclassified sample에 대한 update** 는 다음과 같음:
 $$
 \mathbf{w}^{(\mathrm{next})} = \mathbf{w} + t_i\mathbf{x}_i
 $$
@@ -312,29 +289,29 @@ $$
 Perceptron loss와 Hinge loss의 관계는 **-1/+1 notation에서 가장 명확** 하게 나타남.
 
 Perceptron loss는 다음과 같음:
-
 $$
 L_{\mathrm{Perceptron}} = \max(0,-tz)
 $$
 
 Hinge loss는 다음과 같음:
-
 $$
 \boxed{
 L_{\mathrm{hinge}} = \max(0,1-tz)
 }
 $$
 
-두 loss의 핵심적인 차이는 margin requirement에 있음.
+![](https://github.com/user-attachments/assets/0c73ecb0-e0c6-46c5-aaf0-9b48c8565066){style="display: block; margin: 0 auto; width: 300px"}
 
-Perceptron에서는 correct side에 위치하면 loss가 0:
+* 위 그래프의 x축이 $tz$임.
 
+두 loss의 핵심적인 차이는 margin 의 유무(1이 더해짐)에 있음.
+
+Perceptron에서는 다음과 같이 correct side에 위치하면 loss가 0:
 $$
 tz>0
 $$
 
-Hinge loss에서는 일정한 margin까지 확보해야 loss가 0:
-
+Hinge loss에서는 일정한 margin까지 확보(1이상이 되어야)해야 loss가 0:
 $$
 tz\geq1
 $$
@@ -345,16 +322,11 @@ $$
 * correct classification with small margin: Perceptron loss는 0, Hinge loss는 penalty 발생.
 * correct classification with sufficient margin: 두 loss 모두 0.
 
-즉, 
-
-* Perceptron은 mistake-driven learning에 가깝고,
-* Hinge loss는 margin-driven learning에 가깝다고 볼 수 있음.
-
 ## 5. Hinge Loss와 SVM
 
 Hinge loss를 사용하는 대표적인 linear classifier가 Support Vector Machine, SVM임.
 
-Linear SVM의 objective는 다음과 같음:
+Linear SVM의 objective function은 다음과 같음:
 
 $$
 \boxed{
@@ -362,6 +334,8 @@ $$
 \frac{1}{2}|\mathbf w|^2 + C \sum_i \max\left( 0, 1-t_i(\mathbf w^\top\mathbf x_i+b) \right)
 }
 $$
+
+* $t_i$는 i번째 -1/1 notation 라벨값.
 
 첫 번째 term은 regularization term (Hard SVM에서 margin maximization. 단, margin constraint를 만족해야함):
 
