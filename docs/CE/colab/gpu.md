@@ -108,9 +108,206 @@ print(x.device)
 따라서 PyTorch에서 TPU를 사용할 때는 `torch_xla`를 추가로 사용하며,
 환경에 따라 `PJRT_DEVICE=TPU` 같은 runtime 설정이 필요할 수 있음.
 
-참고자료: 
+**참고자료:** 
 
 * [xla 관련 개념 설명자료](https://ds31x.tistory.com/225)
 * [사용법 위주 설명자료](https://ds31x.tistory.com/689)
+
+---
+
+## Tensor를 다른 Device로 이동하기
+
+PyTorch Tensor는 CPU 또는 GPU 등의 device에 저장됨.
+
+* `to()` 메서드를 사용하면 Tensor를 원하는 device로 이동할 수 있음.
+
+```python
+device = (
+    "cuda" if torch.cuda.is_available()
+    else "mps" if torch.backends.mps.is_available()
+    else "cpu"
+)
+
+# device = torch.device(
+#     "cuda" if torch.cuda.is_available()
+#     else "mps" if torch.backends.mps.is_available()
+#     else "cpu"
+# )
+
+A_gpu = A_cpu.to(device)
+```
+
+또는 cuda의 경우엔 다음과 같이 작성할 수도 있음:
+
+```python
+A_gpu = A_cpu.cuda()
+```
+
+일반적으로 `to()`는 device를 명시적으로 지정할 수 있으므로 더 유연함.
+
+
+주의할 점은
+
+* `to()`는 기본적으로 원본 Tensor를 이동시키는 것이 아니라,
+* 해당 device로 같은 값을 가진 Tensor 생성하여 반환하는 것임 (다른 device로 이동시키는 경우).
+
+```python
+A_cpu = torch.randn(3, 3)
+
+A_gpu = A_cpu.to(device)
+```
+
+이 경우:
+
+```text
+A_cpu : CPU에 저장된 Tensor
+A_gpu : device에 저장된 Tensor
+```
+
+임.
+
+---
+
+## CPU와 GPU에서 Matrix Multiplication 비교
+
+동일한 크기의 행렬을 CPU와 GPU에 각각 저장한 후 `@` 연산자의 실행 시간을 비교함.
+
+GPU 연산은 비동기적으로 실행될 수 있으므로 측정 전후에 `torch.cuda.synchronize()`가 필요함.
+
+```python
+import time
+import torch
+
+N = 2000
+num_iter = 10
+
+# CPU에서 동일한 행렬 생성
+A_cpu = torch.randn(N, N)
+B_cpu = torch.randn(N, N)
+
+
+# --------------------------------------------------
+# Device 선택
+# --------------------------------------------------
+
+if torch.cuda.is_available():
+    device = torch.device("cuda")
+
+elif torch.backends.mps.is_available():
+    device = torch.device("mps")
+
+else:
+    try:
+        import torch_xla
+        device = torch_xla.device()
+    except Exception:
+        device = torch.device("cpu")
+
+
+# Tensor를 선택한 device로 이동
+A_gpu = A_cpu.to(device)
+B_gpu = B_cpu.to(device)
+
+
+# --------------------------------------------------
+# Synchronization 함수
+# --------------------------------------------------
+
+def synchronize(device):
+    if device.type == "cuda":
+        torch.cuda.synchronize()
+
+    elif device.type == "mps":
+        torch.mps.synchronize()
+
+    elif device.type == "xla":
+        torch_xla.sync()
+
+
+# --------------------------------------------------
+# CPU warm-up
+# --------------------------------------------------
+
+for _ in range(3):
+    C_cpu = A_cpu @ B_cpu
+
+
+# CPU 측정
+start = time.perf_counter()
+
+for _ in range(num_iter):
+    C_cpu = A_cpu @ B_cpu
+
+cpu_time = (time.perf_counter() - start) / num_iter
+
+
+# --------------------------------------------------
+# Accelerator warm-up
+# --------------------------------------------------
+
+for _ in range(3):
+    C_gpu = A_gpu @ B_gpu
+
+synchronize(device)
+
+
+# --------------------------------------------------
+# Accelerator 측정
+# --------------------------------------------------
+
+start = time.perf_counter()
+
+for _ in range(num_iter):
+    C_gpu = A_gpu @ B_gpu
+
+synchronize(device)
+
+gpu_time = (time.perf_counter() - start) / num_iter
+
+
+# --------------------------------------------------
+# 결과
+# --------------------------------------------------
+
+print(f"CPU average: {cpu_time:.6f} sec")
+print(f"{device} average: {gpu_time:.6f} sec")
+print(f"Speedup: {cpu_time / gpu_time:.2f}x")
+```
+
+### Warm-up이 필요한 이유
+
+첫 실행에는 행렬 곱셈 자체 이외의 초기화 비용이 포함될 수 있음.
+
+* CPU: 라이브러리 및 스레드 초기화, 메모리 관련 초기화 등
+* GPU: CUDA context 생성, 커널 및 라이브러리 초기화 등
+
+동등한 비교를 위해, CPU와 GPU 모두 몇 차례 warm-up을 수행한 뒤 측정함.
+
+### GPU synchronization이 필요한 이유
+
+GPU 연산은 CPU 코드와 독립적으로 비동기 실행될 수 있음.
+
+```python
+C_gpu = A_gpu @ B_gpu
+```
+
+이 코드가 반환되어도 GPU 계산이 아직 끝나지 않았을 수 있음.
+
+따라서 측정 종료 직전에 다음의 `synchronize(device)` 함수 호출 필요:
+
+```python
+def synchronize(device):
+    if device.type == "cuda":
+        torch.cuda.synchronize()
+
+    elif device.type == "mps":
+        torch.mps.synchronize()
+
+    elif device.type == "xla":
+        torch_xla.sync()
+```
+
+이를 호출하여 GPU 계산이 완료된 시점까지 기다려야 실제 실행 시간이 측정됨.
+
 
 
