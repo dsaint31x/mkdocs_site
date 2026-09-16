@@ -71,7 +71,8 @@ w_i^{(\mathrm{next})} = w_i+\eta(y-\hat y)x_i
 }
 $$
 
-각 경우의 update는 다음과 같음.
+각 경우의 update는 다음과 같음:
+
 * correct classification: no update.
 * false negative: positive direction으로 update.
 * false positive: negative direction으로 update.
