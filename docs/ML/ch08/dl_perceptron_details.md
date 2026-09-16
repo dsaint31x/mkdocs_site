@@ -203,54 +203,38 @@ $$
 \mathbf{w}^{(\mathrm{next})} = \mathbf{w} - \eta \nabla_{\mathbf w}L_i
 $$
 
+위의 graident를 구한 실제 업데이트는 다음과 같음:
+$$
+\mathbf{w}^{(\mathrm{next})} = \mathbf{w} - \eta (\hat y_i - y_i) 
+$$
+
+앞서 살펴본 0/1 notation에서의 classical Perceptron update는 다음과 같음:
+$$
+\mathbf{w}^{(\mathrm{next})} = \mathbf{w} + \eta(y_i-\hat y_i)\mathbf{x}
+$$
+
+결국, SGD와 Perceptron 모두 동일한 식임.
+
 Perceptron loss를 signed label notation으로 표현하면 다음과 같음:
 $$
 L_i = \max(0,-t_i z_i)
 $$
 
-Misclassified sample에서 gradient는 다음과 같음:
+Misclassified sample ($L_i>0$ 인 경우)에서 i번째 샘플로 구해진 gradient는 다음과 같음:
 $$
 \nabla_{\mathbf w}L_i = -t_i\mathbf{x}_i
 $$
 
-SGD update는 다음과 같음:
+Misclassified sample ($L_i>0$ 인 경우)에서 i번째 샘플에서의 SGD update는 다음과 같음:
 $$
-\mathbf{w}^{(\mathrm{next})} = \mathbf{w} + \eta t_i\mathbf{x}_i
-$$
-
-이는 classical Perceptron의 -1/+1 notation update와 동일함.
-
-여기서 `SGDClassifier`에 실제로 입력하는 class label은 반드시 -1/+1일 필요가 없음. 
-
-Binary classification에서는 0/1 label을 그대로 입력할 수 있음.
-
-이 경우, 실제 input label은 다음과 같음:
-$$
-y\in \{0,1\}
+\mathbf{w}^{(\mathrm{next})} = \mathbf{w} + \eta t_i\mathbf{x}_i  \quad \text{ if } t\hat y < 0
 $$
 
-수식 전개에서는 signed label로 변환하여 표현할 수 있음:
-$$
-t=2y-1
-$$
+* $L_i>0$인 경우에만 update가 일어난다는 것임.
 
-즉, `SGDClassifier`에는 0/1 label을 입력하면서도,  
-Perceptron loss와 update를 수학적으로 설명할 때는 -1/+1 notation을 사용할 수 있음.
+> 이 업데이트 및 loss는 classical Perceptron의 -1/+1 notation update와 동일함.
 
-0/1 notation에서의 classical Perceptron update는 다음과 같음:
-$$
-\mathbf{w}^{(\mathrm{next})} = \mathbf{w} + \eta(y-\hat y)\mathbf{x}
-$$
-
-Signed label notation에서의 update는 다음과 같음:
-$$
-\mathbf{w}^{(\mathrm{next})} = \mathbf{w} + \eta t\mathbf{x} \quad \text{ if } t\hat y < 0
-$$
-
-* $t \in \{-1, 1\}$ 임.
-* 주의할 점은 Update 식이 항상 적용되는 것이 아니라는 점임. 
-
-두 식은 label coding만 다를 뿐 같은 learning rule을 표현함.
+결국 두 경우 모두 label coding만 다를 뿐 같은 learning rule을 표현함.
 
 참고로,  
 scikit-learn의 `Perceptron`은  
