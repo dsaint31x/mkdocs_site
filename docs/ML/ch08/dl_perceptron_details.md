@@ -46,7 +46,7 @@ $$
 
 Perceptron loss는 다음과 같이 표현할 수 있음:
 $$
-\begin{matrix}L_{\mathrm{Perceptron}} &= \max\left(0,-(2y-1)z\right) \\ &=\max\left(0,-tz)\right)\end{matrix}
+\begin{matrix}L_{\mathrm{Perceptron}} &= \max\left(0,-(2y-1)z\right) \\\\ &=\max\left(0,-tz)\right)\end{matrix}
 $$
 
 * $t=2y-1$
