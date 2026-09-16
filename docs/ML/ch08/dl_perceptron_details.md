@@ -98,7 +98,9 @@ $$
 
 Bias update는 다음과 같음:
 $$
+\boxed{
 b^{(\mathrm{next})} = b+\eta(y-\hat y)
+}
 $$
 
 즉, 0/1 notation에서는 prediction error를 직접 이용하는 형태로 update를 표현할 수 있음.
@@ -155,10 +157,14 @@ $$
 
 Bias update는 다음과 같음:
 $$
+\boxed{
 b^{(\mathrm{next})} = b+\eta t
+}
 $$
 
-Positive sample의 misclassification:
+실제로 각 경우를 살펴보자.
+
+**Positive sample의 misclassification:**
 $$
 t=+1
 $$
@@ -168,7 +174,7 @@ $$
 \mathbf{w}^{(\mathrm{next})} = \mathbf{w}+\eta\mathbf{x}
 $$
 
-Negative sample의 misclassification:
+**Negative sample의 misclassification:**
 $$
 t=-1
 $$
