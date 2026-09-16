@@ -39,7 +39,7 @@ Prediction은 [step activation](https://dsaint31.tistory.com/553)을 통해 결�
 $$
 \hat y=
 \begin{cases}
-1, & z\geq0 \\
+1, & z\geq0 \\\\
 0, & z<0
 \end{cases}
 $$
@@ -55,7 +55,7 @@ $$
 Target별 표현은 다음과 같음:
 $$
 L_{\mathrm{Perceptron}} = \begin{cases}
-\max(0,-z), & y=1 \\
+\max(0,-z), & y=1 \\\\
 \max(0,z), & y=0
 \end{cases}
 $$
@@ -193,7 +193,7 @@ $$
 
 따라서 다음과 같이 대응됨:
 $$
-y=0 \rightarrow t=-1 \\
+y=0 \rightarrow t=-1 \\\\
 y=1 \rightarrow t=+1
 $$
 
