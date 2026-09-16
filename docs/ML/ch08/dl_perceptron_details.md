@@ -27,7 +27,7 @@ Perceptron은 binary classification을 위한 linear classifier 임.
 
 Target과 prediction은 다음과 같음:
 $$
-y,\hat y\in \{0,1\}
+y,\hat y\in \\{0,1\\}
 $$
 
 Perceptron의 weighted sum은 다음과 같음:
@@ -111,7 +111,7 @@ Perceptron을 수학적으로 표현할 때는 -1/+1 notation이 더 간단함.
 
 Target은 다음과 같음:
 $$
-t\in \{-1,+1\}
+t\in \\{-1,+1\\}
 $$
 
 > 앞서 살펴본 $t=2y-1$의 관계는 $y\in \{0,1\}$인 경우임.
