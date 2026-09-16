@@ -77,7 +77,10 @@ $$
 * false negative: positive direction으로 update.
 * false positive: negative direction으로 update.
 
-False negative의 경우:
+$$
+$$
+
+**False negative의 경우:** 
 $$
 y=1,\qquad \hat y=0
 $$
@@ -87,7 +90,7 @@ $$
 w_i^{(\mathrm{next})} = w_i+\eta x_i
 $$
 
-False positive의 경우:
+**False positive의 경우:**
 $$
 y=0,\qquad \hat y=1
 $$
@@ -163,8 +166,10 @@ b^{(\mathrm{next})} = b+\eta t
 }
 $$
 
-실제로 각 경우를 살펴보자.
+$$
+$$
 
+실제로 각 경우를 살펴보자.
 
 **Positive sample의 misclassification:**
 $$
@@ -215,7 +220,7 @@ $$
 
 위의 graident를 구한 실제 업데이트는 다음과 같음:
 $$
-\mathbf{w}^{(\mathrm{next})} = \mathbf{w} - \eta (\hat y_i - y_i) 
+\mathbf{w}^{(\mathrm{next})} = \mathbf{w} - \eta (\hat y_i - y_i) \mathbf{x}
 $$
 
 앞서 살펴본 0/1 notation에서의 classical Perceptron update는 다음과 같음:
@@ -225,7 +230,10 @@ $$
 
 결국, SGD와 Perceptron 모두 동일한 식임.
 
-Perceptron loss를 signed label notation으로 표현하면 다음과 같음:
+$$
+$$
+
+Perceptron loss를 **signed label notation으로 표현** 하면 다음과 같음:
 $$
 L_i = \max(0,-t_i z_i)
 $$
@@ -237,12 +245,16 @@ $$
 
 Misclassified sample ($L_i>0$ 인 경우)에서 i번째 샘플에서의 SGD update는 다음과 같음:
 $$
-\mathbf{w}^{(\mathrm{next})} = \mathbf{w} + \eta t_i\mathbf{x}_i  \quad \text{ if } t\hat y < 0
+\mathbf{w}^{(\mathrm{next})} = \mathbf{w} - \eta (-t_i\mathbf{x}_i)  \quad \text{ if } t\hat y < 0
 $$
 
 * $L_i>0$인 경우에만 update가 일어난다는 것임.
+* $\hat y_i = \mathbf{w}^\top \mathbf{x}_i + b$
 
-> 이 업데이트 및 loss는 classical Perceptron의 -1/+1 notation update와 동일함.
+이 업데이트 및 loss는 classical Perceptron의 -1/+1 notation update와 동일함.
+$$
+\mathbf{w}^{(\mathrm{next})} = \mathbf{w}+\eta t_i\mathbf{x}_i
+$$
 
 결국 두 경우 모두 label coding만 다를 뿐 같은 learning rule을 표현함.
 
