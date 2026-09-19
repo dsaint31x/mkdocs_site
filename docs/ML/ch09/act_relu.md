@@ -29,7 +29,7 @@ $$ \text{ReLU}(x) = \text{max}(x,0)$$
 
 GPU를 효과적으로 활용할 수 있는 구현물이 기본으로 제공되며, 가장 기본적으로 사용하기 좋은 activation function임.
 
-단, Transformer 계열에선 ReLU보다 성능이 좋은 GELU나 SwiGLU 계열을 주로 사용함:
+단, Transformer 계열에서는 ReLU 대신 GELU와 같은 smooth activation이나 SwiGLU(Swish-Gated Linear Unit)와 같은 gated activation 구조를 주로 사용함 :
 
 * 이들도 ReLU처럼 양수 영역에서 쉽게 포화되지 않는(non-saturating) 특성을 가짐.
 * 단, 더 부드러운 gradient를 제공.
