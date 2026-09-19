@@ -118,7 +118,7 @@ Ref. : [Bing Xu et al., “Empirical Evaluation of Rectified Activations in Conv
 
 #### Leaky ReLU 미분
 
-$$ \dfrac{d}{dx}\text{leakyReLU}(x)= \left\{ \begin{matrix} 1 & \text{if } x \ge 0 \\ \alpha & \text{if } x<0 \end{matrixk} \right.$$
+$$ \dfrac{d}{dx}\text{leakyReLU}(x)= \left\{ \begin{matrix} 1 & \text{if } x \ge 0 \\ \alpha & \text{if } x<0 \end{matrix} \right.$$
 
 where
 
