@@ -1,5 +1,7 @@
 # He Initialization 유도
 
+!{}(https://github.com/user-attachments/assets/f3f97aa5-f28a-4a8d-a4f4-8ae72dc590bf){style="display: block; margin: 0 auto; width: 260px"}
+
 `He Initialization`은 `ReLU` 계열의 activation function을 사용하는 layer의 weight를 초기화하는 방법임.
 
 * He Initialization은 다른 weight initialization 방법과 마찬가지로
