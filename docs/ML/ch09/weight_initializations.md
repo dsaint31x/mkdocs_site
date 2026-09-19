@@ -155,7 +155,8 @@ $\text{fan}_\text{out}$
 > PyTorch에선 `fan_out`을 `fan_in` 대신 사용하는 He initialization으로 사용할 수 있음.
 > 
 > * 보통 netork가 매우 깊어서  backward pass에서 gradient의 vanishing/exploding이 더 큰 문제가 될 때 `fan_out`을 적용한다.  
-> * He et al. (2015) 논문에서도  forward/backward 어느 쪽을 기준으로 하든 결과(분산이 안정적으로 유지된다는 결론)는 점근적으로 동등하다고 언급하고 있음.  
+> * He et al. (2015) 논문에서도  forward/backward 어느 쪽을 기준으로 하든 결과(분산이 안정적으로 유지된다는 결론)는 점근적으로 동등하다고 언급하고 있음.
+> * PyTorch 의  `torch.nn.init` 는 다음을 참고: [`torch.nn.init`](https://ds31x.tistory.com/236)
 >
 > 대표적인 예가  
 >
