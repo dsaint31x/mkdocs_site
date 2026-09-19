@@ -18,6 +18,8 @@ $$
 \hat{y} = \mathbf{w}^{\top}\mathbf{x} + b
 $$
 
+* 입력이 column vector라고 가정: $\mathbf{x}$
+
 입력이 하나인 경우에는 다음처럼 쓸 수 있음.
 $$
 \hat{y} = wx + b
@@ -255,10 +257,14 @@ assert torch.allclose(ret_v, tmp)
 
 Mean Squared Error (MSE)는 다음과 같이 정의됨:
 $$
-L = \frac{1}{n}
-\sum_{i=1}^{n}
+L = \frac{1}{m}
+\sum_{i=1}^{m}
 (\hat{y}_i - y_i)^2
 $$
+
+* $m$ : number of sample number
+* $\hat{y}_i$ : $i$-th input $\mathbf{x}_i$에 대한 predicted value.
+* $y_i$ : $i$-th sample의 label 값.
 
 직접 구현하면 다음과 같음.
 
