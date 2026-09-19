@@ -24,8 +24,7 @@ math: true
 
 # Weight Initialization (가중치 초기화)
 
-<img width="800" height="440" alt="image" src="https://github.com/user-attachments/assets/af8f0ccf-62a0-4294-84b2-568d90b52c52" />
-
+![](https://github.com/user-attachments/assets/af8f0ccf-62a0-4294-84b2-568d90b52c52){style="display: block; margin: 0 auto; width: 800px"}
 
 Weight Initialization은 Gradient Vanishing/Exploding Problem을 개선하기 위해 연구된 방법
 
@@ -141,9 +140,9 @@ $\text{fan}_\text{out}$
 
 | Initialization | Activation<br/>functions | $\sigma^2$<br/>(Normal dist. , $\mu=0$) | [$-a, a$]<br/>(Uniform dist.) | Keras <b/>impl. |
 |:----:|:----:|:----:|:----:|:----:|
-| Yann LeCun	| SELU	| $\sigma^2 = 1/\text{fan}_\text{in}$	| $a=\sqrt{3\sigma^2}=\sqrt{\frac{3}{\text{fan}_\text{in}}}$ | `lecun_normal`,<br/>`lecun_uniform`|
-| Xavier Glorot |	None, tanh,<br/>sigmoid, softmax |	$\sigma^2 = 1/\text{fan}_\text{avg}$ | $a = \sqrt{3\sigma^2}=\sqrt{\frac{3}{\text{fan}_\text{avg}}}$ | `glorot_normal`,<br/>`glorot_uniform` | 
-| Kaiming He	| ReLU, Leaky ReLU,<br/>ELU, GELU, Mish	| $\sigma^2 = 2/\text{fan}_\text{in}$ | $a = \sqrt{3\sigma^2} =\sqrt{\frac{6}{\text{fan}_\text{avg}}}$ | `he_normal`,<br/>`he_uniform`| 
+| Yann LeCun<br/>1998	| SELU	| $\sigma^2 = 1/\text{fan}_\text{in}$	| $a=\sqrt{3\sigma^2}=\sqrt{\frac{3}{\text{fan}_\text{in}}}$ | `lecun_normal`,<br/>`lecun_uniform`|
+| Xavier Glorot<br/>2010 |	None, tanh,<br/>sigmoid, softmax |	$\sigma^2 = 1/\text{fan}_\text{avg}$ | $a = \sqrt{3\sigma^2}=\sqrt{\frac{3}{\text{fan}_\text{avg}}}$ | `glorot_normal`,<br/>`glorot_uniform` | 
+| Kaiming He<br/>2015	| ReLU, Leaky ReLU,<br/>ELU, GELU, Mish	| $\sigma^2 = 2/\text{fan}_\text{in}$ | $a = \sqrt{3\sigma^2} =\sqrt{\frac{6}{\text{fan}_\text{avg}}}$ | `he_normal`,<br/>`he_uniform`| 
 
 * 위의 normal distribution들은 variance만 차이가 있을 뿐, 모두 mean=0임.
 * Xavier Glorot et al.이 제안한 방식의 경우, `ReLU`가 유행하기 전까지 가장 많이 사용되었으나 아쉽게도 `ReLU`와는 잘 맞지 않는다는 결과들로 인해 ***Kaiming He et al.*** 의 방식이 제안됨.
