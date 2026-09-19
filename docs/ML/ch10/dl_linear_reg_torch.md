@@ -434,10 +434,13 @@ $$
 \frac{ L(w + \delta, b) - L(w - \delta, b)}{2\delta}
 $$
 
+* 여기서 $\delta$는 finite difference step size로 machine epsilon 을 통해 구해짐.
+* 이에 대한 자세한 건 다음을 참고: [finite difference step size 구하기 : machine epsilon기반](https://dsaint31.tistory.com/979)
+
 이를 구현한 코드는 다음과 같음:
 
 ```python
-delta = 0.01
+delta = 0.01 # float32의 경우, 0.005를 권장.
 lr = 1e-2
 
 w = torch.ones((1, 1))
@@ -505,6 +508,10 @@ before: w.item() =   222.60, b.item() =     2.78
 after : w.item() =   278.00, b.item() =     3.47
 ```
 
+> PyTorch 에서 update는 in-place op.를 사용하고,
+> computational graph에서 detach처리를 하는 것이 일반적이나
+> 여기선 manual로 구현한 터라 이를 반영하지 않음.
+
 ---
 
 ### 5.4 Loss 감소 확인
@@ -561,17 +568,18 @@ Analytical gradient는
 * Symbolic differentiation
     * derivative expression을 직접 생성함.
     * 전형적인 **analytical differentiation에 해당** 함.
-* Automatic differentiation
+* **Automatic differentiation**
     * derivative expression 전체를 새로 만들지는 않음.
     * 각 primitive operation의 derivative와 chain rule을 이용함.
     * 미분 가능한 지점에서는 analytical derivative와 동일한 값을 machine precision 수준에서 계산함.
     * ReLU 같은 non-differentiable point에서는 정해진 subgradient/convention을 사용할 수 있음.
-    * PyTorch autograd가 여기에 해당함.
+    * PyTorch `autograd`가 여기에 해당함.
 
 > `autograd`는  
 > 미분 불가능한 지점에서는 정의된 subgradient 또는 framework convention을 사용할 수 있으므로,  
 > 엄밀하게는 automatic differentiation이라고 부르는 것이 가장 정확함.
-> 즉, autograd는 numerical computation을 수행하지만,
+> 
+> 즉, autograd는 numerical computation을 수행하지만,  
 > 보통 "numerical differentiation"이라고 부르지는 않음.
 
 ---
@@ -588,10 +596,14 @@ $$
 L_i = (\hat{y}_i - y_i)^2
 $$
 
+* 여기서 $i$는 $i$-th sample 에 대한 값임을 의미함!
+
 전체 MSE loss는 다음과 같음:
 $$
-L = \frac{1}{n} \sum_{i=1}^{n} (\hat{y}_i - y_i)^
+L = \frac{1}{m} \sum_{i=1}^{m} (\hat{y}_i - y_i)^
 2$$
+
+* $m$ : number of samples in the training set.
 
 단일 sample loss를 $\hat{y}_i$ 에 대해 미분하면 다음과 같음:
 $$
@@ -625,8 +637,8 @@ $$
 MSE는 sample별 squared error의 평균이므로 전체 gradient는 다음과 같음:
 $$
 \begin{aligned}
-\frac{\partial L}{\partial w} &= \frac{1}{n} \sum\_{i=1}^{n} 2(\hat{y}\_i - y\_i) x\_i \\\\
-\frac{\partial L}{\partial b} &= \frac{1}{n} \sum\_{i=1}^{n} 2(\hat{y}\_i - y\_i)
+\frac{\partial L}{\partial w} &= \frac{1}{m} \sum\_{i=1}^{m} 2(\hat{y}\_i - y\_i) x\_i \\\\
+\frac{\partial L}{\partial b} &= \frac{1}{m} \sum\_{i=1}^{m} 2(\hat{y}\_i - y\_i)
 \end{aligned}
 $$
 
@@ -699,7 +711,8 @@ grad=(tensor([[-5372.2920]]), tensor([-64.1173]))
 
 보통 PyTorch에선 Training Loop를 직접 구현함.
 
-HuggingFace 의 transformers 나 Keras 등을 사용할 경우, 추상화된 클래스의 객체로 처리 가능.
+* HuggingFace 의 transformers 나 Keras 등을 사용할 경우,
+* 추상화된 클래스(trainer)의 객체로 처리 가능.
 
 ### 7.1 Training 함수 구현
 
@@ -894,9 +907,9 @@ if params.grad is None:
 
 ---
 
-### 8.2 Computation Graph 확인
+### 8.2 Computational Graph 확인
 
-`torchviz`의 `make_dot()`으로 computation graph를 확인함.
+`torchviz`의 `make_dot()`으로 computational graph를 확인함.
 
 ```python
 pred = ds_linear_model(X_train, *params)
@@ -991,6 +1004,8 @@ tensor([[[0.]],
 
 `zero_()`는 in-place 연산임.
 
+* 참고자료: [PyTorch의 in-place 연산](https://ds31x.tistory.com/401#2.-%EC%B4%88%EA%B8%B0%ED%99%94-%EC%97%B0%EC%82%B0)
+
 ---
 
 ### 8.5 AutoGrad 기반 Training Loop
@@ -1029,9 +1044,13 @@ def ds_training_auto(x, y, model, params, n_epoch, lr, log_flag=False):
 * `torch.no_grad()` 안에서 parameter를 update함: `backward` 가 필요하지 않은 연산들을 위한 context
     * update 연산은 computation graph에 기록되면 안 됨.
 * 반드시 in-place 연산으로 대상 tensor인 `params`를 갱신해야 함.
-    * `params = params - lr * params.grad` 처럼 새 tensor를 만들면 params가 더 이상 원래의 leaf tensor가 아니라 계산 결과 tensor가 됨.
+    * `params = params - lr * params.grad` 처럼 새 tensor를 만들면 `params`가 더 이상 원래의 leaf tensor가 아니라 계산 결과 tensor가 됨.
     * 이후로는 `params.grad`가 자동으로 accumulate되지 않게 됨
     * leaf tensor를 유지한 채 값만 바꾸기 위해서는 in-place update를 사용해야 함.
+
+autograd 에서 parameter의 업데이트에 대한 in-place 연산 등에 대한 보다 자세한 내용은 다음 URL을 참고할 것:
+
+* [Autograd : In-place 연산](https://ds31x.tistory.com/690)
 
 다음과 같이 gradient 계산이 필요치 않는 연산은 `with torch.no_grad()` context 내에 위치시킨다.
 
@@ -1086,7 +1105,7 @@ tensor([[[ 1.7978]],
 
 PyTorch에서는 optimizer를 `torch.optim`에서 제공함.
 
-* 앞서와 같이 Gradient Descent 를 직접 구현할 필요 없음
+* 앞서와 같이 Gradient Descent 를 직접 구현할 필요 없음!
 
 ```python
 import torch.optim as optim
@@ -1273,7 +1292,7 @@ $$
 * PyTorch의 `nn.Linear(in_features=1, out_features=1)`는
 * 입력 feature 1개를 받아 출력 feature 1개를 만드는 linear layer임.
 
-참고로, `nn.Linear`의 parameters는 Kaiming initialization (=He initialization)을 기반으로 초기화 됨:
+참고로, `nn.Linear`의 parameters는 Kaiming initialization (or He initialization)을 기반으로 초기화 됨:
 
 * 참고자료: [Kaiming initialization](https://ds31x.tistory.com/236#.kaiming_uniform_-and-.kaiming_normal_)
 
