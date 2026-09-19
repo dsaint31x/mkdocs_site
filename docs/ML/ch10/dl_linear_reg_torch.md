@@ -409,6 +409,31 @@ nn.MSELoss의 gradient: tensor([0.6667, 0.6667, 0.6667])
 두 gradient가 동일한가? True
 ```
 
+실제로 MSE의 gradient는 다음과 같음.
+
+$$
+\frac{1}{m}
+\sum_{i=1}^{m}
+(\hat{y}_i-y_i)^2
+$$
+
+따라서 $\hat{y}_i$에 대한 gradient는 다음과 같음.
+
+$$
+\frac{2}{m}
+(\hat{y}_i-y_i)
+$$
+
+현재 예제에서는 $m=3$이고 각 예측값과 target의 차이가 모두 $1$이므로 각 gradient는 다음과 같음:
+
+$$
+\frac{2}{3}
+\approx
+0.6667
+$$
+
+따라서 `nn.MSELoss`와 직접 구현한 MSE는 loss 값뿐만 아니라 AutoGrad가 계산하는 gradient도 동일함을 확인할 수 있음.
+
 ---
 
 ---
