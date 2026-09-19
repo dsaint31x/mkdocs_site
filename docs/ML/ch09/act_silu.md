@@ -48,6 +48,8 @@ GPU 등에서 보다 최적화된 ReLU가 여전히 많이 이용됨.
 단, transformer 의 FFN 에선 GELU가 기본적으로 많이 사용되어왔으며,  
 최근엔 `SwiGLU` (2020)가 보다 많이 사용되는 추세임.
 
+## 참고: SwiGLU
+
 참고로, `SwiGLU` 는 하나의 function이 아닌 unit임.  
 즉, activation unit으로 activation function을 포함한 더 넓은 계산 단위에 해당함.
 
@@ -60,6 +62,8 @@ $$
 $$
 
 * input $\textbf{x}$을 두 갈래로 나누고, 한쪽은 gate를 거친 후 다른 한쪽의 출력과 element-wise product (=Hadamard product)하는 구조
+
+보다 자세한건 다음 URL을 참고: [SwiGLU](https://dsaint31.tistory.com/980)
 
 ---
 
