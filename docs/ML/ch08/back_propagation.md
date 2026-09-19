@@ -1,6 +1,6 @@
 # Back propagation (역전파, 오차 역전파)
 
-![](https://github.com/user-attachments/assets/1b0c038b-3e1f-4d06-bf58-deec2c608847){style="display:block; margin:0 auto; width:600px"}
+![Untitled](https://github.com/user-attachments/assets/1b0c038b-3e1f-4d06-bf58-deec2c608847){style="display:block; margin:0 auto; width:600px"}
 
 * ref. : Anlaytics Vidhya
 
