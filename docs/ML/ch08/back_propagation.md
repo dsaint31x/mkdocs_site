@@ -92,7 +92,7 @@ computational graph를 역방향으로 따라가며 gradient를 계산하는 Rev
 ## 참고: Computational Graph
 
 <!--img width="1410" height="655" alt="image" src="https://github.com/user-attachments/assets/7b4f3802-ea25-42d1-bcd3-6da9c29ce2fb" /-->
-![Untitled](https://github.com/user-attachments/assets/7b4f3802-ea25-42d1-bcd3-6da9c29ce2fb){sytle="display: block; margin: 0 auto; width: 600px"}
+![Untitled](https://github.com/user-attachments/assets/7b4f3802-ea25-42d1-bcd3-6da9c29ce2fb){sytle="display: block; margin: 0 auto; width: 400px"}
 
 계산 과정을 그래프로 나타낸 것(구조).  
 
@@ -127,6 +127,10 @@ Computational Graph 에 기반하며, 다음의 두 단계로 gradient를 구함
     * “현재의 모델” 에서 주어진 training dataset에 대해 loss function 값을 구하면서 
     * 동시에 해당 forward pass에서 사용된 각 inputs와 모든 parameters와 intermediate results 를 저장 
         * 이는 predict나 inference 과정과의 차이점
+        * 정확히는 backward propagation에서 필요한 것들을 저장: [다음의 URL참고](https://ds31x.tistory.com/690#%EC%A0%95%EB%A6%AC)
+            * `ln(x)` 의 경우 미분을 하려면 input값이 필요함 `1/x` 이므로
+            * `exp(x)` 의 경우 미분이 `exp(x)`이므로 output 값이 필요함.
+            * `max()` 의 경우, 입출력이 모두 있어야 누가 최대값으로 어떻게 편미분되는지를 알 수 있음.     
     * Forward pass computes each result of all the operations and save any intermediates required to calculate gradient into memory.
 - ***Backward pass*** (backward propagation)
     * `Reverse-mode Auto Diff`를 통해, 모델의 모든 inputs, parameters, 중간 결과들을 사용하여 ***loss function값을 편미분*** 하고,
