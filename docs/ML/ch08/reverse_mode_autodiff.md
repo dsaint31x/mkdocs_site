@@ -34,8 +34,11 @@ $$
     
 - 이를 위해서는 forward pass 과정에서 각 node에서의 ***연산 결과*** 및 ***입력값*** 들을 저장하고 있어야 함.  
     - 일반적인 prediction (or inference) 과정과의 차이점임.
-- pytorch등에서는 옵션 등을 통해 autodiff에 사용할 각 노드의 결과를 저장할지 여부를 결정할 수 있음.
+    - 연산에 따라, 입력들만 혹은 출력들만 또는 입출력 모두, 아니면 아예 입출력들이 필요없을 수도 있음.
+    - 이에 대한 것은 다음 링크의 정리 부분의 테이블을 참고: [Autograd에서 in-place operations](https://ds31x.tistory.com/690)
+- PyTorch등에서는 옵션 등을 통해 autodiff에 사용할 각 노드의 결과를 저장할지 여부를 결정할 수 있음.
     - validation set를 대상으로 수행될 때는 이같은 저장을 하지 않고 수행함으로서 계산 효율을 향상시킴.
+    - PyTorch에서의 autograd는 autodiff를 가능하게 하는 기능이며 간단한 사용법은 다음을 참고: [autograd 기본 사용법](https://ds31x.tistory.com/227)
     
 
 > Computation Graph를 사용하기 때문에 ***국소적 계산*** 이 이루어지며, 
