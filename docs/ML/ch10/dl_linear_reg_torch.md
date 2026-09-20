@@ -438,9 +438,7 @@ $$
 
 ---
 
-## 5. Gradient Descent의 기본 원리
-
-### 5.1 Gradient Descent Update 식
+## 5. Gradient Descent Update 식
 
 Gradient Descent는 gradient의 반대 방향으로 parameter를 update함:
 $$
@@ -454,7 +452,9 @@ $$
 
 ---
 
-### 5.2 Numerical Method로 Gradient 근사하기
+## 6. Numerical Method
+
+### 6.1 Gradient 근사하기
 
 [central difference](https://dsaint31.tistory.com/540#Finite%20Difference%20(%EC%9C%A0%ED%95%9C%EC%B0%A8%EB%B6%84)%20%EC%A2%85%EB%A5%98-1-3)로 gradient를 근사함.
 
@@ -519,7 +519,7 @@ d_loss_d_b = (
 
 ---
 
-### 5.3 Parameter Update
+### 6.2 Parameter Update
 
 계산한 gradient로 parameters를 update함.
 
@@ -545,7 +545,7 @@ after : w.item() =   278.00, b.item() =     3.47
 
 ---
 
-### 5.4 Loss 감소 확인
+### 6.3 Loss 감소 확인
 
 update 후 loss를 다시 확인함.
 
@@ -577,9 +577,9 @@ l의 경우 loss가 크게 증가했음.
 
 ---
 
-## 6. Analytical Gradient 직접 계산하기
+## 7. Analytical Gradient 직접 계산하기
 
-### 6.1 Numerical Gradient와 Analytical Gradient의 차이
+### 7.1 Numerical Gradient와 Analytical Gradient의 차이
 
 Numerical gradient는
 
@@ -591,7 +591,7 @@ Analytical gradient는
 * 미분식을 직접 구해 gradient를 계산함.
 * Analytical gradient는 미분식을 수학적으로 구해 얻은 정확한 derivative를 가리키는 표현
 
-다음의 특징을 가짐:
+크게 컴퓨터에서 differentiation은 3가지 방법임:
 
 * Numerical differentiation
     * 보통 finite difference 기반
@@ -615,7 +615,7 @@ Analytical gradient는
 
 ---
 
-### 6.2 MSE Loss의 미분
+### 7.2 MSE Loss의 미분
 
 예측값은 다음과 같음:
 $$
@@ -675,7 +675,7 @@ $$
 
 ---
 
-### 6.3 Analytical Gradient 구현
+### 7.3 Analytical Gradient 구현
 
 미분식을 다음의 function으로 구현함:
 
@@ -738,14 +738,14 @@ grad=(tensor([[-5372.2920]]), tensor([-64.1173]))
 
 ---
 
-## 7. 직접 구현한 Training Loop
+## 8. 직접 구현한 Training Loop
 
 보통 PyTorch에선 Training Loop를 직접 구현함.
 
 * HuggingFace 의 transformers 나 Keras 등을 사용할 경우,
 * 추상화된 클래스(trainer)의 객체로 처리 가능.
 
-### 7.1 Training 함수 구현
+### 8.1 Training 함수 구현
 
 앞서 구현한 analytical gradient를 사용하여 training loop를 작성함.
 
@@ -795,7 +795,7 @@ parameter update
 
 ---
 
-### 7.2 학습 결과 확인
+### 8.2 학습 결과 확인
 
 learning rate는 $2 \times 10^{-4}$ 로 설정함.
 
@@ -855,7 +855,7 @@ $$
 
 ---
 
-### 7.3 학습 결과 시각화
+### 8.3 학습 결과 시각화
 
 학습된 parameter로 예측값을 계산함.
 
@@ -877,7 +877,7 @@ plt.plot(x, pred, x, y_ideal, x, y)
 
 ---
 
-## 8. PyTorch AutoGrad 사용하기
+## 9. PyTorch AutoGrad 사용하기
 
 일반적으로
 
@@ -910,7 +910,7 @@ pred = ds_linear_model(X_train, params[0], params[1])
 
 ---
 
-### 8.1 `requires_grad=True`
+### 9.1 `requires_grad=True`
 
 ```python
 params = torch.tensor(
@@ -938,7 +938,7 @@ if params.grad is None:
 
 ---
 
-### 8.2 Computational Graph 확인
+### 9.2 Computational Graph 확인
 
 `torchviz`의 `make_dot()`으로 computational graph를 확인함.
 
@@ -990,7 +990,7 @@ torch.Size([])
   
 ---
 
-### 8.3 `backward()`로 Gradient 계산
+### 9.3 `backward()`로 Gradient 계산
 
 loss에 대해 `backward()`를 호출함.
 
@@ -1011,7 +1011,7 @@ tensor([[[-5540.0225]],
 
 ---
 
-### 8.4 Gradient 초기화
+### 9.4 Gradient 초기화
 
 PyTorch에서 gradient는 누적됨(accumulated).
 
@@ -1039,7 +1039,7 @@ tensor([[[0.]],
 
 ---
 
-### 8.5 AutoGrad 기반 Training Loop
+### 9.5 AutoGrad 기반 Training Loop
 
 AutoGrad를 사용하는 training loop는 다음과 같음.
 
@@ -1130,9 +1130,9 @@ tensor([[[ 1.7978]],
 
 ---
 
-## 9. `torch.optim`으로 Optimizer 사용하기
+## 10. `torch.optim`으로 Optimizer 사용하기
 
-### 9.1 `torch.optim` 모듈
+### 10.1 `torch.optim` 모듈
 
 PyTorch에서는 optimizer를 `torch.optim`에서 제공함.
 
@@ -1155,7 +1155,7 @@ import torch.optim as optim
 
 ---
 
-### 9.2 Optimizer 생성
+### 10.2 Optimizer 생성
 
 parameter를 생성함.
 
@@ -1182,7 +1182,7 @@ optimizer가 update할 parameter들의 iterable을 받기 때문임.
 
 ---
 
-### 9.3 `torch.optim.SGD`를 이용한 1 epoch update
+### 10.3 `torch.optim.SGD`를 이용한 1 epoch update
 
 optimizer를 사용한 1 epoch update는 다음과 같음.
 
@@ -1208,7 +1208,7 @@ tensor([[[2.0745]],
 
 ---
 
-### 9.4 Optimizer 기반 Training Loop
+### 10.4 Optimizer 기반 Training Loop
 
 optimizer 기반 training loop는 다음과 같음.
 
@@ -1291,7 +1291,7 @@ plt.show()
 
 ---
 
-## 10. `torch.nn.Linear`로 Model까지 PyTorch 방식으로 구현하기
+## 11. `torch.nn.Linear`로 Model까지 PyTorch 방식으로 구현하기
 
 앞에서는 linear model을 직접 함수로 구현했음.
 
@@ -1329,7 +1329,7 @@ $$
 
 ---
 
-### 10.1 `nn.Linear` 기반 학습 코드
+### 11.1 `nn.Linear` 기반 학습 코드
 
 
 * 참고자료: [torch.nn.Linear 에 대하여](https://ds31x.tistory.com/421)
@@ -1367,7 +1367,7 @@ for epoch in range(n_epoch):
 
 ---
 
-### 10.2 Model 정의
+### 11.2 Model 정의
 
 model은 다음처럼 정의함.
 
@@ -1398,7 +1398,7 @@ Fahrenheit 값 하나를 출력하므로 이 설정이 맞음.
 
 ---
 
-### 10.3 Loss Function과 Optimizer 정의
+### 11.3 Loss Function과 Optimizer 정의
 
 손실 함수는 MSE를 사용함.
 
@@ -1441,7 +1441,7 @@ optimizer = optim.SGD(model.parameters(), lr=lr)
 
 ---
 
-### 10.4 학습 루프
+### 11.4 학습 루프
 
 학습 루프는 다음 순서로 진행됨.
 
@@ -1513,7 +1513,7 @@ for epoch in range(n_epoch):
 
 ---
 
-## 11. 정리
+## 정리
 
 이번 예제는 같은 학습 과정을 다섯 단계로 보여줌.
 
