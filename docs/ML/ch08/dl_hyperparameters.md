@@ -51,11 +51,11 @@ Real-world data는 대부분 다음과 같은 계층적 구조를 가짐.
 예를 들어 image recognition에서는 다음과 같은 구조로 이해할 수 있음.
 
 * lower hidden layers
-  * line segment, dot, edge, orientation 같은 low-level structures를 학습함.
+    * line segment, dot, edge, orientation 같은 low-level structures를 학습함.
 * intermediate hidden layers
-  * square, circle, texture 같은 intermediate-level structures를 학습함.
+    * square, circle, texture 같은 intermediate-level structures를 학습함.
 * higher hidden layers and output layer
-  * face, object 같은 high-level structures를 학습함.
+    * face, object 같은 high-level structures를 학습함.
 
 이처럼 deep architecture는 data의 계층적 구조를 잘 반영할 수 있음.
 
@@ -146,6 +146,8 @@ Vincent Vanhoucke는 이러한 접근을
 
 ## Activation Function
 
+> 참고 자료 : [Activation Functions] (https://ds31x.tistory.com/710)
+
 Deep Neural Network가 Single Layer Perceptron과 본질적으로 다른 표현 능력을 가지는 이유는
 hidden layer에서 [non-linear activation function](./dev_hist_ann.md#activation-function의-중요성)을 사용하기 때문임.
 
@@ -159,13 +161,16 @@ DNN이 complex non-linear function을 근사할 수 있게 해주는 핵심 요�
 
 Activation function의 선택은 다음에 영향을 줌.
 
-* model의 표현력
-* gradient flow
-* convergence speed
-* vanishing gradient 문제
-* exploding gradient 문제
-* weight initialization 방식
-* training stability
+* Model Representation (model의 표현력, non-linearity)
+* Gradient Behavior
+    * gradient flow
+    * vanishing gradient 문제
+    * exploding gradient 문제
+* Optimization Performance
+    * convergence speed
+    * training stability
+Related Training Design
+    * weight initialization 방식
 
 때문에 activation function의 type은 중요한 hyper-parameter로 다루어짐.
 
@@ -179,14 +184,11 @@ Activation function은 weight initialization과 함께 선택되는 경우가 �
 Output layer의 activation function은 보통 task에 의해 결정됨.
 
 * binary classification
-
-  * sigmoid 또는 logistic function 사용
+    * sigmoid 또는 logistic function 사용
 * multi-class classification
-
-  * softmax 사용
+    * softmax 사용
 * regression
-
-  * identity function, 즉 별도의 activation function을 사용하지 않는 방식이 일반적임.
+    * identity function, 즉 별도의 activation function을 사용하지 않는 방식이 일반적임.
 
 Hidden layer의 activation function은
 오늘날 대부분 [ReLU](../ch09/act_relu/) 계열이 사용됨.
@@ -200,7 +202,7 @@ Hidden layer의 activation function은
 * [Swish (SiLU 의 일반형)](../ch09/act_silu/)
 
 특히 CNN이나 일반적인 feed-forward network에서는 [ReLU](../ch09/act_relu/) 계열이 널리 사용되며,  
-Transformer 계열에서는 [GELU](../ch09/act_silu.md#gaussian-error-linear-unit-gelu)가 자주 사용됨.
+Transformer 계열에서는 [GELU](../ch09/act_silu.md#gaussian-error-linear-unit-gelu) 및 [SwiGLU](https://dsaint31.tistory.com/980)가 자주 사용됨.
 
 activation function은 
 
