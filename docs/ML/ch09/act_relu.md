@@ -100,6 +100,8 @@ logistic과 같은 sigmoid function 계열의 activation function의 가장 큰 
 
 ## The variants of ReLU
 
+![Untitled](./img/learky_relu.png){style="display: block; margin: 0 auto; width: 400px"}
+
 ### Leaky ReLU
 
 negative input에 대해서 0으로 처리하는 `ReLU`와 달리 `Leaky ReLU`는 leakage factor $\alpha$ 만큼의 gradient를 유지해줌.
