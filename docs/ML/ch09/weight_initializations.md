@@ -142,7 +142,7 @@ $\text{fan}_\text{out}$
 |:----:|:----:|:----:|:----:|:----:|
 | Yann LeCun<br/>1998	| SELU	| $\sigma^2 = 1/\text{fan}_\text{in}$	| $a=\sqrt{3\sigma^2}=\sqrt{\frac{3}{\text{fan}_\text{in}}}$ | `lecun_normal`,<br/>`lecun_uniform`|
 | Xavier Glorot<br/>2010 |	None, tanh,<br/>sigmoid, softmax |	$\sigma^2 = 1/\text{fan}_\text{avg}$ | $a = \sqrt{3\sigma^2}=\sqrt{\frac{3}{\text{fan}_\text{avg}}}$ | `glorot_normal`,<br/>`glorot_uniform` | 
-| Kaiming He<br/>2015	| ReLU, Leaky ReLU,<br/>ELU, GELU, Mish	| $\sigma^2 = 2/\text{fan}_\text{in}$ | $a = \sqrt{3\sigma^2} =\sqrt{\frac{6}{\text{fan}_\text{avg}}}$ | `he_normal`,<br/>`he_uniform`| 
+| Kaiming He<br/>2015	| ReLU, Leaky ReLU,<br/>ELU, GELU, Mish	| $\sigma^2 = 2/\text{fan}_\text{in}$ | $a = \sqrt{3\sigma^2} =\sqrt{\frac{6}{\text{fan}_\text{in}}}$ | `he_normal`,<br/>`he_uniform`| 
 
 * 위의 normal distribution들은 variance만 차이가 있을 뿐, 모두 mean=0임.
 * Xavier Glorot et al.이 제안한 방식의 경우, `ReLU`가 유행하기 전까지 가장 많이 사용되었으나 아쉽게도 `ReLU`와는 잘 맞지 않는다는 결과들로 인해 ***Kaiming He et al.*** 의 방식이 제안됨.
