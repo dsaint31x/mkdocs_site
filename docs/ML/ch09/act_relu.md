@@ -18,9 +18,11 @@ toc: true
 
 # Rectified Linear Unit (ReLU)
 
-![](https://github.com/user-attachments/assets/42623c9f-9164-4d8f-98a8-0592b1eddb11){style="display: block; margin: 0 auto; width: 400px"}
+ReLU는 다른 분야에서는 Ramp Function이라고도 불림.
 
-* ReLU는 다른 분야에서는 Ramp Function이라고도 불림.
+![Untitled](https://github.com/user-attachments/assets/42623c9f-9164-4d8f-98a8-0592b1eddb11){style="display: block; margin: 0 auto; width: 400px"}
+
+
 
 초기 perceptron의 Unit step에서 logistic 으로 activation function으로 바꾸어진 이후, 
 가장 효과적인 activation function으로 부상한 것이 `ReLU` 이다.
