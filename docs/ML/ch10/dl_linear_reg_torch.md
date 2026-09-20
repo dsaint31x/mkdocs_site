@@ -3,6 +3,8 @@ title: PyTorch로 직접 구현해보는 Linear Regression
 tags: [linear regression, pytorch, gradient descent, autograd, mse, optimization]
 ---
 
+[관련 ipynb](https://gist.github.com/dsaint31x/626f3977a5f879c322e3bf967b8e9ace)
+
 # PyTorch로 직접 구현해보는 Linear Regression
 
 ## 1. Linear Regression의 기본 개념
