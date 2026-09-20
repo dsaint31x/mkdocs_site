@@ -11,7 +11,7 @@
 - "Reverse-mode AutoDiff" (Reverse-mode automatic differentiation)
     - loss에 대한 parameters의 gradient를 효율적으로 계산    
 - ***"Gradient Descent"***
-    - loss에 대한 parameters의 gradient를 효율적으로 계산 
+    - 계산된 gradient를 이용하여 loss function이 감소하는 방향으로 parameters를 update
 
 엄밀한 의미에서 **back-propagation** 은 이 중  
 computational graph를 역방향으로 따라가며 gradient를 계산하는 Reverse-mode AD 과정을  
@@ -54,9 +54,9 @@ computational graph를 역방향으로 따라가며 gradient를 계산하는 Rev
 > 참고로, Back-propagation은 주로 딥러닝 분야에서 사용되는 용어이며  
 > 다른 분야들에서는 Reverse-mode auto differentiation이라고 불림. 
 
-* Back-propagation을 ANN의 학습에 적용시킨 이는 1974년 Paul J. Werbos임.  
+* Paul J. Werbos는 1974년에 back-propagation을 ANN의 학습에 적용하는 방법을 제안함.
 * Paul J. Werbos는 자신의 박사학위 논문 [Beyond regression: New tools for prediction and analysis in the behavioral sciences, 1974 (Paul J. Werbos, Ph.D. dissertation)](https://www.researchgate.net/publication/35055330_Beyond_regression_new_tools_for_prediction_and_analysis_in_the_behavior_sciences_microform)에서 이를 제안함.  
-* 이후, Back-propagation은 현재의 Deep Learning의 전성기의 시작을 연 기념비적인 논문 중 하나인 1986년 Rumelhart와 Hinton의 [Learning internal representations by error propagation (Rumelhart, Hinton)](https://www.semanticscholar.org/paper/Learning-internal-representations-by-error-Rumelhart-Hinton/111fd833a4ae576cfdbb27d87d2f8fc0640af355)를 기점으로 **ANN의 학습기법** 으로 널리 사용되게 된다.
+* 이후, Back-propagation은 현재의 Deep Learning의 전성기의 시작을 연 기념비적인 논문 중 하나인 1986년 Rumelhart, Hinton, Williams의 [Learning representations by back-propagating errors](https://doi.org/10.1038/323533a0)를 기점으로 **ANN의 학습기법**으로 널리 사용되게 된다.
 
 ---
 
@@ -72,10 +72,14 @@ computational graph를 역방향으로 따라가며 gradient를 계산하는 Rev
 2. Numerical Differentiation (주로 [finite difference](https://dsaint31.tistory.com/540#Finite%20Difference%20(%EC%9C%A0%ED%95%9C%EC%B0%A8%EB%B6%84)%20%EC%A2%85%EB%A5%98-1-3) 을 주로 사용)
 3. [Forward-Mode](https://dsaint31.tistory.com/971) or [Reverse-Mode Auto Differentiation](./reverse_mode_autodiff.md)
 
-위의 1번과 3번의 경우는 ***Computational Graph 기법*** 에 의존하고 있음.
+위의 1번과 3번의 경우는 일반적으로 ***Computational Graph 기법*** 에 의존하고 있음.
 
 * [Tree와 Graph](https://dsaint31.tistory.com/463)
 * [Graph란](./datastructure_graph.md)
+* 고전적인 symbolic differentiation은 수식을 단순한 expression tree로 표현해도 충분하지만,
+* 컴퓨터를 활용하는 경우 수식을 expression tree / computational graph 형태로 표현하면, 각 연산 노드를 따라가면서 symbolic differentiation을 수행하는 방법이 많이 이용됨.
+* 현대의 automatic differentiation 프레임워크에서는 computational graph가 symbolic differentiation과 밀접하게 연결되어 있음.
+* 단, Symbolic Differentiation이 본질적으로 반드시 Computational Graph를 필요로 하는 것은 아님.
 
 특히 3번에서 [Reverse-Mode Auto Differentiation](./reverse_mode_autodiff.md) 는 Deep ANN을 학습시키기 위해 사용되는 대표적 기법임.
 
@@ -144,12 +148,14 @@ Computational Graph 에 기반하며, 다음의 두 단계로 gradient를 구함
     
 이처럼 구해진 gradient를 이용하여 ***Gradient Decent 기법*** 으로 Model의 parameters를 update함. 
 
-- gradient를 구성하는 partial derivatives들과 learning ratio를 통해,
+- gradient를 구성하는 partial derivatives들과 learning rate를 통해,
 - 현재 loss function의 값을 만들어낸 모델의 parameter들( 오차에 관여하는 노드 값들의 weights와 bias)을 업데이트.
 
 위의 과정을 통해 model의 parameters는 오차가 작아지는 방향(~ `loss function이 줄어드는 방향` = `-1 * gradient`)으로 반복해서 update가 이루어짐.
 
-- 전체 training dataset의 samples에 대해 gradient를 계산하고 parameter update가 이루어지면 1번의 반복 (하나의 반복을 `epoch`라고 부름)이 끝남.
+- 전체 training dataset의 samples에 대해 gradient를 계산하고 parameter update가 이루어지면 1번의 반복 (하나의 반복을 `epoch`라고 부름)이 끝남 (batch gradient의 경우).
+    - 전체 training dataset을 한 번 사용하는 것을 `epoch`라고 부름.
+    - Mini-batch를 사용하는 경우 하나의 `epoch` 동안 여러 번의 gradient 계산과 parameter update가 이루어짐.
 - 이를 여러 번 반복하고 반복한 횟수가 n인 경우 n `epoch` 수행했다 라고 기술함.
 
 ---
@@ -162,5 +168,5 @@ Computational Graph 에 기반하며, 다음의 두 단계로 gradient를 구함
     * `dense` layer (or fully connected layer) 와
     * `heavyside step` function(or **unit step** function) 의 결합
 2. 대상 `dense` layer에 대해 입력을 넣어 출력을 구하는 forward pass 수행.
-3. ***2를 수행한 출력*** 과 **정답** 간의 ***오차*** 를 구하고, 해당 오차를 backward pass하여 오차를 줄이는 방향인 gradient를 구함.
-4. Gradient Decent로 해당 gradient와 learning ratio를 통해 Model의 parameters를 업데이트. 
+3. ***2를 수행한 출력*** 과 **정답** 간의 ***오차*** 를 구하고, 해당 오차를 backward pass하여 loss function의 parameters에 대한 gradient를 구함.
+4. Gradient Decent로 해당 gradient와 learning rate를 통해 Model의 parameters를 업데이트 (gradient의 반대방향으로 업데이). 
