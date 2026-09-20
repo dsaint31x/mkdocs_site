@@ -28,7 +28,7 @@ Weight Initialization은 Gradient Vanishing/Exploding Problem을 개선하기 �
 Activation Function과 궁합이 맞는 방법들이 나뉨.
 
 ![Weight Initialization](https://github.com/user-attachments/assets/af8f0ccf-62a0-4294-84b2-568d90b52c52){style="display: block; margin: 0 auto; width: 800px"}
-![Weight Initialization](./imgs/weight_init.png){style="display: block; margin: 0 auto; width: 800px"}
+![Weight Initialization](./img/weight_init.png){style="display: block; margin: 0 auto; width: 800px"}
 
 2010년 Xavier Glorot et al.에 의해 효과가 입증되면서 deep neural network를 효과적으로 학습시키기 위한 기본 기법으로 널리 사용되게 됨:
 
