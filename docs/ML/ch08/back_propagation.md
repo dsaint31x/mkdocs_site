@@ -91,6 +91,9 @@ computational graph를 역방향으로 따라가며 gradient를 계산하는 Rev
 
 ## 참고: Computational Graph
 
+<!--img width="1410" height="655" alt="image" src="https://github.com/user-attachments/assets/7b4f3802-ea25-42d1-bcd3-6da9c29ce2fb" /-->
+![Untitled](https://github.com/user-attachments/assets/7b4f3802-ea25-42d1-bcd3-6da9c29ce2fb){sytle="display: block; margin: 0 auto; width: 600px"}
+
 계산 과정을 그래프로 나타낸 것(구조).  
 
 - `node` : 주로, 연산 (operation) 및 변수 (variable)
