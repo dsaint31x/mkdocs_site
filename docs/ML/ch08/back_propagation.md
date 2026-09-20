@@ -1,10 +1,10 @@
 # Back propagation (역전파, 오차 역전파)
 
+***딥러닝 모델을 학습시키기 위한 핵심 알고리즘.***
+
 ![Untitled](https://github.com/user-attachments/assets/1b0c038b-3e1f-4d06-bf58-deec2c608847){style="display:block; margin:0 auto; width:600px"}
 
 * ref. : Anlaytics Vidhya
-
-***딥러닝 모델을 학습시키기 위한 핵심 알고리즘.***
 
 넓은 의미의 **Back-propagation learning** 은 다음 두 과정을 반복하여 ANN을 학습시킴.
 
