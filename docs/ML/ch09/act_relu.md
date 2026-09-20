@@ -100,7 +100,7 @@ logistic과 같은 sigmoid function 계열의 activation function의 가장 큰 
 
 ## The variants of ReLU
 
-![Untitled](./img/learky_relu.png){style="display: block; margin: 0 auto; width: 400px"}
+![Untitled](./img/leaky_relu.png){style="display: block; margin: 0 auto; width: 400px"}
 
 ### Leaky ReLU
 
