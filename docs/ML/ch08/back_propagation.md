@@ -13,7 +13,7 @@
 - ***"Gradient Descent"***
     - loss에 대한 parameters의 gradient를 효율적으로 계산 
 
-엄밀한 의미에서 **backpropagation** 은 이 중  
+엄밀한 의미에서 **back-propagation** 은 이 중  
 computational graph를 역방향으로 따라가며 gradient를 계산하는 Reverse-mode AD 과정을  
 주로 가리킴.
 
@@ -33,7 +33,7 @@ computational graph를 역방향으로 따라가며 gradient를 계산하는 Rev
 > 아쉬운 건, 인터넷 검색도 없던 1970년대의 북유럽에서 핀란드어로 쓰인 석사 논문이었다는 것임.  
 > 이 논문이 미국이나 영국의 주류 컴퓨터 공학 및 AI 연구자들에게 전달될 가능성은 거의 제로에 가까웠을 것으로 보임.  
 > 반면, 이후 다룰 Paul J. Werbos의 1974년 논문은 미국 하버드 대학교에서 영어로 작성되었고,
-> 이후 대중화에 기여한 Rumelhart와 Hinton(1986)의 논문 역시 영어를 기반으로 최고 권위의 학술지(Nature)에 실림.
+> 이후 대중화에 기여한 Rumelhart와 Hinton(1986)의 논문 역시 영어를 기반으로 최고 권위의 학술지(Nature)에 실림.  
 > 즉, 연구 결과의 파급력이 다를 수 밖에 없는 환경이었음.
 > 참고로, Linnainmaa가 자신의 알고리즘을 영어 저널에 공식적으로 출판한 것은 6년 뒤인 1976년이 되어서였음.
 
@@ -55,7 +55,7 @@ computational graph를 역방향으로 따라가며 gradient를 계산하는 Rev
 > 다른 분야들에서는 Reverse-mode auto differentiation이라고 불림. 
 
 * Back-propagation을 ANN의 학습에 적용시킨 이는 1974년 Paul J. Werbos임.  
-* J. Werbos는 자신의 박사학위 논문 [Beyond regression: New tools for prediction and analysis in the behavioral sciences, 1974 (Paul J. Werbos, Ph.D. dissertation)](https://www.researchgate.net/publication/35055330_Beyond_regression_new_tools_for_prediction_and_analysis_in_the_behavior_sciences_microform)에서 이를 제안함.  
+* Paul J. Werbos는 자신의 박사학위 논문 [Beyond regression: New tools for prediction and analysis in the behavioral sciences, 1974 (Paul J. Werbos, Ph.D. dissertation)](https://www.researchgate.net/publication/35055330_Beyond_regression_new_tools_for_prediction_and_analysis_in_the_behavior_sciences_microform)에서 이를 제안함.  
 * 이후, Back-propagation은 현재의 Deep Learning의 전성기의 시작을 연 기념비적인 논문 중 하나인 1986년 Rumelhart와 Hinton의 [Learning internal representations by error propagation (Rumelhart, Hinton)](https://www.semanticscholar.org/paper/Learning-internal-representations-by-error-Rumelhart-Hinton/111fd833a4ae576cfdbb27d87d2f8fc0640af355)를 기점으로 **ANN의 학습기법** 으로 널리 사용되게 된다.
 
 ---
@@ -123,20 +123,20 @@ computational graph를 역방향으로 따라가며 gradient를 계산하는 Rev
 
 Computational Graph 에 기반하며, 다음의 두 단계로 gradient를 구함.
 
-- ***Forward pass*** 
+- ***Forward pass*** (forward propagation)
     * “현재의 모델” 에서 주어진 training dataset에 대해 loss function 값을 구하면서 
     * 동시에 해당 forward pass에서 사용된 각 inputs와 모든 parameters와 intermediate results 를 저장 
         * 이는 predict나 inference 과정과의 차이점
     * Forward pass computes each result of all the operations and save any intermediates required to calculate gradient into memory.
-- ***Backward pass*** 
+- ***Backward pass*** (backward propagation)
     * `Reverse-mode Auto Diff`를 통해, 모델의 모든 inputs, parameters, 중간 결과들을 사용하여 ***loss function값을 편미분*** 하고,
     * 이들을 chain-rule에 기반하여 조합하여 
     * loss function을 최소화할 수 있는 최적의 parameters의 값으로 update하기 위해 
     * 필요한 ***gradients를 계산.*** 
         * loss function의 값을 오차로 볼 수 있으며, 
         * 이 오차를 반대방향으로 전파하면서 gradient가 구해진다고 볼 수 있음.
-    * Partial differentiation with respect to all the inputs, parameters, and intermediate results.
-    * Backward pass applies the chain rule to compute the gradient of the loss function with respect to the inputs, parameters, and intermediate results.
+    * **Partial differentiation** with respect to all the inputs, parameters, and intermediate results.
+    * Backward pass applies the **chain rule** to compute the gradient of the loss function with respect to the inputs, parameters, and intermediate results.
     
 이처럼 구해진 gradient를 이용하여 ***Gradient Decent 기법*** 으로 Model의 parameters를 update함. 
 
@@ -156,7 +156,7 @@ Computational Graph 에 기반하며, 다음의 두 단계로 gradient를 구함
 
 1. input에 weight를 곱하고 bias를 합친 값 (affine transformation)이 threshold를 넘을 경우 1을 출력하고 아니면 0을 출력 (nonlinear activation) : 
     * `dense` layer (or fully connected layer) 와
-    * `heavy side` function(or unit step function) 의 결합
+    * `heavyside step` function(or **unit step** function) 의 결합
 2. 대상 `dense` layer에 대해 입력을 넣어 출력을 구하는 forward pass 수행.
 3. ***2를 수행한 출력*** 과 **정답** 간의 ***오차*** 를 구하고, 해당 오차를 backward pass하여 오차를 줄이는 방향인 gradient를 구함.
 4. Gradient Decent로 해당 gradient와 learning ratio를 통해 Model의 parameters를 업데이트. 
