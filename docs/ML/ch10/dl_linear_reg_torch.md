@@ -253,6 +253,8 @@ $$
 assert torch.allclose(ret_v, tmp)
 ```
 
+[참고자료: `assert` 사용법](https://ds31x.tistory.com/348)
+
 ---
 
 ### 3.2 Custom Loss Function: MSE
@@ -292,6 +294,8 @@ b = torch.zeros((1))
 ```
 
 * matrix 형태로 맞추기 위해 처리함.
+
+이 예제는 scalar로 되어있으나 일반적으로 weight는 matrix, bias는 vector 임.
 
 ---
 
