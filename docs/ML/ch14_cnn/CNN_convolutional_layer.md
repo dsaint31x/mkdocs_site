@@ -1,6 +1,6 @@
 ---
 title: Convolutional Layer
-tags: [Convolution, Stride, CNN]
+tags: [convolution, stride, cnn]
 ---
 
 # Convolutional Layer
