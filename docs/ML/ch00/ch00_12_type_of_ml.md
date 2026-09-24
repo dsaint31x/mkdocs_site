@@ -27,6 +27,9 @@ ML은 다음과 같은 구분 기준을 가지고 subcategory들로 나눌 수 �
 * 한 모델이 각 특성을 동시에 가질 수 있으며 여러 subcategory 에 동시에 속할 수 있음.
 * 즉, `unsupervised 이면서 transductive 한 learning` 이 있을 수 있다. 
 
+<!--img width="518" height="410" alt="image" src="https://github.com/user-attachments/assets/016e5f81-9278-44a4-b2fb-b364b7a946b8" /-->
+![https://www.geeksforgeeks.org/maths/order-and-degree-of-differential-equations/](./img/ML_cat.jpg){style="display: block; margin: 0 auto; width: 410px"}
+
 ---
 
 ## human supervision의 정도 및 방식 에 따른 구분.
