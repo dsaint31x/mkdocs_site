@@ -28,7 +28,8 @@ ML은 다음과 같은 구분 기준을 가지고 subcategory들로 나눌 수 �
 * 즉, `unsupervised 이면서 transductive 한 learning` 이 있을 수 있다. 
 
 <!--img width="518" height="410" alt="image" src="https://github.com/user-attachments/assets/016e5f81-9278-44a4-b2fb-b364b7a946b8" /-->
-![https://www.geeksforgeeks.org/maths/order-and-degree-of-differential-equations/](./img/ML_cat.jpg){style="display: block; margin: 0 auto; width: 410px"}
+
+![ml category](./img/ML_cat.jpg){style="display: block; margin: 0 auto; width: 410px"}
 
 ---
 
