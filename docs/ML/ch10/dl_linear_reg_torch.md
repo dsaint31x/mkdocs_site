@@ -120,8 +120,9 @@ def gen_xy(cnt, std=4.):
 
 * `x`는 $-100$ 부터 $100$ 까지의 Celsius 값임.
 * `y_ideal`은 이상적인 Fahrenheit 값임.
-* `y`는 `y_ideal`에 noise를 추가한 값임.
+* `y`는 `y_ideal`에 noise를 추가한 값임:
     * `std`는 noise의 크기를 조절함.
+    * 이 noise는 모델 정의에서 추가되는 error 항임. ([참고: residual과 error의 차이](https://dsaint31.tistory.com/983))
 
 다음처럼 200개의 sample을 생성함.
 
@@ -156,6 +157,12 @@ print(x.shape, y.shape, y_ideal.shape)
 ```text
 torch.Size([200, 1]) torch.Size([200, 1]) torch.Size([200, 1])
 ```
+
+> 참고로, scalar를 이용한 선형회귀에서 굳이 matrix shape를 신경쓰지 않고 구현이 가능하나 ...
+> 이 문서에선 이후 벡터로 확장을 위해 matrix shape로 reshape 처리를 함.
+> 사실 PyTorch에선 같은 길이의 1차원 Tensor끼리 내적을 구할 때 transpose를 하지 않아도 되긴 함:
+>
+> * 참고: [PyTorch에서 matrix multiplication](https://ds31x.tistory.com/709#1.1-1d-%C3%97-1d-vector-inner-product)
 
 ---
 
