@@ -248,8 +248,11 @@ def ds_linear_model(x, w, b):
 
 이 함수는 기본적으로 다음 식을 계산함:
 $$
-\hat{y} = xw^\top + b
+\hat{y} = \textbf{x}\textbf{w}^\top + b
 $$
+
+* 이는 앞서 본 식과 달리 row vector 기준임.
+* Torch의 경우 많은 예제가 row vector 기준.
 
 `@`는 matrix multiplication 연산자임.
 
