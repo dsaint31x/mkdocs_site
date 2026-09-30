@@ -79,7 +79,7 @@ ResNet은 `skip connection` 또는 `shortcut connection`을 도입한
 
 * [Residual Unit (RU)](#residual-block) 들이 반복되는 구조임.
 
-위의 그림에선 입력을 처리하는 stem 이 위에 표시됨 (forward propagation: 위에서 아래)
+위의 그림에선 입력을 처리하는 [stem](https://ds31x.tistory.com/696#4.-resnet%EC%97%90%EC%84%9C%EC%9D%98-stem) 이 위에 표시됨 (forward propagation: 위에서 아래)
 
 Bullet list로 표현(아래에서 위로 표시)하면 다음과 같음:
 
