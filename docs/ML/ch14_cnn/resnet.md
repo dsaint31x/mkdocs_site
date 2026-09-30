@@ -167,10 +167,11 @@ ResNet-152:
 
 다음은 `Basic RU`에서 identity shortcut과 projection shortcut을 보여줌.
 
-![](./img/resnet_idblock_convblock.png)
+![](./img/resnet_idblock_convblock.png){style="display: block; margin: 0 auto; width: 400px"}
 
 * 2개의 conv 를 사용하는 `Basic RU` 임.
 * main branch의 구성이 `Bottleneck RU`에선 앞서 보인 3개의 conv 를 사용.
+* 오른쪽의 projection connection은 downsampling용으로 앞서 3x3 conv에서 stride=2를 사용함.
 
 ### identity shortcut
 
@@ -188,13 +189,20 @@ input과 main branch output의 shape이 다른 경우 사용함.
 * 또는 Bottleneck RU처럼 channel 수가 변경되는 경우
 * `1x1 convolution`을 사용하여 shortcut의 shape을 main branch output에 맞춤.
 
+<!--img width="346" height="190" alt="image" src="https://github.com/user-attachments/assets/249363bc-4c35-49ee-ac47-f661725c3511" /-->
+
+다음의 오른쪽이 ResNet-18의 downsampling RU의 구조임:
+![](https://github.com/user-attachments/assets/249363bc-4c35-49ee-ac47-f661725c3511){style="display: block; margin: 0 auto; width: 400px"}
+
+
 ---
 
 ## Variations of RU
 
 ResNet에는 여러 variation 들이 있음:
 
-<img width="1255" height="1142" alt="image" src="https://github.com/user-attachments/assets/0d93e65f-6160-4f84-b994-a28a1e175f90" />
+<!--img width="1255" height="1142" alt="image" src="https://github.com/user-attachments/assets/0d93e65f-6160-4f84-b994-a28a1e175f90" /-->
+![](https://github.com/user-attachments/assets/0d93e65f-6160-4f84-b994-a28a1e175f90){style="display: block; margin: 0 auto; width: 400px"}
 
 * ResNet-B 는 torchvision 의 resnet 구현물에 도입됨 (`timm` 의 구현물도 마찬가지)
     * Path A의 1x1 conv w/ stride=2가 input feature map의 3/4를 무시하게 되기 때문에,
