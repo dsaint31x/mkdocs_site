@@ -23,13 +23,15 @@ parameters의 수가 적은 비교적 단순한 모델들의 경우,
     * 또한 이를 이용한 계산은 일반적으로 그보다 더 큰 계산 비용을 필요로 하므로, DNN처럼 parameter 수가 매우 큰 모델에서는 실용적이지 않음.
     * 따라서 메모리 문제와 매우 큰 계산량 때문에 Hessian 계열 method는 DNN 학습에 일반적으로 적합하지 않음.
 
-> Adaptive learning rate 를 구현하기 위해,  
-> Hessian matrix 와 같은 이차미분 정보를 직접 계산하는 2nd order optimization method (미분의 차수:order, 다항식의 차수:degree)도 존재함.
+> ML의 경우, Adaptive learning rate 를 구현하기 위해,  
+> Hessian matrix 와 같은 이차미분 정보를 직접 계산하는
+> 2nd order optimization method (미분의 차수:order, 다항식의 차수:degree)도 존재함.
 > 
 > 하지만, Deep Learning에선 Hessian matrix를 구하는 계산량이 매우 크기 때문에 이는 실용적이지 않음.  
-> "squared gradient 의 [Exponential Moving Average](https://dsaint31.tistory.com/860)",  
-> 즉, "gradient의 [uncentered second moment](https://dsaint31.tistory.com/256#Moment%EC%9D%98%20%EC%A2%85%EB%A5%98-1-1)"를 이용하여  
-> parameter마다 실제로 적용되는 update 크기, 즉 **effective step size를 조절** 하는 방식이 널리 사용됨.
+>
+> * "squared gradient 의 [Exponential Moving Average](https://dsaint31.tistory.com/860)",  
+> * 즉, "gradient의 [uncentered second moment](https://dsaint31.tistory.com/256#Moment%EC%9D%98%20%EC%A2%85%EB%A5%98-1-1)"를 이용하여  
+> * parameter마다 실제로 적용되는 update 크기, 즉 **effective step size를 조절** 하는 방식(RMSProp)이 널리 사용됨.
 >
 > 참고로,
 >
@@ -37,6 +39,31 @@ parameters의 수가 적은 비교적 단순한 모델들의 경우,
 > * effective step size는 각 parameter에 실제로 적용되는 최종 update 크기를 가리킴.
 
 * 참고: [Gradient Descent Method](https://dsaint31.tistory.com/633)
+
+---
+
+## 참고: PyTorch에서의 optim모듈: Optimizer 를 추상화한 클래스들 제공
+
+PyTorch의 `torch.optim` 모듈은 model parameter를 gradient에 따라 update하는 optimizer를 제공하며, AutoGrad 기능과 연동되어 동작.
+
+- optimizer 생성: `optimizer = torch.optim.Adam(model.parameters(), lr=1e-3)`
+    - 아래에 다루는 다양한 optimizer 들에 대한 클래스를 제공함 
+- gradient 초기화: `optimizer.zero_grad()`
+- loss에 대해 gradient 계산: `loss.backward()`
+- parameter update: `optimizer.step()`
+- 필요하면 `weight_decay`, `momentum` 등의 hyperparameter를 optimizer 생성 시 지정.
+
+일반적인 순서는 다음과 같음:
+
+```python
+optimizer.zero_grad()
+output = model(x)
+loss = criterion(output, y)
+loss.backward()
+optimizer.step()
+```
+
+즉, **gradient 초기화 → forward → loss 계산 → backward → parameter update** 순서로 사용함.
 
 ---
 
