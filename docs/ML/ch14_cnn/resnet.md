@@ -46,9 +46,12 @@ ResNet은 `skip connection` 또는 `shortcut connection`을 도입한
 > `concatenation`은 feature map을 channel 방향으로 이어 붙이는 방식임.  
 > `concatenation` 기반 연결은 `DenseNet (2017)`을 통해 유용성을 보임.
 
-참고로, `concatenation`을 사용한 `DenseNet (2017)`의 경우,
+## concatenation 기반의 skip connection: DenseNet
+
+[`concatenation`을 사용한 `DenseNet (2017)`](https://dsaint31.me/mkdocs_site/ML/ch14_cnn/densenet/)의 경우,
 
 * low-level texture, edge, color pattern 같은 초기 feature가 뒤쪽 layer까지 직접 전달됨.
+* concatenation 때문에 input width는 증가하지만, 각 layer가 새로 만들어내는 feature 수를 작게 유지하기 때문에 전체 parameter 수는 오히려 효율적으로 관리함.
 * 병변의 미세한 색 변화, 경계, 표면 질감처럼 low-level feature가 중요한 의료 영상 데이터에서는 ResNet보다 높은 성능을 보일 수 있음.
 * 추가적으로 DenseNet-121은 parameter efficiency 측면에서 소량 데이터에 유리할 수 있음.
     * DenseNet-121은 대략 8M parameters 수준임.
@@ -66,7 +69,7 @@ ResNet은 `skip connection` 또는 `shortcut connection`을 도입한
 * ResNet-101: [3, 4, 23, 3] Bottleneck RU
 * ResNet-152: [3, 8, 36, 3] Bottleneck RU
 
-위 square bracket 에 있는 숫자는 각 stage별 Residual Unit 의 개수임.  
+위 square bracket 에 있는 숫자는 각 stage별 [Residual Unit](#residual-block) 의 개수임.  
 18,34,50,101,152 라는 숫자는 ResNet 내의 conv와 FC layer들을 합친 trainable layer의 개수임.
 
 이 전반적인 구조를 그림으로 나타내면 다음과 같음.
@@ -74,7 +77,7 @@ ResNet은 `skip connection` 또는 `shortcut connection`을 도입한
 <!--img width="1204" height="1198" alt="image" src="https://github.com/user-attachments/assets/0c41c19a-5f69-4bdc-b141-bbcaea3e636d" /-->
 ![](https://github.com/user-attachments/assets/0c41c19a-5f69-4bdc-b141-bbcaea3e636d){style="display: block; margin: 0 auto; width: 600px"}
 
-* [Residual Unit (RU)](#Residual-Block) 들이 반복되는 구조임.
+* [Residual Unit (RU)](#residual-block) 들이 반복되는 구조임.
 
 위의 그림에선 입력을 처리하는 stem 이 위에 표시됨 (forward propagation: 위에서 아래)
 
