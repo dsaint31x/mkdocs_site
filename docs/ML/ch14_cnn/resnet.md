@@ -1,7 +1,6 @@
 ---
 title: "ResNet: Deep Residual Learning for Image Recognition (2015)"
 description: "ResNet의 residual learning, shortcut connection, residual unit 구조를 정리한 글"
-date: 2026-07-07
 categories:
   - Deep Learning
   - CNN
@@ -59,7 +58,18 @@ ResNet은 `skip connection` 또는 `shortcut connection`을 도입한
 
 ## 구조
 
-전반적인 구조는 다음과 같음.
+각 종류별 구조는 다음과 같음:
+
+* ResNet-18: [2, 2, 2, 2] Basic RU
+* ResNet-34: [3, 4, 6, 3] Basic RU
+* ResNet-50: [3, 4, 6, 3] Bottleneck RU
+* ResNet-101: [3, 4, 23, 3] Bottleneck RU
+* ResNet-152: [3, 8, 36, 3] Bottleneck RU
+
+위 square bracket 에 있는 숫자는 각 stage별 Residual Unit 의 개수임.  
+18,34,50,101,152 라는 숫자는 ResNet 내의 conv와 FC layer들을 합친 trainable layer의 개수임.
+
+이 전반적인 구조를 그림으로 나타내면 다음과 같음.
 
 <!--img width="1204" height="1198" alt="image" src="https://github.com/user-attachments/assets/0c41c19a-5f69-4bdc-b141-bbcaea3e636d" /-->
 ![](https://github.com/user-attachments/assets/0c41c19a-5f69-4bdc-b141-bbcaea3e636d){style="display: block; margin: 0 auto; width: 600px"}
