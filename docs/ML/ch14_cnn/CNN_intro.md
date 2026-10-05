@@ -15,6 +15,7 @@ Image 를 input으로 다루는 경우 가장 일반적으로 사용되는 ANN�
         higher layer의 receptive field를 효과적으로 커지게 해줌.
         * 지나치게 pooling layer의 mask가 크거나 많이 사용할 경우,  
         spatial information loss가 커짐.
+
 * 위 2개의 layer들을 조합하여 깊게 쌓게 될 경우, 근처에 있는 pixels만을 중점적으로 보면서 점점 더 넓은 영역으로 확장해서 살펴보는 형태로 receptive field가 커지게 됨.  
 (위치적으로 가까운 neuron들끼리 살펴보다가 higher layer로 갈수록 멀리 있는 정보들도 같이 보게 됨.)
     * 한번에 큰 size의 kernel을 사용하는 것보다 작은 size kernel을 여럿 쌓는 게 효과적임.
@@ -22,6 +23,14 @@ Image 를 input으로 다루는 경우 가장 일반적으로 사용되는 ANN�
         * CNN에서 lower layer들은 edge나 texture등의 low level feature를 추출하고, 
         * higher layer로 갈수록 복잡한 high level feature들이 추출됨. 
         * 해당 high level feature들은 low level feature들을 조합하여 구성됨.
+
+<!--img width="326" height="149" alt="image" src="https://github.com/user-attachments/assets/5f473b01-7ee1-491b-af5c-9c04b142e288" /-->
+![]{https://github.com/user-attachments/assets/5f473b01-7ee1-491b-af5c-9c04b142e288){style="display: block; margin: 0 auto; width:300px"}
+
+**Receptive field(수용영역)** 는 CNN 의 특정 neuron 이 출력값을 계산할 때 영향을 받는 input image 의 공간적 영역을 의미함. 
+
+* Convolution layer 를 여러 층 쌓으면 receptive field 가 커져,
+* 깊은 layer 의 neuron 은 더 넓은 영역의 정보를 이용하게 됨.
 
 `CNN`은 image data에서 다음의 2개의 가정이 성립한다고 가정함으로서 `MLP`에 비해 매우 적은 parameters를 가지게 됨.  
 
