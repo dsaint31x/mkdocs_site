@@ -26,7 +26,7 @@ Image 를 input으로 다루는 경우 가장 일반적으로 사용되는 ANN�
 
 <!--img width="326" height="149" alt="image" src="https://github.com/user-attachments/assets/5f473b01-7ee1-491b-af5c-9c04b142e288" /-->
 
-![]{./img/rf_cnn.png){style="display: block; margin: 0 auto; width:300px"}
+![](./img/rf_cnn.png){style="display: block; margin: 0 auto; width:300px"}
 
 **Receptive field(수용영역)** 는 CNN 의 특정 neuron 이 출력값을 계산할 때 영향을 받는 input image 의 공간적 영역을 의미함. 
 
