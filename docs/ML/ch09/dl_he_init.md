@@ -61,6 +61,45 @@ $$
 \text{Cov}\left(w_{ij}^{(l)} a_j^{(l-1)},\ w_{ik}^{(l)} a_k^{(l-1)}\right) = 0 \quad (j \ne k)
 $$
 
+### 참고: Cov의 전개
+
+**1. 기호를 간단히 표기**
+
+weight 와 이전 layer 의 activation 을 각각 다음과 같이 기호로 간단히 하여 전개함:
+
+$$W=w_{ij}^{(l)},\qquad A=a_j^{(l-1)}$$
+
+**2. Covariance 의 정의를 전개**
+
+Covariance 는 두 random variable 이 각각의 평균에서 벗어난 정도를 곱한 값의 기댓값(expectation)임.
+
+$$\operatorname{Cov}(W,A) = E\left[(W-E[W])(A-E[A])\right]$$
+
+괄호를 전개하면 다음과 같음:
+
+$$\operatorname{Cov}(W,A) = E\left[ WA-WE[A]-E[W]A+E[W]E[A] \right]$$
+
+Expectation 의 linearity 를 적용하고, 각 평균은 상수이므로 기댓값 밖으로 꺼냄:
+
+$$\begin{aligned}
+\operatorname{Cov}(W,A)
+&=
+E[WA]
+-E[W]E[A]
+-E[W]E[A]
++E[W]E[A]\\
+&=
+E[WA]-E[W]E[A]
+\end{aligned}
+$$
+
+따라서 정리하면 다음과 같음:
+
+$$\boxed{
+E[WA] = \operatorname{Cov}(W,A)+E[W]E[A] }$$
+
+* 두 random variable 이 independent 라고 가정하면 covariance 는 0.
+
 ---
 
 ## 3. Pre-activation의 Variance $\text{Var}\left(z_i^{(l)}\right)$ 유도
