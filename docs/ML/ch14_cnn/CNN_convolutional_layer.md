@@ -97,7 +97,7 @@ convolution의 경우, padding하지 않는다면 출력이 입력보다 작은 
 참고로,  출력과 입력의 크기 관계는 다음과 같음:
 
  $$
-\operatorname{output} = \left\lfloor \frac{\operatorname{input} + 2 \times \operatorname{padding} - \operatorname{kernel_size}}{\operatorname{stride}} \right\rfloor + 1
+\operatorname{output} = \left\lfloor \frac{\operatorname{input} + 2 \times \operatorname{padding} - \operatorname{kernel\_size}}{\operatorname{stride}} \right\rfloor + 1
  $$ 
 
 이를 방지하기 위해, 
