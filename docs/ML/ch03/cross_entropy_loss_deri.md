@@ -113,7 +113,7 @@ $$
 &=
 p(\mathbf y\mid\mathbf x;\boldsymbol{\theta})\\
 &=
-P\!\left(
+P\left(
 \mathbf Y=\mathbf y
 \mid\hat{\mathbf p}(\mathbf x;\boldsymbol{\theta})
 \right)\\
@@ -224,8 +224,8 @@ $$
 
 즉, categorical likelihood 를 최대화하는 학습과 one-hot 정답에 대한 cross entropy 를 최소화하는 학습은 같은 목적을 가짐.  
 
-- **`H(\mathbf y,\hat{\mathbf p})`**: 정답 distribution 과 예측 distribution 사이의 cross entropy 임.
-- **`\ell_{\mathrm{CE}}`**: 단일 sample 의 cross entropy loss 임.
+- **$H(\mathbf y,\hat{\mathbf p})$**: 정답 distribution 과 예측 distribution 사이의 cross entropy 임.
+- **$\ell_{\mathrm{CE}}$**: 단일 sample 의 cross entropy loss 임.
 
 일반적인 cross entropy 정의에서는 target distribution 을 $p$, model distribution 을 $q$로 표기하기도 함.  
 
@@ -330,7 +330,7 @@ $$
 \mathcal L_M(\boldsymbol{\theta})
 &=
 \prod_{i=1}^{M}
-\mathcal L\!\left(
+\mathcal L\left(
 \boldsymbol{\theta}
 \mid\mathbf x^{(i)},\mathbf y^{(i)}
 \right)\\
