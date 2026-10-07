@@ -59,11 +59,7 @@ One-hot vector 의 성분을 각 class 확률의 exponent 로 사용하면, 정�
 따라서 다음 **probability mass function** 은 관측된 정답이 발생할 확률을 나타냄.
 
 $$
-P(\mathbf Y=\mathbf y\mid\hat{\mathbf p})
-=
-\prod_{k=1}^{K}\hat p_k^{y_k}
-=
-\hat p_c
+P(\mathbf Y=\mathbf y\mid\hat{\mathbf p}) = \prod_{k=1}^{K}\hat p_k^{y_k} = \hat p_c
 $$
 
 위 식은 모든 class 에 대한 곱으로 표현되었으나 실제 결과는 정답 class 에 부여한 확률 하나를 의미.  
@@ -193,9 +189,7 @@ Cross entropy에 실제 One-hot 정답을 대입하면 결국 정답 class 의 �
 각 class 의 negative log probability 에 정답 distribution 의 해당 확률을 곱하여 합하면 다음 cross entropy 를 얻음.
 
 $$
-H(\mathbf y,\hat{\mathbf p})
-=
--\sum_{k=1}^{K}y_k\log\hat p_k
+H(\mathbf y,\hat{\mathbf p}) = -\sum_{k=1}^{K}y_k\log\hat p_k
 $$
 
 - $\mathbf y$: 정답 class 에 확률 1을 부여하는 one-hot target distribution 임.
@@ -211,15 +205,7 @@ $$
 
 $$
 \boxed{
-\ell_{\mathrm{NLL}}
-=
-\ell_{\mathrm{CE}}
-=
-H(\mathbf y,\hat{\mathbf p})
-=
--\sum_{k=1}^{K}y_k\log\hat p_k
-=
--\log\hat p_c
+\ell_{\mathrm{NLL}} = \ell_{\mathrm{CE}} = H(\mathbf y,\hat{\mathbf p}) = -\sum_{k=1}^{K}y_k\log\hat p_k = -\log\hat p_c
 }
 $$
 
@@ -256,9 +242,7 @@ H(\mathbf p,\mathbf q)
 \end{aligned}
 \right\}
 \quad\Longrightarrow\quad
-H(\mathbf y,\hat{\mathbf p})
-=
--\sum_{k=1}^{K}y_k\log\hat p_k
+H(\mathbf y,\hat{\mathbf p}) = -\sum_{k=1}^{K}y_k\log\hat p_k
 $$
 
 여기서 hat 이 없는 $p$ 는 일반적인 cross entropy 정의의 target distribution 이고,  
@@ -284,9 +268,7 @@ Logits 자체는 음수가 될 수 있으며, 전체 합이 1이라는 조건도
 여기선 logit score 를 $t$로 나타내지만, latent score라는 의미로 $z$로 표기하는 경우도 많음.
 
 $$
-\hat p_k
-=
-\frac{e^{t_k}}{\sum_{j=1}^{K}e^{t_j}}
+\hat p_k = \frac{e^{t_k}}{\sum_{j=1}^{K}e^{t_j}}
 $$
 
 - $\hat p_k$: class $k$ 의 예측 확률임.
@@ -415,9 +397,7 @@ $$
 먼저 각 sample 의 class 확률을 해당 sample 의 logits 로 나타냄.
 
 $$
-\hat p_k^{(i)}
-=
-\frac{e^{t_k^{(i)}}}{\sum_{j=1}^{K}e^{t_j^{(i)}}}
+\hat p_k^{(i)} = \frac{e^{t_k^{(i)}}}{\sum_{j=1}^{K}e^{t_j^{(i)}}}
 $$
 
 - $\hat p_k^{(i)}$: $i$ 번째 sample 의 class $k$ 예측 확률임.
@@ -462,9 +442,7 @@ $k$ 에 대한 합 밖으로 꺼낼 수 있음.
 $$
 \sum_{k=1}^{K}y_k^{(i)}=1,
 \qquad
-\sum_{k=1}^{K}y_k^{(i)}t_k^{(i)}
-=
-t_{c^{(i)}}^{(i)}
+\sum_{k=1}^{K}y_k^{(i)}t_k^{(i)} = t_{c^{(i)}}^{(i)}
 $$
 
 이 두 성질을 앞의 전개에 적용하면, 평균 cross entropy 를 sample 별 정답 logit 과 log-sum-exp 로 표현할 수 있음.
