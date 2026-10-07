@@ -391,7 +391,7 @@ Logistic regression의 Logistic function을 multi-class로 확장하면 Softmax 
 
 Logistic Regression이 Bernoulli Distribution에 기반한 `MLE` 였던 것을 multi-class classification으로 일반화하면, Categorical Distribution에 기반한 `MLE`가 된다.
 
-* 증명: [from NLL w/ Categorical Distribution to Cross Entropy](./cross_entropy_loss_deri)
+* 증명: [from NLL w/ Categorical Distribution to Cross Entropy](../cross_entropy_loss_deri)
 
 | 구분        | Binary NLL<br/>(이진 음의 로그 가능도)               | Categorical NLL<br/>(범주형 음의 로그 가능도)                |
 | --------- | -------------------------------------- | --------------------------------------------- |
@@ -429,6 +429,12 @@ NFLT (No Free Lunch Theorem)에 의해
 * Categorical 분포에서는 hard one-hot target에 대한 cross entropy가 categorical likelihood의 negative log-likelihood와 정확히 같음.
 * Soft categorical target $\mathbf{p}$에서는 cross entropy가 $Y \sim \mathrm{Categorical}(\mathbf{p})$에서 가능한 각 class label의 NLL을 평균낸 expected NLL임.
 * Multi-label classification에서 각 label을 independent Bernoulli로 모델링하면 binary cross entropy의 합이 전체 label vector에 대한 negative log-likelihood와 정확히 같음.
+
+> Soft Bernoulli target 은 정답을 0 또는 1로 확정하지 않고, 1일 확률로 나타낸 target 을 가리킴.
+>
+> - Hard target: 정답이 0 또는 1로 주어짐.
+> - Soft target: 정답이 0과 1 사이의 확률로 주어짐. 예를 들어 target 이 0.7이면, 1일 확률이 0.7이고 0일 확률이 0.3이라는 의미임.
+> - 이때 Bernoulli random variable 자체가 0.7을 갖는 것은 아님에 유의할 것: 가능한 값은 여전히 0과 1이며, soft target 은 두 값의 확률을 지정하는 것임.
 
 ## 결론:
 
