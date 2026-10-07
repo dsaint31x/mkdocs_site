@@ -335,14 +335,16 @@ regression의 경우처럼 다음과 같은 ***Mean squared loss*** `MSE`로 삼
 
 $$\text{MSE}=\left(\frac{1}{1+e^{-\sum_{i=1}^{N}\theta_i x_i}}-1\right)^2$$
 
-하지만 `MSE`를 loss로 사용하는 경우,  
-아래 그림(red line)에서 보이듯이 
-`MSE`는 convexity도 성립하지 못하며,  
-loss function의 최대값 (기껏해야 1)도 제한되는 단점이 있음을  
-확인할 수 있다.  
-(반면에 negative log의 경우 loss function은 최대값이 무한대까지의 범위를 보임)
+하지만 `MSE`를 loss로 사용하는 경우, 아래 그림(red line)에서 보이듯이 
 
-* 매우 틀린 오답을 현재 parameters의 모델이 보일 경우, negative log loss는 매우 큰 값을 보이지만, 
+* `MSE`는 convexity도 성립하지 못하며,
+    * 물론 single layer인 경우의 loss로 한정됨.
+    * 여러 layer가 non-linear activation function들과 함께 쌓인 경우엔 loss는 convex를 유지하기 어려움.
+* loss function의 최대값 (기껏해야 1)도 제한되는 단점이 있음을 확인할 수 있다.  
+
+반면에 negative log의 경우 loss function은 최대값이 무한대까지의 범위를 보임.
+
+* 매우 틀린 오답을 현재 parameters의 모델이 산출할 경우, negative log loss는 매우 큰 값을 보이지만, 
 * `MSE` loss는 그리 큰 값을 보이지 못함.
 * 큰 오차에서는 가급적 큰 loss를 가져야 함.
 * 때문에 `MSE`의 경우, 오차가 큰 초반 epoch 초반에 weight들이 최적의 값으로 빠르게 변화하지 못하는 단점을 추가적으로 가짐.
@@ -388,6 +390,8 @@ Logistic regression의 Logistic function을 multi-class로 확장하면 Softmax 
 * [참고: Softmax function](https://dsaint31.tistory.com/294)
 
 Logistic Regression이 Bernoulli Distribution에 기반한 `MLE` 였던 것을 multi-class classification으로 일반화하면, Categorical Distribution에 기반한 `MLE`가 된다.
+
+* 증명: [from NLL w/ Categorical Distribution to Cross Entropy](./cross_entropy_loss_deri)
 
 | 구분        | Binary NLL<br/>(이진 음의 로그 가능도)               | Categorical NLL<br/>(범주형 음의 로그 가능도)                |
 | --------- | -------------------------------------- | --------------------------------------------- |
