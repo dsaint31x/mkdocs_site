@@ -9,8 +9,10 @@ CNN에서
 * down-sampling을 수행!
 * global pooling의 경우, flatten layer로 사용됨.
 
-> spatial 에서의 pooling을 통해 CNN에 강력한 invariance를 부여해 주는데 사용됨.  
-> invariance는 입력의 변화에 상관없이 출력이 나오는 것을 의미함.
+> Global average pooling은  
+> 각 channel의 전체 spatial 영역을 평균하여 위치 정보를 제거하고,  
+> feature의 위치 변화에 대한 invariance를 부여하는 데 사용됨.  
+> Invariance는 특정한 입력 변화에도 출력이 동일하게 유지되는 성질을 의미함.
 
 ---
 
