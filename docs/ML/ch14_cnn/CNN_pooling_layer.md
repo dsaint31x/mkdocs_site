@@ -9,7 +9,7 @@ CNN에서
 * down-sampling을 수행!
 * global pooling의 경우, flatten layer로 사용됨.
 
-> depth 방향의 pooling을 통해 CNN에 강력한 invariance를 부여해 주는데 사용됨.  
+> spatial 에서의 pooling을 통해 CNN에 강력한 invariance를 부여해 주는데 사용됨.  
 > invariance는 입력의 변화에 상관없이 출력이 나오는 것을 의미함.
 
 ---
