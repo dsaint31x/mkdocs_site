@@ -9,6 +9,7 @@ tags:
   - multioutput-classification
   - ovo
   - ovr
+og_image: "https://dsaint31.me/mkdocs_site/ML/ch02/img/classification_type.png"
 ---
 
 # Types of Classification
@@ -16,7 +17,7 @@ tags:
 Regression과 함께 
 **Supervised Learning** 의 대표적 task인 classification은 다음과 같은 종류로 나뉘어짐.
 
-![](./img/classification_type.png){style="display: block; margin: 0 auto; width:300px"}
+![types_of_classification](./img/classification_type.png){style="display: block; margin: 0 auto; width:300px"}
 
 ## Binary Classification
 
