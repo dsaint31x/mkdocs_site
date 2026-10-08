@@ -1,8 +1,20 @@
 ---
-tags: [binary-classification, multiclass, multilabel, multioutput, ovo, ovr]
+title: "Types of Classification"
+description: "Binary, Multiclass, Multilabel, Multioutput-Multiclass Classification의 개념과 차이, OvO·OvR을 이용한 multiclass 확장 방식 정리."
+tags:
+  - classification
+  - binary-classification
+  - multiclass-classification
+  - multilabel-classification
+  - multioutput-classification
+  - ovo
+  - ovr
 ---
 
 # Types of Classification
+
+Regression과 함께 
+**Supervised Learning** 의 대표적 task인 classification은 다음과 같은 종류로 나뉘어짐.
 
 ![](./img/classification_type.png){style="display: block; margin: 0 auto; width:300px"}
 
