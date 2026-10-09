@@ -148,7 +148,7 @@ $$
 * 마지막에 one-hot 정답의 성질(정답 class 의 성분만 1이고, 나머지 성분은 0)을 사용함.
 * Likelihood 와 loss 를 구분하기 위해 
     * likelihood 는 대문자 calligraphic $\mathcal L$, 
-    * 단일 sample 의 loss 는 소문자 ell $ell$ 로 표기함.
+    * 단일 sample 의 loss 는 소문자 ell $\ell$ 로 표기함.
 
 $$
 \begin{aligned}
