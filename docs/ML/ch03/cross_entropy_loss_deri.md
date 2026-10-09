@@ -64,7 +64,7 @@ $$
 P(\mathbf Y=\mathbf y\mid\hat{\mathbf p}) = \prod_{k=1}^{K}\hat p_k^{y_k} = \hat p_c
 $$
 
-위 식은 모든 class 에 대한 곱으로 표현되었으나 실제 결과는 정답 class 에 부여한 확률 하나를 의미.  
+위 식은 모든 class 에 대한 곱으로 표현되었으나 **실제 결과는 정답 class 에 부여한 확률 하나** 를 의미 (exponent가 1인 경우만 의미를 가짐).  
 이 확률을 모델의 parameter 에 대한 함수로 해석하면 다음 절의 likelihood 로 연결됨.
 
 - $\mathbf Y$: class 결과를 one-hot vector 로 나타내는 random vector 임.
