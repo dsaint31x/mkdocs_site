@@ -34,10 +34,12 @@ $$
 - **K**: class 의 총개수임.
 - **k**: class index 임. 1부터 $K$까지의 값을 가짐.
 
-위에서 나타낸 probability distribution vector 는 가능한 모든 class 에 확률을 부여할 수 있음. 이는 모델이 예측하는 경우엔 일반적이며 아직 학습이 제대로 이루어지지 않은 초기에서 각 class의 확률이 크지 않을 수 있음.  
-이와 달리 multi-class classification의 경우, 관측된 정답(=target)은 하나의 class 이므로 정답 class 의 성분만 1인 one-hot vector 로 표현됨.  
+위에서 나타낸 probability distribution vector 는 가능한 모든 class 에 확률을 부여할 수 있음.  
+이는 모델이 예측하는 경우엔 일반적이며 아직 학습이 제대로 이루어지지 않은 초기에서 각 class의 확률들의 차이가 크지 않을 수 있음.  
+이와 달리, 관측된 정답(=target)은 하나의 class 이므로 정답 class 의 성분만 1인 one-hot vector 로 표현됨.  
+(multi-class classification 테스크를 다루고 있기 때문임).  
 
-다음의 표현은 정답에 해당하는 항을 수식에서 선택할 수 있음.
+다음의 표현은 정답에 해당하는 항만 남게 됨을 보여줌:
 
 $$
 \mathbf y=(y_1,\ldots,y_K),
