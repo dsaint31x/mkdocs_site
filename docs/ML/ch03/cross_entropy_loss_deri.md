@@ -105,9 +105,13 @@ Likelihood 를 최대화하는 것은 negative log-likelihood 를 최소화하�
 
 앞 절에서는 모델이 입력 sample 에 대해 출력한 class 별 예측 확률 중, **실제 정답 label 에 해당하는 class 의 확률**을 categorical probability mass function 으로 표현함.
 
-이 예측 확률은 입력과 모델의 parameter 에 의해 결정됨. 따라서 **입력 sample 과 실제 정답 label 을 고정한 상태에서 parameter 를 바꾸면, 모델이 정답 class 에 부여하는 확률이 달라짐**.
+이 예측 확률은 입력과 모델의 parameter 에 의해 결정됨.  
+따라서 **입력 sample 과 실제 정답 label 을 고정한 상태에서 parameter 를 바꾸면, 모델이 정답 class 에 부여하는 확률이 달라짐**.
 
-다음 식은 모델이 정답 class 에 부여하는 확률을 **parameter 에 대한 함수인 likelihood**로 표현한 것임.
+* parameter 가 독립변수라고 생각!
+* parameter 를 독립변수 로 처리하고, input $x$와 label $y$ 가 고정된 함수가 likelihood!
+
+다음 식은 "모델이 정답 class 에 부여하는 확률" 을 **parameter 에 대한 함수인 likelihood**로 표현한 것임:
 
 $$
 \begin{aligned}
