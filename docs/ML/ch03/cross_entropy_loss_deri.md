@@ -294,10 +294,11 @@ $$
 - $e$: natural logarithm 의 밑인 Euler’s number 임.
 
 
-위 softmax 식에서 정답 class 에 해당하는 예측 확률을 단일 sample 의 cross entropy loss 에 대입함.
-
+위 softmax 식에서  
+정답 class 에 해당하는 예측 확률을 구하고  
+이를 단일 sample 의 cross entropy loss 에 대입하고  
 이후 분수의 log 를 분자의 log 와 분모의 log 의 차로 분리하여 정리하면,  
-loss 를 정답 class 의 logit 과 전체 class 의 logits 로 표현할 수 있음.
+다음과 같이 loss 를 **정답 class 의 logit 과 전체 class 의 logits 로 표현** 할 수 있음:
 
 $$
 \begin{aligned}
