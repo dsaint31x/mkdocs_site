@@ -271,7 +271,15 @@ Logits 자체는 음수가 될 수 있으며, 전체 합이 1이라는 조건도
 따라서 logits을 categorical distribution 의 확률로 사용하기 위해 softmax 를 적용함.  
 각 logit 의 exponential 을 전체 exponential 의 합으로 나누면, 모든 성분이 양수이고 합이 1인 확률 vector 를 얻음.
 
-여기선 logit score 를 $t$로 나타내지만, latent score라는 의미로 $z$로 표기하는 경우도 많음.
+여기선 logit score 를 $t$로 나타내지만, $z$로 표기하는 경우도 많음.
+
+> Latent score(잠재 점수)는  
+> 직접 관측되지 않는 특성이나 성향을 나타내기 위해, 관측된 데이터로부터 model 이 추정하거나 계산한 수치를 가리키는 용어.  
+> 많이 사용되는 symbol이 $z$임.
+>
+> softmax 를 통해 각 class 의 확률로 변환되기 전의 logit을 일종의 latent score로 해석하기도 함.
+> 여기서 직접 관측되지 않는다는 것은
+> 해당 score 가 데이터에 관측값으로 주어지는 것이 아니라, model 을 통해 계산된다는 의미임.
 
 $$
 \hat p_k = \frac{e^{t_k}}{\sum_{j=1}^{K}e^{t_j}}
@@ -394,7 +402,8 @@ $$
 - $k$: class index 임.
 - $\log$: natural logarithm 임.
 
-따라서 평균 cross entropy loss 는 각 sample 의 정답 class 에 대한 negative log probability 를 계산한 뒤 평균한 값임. Sample 개수가 고정되어 있으면, 전체 NLL 을 최소화하는 것과 평균 cross entropy loss 를 최소화하는 것은 동일한 최적화 목적을 가짐.
+따라서 평균 cross entropy loss 는 각 sample 의 정답 class 에 대한 negative log probability 를 계산한 뒤 평균한 값임.  
+Sample 개수가 고정되어 있으면, 전체 NLL 을 최소화하는 것과 평균 cross entropy loss 를 최소화하는 것은 동일한 최적화 목적을 가짐.
 
 ### 참고: Logits 표현과 평균 cross entropy 의 동등성
 
