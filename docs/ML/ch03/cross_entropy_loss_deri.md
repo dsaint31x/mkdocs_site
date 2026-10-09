@@ -195,7 +195,7 @@ Cross entropy에 실제 One-hot 정답을 대입하면 결국 정답 class 의 �
 > 결국 categorical distribution 에서 유도한 NLL 은 cross entropy loss 와 동일함.
 > 즉, one-hot 정답 vector 를 정답 class 에 확률 1을 부여하는 정답 probability distribution 로 생각하면 됨.
 
-각 class 의 negative log probability 에 정답 distribution 의 해당 확률을 곱하여 합하면 다음 cross entropy 를 얻음.
+각 class 의 negative log probability 에 정답 distribution 의 해당 확률을 곱하여 합하면 다음 cross entropy $H(\mathbf y,\hat{\mathbf p})$ 를 얻음.
 
 $$
 H(\mathbf y,\hat{\mathbf p}) = -\sum_{k=1}^{K}y_k\log\hat p_k
@@ -231,7 +231,7 @@ $$
 - $c$: 정답 class index 임.
 
 
-즉, categorical likelihood 를 최대화하는 학습과 one-hot 정답에 대한 cross entropy 를 최소화하는 학습은 같은 목적을 가짐.  
+즉, **categorical likelihood 를 최대화하는 학습** 과 **one-hot 정답에 대한 cross entropy 를 최소화하는 학습** 은 같은 목적을 가짐.  
 
 - **$H(\mathbf y,\hat{\mathbf p})$**: 정답 distribution 과 예측 distribution 사이의 cross entropy 임.
 - **$\ell_{\mathrm{CE}}$**: 단일 sample 의 cross entropy loss 임.
