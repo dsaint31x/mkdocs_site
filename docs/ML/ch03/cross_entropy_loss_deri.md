@@ -160,7 +160,7 @@ $$
 &=-\log\mathcal L(\boldsymbol{\theta}\mid\mathbf x,\mathbf y)\\
 &=-\log\left(\prod_{k=1}^{K}\hat p_k^{y_k}\right)\\
 &=-\sum_{k=1}^{K}\log\left(\hat p_k^{y_k}\right)\\
-&=-\sum_{k=1}^{K}y_k\log\hat p_k \quad\quad \text{cross entropy}\\
+&=-\sum_{k=1}^{K}y_k\log\hat p_k \quad\quad \leftarrow \text{cross entropy}\\
 &=-\log\hat p_c
 \end{aligned}
 $$
