@@ -111,7 +111,7 @@ Likelihood 를 최대화하는 것은 negative log-likelihood 를 최소화하�
 * parameter 가 독립변수라고 생각!
 * parameter 를 독립변수 로 처리하고, input $x$와 label $y$ 가 고정된 함수가 likelihood!
 
-다음 식은 "모델이 정답 class 에 부여하는 확률" 을 **parameter 에 대한 함수인 likelihood**로 표현한 것임:
+다음 식은 "모델이 정답 class 에 부여하는 확률" 을 **parameter 에 대한 함수인 likelihood** 로 표현한 것임:
 
 $$
 \begin{aligned}
@@ -181,16 +181,19 @@ $$
 
 ### 3. Cross entropy 와의 관계
 
-Cross entropy 는 정답 distribution 에 따라 모델의 negative log probability 를 가중 평균한 값임. 
+Cross entropy 는 정답 distribution 에 따라 모델의 negative log probability 를 가중 평균한 값임.  
 
-> Cross entropy 는 실제 probability distribution 에서 발생하는 결과를  
-> 예측 probability distribution 으로 표현할 때 필요한 평균 정보량을 나타내는 척도로  
-> ML등에선 확률분포의 실제와 예측 간의 차이를 나타내는데 이용됨
+* 정답 distribution이 hard target인 경우, 정답 요소만 1 이고 나머진 0이라는 점을 기억.
+* 이 요소들을 weight로 삼아서 계산한 weighted mean 이 Cross entropy임.
+
+> **Cross entropy** 는 실제 probability distribution (=정답 distribution) 에서 발생하는 결과를  
+> 예측 probability distribution (model의 출력) 으로 표현할 때 필요한 평균 정보량을 나타내는 척도로  
+> ML 등에선 **확률분포의 실제와 예측 간의 차이** 를 나타내는데 이용됨
 
 Cross entropy에 실제 One-hot 정답을 대입하면 결국 정답 class 의 항만 남음.  
 
-> categorical distribution 에서 유도한 NLL 은 cross entropy loss 와 동일함.
-> 이 관계를 확인하기 위해, one-hot 정답 vector 를 정답 class 에 확률 1을 부여하는 정답 probability distribution 으로 해석함. 
+> 결국 categorical distribution 에서 유도한 NLL 은 cross entropy loss 와 동일함.
+> 즉, one-hot 정답 vector 를 정답 class 에 확률 1을 부여하는 정답 probability distribution 로 생각하면 됨.
 
 각 class 의 negative log probability 에 정답 distribution 의 해당 확률을 곱하여 합하면 다음 cross entropy 를 얻음.
 
