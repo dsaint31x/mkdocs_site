@@ -131,7 +131,7 @@ $$
 - $\mathbf Y$: class 결과를 one-hot vector 로 나타내는 random vector 임.
 - $\mathcal L(\boldsymbol{\theta}\mid\mathbf x,\mathbf y)$: 입력과 정답을 고정하고 parameter 의 함수로 표현한 likelihood 임.
 - $p(\mathbf y\mid\mathbf x;\boldsymbol{\theta})$: 입력과 parameter 가 주어졌을 때 관측된 정답에 부여하는 probability mass 임.
-- $\hat{\mathbf p}(\mathbf x;\boldsymbol{\theta})$: 입력과 parameter 로 결정되는 예측 확률 vector 임.
+- $\hat{\mathbf p}(\mathbf x;\boldsymbol{\theta})$: 입력과 parameter 로 결정되는 predicted probability vector 임.
 - $\hat p_k(\mathbf x;\boldsymbol{\theta})$: class $k$ 의 예측 확률임.
 - $y_k$: 정답 class 이면 1, 나머지는 0인 indicator 임.
 - $K$: class 의 총개수임.
