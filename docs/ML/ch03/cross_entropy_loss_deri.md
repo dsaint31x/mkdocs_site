@@ -263,8 +263,13 @@ ML의 multi-class classification에선
 * 모델의 logits 에 softmax 를 적용하여 class 확률을 구함. 
 * 이를 cross entropy loss 에 대입하면 정답 class 의 logit 과 전체 logits 의 log-sum-exp 로 표현됨. 
 
-여러 sample 의 정답이 입력과 parameter 가 주어졌을 때 조건부로 독립이라고 가정하면,  
-전체 likelihood 는 sample 별 likelihood 의 곱임.  
+여러 sample 의 정답이 입력과 parameter 가 주어졌을 때 **조건부로 독립** 이라고 가정하면,  
+
+* 모든 sample 의 입력과 모델의 parameter 를 고정하면, 
+* 다른 sample 의 정답 label 을 알아도 해당 sample 의 class 확률이 달라지지 않음을 의미.
+* 단순히 “정답들이 서로 무관함”을 넘어서서, 입력과 parameter 가 주어졌다는 조건 아래에서 독립임
+
+이 경우, 전체 likelihood 는 sample 별 likelihood 의 곱임.  
 전체 NLL 을 sample 개수로 나누면 **평균 cross entropy loss** 가 됨.
 
 Logits 자체는 음수가 될 수 있으며, 전체 합이 1이라는 조건도 없음.  
@@ -337,10 +342,7 @@ sample 별 likelihood 를 결합해야 loss를 구함.
 
 * 각 sample 의 예측 확률과 정답 indicator 에 sample index 를 추가함. 
 * Sample index 는 괄호가 있는 위첨자로 나타내고, class index 는 아래첨자로 나타냄. 
-* 입력과 parameter 가 주어졌을 때 정답들이 조건부로 독립이라는 가정에 따라, 
-    * 모든 sample 의 입력과 모델의 parameter 를 고정하면, 
-    * 다른 sample 의 정답 label 을 알아도 해당 sample 의 class 확률이 달라지지 않음을 의미.
-    * 단순히 “정답들이 서로 무관함”을 넘어서서, 입력과 parameter 가 주어졌다는 조건 아래에서 독립임
+* 입력과 parameter 가 주어졌을 때 정답들이 **조건부로 독립** 이라는 가정에 따라, 
 * **각 sample 의 categorical likelihood 를 곱** 함.
 
 $$
