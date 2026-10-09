@@ -90,7 +90,7 @@ $$
 >     * 위의 식의 $\hat{\mathbf p}$가 해당함. 
 >     * **Probability distribution vector**라고도 표현할 수 있으나, 보통 probability vector 라고 부름.
 >
-> 관측된 one-hot vector \(\mathbf y\)는 **random vector 의 실현값**이며,  
+> 관측된 one-hot vector $\mathbf y$는 **random vector** 이며,  
 > 동시에 정답 class 에 확률 1을 부여하는 **probability vector 로 해석할 수 있음**.
 
 ### 2. Negative log-likelihood
