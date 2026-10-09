@@ -328,9 +328,12 @@ $$
 
 따라서 loss 는 정답 class 의 logit 이 다른 class 의 logits 에 비해 얼마나 큰지에 의해 결정됨. 
 
-여기까지는 단일 sample 에 대한 식이며, 여러 sample 을 학습하려면 sample 별 likelihood 를 결합해야 함.
+지금까지는 단일 sample 에 대해서만 구한 식들이며,  
+실제 ML의 학습에서 사용한다면  
+여러 sample 을 학습하므로  
+sample 별 likelihood 를 결합해야 loss를 구함.
 
-아래 식에서 전체 dataset 에 대한 likelihood 를 구성하기 위해  
+이제 전체 dataset 에 대한 likelihood 를 구해보자.
 
 * 각 sample 의 예측 확률과 정답 indicator 에 sample index 를 추가함. 
 * Sample index 는 괄호가 있는 위첨자로 나타내고, class index 는 아래첨자로 나타냄. 
@@ -338,7 +341,7 @@ $$
     * 모든 sample 의 입력과 모델의 parameter 를 고정하면, 
     * 다른 sample 의 정답 label 을 알아도 해당 sample 의 class 확률이 달라지지 않음을 의미.
     * 단순히 “정답들이 서로 무관함”을 넘어서서, 입력과 parameter 가 주어졌다는 조건 아래에서 독립임
-* 각 sample 의 categorical likelihood 를 곱함.
+* **각 sample 의 categorical likelihood 를 곱** 함.
 
 $$
 \begin{aligned}
