@@ -27,7 +27,7 @@ $$Y \mid \mathbf{x};\boldsymbol{\theta}
 \left(\hat{\mathbf{p}}_{\boldsymbol{\theta}}(\mathbf{x})\right)
 $$
 
-### 1. Categorical distribution
+## 1. Categorical distribution
 
 Categorical distribution 은 하나의 sample 이 K 개의 class 중 하나에 속하는 결과를 모델링함. 
 
@@ -66,7 +66,7 @@ y_k=
 $$
 
 - $\mathbf{y}$: 관측된 정답의 one-hot vector 임.
-- $y_k$: class k 에 대한 indicator 임. 정답 class 이면 1, 나머지는 0임.
+- $y_k$: class k 에 대한 [indicator](https://dsaint31.tistory.com/989) 임. 정답 class 이면 1, 나머지는 0임.
 - $K$: class 의 총개수임.
 - $k$: class index 임. 1부터 $K$까지의 값을 가짐.
 - $c$: 정답 class index 임.
@@ -85,7 +85,7 @@ $$
 - $\mathbf{y}$: 관측된 정답의 one-hot vector 임.
 - $\hat{\mathbf{p}}$: 모델이 예측한 class 확률 vector 임.
 - $\hat p_k$: class $k$ 의 예측 확률임.
-- $y_k$: 정답 class 이면 1, 나머지는 0인 indicator 임.
+- $y_k$: 정답 class 이면 1, 나머지는 0인 [indicator](https://dsaint31.tistory.com/989) 임.
 - $K$: class 의 총개수임.
 - $k$: class index 임.
 - $c$: 정답 class index 임.
@@ -107,7 +107,9 @@ $$
 > 관측된 one-hot vector $\mathbf{y}$는 **random vector** 이며,  
 > 동시에 정답 class 에 확률 1을 부여하는 **probability vector 로 해석할 수 있음**.
 
-### 2. Negative log-likelihood
+앞의 indicator 라는 용어가 수학에서 쓰이는 의미는 다음을 참고: [indicator function 이란](https://dsaint31.tistory.com/989)
+
+## 2. Negative log-likelihood
 
 관측된 입력과 정답을 고정(dataset이 주어진 경우를 의미)하고  
 모델의 parameter 에 대한 함수로 표현하면 likelihood 가 됨. 
@@ -193,7 +195,7 @@ $$
 * 정답 class 의 확률이 1에 가까워질수록 loss 는 0에 가까워지고, 0에 가까워질수록 loss 는 커짐. 
 * 전개 과정에서 얻은 가중합 형태가 다음 절의 cross entropy 정의와 일치함.
 
-### 3. Cross entropy 와의 관계
+## 3. Cross entropy 와의 관계
 
 Cross entropy 는 정답 distribution 에 따라 모델의 negative log probability 를 가중 평균한 값임.  
 
@@ -237,7 +239,7 @@ $$
 - $H(\mathbf{y},\hat{\mathbf{p}})$: one-hot target distribution 과 예측 distribution 사이의 cross entropy 임.
 - $\mathbf{y}$: 정답의 one-hot vector 임.
 - $\hat{\mathbf{p}}$: 모델이 예측한 class 확률 vector 임.
-- $y_k$: 정답 class 이면 1, 나머지는 0인 indicator 임.
+- $y_k$: 정답 class 이면 1, 나머지는 0인 [indicator](https://dsaint31.tistory.com/989) 임.
 - $\hat p_k$: class k 의 예측 확률임.
 - $\hat p_c$: 정답 class 의 예측 확률임.
 - $K$: class 의 총개수임.
@@ -270,7 +272,7 @@ hat 이 있는 $\mathbf{p}$ 는 모델의 예측 distribution 임.
 
 두 표기에서 distribution 의 역할을 구분하면 같은 cross entropy 를 나타냄을 확인할 수 있음.
 
-### 4. Logits 로 표현
+## 4. Logits 로 표현
 
 ML의 multi-class classification에선 
 
@@ -354,7 +356,7 @@ sample 별 likelihood 를 결합해야 loss를 구함.
 
 이제 전체 dataset 에 대한 likelihood 를 구해보자.
 
-* 각 sample 의 예측 확률과 정답 indicator 에 sample index 를 추가함. 
+* 각 sample 의 예측 확률과 정답 [indicator](https://dsaint31.tistory.com/989) 에 sample index 를 추가함. 
 * Sample index 는 괄호가 있는 위첨자로 나타내고, class index 는 아래첨자로 나타냄. 
 * 입력과 parameter 가 주어졌을 때 정답들이 **조건부로 독립** 이라는 가정에 따라, 
 * **각 sample 의 categorical likelihood 를 곱** 함.
@@ -380,7 +382,7 @@ $$
 - $\mathbf{x}^{(i)}$: $i$ 번째 sample 의 입력 feature vector 임.
 - $\mathbf{y}^{(i)}$: $i$ 번째 sample 의 정답 one-hot vector 임.
 - $\hat p_k^{(i)}$: $i$ 번째 sample 의 class $k$ 예측 확률임.
-- $y_k^{(i)}$: $i$ 번째 sample 의 정답 class 가 $k$이면 $1$, 나머지는 0인 indicator 임.
+- $y_k^{(i)}$: $i$ 번째 sample 의 정답 class 가 $k$이면 $1$, 나머지는 0인 [indicator](https://dsaint31.tistory.com/989) 임.
 - $M$: sample 의 총개수임.
 - $K$: class 의 총개수임.
 - $i$: sample index 임. 위첨자 $(i)$는 거듭제곱이 아닌 sample 구분을 나타냄.
@@ -415,7 +417,7 @@ $$
 - $\mathcal L_M(\boldsymbol{\theta})$: 전체 $M$ 개 sample 에 대한 likelihood 임.
 - $\boldsymbol{\theta}$: 모델의 parameter vector 임.
 - $\hat p_k^{(i)}$: $i$ 번째 sample 의 class $k$ 예측 확률임.
-- $y_k^{(i)}$: $i$ 번째 sample 의 정답 class 가 $k$이면 1, 나머지는 0인 indicator 임.
+- $y_k^{(i)}$: $i$ 번째 sample 의 정답 class 가 $k$이면 1, 나머지는 0인 [indicator](https://dsaint31.tistory.com/989) 임.
 - $M$: sample 의 총개수임.
 - $K$: class 의 총개수임.
 - $i$: sample index 임.
@@ -425,7 +427,7 @@ $$
 따라서 평균 cross entropy loss 는 각 sample 의 정답 class 에 대한 negative log probability 를 계산한 뒤 평균한 값임.  
 Sample 개수가 고정되어 있으면, 전체 NLL 을 최소화하는 것과 평균 cross entropy loss 를 최소화하는 것은 동일한 최적화 목적을 가짐.
 
-### 참고: Logits 표현과 평균 cross entropy 의 동등성
+## 참고: Logits 표현과 평균 cross entropy 의 동등성
 
 마지막 식의 예측 확률을 softmax 로 표현하면, sample 별 logits 로 계산한 loss 의 평균과 동일함을 확인할 수 있음. 
 
@@ -502,7 +504,7 @@ $$
 
 - $J(\boldsymbol{\theta})$: 전체 $M$ 개 sample 의 평균 cross entropy loss 임.
 - $\boldsymbol{\theta}$: 모델의 parameter vector 임.
-- $y_k^{(i)}$: $i$ 번째 sample 의 정답 class 가 $k$이면 1, 나머지는 0인 indicator 임.
+- $y_k^{(i)}$: $i$ 번째 sample 의 정답 class 가 $k$이면 1, 나머지는 0인 [indicator](https://dsaint31.tistory.com/989) 임.
 - $\hat p_k^{(i)}$: $i$ 번째 sample 의 class $k$ 예측 확률임.
 - $c^{(i)}$: $i$ 번째 sample 의 정답 class index 임.
 - $t_{c^{(i)}}^{(i)}$: $i$ 번째 sample 의 정답 class 에 대한 logit 임.
