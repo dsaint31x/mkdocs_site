@@ -238,8 +238,8 @@ $$
 
 일반적인 cross entropy 정의에서는 target distribution 을 $p$, model distribution 을 $q$로 표기하기도 함.  
 
-* 이 표기와 연결하려면 target distribution 에 one-hot 정답 vector 를,  
-* model distribution 에 예측 확률 vector 를 대입하면 됨.
+* 이 표기와 연결하려면 target distribution $p$에 **one-hot 정답 vector** 를,  
+* model distribution $q$에 모델의 **predicted probability vector** 를 대입하면 됨.
 
 $$
 \left.
