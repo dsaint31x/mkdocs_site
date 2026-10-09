@@ -21,9 +21,6 @@ tags:
 > 정답의 확률 분포가
 > model 이 결과로 내놓는 predicted probability vector 를 parameter 로 갖는 Categorical distribution 을 따른다고 가정!
 
-**정답 label 이 model 이 출력한 확률 vector 를 parameter 로 갖는 Categorical distribution 을 따른다고 가정** 하면 됩니다.
-
-
 $$Y \mid \mathbf{x};\boldsymbol{\theta}
 \sim
 \operatorname{Categorical}
