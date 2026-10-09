@@ -243,13 +243,10 @@ $$
 
 $$
 \left.
-\begin{aligned}
-H(\mathbf p,\mathbf q)
-&=-\sum_{k=1}^{K}p_k\log q_k\\
+\begin{aligned} H(\mathbf p,\mathbf q) &=-\sum_{k=1}^{K}p_k\log q_k\\
 \mathbf p&=\mathbf y\\
 \mathbf q&=\hat{\mathbf p}
-\end{aligned}
-\right\}
+\end{aligned} \right\}
 \quad\Longrightarrow\quad
 H(\mathbf y,\hat{\mathbf p}) = -\sum_{k=1}^{K}y_k\log\hat p_k
 $$
