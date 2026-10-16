@@ -2,19 +2,21 @@
 
 ## 1. 핵심 개념
 
+![](./img/max_norm_projection.png)
+
 `Max-Norm Regularization`은 
 
 * 각 neuron 또는 filter의 weight vector가
 * 너무 커지지 않도록 $\ell_2$ norm의 상한을 두는 regularization 기법임.
 
 $$
-|\mathbf{w}|_2 \le r
+||\mathbf{w}||_2 \le r
 $$
 
 여기서,
 
 * $\mathbf{w}$ : 하나의 neuron 또는 filter에 해당하는 weight vector
-* $|\mathbf{w}|_2$ : weight vector의 $\ell_2$ norm
+* $||\mathbf{w}||_2$ : weight vector의 $\ell_2$ norm
 * $r$ : 허용되는 최대 norm 값
 * `max_norm` : PyTorch 구현에서의 $r$
 
@@ -39,7 +41,7 @@ $$
 Max-Norm Regularization은 loss function에 다음과 같은 항을 추가하지 않음.
 
 $$
-\lambda |\mathbf{w}|_2^2
+\lambda ||\mathbf{w}||_2^2
 $$
 
 대신 training step 이후 weight를 직접 검사함.
@@ -55,7 +57,7 @@ $$
 \leftarrow
 \mathbf{w}
 \cdot
-\min\left(1, \frac{r}{|\mathbf{w}|_2 + \epsilon}\right)
+\min\left(1, \frac{r}{||\mathbf{w}||_2 + \epsilon}\right)
 $$
 
 여기서 $\epsilon$ 은 division by zero를 피하기 위한 작은 값임.
@@ -200,7 +202,7 @@ optimizer.zero_grad()
 4. max-norm constraint 적용
 5. gradient 초기화
 
-즉, optimizer가 일단 weight를 바꾼 뒤, 그 결과가 $|\mathbf{w}|_2 \le r$ 조건을 넘으면 다시 projection하는 방식임.
+즉, optimizer가 일단 weight를 바꾼 뒤, 그 결과가 $||\mathbf{w}||_2 \le r$ 조건을 넘으면 다시 projection하는 방식임.
 
 
 
