@@ -2,7 +2,7 @@
 
 ## 1. 핵심 개념
 
-![](./img/max_norm_projection.png)
+![](./img/max_norm_projection.png){style="display: block; margin: 0 auto; width: 300px"}
 
 `Max-Norm Regularization`은 
 
