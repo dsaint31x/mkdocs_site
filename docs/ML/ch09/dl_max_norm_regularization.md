@@ -1,3 +1,9 @@
+---
+title: "Max-Norm Regularization"
+tags: [max-norm, regularization, pytorch, weight-constraint]
+description: "Max-Norm Regularization의 개념과 PyTorch 구현 방법"
+---
+
 # Max-Norm Regularization
 
 ## 1. 핵심 개념
