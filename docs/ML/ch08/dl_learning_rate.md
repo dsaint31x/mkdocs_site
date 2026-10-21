@@ -493,10 +493,10 @@ Warm-up 이후에는 다른 scheduler (주로 monotonic decay scheduling)를 사
 
 #### 2. 1cycle Scheduling
 
-1cycle Scheduling은 training 동안 하나의 큰 learning rate cycle 로 처리함.
+1cycle Scheduling은 training 전 과정을 하나의 거대한 learning rate period (하나의 주기)로 처리하는 방식
 
-* 이름에 cycle이 들어가지만, Cyclical Learning Rates처럼 여러 cycle을 반복하는 방식은 아님.
-* 구조적으로는 Cyclical / Restart Scheduling보다는 Warm-up + Decay Scheduling에 더 가까움.
+* 이름에 cycle이 들어가지만, Cyclical Learning Rates처럼 **여러 cycle을 반복하는 방식은 아님**.
+* 오히려 구조적으로는 Cyclical / Restart Scheduling보다는 Warm-up + Decay Scheduling에 더 가까움.
 
 전체 흐름은 다음과 같음.
 
@@ -504,7 +504,7 @@ Warm-up 이후에는 다른 scheduler (주로 monotonic decay scheduling)를 사
 2. training의 절반 이하 (보통 2-30%)까지 learning rate를 선형적으로 증가시켜 maximum learning rate $\eta_1$에 도달함.
 3. 이후 다시 learning rate를 $\eta_0$까지 선형적으로 감소시킴.
 
-여기서 maximum learning rate $\eta_1$ 은 앞서 다룬 learning rate range test를 통해 찾는 경우가 많음.
+여기서 maximum learning rate $\eta_1$ 은 앞서 다룬 [learning rate range test](#learning-rate-range-test)를 통해 찾는 경우가 많음.
 
 그리고 보통 initial learning rate $\eta_0$는 보통 $\eta_1$보다 10배 정도 작게 설정함:
 $$
@@ -513,8 +513,8 @@ $$
 
 1cycle Scheduling에서는 momentum도 함께 조절하는 경우가 많음.
 
-* learning rate가 증가할 때는 momentum을 낮추고,
-* learning rate가 감소할 때는 momentum을 다시 높임.
+* learning rate가 증가할 때는 momentum을 낮추고 (현재 새로 계산된 gradient를 많이 반영),
+* learning rate가 감소할 때는 momentum을 다시 높임 (현재 새로 계산된 gradient를 작게 반영).
 * learning rate와 momentum은 대체로 반대 방향으로 움직임.
 
 1cycle Scheduling은 Leslie N. Smith가 제안한 learning rate scheduling 기법임.
