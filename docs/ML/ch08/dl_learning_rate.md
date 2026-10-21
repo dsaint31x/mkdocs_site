@@ -168,7 +168,7 @@ Learning Rate Scheduling은 training 중 learning rate를 고정하지 않고, �
 
 | 분류                            | 핵심 기준                                             | 대표 기법                                                    |
 | ----------------------------- | ------------------------------------------------- | -------------------------------------------------------- |
-| [Monotonic Decay Scheduling](#1-exponential-decay-scheduling)    | training이 진행될수록<br/>learning rate를 전반적으로 감소시킴       | Exponential Decay, Power Decay,<br/>Piecewise Constant,<br/>Cosine Annealing |
+| [Monotonic Decay Scheduling](#monotonic-decay-scheduling)    | training이 진행될수록<br/>learning rate를 전반적으로 감소시킴       | Exponential Decay, Power Decay,<br/>Piecewise Constant,<br/>Cosine Annealing |
 | [Adaptive Decay Scheduling, <br/>Performance Scheduling](#adaptive-decay-scheduling)  | validation metric 등<br/>학습 결과를 보고 learning rate를 감소시킴 | ReduceLROnPlateau                |
 | [Warm-up + Decay Scheduling](#warm-up-decay-scheduling)    | 초반에는 <br/>learning rate를 증가시키고,<br/>이후에는 다시 감소시킴           | Warm-up + decay,<br/>1cycle (=single cycle)                                 |
 | [Cyclical / Restart Scheduling](#cyclical-restart-scheduling) | learning rate 증가와 감소를<br/>여러 번 반복하거나 restart 시켜<br/> saddle-point plateau를 빠르게 통과하거나 optimization 효율을 높임 | [Cyclical LR](https://arxiv.org/abs/1506.01186?utm_source=chatgpt.com),<br/>Cosine Annealing with Warm Restarts         |
@@ -205,7 +205,7 @@ Learning Rate Scheduling은 training 중 learning rate를 고정하지 않고, �
 **Cyclical / Restart Scheduling** 
 
 <!--img width="245" height="157" alt="image" src="https://github.com/user-attachments/assets/ed3cd66a-a605-4807-b014-662a03296ec1" /-->
-![]([https://github.com/user-attachments/assets/3bd220b6-832a-49bf-b6b5-31966b67a63c](https://github.com/user-attachments/assets/ed3cd66a-a605-4807-b014-662a03296ec1)){style="display: block; margin: 0 auto; width: 500px"}
+![](https://github.com/user-attachments/assets/ed3cd66a-a605-4807-b014-662a03296ec1){style="display: block; margin: 0 auto; width: 500px"}
 
 * learning rate를 한 번 줄이고 끝내는 방식이 아님.
 * Learning rate를 여러 번 다시 키우거나,
@@ -511,17 +511,18 @@ $$
 \eta_0 \approx \frac{\eta_1}{10}
 $$
 
-1cycle Scheduling에서는 momentum도 함께 조절하는 경우가 많음.
+
+참고로, 1cycle Scheduling에서는 momentum도 함께 조절하는 경우가 많음.
 
 * learning rate가 증가할 때는 momentum을 낮추고 (현재 새로 계산된 gradient를 많이 반영),
 * learning rate가 감소할 때는 momentum을 다시 높임 (현재 새로 계산된 gradient를 작게 반영).
 * learning rate와 momentum은 대체로 반대 방향으로 움직임.
 
-1cycle Scheduling은 Leslie N. Smith가 제안한 learning rate scheduling 기법임.
-
-* 관련 아이디어는 Smith가 2015년에 제안한 Cyclical Learning Rates에서 출발했고,
-* Leslie N. Smith와 Nicholay Topin이 2017년에 발표한 Super-Convergence 논문에서
-* 큰 learning rate와 하나의 learning rate cycle을 이용한 빠른 학습 전략으로 본격적으로 다루어짐.
+> 1cycle Scheduling은 Leslie N. Smith가 제안한 learning rate scheduling 기법임.
+>
+> * 관련 아이디어는 Smith가 2015년에 제안한 Cyclical Learning Rates에서 출발했고,
+> * Leslie N. Smith와 Nicholay Topin이 2017년에 발표한 Super-Convergence 논문에서
+> * 큰 learning rate와 하나의 learning rate cycle을 이용한 빠른 학습 전략으로 본격적으로 다루어짐.
 
 PyTorch에서는 `OneCycleLR` 으로 지원하고 있음:
 
@@ -534,7 +535,10 @@ scheduler = torch.optim.lr_scheduler.OneCycleLR(
 )
 ```
 
-주의할 점은 `OneCycleLR`은 보통 epoch 단위가 아니라 batch 단위로 `scheduler.step()`을 호출한다는 점임.
+주의할 점은  
+`OneCycleLR`은 보통 epoch 단위가 아니라 batch 단위로 `scheduler.step()`을 호출한다는 점임.
+
+> `torch.optim.lr_scheduler.ReduceLROnPlateau` 와 같은 Adaptive Decay Scheduler 에서는 epoch단위로 호출되는 것과 차이가 있
 
 ```python
 for epoch in range(n_epochs):
@@ -565,17 +569,13 @@ Cyclical / Restart Scheduling은
 * 감소한 learning rate를 다시 큰 값으로 restart 시킴.
 
 > 이 계열의 핵심 아이디어는  
-> learning rate를 다시 크게 만들어 optimizer가 plateau나 local optimum에서 벗어나도록 하는 것임.
+> learning rate를 다시 크게 만들어
+> optimizer가 plateau나 local optimum에서 벗어나도록 하는 것임.
 
 이 계열에는 다음 방식들이 포함됨.
 
 * Cyclical Learning Rates
 * Cosine Annealing with Warm Restarts
-
-
-> 참고로
-> 1cycle Scheduling은 제외하는 것이 더 자연스러움.  
-> 1cycle은 이름상 cycle을 포함하지만 반복 cycle이나 restart를 사용하지 않기 때문임.
 
 ---
 
@@ -586,21 +586,29 @@ Cyclical Learning Rates는
 * learning rate를 단조롭게 감소시키지 않고,
 * 일정 범위 안에서 주기적으로 증가와 감소를 반복시키는 방식임.
 
+> **주의**
+>
+> `CyclicLR`은 최소 학습률(`base_lr`), 최대 학습률(`max_lr`), 그리고 주기를 결정하는 스텝 수(`step_size_up/down`)까지 직접 세밀하게 튜닝해야 해서 hyper-parameter tuning이 까다로움.
+> 더욱이 이들의 설정 자체가 까다로운데다 이들이 학습에 미치는 영향이 매우 커서 잘못된 설정은 학습 자체를 실패하게 만들기 쉬움.
+> 더욱이 학습 종료 시점(Epoch)과의 비직관적인 편이라 최적화도 쉽지 않음.
+
 이는 Leslie N. Smith가 2015년에 제안한 방법으로
 
 * 핵심 아이디어는 learning rate를 계속 줄이기만 할 필요가 없다는 것임.
 * 오히려 learning rate를 일정 범위 안에서 주기적으로 커지도록 만들면,
 * optimizer가 sharp local minimum이나 plateau에서 벗어나 더 좋은 영역을 탐색할 수 있음을 보임.
 
-Smith는 learning rate range test를 통해 
+Smith는 [learning rate range test]를 통해 
 
-* 관찰 결과에서 accuracy가 증가하기 시작하는 learning rate를 lower bound 후보로 보고,
-* accuracy가 더 이상 개선되지 않거나 불안정해지기 직전의 learning rate를 upper bound 후보로 선택함.
+* 관찰 결과에서 accuracy가 증가하기 시작하는 learning rate를 **lower bound** 후보로 보고,
+* accuracy가 더 이상 개선되지 않거나 불안정해지기 직전의 learning rate를 **upper bound** 후보로 선택함.
 
 즉, loss가 안정적으로 감소하다가 불안정해지기 직전의 learning rate를 찾고, 이를 `max_lr` 후보로 삼는 방법을 제안함.
 
-* 반면 `base_lr` (cycle에서 가장 낮은 learning rate)는 range test로 엄밀하게 구하는 값이라기보다는,
-* 충분히 작은 값 또는 `max_lr`보다 한두 order of magnitude 작은 값으로 설정하는 경우가 많음.
+* 반면 `base_lr` (cycle에서 가장 낮은 learning rate)은 range test로 엄밀하게 구하는 값이라기보다는,
+* 충분히 작은 값 또는 `max_lr`보다 1~2 order of magnitude 작은 값으로 설정하는 경우가 많음.
+    *  1 order of magnitude: 10배 차이 ($10^1$)를 의미
+    *  2 order of magnitude: 100배 차이 ($10^2$)를 의미
 
 PyTorch에서는 `CyclicLR`을 통해 지원함:
 
@@ -619,7 +627,7 @@ scheduler = torch.optim.lr_scheduler.CyclicLR(
 * `step_size_down` :  `max_lr` 에서 `base_lr`까지 내려가는데 필요한 training step 수.
     * 지정하지 않을 경우, `step_size_down=step_size_up` 임.
 
-> `OneCycleLR`이나 `CyclicLR`은 batch 단위로 `scheduler.step()`이 이루어짐
+> `OneCycleLR`이나 `CyclicLR`은 주로 batch 단위로 `scheduler.step()`이 이루어짐
 
 #### 2. Cosine Annealing with Warm Restarts
 
@@ -634,7 +642,8 @@ Cosine Annealing with Warm Restarts는
 * cycle이 끝나면 다시 높은 learning rate로 돌아가고 cycle이 반복됨.
 * 이렇게 learning rate가 주기적으로 다시 커지면 gradient descent가 local optimum이나 plateau에서 빠져나올 가능성이 커짐.
 
-<img width="640" height="480" alt="image" src="https://github.com/user-attachments/assets/59c15747-fa6e-4103-9d97-fb54da421579" />
+<!--img width="640" height="480" alt="image" src="https://github.com/user-attachments/assets/59c15747-fa6e-4103-9d97-fb54da421579" /-->
+![](https://github.com/user-attachments/assets/59c15747-fa6e-4103-9d97-fb54da421579){style="display: block; margin: 0 auto; width: 500px"}
 
 다음의 참고 자료를 같이 볼 것
 
