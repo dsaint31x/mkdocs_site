@@ -1,6 +1,6 @@
 ---
 title: Hyper-Parameters in Deep Learning
-tags: [Deep Learning, Hyperparameter, Layer, Neuron, Activation Function, Optimizer, Batch Size]
+tags: [deep learning, hyperparameter, layer, neuron, activation function, optimizer, batch size]
 ---
 
 # Hyper-Parameters in DL
@@ -10,7 +10,7 @@ tags: [Deep Learning, Hyperparameter, Layer, Neuron, Activation Function, Optimi
 Deep Learning에서 `Hyper-parameter`는
 
 * model이 **학습(training)을 통해 training dataset으로부터 자동으로 결정** 하는 값(= **parameter**)이 아니라,
-* 학습 전에 **사용자가 직접 정해주어야 하는 설정값** 을 의미함.
+* **사용자가 직접 정해주어야 하는 설정값** 을 의미함.
 
 대표적인 hyper-parameters는 다음과 같음.
 
@@ -40,7 +40,8 @@ Deep Learning에서 `Hyper-parameter`는
 
 **더 효과적인 표현 능력** 을 보일 수 있음.
 
-이는 Deep Learning, 또는 Deep Neural Network의 중요한 장점 중 하나로 Deeper network는 `Hierarchical Feature Extraction`이 가능하기 때문임.
+이는 Deep Learning, 또는 Deep Neural Network의 중요한 장점 중 하나로  
+Deeper network는 `Hierarchical Feature Extraction`이 가능하기 때문임.
 
 Real-world data는 대부분 다음과 같은 계층적 구조를 가짐.
 
@@ -62,7 +63,7 @@ Real-world data는 대부분 다음과 같은 계층적 구조를 가짐.
 때문에 deeper network는
 
 * 높은 parameter efficiency를 보이고,
-* 같은 parameter 수에서도 더 좋은 표현력을 가질 수 있으며,
+    * (같은 parameter 수에서도 더 좋은 표현력을 가질 수 있음)
 * **상대적으로 적은 training data에서도 학습이 잘 되는 경우** 가 많음.
 
 > 참고로,  
@@ -80,7 +81,7 @@ wider model보다 deeper model이 더 효율적인 경우가 많음.
 * 보다 빠른 학습 속도를 가능하게 함.
 
 추가적으로, 적절한 구조와 초기화가 사용된다면
-deeper network는 training 과정에서 **더 빠르게 converge** 하는 경우도 있음.
+deeper network는 training 과정에서 **더 빠르게 converge** 할 수 있음.
 
 ---
 
@@ -112,7 +113,8 @@ Hidden layer마다 몇 개의 neurons를 둘 것인지도 중요한 hyper-parame
 * hyper-parameter search가 상대적으로 쉬워짐.
 
 이론적으로는 overfitting이 발생하기 직전까지
-neurons 수를 늘리는 방식으로 접근할 수 있음.
+neurons 수를 늘리는 방식으로 접근할 수 있음.  
+(실무에선 사실상 overfitting에서 출발하여 줄여나감)
 
 앞서 살펴본 내용을 고려하면, 
 
@@ -146,20 +148,21 @@ Vincent Vanhoucke는 이러한 접근을
 
 ## Activation Function
 
-> 참고 자료 : [Activation Functions] (https://ds31x.tistory.com/710)
+> 참고 자료 : [Activation Functions](https://ds31x.tistory.com/710)
 
-Deep Neural Network가 Single Layer Perceptron과 본질적으로 다른 표현 능력을 가지는 이유는
+Deep Neural Network (or Deep MLP)가  
+Single Layer Perceptron과 본질적으로 다른 표현 능력을 가지는 이유는
 hidden layer에서 [non-linear activation function](./dev_hist_ann.md#activation-function의-중요성)을 사용하기 때문임.
 
-Activation function이 없다면
+Non-linear Activation function이 없다면
 여러 개의 linear layers를 쌓더라도 전체 model은 결국 하나의 linear transformation과 같아짐.
 
-즉, layer를 여러 개 쌓는 의미가 크게 사라짐.
+즉, layer들을 여러 개 쌓는 의미가 사라짐.
 
-따라서 activation function은
+따라서 non-linear activation function은
 DNN이 complex non-linear function을 근사할 수 있게 해주는 핵심 요소임.
 
-Activation function의 선택은 다음에 영향을 줌.
+Non-linear Activation Function의 선택은 다음에 영향을 줌.
 
 * Model Representation (model의 표현력, non-linearity)
 * Gradient Behavior
