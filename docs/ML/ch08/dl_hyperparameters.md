@@ -136,17 +136,19 @@ neurons 수를 늘리는 방식으로 접근할 수 있음.
 
 등을 통해 model complexity를 조절함.
 
-Vincent Vanhoucke는 이러한 접근을
+Vincent Vanhoucke (빈센트 반호크, 2016)는 이러한 접근을
 **`stretch pants approach`** 라고 부름.
 
 > 즉, 처음부터 너무 딱 맞는 model을 고르기보다는  
 > 충분히 큰 model을 준비한 뒤 필요한 만큼 조절하는 방식임.
+>
+> * 참고자료: [A Quick Setup for Neural Networks Hyperparameters for Best Results](https://pub.towardsai.net/a-quick-setup-for-neural-networks-hyperparameters-for-best-results-3a5a446abb3a)
 
 ---
 
 ---
 
-## Activation Function
+## Activation Functions
 
 > 참고 자료 : [Activation Functions](https://ds31x.tistory.com/710)
 
