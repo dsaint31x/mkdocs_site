@@ -168,10 +168,10 @@ Learning Rate Scheduling은 training 중 learning rate를 고정하지 않고, �
 
 | 분류                            | 핵심 기준                                             | 대표 기법                                                    |
 | ----------------------------- | ------------------------------------------------- | -------------------------------------------------------- |
-| Monotonic Decay Scheduling    | training이 진행될수록<br/>learning rate를 전반적으로 감소시킴       | Exponential Decay, Power Decay,<br/>Piecewise Constant,<br/>Cosine Annealing |
-| Adaptive Decay Scheduling, <br/>Performance Scheduling  | validation metric 등<br/>학습 결과를 보고 learning rate를 감소시킴 | ReduceLROnPlateau                |
-| Warm-up + Decay Scheduling    | 초반에는 <br/>learning rate를 증가시키고,<br/>이후에는 다시 감소시킴           | Warm-up + decay,<br/>1cycle (=single cycle)                                 |
-| Cyclical / Restart Scheduling | learning rate 증가와 감소를<br/>여러 번 반복하거나 restart 시켜<br/> saddle-point plateau를 빠르게 통과하거나 optimization 효율을 높임 | [Cyclical LR](https://arxiv.org/abs/1506.01186?utm_source=chatgpt.com),<br/>Cosine Annealing with Warm Restarts         |
+| [Monotonic Decay Scheduling](#1-exponential-decay-scheduling)    | training이 진행될수록<br/>learning rate를 전반적으로 감소시킴       | Exponential Decay, Power Decay,<br/>Piecewise Constant,<br/>Cosine Annealing |
+| [Adaptive Decay Scheduling, <br/>Performance Scheduling](#adaptive-decay-scheduling)  | validation metric 등<br/>학습 결과를 보고 learning rate를 감소시킴 | ReduceLROnPlateau                |
+| [Warm-up + Decay Scheduling](#warm-up-decay-scheduling)    | 초반에는 <br/>learning rate를 증가시키고,<br/>이후에는 다시 감소시킴           | Warm-up + decay,<br/>1cycle (=single cycle)                                 |
+| [Cyclical / Restart Scheduling](#cyclical-restart-scheduling) | learning rate 증가와 감소를<br/>여러 번 반복하거나 restart 시켜<br/> saddle-point plateau를 빠르게 통과하거나 optimization 효율을 높임 | [Cyclical LR](https://arxiv.org/abs/1506.01186?utm_source=chatgpt.com),<br/>Cosine Annealing with Warm Restarts         |
 
 **Monotonic Decay Scheduling**
 
@@ -335,7 +335,10 @@ where,
 * $T_{\max}$: cosine schedule이 한 번 끝나는 총 step 수. learning rate가 최댓값에서 최솟값까지 내려가는 데 필요한 `scheduler.step()` 호출 횟수
 * $t$: 현재 epoch 또는 step
 
-> 보통 epoch 단위로 감소시키는 처리가 일반적임
+> 보통 epoch 단위로 감소시키는 처리가 일반적이며,
+> $t$가 $T_{\max}$에 도달시 이후로는 내부적으로 $t = T_{\max}$로 고정하여 최소값($\eta_{\min}$)으로 유지됨.
+>
+> $T_{\max}$ 이후에 leraning rate 가 다시 코사인 곡선을 따라 증가하게 만들고 싶다면 `CosineAnnealingWarmRestarts`를 사용해야 함.
 
 Cosine Annealing은 
 
@@ -357,6 +360,14 @@ scheduler = torch.optim.lr_scheduler.CosineAnnealingLR(
 * Cosine Annealing 자체는 단일 cosine curve로 learning rate를 줄이는 방식이나,
 * Ilya Loshchilov와 Frank Hutter가 2016년에 제안한 SGDR, 즉 Stochastic Gradient Descent with Warm Restarts 논문에서는
 * cosine decay 후 learning rate를 다시 올리는 warm restart까지 포함하는 응용버전도 있음
+
+> **Annealing(어닐링, 담금질)** :
+>
+> 금속을 뜨겁게 달구었다가 서서히 식혀 내부의 결함을 없애고 단단하게 만드는 금속 공정에서 유래한 용어  
+> learning rate scheduling에서는
+> 학습 초기에는 높은 값으로 넓게 탐색하다가
+> 후반으로 갈수록 서서히 줄여가서
+> 최적점 주변에 안정적으로 수렴시키는 과정을 가리키는데 사용됨.
 
 ---
 
@@ -446,6 +457,21 @@ DL의 경우 초기 parameter 상태에서는 loss landscape의 불안정한 영
 * 이때 처음부터 큰 learning rate를 사용하면 parameter가 안정적인 방향으로 내려가지 못하고 크게 흔들릴 수 있음.
 * Warm-up은 작은 learning rate로 시작해 gradient descent가 안정적인 영역에 들어갈 시간을 준 뒤, 이후 더 큰 learning rate를 사용하게 함.
 
+> **참고: Transformer 계열 모델이 초반에 불안정한 이유**
+> 
+> * **어텐션(Attention) 가중치 분산 왜곡:** 초기 무작위 임베딩 값으로 인해 inner product 에서 variance가 커지기 쉽고, Softmax 입력값이 커져 특정 토큰으로 정보가 극단적으로 몰리기 쉬움.
+> * **Residual Connection 효과:** 깊은 층을 거치며 gradient가 왜곡·증폭되기 쉬운데, 초기에 lr이 크면 이 미세한 불안정이 순식간에 폭주하여 손실이 발산함.
+> 
+> **참고: RNN (Recurrent Neural Network) 계열이 초반에 불안정한 이유**
+>
+> * **시간 축(Time-step) 연쇄 곱셈 (=BPTT 문제):** 동일한 weight matrix를 sequence의 길이만큼 반복적으로 곱하기 때문에, matrix의 최대 eigenvalue가 1보다 크면 폭발(Exploding)하고 작으면 소실(Vanishing)되어 초기 그래디언트 흐름이 극도로 불안정해짐.
+> **초기 가중치(Weight)의 무작위성**: 첫 시작점부터 엉뚱하게 갱신되면 이후 타임스텝 전체의 연산(sequence의 길이만큼 반복적으로 같은 weight를 곱해지는 연산)이 연쇄적으로 오염됨.
+>
+> **참고: 매우 큰 Batch Size 사용시 초반 학습이 불안정해지는 이유**
+>
+> * **초기 그래디언트의 급격한 변화 (Variance Shift):** 학습 초반에는 parameters가 optimal point에서 멀고 예측 상태가 매 순간 극적으로 바뀌기 쉽기 때문에, 큰 batch 기반의 gradient는 방향이 크게 엇갈리거나 튀기 쉬움.
+> * **과도한 Update Step (Overshooting):** batch size에 따라 leraning rate를 linear scaling으로 크게 하는 것이 일반적인데, 이 기법은 정렬되지 않은 초기 상태에서 사용될 경우 단 한 번의 업데이트로도 파라미터가 엉뚱한 방향으로 멀리 튀어 발산하기 쉬워짐.
+
 이같은 warm-up 이후에는 cosine decay, linear decay, exponential decay, performance scheduling 등을 붙여 learning rate를 다시 낮춤.
 
 PyTorch에서는 `LinearLR`을 사용하여 warm-up을 구현할 수 있음.
@@ -463,7 +489,7 @@ warmup_scheduler = torch.optim.lr_scheduler.LinearLR(
 * 3 epoch (`total_iters`) 동안
 * 100% (`end_factor`)까지 선형적으로 증가시킴.
 
-Warm-up 이후에는 다른 scheduler (주로 monotonic decay scheduling)를 사용하는 방식임.
+Warm-up 이후에는 다른 scheduler (주로 monotonic decay scheduling)를 사용하는 게 일반적임.
 
 #### 2. 1cycle Scheduling
 
