@@ -1,7 +1,10 @@
 ---
 title: Batch Size
-tags: [Batch Size, SGD, Mini-batch SGD, Large Batch, Learning Rate Scaling, Warmup, Critical Batch Size]
+tags: [batch Size, sgd, mini-batch gd, large batch, learning rate scaling, warmup, critical batch size]
 ---
+
+<img width="1350" height="998" alt="image" src="https://github.com/user-attachments/assets/662eb73e-6f53-41d0-b031-42208f60c2fe" />
+
 
 # Batch Size
 
@@ -299,10 +302,24 @@ $$
 ## Warmup
 
 앞서 살펴본 대로,  
-large batch에서 learning rate를 크게 키우는 것은 유용할 수 있음.
+large batch에서 learning rate를 크게 키우는 것은 유용함.
 
-하지만 처음부터 큰 learning rate를 사용하면  
+하지만 학습 처음부터 큰 learning rate를 사용하면  
 학습 초기에 loss가 튀거나 발산할 수 있는 **optimization instability** 가 발생할 수 있음.
+
+> **참고: Large Batch가 초반 학습에서 불안정한 이유**
+> 
+> * **평균화의 함정:**
+>     * 학습 초기(랜덤 초기화 직후)에는 파라미터가 최적점에서 한참 멀리 떨어져 있음
+>     * 이 때문에 모델의 예측 상태가 초기엔 최적점을 향하기 어려움.
+>     * batch가 클수록 batch간의 gradient 방향의 차이가 적은데 
+>     * 최적점을 향하고 있지 않은 초기 상태에선 이는 불리함.
+>     * exploration이 필요한 초기에선 오히려 잘못된 방향으로 model의 학습이 이루어질 수 있음.
+> * **과도한 Update Step (Overshooting):**
+>     * 배치 크기가 커지면 보통 linear scaling rule에 따라 러닝 레이트도 비례해서 크게 설정함.
+>     * 모델이 아직 제대로 정렬되지 않은 초기 상태에서는
+>     * 이는 단 한 번의 업데이트만으로도 파라미터가 엉뚱한 방향으로 너무 멀리 튀어 버리게 할 수 있음.
+
 
 이를 줄이기 위한 방법으로 **warmup** 이 제안됨.
 
@@ -323,6 +340,11 @@ large batch에서 learning rate를 크게 키우는 것은 유용할 수 있음.
 
 ## 최신 연구 흐름: Critical Batch Size
 
+> 아래의 내용은 다소 이론적인 편임.
+> 실무의 경우엔 GPU의 메모리의 크기에 맞춰 batch size가 정해지는 경향이 큼.
+> 실무자들은 AdamW 의 beta2 등의 설정은 중시하나...
+> batch size는 그냥 고정하는 경우로 처리하기도 함
+
 최근 large-scale training, 특히 LLM pretraining에서는  
 batch size를 단순히 "클수록 좋은 값" 으로 보지 않음.
 
@@ -334,7 +356,7 @@ Critical batch size는 대략 다음과 같이 이해할 수 있음.
 * 어느 지점을 넘으면 추가적인 batch size 증가의 이득이 급격히 줄어드는 경계.
 
 즉, batch size를 키우면 **병렬 처리는 좋아질 수 있음**.  
-이는 GPU 활용도 증가와 관련됨.
+이는 ***GPU 활용도 증가*** 와 관련됨.
 
 하지만 너무 큰 batch size를 사용하면,
 
@@ -370,7 +392,7 @@ Critical batch size는 대략 다음과 같이 이해할 수 있음.
 * hardware parallelism,
 * training stage
 
-와 함께 조정하는 값으로 보는 경향이 강함.
+와 함께 조정하는 값으로 보는 경향이 강해지고 있음.
 
 ---
 
