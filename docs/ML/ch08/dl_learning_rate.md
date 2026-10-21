@@ -108,7 +108,7 @@ $$
 
 ### 한계
 
-* 엄밀히 애기하면, **Learning rate range test로 얻은 결과는 해당 test가 수행된 해당 모델, 데이터셋, optimizer, batch size 설정에 대해서만 유효** 함.
+* 엄밀히 애기하면, **Learning rate range test로 얻은 결과는 해당 test가 수행된 모델, 데이터셋, optimizer, batch size 설정에 대해서만 유효** 함.
     * Batch size가 크게 변경되면 gradient의 분산과 update 특성이 달라지므로 적절한 learning rate 범위도 달라질 수 있음.
     * Optimizer를 SGD에서 Adam으로 변경하거나 momentum 등의 hyperparameter를 변경한 경우에도 결과가 달라질 수 있음.
     * 모델 구조나 심지어 데이터 전처리가 크게 바뀐 경우에도 다시 수행하는 것이 바람직함.
@@ -178,7 +178,8 @@ Learning Rate Scheduling은 training 중 learning rate를 고정하지 않고, �
 * learning rate를 시간이 지남에 따라 전반적으로 줄이는 GD에서부터 사용된 고전적인 방식.
 * 다음의 대표적인 방법들이 여기에 속함:
 * Exponential Scheduling, Power Scheduling, Piecewise Constant Scheduling, Cosine Annealing
-* 이들 모두 감소되는 방식에서 각각 차이가 잇으나모두 전체적으로는 learning rate를 낮추는 schedule임.
+* 이들 모두 감소되는 방식에서 각각 차이가 있으나
+* 학습이 진행됨에 따라 정해진 시점에 정해진 정도로 learning rate를 낮추는 schedule임.
 
 **Adaptive Decay Scheduling** 
 
@@ -188,8 +189,8 @@ Learning Rate Scheduling은 training 중 learning rate를 고정하지 않고, �
 
 **Warm-up + Decay Scheduling**
 
-<img width="300" height="186" alt="image" src="https://github.com/user-attachments/assets/3bd220b6-832a-49bf-b6b5-31966b67a63c" />
-
+<!--img width="300" height="186" alt="image" src="https://github.com/user-attachments/assets/3bd220b6-832a-49bf-b6b5-31966b67a63c" /-->
+![](https://github.com/user-attachments/assets/3bd220b6-832a-49bf-b6b5-31966b67a63c){style="display: block; margin: 0 auto; width: 500px"}
 
 * 초반에는 learning rate를 작은 값에서 시작해 증가시키고,
 * 이후에는 다시 감소시키는 방식임.
@@ -203,7 +204,8 @@ Learning Rate Scheduling은 training 중 learning rate를 고정하지 않고, �
 
 **Cyclical / Restart Scheduling** 
 
-<img width="245" height="157" alt="image" src="https://github.com/user-attachments/assets/ed3cd66a-a605-4807-b014-662a03296ec1" />
+<!--img width="245" height="157" alt="image" src="https://github.com/user-attachments/assets/ed3cd66a-a605-4807-b014-662a03296ec1" /-->
+![]([https://github.com/user-attachments/assets/3bd220b6-832a-49bf-b6b5-31966b67a63c](https://github.com/user-attachments/assets/ed3cd66a-a605-4807-b014-662a03296ec1)){style="display: block; margin: 0 auto; width: 500px"}
 
 * learning rate를 한 번 줄이고 끝내는 방식이 아님.
 * Learning rate를 여러 번 다시 키우거나,
@@ -243,13 +245,13 @@ Monotonic Decay Scheduling은 training이 진행될수록 learning rate를 전�
 
 Exponential Scheduling은 learning rate를 일정한 비율로 계속 감소시키는 방식임.
 $$
-\eta(t) = \eta_0 \cdot 0.1^{t/s}
+\eta(t) = \eta_0 \cdot 0.9^{t/s}
 $$
 where,
 
 * $\eta_0$: initial learning rate
 * $t$: 현재 step 또는 epoch
-* $s$: learning rate가 10분의 1로 줄어드는 주기
+* $s$: learning rate가 90% 가 되는 주기
 
 PyTorch에서는 `torch.optim.lr_scheduler.ExponentialLR`을 사용할 수 있음.
 
@@ -283,6 +285,13 @@ where,
 
 보통 $c = 1$로 설정하는 경우가 많음.
 
+동작 특징
+
+* 초반($t \ll s$) 인 경우 분모의 1의 영향력이 매우 커서 1에 가까운 분모임.
+* 이 경우, $t$가 조금 만 증가해도 해당 증가에 따라 분모값이 커지는 비율이 매우 큼: learning rate가 빠르게 감소.
+* 후반($t \gg s$) 인 경우 분모의 1의 영향력은 무시할 정도로 작아짐: $\frac{\eta_0}{t/s}$에 수렴.
+* $t$가 매우 큰 상태일수록 $t$의 증가에 따라 분모값이 커지는 비율이 작아지게 되며 후분반에서 learning rate가 완만하게 감소로 이어짐.
+
 #### 3. Piecewise Constant Scheduling
 
 Piecewise Constant Scheduling은 일정 구간마다 learning rate를 직접 지정하는 방식임.
@@ -299,8 +308,8 @@ Piecewise Constant Scheduling은 일정 구간마다 learning rate를 직접 지
 $$
 \eta(t) =
 \begin{cases}
-0.1 & \text{if } 0 \le t < 5 \\
-0.001 & \text{if } 5 \le t < 55 \\
+0.1 & \text{if } 0 \le t < 5 \\\\
+0.001 & \text{if } 5 \le t < 55 \\\\
 0.0001 & \text{if } 55 \le t
 \end{cases}
 $$
