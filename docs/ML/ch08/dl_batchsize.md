@@ -3,8 +3,10 @@ title: Batch Size
 tags: [batch Size, sgd, mini-batch gd, large batch, learning rate scaling, warmup, critical batch size]
 ---
 
-<img width="1350" height="998" alt="image" src="https://github.com/user-attachments/assets/662eb73e-6f53-41d0-b031-42208f60c2fe" />
+<!--img width="1350" height="998" alt="image" src="https://github.com/user-attachments/assets/662eb73e-6f53-41d0-b031-42208f60c2fe" /-->
+![](https://github.com/user-attachments/assets/662eb73e-6f53-41d0-b031-42208f60c2fe){style="display: block; margin: 0 auto; width: 500px"}
 
+* [Source: X post by Benhao Huang](https://x.com/huskydogewoof/status/2112212407435063506)
 
 # Batch Size
 
