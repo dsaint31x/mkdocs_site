@@ -67,8 +67,10 @@ Real-world data는 대부분 다음과 같은 계층적 구조를 가짐.
 * **상대적으로 적은 training data에서도 학습이 잘 되는 경우** 가 많음.
 
 > 참고로,  
-> parameters 수가 많다는 것은 model complexity가 크다는 의미이고,  
+> parameters 수가 많다는 것은 model complexity (or capcity)가 크다는 의미이고,  
 > 이는 일반적으로 더 많은 training data를 요구함.
+>
+> 참고: [over-fitting](https://dsaint31.me/mkdocs_site/ML/ch00/ch00_50/)
 
 따라서 같은 수의 parameters라면
 wider model보다 deeper model이 더 효율적인 경우가 많음.
