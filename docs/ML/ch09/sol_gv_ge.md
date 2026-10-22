@@ -48,4 +48,5 @@ ANN의 경우 깊어져야 task에 대한 representative feature를 얻어낼 �
 
 * [적절한 Weight Initialization과 Activation Function의 조합 사용하기](https://dsaint31.me/mkdocs_site/ML/ch09/weight_initializations/).
 * [Batch Normalization](https://dsaint31.me/mkdocs_site/ML/ch09/batch_normalization/)
+* [Layer Normalization](https://ds31x.github.io/wiki/review/LayerNormalization/)
 * [Gradient Clipping](../dl_grad_clipping.md)
