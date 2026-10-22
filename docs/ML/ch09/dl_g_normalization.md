@@ -15,7 +15,8 @@ tags:
 
 # Group Normalization
 
-**Group Normalization (GN)** 은  
+**Group Normalization (GN)** 은
+
 * **Yuxin Wu와 Kaiming He가 2018년 ECCV에서 발표한 normalization 기법**. 
 * 각 sample의 channel을 여러 group으로 나누고, 
 * **각 group 내부의 channel 및 spatial 축에 걸쳐 mean과 variance를 구하여 normalization함**.
