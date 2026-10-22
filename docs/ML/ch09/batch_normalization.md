@@ -39,11 +39,18 @@ Gradient Vanishing과 Exploding의 위험을 효과적으로 감소시키는 기
 * BN은 layer의 Input을 standardization을 하고,  
   task 수행에 최적의 분포가 되도록 scaling과 shifting을 **학습** 하여  
   이를 layer input에 적용.
-* 단, `RNN`의 time 방향으로 unrolling된 쪽에 `BN`은 적용해도 큰 효과가 없는 것으로 알려짐:
-    * RNN이 다루는 sequence data들이 각기 다른 sequence length를 가지며, 이를 padding을 통해 같은 사이즈가 되도록 함.
-    * 해당 padding은 실제로 의미가 없는 0 등의 값을 가지게 되는데  
-      이를 `BN`으로 처리시 padding으로 인한 의미없는 0 들로 인해 제대로 된 통계적 지표(feature별 mean, std들을 제대로 못 구함).
-    * 때문에 `RNN` 및 `transformer` 에서는 `BN` 대신 `Layer Normalization`을 주로 사용: 각각의 token을 따로 normalization을 수행함.
+* 단, `RNN`의 time 방향으로 unrolling된 부분이나 `Transformer`에서는 `BN` 적용 시 sequence 특성을 고려해야 함:
+    * `RNN` 및 `Transformer`가 다루는 sequence data는 서로 다른 sequence length를 가질 수 있으며, batch 구성을 위해 padding으로 길이를 맞춤.
+    * `BN`의 통계 계산에서 padding을 제외하지 않으면 feature별 mean, variance가 왜곡될 수 있으며, `RNN`에서는 time step에 따른 분포 변화도 고려해야 함.
+    * 따라서 normalization을 적용할 때 [`Layer Normalization`](https://ds31x.github.io/wiki/review/LayerNormalization/)을 주로 사용: `RNN`에서는 각 time step의 hidden state를, `Transformer`에서는 각각의 token을 feature 방향으로 normalization함. 
+
+> Layer Normalization 은 batch size 와 무관하게 각 token의 feature 축을 기준으로 정규화하며, sequence model 및 Transformer에서 널리 사용됨.  
+> 단, CNN 기반 computer vision 작업에서는 batch 통계에 따른 regularization 효과도 기대할 수 있고 성능이 우수한 경우가 많아 Batch Normalization이 주로 사용됨.
+> 참고로,
+> 메모리 한계로 batch size를 키우기 어렵거나 분산 학습 등 batch의 통계를 활용하기 까다로운 경우에는
+> CNN에서도 LN이나 Group Normalization이 유용한 대체재로 사용될 수 있음.
+>
+> 충분한 batch size의 image classification에서는 BN이 유리한 경우가 많고, 작은 batch가 필요한 작업에서는 LN, GN이 유리할 수 있음
 
 ***layer 별로 최적의 input 분포를 가지도록 pre-processing을 해주는 것*** 이  
 **batch normalization** 이다.  
