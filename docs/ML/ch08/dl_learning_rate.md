@@ -195,7 +195,7 @@ Learning Rate Scheduling은 training 중 learning rate를 고정하지 않고, �
 **Warm-up + Decay Scheduling**
 
 <!--img width="300" height="186" alt="image" src="https://github.com/user-attachments/assets/3bd220b6-832a-49bf-b6b5-31966b67a63c" /-->
-![](https://github.com/user-attachments/assets/3bd220b6-832a-49bf-b6b5-31966b67a63c){style="display: block; margin: 0 auto; width: 500px"}
+![](./img/warmup_decay.png){style="display: block; margin: 0 auto; width: 500px"}
 
 * 초반에는 learning rate를 작은 값에서 시작해 증가시키고,
 * 이후에는 다시 감소시키는 방식임.
@@ -210,8 +210,7 @@ Learning Rate Scheduling은 training 중 learning rate를 고정하지 않고, �
 **Cyclical / Restart Scheduling** 
 
 <!--img width="245" height="157" alt="image" src="https://github.com/user-attachments/assets/ed3cd66a-a605-4807-b014-662a03296ec1" /-->
-![](https://github.com/user-attachments/assets/ed3cd66a-a605-4807-b014-662a03296ec1){style="display: block; margin: 0 auto; width: 500px"}
-
+![](./img/cyclical.png){style="display: block; margin: 0 auto; width: 500px"}
 * learning rate를 한 번 줄이고 끝내는 방식이 아님.
 * Learning rate를 여러 번 다시 키우거나,
 * 증가와 감소를 반복함
@@ -648,7 +647,7 @@ Cosine Annealing with Warm Restarts는
 * 이렇게 learning rate가 주기적으로 다시 커지면 gradient descent가 local optimum이나 plateau에서 빠져나올 가능성이 커짐.
 
 <!--img width="640" height="480" alt="image" src="https://github.com/user-attachments/assets/59c15747-fa6e-4103-9d97-fb54da421579" /-->
-![](https://github.com/user-attachments/assets/59c15747-fa6e-4103-9d97-fb54da421579){style="display: block; margin: 0 auto; width: 500px"}
+![](./img/cyclical_scheduling.png){style="display: block; margin: 0 auto; width: 500px"}
 
 다음의 참고 자료를 같이 볼 것
 
