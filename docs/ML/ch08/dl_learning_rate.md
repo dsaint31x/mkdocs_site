@@ -1,6 +1,6 @@
 ---
 title: Learning Rate Tuning and Scheduling
-tags: [learning rate, hyperparameter, optimization, deep learning, training]
+tags: ["learning rate", "hyperparameter", "optimization", "deep learning", "training"]
 ---
 
 # Learning Rate Range Test and Scheduling
