@@ -508,7 +508,7 @@ Warm-up 이후에는 다른 scheduler (주로 monotonic decay scheduling)를 사
 2. training의 절반 이하 (보통 2-30%)까지 learning rate를 선형적으로 증가시켜 maximum learning rate $\eta_1$에 도달함.
 3. 이후 다시 learning rate를 $\eta_0$까지 선형적으로 감소시킴.
 
-여기서 maximum learning rate $\eta_1$ 은 앞서 다룬 [learning rate range test](#learning-rate-range-test)를 통해 찾는 경우가 많음.
+여기서 maximum learning rate $\eta_1$ 은 앞서 다룬 [learning rate range test](#learning-rate-range-test) 를 통해 찾는 경우가 많음.
 
 그리고 보통 initial learning rate $\eta_0$는 보통 $\eta_1$보다 10배 정도 작게 설정함:
 $$
