@@ -273,7 +273,7 @@ Weight decay 는 update 전의 parameter 에 적용됨.
 Parameter 가 vector 인 경우, 제곱근과 나눗셈은 element-wise operation(원소별 연산)으로 수행함.
 
 * PyTorch 에서는 $\theta_t$ 기준으로 weight decay 를 적용함.
-* 동일한 parameter 와 moment 에서, $\theta'_t 기준으로 weight decay 를 적용하는 방식과의 한 step 차이는 $\mathcal O (\eta^2)$ 임.
+* 동일한 parameter 와 moment 에서, $\theta'_t$ 기준으로 weight decay 를 적용하는 방식과의 한 step 차이는 $\mathcal O (\eta^2)$ 임.
 
 이를 확인하기 위해, $\theta_t$ 기준으로 weight decay 를 적용한 식을 전개하면 다음과 같음:
 
@@ -286,7 +286,7 @@ $$\begin{aligned}
 -\eta\frac{\hat m_t}{\sqrt{\hat v_t}+\epsilon}.
 \end{aligned}$$
 
-$\theat'_t$ 기준으로 weight decay 를 적용한 결과를 다음과 같이 구분하여 표기할 수 있음:
+$\theta'_t$ 기준으로 weight decay 를 적용한 결과를 다음과 같이 구분하여 표기할 수 있음:
 
 $$\begin{aligned}
 \widetilde{\theta}_{t+1}
