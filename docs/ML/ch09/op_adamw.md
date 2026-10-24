@@ -7,6 +7,8 @@ tags: [optimizer, adam, adamw, gradient, moment, weight-decay, transformer ]
 
 **Adam with decoupled Weight Decay** 는 Transformer 학습에서 가장 널리 사용되는 optimizer 임:
 
+![](./img/AdamW.png)
+
 * 기존 Adam의 구조적 문제점 개선:
     * L2 regularization이 gradient 기반 업데이트에 섞여 들어가
     * adaptive learning rate와 weight decay가 결합되어 의도한 정규화 효과가 왜곡됨
