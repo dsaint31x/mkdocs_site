@@ -204,6 +204,8 @@ L2 regularization 의 결과가 바로 **weight decay** 임.
 > L2 regularization 을  
 > loss에 parameters 의 L2-norm 을 더하는 형태 로 채택함.
 
+* **참고: [Weight Decay and L2-Regularization](https://ds31x.tistory.com/715)
+
 ### 2.3. Adam에서 Weight decay가 문제가 되는 이유
 
 Adam에서 위 gradient를 그대로 사용하면,
