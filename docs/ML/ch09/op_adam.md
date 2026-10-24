@@ -5,6 +5,8 @@ tags: [optimizer, rmsprop, momentum, adam, gradient ]
 
 # ADAptive Moment Estimation (Adam)
 
+![Untitled](./img/Adam.jpeg){style="display: block; margin: 0 auto; width: 500px"}
+
 **Adaptive Moment Estimation (Adam)** 은 다음이 결합된 Gradient 기반 최적화 알고리즘이다.
 
 * [`RMSProp`](./op_rmsprop.md) 의 **적응적 학습률(adaptive learning rate)** 과
