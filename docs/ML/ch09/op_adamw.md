@@ -111,6 +111,9 @@ $$
 * 지금까지의 여러 iteration에서의 gradient의 평균(EMA)적 방향을 의미함(Momentum처럼 과거 gradients의 방향을 고려)
 * 결국 수식 상 **[Momentum SGD](./op_momentum.md)의 velocity 업데이트와 형태가 동일** 해짐.
 
+> $beta1$은 momentum coefficient 라고 불리며,
+> 1st moment 를 EMA로 구할 때, decay factor로 사용됨.
+
 #### 1.3.2. 2차 모멘트: gradient 에너지 추정
 
 Adam의 2nd moment of gradient는 다음을 추정한다.
