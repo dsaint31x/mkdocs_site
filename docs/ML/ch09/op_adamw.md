@@ -241,27 +241,77 @@ AdamW의 핵심 아이디어는 다음과 같음:
 
 ### 3.1. Adam step (moment 기반 최적화)
 
-$$
-\theta_t' = \theta_t - \eta \frac{\hat{m}_t}{\sqrt{\hat{v}_t} + \epsilon}
-$$
+다음과 같이 weight decay와 분리된 순수한 loss 감소를 담당.
 
-* 순수하게 loss 감소만 담당
-* moment 추정 그대로 유지
+$$\theta'_t = \theta_t-\eta\frac{\hat m_t}{\sqrt{\hat v_t}+\epsilon}$$
+
+* $t$: update step 의 index.
+* $\theta_t$: 현재 update 전의 parameter.
+* $\theta'_t$: Adam step 만 적용한 중간 parameter. Prime 은 미분을 의미하지 않음에 주의.
+* $\eta$: learning rate(학습률).
+* $\hat m_t$: gradient 의 EMA 에 bias correction(편향 보정)을 적용한 1st moment estimate.
+* $\hat v_t$: gradient 의 element-wise square 에 대한 EMA 에 bias correction 을 적용한 2nd raw moment estimate.
+* $epsilon$: numerical stability(수치적 안정성)를 위해 분모에 더하는 작은 양수.
 
 ### 3.2 Weight decay step 
 
-$$
-\theta_{t+1} = \theta_t' - \eta \lambda \theta_t
-$$
+$$\theta_{t+1} = \theta'_t-\eta\lambda\theta_t$$
 
-* adaptive scaling과 완전히 독립
-* 파라미터 크기에 직접 일관되게 적용
+Adam 에 독립되어 weight decay 적용하여 parameter 에 일관되게 적용
+
+* $\theta_{t+1}$: Adam step 과 weight decay 를 모두 반영한 다음 parameter.
+* $\lambda}: weight decay coefficient(가중치 감쇠 계수).
 
 ### 3.3. 최종 수식
 
 $$
 \theta_{t+1} =  \theta_t - \eta \frac{\hat{m}_t}{\sqrt{\hat{v}_t} + \epsilon} - \eta \lambda \theta_t
 $$
+
+Weight decay 는 update 전의 parameter 에 적용됨.
+
+Parameter 가 vector 인 경우, 제곱근과 나눗셈은 element-wise operation(원소별 연산)으로 수행함.
+
+* PyTorch 에서는 $\theta_t$ 기준으로 weight decay 를 적용함.
+* 동일한 parameter 와 moment 에서, $\theta'_t 기준으로 weight decay 를 적용하는 방식과의 한 step 차이는 $\mathcal O (\eta^2)$ 임.
+
+이를 확인하기 위해, $\theta_t$ 기준으로 weight decay 를 적용한 식을 전개하면 다음과 같음:
+
+$$\begin{aligned}
+\theta_{t+1}
+&=\theta'_t-\eta\lambda\theta_t\\
+&=\theta_t-\eta\frac{\hat m_t}{\sqrt{\hat v_t}+\epsilon}
+-\eta\lambda\theta_t\\
+&=(1-\eta\lambda)\theta_t
+-\eta\frac{\hat m_t}{\sqrt{\hat v_t}+\epsilon}.
+\end{aligned}$$
+
+$\theat'_t$ 기준으로 weight decay 를 적용한 결과를 다음과 같이 구분하여 표기할 수 있음:
+
+$$\begin{aligned}
+\widetilde{\theta}_{t+1}
+&=\theta'_t-\eta\lambda\theta'_t\\
+&=(1-\eta\lambda)
+\left(
+\theta_t-\eta\frac{\hat m_t}{\sqrt{\hat v_t}+\epsilon}
+\right)\\
+&=(1-\eta\lambda)\theta_t
+-\eta\frac{\hat m_t}{\sqrt{\hat v_t}+\epsilon}
++\eta^2\lambda\frac{\hat m_t}{\sqrt{\hat v_t}+\epsilon}.
+\end{aligned}$$
+
+두 결과를 빼면 다음과 같음:
+
+$$\boxed{
+\widetilde{\theta}_{t+1}-\theta_{t+1} =
+\eta^2\lambda\frac{\hat m_t}{\sqrt{\hat v_t}+\epsilon} =
+\mathcal{O}(\eta^2)
+}$$
+
+즉, 다음이 성립:
+
+* weight decay coefficient 와 moment estimates 를 고정하면,
+* 두 방식의 한 step 차이는 learning rate 의 제곱에 비례함.
 
 ## 4. AdamW의 개념적 위치
 
@@ -469,28 +519,7 @@ trainer = Trainer(
 * `scheduler`를 직접 쓰고 싶다면 `(optimizer, scheduler)` 형태로 전달
 * 연구용, 실험용으로 자주 사용
 
-### 7.4. HF / PyTorch의 구현
-
-> 앞서 살펴본 내용과 같음: 코드만 보는 경우를 위해 다시 반복.
-
-PyTorch와 HF에서 실제로 수행되는 update는 개념적으로 다음과 같음:
-
-**1.Adam step (moment 기반)**
-
-$$   
-\theta_t' = \theta_t - \eta \frac{\hat{m}_t}{\sqrt{\hat{v}_t} + \epsilon}
-$$
-
-**2.Weight decay step (decoupled)**
-
-$$
-\theta_{t+1} = \theta_t' - \eta \lambda \theta
-$$ 
-
-* 구현에서는 보통 $\theta_t'$ 기준으로 `decay`를 적용하지만,
-* 차이는 $\mathcal{O}(\eta^2)$  이므로 거의 차이 없음.
-
-### 7.5. PyTorch vs. HF
+### 7.4. PyTorch vs. HF
 
 | 상황                  | 추천                      |
 | :---:  | :---: |
