@@ -260,7 +260,7 @@ $$\theta_{t+1} = \theta'_t-\eta\lambda\theta_t$$
 Adam 에 독립되어 weight decay 적용하여 parameter 에 일관되게 적용
 
 * $\theta_{t+1}$: Adam step 과 weight decay 를 모두 반영한 다음 parameter.
-* $\lambda}: weight decay coefficient(가중치 감쇠 계수).
+* $\lambda$: weight decay coefficient(가중치 감쇠 계수).
 
 ### 3.3. 최종 수식
 
