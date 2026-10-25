@@ -1,7 +1,7 @@
 ---
 title: Optimizers 
 tags
-  - gradien
+  - gradient
   - gd
   - stochastic gradient descent
   - na
