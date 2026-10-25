@@ -13,6 +13,7 @@ image에서 histogram으로 변환은 ***비가역적 변환*** 임
 </figure>
 
 * [관련 gist URL](https://gist.github.com/dsaint31x/0b5bf63173c91f08732325c67bc33450)
+
 ---
 
 ---
@@ -237,7 +238,7 @@ hist,bin_edges = np.histogram(
     * NumPy는 1D-array로 동작시키기 위해 `ravel`을 사용함. 
     * `a`라고 불림
 * `bins` : 
-    * # of bins
+    * \# of bins
     * 256으로 설정하여 0~255까지의 픽셀 값을 256개의 구간
 * `range` : 
     * floating point 로 주어짐. 
@@ -344,7 +345,8 @@ plt.show()
 * 푸른 하늘에 해당하는 pixel이 많기 때문에 Hue=120 근처에서 많은 값을 보임.
 * 건물에 해당하는 노란색도 많아서 20~30 사이에 보임.
 
-histogram에서 잘 안보이기 때문에 V=255일 때의 HS map을 기반으로 처리한 2d histogram은 다음과 같음.
+앞서 histogram에서 잘 안보이는 편이라  
+V=255일 때의 HS map을 기반으로 처리한 2d histogram은 다음과 같음.
 
 <figure markdown>
 ![](../../img/ch02/scaled_2d_histogram.png){width="600"}
