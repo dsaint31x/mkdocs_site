@@ -8,8 +8,9 @@ tags:
   - adagrad
   - rmspro
   - adam
-  - Nadam
-  - Momentum
+  - nadam
+  - momentum
+  - nag
   - adamw
   - optimization
   - optimizer
