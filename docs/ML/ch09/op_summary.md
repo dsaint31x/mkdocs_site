@@ -1,6 +1,6 @@
 ---
 title: Optimizers 
-tags
+tags:
   - gradient
   - gd
   - stochastic gradient descent
