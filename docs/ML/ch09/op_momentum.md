@@ -1,3 +1,17 @@
+---
+title: "Momentum"
+description: "이전 업데이트 정보를 활용하는 Momentum의 원리, 수렴속도 향상 이유와 Keras 및 PyTorch 구현."
+tags:
+  - machine-learning
+  - deep-learning
+  - optimization
+  - gradient-descent
+  - momentum
+  - sgd
+  - keras
+  - pytorch
+---
+
 # Momentum 
 
 ![](https://github.com/user-attachments/assets/f0b2929c-f128-4e44-b38e-c8b8faaf1194){style="display:block; margin: 0 auto; width: 310px"}
@@ -81,6 +95,21 @@ $$\begin{aligned} \textbf{m}_{t+1}&=\gamma \textbf{m}_t -\eta\nabla_{\boldsymbol
 ```Python
 opt = tf.keras.optimizers.SGD(
     learning_rate = 0.001,
+    momentum = 0.9
+)
+```
+
+---
+
+## PyTorch에서의 구현.
+
+`torch.optim.SGD optimizer`를 생성할 때, momentum parameter를 추가하면 $\gamma=0.9$인 momentum optimizer를 생성함.  
+(학습 loop에서 `loss.backward()`로 gradient를 계산한 후, `opt.step()`을 호출하여 모델의 parameter를 갱신하면 됨.) 
+
+```Python
+opt = torch.optim.SGD(
+    model.parameters(),
+    lr = 0.001,
     momentum = 0.9
 )
 ```
