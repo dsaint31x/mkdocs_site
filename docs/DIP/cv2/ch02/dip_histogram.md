@@ -1,3 +1,17 @@
+---
+title: Histogram
+authors:
+  - dsaint31
+categories:
+  - CV
+  - DIP
+tags:
+  - histogram
+  - image processing
+  - opencv
+  - numpy
+---
+
 # Histogram
 
 영상에서의 Histogram은 image의 intensity (or pixel이 가지는 값)들의 분포를 보여줌.
@@ -22,14 +36,13 @@ image에서 histogram으로 변환은 ***비가역적 변환*** 임
 
 * `BINS` : 
     * 히스토그램 그래프의 X축(intensity)의 bin의 수(`histSize`)를 결정 .
-    * 8bit gray scale 영상의 경우에는 0 ~ 255로 intensity가 표현되며, 이 경우 BINS은 최대 256 의 수를 가질 수 있음.
+    * 8-bit grayscale 영상의 intensity 값은 256종류이므로, **각 intensity 값을 bin 하나에 대응시키려면 BINS=256** 으로 설정
     * 만약, BINS값이 16으로 지정할 경우, 0 ~ 15, 16 ~ 31..., 240 ~ 255와 같이 X축이 16개의 bin으로 표현이 됨.
     * 이는 intensity가 0~15까지 같은 bin에서 카운팅 됨을 의미!
     * OpenCV에서는 BINS를 histSize 라고 표현합니다.
 * `channels` : 
     * 이미지에서 histogram을 만들기 위해 사용하는 값을  의미. 
     * 빛의 강도(intensity)를 기준으로 histogram을 만들지, RGB값을 기준으로  만들지를 결정.
-    * `DIMS`로도 불림.
 * `range` : 
     * X축의 범위임 (각 pixel이 가질 수 있는 범위).
     * = X축의 from ~ to.
@@ -70,8 +83,8 @@ hist = cv.calcHist(
 5.	`ranges`: 각 채널 값의 범위.
     * 히스토그램을 계산할 값의 범위. 
     * 예를 들어 `[0, 256]`과 같이 설정하면 픽셀 값이 0에서 255까지의 범위를 대상으로 히스토그램을 계산.
-6.	`hist`: (선택 사항) 초기 히스토그램.
-    * 이전에 계산된 히스토그램을 입력으로 전달하여 그 값을 기반으로 계산을 계속. 
+6.	`hist`: (선택 사항) 계산 결과를 저장할 output histogram.
+    * `accumulate=True`와 함께 사용될 경우 이전에 계산된 히스토그램에 누적하여계산을 계속. 
     * 보통 `None`으로 설정.
 7.	`accumulate`: (선택 사항) 히스토그램을 누적할지 여부.
     * `True`로 설정하면 이전의 히스토그램 값에 새로운 값을 누적하여 계산. 
@@ -187,7 +200,7 @@ masked_img = cv2.bitwise_and(img,img,mask=mask)
 # 원본 이미지의 히스토그램 green
 hist_full = cv2.calcHist([img],[1],None,[256],[0,256])
 
-# mask를 적용한 히스트로그램 green
+# mask를 적용한 히스토그램 green
 hist_mask = cv2.calcHist([img],[1],mask,[256],[0,256])
 
 fig, axs = plt.subplots(2,2, figsize=(10,10))
@@ -225,7 +238,7 @@ plt.show()
 
 ```Python
 hist,bin_edges = np.histogram(
-    img.ravel(),
+    img.ravel(), 
     bins = 256,
     range = [0,256],
     weights = None,
@@ -237,12 +250,15 @@ hist,bin_edges = np.histogram(
     * 대상 image. 
     * NumPy는 1D-array로 동작시키기 위해 `ravel`을 사용함. 
     * `a`라고 불림
+    * 입력 배열을 내부적으로 flatten하므로 `ravel()`은 필수는 아님.
+    * 또 img가 color image이면 ravel()이 B, G, R 값들을 한 histogram에 섞임. 주의할 것.
 * `bins` : 
     * \# of bins
     * 256으로 설정하여 0~255까지의 픽셀 값을 256개의 구간
 * `range` : 
     * floating point 로 주어짐. 
-    * `[min, max)` 로 range를 할당.
+    * `[min, max)` 로 range를 할당: NumPy histogram은 일반적으로 각 bin에서 오른쪽 경계를 제외하지만, 마지막 bin은 오른쪽 경계를 포함함.
+    * 지정한 범위 밖의 값은 histogram에서 제외됨.
     * 기본은 `[a.min(), a.max()]`임.
 * `weights` : 
     * `a`와 같은 크기로 각 bin의 가중치임.
@@ -267,7 +283,7 @@ feature가 2개인 경우엔 2D Histogram으로 처리할 수 있다.
 
 Color space에서 `HSV` model을 생각해보면, 
 
-* V는 앞서 다룬 Intensity이고, 
+* V는 HSV에서 색의 밝기(intensity)를 나타내는 Value 성분임: `V = max(R, G, B)`. 
 * color에 해당하는 Hue와 Saturation을 2D Histogram으로 처리 가능하다.
 
 (RGB를 이용하여 3D histogram도 가능은 하지만 많이 사용되지는 않는다.)
@@ -331,8 +347,8 @@ fig.colorbar(cax, ax=axs[1], shrink=0.5)
 axs[0].set_xticks([])
 axs[0].set_yticks([])
 axs[0].set_title('original')
-axs[1].set_xticks(range(0,180,30))
-axs[1].set_xticks(range(0,256,32))
+axs[1].set_xticks(range(0,256,32)) # range(0,257,32) 로 고치는게 낫긴함.
+axs[1].set_yticks(range(0,180,30)) # range(0,181,30) 로 고치는게 낫긴함.
 axs[1].set_title('2D Histogram')
 
 plt.show()
@@ -345,18 +361,40 @@ plt.show()
 * 푸른 하늘에 해당하는 pixel이 많기 때문에 Hue=120 근처에서 많은 값을 보임.
 * 건물에 해당하는 노란색도 많아서 20~30 사이에 보임.
 
+V=255일 때의 HS map은 다음과 같음.
+이를 통해 Hue 20~30, 120 근처의 색상이 무엇인지 확인할 수 있음:
+<img width="283" height="211" alt="image" src="https://github.com/user-attachments/assets/da635de0-a766-4da9-92f4-b63a21ff0f95" />
+
 앞서 histogram에서 잘 안보이는 편이라  
-V=255일 때의 HS map을 기반으로 처리한 2d histogram은 다음과 같음.
+보다 잘보이도록 처리한 그림은 다음과 같음:
 
 <figure markdown>
 ![](../../img/ch02/scaled_2d_histogram.png){width="600"}
 </figure>
 
-* scaling (slide-bar의 test)의 값이 커질수록 2D histogram에서 강조가 되어 보이도록 처리함.
-* 푸른색과 노란색 부분이 강조되어 쉽게 확인이 가능함.
+* scaling (slider의 test)의 값이 커질수록 2D histogram에서 강조가 되어 보이도록 처리함.
+    * 여기서 scaling 은 histogram 의 pixel count(화소 수)를 바꾸는 것이 아니라, 각 bin 을 화면에 표시하는 밝기를 조절하는 것임.    
+    * 각 bin 의 표시 밝기는 해당 bin 의 pixel count 에 따라 정해짐.
+    * Pixel count 가 적은 bin 은 어둡게 표시되어 잘 보이지 않으므로, slider 의 Test 값을 높여 더 밝게 표시함.
+* 푸른색과 노란색 부분이 보다 강조되어 쉽게 확인이 가능함.
+    * 각 bin 의 색상은 Hue 와 Saturation 에 따라 정해짐.
+
+> 구현은 다음과 같음:
+>
+> 1. Pixel count 를 [0,1] 범위로 정규화함.
+>     - `cv2.normalize()` 로 최솟값을 `0`, 최댓값을 `100`에 대응시킨 뒤 `0.01`을 곱함.
+>     - 이 값은 표시 밝기를 정하는 상대적인 값이며, 전체 pixel 에 대한 비율은 아님.
+> 2. Slider 값(=Test값) `x` 를 곱하여 표시 밝기를 높임.
+>     - `x=1`이면 정규화된 값을 그대로 사용함.
+>     - `x=10`이면 정규화된 값에 `10`을 곱하여, 적은 pixel count 를 가진 bin 도 더 잘 보이게 함.
+> 3. 1보다 커진 값은 np.clip() 으로 1에 제한함.
+>     - 이 값을 HS map 의 RGB 값에 곱함.
+>     - `0`이면 검정, `1`이면 `V=255`인 HS map 의 해당 색으로 표시됨.
 
 Hue, Saturation은 color image의 특성을 나타내는 feature로 사용할 수 있다.  
 (주의할 것은 다른 image라도 거의 비슷한 2D Histogram을 가질 수 있다는 점임.)
+
+Color Image에서 2D histogram은
 
 * pixel들의 color의 분포를 나타내는 것임.
 * 위치적 정보가 사라지기 때문에 color들의 분포는 비슷하면 비슷한 2D Histogram이 나올 수 있음.
