@@ -1,6 +1,18 @@
 ---
 title: Optimizers 
-tags: [Gradient, GD, Stochastic Gradient Descent, NAG, AdaGrad, RMSprop, Adam, Nadam, Momentum]
+tags
+  - gradien
+  - gd
+  - stochastic gradient descent
+  - na
+  - adagrad
+  - rmspro
+  - adam
+  - Nadam
+  - Momentum
+  - adamw
+  - optimization
+  - optimizer
 ---
 
 # Optimizers
@@ -16,7 +28,7 @@ Optimizer는
 
 parameters의 수가 적은 비교적 단순한 모델들의 경우,
 
-* 2차 미분 정보를 활용하는 **Hessian 계열 method**, 예를 들어 Newton's Method가 사용되기도 함.
+* step size의 값을 결정하는데 2차 미분 정보를 활용하는 **Hessian 계열 method**, 예를 들어 Newton's Method가 사용되기도 함.
     * 이러한 방법은 curvature 정보를 직접 반영하므로, 이론적으로는 1차 방법보다 더 빠른 수렴을 보일 수 있음.
 * 반면, Deep Neural Network에서는 1차 미분 기반의 Gradient 계열 optimizer가 주로 사용됨.
     * Hessian matrix는 parameter 수를 $p$라고 할 때 저장에만 $O(p^2)$의 메모리를 요구함.
@@ -160,15 +172,15 @@ optimizer.step()
 
 ### **[AdamW (Adam with Decoupled Weight Decay)](./op_adamw.md) - 2017 (Loshchilov & Hutter)** **
 
-* Adam의 구조적 결함을 수정한 매우 중요한 변형: 정규화 해석을 바로잡은 결정적 개선
+* Adam의 구조적 결함을 수정한 매우 중요한 변형: 정칙화(regularization) 적용을 바로잡은 결정적 개선
 * 기존 Adam의 문제점:
     * L2 regularization이 gradient 기반 업데이트에 섞여 들어가
-    * adaptive learning rate와 weight decay가 결합되어 의도한 정규화 효과가 왜곡됨
+    * adaptive learning rate와 weight decay가 결합되어 의도한 regularization 효과가 왜곡됨
 * AdamW의 핵심 아이디어:
     * Weight decay를 gradient 업데이트와 완전히 분리(decoupled)
     * Parameter 업데이트 이후에 별도로 decay 적용
-* 정규화 효과가 이론적으로 명확해짐
-    * 일반화 성능 향상
+* regularization 효과가 이론적으로 명확해짐
+    * Generalization(일반화) 성능 향상
 * 현재 Transformer 계열 및 HuggingFace Trainer의 기본 optimizer  
 
 ---
