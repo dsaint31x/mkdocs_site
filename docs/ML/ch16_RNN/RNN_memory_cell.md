@@ -2,13 +2,13 @@
 title: "Memory Cell (or Cell)"
 description: "RNN의 recurrent neuron과 recurrent layer를 memory cell 관점에서 설명하고, hidden state와 output의 관계를 정리한다."
 tags:
-  - RNN
-  - Recurrent Neural Network
-  - Recurrent Neuron
-  - Recurrent Layer
-  - Memory Cell
-  - Hidden State
-  - Deep Learning
+  - rnn
+  - recurrent-neural-network
+  - recurrent-neuron
+  - recurrent-Layer
+  - memory-cell
+  - hidden-state
+  - deep-learning
 categories:
   - Deep Learning
   - RNN
