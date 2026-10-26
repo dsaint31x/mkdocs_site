@@ -5,10 +5,11 @@ categories:
   - Deep Learning
   - PyTorch
 tags:
-  - PyTorch
-  - RNN
-  - RNNCell
-  - Recurrent Neural Network
+  - pytorch
+  - torch
+  - rnn
+  - rnn-cell
+  - recurrent-neural-network
 ---
 
 # PyTorch `nn.RNNCell`과 `nn.RNN`
