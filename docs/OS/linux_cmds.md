@@ -1,6 +1,6 @@
 ---
 title: 명령어 (GNU/Linux)
-tags: [OS, Linux, Bash, CLI, Shell]
+tags: [os, linux, bash, cli, shell]
 ---
 
 # 명령어 (Linux)
