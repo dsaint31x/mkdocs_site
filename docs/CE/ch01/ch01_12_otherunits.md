@@ -1,6 +1,6 @@
 ---
 title: Units for bit.
-tags: [Bit, Bytes, Word, Field, Record]
+tags: [bit, bytes, word, field, record]
 ---
 
 # bit 관련 단위.
