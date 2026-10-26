@@ -2,15 +2,15 @@
 title: Histogram-based Image Processing Techniques
 description: Histogram을 이용한 contrast 개선, intensity 분포 정합 및 image segmentation 기법 정리.
 tags:
-  - Image Processing
-  - Histogram
-  - Contrast Enhancement
-  - Image Segmentation
+  - image-processing
+  - histogram
+  - contrast-enhancement
+  - image-segmentation
 ---
 
 # Histogram-based Image Processing Techniques
 
-![](./img/histogram_simple.png)
+![](./img/histogram_simple.png){style="display: block; margin: 0 auto; width: 400px"}
 
 ## Histogram Stretching
 
