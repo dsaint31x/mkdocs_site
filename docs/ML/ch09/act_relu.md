@@ -5,12 +5,12 @@ categories:
   - Deep Learning
   - Machine Learning
 tags:
-  - Activation Function
-  - ReLU
-  - Leaky ReLU
-  - PReLU
-  - RReLU
-  - He Initialization
+  - activation-function
+  - relu
+  - leaky-relu
+  - prelu
+  - rrelu
+  - he-initialization
 math: true
 comments: true
 toc: true
