@@ -1,6 +1,6 @@
 ---
 title: 리눅스 (GNU/Linux)
-tags: [OS, Linux, GNU, Kernel, Distributions, Ubuntu, Debian, RedHat, CentOS]
+tags: [os, linux, gnu, kernel, distributions, ubuntu, debian, redhat, centos]
 ---
 # GNU/Linux 
 
