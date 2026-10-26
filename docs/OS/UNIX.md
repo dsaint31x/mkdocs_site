@@ -1,6 +1,11 @@
 ---
 title: UNIX
-tags: [OS, UNIX, LINUX, GNU/Linux History]
+tags: 
+  - os
+  - unix
+  - linux
+  - gnu/linux
+  - history
 ---
 
 # UNIX
