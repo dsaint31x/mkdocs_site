@@ -1,0 +1,55 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="650" height="195" viewBox="0 0 650 195" role="img" aria-labelledby="title desc">
+<title id="title">DL Framework와 GPGPU 실행 흐름</title>
+<desc id="desc">DL Framework의 tensor 연산이 가속 플랫폼·API를 거쳐 GPU에서 병렬 실행되는 흐름</desc>
+<defs>
+  <filter id="sketch" x="-3%" y="-3%" width="106%" height="106%">
+    <feTurbulence type="fractalNoise" baseFrequency="0.025" numOctaves="1" seed="12" result="noise"/>
+    <feDisplacementMap in="SourceGraphic" in2="noise" scale="0.7" xChannelSelector="R" yChannelSelector="G"/>
+  </filter>
+  <marker id="arrow" markerWidth="8" markerHeight="8" refX="6.8" refY="4" orient="auto">
+    <path d="M0 0 Q4 3.5 8 4 Q4 5 0 8Z" fill="#555"/>
+  </marker>
+  <style>
+    .bg{fill:#fbfbfa}.head{font:700 18px Arial,sans-serif;fill:#292929}.label{font:700 14px Arial,sans-serif;fill:#363636}.text{font:400 12px Arial,sans-serif;fill:#555}.small{font:400 10px Arial,sans-serif;fill:#666}
+    .line{fill:none;stroke:#555;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round;filter:url(#sketch)}.fine{fill:none;stroke:#888;stroke-width:1.2;stroke-linecap:round;stroke-linejoin:round;filter:url(#sketch)}
+    .node{fill:#fbfbfa;stroke:#555;stroke-width:1.5;filter:url(#sketch)}.unit{fill:#e4e4e4;stroke:#666;stroke-width:1;filter:url(#sketch)}
+  </style>
+</defs>
+<rect class="bg" width="650" height="195"/>
+
+<!-- Framework: model graph and core functions -->
+<text class="head" x="18" y="25">DL Framework</text>
+<text class="small" x="18" y="41">PyTorch · TensorFlow · JAX</text>
+<g class="fine">
+  <path d="M39 77 Q65 64 89 61 M39 77 Q65 81 89 82 M39 77 Q65 99 89 102 M99 61 Q124 73 145 82 M99 82 L145 82 M99 102 Q124 91 145 82"/>
+</g>
+<g><circle class="node" cx="36" cy="77" r="6"/><circle class="node" cx="94" cy="61" r="6"/><circle class="node" cx="94" cy="82" r="6"/><circle class="node" cx="94" cy="102" r="6"/><circle class="node" cx="150" cy="82" r="7"/></g>
+<text class="label" x="18" y="133">Tensor 연산 · 자동 미분</text>
+<text class="text" x="18" y="154">Model 구성 · 학습 관리</text>
+<text class="label" x="18" y="175">GPU 가속 지원</text>
+
+<!-- framework work flows into an accelerator backend -->
+<path class="line" d="M174 82 Q196 82 213 82" marker-end="url(#arrow)"/>
+<text class="small" x="194" y="70" text-anchor="middle">연산 전달</text>
+
+<!-- Backend: compact list -->
+<text class="head" x="232" y="25">가속 플랫폼·API</text>
+<text class="small" x="232" y="41">연산을 GPU에 전달</text>
+<text class="label" x="235" y="70">CUDA</text><text class="small" x="305" y="70">NVIDIA</text>
+<text class="label" x="235" y="94">ROCm</text><text class="small" x="305" y="94">AMD</text>
+<text class="label" x="235" y="118">DirectML</text><text class="small" x="305" y="118">DirectX 12 GPU</text>
+<text class="label" x="235" y="142">MPS</text><text class="small" x="305" y="142">Apple Metal GPU</text>
+<path class="line" d="M385 106 Q401 106 416 106" marker-end="url(#arrow)"/>
+
+<!-- GPGPU parallel work -->
+<text class="head" x="431" y="25">GPGPU 실행</text>
+<text class="small" x="431" y="41">GPU를 일반 계산에 사용</text>
+<path class="line" d="M437 58 Q439 53 446 54 L603 54 Q609 56 608 63 L608 126 Q606 132 600 131 L445 131 Q437 130 437 124Z"/>
+<g>
+ <rect class="unit" x="455" y="65" width="39" height="25" rx="3"/><rect class="unit" x="503" y="65" width="39" height="25" rx="3"/><rect class="unit" x="551" y="65" width="39" height="25" rx="3"/>
+ <rect class="unit" x="455" y="98" width="39" height="25" rx="3"/><rect class="unit" x="503" y="98" width="39" height="25" rx="3"/><rect class="unit" x="551" y="98" width="39" height="25" rx="3"/>
+</g>
+<text class="text" x="522" y="149" text-anchor="middle">여러 연산을 병렬 처리</text>
+<text class="small" x="522" y="163" text-anchor="middle" style="font-size:9px">실행 가능 여부는 framework ·</text>
+<text class="small" x="522" y="176" text-anchor="middle" style="font-size:9px">가속 플랫폼·API · GPGPU 조합에 따름</text>
+</svg>
