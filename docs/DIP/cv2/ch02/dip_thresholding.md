@@ -250,7 +250,9 @@ Global thresholding 에서 가장 많이 사용하는 방법임.
 * statistical property를 이용하여 
 * 가장 적절한 global threshold를 ^^알아서 찾아줌^^.
 
-> 아쉽지만, Global threshold를 찾는 것으로 adaptive thresholding에선 사용하기 어렵다.
+> 아쉽지만, Global threshold를 찾는 것으로 local에 따라
+> 다른 thresholding을 적용하는 adaptive thresholding 은 아님.  
+> 불균일한 조명에서 얻어진 image에선 성능이 좋지 못함.
 
 Otsu thresholding은 bimodal image (histogram의 2개의 peak를 가지는 경우를 가리킴)에 가장 적절한 threshold를 찾아준다.
 
@@ -272,14 +274,14 @@ where
 $$
 \begin{aligned}
 q_1(t) = \sum_{i=1}^{t} P(i) \quad & \& \quad q_2(t) = \sum_{i=t+1}^{I} P(i) \\
-\mu_1(t) = \sum_{i=1}^{t} \frac{iP(i)}{q_1(t)} \quad & \& \quad \mu_2(t) = \sum_{i=t+1}^{I} \frac{iP(i)}{q_2(t)} \\
+\mu_1(t) = \sum_{i=1}^{t} \frac{i}{q_1(t)}P(i) \quad & \& \quad \mu_2(t) = \sum_{i=t+1}^{I} \frac{i}{q_2(t)}P(i) \\
 \sigma_1^2(t) = \sum_{i=1}^{t} [i-\mu_1(t)]^2 \frac{P(i)}{q_1(t)} \quad & \& \quad \sigma_2^2(t) = \sum_{i=t+1}^{I} [i-\mu_2(t)]^2 \frac{P(i)}{q_2(t)}
 \end{aligned}
 $$
 
 * $i$ : intensity (`uint8`인 경우, 0~255)
 * $I$ : max intensity of image.
-* $P(i)$ : $i$를 가지는 pixel 의 갯수 (또는 확률).
+* $P(i)$ : $i$를 가지는 pixel 의 갯수 (또는 전체픽셀에서 차지하는 비율).
 
 OpenCV에서 `cv2.threshold`에서 `cv2.THRESH_OTSU`를 사용하는 방법은 다음과 같음.
 
