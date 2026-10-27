@@ -1,6 +1,14 @@
 ---
 title: Process Scheduling
-tags: [Queue, Dispatcher, Preemptive, Non-Preemptive, Round Robin, FCFS, CFS, vruntime]
+tags: 
+  - queue
+  - dispatcher
+  - preemptive
+  - non-preemptive
+  - round-robin
+  - fcfs
+  - cfs
+  - vruntime]
 ---
 
 # Process Scheduling (or CPU Scheduling, Short-term Scheduling): OS 의 핵심 역할
