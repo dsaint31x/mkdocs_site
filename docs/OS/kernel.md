@@ -1,6 +1,9 @@
 ---
 title: Kernel
-tags: [OS, Kernel, User Space]
+tags: 
+  - os
+  - kernel
+  - user-space
 ---
 
 # Kernel
