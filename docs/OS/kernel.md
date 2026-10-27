@@ -14,7 +14,7 @@ tags:
 * `User program` (or application) 수행에 필요한 여러 ^^서비스를 제공하기 위한 **인터페이스를 제공**^^
 * **컴퓨터 H/W (CPU, Memory)의 resource(자원)들을 관리**
 
-좀 더 간략한 요약자료는 다음을 참고:[Kernel이란?](https://ds31x.tistory.com/131#%EC%B0%B8%EA%B3%A0-kernel%EC%9D%B4%EB%9E%80?)
+좀 더 간략한 요약자료는 다음을 참고: [Kernel이란?](https://ds31x.tistory.com/131#%EC%B0%B8%EA%B3%A0-kernel%EC%9D%B4%EB%9E%80?)
 
 다음 그림은 Linux Architecture로 Kernel이 OS에서 어디에 위치하는지를 보여준다.
 
