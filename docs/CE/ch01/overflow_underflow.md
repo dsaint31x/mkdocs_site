@@ -1,6 +1,9 @@
 ---
 title: Overflow and Underflow
-tags: [Overflow, Underflow, CCR]
+tags: 
+  - overflow
+  - underflow
+  - ccr
 ---
 
 # Overflow and Underflow
