@@ -1,5 +1,7 @@
 # Image Thresholding
 
+![](./img/thresholding.png){style="display: block; margin:0 auto; width: 400px"}
+
 * [관련 gist](https://gist.github.com/dsaint31x/e617e8ada55584850247d8a3837bf49a)
 
 
