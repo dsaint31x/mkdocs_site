@@ -37,8 +37,13 @@ AI 가속 플랫폼·API는 DL Framework의 연산을 GPU에서 실행하도록 
 
 - **CUDA**: NVIDIA GPU의 general-purpose 연산을 위한 computing platform 및 programming model임.
 - **ROCm**: AMD GPU용 runtime, compiler, library 등을 포함하는 software stack임.
-- **DirectML**: DirectX 12 호환 GPU에서 Machine Learning 연산을 실행하는 API임.
 - **MPS**: Apple의 Metal 기반 GPU 연산 framework로, Apple GPU에 최적화된 compute kernel을 제공함.
+- **DirectML**: DirectX 12 호환 GPU에서 Machine Learning 연산을 실행하는 API임.
+
+참고: 
+
+* [GPU Acceleration 기술 소개](https://ds31x.tistory.com/375)
+* [GPU란?](https://dsaint31.tistory.com/416)
 
 ## 3. DL Framework와 가속 기술의 관계
 
