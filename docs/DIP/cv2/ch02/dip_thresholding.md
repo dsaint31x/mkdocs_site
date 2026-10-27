@@ -1,3 +1,12 @@
+---
+title: Image Thresholding
+description: Binary Image를 만드는 Simple, Adaptive, Otsu Thresholding 방법과 OpenCV 함수를 소개합니다.
+tags:
+  - image-processing
+  - thresholding
+  - opencv
+---
+
 # Image Thresholding
 
 ![](./img/thresholding.png){style="display: block; margin:0 auto; width: 400px"}
