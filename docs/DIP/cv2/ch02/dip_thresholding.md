@@ -285,7 +285,7 @@ where
 $$
 \begin{aligned}
 q_1(t) = \sum_{i=1}^{t} P(i) \quad & \& \quad q_2(t) = \sum_{i=t+1}^{I} P(i) \\
-\mu_1(t) = \sum_{i=1}^{t} \frac{i}{q_1(t)}P(i) \quad & \& \quad \mu_2(t) = \sum_{i=t+1}^{I} \frac{i}{q_2(t)}P(i) \\
+\mu_1(t) = \sum_{i=1}^{t} \frac{P(i)}{q_1(t)}i \quad & \& \quad \mu_2(t) = \sum_{i=t+1}^{I} \frac{P(i)}{q_2(t)}i \\
 \sigma_1^2(t) = \sum_{i=1}^{t} [i-\mu_1(t)]^2 \frac{P(i)}{q_1(t)} \quad & \& \quad \sigma_2^2(t) = \sum_{i=t+1}^{I} [i-\mu_2(t)]^2 \frac{P(i)}{q_2(t)}
 \end{aligned}
 $$
