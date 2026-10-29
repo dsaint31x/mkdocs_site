@@ -27,15 +27,18 @@ histogram을 통해 contrast를 간단히 향상시키는 방법
 histogram을 통해 contrast를 향상시키는 방법 
 
 * 영상 전체의 histogram에서 구한 CDF(Cumulative Distribution Function, 누적분포함수)를 이용하여 intensity를 재분배하고 contrast를 향상시키는 방법임.
-* 전체 영상에 동일한(global) 변환을 적용하므로 illumination(조명)이 불균일한 영상에서는 일부 영역의 contrast 개선이 제한되거나 noise(잡음)가 강조될 수 있음. 
+* **전체 영상에 동일한(global) 변환을 적용** 하므로 illumination(조명)이 불균일한 영상에서는 일부 영역의 contrast 개선이 제한되거나 noise(잡음)가 강조될 수 있음. 
 
 참고: [Global HE](https://dsaint31.tistory.com/837)
 
 ## Contrast Limited Adaptive Histogram Equalization (CLAHE)
 
-histogram을 통해 contrast를 local 별로 adaptive 하게 향상시키는 방법 (조명이 불균일한 경우 포함)
+![](./img/clahe.png){style="display:block; margin: 0 auto; width: 500px"}
 
-* 영상을 작은 tile(영역, patch)로 나누어 각 영역의 histogram을 이용하므로, illumination이 불균일한 경우에도 local contrast(국소 명암 대비)를 개선할 수 있는 방법임.
+histogram을 통해 contrast를 local 별로 adaptive 하게 향상시키는 방법  
+(조명이 불균일한 경우 포함)
+
+* 영상을 작은 tile(영역, patch)로 나누어 각 영역의 histogram을 이용하므로, **illumination이 불균일한 경우** 에도 [local contrast(국소 명암 대비)](https://dsaint31.tistory.com/354)를 개선할 수 있는 방법임.
 * Histogram의 큰 bin 값을 clip limit으로 제한하고 초과분을 재분배하여 과도한 contrast 및 noise 증폭을 억제하며,
 * 인접 영역의 변환 결과를 interpolation(보간)하여 경계의 불연속을 줄임.
 
