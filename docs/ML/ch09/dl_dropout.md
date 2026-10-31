@@ -24,6 +24,7 @@ neural network regularization(정칙화) 기법임.
 
 * 참고로, 2013년 Li Wan 등이 제안한 **DropConnect** 는 학습 중 weight connection을 랜덤하게 제거하는 기법임.
 * 최근 많이 사용되는 **DropPath** 는 residual branch 전체를 무작위로 제거하여 stochastic depth (Gao Huang et al., 2016)를 구현하는 기법임.
+    * 참고: [DropPath 와 Stochastic Depth](https://dsaint31.tistory.com/964) 
 
 > 초기 EfficientNet 구현 일부에서는
 > stochastic depth와 유사한 기능을 `drop_connect`라고 부르기도 할 정도로
@@ -35,10 +36,10 @@ neural network regularization(정칙화) 기법임.
 
 `Dropout`은 Hinton group이 2012년에 처음 제안하고, Srivastava et al.이 2014년 논문에서 더 체계적으로 정리한 neural network regularization(정칙화) 기법임.
 
-* Hinton, G. E., Srivastava, N., Krizhevsky, A., Sutskever, I., & Salakhutdinov, R. (2012). Improving Neural Networks by Preventing Co-adaptation of Feature Detectors.
+* [Hinton, G. E., Srivastava, N., Krizhevsky, A., Sutskever, I., & Salakhutdinov, R. (2012). Improving Neural Networks by Preventing Co-adaptation of Feature Detectors.](https://arxiv.org/abs/1207.0580)
     * 최초 제안 논문 
     * 이 연구는 작은 학습 데이터에서 큰 신경망을 학습할 때 hidden unit을 무작위로 생략함으로써 overfitting을 줄일 수 있다고 설명. 
-* Srivastava, N., Hinton, G., Krizhevsky, A., Sutskever, I., & Salakhutdinov, R. (2014). Dropout: A Simple Way to Prevent Neural Networks from Overfitting. Journal of Machine Learning Research.
+* [Srivastava, N., Hinton, G., Krizhevsky, A., Sutskever, I., & Salakhutdinov, R. (2014). Dropout: A Simple Way to Prevent Neural Networks from Overfitting. Journal of Machine Learning Research.](https://www.cs.toronto.edu/~rsalakhu/papers/srivastava14a.pdf)
     * 대표적인 정식 논문 
     * Dropout이
     * unit 사이의 과도한 co-adaptation을 줄이고,
@@ -238,16 +239,16 @@ PyTorch에서는 이 아이디어를 여러 형태의 layer로 제공함.
 * 각각의 가장 큰 차이는 **무엇을 어떻게 제거하는가** 에 있음
     * 일반 MLP에서는 개별 activation을 제거함
     * CNN에서는 **channel 단위로 feature map을 제거** 하는 방식이 자주 사용됨
-    * `SELU`를 사용하는 경우에는 평균과 분산 흐름을 유지하기 위해 `AlphaDropout` 계열을 사용함
+    * `SELU (Scaled Exponential Linear Unit)`를 사용하는 경우에는 평균과 분산 흐름을 유지하기 위해 `AlphaDropout` 계열을 사용함
 
 | Layer | 입력 형태 및 주 사용 대상 | 제거 단위와 동작 | 기본 옵션 |
 |---|---|---|---|
-| `nn.Dropout` | 임의의 tensor shape. MLP에서 흔히 사용 | 각 activation을 **개별적으로** 확률 `p`로 0으로 설정. 살아남은 값은 학습 중 `1/(1-p)`배 | `p=0.5`, `inplace=False` |
-| `nn.Dropout1d` | `(N, C, L)`. 주로 `Conv1d` feature map | 한 sample에서 선택된 channel의 **전체 길이 `L`**을 0으로 설정 | `p=0.5`, `inplace=False` |
-| `nn.Dropout2d` | `(N, C, H, W)`. 주로 `Conv2d` feature map | 한 sample에서 선택된 channel의 **전체 `H × W` feature map**을 0으로 설정 | `p=0.5`, `inplace=False` |
-| `nn.Dropout3d` | `(N, C, D, H, W)`. 주로 `Conv3d` feature map | 한 sample에서 선택된 channel의 **전체 `D × H × W` feature map**을 0으로 설정 | `p=0.5`, `inplace=False` |
-| `nn.AlphaDropout` | 임의의 tensor shape. 주로 `SELU` network | 각 activation을 개별적으로 마스킹해 **0 대신 SELU의 음의 포화값**으로 바꾸고, 평균과 분산을 유지하도록 조정 | `p=0.5`, `inplace=False` |
-| `nn.FeatureAlphaDropout` | `(N, C, D, H, W)` 또는 `(C, D, H, W)`. `SELU`를 사용하는 feature map | 선택된 channel 전체를 마스킹해 **0 대신 SELU의 음의 포화값**으로 바꾸고, 평균과 분산을 유지하도록 조정 | `p=0.5`, `inplace=False` |
+| `nn.Dropout` | 임의의 tensor shape<br/> MLP에서 흔히 사용 | 각 activation을 **개별적으로** 확률 `p`로 0으로 설정.<br/>살아남은 값은 학습 중 `1/(1-p)`배 | `p=0.5`, `inplace=False` |
+| `nn.Dropout1d` | `(N, C, L)`<br/> 주로 `Conv1d` feature map | 한 sample에서 선택된 channel의<br/> **전체 길이 `L`**을 0으로 설정 | `p=0.5`, `inplace=False` |
+| `nn.Dropout2d` | `(N, C, H, W)`<br/> 주로 `Conv2d` feature map | 한 sample에서 선택된 channel의<br/> **전체 `H × W` feature map**을 0으로 설정 | `p=0.5`, `inplace=False` |
+| `nn.Dropout3d` | `(N, C, D, H, W)`<br/> 주로 `Conv3d` feature map | 한 sample에서 선택된 channel의<br/> **전체 `D × H × W` feature map**을 0으로 설정 | `p=0.5`, `inplace=False` |
+| `nn.AlphaDropout` | 임의의 tensor shape<br/> 주로 `SELU` network | 각 activation을 개별적으로 마스킹해 **0 대신 SELU의 음의 포화값**으로 바꾸고,<br/> 평균과 분산을 유지하도록 조정 | `p=0.5`, `inplace=False` |
+| `nn.FeatureAlphaDropout` | `(N, C, D, H, W)` 또는 `(C, D, H, W)`<br/> `SELU`를 사용하는 feature map | 선택된 channel 전체를 마스킹해 **0 대신 SELU의 음의 포화값**으로 바꾸고,<br/> 평균과 분산을 유지하도록 조정 | `p=0.5`, `inplace=False` |
 
 * `Dropout1d/2d/3d`의 channel 단위 마스킹은 **sample마다, forward 호출마다 독립적으로 적용**됨.
     * 예를 들어 `Dropout2d`에서는 한 sample의 특정 channel map 전체가 0이 되지만,
@@ -514,9 +515,9 @@ print(logits.shape)  # torch.Size([8, 10])
 
 앞의 예제들은 주로 `ReLU`를 사용하는 일반적인 network를 기준으로 했음.
 
-하지만 **activation function으로 `SELU`를 사용하는 경우에는 일반 `Dropout` 대신 `AlphaDropout`을 사용** 하는것이 권장됨.
+하지만 **activation function으로 `SELU (Scaled Exponential Linear Unit)`를 사용하는 경우에는 일반 `Dropout` 대신 `AlphaDropout`을 사용** 하는것이 권장됨.
 
-* `SELU`는 activation의 평균과 분산이 layer를 지나면서 비교적 안정적으로 유지되도록 설계된 activation임
+* [`SELU`는 activation의 평균과 분산이 layer를 지나면서 비교적 안정적으로 유지되도록 설계된 activation임](https://dsaint31.me/mkdocs_site/ML/ch09/act_elu/?h=selu#scaled-elu-selu)
 * 일반 `Dropout`은 activation을 단순히 `0`으로 만듦
 * 이 때문에 `SELU`가 의도한 평균과 분산의 흐름을 깨뜨릴 수 있음
 * 따라서 `SELU`를 사용하는 network에서는 `AlphaDropout`을 사용함
@@ -704,9 +705,10 @@ with torch.no_grad():
     logits = model(x)
 ```
 
-이 방식은 하나의 deterministic prediction을 반환함.
+즉, 
+일반적인 Dropout 방식은 ***하나의 deterministic prediction을 반환*** 함.
 
-반면 MC Dropout은 inference 시점에도 Dropout을 일부러 활성화하여, 같은 입력에 대해 여러 번 예측하는 방법임.
+반면 MC Dropout은 inference 시점에도 **Dropout을 일부러 활성화** 하여, **같은 입력에 대해 여러 번 예측하는 방법** 임.
 
 * 학습할 때처럼 Dropout mask를 계속 바꿔가며 여러 번 forward pass를 수행함
 * 같은 입력이라도 매번 조금씩 다른 prediction이 나올 수 있음
@@ -726,15 +728,16 @@ MC Dropout은 다음 순서로 동작함.
 
 ### MC Dropout 구현
 
-MC Dropout을 구현할 때 전체 model에 `model.train()`을 호출하면 안 되는 경우가 많음.
+MC Dropout을 구현할 때에도 전체 model에 `model.train()`을 호출하는 것은 피하는 게 좋음.
 
-그 이유는 Dropout뿐 아니라 BatchNorm 같은 layer도 train mode로 바뀌기 때문임.
+**그 이유는 Dropout뿐 아니라 BatchNorm 같은 layer도 train mode로 바뀌기 때문임.**
 
 * BatchNorm은 train mode에서 mini-batch statistics를 사용함
 * BatchNorm은 train mode에서 running mean과 running variance를 갱신할 수 있음
 * inference 중 BatchNorm까지 train mode로 바꾸면 예측이 의도와 다르게 흔들릴 수 있음
 
-따라서 MC Dropout에서는 전체 model은 `eval mode`로 유지하고, Dropout 계열 layer만 선택적으로 `train mode`로 바꾸는 편이 안전함.
+따라서 MC Dropout에서는 전체 model은 `eval mode`로 유지하고,  
+Dropout 계열 layer만 선택적으로 `train mode`로 바꾸는 편이 안전함.
 
 ```python
 def enable_dropout_only(model):
