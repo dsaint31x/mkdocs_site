@@ -39,7 +39,7 @@ CNN에서
 
 두 종류가 있음:
 
-![](./img/pooling_layer.png)
+![](./img/pooling_layer.png){style="display:block; margin: 0 auto; width: 500px"}
 
 ---
 
