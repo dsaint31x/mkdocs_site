@@ -1,3 +1,17 @@
+---
+title: "Pooling Layer"
+description: "CNN의 pooling layer 역할과 max pooling, average pooling, global average pooling 및 주요 hyperparameters 정리"
+tags:
+  - deep-learning
+  - cnn
+  - pooling
+  - downsampling
+  - max-pooling
+  - average-pooling
+  - global-average-pooling
+  - translation-invariance
+---
+
 # Pooling Layer
 
 CNN에서  
@@ -9,9 +23,11 @@ CNN에서
 * down-sampling을 수행!
 * global pooling의 경우, flatten layer로 사용됨.
 
-> Global average pooling은  
+> **Global average pooling** 은  
 > 각 channel의 전체 spatial 영역을 평균하여 위치 정보를 제거하고,  
-> feature의 위치 변화에 대한 invariance를 부여하는 데 사용됨.  
+> feature의 위치 변화에 대한 invariance를 부여하는 데 사용됨.
+> 일종의 flattening 을 수행함.
+> 
 > Invariance는 특정한 입력 변화에도 출력이 동일하게 유지되는 성질을 의미함.
 
 ---
@@ -21,7 +37,9 @@ CNN에서
 * max-pooling과 
 * average-pooling 
 
-두 종류가 있음.
+두 종류가 있음:
+
+![](./img/pooling_layer.png)
 
 ---
 
