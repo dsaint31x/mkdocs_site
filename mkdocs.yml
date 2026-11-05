@@ -481,6 +481,7 @@ nav:
       - 'CNN':
         - "ML/ch14_cnn/CNN_intro.md"
         - "ML/ch14_cnn/CNN_convolutional_layer.md"
+        - "ML/ch14_cnn/module_conv2d.md"
         - "ML/ch14_cnn/CNN_pooling_layer.md"
         - "ML/ch14_cnn/LeNet-5.md"
         - "ML/ch14_cnn/alexnet.md"
