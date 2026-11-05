@@ -269,15 +269,15 @@ Residual learning의 핵심 직관은 다음과 같음.
 
 최근 `torchvision`에서는 `pretrained=True` 대신 `weights` argument 사용이 권장됨.
 
-```python
+```Python
 from torchvision.models import resnet50, ResNet50_Weights
 
 model = resnet50(weights=ResNet50_Weights.DEFAULT)
-````
+```
 
 다른 ResNet 계열 모델도 같은 방식으로 사용할 수 있음.
 
-```python
+```Python
 from torchvision.models import resnet18, ResNet18_Weights
 from torchvision.models import resnet34, ResNet34_Weights
 from torchvision.models import resnet101, ResNet101_Weights
