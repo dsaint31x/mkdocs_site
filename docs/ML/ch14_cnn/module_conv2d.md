@@ -380,11 +380,11 @@ print(y.shape)  # torch.Size([8, 6, 32, 32])
 ```
 
 - **첫 번째 group**
-  - Input channel `0`, `1`을 사용함.
-  - Output channel `0`, `1`, `2`를 생성함.
+    - Input channel `0`, `1`을 사용함.
+    - Output channel `0`, `1`, `2`를 생성함.
 - **두 번째 group**
-  - Input channel `2`, `3`을 사용함.
-  - Output channel `3`, `4`, `5`를 생성함.
+    - Input channel `2`, `3`을 사용함.
+    - Output channel `3`, `4`, `5`를 생성함.
 
 같은 group 안에서는 입력 channel의 계산 결과를 합치며, 서로 다른 group 사이에서는 값을 섞지 않음.
 
@@ -408,12 +408,12 @@ print(y.shape)  # torch.Size([8, 16, 32, 32])
 ```
 
 - **입력과 출력의 channel 수가 같은 경우**
-  - Input channel 하나당 filter 하나를 적용함.
-  - Input channel `0`은 output channel `0`에, input channel `1`은 output channel `1`에 대응하는 순서로 출력이 생성됨.
-  - 각 filter는 서로 다른 weight와 bias를 사용함.
+    - Input channel 하나당 filter 하나를 적용함.
+    - Input channel `0`은 output channel `0`에, input channel `1`은 output channel `1`에 대응하는 순서로 출력이 생성됨.
+    - 각 filter는 서로 다른 weight와 bias를 사용함.
 - **입력과 출력의 channel 수가 다른 경우**
-  - `out_channels`는 `in_channels`의 양의 정수배여야 함.
-  - Input channel 하나당 여러 filter를 적용하여 여러 output channel을 생성함.
+    - `out_channels`는 `in_channels`의 양의 정수배여야 함.
+    - Input channel 하나당 여러 filter를 적용하여 여러 output channel을 생성함.
 
 ```python
 # Input channel 하나당 filter 두 개 적용
@@ -486,11 +486,11 @@ print(y.shape)  # torch.Size([8, 32, 32, 32])
 ```
 
 - **Spatial 방향**
-  - 각 위치에서만 계산하며, 주변 위치의 값은 참조하지 않음.
-  - 위 예제의 기본 `stride=1`, `padding=0`에서는 높이와 너비가 유지됨.
+    - 각 위치에서만 계산하며, 주변 위치의 값은 참조하지 않음.
+    - 위 예제의 기본 `stride=1`, `padding=0`에서는 높이와 너비가 유지됨.
 - **Channel 방향**
-  - 같은 위치에 있는 input channel 16개의 값을 학습 가능한 weight로 결합함.
-  - Output channel 32개를 생성함.
+    - 같은 위치에 있는 input channel 16개의 값을 학습 가능한 weight로 결합함.
+    - Output channel 32개를 생성함.
 
 **Channel 수를 줄이거나 늘리는 용도 및 channel 사이의 정보를 결합하는 용도로 사용됨.**
 
