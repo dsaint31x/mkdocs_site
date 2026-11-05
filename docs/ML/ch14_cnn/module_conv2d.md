@@ -59,13 +59,13 @@ $$
 $$
 
 - **Batch size**
-  - $N$: 한 번에 처리하는 sample 수.
+    - $N$: 한 번에 처리하는 sample 수.
 - **Channel**
-  - $C_{\mathrm{in}}$: Input channel 수.
-  - $C_{\mathrm{out}}$: Output channel 수.
+    - $C_{\mathrm{in}}$: Input channel 수.
+    - $C_{\mathrm{out}}$: Output channel 수.
 - **Spatial size**
-  - $H_{\mathrm{in}}, W_{\mathrm{in}}$: 입력의 높이와 너비.
-  - $H_{\mathrm{out}}, W_{\mathrm{out}}$: 출력의 높이와 너비.
+    - $H_{\mathrm{in}}, W_{\mathrm{in}}$: 입력의 높이와 너비.
+    - $H_{\mathrm{out}}, W_{\mathrm{out}}$: 출력의 높이와 너비.
 
 Batch dimension을 생략한 단일 sample의 입력 shape도 지원됨:
 
@@ -145,11 +145,11 @@ Stride를 늘리면 출력을 계산하는 위치가 줄어들어 **spatial size
 
 - **Default: `0`. Padding을 추가하지 않음.**
 - 수치로 지정하는 경우:
-  - `padding=1`: 위, 아래, 왼쪽, 오른쪽에 각각 한 줄씩 추가함.
-  - `padding=(1, 2)`: 위아래에 각각 한 줄, 좌우에 각각 두 줄씩 추가함.
+    - `padding=1`: 위, 아래, 왼쪽, 오른쪽에 각각 한 줄씩 추가함.
+    - `padding=(1, 2)`: 위아래에 각각 한 줄, 좌우에 각각 두 줄씩 추가함.
 - 문자열로 지정하는 경우:
-  - `padding="valid"`: Padding을 추가하지 않음. `padding=0`과 동일함.
-  - `padding="same"`: 출력의 높이와 너비가 입력과 같도록 padding을 추가함. `stride=1`에서만 지원됨.
+    - `padding="valid"`: Padding을 추가하지 않음. `padding=0`과 동일함.
+    - `padding="same"`: 출력의 높이와 너비가 입력과 같도록 padding을 추가함. `stride=1`에서만 지원됨.
 
 **추가 영역은 기본적으로 0으로 채워지며**, 다른 방식을 사용하려면 `padding_mode`를 지정함.
 
@@ -192,10 +192,10 @@ Stride를 늘리면 출력을 계산하는 위치가 줄어들어 **spatial size
 
 - **Default: `"zeros"`.**
 - 지원하는 방식:
-  - `"zeros"`: 추가 영역을 0으로 채움.
-  - `"reflect"`: 경계의 값을 거울처럼 반사하여 채움. 경계 값 자체는 반복하지 않음.
-  - `"replicate"`: 가장 가까운 경계 값을 반복하여 채움.
-  - `"circular"`: 반대쪽 경계의 값을 가져와 순환하도록 채움.
+    - `"zeros"`: 추가 영역을 0으로 채움.
+    - `"reflect"`: 경계의 값을 거울처럼 반사하여 채움. 경계 값 자체는 반복하지 않음.
+    - `"replicate"`: 가장 가까운 경계 값을 반복하여 채움.
+    - `"circular"`: 반대쪽 경계의 값을 가져와 순환하도록 채움.
 
 **`padding`은 추가할 양을, `padding_mode`는 채우는 방식을 결정함.**  
 따라서 `padding_mode="zeros"`가 기본값이어도 `padding=0`이면 padding이 추가되지 않음.
@@ -231,11 +231,11 @@ Dilation을 반영하여 kernel이 입력에서 참조하는 범위를
 $$K_{\mathrm{eff}}=D(K-1)+1$$
 
 - **Kernel size**
-  - $K$: 해당 방향의 kernel 크기.
+    - $K$: 해당 방향의 kernel 크기.
 - **Dilation**
-  - $D$: 해당 방향의 참조 간격.
+    - $D$: 해당 방향의 참조 간격.
 - **Effective kernel size**
-  - $K_{\mathrm{eff}}$: 첫 참조 위치부터 마지막 참조 위치까지의 범위 크기.
+    - $K_{\mathrm{eff}}$: 첫 참조 위치부터 마지막 참조 위치까지의 범위 크기.
 
 예를 들어 `kernel_size=3`, `dilation=2`이면 유효 kernel 크기는 5임.  
 즉, 각 입력 channel에서 `3 x 3`개의 weight를 사용하면서 `5 x 5` 범위에 걸친 위치를 참조함.
@@ -264,25 +264,25 @@ S_w
 $$
 
 - **Input size**
-  - $H_{\mathrm{in}}$: 입력의 높이.
-  - $W_{\mathrm{in}}$: 입력의 너비.
+    - $H_{\mathrm{in}}$: 입력의 높이.
+    - $W_{\mathrm{in}}$: 입력의 너비.
 - **Output size**
-  - $H_{\mathrm{out}}$: 출력의 높이.
-  - $W_{\mathrm{out}}$: 출력의 너비.
+    - $H_{\mathrm{out}}$: 출력의 높이.
+    - $W_{\mathrm{out}}$: 출력의 너비.
 - **Kernel size**
-  - $K_h$: Kernel의 높이.
-  - $K_w$: Kernel의 너비.
+    - $K_h$: Kernel의 높이.
+    - $K_w$: Kernel의 너비.
 - **Stride**
-  - $S_h$: 높이 방향의 이동 간격.
-  - $S_w$: 너비 방향의 이동 간격.
+    - $S_h$: 높이 방향의 이동 간격.
+    - $S_w$: 너비 방향의 이동 간격.
 - **Padding**
-  - $P_h$: 위쪽과 아래쪽에 각각 추가하는 padding의 양.
-  - $P_w$: 왼쪽과 오른쪽에 각각 추가하는 padding의 양.
+    - $P_h$: 위쪽과 아래쪽에 각각 추가하는 padding의 양.
+    - $P_w$: 왼쪽과 오른쪽에 각각 추가하는 padding의 양.
 - **Dilation**
-  - $D_h$: 높이 방향의 kernel 참조 간격.
-  - $D_w$: 너비 방향의 kernel 참조 간격.
+    - $D_h$: 높이 방향의 kernel 참조 간격.
+    - $D_w$: 너비 방향의 kernel 참조 간격.
 - **Floor**
-  - $\lfloor\cdot\rfloor$: 계산 결과를 내림하여 정수로 만드는 연산.
+    - $\lfloor\cdot\rfloor$: 계산 결과를 내림하여 정수로 만드는 연산.
 
 위 식은 **각 방향의 양쪽에 같은 양의 padding을 추가하는 경우** 에 적용함.  
 기본값인 `dilation=1`도 이 식으로 계산 가능함.
@@ -292,20 +292,20 @@ $$
 입력이 `32 x 32`, `kernel_size=3`이며, 높이와 너비에 같은 설정을 적용하는 경우임.
 
 - **기본 설정**
-  - `stride=1`, `dilation=1`, `padding=0`.
-  - 출력 크기: `30 x 30`.
+    - `stride=1`, `dilation=1`, `padding=0`.
+    - 출력 크기: `30 x 30`.
 - **Padding을 추가한 경우**
-  - `stride=1`, `dilation=1`, `padding=1`.
-  - 출력 크기: `32 x 32`.
+    - `stride=1`, `dilation=1`, `padding=1`.
+    - 출력 크기: `32 x 32`.
 - **Padding을 유지하면서 dilation을 늘린 경우**
-  - `stride=1`, `dilation=2`, `padding=1`.
-  - 출력 크기: `30 x 30`.
+    - `stride=1`, `dilation=2`, `padding=1`.
+    - 출력 크기: `30 x 30`.
 - **Dilation에 맞춰 padding도 늘린 경우**
-  - `stride=1`, `dilation=2`, `padding=2`.
-  - 출력 크기: `32 x 32`.
+    - `stride=1`, `dilation=2`, `padding=2`.
+    - 출력 크기: `32 x 32`.
 - **Stride를 늘린 경우**
-  - `stride=2`, `dilation=1`, `padding=1`.
-  - 출력 크기: `16 x 16`.
+    - `stride=2`, `dilation=1`, `padding=1`.
+    - 출력 크기: `16 x 16`.
 
 **Padding을 고정한 상태에서 dilation을 늘리면 출력의 spatial size가 줄어듦.**
 
@@ -429,11 +429,11 @@ depthwise = nn.Conv2d(
 위 설정의 channel 대응은 다음과 같음:
 
 - Input channel `0`
-  - Output channel `0`, `1`을 생성함.
+    - Output channel `0`, `1`을 생성함.
 - Input channel `1`
-  - Output channel `2`, `3`을 생성함.
+    - Output channel `2`, `3`을 생성함.
 - Input channel `2`
-  - Output channel `4`, `5`를 생성함.
+    - Output channel `4`, `5`를 생성함.
 
 **각 output channel은 하나의 input channel만 사용하므로 channel 사이의 정보는 결합되지 않음.**  
 입출력의 shape가 같더라도 각 channel의 값은 convolution 결과로 변경됨.
@@ -460,10 +460,10 @@ print(y.shape)  # torch.Size([8, 16, 32, 32])
 ```
 
 - **`kernel_size=3`, `dilation=2`**
-  - 각 입력 channel에서 `3 x 3`개의 weight를 사용함.
-  - 입력 위치를 한 칸씩 건너뛰어 참조하여 전체 참조 범위는 `5 x 5`가 됨.
+    - 각 입력 channel에서 `3 x 3`개의 weight를 사용함.
+    - 입력 위치를 한 칸씩 건너뛰어 참조하여 전체 참조 범위는 `5 x 5`가 됨.
 - **`padding=2`**
-  - 넓어진 참조 범위에 맞춰 padding을 추가하여 높이와 너비를 유지함.
+    - 넓어진 참조 범위에 맞춰 padding을 추가하여 높이와 너비를 유지함.
 
 **Weight 수를 늘리지 않고 receptive field를 넓히는 데 사용됨.**
 
@@ -521,9 +521,9 @@ print(y.shape)  # torch.Size([8, 32, 32, 32])
 ```
 
 - **Depthwise convolution**
-  - 각 channel에서 spatial 정보를 처리함.
+    - 각 channel에서 spatial 정보를 처리함.
 - **Pointwise convolution**
-  - Channel 사이의 정보를 결합하고 output channel 수를 결정함.
+    - Channel 사이의 정보를 결합하고 output channel 수를 결정함.
 
 Spatial 처리와 channel 결합을 나누어 구현하여 **일반적인 convolution보다 weight 수와 연산량을 줄이는 데 사용됨.**
 
@@ -541,13 +541,13 @@ K_w
 $$
 
 - **Channel**
-  - $C_{\mathrm{in}}$: Input channel 수.
-  - $C_{\mathrm{out}}$: Output channel 수.
+    - $C_{\mathrm{in}}$: Input channel 수.
+    - $C_{\mathrm{out}}$: Output channel 수.
 - **Groups**
-  - $G$: Channel 연결을 나누는 group 수.
+    - $G$: Channel 연결을 나누는 group 수.
 - **Kernel size**
-  - $K_h$: Kernel의 높이.
-  - $K_w$: Kernel의 너비.
+    - $K_h$: Kernel의 높이.
+    - $K_w$: Kernel의 너비.
 
 Bias를 사용하면 output channel마다 하나씩 생성됨.
 
@@ -612,14 +612,14 @@ print(y.shape)  # torch.Size([8, 32, 16, 16])
 ```
 
 - **첫 번째 `Conv2d`**
-  - Spatial size를 `32 x 32`로 유지함.
-  - Channel 수를 `3`에서 `16`으로 변경함.
+    - Spatial size를 `32 x 32`로 유지함.
+    - Channel 수를 `3`에서 `16`으로 변경함.
 - **두 번째 `Conv2d`**
-  - Spatial size를 `16 x 16`으로 줄임.
-  - Channel 수를 `16`에서 `32`로 변경함.
+    - Spatial size를 `16 x 16`으로 줄임.
+    - Channel 수를 `16`에서 `32`로 변경함.
 - **각 `ReLU`**
-  - Activation을 적용함.
-  - Tensor shape는 유지함.
+    - Activation을 적용함.
+    - Tensor shape는 유지함.
 
 연속된 convolutional layer에서는 **앞 layer의 `out_channels`와 다음 layer의 `in_channels`가 일치해야 함.**  
 실제 입력 tensor의 channel 수가 `in_channels`와 다르면 오류가 발생함.
